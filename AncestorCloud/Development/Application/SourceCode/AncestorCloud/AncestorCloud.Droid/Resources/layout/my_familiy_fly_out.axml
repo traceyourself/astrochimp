@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AncestorCloud.Droid.FlyOutContainer xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/flyOutContainerLay">
+    <include
+        android:id="@+id/FlyOutMenu"
+        layout="@layout/menu" />
+    <include
+        android:id="@+id/FlyOutContent"
+        layout="@layout/my_family" />
+</AncestorCloud.Droid.FlyOutContainer>

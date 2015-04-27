@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  	<style name="Theme.Default" parent="android:Theme.DeviceDefault.NoActionBar">
+	</style>
+
+
+
+
+	<style name="GrayMediumText" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/gray_login_color</item>
+    </style>
+
+
+    <style name="LightGrayMediumText" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/light_gray_color</item>
+    </style>
+
+    <style name="GrayBigText" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/gray_login_color</item>
+        <item name="android:textSize">17sp</item>     
+	</style>
+
+
+</resources>

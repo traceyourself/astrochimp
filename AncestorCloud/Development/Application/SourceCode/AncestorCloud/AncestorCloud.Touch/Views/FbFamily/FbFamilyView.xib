@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FbFamilyView">
+            <connections>
+                <outlet property="fbFamilyTableView" destination="0Ls-62-dS7" id="uXU-St-QWv"/>
+                <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FFv-yq-amS">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your family according to Facebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mcd-DC-TSw">
+                            <rect key="frame" x="27" y="67" width="267" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.51372549020000002" green="0.4941176471" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Select the correct relationships" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddP-mc-5MA">
+                            <rect key="frame" x="70" y="139" width="187" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.51372549020000002" green="0.4941176471" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="help_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="SFK-UP-62E">
+                            <rect key="frame" x="292" y="19" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="Oap-5C-m4X"/>
+                                <constraint firstAttribute="width" constant="20" id="Q3F-eH-dgz"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kan-jx-UW1">
+                            <rect key="frame" x="98" y="101" width="124" height="30"/>
+                            <color key="backgroundColor" red="0.2156862745" green="0.54901960780000003" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Next">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fb_icon.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="2Sp-fn-2XQ">
+                            <rect key="frame" x="142" y="19" width="37" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="fUN-I0-x4d"/>
+                                <constraint firstAttribute="width" constant="37" id="vTA-jU-6bg"/>
+                            </constraints>
+                        </imageView>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0Ls-62-dS7">
+                            <rect key="frame" x="0.0" y="183" width="320" height="331"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="331" id="p0q-0u-uk5"/>
+                            </constraints>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="2Sp-fn-2XQ" firstAttribute="top" secondItem="FFv-yq-amS" secondAttribute="top" constant="19" id="8Hu-S2-qTO"/>
+                        <constraint firstItem="0Ls-62-dS7" firstAttribute="centerX" secondItem="2Sp-fn-2XQ" secondAttribute="centerX" id="8wN-dZ-nqG"/>
+                        <constraint firstItem="0Ls-62-dS7" firstAttribute="top" secondItem="ddP-mc-5MA" secondAttribute="bottom" constant="14" id="DSs-er-Ieg"/>
+                        <constraint firstItem="Mcd-DC-TSw" firstAttribute="top" secondItem="2Sp-fn-2XQ" secondAttribute="bottom" constant="8" symbolic="YES" id="DXB-Y9-Bxe"/>
+                        <constraint firstAttribute="trailing" secondItem="0Ls-62-dS7" secondAttribute="trailing" constant="8" id="NuH-Gv-5ec"/>
+                        <constraint firstAttribute="bottom" secondItem="0Ls-62-dS7" secondAttribute="bottom" id="PpA-dI-3QQ"/>
+                        <constraint firstItem="0Ls-62-dS7" firstAttribute="centerX" secondItem="Mcd-DC-TSw" secondAttribute="centerX" id="aPS-eo-vQN"/>
+                        <constraint firstItem="0Ls-62-dS7" firstAttribute="leading" secondItem="FFv-yq-amS" secondAttribute="leading" constant="8" id="iAD-IB-mmw"/>
+                        <constraint firstItem="0Ls-62-dS7" firstAttribute="centerX" secondItem="kan-jx-UW1" secondAttribute="centerX" id="qvZ-sN-5wB"/>
+                        <constraint firstItem="SFK-UP-62E" firstAttribute="trailing" secondItem="FFv-yq-amS" secondAttribute="trailingMargin" id="u5I-lI-mjw"/>
+                        <constraint firstItem="2Sp-fn-2XQ" firstAttribute="top" secondItem="SFK-UP-62E" secondAttribute="top" id="ypI-lZ-TWc"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.95029810859999997" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="FFv-yq-amS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="C2N-wQ-tKb"/>
+                <constraint firstAttribute="bottom" secondItem="FFv-yq-amS" secondAttribute="bottom" id="HQO-KW-u3j"/>
+                <constraint firstAttribute="trailing" secondItem="FFv-yq-amS" secondAttribute="trailing" id="L8n-lx-bHS"/>
+                <constraint firstItem="FFv-yq-amS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Q5M-vZ-ef8"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="fb_icon.jpeg" width="120" height="120"/>
+        <image name="help_icon.png" width="225" height="225"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

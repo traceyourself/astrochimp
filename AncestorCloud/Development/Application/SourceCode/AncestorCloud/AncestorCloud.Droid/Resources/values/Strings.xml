@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello World, Click Me!</string>
+	<string name="app_name">AncestorCloud.Droid</string>
+
+	<!--  Home Strings  -->
+	<string name="swipe">Swipe to learn more</string>
+	<!--  Home Strings END -->
+
+
+	<!--  Login Strings  -->
+	<string name="log_in">Log In</string>
+	<string name="facebook">Facebook</string>
+	<string name="continue_with">Continue with</string>
+	<string name="login_with_email">Log in with Email</string>
+	<string name="or">or</string>
+	<string name="email">Email</string>
+	<string name="password">Password</string>
+	<!--  Login Strings End  -->
+
+	<!--  Sign Up Strings  -->
+	<string name="sign_up">Sign Up</string>
+	<string name="sign_up_email">Sign up with Email</string>
+	<string name="full_name">Full name</string>
+	<!--  Sign up Strings End  -->
+
+	<!--- My Family Strings -->
+	<string name="relationship_matching">Relationship Matching</string>
+	<string name="family_desc_txt">Whether you\'re first cousins or eighth cousins it\'s nice to know we are all related one way or another.
+									\n To begin finding out how you\'re related to someone else we need you to tell us a little bit about your family. The more you add the easier it is to find your cousins.</string>
+	<string name="add_family_btn_txt">Add Family</string>
+	<!--- My Family Strings end -->
+
+
+	<!--- MENU Strings -->
+	<string name="my_family_menu">My Family</string>
+	<string name="matcher_menu">Matcher</string>
+	<string name="research_menu">Research Help</string>
+	<string name="log_out_menu">Log Out</string>
+	<!--- MENU Strings ENDS -->
+
+	<!--- Fb Family Screen Strings -->
+	<string name="your_family">Your Family according to Facebook</string>
+	<string name="correct_relation">Select the correct relationships</string>
+	<string name="next">Next</string>
+	<!--- Fb Family Screen  Strings ENDS -->
+
+</resources>

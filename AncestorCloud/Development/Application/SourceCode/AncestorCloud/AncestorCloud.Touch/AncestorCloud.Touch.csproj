@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{F28C01AA-A255-4834-A258-54D7B2CA0841}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>AncestorCloud.Touch</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>AncestorCloud.Touch</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <IpaPackageName>
+    </IpaPackageName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IpaIncludeArtwork>true</IpaIncludeArtwork>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <BuildIpa>true</BuildIpa>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Cirrious.CrossCore.Touch">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0\lib\Xamarin.iOS10\Cirrious.CrossCore.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Binding.Touch">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Binding.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.CrossCore">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0\lib\Xamarin.iOS10\Cirrious.CrossCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Binding">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Localization">
+      <HintPath>..\packages\MvvmCross.HotTuna.CrossCore.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Touch">
+      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross">
+      <HintPath>..\packages\MvvmCross.HotTuna.MvvmCrossLibraries.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="CrossUI.Core">
+      <HintPath>..\packages\MvvmCross.HotTuna.Touch.Dialog.3.5.0\lib\Xamarin.iOS10\CrossUI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CrossUI.Touch">
+      <HintPath>..\packages\MvvmCross.HotTuna.Touch.Dialog.3.5.0\lib\Xamarin.iOS10\CrossUI.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Dialog.Touch">
+      <HintPath>..\packages\MvvmCross.HotTuna.Touch.Dialog.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Dialog.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Auth.iOS">
+      <HintPath>..\Components\xamarin.social-1.1.7\lib\ios-unified\Xamarin.Auth.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Mobile">
+      <HintPath>..\Components\xamarin.social-1.1.7\lib\ios-unified\Xamarin.Mobile.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Social.iOS">
+      <HintPath>..\Components\xamarin.social-1.1.7\lib\ios-unified\Xamarin.Social.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="FlyoutNavigation">
+      <HintPath>..\Components\flyoutnavigation-1.5.1\lib\ios-unified\FlyoutNavigation.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoTouch.Dialog-1" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="Cirrious.MvvmCross.Plugins.Messenger">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Messenger.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.Messenger.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.Sqlite">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Sqlite.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.Sqlite.Touch">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Sqlite.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.Sqlite.Touch.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="MainStoryboard.storyboard" />
+    <InterfaceDefinition Include="Views\AddFriends\AddFriendsView.xib" />
+    <InterfaceDefinition Include="Views\AddGrandparents\AddGrandparentsView.xib" />
+    <InterfaceDefinition Include="Views\BaseViewModel\BaseViewController.xib" />
+    <InterfaceDefinition Include="Views\Edit\EditView.xib" />
+    <InterfaceDefinition Include="Views\Family\FamilyView.xib" />
+    <InterfaceDefinition Include="Views\FlyOut\FlyOutView.xib" />
+    <InterfaceDefinition Include="Views\MatcherDetail\RelationshipMatchDetailView.xib" />
+    <InterfaceDefinition Include="Views\MyFamily\MyFamilyView.xib" />
+    <InterfaceDefinition Include="Views\MyFamily\MyFamilyTableCell\MyFamilyTableCell.xib" />
+    <InterfaceDefinition Include="Views\RelationshipMatch\MatchView.xib" />
+    <InterfaceDefinition Include="Views\Signup\SignUpView.xib" />
+    <InterfaceDefinition Include="Views\HomePage\HomePage.xib" />
+    <InterfaceDefinition Include="Views\Login\LoginView.xib" />
+    <InterfaceDefinition Include="Views\LogOut\LogOutView.xib" />
+    <InterfaceDefinition Include="Views\FbFamily\FbFamilyView.xib" />
+    <InterfaceDefinition Include="Views\FbFamily\FbFamilyCell\FbFamilyCell.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+    <None Include="ToDo-MvvmCross\_ Touch UI.txt" />
+    <None Include="AppDelegate.cs.txt" />
+    <None Include="Views\AddGrandparents\.DS_Store" />
+    <None Include="Views\FlyOut\.DS_Store" />
+    <None Include="Views\Signup\.DS_Store" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Setup.cs" />
+    <Compile Include="DebugTrace.cs" />
+    <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="Views\AddFriends\AddFriendsView.cs" />
+    <Compile Include="Views\AddFriends\AddFriendsView.designer.cs" />
+    <Compile Include="Views\AddGrandparents\AddGrandparentsView.cs" />
+    <Compile Include="Views\AddGrandparents\AddGrandparentsView.designer.cs" />
+    <Compile Include="Views\BaseViewModel\BaseViewController.cs" />
+    <Compile Include="Views\BaseViewModel\BaseViewController.designer.cs" />
+    <Compile Include="Views\Edit\EditView.cs" />
+    <Compile Include="Views\Edit\EditView.designer.cs" />
+    <Compile Include="Views\Family\FamilyView.cs" />
+    <Compile Include="Views\Family\FamilyView.designer.cs" />
+    <Compile Include="Views\FlyOut\FlyOutView.cs" />
+    <Compile Include="Views\FlyOut\FlyOutView.designer.cs" />
+    <Compile Include="Views\MatcherDetail\RelationshipMatchDetailView.cs" />
+    <Compile Include="Views\MatcherDetail\RelationshipMatchDetailView.designer.cs" />
+    <Compile Include="Views\MatcherDetail\RelationshipMatchTableSource.cs" />
+    <Compile Include="Views\MyFamily\MyFamilyTableSource.cs" />
+    <Compile Include="Views\MyFamily\MyFamilyView.cs" />
+    <Compile Include="Views\MyFamily\MyFamilyView.designer.cs" />
+    <Compile Include="Views\MyFamily\MyFamilyTableCell\MyFamilyTableCell.cs" />
+    <Compile Include="Views\MyFamily\MyFamilyTableCell\MyFamilyTableCell.designer.cs" />
+    <Compile Include="Views\MyFamily\MyFamilyTableCell\TableItem.cs" />
+    <Compile Include="Views\RelationshipMatch\MatchView.cs" />
+    <Compile Include="Views\RelationshipMatch\MatchView.designer.cs" />
+    <Compile Include="Views\Signup\SignUpView.cs" />
+    <Compile Include="Views\Signup\SignUpView.designer.cs" />
+    <Compile Include="Controls\FlyOutNavigation.cs" />
+    <Compile Include="Views\HomePage\HomePage.cs" />
+    <Compile Include="Views\HomePage\HomePage.designer.cs" />
+    <Compile Include="Views\HomePage\HomePageCollectionSource.cs" />
+    <Compile Include="Views\HomePage\HomePageCollectionViewDelegate.cs" />
+    <Compile Include="Views\Login\LoginView.cs" />
+    <Compile Include="Views\Login\LoginView.designer.cs" />
+    <Compile Include="Utility\LineLayout.cs" />
+    <Compile Include="Utility\MyTitleView.cs" />
+    <Compile Include="Utility\PictureLibrary.cs" />
+    <Compile Include="Interface\ICollectionView.cs" />
+    <Compile Include="Utility\ToggleFlyoutMenuMessage.cs" />
+    <Compile Include="Views\CustomeView\CustomStringElement.cs" />
+    <Compile Include="Views\LogOut\LogOutView.cs" />
+    <Compile Include="Views\LogOut\LogOutView.designer.cs" />
+    <Compile Include="Views\MyFamily\MyFamilyTableCell\MyFamilySectionDataItem.cs" />
+    <Compile Include="Interface\IOSAlert.cs" />
+    <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
+    <Compile Include="Views\FbFamily\FbFamilyView.cs" />
+    <Compile Include="Views\FbFamily\FbFamilyView.designer.cs">
+      <DependentUpon>FbFamilyView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FbFamily\FbFamilyTableViewSource.cs" />
+    <Compile Include="Views\FbFamily\FbFamilyCell\FbFamilyCell.cs" />
+    <Compile Include="Views\FbFamily\FbFamilyCell\FbFamilyCell.designer.cs">
+      <DependentUpon>FbFamilyCell.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\AncestorCloud.Shared\AncestorCloud.Core.csproj">
+      <Project>{ED8A9D7B-B591-4204-BE58-FAC4EE55E0E5}</Project>
+      <Name>AncestorCloud.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utility\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Views\AddFriends\" />
+    <Folder Include="Views\AddGrandparents\" />
+    <Folder Include="Views\BaseViewModel\" />
+    <Folder Include="Views\Edit\" />
+    <Folder Include="Views\Family\" />
+    <Folder Include="Views\FbFamily\" />
+    <Folder Include="Views\FlyOut\" />
+    <Folder Include="Views\MatcherDetail\" />
+    <Folder Include="Views\MyFamily\" />
+    <Folder Include="Views\RelationshipMatch\" />
+    <Folder Include="Views\Signup\" />
+    <Folder Include="Controls\" />
+    <Folder Include="Views\HomePage\" />
+    <Folder Include="Views\Login\" />
+    <Folder Include="Interface\" />
+    <Folder Include="Views\CustomeView\" />
+    <Folder Include="Views\LogOut\" />
+    <Folder Include="Views\FbFamily\FbFamilyCell\" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="xamarin.social">
+      <Version>1.1.7</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="flyoutnavigation">
+      <Version>1.5.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cross.png" />
+    <BundleResource Include="Resources\noImage.png" />
+    <BundleResource Include="Resources\sec_coin.jpg" />
+    <BundleResource Include="Resources\action_menu.png" />
+    <BundleResource Include="Resources\action_menu%402x.png" />
+    <BundleResource Include="Resources\splash.png" />
+    <BundleResource Include="Resources\edit_pen.png" />
+    <BundleResource Include="Resources\cross_white%402x.png" />
+    <BundleResource Include="Resources\action_back_btn.png" />
+    <BundleResource Include="Resources\help_icon.png" />
+    <BundleResource Include="Resources\fb_icon.jpeg" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@color/action_bar_back_color">
+    <RelativeLayout
+        android:id="@+id/action_bar_left_btn"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="2dp"
+        android:layout_centerVertical="true">
+        <ImageView
+            android:id="@+id/action_bar_left_menu_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="centerInside"
+            android:layout_centerInParent="true" />
+        <ImageView
+            android:id="@+id/action_bar_left_img"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:scaleType="centerInside"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_centerInParent="true">
+        <ImageView
+            android:id="@+id/action_center_img"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/action_center_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:layout_toRightOf="@+id/action_center_img" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/action_bar_right_btn"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="2dp">
+        <ImageView
+            android:id="@+id/action_bar_right_img"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:scaleType="centerInside"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res/AncestorCloud.Droid"
+    android:background="@android:color/transparent"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <Mvx.MvxImageView
+        android:id="@+id/user_img"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/blue_dot"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Robert Eames"
+        android:gravity="left"
+        android:textColor="@color/add_family_data_txt_color"
+        android:textSize="14sp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@+id/user_img"
+        local:MvxBind="Text Name" />
+    <TextView
+        android:id="@+id/relation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(father)"
+        android:gravity="left"
+        android:textColor="@color/add_family_data_txt_color"
+        android:textSize="14sp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="4dp"
+        android:layout_toLeftOf="@+id/check_box_right"
+        android:layout_toRightOf="@+id/username"
+        local:MvxBind="Text Relation, Converter=RelationshipText" />
+    <CheckBox
+        android:id="@+id/check_box_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:layout_centerVertical="true"
+        local:MvxBind="Checked IsSelected" />
+</RelativeLayout>
