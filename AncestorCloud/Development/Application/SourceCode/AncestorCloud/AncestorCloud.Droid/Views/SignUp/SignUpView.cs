@@ -105,14 +105,14 @@ namespace AncestorCloud.Droid
 							ViewModel.SaveFbFamilyData();
 
 							//ViewModel.GetFbData();
-
+							if(account != null){
+								DoFbSignUp();
+							}
 						});
 
 					});
 
-					if(account != null){
-						DoFbSignUp();
-					}
+
 				}
 
 			});

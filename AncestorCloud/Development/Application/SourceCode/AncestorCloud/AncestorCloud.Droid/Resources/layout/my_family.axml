@@ -72,8 +72,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
-                android:minWidth="30dp"
-                android:minHeight="30dp"
                 android:src="@drawable/help_icon"
                 android:layout_below="@+id/add_family_btn" />
         </RelativeLayout>

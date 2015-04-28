@@ -32,7 +32,12 @@ namespace AncestorCloud.Droid
 			} */
 		}
 
+		#region Holding instance of current Activity for Loader
 
+		public static Activity CurrentActiveActivity{ get; set;}
+
+		#endregion
 	}
+
 }
 

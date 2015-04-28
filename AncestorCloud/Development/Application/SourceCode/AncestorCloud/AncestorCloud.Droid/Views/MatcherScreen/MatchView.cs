@@ -70,7 +70,7 @@ namespace AncestorCloud.Droid
 		#region Apply Actions
 		private void ApplyActions(){
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.my_family_menu_btn).Click += (object sender, EventArgs e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
+				//menu.AnimatedOpened = !menu.AnimatedOpened;
 				ViewModel.ShowFamilyView();
 			};
 
@@ -79,12 +79,13 @@ namespace AncestorCloud.Droid
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.research_menu_btn).Click += (object sender, EventArgs e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
-
+				//menu.AnimatedOpened = !menu.AnimatedOpened;
+				ViewModel.ShowResearchHelpViewModel();
+				ViewModel.Close();
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.logout_menu_btn).Click += (object sender, EventArgs e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
+				//menu.AnimatedOpened = !menu.AnimatedOpened;
 				ViewModel.Close();
 			};
 		}

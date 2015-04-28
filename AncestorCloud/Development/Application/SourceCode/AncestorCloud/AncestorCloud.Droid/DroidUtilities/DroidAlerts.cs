@@ -15,7 +15,7 @@ using Cirrious.CrossCore;
 
 namespace AncestorCloud.Droid
 {
-	public class Globals:IAlert
+	public class DroidAlerts:IAlert
 	{
 		public void ShowAlert (string message, string title)
 		{

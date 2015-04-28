@@ -25,10 +25,8 @@ namespace AncestorCloud.Shared
 
 			try
 			{
-
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
-
 
 				//== hit for getting session id
 				email = "mikeyamadeo@gmail.com";
@@ -49,8 +47,7 @@ namespace AncestorCloud.Shared
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 				responsemodal.loginModal = modal;
 				responsemodal.Status = ResponseStatus.OK;
-				//==
-
+				//== 
 
 				//hit for sign up
 				/*url = "https://wsdev.onegreatfamily.com/v11.02/User.svc/Create?SessionId="+modal.Value+"&EmailAddress="+email+"&Password="+password+"&FirstName="+name+"&LastName="+name+"&ProductId="+"Pro_id";
@@ -70,7 +67,6 @@ namespace AncestorCloud.Shared
 				return responsemodal;
 			}
 			finally{
-
 				_loader.hideLoader();
 			}
 

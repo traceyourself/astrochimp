@@ -26,7 +26,7 @@ namespace AncestorCloud.Droid
 
 		protected override void InitializeFirstChance()
 		{
-			Mvx.RegisterSingleton<IAlert>(new Globals());
+			Mvx.RegisterSingleton<IAlert>(new DroidAlerts());
 			Mvx.RegisterSingleton<IAndroidService>(new IsAndroidService());
 			Mvx.RegisterSingleton<ILoader>(new Loader());
 			base.InitializeFirstChance();

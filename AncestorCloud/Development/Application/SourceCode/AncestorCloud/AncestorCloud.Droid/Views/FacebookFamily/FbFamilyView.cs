@@ -78,12 +78,14 @@ namespace AncestorCloud.Droid
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.matcher_menu_btn).Click += (object sender, EventArgs e) => {
 				menu.AnimatedOpened = !menu.AnimatedOpened;
-				//ViewModel.CallMatcher();
+				ViewModel.ShowMatcherViewModel();
+				ViewModel.Close();
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.research_menu_btn).Click += (object sender, EventArgs e) => {
 				menu.AnimatedOpened = !menu.AnimatedOpened;
-
+				ViewModel.ShowResearchHelpViewModel();
+				ViewModel.Close();
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.logout_menu_btn).Click += (object sender, EventArgs e) => {
@@ -92,12 +94,12 @@ namespace AncestorCloud.Droid
 			};
 
 			nextBtn.Click += (object sender, EventArgs e) => {
-				ViewModel.ShowMyFamilyViewModel();				
+				ViewModel.ShowMyFamilyViewModel();
+				//ViewModel.CheckValues();
 			};
 
 		}
 		#endregion
-
 
 		#region Create List Adapter
 		private void CreateListAdapter ()

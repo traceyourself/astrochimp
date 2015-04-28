@@ -145,19 +145,6 @@
     <Reference Include="Xamarin.Social.iOS">
       <HintPath>..\Components\xamarin.social-1.1.7\lib\ios-unified\Xamarin.Social.iOS.dll</HintPath>
     </Reference>
-
-    <Reference Include="MonoTouch.Dialog-1" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="Cirrious.MvvmCross.Plugins.Messenger">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Messenger.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.Messenger.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Plugins.Sqlite">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Sqlite.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Plugins.Sqlite.Touch">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Sqlite.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.Sqlite.Touch.dll</HintPath>
-    </Reference>
-
     <Reference Include="FlyoutNavigation">
       <HintPath>..\Components\flyoutnavigation-1.5.1\lib\ios-unified\FlyoutNavigation.dll</HintPath>
     </Reference>

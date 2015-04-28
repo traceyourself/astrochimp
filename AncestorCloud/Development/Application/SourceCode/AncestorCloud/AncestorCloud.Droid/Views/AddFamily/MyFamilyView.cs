@@ -217,9 +217,15 @@ namespace AncestorCloud.Droid
 		}
 		#endregion
 
+
+		#region Edit Dialog
+		public void ShowEditDialog(int position)
+		{
+			
+		}
+		#endregion
+
 	}
-
-
 
 	#region List Adapter
 	public class MyFamilyListAdapter : BaseAdapter
@@ -290,6 +296,10 @@ namespace AncestorCloud.Droid
 				holder.listFooter.Visibility = ViewStates.Gone;
 				holder.listData.Visibility = ViewStates.Visible;
 
+				holder.editBtn.Click += (object sender, EventArgs e) => {
+					System.Diagnostics.Debug.WriteLine("edit clicked at : "+position);
+					myFamilyObj.ShowEditDialog(position);
+				};
 			}
 			else if(structure.isFooter)
 			{
@@ -297,6 +307,11 @@ namespace AncestorCloud.Droid
 				holder.listHeader.Visibility = ViewStates.Gone;
 				holder.listFooter.Visibility = ViewStates.Visible;
 				holder.listData.Visibility = ViewStates.Gone;
+
+
+				holder.listFooter.Click += (object sender, EventArgs e) => {
+					System.Diagnostics.Debug.WriteLine("footer clicked at : "+position);
+				};
 			}
 
 			/*var view = convertView ?? inflater.Inflate (Resource.Layout.add_family_list_item, parent, false);
@@ -358,4 +373,3 @@ namespace AncestorCloud.Droid
 	#endregion
 
 }
-

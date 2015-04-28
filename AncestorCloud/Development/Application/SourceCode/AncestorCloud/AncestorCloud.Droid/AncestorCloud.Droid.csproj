@@ -104,11 +104,12 @@
     <Compile Include="Views\Login\MySSLSocketFactory.cs" />
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="DroidUtilities\Utilities.cs" />
-    <Compile Include="DroidUtilities\Globals.cs" />
     <Compile Include="Views\FacebookFamily\FbFamilyView.cs" />
     <Compile Include="Interfaces\IsAndroidService.cs" />
     <Compile Include="Helper\Loader.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="DroidUtilities\DroidAlerts.cs" />
+    <Compile Include="Views\ResearchHelp\ResearchHelpView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -194,6 +195,9 @@
     <AndroidResource Include="Resources\drawable\check.png" />
     <AndroidResource Include="Resources\drawable\uncheck.png" />
     <AndroidResource Include="Resources\drawable\no_img_small.png" />
+    <AndroidResource Include="Resources\layout\research_help_fly_out.axml" />
+    <AndroidResource Include="Resources\layout\research_help.axml" />
+    <AndroidResource Include="Resources\layout\edit_family_dialog.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -215,6 +219,7 @@
     <Folder Include="DroidUtilities\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Helper\" />
+    <Folder Include="Views\ResearchHelp\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.social">

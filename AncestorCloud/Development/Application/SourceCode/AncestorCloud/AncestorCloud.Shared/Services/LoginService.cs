@@ -22,7 +22,7 @@ namespace AncestorCloud.Shared
 			_loader = Mvx.Resolve<ILoader> ();
 		}
 
-		#region ILoginService implementationsw323we3we33wa3w34
+		#region ILoginService implementation
 
 		public async Task<ResponseModel<LoginModel>> Login(string email,string password, string developerId, string developerPassword)
 		{

@@ -31,6 +31,19 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+		#region call Reseach help
+		public void ShowResearchHelpViewModel()
+		{
+			ShowViewModel<ResearchHelpViewModel> ();
+		}
+		#endregion
+
+		#region call Reseach help
+		public void ShowMatcherViewModel()
+		{
+			ShowViewModel<MatchViewModel> ();
+		}
+		#endregion
 
 		private readonly IDatabaseService _databaseService;
 
@@ -62,6 +75,17 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+
+		#region for Debugging
+		public void CheckValues(){
+			for(int i=0;i<familyList.Count;i++)
+			{
+				System.Diagnostics.Debug.WriteLine ("is checked at "+i+" : "+familyList[i].IsSelected);
+			}
+		}
+		#endregion
+
+
 		#region Sqlite Methods
 
 		public void GetFbFamilyData()
@@ -83,8 +107,15 @@ namespace AncestorCloud.Shared.ViewModels
 				return this._nextButtonTapped ?? (this._nextButtonTapped = new ACCommand(this.NextButtonTapped));
 			}
 		}
-
 		#endregion
+
+
+		#region Add Family on server
+		public void AddSelectedFamily(){
+				
+		}
+		#endregion
+
 	}
 }
 

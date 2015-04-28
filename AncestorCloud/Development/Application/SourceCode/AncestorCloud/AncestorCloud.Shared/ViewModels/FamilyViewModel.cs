@@ -37,6 +37,13 @@ namespace AncestorCloud.Shared.ViewModels
 			this.Close(this);
 		}
 		#endregion
+
+		#region call Reseach help
+		public void ShowResearchHelpViewModel()
+		{
+			ShowViewModel<ResearchHelpViewModel> ();
+		}
+		#endregion
 	
 	}
 }

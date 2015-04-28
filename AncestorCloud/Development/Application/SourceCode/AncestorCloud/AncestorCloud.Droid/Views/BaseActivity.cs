@@ -14,6 +14,7 @@ namespace AncestorCloud.Droid
 		{
 			try{
 				base.OnCreate (bundle);
+				Utilities.CurrentActiveActivity = this;
 			}catch(Exception e){
 				System.Diagnostics.Debug.WriteLine (e.InnerException);
 			}

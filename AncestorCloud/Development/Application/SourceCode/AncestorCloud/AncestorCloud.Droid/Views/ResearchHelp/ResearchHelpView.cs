@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,31 +13,28 @@ using AncestorCloud.Shared.ViewModels;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "MyFamilyView")]			
-	public class FamilyView : BaseActivity
+	[Activity (Label = "ResearchHelpView")]			
+	public class ResearchHelpView : BaseActivity
 	{
 		FlyOutContainer menu;
 		ActionBar actionBar;
 		LinearLayout menuLayout,contentLayout;
-		TextView addFamilyBtn;
+		TextView research_help_txt;
 
-
-		public new FamilyViewModel ViewModel
+		public new ResearchHelpViewModel ViewModel
 		{
-			get { return base.ViewModel as FamilyViewModel; }
+			get { return base.ViewModel as ResearchHelpViewModel; }
 			set { base.ViewModel = value; }
 		}
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			SetContentView (Resource.Layout.my_familiy_fly_out);
+			SetContentView (Resource.Layout.research_help_fly_out);
 
 			initUI ();
 			configureActionBar ();
-
 			ApplyActions ();
-
 		}
 
 		private void initUI()
@@ -46,29 +42,27 @@ namespace AncestorCloud.Droid
 			menu = FindViewById<FlyOutContainer> (Resource.Id.flyOutContainerLay);
 			menuLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutMenu);
 			contentLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutContent);
-			addFamilyBtn = contentLayout.FindViewById<TextView> (Resource.Id.add_family_btn);
+			research_help_txt = contentLayout.FindViewById<TextView> (Resource.Id.help_txt);
 		}
 
 
 		private void ApplyActions(){
-		
-			addFamilyBtn.Click += (object sender, EventArgs e) => {
-				ViewModel.ShowEditViewModel();
-			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.my_family_menu_btn).Click += (object sender, EventArgs e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
+				//menu.AnimatedOpened = !menu.AnimatedOpened;
+				ViewModel.ShowFamilyViewModel();
+				ViewModel.Close();
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.matcher_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.CallMatcher();
+				ViewModel.ShowMatcherViewModel();
+				ViewModel.Close();
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.research_menu_btn).Click += (object sender, EventArgs e) => {
-				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.ShowResearchHelpViewModel();
-				ViewModel.Close();
+				menu.AnimatedOpened = !menu.AnimatedOpened;
+
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.logout_menu_btn).Click += (object sender, EventArgs e) => {
@@ -84,7 +78,7 @@ namespace AncestorCloud.Droid
 			actionBar = FindViewById <ActionBar>(Resource.Id.actionBar);
 			actionBar.SetLeftCornerMenuImage (Resource.Drawable.action_menu);
 
-			actionBar.SetCenterImageText (Resource.Drawable.myfamily_title,Resources.GetString(Resource.String.my_family_menu));
+			actionBar.SetCenterText (Resources.GetString(Resource.String.research_menu));
 
 			var menuButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 
