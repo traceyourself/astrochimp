@@ -158,32 +158,29 @@ namespace AncestorCloud.Touch
 		public override UIView GetViewForFooter (UITableView tableView, nint section)
 		{
 
-			UILabel view = new UILabel {
-				BackgroundColor=UIColor.FromRGB(255,255,255),
-				Text= "   +Add"+keys[section],
-				Font= UIFont.FromName("Helvetica", 14f),
-			};
-
+//			UILabel view = new UILabel {
+//				BackgroundColor=UIColor.FromRGB(255,255,255),
+//				Text= "   +Add"+keys[section],
+//				Font= UIFont.FromName("Helvetica", 14f),
+//			};
+//
 
 			UIButton btn = new UIButton {
-				BackgroundColor=UIColor.Red,
+				BackgroundColor=UIColor.White,
 			};
-			//btn.AddTarget(FooterTapped,UIControlEvent.TouchUpInside);
+
+			btn.SetTitle( "   +Add"+keys[section],UIControlState.Normal);
+			btn.SetTitleColor(UIColor.Black,UIControlState.Normal);
+			btn.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
+			btn.Font = UIFont.FromName ("Helvetica", 14f);
+
 			btn.TouchUpInside += (object sender, EventArgs e) => {
-				System.Diagnostics.Debug.WriteLine("Add Btton Tapped");
+				System.Diagnostics.Debug.WriteLine("Add Button Tapped");
 			};
-			view.AddSubview (btn);
 
-			return view;
 
-				
-
-			
-		}
-
-		public void FooterTapped()
-		{
-			System.Diagnostics.Debug.WriteLine ("Add Button Tapped");
+			return btn;
+	
 		}
 
 
