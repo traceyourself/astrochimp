@@ -82,7 +82,7 @@ namespace AncestorCloud.Touch
 		#region ButtonTapped Handlers
 		partial void SignUpButttonTapped (NSObject sender)
 		{
-			//DoSignUp();
+//			DoSignUp();
 			//ViewModel.LoginCommand.Execute(null);
 
 		}

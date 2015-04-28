@@ -101,7 +101,9 @@ namespace AncestorCloud.Touch
 
 		void DoLogin()
 		{
-			
+//			ViewModel.ShowFbFamilyViewModel ();
+//			ViewModel.Close ();
+			ViewModel.IsFbLogin = true;
 			ViewModel.CallFlyoutCommand.Execute(null);
 			ViewModel.CloseCommand.Execute(null);
 		}
@@ -132,6 +134,13 @@ namespace AncestorCloud.Touch
 				account = accounts;
 
 				//System.Diagnostics.Debug.WriteLine ("accounts :" + account);
+
+				if(account==null)
+				{
+					DismissViewController (true, null);
+					
+					return ;
+				}
 
 				var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
 				//https://graph.facebook.com/me?access_token=xxxxxxxxxxxxxxxxx

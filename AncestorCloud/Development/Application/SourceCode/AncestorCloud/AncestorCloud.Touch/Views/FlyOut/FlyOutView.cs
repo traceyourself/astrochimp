@@ -22,6 +22,7 @@ namespace AncestorCloud.Touch
 		FlyoutNavigationController _navigation;
 		private MvxSubscriptionToken navigationMenuToggleToken;
 		private MvxSubscriptionToken navigationBarHiddenToken;
+		private MvxSubscriptionToken changeFlyoutToken;
 		string[] Tasks = {
 
 			"My Family",
@@ -31,7 +32,8 @@ namespace AncestorCloud.Touch
 		};
 		public FlyOutView () : base ("FlyOutView", null)
 		{
-			
+			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
+			changeFlyoutToken = _flyoutMessenger.SubscribeOnMainThread<ReloadFlyOutViewMessage>(message => this.CreateFlyoutView());
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -53,6 +55,13 @@ namespace AncestorCloud.Touch
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+
+			CreateFlyoutView ();
+		}
+
 //		public override void ViewWillDisappear (bool animated)
 //		{
 //
@@ -66,13 +75,13 @@ namespace AncestorCloud.Touch
 		public  void Flyout ()
 		{
 
-			Title="";
+			Title = string.Empty;
 			_navigation = new  FlyoutNavigationController();
 			_navigation.Position = FlyOutNavigationPosition.Left;
 			_navigation.View.Frame = UIScreen.MainScreen.Bounds;
 			View.AddSubview (_navigation.View);
 			this.AddChildViewController (_navigation);
-			this.NavigationItem.TitleView = new MyTitleView ();
+			this.NavigationItem.TitleView = new MyTitleView (this.Title);
 			_navigation.NavigationTableView.BackgroundColor = UIColor.FromRGB (46, 58, 73);
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
 			this.NavigationController.NavigationBarHidden = false;
@@ -98,13 +107,19 @@ namespace AncestorCloud.Touch
 				, true);
 
 
+
+			//Listen to messages to toggle the menu and hide MvvmCrosses navigation bar
+			var _messenger = Mvx.Resolve<IMvxMessenger>();
+			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<ToggleFlyoutMenuMessage>(message => _navigation.ToggleMenu());
+			navigationBarHiddenToken = _messenger.SubscribeOnMainThread<NavigationBarHiddenMessage>(message => NavigationController.NavigationBarHidden = message.NavigationBarHidden);
+		}
+
+
+		private void CreateFlyoutView()
+		{
 			var flyoutViewControllers = new List<UIViewController>();
 
-
 			var flyoutMenuElements = new Section();
-
-
-
 
 			var homeViewModel = ViewModel as FlyOutViewModel;
 			if (homeViewModel != null)
@@ -128,16 +143,11 @@ namespace AncestorCloud.Touch
 				{
 					flyoutMenuElements
 				};
-					
+
 				_navigation.NavigationRoot = rootElement;
 			}
 
-			//Listen to messages to toggle the menu and hide MvvmCrosses navigation bar
-			var _messenger = Mvx.Resolve<IMvxMessenger>();
-			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<ToggleFlyoutMenuMessage>(message => _navigation.ToggleMenu());
-			navigationBarHiddenToken = _messenger.SubscribeOnMainThread<NavigationBarHiddenMessage>(message => NavigationController.NavigationBarHidden = message.NavigationBarHidden);
 		}
-
 
 
 		private UIViewController CreateMenuItemController(MvxViewModelRequest viewModelRequest)

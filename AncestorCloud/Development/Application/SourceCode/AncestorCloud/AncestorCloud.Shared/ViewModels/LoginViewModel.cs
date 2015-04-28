@@ -58,15 +58,15 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 		}
 
-		private bool _allowLogin;
+		private bool isFbLogin;
 
-		public bool AllowLogin
+		public bool IsFbLogin
 		{
-			get { return _allowLogin; }
+			get { return isFbLogin; }
 			set
 			{
-				_allowLogin = value;
-				RaisePropertyChanged(() => AllowLogin);
+				isFbLogin = value;
+				RaisePropertyChanged(() => IsFbLogin);
 			}
 		}
 
@@ -118,7 +118,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowFbFamilyViewModel()
 		{
-			ShowViewModel <FbFamilyViewModel> ();
+			ShowViewModel <FbFamilyViewModel>();
 
 		}
 
@@ -127,7 +127,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowFlyOutViewModel()
 		{
-			ShowViewModel<FlyOutViewModel> ();
+			ShowViewModel<FlyOutViewModel> (new FlyOutViewModel.DetailParameters { IsFBLogin = IsFbLogin });
 		}
 		#endregion
 
@@ -196,6 +196,7 @@ namespace AncestorCloud.Shared.ViewModels
 					}
 					else
 					{
+						IsFbLogin = false;
 						CallFlyoutCommand.Execute(null);
 						CloseCommand.Execute (null);
 					}
@@ -212,24 +213,16 @@ namespace AncestorCloud.Shared.ViewModels
 		public bool ValidateCredentials()
 		{
 			bool ok = true;
-
-			if (!DataValidator.EmailIsValid (this.Email)) 
-			{
-				ok = false;
-				Alert.ShowAlert("Email you entered is not valid","Email Invalid");
-			}
-
-
-			else if (String.IsNullOrEmpty (this.Email) && String.IsNullOrEmpty(this.Password)) 
-			{
-				ok = false;
-				Alert.ShowAlert("Email & Password is required,please enter a value for the field","Email& PasswordMissing");
-
-			}
-			else if (String.IsNullOrEmpty (this.Email)) 
+		 
+			if (String.IsNullOrEmpty (this.Email)) 
 			{
 				ok = false;
 				Alert.ShowAlert("Email is required,please enter a value for the field","Email Missing");
+			}
+			else if (!DataValidator.EmailIsValid (this.Email)) 
+			{
+				ok = false;
+				Alert.ShowAlert("Email you entered is not valid","Email Invalid");
 			}
 
 			else if (String.IsNullOrEmpty (this.Password)) 
@@ -254,11 +247,11 @@ namespace AncestorCloud.Shared.ViewModels
 
 			_databaseService.InsertUser (user);
 
-			List<User> list= _databaseService.GetUsers ("1404007466586095");
-
-			System.Diagnostics.Debug.WriteLine ("LIST:"+list);
-
-			User newuser = _databaseService.GetUser (2);
+//			List<User> list= _databaseService.GetUsers ("1404007466586095");
+//
+//			System.Diagnostics.Debug.WriteLine ("LIST:"+list);
+//
+//			User newuser = _databaseService.GetUser (2);
 		}
 
 		public void SaveFbFamilyData()
@@ -272,9 +265,9 @@ namespace AncestorCloud.Shared.ViewModels
 
 				_databaseService.InsertFamilyMember (people);
 			}
-			List<People> peopleList = _databaseService.RelativeMatching ("brother");
-
-			System.Diagnostics.Debug.WriteLine ("PEOPLE LIST :" + peopleList);
+//			List<People> peopleList = _databaseService.RelativeMatching ("brother");
+//
+//			System.Diagnostics.Debug.WriteLine ("PEOPLE LIST :" + peopleList);
 		}
 		#endregion
 

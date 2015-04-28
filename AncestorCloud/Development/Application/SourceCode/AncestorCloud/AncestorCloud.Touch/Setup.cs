@@ -34,6 +34,8 @@ namespace AncestorCloud.Touch
 		protected override void InitializeFirstChance()
 		{
 			Mvx.RegisterSingleton<IAlert>(new IOSAlert());
+			Mvx.RegisterSingleton<ILoader>(new Loader());
+
 			base.InitializeFirstChance();
 		}
 	}

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using System.Windows.Input;
 
 namespace AncestorCloud.Shared.ViewModels
 {
@@ -38,6 +41,12 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 
 
+		public void NextButtonTapped()
+		{
+			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
+			_flyoutMessenger.Publish (new ChangeFlyoutFlowMessage (this,false));
+		}
+
 		#region Properties
 
 		private List<People> familyList;
@@ -60,9 +69,22 @@ namespace AncestorCloud.Shared.ViewModels
 			List<People> list = _databaseService.RelativeMatching ("");
 			FamilyList = list;
 		}
-
 		#endregion
 
+
+		#region Commands
+
+		private ACCommand _nextButtonTapped;
+
+		public ICommand NextButtonCommand
+		{
+			get
+			{
+				return this._nextButtonTapped ?? (this._nextButtonTapped = new ACCommand(this.NextButtonTapped));
+			}
+		}
+
+		#endregion
 	}
 }
 

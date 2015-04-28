@@ -11,6 +11,8 @@ namespace AncestorCloud.Touch
 	{
 		UIWindow _window;
 
+		LoaderView _loaderView;
+
 		public override bool FinishedLaunching(UIApplication application , NSDictionary launchOptions)
 		{
 			_window = new UIWindow(UIScreen.MainScreen.Bounds);
@@ -24,6 +26,26 @@ namespace AncestorCloud.Touch
 			_window.MakeKeyAndVisible();
 
 			return true;
+		}
+
+
+		public void  ShowActivityLoader()
+		{
+			if (_loaderView == null) {
+
+				_loaderView = new LoaderView ();
+
+				_window.AddSubview (_loaderView.View);
+
+			}
+
+			_loaderView.View.Hidden = false;
+
+		}
+
+		public void HideActivityLoader()
+		{
+			_loaderView.View.Hidden = true;
 		}
 	}
 }

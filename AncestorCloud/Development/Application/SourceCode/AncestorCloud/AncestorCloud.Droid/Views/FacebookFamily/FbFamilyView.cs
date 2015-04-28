@@ -59,7 +59,7 @@ namespace AncestorCloud.Droid
 
 		private void ConfigureActionBar()
 		{
-			actionBar.SetCenterImageText (Resource.Drawable.action_menu,Resources.GetString(Resource.String.my_family_menu));
+			actionBar.SetCenterImageText (Resource.Drawable.myfamily_title,Resources.GetString(Resource.String.my_family_menu));
 			actionBar.SetLeftCornerMenuImage (Resource.Drawable.action_menu);
 
 			var menuButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);

@@ -32,10 +32,10 @@
                     <color key="textColor" red="0.69803921568627447" green="0.1764705882352941" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2F-xE-mKi">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2F-xE-mKi">
                     <rect key="frame" x="72" y="421" width="176" height="30"/>
-                    <color key="backgroundColor" red="0.69803921568627447" green="0.1764705882352941" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Add Family">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="Add Family" backgroundImage="blue_smallbtn.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -57,7 +57,8 @@
         </view>
     </objects>
     <resources>
-        <image name="help_icon.png" width="225" height="225"/>
+        <image name="blue_smallbtn.png" width="161" height="42"/>
+        <image name="help_icon.png" width="44" height="45"/>
         <image name="noImage.png" width="265" height="265"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

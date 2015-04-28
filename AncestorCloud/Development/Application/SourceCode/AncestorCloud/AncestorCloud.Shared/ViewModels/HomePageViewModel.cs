@@ -11,8 +11,10 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public HomePageViewModel()
 		{
-//			var messenge = Mvx.Resolve<IMvxMessenger>();
-//			messenge.Publish(new Message(this));
+
+			var messenge = Mvx.Resolve<IMvxMessenger>();
+			messenge.Publish(new FlyOutCloseMessage(this));
+
 		}
 
 		public void ShowLoginViewModel()

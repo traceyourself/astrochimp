@@ -21,6 +21,12 @@ namespace AncestorCloud.Touch
 			// Release any cached data, images, etc that aren't in use.
 		}
 
+		public new FbFamilyViewModel ViewModel
+		{
+			get { return base.ViewModel as FbFamilyViewModel; }
+			set { base.ViewModel = value; }
+		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -38,10 +44,13 @@ namespace AncestorCloud.Touch
 
 			var set = this.CreateBindingSet<FbFamilyView , FbFamilyViewModel> ();
 			set.Bind (source).To (vm => vm.FamilyList);
+			set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
 			this.NavigationController.NavigationBarHidden = true;
 
 		}
+
+
 	}
 }
 

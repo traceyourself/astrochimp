@@ -77,7 +77,7 @@ namespace AncestorCloud.Touch
 			List<ICollectionView> list = GetData ();
 			collection.Source = new HomePageCollectionSource(list);
 			collection.Delegate = new HomePageCollectionViewDelegate (pageObj,list);
-			this.NavigationController.NavigationBarHidden = true;
+			//this.NavigationController.NavigationBarHidden = true;
 //			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (255, 255, 255);
 //			this.NavigationItem.SetHidesBackButton (true, false);
 		}
@@ -94,16 +94,10 @@ namespace AncestorCloud.Touch
 		}
 
 		#endregion
-//
-//		public override void ViewWillDisappear (bool animated)
-//		{
-//
-//			//if (!NavigationController.ViewControllers.Contains (this)) {
-//				var messenger = Mvx.Resolve<IMvxMessenger> ();
-//				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
-//			//}
-//			base.ViewWillDisappear (animated);
-//		}
+		public override void ViewWillAppear (bool animated)
+		{
+			this.NavigationController.NavigationBarHidden = true;
+		}
 
 
 	}

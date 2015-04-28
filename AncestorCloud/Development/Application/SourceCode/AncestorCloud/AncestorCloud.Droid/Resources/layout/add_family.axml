@@ -25,6 +25,7 @@
             android:id="@+id/question_icon"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:src="@drawable/help_icon"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="8dp" />

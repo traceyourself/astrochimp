@@ -12,9 +12,9 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidApplication>True</AndroidApplication>
-    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AssemblyName>AncestorCloud.Droid</AssemblyName>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -80,6 +80,9 @@
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Sqlite.3.5.0\lib\MonoAndroid\Cirrious.MvvmCross.Plugins.Sqlite.Droid.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="Cirrious.MvvmCross.Plugins.Messenger">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Messenger.3.5.0\lib\MonoAndroid\Cirrious.MvvmCross.Plugins.Messenger.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -104,6 +107,8 @@
     <Compile Include="DroidUtilities\Globals.cs" />
     <Compile Include="Views\FacebookFamily\FbFamilyView.cs" />
     <Compile Include="Interfaces\IsAndroidService.cs" />
+    <Compile Include="Helper\Loader.cs" />
+    <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -155,6 +160,40 @@
     <AndroidResource Include="Resources\drawable\splash.png" />
     <AndroidResource Include="Resources\layout\login.axml" />
     <AndroidResource Include="Resources\layout\my_fb_familiy_fly_out.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\back.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\blue_smallbtn.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\fbook_btn.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\fbook_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\help_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\myfamily_title.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\back.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\blue_smallbtn.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\fbook_btn.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\fbook_icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\help_icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\myfamily_title.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\back.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\blue_smallbtn.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\fbook_btn.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\fbook_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\help_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\myfamily_title.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\back.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\blue_smallbtn.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\fbook_btn.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\fbook_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\help_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\myfamily_title.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\back.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\blue_smallbtn.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\fbook_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\help_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\menu.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\myfamily_title.png" />
+    <AndroidResource Include="Resources\drawable\fb_check_selector.axml" />
+    <AndroidResource Include="Resources\drawable\check.png" />
+    <AndroidResource Include="Resources\drawable\uncheck.png" />
+    <AndroidResource Include="Resources\drawable\no_img_small.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -175,6 +214,7 @@
     <Folder Include="Views\FacebookFamily\" />
     <Folder Include="DroidUtilities\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Helper\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.social">

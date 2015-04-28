@@ -28,6 +28,7 @@ namespace AncestorCloud.Droid
 		{
 			Mvx.RegisterSingleton<IAlert>(new Globals());
 			Mvx.RegisterSingleton<IAndroidService>(new IsAndroidService());
+			Mvx.RegisterSingleton<ILoader>(new Loader());
 			base.InitializeFirstChance();
 		}
 

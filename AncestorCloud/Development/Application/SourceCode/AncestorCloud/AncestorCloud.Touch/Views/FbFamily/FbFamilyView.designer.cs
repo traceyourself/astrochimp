@@ -14,9 +14,17 @@ namespace AncestorCloud.Touch
 	{
 		[Outlet]
 		UIKit.UITableView fbFamilyTableView { get; set; }
+
+		[Outlet]
+		UIKit.UIButton NextButton { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (NextButton != null) {
+				NextButton.Dispose ();
+				NextButton = null;
+			}
+
 			if (fbFamilyTableView != null) {
 				fbFamilyTableView.Dispose ();
 				fbFamilyTableView = null;

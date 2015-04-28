@@ -51,7 +51,7 @@ namespace AncestorCloud.Touch
 				{ TextColor = UIColor.FromRGB (255,255,255) });
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
 			this.NavigationItem.SetHidesBackButton (true, false);
-			this.NavigationItem.TitleView = new MyTitleView ();
+			this.NavigationItem.TitleView = new MyTitleView (this.Title);
 			//this.NavigationController.NavigationBarHidden = true;
 			this.NavigationItem.SetRightBarButtonItem(
 				new UIBarButtonItem(UIImage.FromFile("cross.png")

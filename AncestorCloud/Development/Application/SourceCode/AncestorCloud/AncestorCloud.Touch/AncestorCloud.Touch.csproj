@@ -171,6 +171,7 @@
     <InterfaceDefinition Include="Views\LogOut\LogOutView.xib" />
     <InterfaceDefinition Include="Views\FbFamily\FbFamilyView.xib" />
     <InterfaceDefinition Include="Views\FbFamily\FbFamilyCell\FbFamilyCell.xib" />
+    <InterfaceDefinition Include="Views\ActivityLoader\LoaderView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -241,6 +242,9 @@
     <Compile Include="Views\FbFamily\FbFamilyCell\FbFamilyCell.designer.cs">
       <DependentUpon>FbFamilyCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Loader.cs" />
+    <Compile Include="Views\ActivityLoader\LoaderView.cs" />
+    <Compile Include="Views\ActivityLoader\LoaderView.designer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -270,6 +274,7 @@
     <Folder Include="Views\CustomeView\" />
     <Folder Include="Views\LogOut\" />
     <Folder Include="Views\FbFamily\FbFamilyCell\" />
+    <Folder Include="Views\ActivityLoader\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.social">
@@ -291,7 +296,15 @@
     <BundleResource Include="Resources\edit_pen.png" />
     <BundleResource Include="Resources\cross_white%402x.png" />
     <BundleResource Include="Resources\action_back_btn.png" />
-    <BundleResource Include="Resources\help_icon.png" />
     <BundleResource Include="Resources\fb_icon.jpeg" />
+    <BundleResource Include="Resources\back.png" />
+    <BundleResource Include="Resources\check.png" />
+    <BundleResource Include="Resources\fbook_icon.png" />
+    <BundleResource Include="Resources\uncheck.png" />
+    <BundleResource Include="Resources\help_icon.png" />
+    <BundleResource Include="Resources\blue_smallbtn%402x.png" />
+    <BundleResource Include="Resources\.DS_Store" />
+    <BundleResource Include="Resources\fbook_btn2x.png" />
+    <BundleResource Include="Resources\myfamily_title2x.png" />
   </ItemGroup>
 </Project>

@@ -10,9 +10,18 @@ namespace AncestorCloud.Shared
 {
 	public class SignUpService : ISignUpService
 	{
+
+		private ILoader _loader;
+
+		public SignUpService()
+		{
+			_loader = Mvx.Resolve<ILoader> ();
+		}
+
 		#region ISignUpService implementation
 		public async Task<ResponseModel<LoginModel>> SignUp (string name, string email, string password, string developerId, string developerPassword)
 		{
+			_loader.showLoader ();
 
 			try
 			{
@@ -60,6 +69,11 @@ namespace AncestorCloud.Shared
 				responsemodal.Status = ResponseStatus.Fail;
 				return responsemodal;
 			}
+			finally{
+
+				_loader.hideLoader();
+			}
+
 		}
 		#endregion
 

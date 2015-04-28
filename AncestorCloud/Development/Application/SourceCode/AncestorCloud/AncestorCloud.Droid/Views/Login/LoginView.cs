@@ -22,17 +22,19 @@ using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using Javax.Net.Ssl;
 using Cirrious.CrossCore;
+using AncestorCloud.Shared;
 
 
 namespace AncestorCloud.Droid
 {
 	
 	[Activity (Label = "LoginView",ScreenOrientation=ScreenOrientation.Portrait)]			
-	public class LoginView : BaseActivity
+	public class LoginView : BaseActivity,ILoader
 	{
 
 		ActionBar actionBar;
 		TextView FbBtn,loginBtn;
+		ProgressDialog progressDialog;
 
 		public new LoginViewModel ViewModel
 		{
@@ -95,10 +97,10 @@ namespace AncestorCloud.Droid
 				System.Diagnostics.Debug.WriteLine ("accounts :" + account);
 
 				if(account != null){
-					var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/taggable_friends"),account );//friends ///me/invitable_friends ///me/taggable_friends
+					var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me"),account );//friends ///me/invitable_friends ///me/taggable_friends
 					request.GetResponseAsync ().ContinueWith (response => {
 						// parse the JSON in response.GetResponseText ()
-						//System.Diagnostics.Debug.WriteLine ("accounts :" + response.Result.GetResponseText());
+						//System.Diagnostics.Debug.WriteLine ("tagable frnds  :" + response.Result.GetResponseText());
 
 						ViewModel.FbResponseText = response.Result.GetResponseText();
 
@@ -107,7 +109,7 @@ namespace AncestorCloud.Droid
 						var familyRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/family"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
 						familyRequest.GetResponseAsync ().ContinueWith (famResponse => {
 
-							//System.Diagnostics.Debug.WriteLine (famResponse.Result.GetResponseText());
+							//System.Diagnostics.Debug.WriteLine ("me family : "+famResponse.Result.GetResponseText());
 							ViewModel.FbFamilyResponseText = famResponse.Result.GetResponseText();
 
 							ViewModel.SaveFbFamilyData();
@@ -133,6 +135,23 @@ namespace AncestorCloud.Droid
 			ViewModel.ShowFbFamilyViewModel ();
 			ViewModel.Close ();
 		}
+
+
+		#region ILoader implementation
+
+		public void showLoader ()
+		{
+			progressDialog = ProgressDialog.Show(this,"","Loading...");
+		}
+
+		public void hideLoader ()
+		{
+			if(progressDialog != null){
+				progressDialog.Dismiss ();
+			}
+		}
+
+		#endregion
 
 	}
 }

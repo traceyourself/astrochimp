@@ -13,14 +13,20 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private IDatabaseService _databaseService;
 
+		private IAlert Alert;
+
 		#region SignUpViewModel
 
-		public SignUpViewModel(ISignUpService service)//, IDatabaseService dService)
+		public SignUpViewModel(ISignUpService service,IAlert alert)//, IDatabaseService dService)
 
 		{
 			_ISignUpService = service;
 			_databaseService = Mvx.Resolve<IDatabaseService>();
-			//Alert = Mvx.Resolve<IAlert> ();
+			Alert = alert;
+
+//			Name = "abc";
+//			Email="abc@gmail.com";
+//			Password="abc";
 		}
 
 		#endregion
@@ -215,45 +221,26 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			bool ok = true; 
 
-			if (String.IsNullOrEmpty (this.Name) && String.IsNullOrEmpty(this.Email) && String.IsNullOrEmpty(this.Password)) 
+			if (String.IsNullOrEmpty (this.Name)) 
 			{
 				ok = false;
-		        Mvx.Resolve<IAlert> ().ShowAlert("Name,Email & Password is required,please enter a value for the field","Name,Email & PasswordMissing");
-			}
-			else if (String.IsNullOrEmpty(this.Email) && String.IsNullOrEmpty(this.Password)) 
-			{
-				ok = false;
-				Mvx.Resolve<IAlert> ().ShowAlert("Email & Password is required,please enter a value for the field","Email & PasswordMissing");
-
-			}
-			else if (String.IsNullOrEmpty(this.Name) && String.IsNullOrEmpty(this.Password)) 
-			{
-				ok = false;
-				Mvx.Resolve<IAlert> ().ShowAlert("Name & Password is required,please enter a value for the field","Name & PasswordMissing");
-
-			}
-			else if (String.IsNullOrEmpty(this.Name) && String.IsNullOrEmpty(this.Email)) 
-			{
-				ok = false;
-				Mvx.Resolve<IAlert> ().ShowAlert("Name & Email is required,please enter a value for the field","Name & EmailMissing");
-
-			}
-
-			else if (String.IsNullOrEmpty (this.Name)) 
-			{
-				ok = false;
-				Mvx.Resolve<IAlert> ().ShowAlert("Name is required,please enter a value for the field","Email Missing");
+				Alert.ShowAlert("Name is required,please enter a value for the field","Name Missing");
 			}
 			else if (String.IsNullOrEmpty (this.Email)) 
 			{
 				ok = false;
-				Mvx.Resolve<IAlert> ().ShowAlert("Email is required,please enter a value for the field","Name Missing");
+				Alert.ShowAlert("Email is required,please enter a value for the field","Email Missing");
+			}
+			else if (!DataValidator.EmailIsValid (this.Email)) 
+			{
+				ok = false;
+				Alert.ShowAlert("Email you entered is not valid","Email Invalid");
 			}
 
 			else if (String.IsNullOrEmpty (this.Password)) 
 			{
 				ok = false;
-				Mvx.Resolve<IAlert> ().ShowAlert("Password is required,please enter a value for the field","Password Missing");
+				Alert.ShowAlert("Password is required,please enter a value for the field","Password Missing");
 			}
 
 			return ok;

@@ -45,4 +45,24 @@
 	<string name="next">Next</string>
 	<!--- Fb Family Screen  Strings ENDS -->
 
+	<!--- My Family Screen Strings -->
+	<string name="Brother_comparison">brother</string>
+	<string name="Sister_comparison">sister</string>
+	<string name="Father_comparison">father</string>
+	<string name="Mother_comparison">mother</string>
+	<string name="GrandFather_comparison">grandfather</string>
+	<string name="GrandMother_comparison">grandmother</string>
+	<string name="GreatGrandFather_comparison">great grandfather</string>
+	<string name="GreatGrandMother_comparison">great grandmother</string>
+
+	<string name="Sibling_header">Siblings</string>
+	<string name="Sibling_Footer">Add Siblings</string>
+	<string name="Parent_header">Parents</string>
+	<string name="Parent_Footer">Add Parents</string>
+	<string name="Grandparent_header">Grandparents</string>
+	<string name="Grandparent_Footer">Add Grandparents</string>
+	<string name="Greatgrandparent_header">Great Grandparents</string>
+	<string name="GreatGrandparent_Footer">Add Great Grandparents</string>
+	<!--- My Family Screen  Strings ENDS -->
+
 </resources>

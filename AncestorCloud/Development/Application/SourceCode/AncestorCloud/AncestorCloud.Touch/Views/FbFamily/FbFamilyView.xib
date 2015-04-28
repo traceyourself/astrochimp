@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FbFamilyView">
             <connections>
+                <outlet property="NextButton" destination="kan-jx-UW1" id="hnM-G5-ePg"/>
                 <outlet property="fbFamilyTableView" destination="0Ls-62-dS7" id="uXU-St-QWv"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
@@ -88,7 +89,7 @@
     </objects>
     <resources>
         <image name="fb_icon.jpeg" width="120" height="120"/>
-        <image name="help_icon.png" width="225" height="225"/>
+        <image name="help_icon.png" width="44" height="45"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

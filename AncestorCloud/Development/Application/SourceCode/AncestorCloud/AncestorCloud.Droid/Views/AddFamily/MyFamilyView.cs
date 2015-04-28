@@ -23,7 +23,7 @@ namespace AncestorCloud.Droid
 		ActionBar actionBar;
 		TextView FbBtn,loginBtn;
 		List<ListDataStructure> dataList;
-		List<People> listData;
+
 
 		public new MyFamilyViewModel ViewModel
 		{
@@ -55,8 +55,8 @@ namespace AncestorCloud.Droid
 
 		private void ConfigureActionBar()
 		{
-			actionBar.SetCenterImageText (Resource.Drawable.action_menu,Resources.GetString(Resource.String.my_family_menu));
-			actionBar.SetLeftCornerMenuImage (Resource.Drawable.action_back_btn);
+			actionBar.SetCenterImageText (Resource.Drawable.myfamily_title,Resources.GetString(Resource.String.my_family_menu));
+			actionBar.SetLeftCornerImage (Resource.Drawable.back);
 			var backButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 
 			backButton.Click += (sender, e) => {
@@ -105,21 +105,121 @@ namespace AncestorCloud.Droid
 
 			first = new ListDataStructure (true,false,false,"Geart Grandparents","","","");
 			dataList.Add (first);
-			first = new ListDataStructure (false,true,false,"","Add Geart Grandparents","","");
+			first = new ListDataStructure (false,true,false,"","Add Geart Grandparents","","");  
 			dataList.Add (first);*/
 
 
-			listData = ViewModel.FamilyList;
+			//if(ViewModel.FamilyList.Count > 0){
+
+				dataList = FilterDataList (ViewModel.FamilyList);
+
+				MyFamilyListAdapter adapter = new MyFamilyListAdapter (this,dataList);
+				listView.Adapter = adapter;
+				listView.Invalidate ();	
+			//}
 
 
-
-
-			MyFamilyListAdapter adapter = new MyFamilyListAdapter (this,dataList);
-			listView.Adapter = adapter;
-			listView.Invalidate ();
 		}
 		#endregion
+
+		#region list filteration
+		public List<ListDataStructure> FilterDataList(List<People> mainList){
+
+			List<ListDataStructure> resultList = new List<ListDataStructure> ();
+
+			List<ListDataStructure> siblingList = new List<ListDataStructure> ();
+			List<ListDataStructure> parentList = new List<ListDataStructure> ();
+			List<ListDataStructure> grandParentList = new List<ListDataStructure> ();
+			List<ListDataStructure> greatGrandParentList = new List<ListDataStructure> ();
+
+			ListDataStructure listStruct;
+
+
+
+			for(int i=0;i<mainList.Count;i++){
+				People item = mainList[i];
+				string relation = item.Relation;
+
+				if (relation.Contains (Resources.GetString(Resource.String.Brother_comparison)) || relation.Contains (Resources.GetString(Resource.String.Sister_comparison))) 
+				{
+					listStruct = new ListDataStructure(false,false,true,"","",item);
+					siblingList.Add (listStruct);
+				}
+
+				else if(relation.Contains (Resources.GetString(Resource.String.Father_comparison)) || relation.Contains (Resources.GetString(Resource.String.Mother_comparison)))
+				{
+					listStruct = new ListDataStructure(false,false,true,"","",item);
+					parentList.Add (listStruct);
+				}
+
+				else if(relation.Contains (Resources.GetString(Resource.String.GrandFather_comparison)) || relation.Contains (Resources.GetString(Resource.String.GrandMother_comparison)))
+				{
+					listStruct = new ListDataStructure(false,false,true,"","",item);
+					grandParentList.Add (listStruct);
+				}
+
+				else if(relation.Contains (Resources.GetString(Resource.String.GreatGrandFather_comparison)) || relation.Contains (Resources.GetString(Resource.String.GreatGrandMother_comparison)))
+				{
+					listStruct = new ListDataStructure(false,false,true,"","",item);
+					greatGrandParentList.Add (listStruct);
+				}
+			}
+
+			//Siblings==
+			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.Sibling_header),"",null);
+			resultList.Add (listStruct);
+			if(siblingList.Count > 0){
+				for(int i=0;i<siblingList.Count;i++){
+					resultList.Add (siblingList[i]);
+				}
+			}
+			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.Sibling_Footer),null);
+			resultList.Add (listStruct);
+			//========
+
+			//Parents==
+			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.Parent_header),"",null);
+			resultList.Add (listStruct);
+			if(parentList.Count > 0){
+				for(int i=0;i<parentList.Count;i++){
+					resultList.Add (parentList[i]);
+				}
+			}
+			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.Parent_Footer),null);
+			resultList.Add (listStruct);
+			//=========
+
+			//GrandParents==
+			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.Grandparent_header),"",null);
+			resultList.Add (listStruct);
+			if(grandParentList.Count > 0){
+				for(int i=0;i<grandParentList.Count;i++){
+					resultList.Add (grandParentList[i]);
+				}
+			}
+			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.Grandparent_Footer),null);
+			resultList.Add (listStruct);
+			//=========
+
+			//Great Grand Parents==
+			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.Greatgrandparent_header),"",null);
+			resultList.Add (listStruct);
+			if(greatGrandParentList.Count > 0){
+				for(int i=0;i<greatGrandParentList.Count;i++){
+					resultList.Add (greatGrandParentList[i]);
+				}
+			}
+			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.GreatGrandparent_Footer),null);
+			resultList.Add (listStruct);
+			//=========
+
+			return resultList;
+		}
+		#endregion
+
 	}
+
+
 
 	#region List Adapter
 	public class MyFamilyListAdapter : BaseAdapter
@@ -184,8 +284,8 @@ namespace AncestorCloud.Droid
 			}
 			else if(structure.isData)
 			{
-				holder.nameTxt.Text = structure.PersonName;
-				holder.yearTxt.Text = structure.Year;
+				holder.nameTxt.Text = structure.PersonData.Name;
+				holder.yearTxt.Text = structure.PersonData.DateOfBirth;
 				holder.listHeader.Visibility = ViewStates.Gone;
 				holder.listFooter.Visibility = ViewStates.Gone;
 				holder.listData.Visibility = ViewStates.Visible;
@@ -239,19 +339,19 @@ namespace AncestorCloud.Droid
 
 		public String HeaderTitle{ get; set;}
 		public String FooterTitle{ get; set;}
-		public String PersonName{ get; set;}
-		public String Year{ get; set;}
+		public People PersonData{ get; set;}
 
 
-		public ListDataStructure(bool isheader,bool isfooter,bool isdata,String headertitle,String footertitle,String personname,String year){
+
+		public ListDataStructure(bool isheader,bool isfooter,bool isdata,String headertitle,String footertitle,People persondata){
 			isHeader = isheader;
 			isFooter = isfooter;
 			isData = isdata;
 
 			HeaderTitle = headertitle;
 			FooterTitle = footertitle;
-			PersonName = personname;
-			Year = year;
+			PersonData = persondata;
+
 		}
 
 	}

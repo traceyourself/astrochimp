@@ -14,12 +14,20 @@ namespace AncestorCloud.Touch
 	{
 		[Outlet]
 		UIKit.UILabel NameLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel RelationLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (NameLabel != null) {
 				NameLabel.Dispose ();
 				NameLabel = null;
+			}
+
+			if (RelationLabel != null) {
+				RelationLabel.Dispose ();
+				RelationLabel = null;
 			}
 		}
 	}
