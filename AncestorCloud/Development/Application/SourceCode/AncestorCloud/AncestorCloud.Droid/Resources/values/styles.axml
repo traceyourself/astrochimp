@@ -1,9 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
   	<style name="Theme.Default" parent="android:Theme.DeviceDefault.NoActionBar">
+  		<item name="android:windowBackground">@color/transparent_color</item>
+    	<item name="android:colorBackground">@color/transparent_color</item>
 	</style>
 
 
+	<style name="GraySmallLeftText" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textColor">@color/gray_login_color</item>
+        <item name="android:textSize">13sp</item>
+    </style>
 
 
 	<style name="GrayMediumText" parent="@android:style/TextAppearance.Medium">

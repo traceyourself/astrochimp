@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using AncestorCloud.Shared;
 using AncestorCloud.Shared.ViewModels;
+using Android.Graphics;
 
 namespace AncestorCloud.Droid
 {
@@ -23,7 +24,7 @@ namespace AncestorCloud.Droid
 		ActionBar actionBar;
 		TextView FbBtn,loginBtn;
 		List<ListDataStructure> dataList;
-
+		Dialog editDialog;
 
 		public new MyFamilyViewModel ViewModel
 		{
@@ -74,50 +75,11 @@ namespace AncestorCloud.Droid
 		#region Create List Adapter
 		private void CreateListAdapter ()
 		{
-			/*dataList = new List<ListDataStructure> ();
+			dataList = FilterDataList (ViewModel.FamilyList);
 
-			ListDataStructure first = new ListDataStructure (true,false,false,"Siblings","","","");
-			dataList.Add (first);
-			first = new ListDataStructure (false,false,true,"","","Madison Eames (sister)","1991");
-			dataList.Add (first);
-			first = new ListDataStructure (false,true,false,"","Add Sibling","","");
-			dataList.Add (first);
-
-			first = new ListDataStructure (true,false,false,"Parents","","","");
-			dataList.Add (first);
-			first = new ListDataStructure (false,false,true,"","","Robert Eames (father)","1956");
-			dataList.Add (first);
-			first = new ListDataStructure (false,false,true,"","","Mary Herzog Eames (mother)","1958");
-			dataList.Add (first);
-			first = new ListDataStructure (false,true,false,"","Add Parent","","");
-			dataList.Add (first);
-
-			first = new ListDataStructure (true,false,false,"Grandparents","","","");
-			dataList.Add (first);
-			first = new ListDataStructure (false,false,true,"","","Merrill Eames (Grandfather)","1930");
-			dataList.Add (first);
-			first = new ListDataStructure (false,false,true,"","","Louise Gibbons Eames (Grandmother)","1935");
-			dataList.Add (first);
-			first = new ListDataStructure (false,false,true,"","","Evevon Jennings Herzog (Grandmother)","1935");
-			dataList.Add (first);
-			first = new ListDataStructure (false,true,false,"","Add Grandparent","","");
-			dataList.Add (first);
-
-			first = new ListDataStructure (true,false,false,"Geart Grandparents","","","");
-			dataList.Add (first);
-			first = new ListDataStructure (false,true,false,"","Add Geart Grandparents","","");  
-			dataList.Add (first);*/
-
-
-			//if(ViewModel.FamilyList.Count > 0){
-
-				dataList = FilterDataList (ViewModel.FamilyList);
-
-				MyFamilyListAdapter adapter = new MyFamilyListAdapter (this,dataList);
-				listView.Adapter = adapter;
-				listView.Invalidate ();	
-			//}
-
+			MyFamilyListAdapter adapter = new MyFamilyListAdapter (this,dataList);
+			listView.Adapter = adapter;
+			listView.Invalidate ();	
 
 		}
 		#endregion
@@ -221,7 +183,24 @@ namespace AncestorCloud.Droid
 		#region Edit Dialog
 		public void ShowEditDialog(int position)
 		{
-			
+			editDialog = new Dialog (this,Android.Resource.Style.ThemeTranslucentNoTitleBar);
+			editDialog.SetContentView (Resource.Layout.edit_family_dialog);
+
+			LinearLayout male = editDialog.FindViewById<LinearLayout> (Resource.Id.male_container);
+			LinearLayout female = editDialog.FindViewById<LinearLayout> (Resource.Id.female_container);
+
+
+			male.Click += (object sender, EventArgs e) => {
+				male.SetBackgroundResource(Resource.Drawable.male_selected);	
+				female.SetBackgroundColor(Color.ParseColor("#00000000"));
+			};
+
+			female.Click += (object sender, EventArgs e) => {
+				male.SetBackgroundColor(Color.ParseColor("#00000000"));	
+				female.SetBackgroundResource(Resource.Drawable.female_selected);
+			};
+
+			editDialog.Show ();
 		}
 		#endregion
 

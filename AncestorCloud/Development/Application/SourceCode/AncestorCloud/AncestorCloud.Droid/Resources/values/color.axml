@@ -10,7 +10,7 @@
   	<color name="add_family_div_color">#BBBBBB</color>
   	<color name="add_family_footer_txt_color">#D05991</color>
   	<color name="add_family_data_txt_color">#8E8E8E</color>
-
+  	<color name="transparent_color">#00000000</color>
 
 
 </resources>

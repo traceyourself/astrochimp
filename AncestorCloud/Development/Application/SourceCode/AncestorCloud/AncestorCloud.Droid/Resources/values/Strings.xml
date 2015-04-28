@@ -65,4 +65,17 @@
 	<string name="GreatGrandparent_Footer">Add Great Grandparents</string>
 	<!--- My Family Screen  Strings ENDS -->
 
+
+	<!--- My Family edit Strings -->
+	<string name="Save">Save</string>
+	<string name="firstname">First Name</string>
+	<string name="Middlename">Middle Name</string>
+	<string name="Lastname">Last Name</string>
+	<string name="Birthyear">Birth Year</string>
+	<string name="Birthlocation">Birth location</string>
+	<string name="Male">Male</string>
+	<string name="Female">Female</string>
+
+
+
 </resources>

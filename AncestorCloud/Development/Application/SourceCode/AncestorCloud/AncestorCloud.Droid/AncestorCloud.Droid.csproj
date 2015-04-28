@@ -198,6 +198,8 @@
     <AndroidResource Include="Resources\layout\research_help_fly_out.axml" />
     <AndroidResource Include="Resources\layout\research_help.axml" />
     <AndroidResource Include="Resources\layout\edit_family_dialog.axml" />
+    <AndroidResource Include="Resources\drawable\male_selected.axml" />
+    <AndroidResource Include="Resources\drawable\female_selected.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
