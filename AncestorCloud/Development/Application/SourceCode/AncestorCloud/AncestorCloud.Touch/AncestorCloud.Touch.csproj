@@ -136,6 +136,9 @@
     <Reference Include="Cirrious.MvvmCross.Plugins.Sqlite.Touch">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Sqlite.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.Sqlite.Touch.dll</HintPath>
     </Reference>
+    <Reference Include="FlyoutNavigation">
+      <HintPath>..\Components\flyoutnavigation-1.5.1\lib\ios-unified\FlyoutNavigation.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Auth.iOS">
       <HintPath>..\Components\xamarin.social-1.1.7\lib\ios-unified\Xamarin.Auth.iOS.dll</HintPath>
     </Reference>
@@ -144,22 +147,6 @@
     </Reference>
     <Reference Include="Xamarin.Social.iOS">
       <HintPath>..\Components\xamarin.social-1.1.7\lib\ios-unified\Xamarin.Social.iOS.dll</HintPath>
-    </Reference>
-
-    <Reference Include="MonoTouch.Dialog-1" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="Cirrious.MvvmCross.Plugins.Messenger">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Messenger.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.Messenger.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Plugins.Sqlite">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Sqlite.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="Cirrious.MvvmCross.Plugins.Sqlite.Touch">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Sqlite.3.5.0\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.Sqlite.Touch.dll</HintPath>
-    </Reference>
-
-    <Reference Include="FlyoutNavigation">
-      <HintPath>..\Components\flyoutnavigation-1.5.1\lib\ios-unified\FlyoutNavigation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +172,7 @@
     <InterfaceDefinition Include="Views\FbFamily\FbFamilyView.xib" />
     <InterfaceDefinition Include="Views\FbFamily\FbFamilyCell\FbFamilyCell.xib" />
     <InterfaceDefinition Include="Views\ActivityLoader\LoaderView.xib" />
+    <InterfaceDefinition Include="Views\ResearchHelper\ResearchHelpView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -194,7 +182,6 @@
     <None Include="AppDelegate.cs.txt" />
     <None Include="Views\AddGrandparents\.DS_Store" />
     <None Include="Views\FlyOut\.DS_Store" />
-    <None Include="Views\Signup\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -258,6 +245,10 @@
     <Compile Include="Helpers\Loader.cs" />
     <Compile Include="Views\ActivityLoader\LoaderView.cs" />
     <Compile Include="Views\ActivityLoader\LoaderView.designer.cs" />
+    <Compile Include="Views\ResearchHelper\ResearchHelpView.cs" />
+    <Compile Include="Views\ResearchHelper\ResearchHelpView.designer.cs">
+      <DependentUpon>ResearchHelpView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -288,14 +279,15 @@
     <Folder Include="Views\LogOut\" />
     <Folder Include="Views\FbFamily\FbFamilyCell\" />
     <Folder Include="Views\ActivityLoader\" />
+    <Folder Include="Views\ResearchHelper\" />
   </ItemGroup>
   <ItemGroup>
-    <XamarinComponentReference Include="xamarin.social">
-      <Version>1.1.7</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="flyoutnavigation">
       <Version>1.5.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="xamarin.social">
+      <Version>1.1.7</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
@@ -316,7 +308,6 @@
     <BundleResource Include="Resources\uncheck.png" />
     <BundleResource Include="Resources\help_icon.png" />
     <BundleResource Include="Resources\blue_smallbtn%402x.png" />
-    <BundleResource Include="Resources\.DS_Store" />
     <BundleResource Include="Resources\fbook_btn2x.png" />
     <BundleResource Include="Resources\myfamily_title2x.png" />
   </ItemGroup>

@@ -117,6 +117,13 @@ namespace AncestorCloud.Touch
 
 				account = accounts;
 
+				if(account==null)
+				{
+					DismissViewController (true, null);
+
+					return ;
+				}
+
 				//System.Diagnostics.Debug.WriteLine ("accounts :" + account);
 
 				var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions

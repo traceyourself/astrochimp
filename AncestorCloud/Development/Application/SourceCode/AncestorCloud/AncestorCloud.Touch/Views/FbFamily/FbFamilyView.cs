@@ -50,7 +50,6 @@ namespace AncestorCloud.Touch
 
 		}
 
-
 	}
 }
 

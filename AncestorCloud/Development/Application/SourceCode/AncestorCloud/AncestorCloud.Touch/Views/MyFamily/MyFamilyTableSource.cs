@@ -80,6 +80,10 @@ namespace AncestorCloud.Touch
 			System.Diagnostics.Debug.WriteLine ("Data : "+childItem.PersonName);
 			System.Diagnostics.Debug.WriteLine ("Section Footer:" + item.SectionFooter);
 
+
+
+
+
 			tableView.BackgroundColor = UIColor.FromRGB (178,45,116);
 
 
@@ -159,8 +163,27 @@ namespace AncestorCloud.Touch
 				Text= "   +Add"+keys[section],
 				Font= UIFont.FromName("Helvetica", 14f),
 			};
+
+
+			UIButton btn = new UIButton {
+				BackgroundColor=UIColor.Red,
+			};
+			//btn.AddTarget(FooterTapped,UIControlEvent.TouchUpInside);
+			btn.TouchUpInside += (object sender, EventArgs e) => {
+				System.Diagnostics.Debug.WriteLine("Add Btton Tapped");
+			};
+			view.AddSubview (btn);
+
 			return view;
+
+				
+
 			
+		}
+
+		public void FooterTapped()
+		{
+			System.Diagnostics.Debug.WriteLine ("Add Button Tapped");
 		}
 
 

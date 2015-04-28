@@ -108,6 +108,8 @@ namespace AncestorCloud.Touch
 
 
 
+
+
 			//Listen to messages to toggle the menu and hide MvvmCrosses navigation bar
 			var _messenger = Mvx.Resolve<IMvxMessenger>();
 			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<ToggleFlyoutMenuMessage>(message => _navigation.ToggleMenu());

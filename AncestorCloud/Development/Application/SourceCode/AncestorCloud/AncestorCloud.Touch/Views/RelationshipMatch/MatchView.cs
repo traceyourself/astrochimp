@@ -40,6 +40,8 @@ namespace AncestorCloud.Touch
 			scrollViewObj.ContentSize = new SizeF(300, 500);
 
 			setNavigationBar ();
+
+	
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -52,7 +54,7 @@ namespace AncestorCloud.Touch
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
 			this.NavigationItem.SetHidesBackButton (true, false);
 			this.NavigationItem.TitleView = new MyTitleView (this.Title);
-			//this.NavigationController.NavigationBarHidden = true;
+			this.NavigationController.NavigationBarHidden = true;
 			this.NavigationItem.SetRightBarButtonItem(
 				new UIBarButtonItem(UIImage.FromFile("cross.png")
 					, UIBarButtonItemStyle.Plain
@@ -60,7 +62,10 @@ namespace AncestorCloud.Touch
 						// button was clicked
 					})
 				, true);
+			
+			
 		}
+
 
 		#region MatchTapped
 		partial void MatchTapped (NSObject sender)
