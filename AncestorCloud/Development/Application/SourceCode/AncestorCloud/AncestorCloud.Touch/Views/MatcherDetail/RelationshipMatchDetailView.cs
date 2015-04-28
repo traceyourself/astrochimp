@@ -3,6 +3,10 @@ using System;
 
 using Foundation;
 using UIKit;
+using Cirrious.CrossCore;
+using System.Linq;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using AncestorCloud.Shared;
 
 namespace AncestorCloud.Touch
 {
@@ -42,10 +46,35 @@ namespace AncestorCloud.Touch
 			string[] tableItems = new string[] {"1972"+"   "+"Glenneth Girtrude Gates"+"  " +" 06","1956"+"   "+"Henry Wright Gates"+"          " +" 07","1925"+"   "+"Glenneth Girtrude Gates"+"  " +" 08","1907"+"   "+"Henry Wright Gates"+"          " +" 09","1925"+"   "+"Henry Wright Gates"+"          " +" 10","1907"+"   "+"Glenneth Girtrude Gates"+"  " +" 11","1925"+"   "+"Henry Wright Gates"+"          " +" 12","1921"+"   "+"Glenneth Girtrude Gates"+"  " +" 13","1972"+"   "+"Henry Wright Gates"+"          " +" 14","1956"+"   "+"Glenneth Girtrude Gates"+"  " +" 15"};
 			table.Source = new RelationshipMatchTableSource(tableItems);
 			this.NavigationItem.TitleView = new MyTitleView (this.Title);
+			this.NavigationController.NavigationBarHidden = false;
+
+			UIImage image = UIImage.FromFile ("cross.png");
+
+			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
+
+			this.NavigationItem.SetRightBarButtonItem(
+				new UIBarButtonItem(image
+					, UIBarButtonItemStyle.Plain
+					, (sender,args) => {
+						System.Diagnostics .Debug.WriteLine("PAST MATCHER");
+					})
+				, true);
 			//Add (table);
 		}
 
 		#endregion
+
+		public override void ViewWillDisappear (bool animated)
+		{
+
+			if (!NavigationController.ViewControllers.Contains (this)) {
+				var messenger = Mvx.Resolve<IMvxMessenger> ();
+				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
+			
+			}
+			base.ViewWillDisappear (animated);
+		}
+
 	}
 }
 

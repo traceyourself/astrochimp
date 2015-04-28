@@ -38,6 +38,9 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewDidLoad ();
 			SetFamilyItem ();
+
+//			var messenger = Mvx.Resolve<IMvxMessenger>();
+//			messenger.Publish(new NavigationBarHiddenMessage(this, false));
 			//Flyout ();
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -51,7 +54,25 @@ namespace AncestorCloud.Touch
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
 			this.NavigationItem.SetHidesBackButton (true, false);
 			this.NavigationItem.TitleView = new MyTitleView (this.Title);
-			this.NavigationController.NavigationBarHidden = true;
+
+			UIImage image = UIImage.FromFile ("action_menu.png");
+
+			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
+
+
+			this.NavigationItem.SetLeftBarButtonItem(
+				new UIBarButtonItem(image
+					, UIBarButtonItemStyle.Plain
+					, (sender,args) => {
+						{
+							//message to show the menu
+							var messenger = Mvx.Resolve<IMvxMessenger>();
+							messenger.Publish(new ToggleFlyoutMenuMessage(this));
+						}
+
+					})
+				, true);
+			//this.NavigationController.NavigationBarHidden = true;
 
 		}
 

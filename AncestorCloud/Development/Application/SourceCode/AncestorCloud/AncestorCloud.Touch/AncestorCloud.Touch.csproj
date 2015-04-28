@@ -181,7 +181,6 @@
     <None Include="ToDo-MvvmCross\_ Touch UI.txt" />
     <None Include="AppDelegate.cs.txt" />
     <None Include="Views\AddGrandparents\.DS_Store" />
-    <None Include="Views\FlyOut\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -309,6 +308,6 @@
     <BundleResource Include="Resources\help_icon.png" />
     <BundleResource Include="Resources\blue_smallbtn%402x.png" />
     <BundleResource Include="Resources\fbook_btn2x.png" />
-    <BundleResource Include="Resources\myfamily_title2x.png" />
+    <BundleResource Include="Resources\myfamily_icon%402x.png" />
   </ItemGroup>
 </Project>

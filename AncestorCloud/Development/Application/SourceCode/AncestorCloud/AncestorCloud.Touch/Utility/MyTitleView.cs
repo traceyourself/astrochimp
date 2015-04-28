@@ -9,7 +9,7 @@ namespace AncestorCloud.Touch
 
 		public MyTitleView (string title)
 		{
-			UIImageView img = new UIImageView(UIImage.FromFile("myfamily_title2x.png"));
+			UIImageView img = new UIImageView(UIImage.FromFile("myfamily_icon.png"));
 			this.AddSubview (img);
 
 			UILabel label = new UILabel {
