@@ -75,7 +75,11 @@
 	<string name="Birthlocation">Birth location</string>
 	<string name="Male">Male</string>
 	<string name="Female">Female</string>
+	<!--- My Family edit Strings end -->
 
 
+	<!--- My Family add dialog Strings -->
+	<string name="Add_person">Add Person</string>
+	<!--- My Family add dialog Strings Ends -->
 
 </resources>

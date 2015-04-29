@@ -110,6 +110,7 @@
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="DroidUtilities\DroidAlerts.cs" />
     <Compile Include="Views\ResearchHelp\ResearchHelpView.cs" />
+    <Compile Include="Views\AddFamily\AddFamilyView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -200,6 +201,7 @@
     <AndroidResource Include="Resources\layout\edit_family_dialog.axml" />
     <AndroidResource Include="Resources\drawable\male_selected.axml" />
     <AndroidResource Include="Resources\drawable\female_selected.axml" />
+    <AndroidResource Include="Resources\layout\add_family_dialog.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

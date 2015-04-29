@@ -13,6 +13,8 @@ using Android.Widget;
 using AncestorCloud.Shared;
 using AncestorCloud.Shared.ViewModels;
 using Android.Graphics;
+using Java.Text;
+using Java.Util;
 
 namespace AncestorCloud.Droid
 {
@@ -23,6 +25,7 @@ namespace AncestorCloud.Droid
 		ListView listView;
 		ActionBar actionBar;
 		TextView FbBtn,loginBtn;
+		public TextView birthDateDialogTxt;
 		List<ListDataStructure> dataList;
 		Dialog editDialog;
 
@@ -188,7 +191,9 @@ namespace AncestorCloud.Droid
 
 			LinearLayout male = editDialog.FindViewById<LinearLayout> (Resource.Id.male_container);
 			LinearLayout female = editDialog.FindViewById<LinearLayout> (Resource.Id.female_container);
-
+			RelativeLayout crossbtn = editDialog.FindViewById<RelativeLayout> (Resource.Id.cross_edit_btn);
+			birthDateDialogTxt = editDialog.FindViewById<TextView> (Resource.Id.birth_year_field);
+			TextView saveBtn = editDialog.FindViewById<TextView> (Resource.Id.save_btn);
 
 			male.Click += (object sender, EventArgs e) => {
 				male.SetBackgroundResource(Resource.Drawable.male_selected);	
@@ -200,10 +205,49 @@ namespace AncestorCloud.Droid
 				female.SetBackgroundResource(Resource.Drawable.female_selected);
 			};
 
+			birthDateDialogTxt.Click += (object sender, EventArgs e) => {
+				ShowDatePicker();
+			};
+
+			crossbtn.Click += (object sender, EventArgs e) => {
+				editDialog.Dismiss();
+			};
+
+			saveBtn.Click += (object sender, EventArgs e) => {
+				editDialog.Dismiss();
+			};
+
 			editDialog.Show ();
 		}
 		#endregion
 
+		public void ShowDatePicker()
+		{
+			Calendar cal = Calendar.GetInstance (Java.Util.Locale.Us);
+			DatePickerDialog dpd = new DatePickerDialog (this,new DateListener(this),cal.Get(Calendar.Year), cal.Get(Calendar.Month),cal.Get(Calendar.DayOfMonth));
+			dpd.Show ();
+		}
+	}
+
+	public class DateListener : Java.Lang.Object,Android.App.DatePickerDialog.IOnDateSetListener
+	{
+		MyFamilyView obj;
+		SimpleDateFormat dateFormatter;
+
+		public DateListener(MyFamilyView obj)
+		{
+			this.obj = obj;
+			dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Java.Util.Locale.Us);
+		}
+
+		public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+			Calendar newDate = Calendar.GetInstance(Java.Util.Locale.Us);
+			newDate.Set(year, monthOfYear, dayOfMonth);
+
+			obj.birthDateDialogTxt.Text = ""+dateFormatter.Format(newDate.Time);
+		}
+
+		public void Dispose(){}
 	}
 
 	#region List Adapter
@@ -276,7 +320,7 @@ namespace AncestorCloud.Droid
 				holder.listData.Visibility = ViewStates.Visible;
 
 				holder.editBtn.Click += (object sender, EventArgs e) => {
-					System.Diagnostics.Debug.WriteLine("edit clicked at : "+position);
+					//System.Diagnostics.Debug.WriteLine("edit clicked at : "+position);
 					myFamilyObj.ShowEditDialog(position);
 				};
 			}
@@ -287,9 +331,9 @@ namespace AncestorCloud.Droid
 				holder.listFooter.Visibility = ViewStates.Visible;
 				holder.listData.Visibility = ViewStates.Gone;
 
-
 				holder.listFooter.Click += (object sender, EventArgs e) => {
-					System.Diagnostics.Debug.WriteLine("footer clicked at : "+position);
+					//System.Diagnostics.Debug.WriteLine("footer clicked at : "+position);
+					myFamilyObj.ViewModel.ShowAddFamilyViewModel();
 				};
 			}
 

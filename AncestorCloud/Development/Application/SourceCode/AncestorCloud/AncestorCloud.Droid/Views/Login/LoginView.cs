@@ -29,12 +29,11 @@ namespace AncestorCloud.Droid
 {
 	
 	[Activity (Label = "LoginView",ScreenOrientation=ScreenOrientation.Portrait)]			
-	public class LoginView : BaseActivity,ILoader
+	public class LoginView : BaseActivity
 	{
 
 		ActionBar actionBar;
 		TextView FbBtn,loginBtn;
-		ProgressDialog progressDialog;
 
 		public new LoginViewModel ViewModel
 		{
@@ -136,23 +135,6 @@ namespace AncestorCloud.Droid
 			ViewModel.ShowFbFamilyViewModel ();
 			ViewModel.Close ();
 		}
-
-
-		#region ILoader implementation
-
-		public void showLoader ()
-		{
-			progressDialog = ProgressDialog.Show(this,"","Loading...");
-		}
-
-		public void hideLoader ()
-		{
-			if(progressDialog != null){
-				progressDialog.Dismiss ();
-			}
-		}
-
-		#endregion
 
 	}
 }

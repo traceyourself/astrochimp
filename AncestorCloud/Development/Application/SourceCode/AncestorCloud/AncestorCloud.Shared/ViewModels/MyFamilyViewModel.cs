@@ -13,6 +13,14 @@ namespace AncestorCloud.Shared.ViewModels
 			GetFbFamilyData ();
 		}
 
+		#region show Add family dialog model
+		public void ShowAddFamilyViewModel()
+		{
+			ShowViewModel<AddFamilyViewModel> ();
+		}
+		#endregion
+
+
 		#region Properties
 
 		private List<People> familyList;
