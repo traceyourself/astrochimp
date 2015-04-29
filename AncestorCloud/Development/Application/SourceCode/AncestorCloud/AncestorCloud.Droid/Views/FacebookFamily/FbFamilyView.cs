@@ -73,24 +73,32 @@ namespace AncestorCloud.Droid
 		private void ApplyActions()
 		{
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.my_family_menu_btn).Click += (object sender, EventArgs e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
+				if(menu.AnimatedOpened){
+					menu.AnimatedOpened = !menu.AnimatedOpened;
+				}
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.matcher_menu_btn).Click += (object sender, EventArgs e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.ShowMatcherViewModel();
-				ViewModel.Close();
+				if(menu.AnimatedOpened){
+					menu.AnimatedOpened = !menu.AnimatedOpened;
+					ViewModel.ShowMatcherViewModel();
+					ViewModel.Close();
+				}
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.research_menu_btn).Click += (object sender, EventArgs e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.ShowResearchHelpViewModel();
-				ViewModel.Close();
+				if(menu.AnimatedOpened){
+					menu.AnimatedOpened = !menu.AnimatedOpened;
+					ViewModel.ShowResearchHelpViewModel();
+					ViewModel.Close();
+				}
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.logout_menu_btn).Click += (object sender, EventArgs e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.ShowHomeViewModel();
+				if(menu.AnimatedOpened){
+					menu.AnimatedOpened = !menu.AnimatedOpened;
+					ViewModel.ShowHomeViewModel();
+				}
 			};
 
 			nextBtn.Click += (object sender, EventArgs e) => {

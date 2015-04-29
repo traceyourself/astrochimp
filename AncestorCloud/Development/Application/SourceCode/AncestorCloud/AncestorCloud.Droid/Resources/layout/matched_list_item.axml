@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/transparent"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/main_container_matched">
+        <TextView
+            android:id="@+id/year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1907"
+            android:gravity="left"
+            android:textColor="@color/gray_login_color"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/percent_right"
+            android:layout_toRightOf="@+id/year"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Glenneth Girtrude Gates"
+                android:gravity="left"
+                android:textColor="@color/gray_login_color"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/common"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Common Ancestor"
+                android:gravity="left"
+                android:layout_marginLeft="8dp"
+                android:visibility="gone"
+                android:textColor="@android:color/white"
+                android:textSize="13sp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/percent_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/gray_login_color"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="5º" />
+    </RelativeLayout>
+</RelativeLayout>

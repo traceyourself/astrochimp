@@ -50,26 +50,32 @@ namespace AncestorCloud.Droid
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.my_family_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.ShowFamilyViewModel();
-				ViewModel.Close();
+				if(menu.AnimatedOpened){
+					ViewModel.ShowFamilyViewModel();
+					ViewModel.Close();
+				}
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.matcher_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.ShowMatcherViewModel();
-				ViewModel.Close();
+				if(menu.AnimatedOpened){
+					ViewModel.ShowMatcherViewModel();
+					ViewModel.Close();
+				}
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.research_menu_btn).Click += (object sender, EventArgs e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
-
+				if(menu.AnimatedOpened){
+					menu.AnimatedOpened = !menu.AnimatedOpened;
+				}
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.logout_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.ShowHomeViewModel();
+				if(menu.AnimatedOpened){
+					ViewModel.ShowHomeViewModel();
+				}
 			};
-
 		}
 
 		#region Action Bar Configuration

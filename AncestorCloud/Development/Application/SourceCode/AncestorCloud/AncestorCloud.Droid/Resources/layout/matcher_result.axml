@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/dialog_remaining_part_color">
+    <AncestorCloud.Droid.ActionBar
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/upper"
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/percent_container">
+                <ImageView
+                    android:id="@+id/first_user_img"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/no_img" />
+                <TextView
+                    android:id="@+id/first_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:textColor="@color/gray_login_color"
+                    android:textSize="12sp"
+                    android:text="Me"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/percent_container"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:layout_centerInParent="true">
+                <TextView
+                    android:id="@+id/percent"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/circle_back"
+                    android:textColor="@android:color/white"
+                    android:text="16º"
+                    android:gravity="center"
+                    android:textSize="26sp"
+                    android:layout_marginBottom="10dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/percent_container">
+                <ImageView
+                    android:id="@+id/sec_user_img"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/no_img" />
+                <TextView
+                    android:id="@+id/sec_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:textColor="@color/gray_login_color"
+                    android:textSize="12sp"
+                    android:text="Aj Jacobs"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </RelativeLayout>
+        <View
+            android:id="@+id/up_div"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/dark_div_color"
+            android:layout_below="@+id/upper" />
+        <ListView
+            android:id="@+id/matched_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/dark_div_color"
+            android:dividerHeight="0.8dp"
+            android:layout_below="@+id/up_div" />
+    </RelativeLayout>
+</LinearLayout>
