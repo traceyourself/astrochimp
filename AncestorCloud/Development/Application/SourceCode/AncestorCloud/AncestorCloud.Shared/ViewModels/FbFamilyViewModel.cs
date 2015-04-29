@@ -58,6 +58,7 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
 			_flyoutMessenger.Publish (new ChangeFlyoutFlowMessage (this,false));
+			ShowMyFamilyViewModel ();
 		}
 
 		#region Properties

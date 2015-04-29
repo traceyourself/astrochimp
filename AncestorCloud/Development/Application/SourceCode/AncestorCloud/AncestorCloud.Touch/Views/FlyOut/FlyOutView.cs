@@ -109,7 +109,7 @@ namespace AncestorCloud.Touch
 				, true);
 
 
-
+			CreateFlyoutNavigation ();
 
 
 			//Listen to messages to toggle the menu and hide MvvmCrosses navigation bar
@@ -118,12 +118,10 @@ namespace AncestorCloud.Touch
 			navigationBarHiddenToken = _messenger.SubscribeOnMainThread<NavigationBarHiddenMessage>(message => this.NavigationController.NavigationBarHidden = message.NavigationBarHidden);
 		}
 
-
-		private void CreateFlyoutView()
+		private void CreateFlyoutNavigation()
 		{
-			var flyoutViewControllers = new List<UIViewController>();
 
-			var flyoutMenuElements = new Section();
+			var flyoutViewControllers = new List<UIViewController>();
 
 			var homeViewModel = ViewModel as FlyOutViewModel;
 			if (homeViewModel != null)
@@ -137,21 +135,74 @@ namespace AncestorCloud.Touch
 					};
 
 					flyoutViewControllers.Add(CreateMenuItemController(viewModelRequest));
-					flyoutMenuElements.Add(new CustomStringElement(viewModel.Title));
 
 				}
 				_navigation.ViewControllers = flyoutViewControllers.ToArray();
 
-				//add the menu elements
-				var rootElement = new RootElement("")
+
+			}
+		}
+		private void CreateFlyoutView()
+		{
+			//var flyoutViewControllers = new List<UIViewController>();
+
+			var flyoutMenuElements = new Section();
+
+			var homeViewModel = ViewModel as FlyOutViewModel;
+			if (homeViewModel != null)
+			{
+				//create the ViewModels
+				foreach (var viewModel in homeViewModel.MenuItems)
 				{
-					flyoutMenuElements
-				};
+					
+					flyoutMenuElements.Add(new CustomStringElement(viewModel.Title));
+
+				}
+
+				//add the menu elements
+								var rootElement = new RootElement("")
+								{
+									flyoutMenuElements
+								};
 
 				_navigation.NavigationRoot = rootElement;
 			}
 
 		}
+
+//		private void CreateFlyoutView()
+//		{
+//			var flyoutViewControllers = new List<UIViewController>();
+//
+//			//var flyoutMenuElements = new Section();
+//
+//			var homeViewModel = ViewModel as FlyOutViewModel;
+//			if (homeViewModel != null)
+//			{
+//				//create the ViewModels
+//				foreach (var viewModel in homeViewModel.MenuItems)
+//				{
+//					var viewModelRequest = new MvxViewModelRequest
+//					{
+//						ViewModelType = viewModel.ViewModelType
+//					};
+//
+//					flyoutViewControllers.Add(CreateMenuItemController(viewModelRequest));
+//					//flyoutMenuElements.Add(new CustomStringElement(viewModel.Title));
+//
+//				}
+//				_navigation.ViewControllers = flyoutViewControllers.ToArray();
+//
+//				//add the menu elements
+////				var rootElement = new RootElement("")
+////				{
+////					flyoutMenuElements
+////				};
+//
+//				//_navigation.NavigationRoot = rootElement;
+//			}
+//
+//		}
 
 
 		private UIViewController CreateMenuItemController(MvxViewModelRequest viewModelRequest)
