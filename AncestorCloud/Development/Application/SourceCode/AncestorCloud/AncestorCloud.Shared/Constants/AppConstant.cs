@@ -21,6 +21,8 @@ namespace AncestorCloud.Shared
 		public const string FBAPIKEY = "591314537670509";
 		public const string FBAPISECRETKEY = "659bacca4a45654358bb632f5607eeb0";
 		public const string FBSCOPE = "publish_stream,email,publish_actions,user_birthday,user_friends,user_relationships,friends_relationships";
+
+		public const string FRIENDKEY = "friend";
 		#endregion
 
 
@@ -38,7 +40,9 @@ namespace AncestorCloud.Shared
 		public const string FBLINK = "link";
 		public const string UPDATEDTIME = "updated_time";
 		public const string RELATIONSHIP = "relationship";
-
+		public const string DATAKEY = "data";
+		public const string PICTURE = "picture";
+		public const string URL = "url";
 		#endregion
 
 		#region Login Constants

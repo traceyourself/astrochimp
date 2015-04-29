@@ -21,7 +21,7 @@ namespace AncestorCloud.Shared
 		public string RelationshipInterest { get; set; }
 		public string FbLink { get; set; }
 		public string UpdatedTime { get; set;}
-		public string ProfilePic { get; set;}
+		public string ProfilePicURL { get; set;}
 
 		[Ignore] 
 		public List<People> FriendList { get; set; }

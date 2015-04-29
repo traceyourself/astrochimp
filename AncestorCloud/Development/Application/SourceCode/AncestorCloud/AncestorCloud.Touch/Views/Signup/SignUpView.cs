@@ -126,47 +126,67 @@ namespace AncestorCloud.Touch
 
 				//System.Diagnostics.Debug.WriteLine ("accounts :" + account);
 
+				if(account==null)
+				{
+					DismissViewController (true, null);
+
+					return ;
+				}
+
 				var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
 				//https://graph.facebook.com/me?access_token=xxxxxxxxxxxxxxxxx
 
+				ShowLoader();
+
 				request.GetResponseAsync ().ContinueWith (response => {
 					// parse the JSON in response.GetResponseText ()
-					//System.Diagnostics.Debug.WriteLine (response.Result.GetResponseText().GetType());
+					//System.Diagnostics.Debug.WriteLine (response.Result.GetResponseText());
 
 					ViewModel.FbResponseText = response.Result.GetResponseText();
-
-					//ViewModel.SaveUserFbData.Execute(null);
-
-					//ViewModel.GetFbData();
-					ViewModel.SaveFbFamilyData();
-
+					ViewModel.SaveFbData();
 
 					var familyRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/family"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
-					familyRequest.GetResponseAsync ().ContinueWith (famResponse => {
+					var famResponse = familyRequest.GetResponseAsync();
+					//System.Diagnostics.Debug.WriteLine ("famresponse :"+famResponse.Result.GetResponseText());
+					ViewModel.FbFamilyResponseText = famResponse.Result.GetResponseText();
+					ViewModel.SaveFbFamilyData();
 
-						//System.Diagnostics.Debug.WriteLine (famResponse.Result.GetResponseText());
-						ViewModel.FbFamilyResponseText = famResponse.Result.GetResponseText();
+					var friendRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/taggable_friends"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
+					var friendResponse = friendRequest.GetResponseAsync();
+					//System.Diagnostics.Debug.WriteLine ("friendresponse :"+friendResponse.Result.GetResponseText());
+					ViewModel.FbFriendResponseText = friendResponse.Result.GetResponseText();
+					ViewModel.SaveFbFriendsData();
 
-						ViewModel.SaveFbFamilyData();
+					InvokeOnMainThread (delegate {  
+						HideLoader();
 
-						//ViewModel.GetFbData();
-
+						if(account!=null)
+						{
+							DoSignUp();
+						}
 					});
-
-
 				});
 
-				if(account!=null)
-				{
-
-					DoSignUp();
-				}
-
 				DismissViewController (true, null);
-
 			});
 
 			PresentViewController (shareController, true, null);
+		}
+
+		#endregion
+
+		#region Helper methods
+
+		private void ShowLoader()
+		{
+			AppDelegate _delegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
+			_delegate.ShowActivityLoader ();
+		}
+
+		private void HideLoader()
+		{
+			AppDelegate _delegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
+			_delegate.HideActivityLoader ();
 		}
 
 		#endregion

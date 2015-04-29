@@ -110,7 +110,17 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 		}
 
+		private string _fbFriendResponseText;
 
+		public string FbFriendResponseText
+		{
+			get { return _fbFriendResponseText; }
+			set
+			{
+				_fbFriendResponseText = value;
+				RaisePropertyChanged(() => FbFriendResponseText);
+			}
+		}
 
 		#endregion
 
@@ -294,9 +304,25 @@ namespace AncestorCloud.Shared.ViewModels
 
 			foreach (People people in list) {
 
-				_databaseService.InsertFamilyMember (people);
+				_databaseService.InsertRelative (people);
 			}
 			List<People> peopleList = _databaseService.RelativeMatching ("brother");
+		}
+
+		public void SaveFbFriendsData()
+		{
+
+			Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (FbFriendResponseText);
+
+			List<People> list = DataParser.GetFbFriendsData (dict);
+
+			foreach (People people in list) {
+
+				_databaseService.InsertRelative (people);
+			}
+			//			List<People> peopleList = _databaseService.RelativeMatching ("brother");
+			//
+			//			System.Diagnostics.Debug.WriteLine ("PEOPLE LIST :" + peopleList);
 		}
 		#endregion
 
