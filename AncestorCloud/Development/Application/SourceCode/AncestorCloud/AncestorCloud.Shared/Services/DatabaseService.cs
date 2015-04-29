@@ -102,6 +102,12 @@ namespace AncestorCloud.Shared
 			_connection.InsertAll (relatives);
 		}
 
+		public List<People> GetFamily()
+		{
+			List<People> list = _connection.Query<People> ("select * from People where Relation NOT LIKE '%friend%'");
+			return list;
+		}
+
 
 		#endregion
 
@@ -124,6 +130,8 @@ namespace AncestorCloud.Shared
 			int count =  _connection.Table<People>().Where(x => x.UserID.Contains(filter)).ToList().Count();
 			return count;
 		}
+
+
 		#endregion
 
 

@@ -17,6 +17,7 @@ namespace AncestorCloud.Shared
 
 		List<People> RelativeMatching (string relationFilter);
 		User GetUser (int id);
+		List<People> GetFamily ();
 		List<User> GetUsers (string relationFilter);
 		//int Count { get; }
 	}
