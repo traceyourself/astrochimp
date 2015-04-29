@@ -44,7 +44,6 @@
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Constants\AppConstant.cs" />
     <Compile Include="Services\DatabaseService.cs" />
-    <Compile Include="ViewModels\AddFriendsViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\FamilyViewModel.cs" />
     <Compile Include="ViewModels\FbFamilyViewModel.cs" />
@@ -78,17 +77,13 @@
     <Compile Include="Entities\ReloadFlyOutViewMessage.cs" />
     <Compile Include="Helper\ILoader.cs" />
     <Compile Include="ViewModels\ResearchHelpViewModel.cs" />
-
     <Compile Include="ViewModels\AddFamilyViewModel.cs" />
     <Compile Include="Services\Interface\IUserReadService.cs" />
     <Compile Include="Services\UserReadService.cs" />
     <Compile Include="Helper\WebServiceHelper.cs" />
-
     <Compile Include="ViewModels\PastMatchesViewModel.cs" />
-    <Compile Include="ViewModels\AddFamilyViewModel.cs" />
     <Compile Include="ViewModels\AddFriendViewModel.cs" />
     <Compile Include="ViewModels\EditFamilyViewModel.cs" />
-
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
