@@ -16,15 +16,17 @@ namespace AncestorCloud.Touch
 
 		public FbFamilyTableViewSource(UITableView tableView): base(tableView)
 		{
-			tableView.RegisterClassForCellReuse(typeof(FbFamilyCell), FbFamilyCell.Key);
+			//tableView.RegisterClassForCellReuse(typeof(FbFamilyCell), FbFamilyCell.Key);
+			tableView.RegisterNibForCellReuse(UINib.FromName("FbFamilyCell", NSBundle.MainBundle),
+				FbFamilyCell.Key);
 
 		}
 
-		public override nint RowsInSection (UITableView tableView, nint section)
-		{
-
-			return 5;
-		}
+//		public override nint RowsInSection (UITableView tableView, nint section)
+//		{
+//
+//			return 5;
+//		}
 
 
 
