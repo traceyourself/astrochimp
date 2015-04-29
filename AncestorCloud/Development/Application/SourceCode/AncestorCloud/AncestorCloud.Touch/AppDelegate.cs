@@ -16,6 +16,7 @@ namespace AncestorCloud.Touch
 		public override bool FinishedLaunching(UIApplication application , NSDictionary launchOptions)
 		{
 			_window = new UIWindow(UIScreen.MainScreen.Bounds);
+			_window.BackgroundColor = UIColor.Clear;
 
 			var setup = new Setup(this, _window);
 			setup.Initialize();

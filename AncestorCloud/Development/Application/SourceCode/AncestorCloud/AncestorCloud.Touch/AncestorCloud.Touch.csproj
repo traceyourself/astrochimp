@@ -148,11 +148,6 @@
     <Reference Include="Xamarin.Social.iOS">
       <HintPath>..\Components\xamarin.social-1.1.7\lib\ios-unified\Xamarin.Social.iOS.dll</HintPath>
     </Reference>
-
-    <Reference Include="FlyoutNavigation">
-      <HintPath>..\Components\flyoutnavigation-1.5.1\lib\ios-unified\FlyoutNavigation.dll</HintPath>
-    </Reference>
-
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
@@ -160,10 +155,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="MainStoryboard.storyboard" />
-    <InterfaceDefinition Include="Views\AddFriends\AddFriendsView.xib" />
-    <InterfaceDefinition Include="Views\AddGrandparents\AddGrandparentsView.xib" />
     <InterfaceDefinition Include="Views\BaseViewModel\BaseViewController.xib" />
-    <InterfaceDefinition Include="Views\Edit\EditView.xib" />
     <InterfaceDefinition Include="Views\Family\FamilyView.xib" />
     <InterfaceDefinition Include="Views\FlyOut\FlyOutView.xib" />
     <InterfaceDefinition Include="Views\MatcherDetail\RelationshipMatchDetailView.xib" />
@@ -178,6 +170,11 @@
     <InterfaceDefinition Include="Views\FbFamily\FbFamilyCell\FbFamilyCell.xib" />
     <InterfaceDefinition Include="Views\ActivityLoader\LoaderView.xib" />
     <InterfaceDefinition Include="Views\ResearchHelper\ResearchHelpView.xib" />
+    <InterfaceDefinition Include="Views\PastMatches\PastMatchesView.xib" />
+    <InterfaceDefinition Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.xib" />
+    <InterfaceDefinition Include="Views\AddFriends\AddFriendView.xib" />
+    <InterfaceDefinition Include="Views\AddFamily\AddFamilyView.xib" />
+    <InterfaceDefinition Include="Views\EditFamily\EditFamilyView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -185,7 +182,6 @@
     <None Include="packages.config" />
     <None Include="ToDo-MvvmCross\_ Touch UI.txt" />
     <None Include="AppDelegate.cs.txt" />
-    <None Include="Views\AddGrandparents\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -193,14 +189,8 @@
     <Compile Include="Setup.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
-    <Compile Include="Views\AddFriends\AddFriendsView.cs" />
-    <Compile Include="Views\AddFriends\AddFriendsView.designer.cs" />
-    <Compile Include="Views\AddGrandparents\AddGrandparentsView.cs" />
-    <Compile Include="Views\AddGrandparents\AddGrandparentsView.designer.cs" />
     <Compile Include="Views\BaseViewModel\BaseViewController.cs" />
     <Compile Include="Views\BaseViewModel\BaseViewController.designer.cs" />
-    <Compile Include="Views\Edit\EditView.cs" />
-    <Compile Include="Views\Edit\EditView.designer.cs" />
     <Compile Include="Views\Family\FamilyView.cs" />
     <Compile Include="Views\Family\FamilyView.designer.cs" />
     <Compile Include="Views\FlyOut\FlyOutView.cs" />
@@ -208,7 +198,6 @@
     <Compile Include="Views\MatcherDetail\RelationshipMatchDetailView.cs" />
     <Compile Include="Views\MatcherDetail\RelationshipMatchDetailView.designer.cs" />
     <Compile Include="Views\MatcherDetail\RelationshipMatchTableSource.cs" />
-    <Compile Include="Views\MyFamily\MyFamilyTableSource.cs" />
     <Compile Include="Views\MyFamily\MyFamilyView.cs" />
     <Compile Include="Views\MyFamily\MyFamilyView.designer.cs" />
     <Compile Include="Views\MyFamily\MyFamilyTableCell\MyFamilyTableCell.cs" />
@@ -253,6 +242,27 @@
     <Compile Include="Views\ResearchHelper\ResearchHelpView.designer.cs">
       <DependentUpon>ResearchHelpView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\PastMatches\PastMatchesView.cs" />
+    <Compile Include="Views\PastMatches\PastMatchesView.designer.cs">
+      <DependentUpon>PastMatchesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PastMatches\PastMatchesTableSoure.cs" />
+    <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.cs" />
+    <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.designer.cs">
+      <DependentUpon>PastMatchesCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyFamily\MyFamilyTableSource.cs" />
+    <Compile Include="Views\AddFriends\AddFriendView.cs" />
+    <Compile Include="Views\AddFriends\AddFriendView.designer.cs" />
+    <Compile Include="Views\AddFamily\AddFamilyView.cs" />
+    <Compile Include="Views\AddFamily\AddFamilyView.designer.cs">
+      <DependentUpon>AddFamilyView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\MyTableCellTappedMessage.cs" />
+    <Compile Include="Views\EditFamily\EditFamilyView.cs" />
+    <Compile Include="Views\EditFamily\EditFamilyView.designer.cs">
+      <DependentUpon>EditFamilyView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -265,9 +275,7 @@
     <Folder Include="Utility\" />
     <Folder Include="Helpers\" />
     <Folder Include="Views\AddFriends\" />
-    <Folder Include="Views\AddGrandparents\" />
     <Folder Include="Views\BaseViewModel\" />
-    <Folder Include="Views\Edit\" />
     <Folder Include="Views\Family\" />
     <Folder Include="Views\FbFamily\" />
     <Folder Include="Views\FlyOut\" />
@@ -284,6 +292,10 @@
     <Folder Include="Views\FbFamily\FbFamilyCell\" />
     <Folder Include="Views\ActivityLoader\" />
     <Folder Include="Views\ResearchHelper\" />
+    <Folder Include="Views\PastMatches\" />
+    <Folder Include="Views\PastMatches\PastMatchesCell\" />
+    <Folder Include="Views\AddFamily\" />
+    <Folder Include="Views\EditFamily\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="flyoutnavigation">
@@ -313,6 +325,6 @@
     <BundleResource Include="Resources\help_icon.png" />
     <BundleResource Include="Resources\blue_smallbtn%402x.png" />
     <BundleResource Include="Resources\fbook_btn2x.png" />
-    <BundleResource Include="Resources\myfamily_icon%402x.png" />
+    <BundleResource Include="Resources\myfamily_icon.png" />
   </ItemGroup>
 </Project>

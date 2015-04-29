@@ -6,9 +6,13 @@ using UIKit;
 
 namespace AncestorCloud.Touch
 {
-	public partial class AddFriendsView : BaseViewController
+	public partial class AddFamilyView : BaseViewController
+
 	{
-		public AddFriendsView () : base ("AddFriendsView", null)
+
+		UIDatePicker picker;
+
+		public AddFamilyView () : base ("AddFamilyView", null)
 		{
 		}
 
@@ -23,9 +27,11 @@ namespace AncestorCloud.Touch
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+		
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
+			
+
 	}
 }
 

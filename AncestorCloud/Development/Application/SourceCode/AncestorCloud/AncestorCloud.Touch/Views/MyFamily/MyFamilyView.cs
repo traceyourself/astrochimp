@@ -5,6 +5,8 @@ using Foundation;
 using UIKit;
 using AncestorCloud.Shared.ViewModels;
 using System.Collections.Generic;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Touch
 {
@@ -13,6 +15,7 @@ namespace AncestorCloud.Touch
 
 		UITableView table;
 		UILabel cell;
+		private MvxSubscriptionToken navigationMenuToken;
 
 		public MyFamilyView () : base ("MyFamilyView", null)
 		{
@@ -35,6 +38,9 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 			CreateMyFamilyTable ();
 			SetFamilyItem ();
+			AddEvents ();
+
+
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -79,37 +85,46 @@ namespace AncestorCloud.Touch
 			data = new TableItem (" Great Grandparents","Add Great Grandparents",childList);
 			childList.Add(childItem);
 			dataList.Add (data);
-
-
-
+	
 			return dataList;
 		}
 
 		public void SetFamilyItem()
 		{
-
-			this.Title = "My Family";
+			this.Title = "";
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
 			//this.NavigationItem.SetHidesBackButton (true, false);
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 			//this.NavigationItem.TitleView = new MyTitleView ();
-			//this.NavigationController.NavigationBarHidden = true;
+			this.NavigationController.NavigationBarHidden = false;
 
 
+		}
 
+		private void AddEvents ()
+		{
+			(table.Delegate as MyFamilyTableDelegate).FooterClickedDelegate += ShowAddParents;
+			 
+			var _messenger = Mvx.Resolve<IMvxMessenger>();
+			navigationMenuToken = _messenger.SubscribeOnMainThread<MyTableCellTappedMessage>(message => this.ShowEditFamily(this));
 
+		}
 
-//			this.NavigationItem.SetLeftBarButtonItem(
-//				new UIBarButtonItem(UIImage.FromFile ("cross.png")
-//					, UIBarButtonItemStyle.Plain
-//					, (sender,args) => {
-//						ViewModel.Close();
-//
-//					})
-//				, true);
+		public void ShowAddParents(object obj)
+		{
+			ViewModel.ShowAddParents ();
+		}
+		public void ShowEditFamily(object obj)
+		{
+			//ViewModel.ShowEditFamily ();
 
+			EditFamilyView editFamily = new EditFamilyView ();
+
+			UIWindow window = UIApplication.SharedApplication.KeyWindow;
+
+			window.AddSubview (editFamily.View);
 		}
 	}
 }

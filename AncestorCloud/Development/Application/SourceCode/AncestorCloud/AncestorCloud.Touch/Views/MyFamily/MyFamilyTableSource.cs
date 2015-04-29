@@ -68,28 +68,17 @@ namespace AncestorCloud.Touch
 			TableItem item = ListItems [indexPath.Section];
 
 			MyFamilySectionDataItem childItem = item.DataItems[indexPath.Row];
-
-		
+            
 			if (cell == null)
 			{
 				cell = (MyFamilyTableCell)new UITableViewCell (item.CellStyle, cellIdentifier); 
 			}
 
-
 			System.Diagnostics.Debug.WriteLine ("Section : "+item.SectionHeader);
 			System.Diagnostics.Debug.WriteLine ("Data : "+childItem.PersonName);
 			System.Diagnostics.Debug.WriteLine ("Section Footer:" + item.SectionFooter);
 
-
-
-
-
 			tableView.BackgroundColor = UIColor.FromRGB (178,45,116);
-
-
-
-
-
 
 			/*
 			//---- set the item text
@@ -122,6 +111,10 @@ namespace AncestorCloud.Touch
 		string[] keys;
 
 		Dictionary<string, List<TableItem>> indexedTableItems;
+
+		public Action<object> FooterClickedDelegate
+		{ get; set; }
+
 
 		public MyFamilyTableDelegate (List<TableItem> items) 
 		{
@@ -157,15 +150,8 @@ namespace AncestorCloud.Touch
 
 		public override UIView GetViewForFooter (UITableView tableView, nint section)
 		{
-
-//			UILabel view = new UILabel {
-//				BackgroundColor=UIColor.FromRGB(255,255,255),
-//				Text= "   +Add"+keys[section],
-//				Font= UIFont.FromName("Helvetica", 14f),
-//			};
-//
-
-			UIButton btn = new UIButton {
+			UIButton btn = new UIButton
+			{
 				BackgroundColor=UIColor.White,
 			};
 
@@ -176,18 +162,21 @@ namespace AncestorCloud.Touch
 
 			btn.TouchUpInside += (object sender, EventArgs e) => {
 				System.Diagnostics.Debug.WriteLine("Add Button Tapped");
+
+				if (FooterClickedDelegate != null) {
+					FooterClickedDelegate (section);
+				}
+
 			};
-
-
 			return btn;
 	
 		}
-
 
 		public override nfloat GetHeightForHeader (UITableView tableView, nint section)
 		{
 			return 25;
 		}
+
 		public override nfloat GetHeightForFooter (UITableView tableView, nint section)
 		{
 			return 30;

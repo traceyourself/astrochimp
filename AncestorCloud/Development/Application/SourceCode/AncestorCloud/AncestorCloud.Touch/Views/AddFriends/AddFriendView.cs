@@ -3,13 +3,12 @@ using System;
 
 using Foundation;
 using UIKit;
-using System.Drawing;
 
 namespace AncestorCloud.Touch
 {
-	public partial class AddGrandparentsView : BaseViewController
+	public partial class AddFriendView : BaseViewController
 	{
-		public AddGrandparentsView () : base ("AddGrandparentsView", null)
+		public AddFriendView () : base ("AddFriendsView", null)
 		{
 		}
 
@@ -24,7 +23,8 @@ namespace AncestorCloud.Touch
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-	// Perform any additional setup after loading the view, typically from a nib.
+			
+			// Perform any additional setup after loading the view, typically from a nib.
 		}
 	}
 }

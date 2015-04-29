@@ -46,6 +46,21 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+		public void ShowEditViewModel()
+		{
+			ShowViewModel <LoginViewModel> ();
+		}
+
+		public void ShowAddParents()
+		{
+			ShowViewModel<AddFamilyViewModel> ();
+		}
+
+		public void ShowEditFamily()
+		{
+			ShowViewModel<EditFamilyViewModel>();
+		}
+
 	}
 }
 
