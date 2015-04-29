@@ -11,7 +11,7 @@ namespace AncestorCloud.Shared
 		public static User GetUserDetails(Dictionary<string,object> dataDic)
 		{
 			if (ValidationClass.IsDataNull (dataDic)) {
-				Utility.Log ("In GetProductModel() data dictionary is null");
+				Utility.Log ("In GetUserDetails() data dictionary is null");
 				return null;
 			}
 
@@ -52,7 +52,7 @@ namespace AncestorCloud.Shared
 		public static List<People> GetFbFamilyData(Dictionary<string,object> dataDic)
 		{
 			if (ValidationClass.IsDataNull (dataDic)) {
-				Utility.Log ("In GetProductModel() data dictionary is null");
+				Utility.Log ("In GetFbFamilyData() data dictionary is null");
 				return null;
 			}
 
@@ -86,7 +86,7 @@ namespace AncestorCloud.Shared
 		public static List<People> GetFbFriendsData(Dictionary<string,object> dataDic)
 		{
 			if (ValidationClass.IsDataNull (dataDic)) {
-				Utility.Log ("In GetProductModel() data dictionary is null");
+				Utility.Log ("In GetFbFriendsData() data dictionary is null");
 				return null;
 			}
 
@@ -124,7 +124,7 @@ namespace AncestorCloud.Shared
 		public static LoginModel GetLoginDetails(Dictionary<string,object> dataDic)
 		{
 			if (ValidationClass.IsDataNull (dataDic)) {
-				Utility.Log ("In LoginModel() data dictionary is null");
+				Utility.Log ("In GetLoginDetails() data dictionary is null");
 				return null;
 			}
 			LoginModel modal = new LoginModel ();
@@ -148,7 +148,7 @@ namespace AncestorCloud.Shared
 		public static LoginModel GetSignUpDetails(Dictionary<string,object> dataDic)
 		{
 			if (ValidationClass.IsDataNull (dataDic)) {
-				Utility.Log ("In LoginModel() data dictionary is null");
+				Utility.Log ("In GetSignUpDetails() data dictionary is null");
 				return null;
 			}
 
@@ -167,6 +167,52 @@ namespace AncestorCloud.Shared
 		}
 		#endregion
 
+		#region User Read Data
+
+		public static LoginModel GetUserReadData(LoginModel model, Dictionary<string,object> dataDic)
+		{
+			if (ValidationClass.IsDataNull (dataDic)) {
+				Utility.Log ("In GetUserReadData() data dictionary is null");
+				return null;
+			}
+
+			model = model ?? new LoginModel ();
+
+			if (IsKeyExist (AppConstant.Message, dataDic)) 
+			{
+				if (! GetData (AppConstant.Message, dataDic).Equals (AppConstant.SUCCESS)) 
+				{
+					return model;
+				}
+			}
+
+			if (IsKeyExist (AppConstant.VALUE, dataDic))
+				model = GetUserData (model,AppConstant.VALUE,dataDic);
+
+			return model;
+		}
+
+		private static LoginModel GetUserData(LoginModel model,string key , Dictionary<string,object> data)
+		{
+			if (ValidationClass.IsDataNull (data)) {
+				Utility.Log ("In GetUserData() data dictionary is null");
+				return null;
+			}
+
+			JObject obj = data [key] as JObject;
+			Dictionary<string,object> dict = obj.ToObject<Dictionary<string,object>> ();
+
+			if (IsKeyExist (AppConstant.INDIOGFN, dict))
+				model.IndiOGFN = GetData (AppConstant.INDIOGFN, dict);
+
+			if (IsKeyExist (AppConstant.OGFN, dict))
+				model.OGFN = GetData (AppConstant.OGFN, dict);
+
+			return model;
+		}
+
+
+		#endregion
 
 		#region helper Methods
 

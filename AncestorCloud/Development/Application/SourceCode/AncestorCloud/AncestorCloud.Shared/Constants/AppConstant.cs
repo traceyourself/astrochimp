@@ -43,12 +43,29 @@ namespace AncestorCloud.Shared
 		public const string DATAKEY = "data";
 		public const string PICTURE = "picture";
 		public const string URL = "url";
+		public const string SESSIONID = "SessionId";
+		public const string SUCCESS = "Success";
+
+		#endregion
+
+
+		#region Webservice URL Constants
+
+		public const string BASEURL = "https://wsdev.onegreatfamily.com/v11.02";
+		public const string USEREADSERVICE = "User.svc/Read";
+	
 		#endregion
 
 		#region Login Constants
 		public const string CODE = "Code";
 		public const string Message = "Message";
 		public const string VALUE = "Value";
+		#endregion
+
+		#region User Read Data
+		public const string INDIOGFN = "IndiOgfn";
+		public const string OGFN = "Ogfn";
+
 		#endregion
 
 	}

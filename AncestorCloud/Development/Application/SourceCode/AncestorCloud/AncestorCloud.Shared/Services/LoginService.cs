@@ -16,10 +16,12 @@ namespace AncestorCloud.Shared
 	{
 
 		private ILoader _loader;
+		private readonly IUserReadService _userReadService;
 
 		public LoginService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+			_userReadService = Mvx.Resolve<IUserReadService> ();
 		}
 
 		#region ILoginService implementation
@@ -52,13 +54,13 @@ namespace AncestorCloud.Shared
 
 				LoginModel modal = DataParser.GetLoginDetails (dict);
 
+				modal.UserEmail = email;
+
 				Mvx.Trace("Parced Values : "+modal.Code+" : "+modal.Message+" : "+modal.Value);
 
-				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
-				responsemodal.loginModal = modal;
-				responsemodal.Status = ResponseStatus.OK;
+				var userReadResponse = await _userReadService.MakeUserReadService(modal);
 
-				return responsemodal;
+				return userReadResponse as ResponseModel<LoginModel>;
 			}
 			catch(Exception ex)
 			{

@@ -14,6 +14,7 @@ namespace AncestorCloud.Shared
 			_connection = factory.Create("database.db");
 			_connection.CreateTable<User>();
 			_connection.CreateTable<People>();
+			_connection.CreateTable<LoginModel>();
 		}
 
 			
@@ -109,9 +110,34 @@ namespace AncestorCloud.Shared
 		}
 
 
+		public void InsertLoginDetails (LoginModel login)
+		{
+			if (login == null)
+				throw new ArgumentNullException ("login");
+			
+			if (Convert.ToBoolean(IsLoggedInUserExists(login.UserEmail)))
+				UpdateLoginUser (login);
+			else
+				_connection.Insert (login);
+		}
+
+		public LoginModel GetLoginDetails ()
+		{
+			List<LoginModel> login = (List<LoginModel>)_connection.Table<LoginModel> ().ToList();
+			return login [0];
+		}
+
 		#endregion
 
 		#region Helper Methods
+
+
+		private void UpdateLoginUser(LoginModel modal)
+		{
+			String query = "UPDATE LoginModel SET ='" + modal.IndiOGFN + "', OGFN='" + modal.OGFN + "', Value='" + modal.Value+"' WHERE UserEmail='"+modal.UserEmail+"'";
+			_connection.Query<LoginModel> (query);
+
+		}
 
 		private int IsUserExist(string filter)
 		{
@@ -119,6 +145,15 @@ namespace AncestorCloud.Shared
 				throw new ArgumentNullException ("filter");
 			
 			int count =  _connection.Table<User>().Where(x => x.UserID.Contains(filter)).ToList().Count();
+			return count;
+		}
+
+		private int IsLoggedInUserExists(string filter)
+		{
+			if (filter == null)
+				throw new ArgumentNullException ("filter");
+
+			int count =  _connection.Table<LoginModel>().Where(x => x.UserEmail.Contains(filter)).ToList().Count();
 			return count;
 		}
 

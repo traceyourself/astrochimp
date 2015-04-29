@@ -201,6 +201,10 @@ namespace AncestorCloud.Shared.ViewModels
 
 				if (response.Status == ResponseStatus.OK) {
 
+					_databaseService.InsertLoginDetails(response.loginModal);
+
+					_databaseService.GetLoginDetails ();
+
 					if (Mvx.CanResolve<IAndroidService> ()) 
 					{
 						ShowMyFamilyViewModel ();
