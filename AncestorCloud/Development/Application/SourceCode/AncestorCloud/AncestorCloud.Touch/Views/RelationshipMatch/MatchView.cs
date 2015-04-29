@@ -58,7 +58,7 @@ namespace AncestorCloud.Touch
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 
-			//this.Title = "My Family";
+			this.Title = "My Family";
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
@@ -66,6 +66,7 @@ namespace AncestorCloud.Touch
 			//this.NavigationItem.TitleView = new MyTitleView (this.Title);
 			this.NavigationController.NavigationBarHidden = false;
 
+			#region LeftSide Button
 
 			this.NavigationItem.SetLeftBarButtonItem(
 				new UIBarButtonItem(image
@@ -79,19 +80,20 @@ namespace AncestorCloud.Touch
 
 					})
 				, true);
+			#endregion
 
+			#region RightSide Button
 			this.NavigationItem.SetRightBarButtonItem(
-				new UIBarButtonItem(UIImage.FromFile ("myfamily_icon.png")
+				new UIBarButtonItem(image
 					, UIBarButtonItemStyle.Plain
 					, (sender,args) => {
+
 						System.Diagnostics.Debug.WriteLine("PAST MATCHER");
-					
 					})
 				, true);
 
+			#endregion
 
-
-			
 			
 		}
 

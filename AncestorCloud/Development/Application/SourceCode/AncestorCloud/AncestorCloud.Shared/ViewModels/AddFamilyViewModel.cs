@@ -5,15 +5,12 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class AddFamilyViewModel:BaseViewModel
 	{
-
-
-		#region close call
+	#region close call
 		public void Close()
 		{
 			this.Close (this);
 		}
 		#endregion
-
 
 	}
 }

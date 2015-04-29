@@ -9,9 +9,11 @@ using System.CodeDom.Compiler;
 
 namespace AncestorCloud.Touch
 {
-	[Register ("AddGrandparentsView")]
-	partial class AddGrandparentsView
+	[Register ("EditFamilyView")]
+	partial class EditFamilyView
 	{
+		[Action ("CrossButtonTapped:")]
+		partial void CrossButtonTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

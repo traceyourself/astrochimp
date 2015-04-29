@@ -7,6 +7,7 @@ using Cirrious.CrossCore;
 using System.Linq;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using AncestorCloud.Shared;
+using AncestorCloud.Shared.ViewModels;
 
 namespace AncestorCloud.Touch
 {
@@ -17,6 +18,13 @@ namespace AncestorCloud.Touch
 
 		public RelationshipMatchDetailView () : base ("RelationshipMatchDetailView", null)
 		{
+		}
+
+
+		public new RelationshipMatchDetailViewModel ViewModel
+		{
+			get { return base.ViewModel as RelationshipMatchDetailViewModel; }
+			set { base.ViewModel = value; }
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -57,6 +65,7 @@ namespace AncestorCloud.Touch
 					, UIBarButtonItemStyle.Plain
 					, (sender,args) => {
 						System.Diagnostics .Debug.WriteLine("PAST MATCHER");
+						ViewModel.ShowPastMatches();
 					})
 				, true);
 			//Add (table);

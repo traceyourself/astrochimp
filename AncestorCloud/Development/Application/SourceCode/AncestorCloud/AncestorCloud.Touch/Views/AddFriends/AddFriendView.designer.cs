@@ -9,7 +9,7 @@ using Foundation;
 namespace AncestorCloud.Touch
 {
 	[Register ("AddFriendsView")]
-	partial class AddFriendsView
+	partial class AddFriendView
 	{
 		void ReleaseDesignerOutlets ()
 		{

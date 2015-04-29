@@ -3,9 +3,9 @@ using Cirrious.MvvmCross.ViewModels;
 
 namespace AncestorCloud.Shared.ViewModels
 {
-	public class AddFriendsViewModel:BaseViewModel
+	public class AddFriendViewModel:BaseViewModel
 	{
-		public AddFriendsViewModel ()
+		public AddFriendViewModel ()
 		{
 		}
 	}
