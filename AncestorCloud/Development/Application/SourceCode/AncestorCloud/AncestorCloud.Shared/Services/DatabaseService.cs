@@ -45,23 +45,23 @@ namespace AncestorCloud.Shared
 		}
 
 
-		public void InsertFamilyMember (People relative)
+		public void InsertRelative (People relative)
 		{
 			if (relative == null)
 				throw new ArgumentNullException ("relative");
 
-			if (Convert.ToBoolean(IsFamilyMemberExist(relative.UserID)))
+			if (Convert.ToBoolean(IsRelativeExist(relative.UserID)))
 				_connection.Update (relative);
 			else
 			 _connection.Insert(relative);
 		}
-		public void UpdateFamilyMember (People relative)
+		public void UpdateRelative (People relative)
 		{
 			if (relative == null)
 				throw new ArgumentNullException ("relative");
 			_connection.Update(relative);
 		}
-		public void DeleteFamilyMember (People relative)
+		public void DeleteRelative (People relative)
 		{
 			if (relative == null)
 				throw new ArgumentNullException ("relative");
@@ -94,6 +94,19 @@ namespace AncestorCloud.Shared
 		}
 
 
+		public void InsertRelatives(List<People> relatives)
+		{
+			if (relatives == null)
+				throw new ArgumentNullException ("relatives");
+
+			_connection.InsertAll (relatives);
+		}
+
+
+		#endregion
+
+		#region Helper Methods
+
 		private int IsUserExist(string filter)
 		{
 			if (filter == null)
@@ -103,7 +116,7 @@ namespace AncestorCloud.Shared
 			return count;
 		}
 
-		private int IsFamilyMemberExist(string filter)
+		private int IsRelativeExist(string filter)
 		{
 			if (filter == null)
 				throw new ArgumentNullException ("filter");
@@ -111,8 +124,9 @@ namespace AncestorCloud.Shared
 			int count =  _connection.Table<People>().Where(x => x.UserID.Contains(filter)).ToList().Count();
 			return count;
 		}
-
 		#endregion
+
+
 
 		
 	}

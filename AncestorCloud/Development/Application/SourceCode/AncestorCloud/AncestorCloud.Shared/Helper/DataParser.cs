@@ -6,6 +6,8 @@ namespace AncestorCloud.Shared
 {
 	public static class DataParser
 	{
+
+		#region FaceBook Data
 		public static User GetUserDetails(Dictionary<string,object> dataDic)
 		{
 			if (ValidationClass.IsDataNull (dataDic)) {
@@ -81,6 +83,43 @@ namespace AncestorCloud.Shared
 			return familyList;
 		}
 
+		public static List<People> GetFbFriendsData(Dictionary<string,object> dataDic)
+		{
+			if (ValidationClass.IsDataNull (dataDic)) {
+				Utility.Log ("In GetProductModel() data dictionary is null");
+				return null;
+			}
+
+			List<People> friendList = new List<People>();
+
+			JArray array = dataDic [AppConstant.DATAKEY] as JArray;
+
+			List<Dictionary<string, object>> dataArray = array.ToObject<List<Dictionary<string, object>>> ();
+
+			foreach(Dictionary<string,object> data in dataArray)
+			{
+				People friend = new People();
+
+				if (IsKeyExist (AppConstant.ID, data))
+					friend.UserID = GetData (AppConstant.ID, data);
+
+				if (IsKeyExist (AppConstant.NAME, data))
+					friend.Name = GetData (AppConstant.NAME, data);
+
+				friend.Relation = AppConstant.FRIENDKEY;
+
+				if (IsKeyExist (AppConstant.PICTURE, data))
+					friend.ProfilePicURL = GetPicUrl (AppConstant.PICTURE, data);
+
+				friend.IsSelected = false;
+
+				friendList.Add(friend);
+
+			}
+			return friendList;
+		}
+
+		#endregion
 		#region get login details
 		public static LoginModel GetLoginDetails(Dictionary<string,object> dataDic)
 		{
@@ -152,6 +191,27 @@ namespace AncestorCloud.Shared
 			if (dataString == null || dataString.Trim ().Length == 0)
 			return "";		else
 				return dataString.Trim ();
+		}
+
+		private static string GetPicUrl(string key , Dictionary<string,object> data)
+		{
+			if (key == null || key.Trim ().Length == 0 || data == null)
+				return null;
+
+			JObject obj = data [key] as JObject;
+			Dictionary<string,object> dict = obj.ToObject<Dictionary<string,object>> ();
+
+			Dictionary<string,object> subDict = new Dictionary<string, object>();
+			if (IsKeyExist (AppConstant.DATAKEY, dict)) {
+				JObject objt = dict [AppConstant.DATAKEY] as JObject;
+				subDict =  objt.ToObject<Dictionary<string,object>> ();
+			}
+
+			string picURL = "";
+			if (IsKeyExist (AppConstant.URL, subDict))
+				picURL = subDict[AppConstant.URL].ToString() ;
+
+			return picURL ;
 		}
 
 		#endregion
