@@ -17,17 +17,20 @@ namespace AncestorCloud.Touch
 
 		[Outlet]
 		UIKit.UILabel NameLabel { get; set; }
+
+		[Action ("EditButtonTapped:")]
+		partial void EditButtonTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (NameLabel != null) {
-				NameLabel.Dispose ();
-				NameLabel = null;
-			}
-
 			if (BirthLabel != null) {
 				BirthLabel.Dispose ();
 				BirthLabel = null;
+			}
+
+			if (NameLabel != null) {
+				NameLabel.Dispose ();
+				NameLabel = null;
 			}
 		}
 	}

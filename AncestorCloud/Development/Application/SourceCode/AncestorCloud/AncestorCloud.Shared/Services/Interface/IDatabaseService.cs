@@ -9,12 +9,15 @@ namespace AncestorCloud.Shared
 		void UpdateUser(User user);
 		void DeleteUser(User user);
 
-		void InsertFamilyMember(People relative);
-		void UpdateFamilyMember(People relative);
-		void DeleteFamilyMember(People relative);
+		void InsertRelative(People relative);
+		void UpdateRelative(People relative);
+		void DeleteRelative(People relative);
+
+		void InsertRelatives(List<People> relatives);
 
 		List<People> RelativeMatching (string relationFilter);
 		User GetUser (int id);
+		List<People> GetFamily ();
 		List<User> GetUsers (string relationFilter);
 		//int Count { get; }
 	}

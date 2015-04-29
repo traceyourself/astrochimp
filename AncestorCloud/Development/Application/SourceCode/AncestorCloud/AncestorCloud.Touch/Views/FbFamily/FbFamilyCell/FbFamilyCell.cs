@@ -20,7 +20,7 @@ namespace AncestorCloud.Touch
 
 				var set = this.CreateBindingSet<FbFamilyCell, People> ();
 				set.Bind (NameLabel).To (vm => vm.Name);
-				set.Bind(RelationLabel).To(vm => vm.Relation);
+				set.Bind(RelationLabel).To(vm => vm.Relation).WithConversion(new RelationshipTextConverter(),null);
 				set.Apply ();
 			});
 		}

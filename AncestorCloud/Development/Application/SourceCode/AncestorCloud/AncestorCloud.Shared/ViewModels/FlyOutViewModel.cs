@@ -95,13 +95,13 @@ namespace AncestorCloud.Shared.ViewModels
 					{
 						Section = Section.Matcher,
 						Title = "Matcher",
-						ViewModelType = typeof(FbFamilyViewModel)
+						ViewModelType = typeof(MatchViewModel)
 					},   
 					new MenuViewModel
 					{
 						Section = Section.MyFamily,
 						Title = "Research Help",
-						ViewModelType = typeof(FamilyViewModel)
+						ViewModelType = typeof(ResearchHelpViewModel)
 					},
 					new MenuViewModel
 					{
@@ -129,13 +129,13 @@ namespace AncestorCloud.Shared.ViewModels
 					{
 						Section = Section.Matcher,
 						Title = "Matcher",
-						ViewModelType = typeof(FbFamilyViewModel)
+						ViewModelType = typeof(MatchViewModel)
 					},   
 					new MenuViewModel
 					{
 						Section = Section.MyFamily,
 						Title = "Research Help",
-						ViewModelType = typeof(FamilyViewModel)
+						ViewModelType = typeof(ResearchHelpViewModel)
 					},
 					new MenuViewModel
 					{

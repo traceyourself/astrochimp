@@ -23,8 +23,11 @@ namespace AncestorCloud.Shared
 		{
 			if (user == null)
 				throw new ArgumentNullException ("user");
-			
-			int status = _connection.Insert(user);
+
+			if (Convert.ToBoolean(IsUserExist(user.UserID)))
+				_connection.Update (user);
+			else
+				 _connection.Insert(user);
 		}
 		public void UpdateUser (User user)
 		{
@@ -42,19 +45,23 @@ namespace AncestorCloud.Shared
 		}
 
 
-		public void InsertFamilyMember (People relative)
+		public void InsertRelative (People relative)
 		{
 			if (relative == null)
 				throw new ArgumentNullException ("relative");
-			int status = _connection.Insert(relative);
+
+			if (Convert.ToBoolean(IsRelativeExist(relative.UserID)))
+				_connection.Update (relative);
+			else
+			 _connection.Insert(relative);
 		}
-		public void UpdateFamilyMember (People relative)
+		public void UpdateRelative (People relative)
 		{
 			if (relative == null)
 				throw new ArgumentNullException ("relative");
 			_connection.Update(relative);
 		}
-		public void DeleteFamilyMember (People relative)
+		public void DeleteRelative (People relative)
 		{
 			if (relative == null)
 				throw new ArgumentNullException ("relative");
@@ -86,7 +93,48 @@ namespace AncestorCloud.Shared
 			return list;
 		}
 
+
+		public void InsertRelatives(List<People> relatives)
+		{
+			if (relatives == null)
+				throw new ArgumentNullException ("relatives");
+
+			_connection.InsertAll (relatives);
+		}
+
+		public List<People> GetFamily()
+		{
+			List<People> list = _connection.Query<People> ("select * from People where Relation NOT LIKE '%friend%'");
+			return list;
+		}
+
+
 		#endregion
+
+		#region Helper Methods
+
+		private int IsUserExist(string filter)
+		{
+			if (filter == null)
+				throw new ArgumentNullException ("filter");
+			
+			int count =  _connection.Table<User>().Where(x => x.UserID.Contains(filter)).ToList().Count();
+			return count;
+		}
+
+		private int IsRelativeExist(string filter)
+		{
+			if (filter == null)
+				throw new ArgumentNullException ("filter");
+
+			int count =  _connection.Table<People>().Where(x => x.UserID.Contains(filter)).ToList().Count();
+			return count;
+		}
+
+
+		#endregion
+
+
 
 		
 	}

@@ -90,7 +90,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void GetFbFamilyData()
 		{
-			List<People> list = _databaseService.RelativeMatching ("");
+			List<People> list = _databaseService.GetFamily();
 			FamilyList = list;
 		}
 		#endregion

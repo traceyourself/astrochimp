@@ -80,6 +80,10 @@ namespace AncestorCloud.Touch
 			System.Diagnostics.Debug.WriteLine ("Data : "+childItem.PersonName);
 			System.Diagnostics.Debug.WriteLine ("Section Footer:" + item.SectionFooter);
 
+
+
+
+
 			tableView.BackgroundColor = UIColor.FromRGB (178,45,116);
 
 
@@ -154,13 +158,29 @@ namespace AncestorCloud.Touch
 		public override UIView GetViewForFooter (UITableView tableView, nint section)
 		{
 
-			UILabel view = new UILabel {
-				BackgroundColor=UIColor.FromRGB(255,255,255),
-				Text= "   +Add"+keys[section],
-				Font= UIFont.FromName("Helvetica", 14f),
+//			UILabel view = new UILabel {
+//				BackgroundColor=UIColor.FromRGB(255,255,255),
+//				Text= "   +Add"+keys[section],
+//				Font= UIFont.FromName("Helvetica", 14f),
+//			};
+//
+
+			UIButton btn = new UIButton {
+				BackgroundColor=UIColor.White,
 			};
-			return view;
-			
+
+			btn.SetTitle( "   +Add"+keys[section],UIControlState.Normal);
+			btn.SetTitleColor(UIColor.Black,UIControlState.Normal);
+			btn.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
+			btn.Font = UIFont.FromName ("Helvetica", 14f);
+
+			btn.TouchUpInside += (object sender, EventArgs e) => {
+				System.Diagnostics.Debug.WriteLine("Add Button Tapped");
+			};
+
+
+			return btn;
+	
 		}
 
 

@@ -6,8 +6,7 @@ namespace AncestorCloud.Shared
 	public class BaseViewModel : MvxViewModel
 	{
 		private string title = string.Empty;
-
-		/// <summary>
+    	/// <summary>
 		/// Gets or sets the name of the menu
 		/// </summary>
 		public string Title
@@ -16,7 +15,6 @@ namespace AncestorCloud.Shared
 			set { this.title = value; this.RaisePropertyChanged(() => this.Title); }
 		
 		}
-
 	}
 }
 

@@ -52,7 +52,7 @@ namespace AncestorCloud.Touch
 //			var messenger = Mvx.Resolve<IMvxMessenger>();
 //			navigationBarHiddenToken = messenger.SubscribeOnMainThread<NavigationBarHiddenMessage>(message => NavigationController.NavigationBarHidden = message.NavigationBarHidden);
 
-		
+
 		}
 
 	   partial void loginClicked (NSObject sender)
@@ -77,7 +77,7 @@ namespace AncestorCloud.Touch
 			List<ICollectionView> list = GetData ();
 			collection.Source = new HomePageCollectionSource(list);
 			collection.Delegate = new HomePageCollectionViewDelegate (pageObj,list);
-			//this.NavigationController.NavigationBarHidden = true;
+			this.NavigationController.NavigationBarHidden = false;
 //			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (255, 255, 255);
 //			this.NavigationItem.SetHidesBackButton (true, false);
 		}

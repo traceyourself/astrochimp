@@ -25,6 +25,11 @@ namespace AncestorCloud.Touch
 		{
 			return (MyFamilyTableCell)Nib.Instantiate (null, null) [0];
 		}
+
+		partial void EditButtonTapped(NSObject sender)
+		{
+			System.Diagnostics.Debug.WriteLine ("Button Tapped");
+		}
 	}
 
 
