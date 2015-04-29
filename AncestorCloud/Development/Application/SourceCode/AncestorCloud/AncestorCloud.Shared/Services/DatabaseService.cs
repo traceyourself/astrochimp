@@ -134,7 +134,7 @@ namespace AncestorCloud.Shared
 
 		private void UpdateLoginUser(LoginModel modal)
 		{
-			String query = "UPDATE LoginModel SET ='" + modal.IndiOGFN + "', OGFN='" + modal.OGFN + "', Value='" + modal.Value+"' WHERE UserEmail='"+modal.UserEmail+"'";
+			String query = "UPDATE LoginModel SET IndiOGFN='" + modal.IndiOGFN + "', OGFN='" + modal.OGFN + "', Value='" + modal.Value+"' WHERE UserEmail='"+modal.UserEmail+"'";
 			_connection.Query<LoginModel> (query);
 
 		}
