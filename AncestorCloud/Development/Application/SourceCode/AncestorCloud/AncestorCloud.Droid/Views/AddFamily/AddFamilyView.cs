@@ -23,6 +23,7 @@ namespace AncestorCloud.Droid
 		LinearLayout malecheck,femalecheck;
 		public TextView addBtn,dateText;
 		bool maleSelected = false,femaleSelected=false;
+		ActionBar actionBar;
 
 		public new AddFamilyViewModel ViewModel
 		{
@@ -38,6 +39,7 @@ namespace AncestorCloud.Droid
 
 			InitUI ();
 			ApplyActions ();
+			ConfigureActionBar ();
 		}
 
 		protected void InitUI()
@@ -46,6 +48,17 @@ namespace AncestorCloud.Droid
 			femalecheck = FindViewById<LinearLayout> (Resource.Id.female_container);
 			addBtn = FindViewById<TextView> (Resource.Id.add_person_btn);
 			dateText = FindViewById<TextView> (Resource.Id.birth_year_field);
+		}
+
+		private void ConfigureActionBar()
+		{
+			actionBar.SetCenterText ("Add Grandparents");
+			actionBar.SetLeftCornerImage (Resource.Drawable.back);
+			var backButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
+
+			backButton.Click += (sender, e) => {
+				ViewModel.Close();
+			};
 		}
 
 		protected void ApplyActions()

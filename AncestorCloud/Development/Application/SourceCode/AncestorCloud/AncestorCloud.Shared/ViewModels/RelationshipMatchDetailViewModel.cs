@@ -8,6 +8,12 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			ShowViewModel<PastMatchesViewModel> ();
 		}
+
+
+		public void Close(){
+			this.Close(this);
+		}
+
 	}
 }
 

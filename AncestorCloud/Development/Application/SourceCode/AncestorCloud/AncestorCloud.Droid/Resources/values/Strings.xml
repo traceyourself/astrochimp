@@ -82,4 +82,9 @@
 	<string name="Add_person">Add Person</string>
 	<!--- My Family add dialog Strings Ends -->
 
+	<!--- Matcher Strings -->
+	<string name="select_people_to_match">Select two people to match</string>
+	<string name="match">Match</string>
+	<!--- Matcher Strings Ends -->
+
 </resources>

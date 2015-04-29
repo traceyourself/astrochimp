@@ -11,7 +11,9 @@
   	<color name="add_family_footer_txt_color">#D05991</color>
   	<color name="add_family_data_txt_color">#8E8E8E</color>
   	<color name="transparent_color">#00000000</color>
-
+  	<color name="dialog_remaining_part_color">#EFEFEF</color>
+  	<color name="dark_div_color">#858585</color>
+  	<color name="light_blue_color">#94C4EC</color>
 
 </resources>
 

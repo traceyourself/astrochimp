@@ -75,56 +75,60 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp" />
-        <LinearLayout
-            android:id="@+id/below_container"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_below="@+id/center_txt"
-            android:orientation="vertical">
-            <EditText
-                android:id="@+id/full_name_field"
+            android:layout_below="@+id/center_txt">
+            <LinearLayout
+                android:id="@+id/below_container"
                 android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:background="@drawable/edit_text_back"
-                android:hint="@string/full_name"
-                android:textColorHint="@color/light_gray_color"
-                android:textColor="@android:color/black"
-                local:MvxBind="Text Name" />
-            <EditText
-                android:id="@+id/email_field"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:background="@drawable/edit_text_back"
-                android:layout_marginTop="15dp"
-                android:hint="@string/email"
-                android:textColorHint="@color/light_gray_color"
-                android:textColor="@android:color/black"
-                local:MvxBind="Text Email" />
-            <EditText
-                android:id="@+id/pass_field"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:background="@drawable/edit_text_back"
-                android:layout_marginTop="15dp"
-                android:hint="@string/password"
-                android:textColorHint="@color/light_gray_color"
-                android:inputType="textPassword"
-                android:textColor="@android:color/black"
-                local:MvxBind="Text Password" />
-            <TextView
-                android:id="@+id/sign_up_btn"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:background="@drawable/login_btn_back"
-                android:layout_marginLeft="55dp"
-                android:layout_marginRight="55dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/sign_up"
-                android:gravity="center"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+                <EditText
+                    android:id="@+id/full_name_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="@drawable/edit_text_back"
+                    android:hint="@string/full_name"
+                    android:textColorHint="@color/light_gray_color"
+                    android:textColor="@android:color/black"
+                    local:MvxBind="Text Name" />
+                <EditText
+                    android:id="@+id/email_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="@drawable/edit_text_back"
+                    android:layout_marginTop="15dp"
+                    android:hint="@string/email"
+                    android:textColorHint="@color/light_gray_color"
+                    android:textColor="@android:color/black"
+                    local:MvxBind="Text Email" />
+                <EditText
+                    android:id="@+id/pass_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="@drawable/edit_text_back"
+                    android:layout_marginTop="15dp"
+                    android:hint="@string/password"
+                    android:textColorHint="@color/light_gray_color"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/black"
+                    local:MvxBind="Text Password" />
+                <TextView
+                    android:id="@+id/sign_up_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="@drawable/login_btn_back"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginRight="55dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/sign_up"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 </LinearLayout>

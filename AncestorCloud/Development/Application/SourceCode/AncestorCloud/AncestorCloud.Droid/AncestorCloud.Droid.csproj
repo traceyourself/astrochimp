@@ -14,7 +14,7 @@
     <AndroidApplication>True</AndroidApplication>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AssemblyName>AncestorCloud.Droid</AssemblyName>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -111,6 +111,7 @@
     <Compile Include="DroidUtilities\DroidAlerts.cs" />
     <Compile Include="Views\ResearchHelp\ResearchHelpView.cs" />
     <Compile Include="Views\AddFamily\AddFamilyView.cs" />
+    <Compile Include="Views\MatcherScreen\RelationshipMatchDetailView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -202,6 +203,10 @@
     <AndroidResource Include="Resources\drawable\male_selected.axml" />
     <AndroidResource Include="Resources\drawable\female_selected.axml" />
     <AndroidResource Include="Resources\layout\add_family_dialog.axml" />
+    <AndroidResource Include="Resources\drawable\match_btn_back.axml" />
+    <AndroidResource Include="Resources\layout\matcher_result.axml" />
+    <AndroidResource Include="Resources\drawable\circle_back.axml" />
+    <AndroidResource Include="Resources\layout\matched_list_item.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

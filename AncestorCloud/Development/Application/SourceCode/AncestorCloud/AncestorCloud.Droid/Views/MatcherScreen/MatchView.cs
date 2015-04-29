@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Droid
 {
@@ -20,7 +21,7 @@ namespace AncestorCloud.Droid
 		FlyOutContainer menu;
 		ActionBar actionBar;
 		LinearLayout menuLayout,contentLayout;
-		TextView addFamilyBtn;
+		TextView matchBtn;
 
 
 		public new MatchViewModel ViewModel
@@ -47,6 +48,7 @@ namespace AncestorCloud.Droid
 			menu = FindViewById<FlyOutContainer> (Resource.Id.flyOutContainerLay);
 			menuLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutMenu);
 			contentLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutContent);
+			matchBtn = contentLayout.FindViewById<TextView> (Resource.Id.match_btn);
 		}
 		#endregion
 
@@ -58,20 +60,23 @@ namespace AncestorCloud.Droid
 
 			actionBar.SetCenterImageText (Resource.Drawable.action_menu,Resources.GetString(Resource.String.matcher_menu));
 
+			actionBar.SetRightImage (Resource.Drawable.action_menu);
 			var menuButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 
 			menuButton.Click += (sender, e) => {
+				//Mvx.Trace("menu btn clicked");
 				menu.AnimatedOpened = !menu.AnimatedOpened;
 			};
 		}
 		#endregion
 
-
 		#region Apply Actions
 		private void ApplyActions(){
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.my_family_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.ShowFamilyView();
+				if(menu.AnimatedOpened){
+					ViewModel.ShowFamilyView();
+				}
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.matcher_menu_btn).Click += (object sender, EventArgs e) => {
@@ -80,18 +85,24 @@ namespace AncestorCloud.Droid
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.research_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.ShowResearchHelpViewModel();
-				ViewModel.Close();
+				if(menu.AnimatedOpened){
+					ViewModel.ShowResearchHelpViewModel();
+					ViewModel.Close();
+				}
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.logout_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.Close();
+				if(menu.AnimatedOpened){
+					ViewModel.Close();
+				}
+			};
+
+			matchBtn.Click += (object sender, EventArgs e) => {
+				ViewModel.ShowRelationshipMatchDetailViewModel();
 			};
 		}
 		#endregion
 
-
 	}
 }
-
