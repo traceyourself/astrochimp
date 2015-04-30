@@ -7,6 +7,8 @@ using AncestorCloud.Shared.ViewModels;
 using System.Collections.Generic;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using Cirrious.CrossCore;
+using System.Linq;
+using AncestorCloud.Shared;
 
 namespace AncestorCloud.Touch
 {
@@ -126,6 +128,19 @@ namespace AncestorCloud.Touch
 
 			window.AddSubview (editFamily.View);
 		}
+
+
+		public override void ViewWillDisappear (bool animated)
+		{
+
+			if (!NavigationController.ViewControllers.Contains (this)) {
+				var messenger = Mvx.Resolve<IMvxMessenger> ();
+				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
+
+			}
+			base.ViewWillDisappear (animated);
+		}
+
 	}
 }
 
