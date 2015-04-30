@@ -35,6 +35,7 @@ namespace AncestorCloud.Touch
 		{
 			Mvx.RegisterSingleton<IAlert>(new IOSAlert());
 			Mvx.RegisterSingleton<ILoader>(new Loader());
+			Mvx.RegisterSingleton<IFileService>(new FileService());
 
 			base.InitializeFirstChance();
 		}

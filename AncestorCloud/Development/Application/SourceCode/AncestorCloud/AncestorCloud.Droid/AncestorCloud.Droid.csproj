@@ -106,12 +106,13 @@
     <Compile Include="DroidUtilities\Utilities.cs" />
     <Compile Include="Views\FacebookFamily\FbFamilyView.cs" />
     <Compile Include="Interfaces\IsAndroidService.cs" />
-    <Compile Include="Helper\Loader.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="DroidUtilities\DroidAlerts.cs" />
     <Compile Include="Views\ResearchHelp\ResearchHelpView.cs" />
     <Compile Include="Views\AddFamily\AddFamilyView.cs" />
     <Compile Include="Views\MatcherScreen\RelationshipMatchDetailView.cs" />
+    <Compile Include="PlatformSpecificService\Loader.cs" />
+    <Compile Include="PlatformSpecificService\FileService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -229,11 +230,15 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Helper\" />
     <Folder Include="Views\ResearchHelp\" />
+    <Folder Include="PlatformSpecificService\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.social">
       <Version>1.1.7</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Celebs.txt" />
   </ItemGroup>
 </Project>
