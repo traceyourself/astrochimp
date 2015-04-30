@@ -86,15 +86,8 @@ namespace AncestorCloud.Touch
 
 		#endregion
 
-		public override void ViewWillDisappear (bool animated)
-		{
 
-			if (!NavigationController.ViewControllers.Contains (this)) {
-				var messenger = Mvx.Resolve<IMvxMessenger> ();
-				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
-			}
-			base.ViewWillDisappear (animated);
-		}
+	
 
 
 	}

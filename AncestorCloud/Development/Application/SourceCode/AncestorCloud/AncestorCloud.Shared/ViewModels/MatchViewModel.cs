@@ -13,6 +13,17 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+
+		#region friendList
+		public void ShowFriendList()
+		{
+
+			System.Diagnostics.Debug.WriteLine ("Tapped:");
+			ShowViewModel<AddFriendViewModel> ();
+		}
+
+		#endregion
+
 		#region Close Method
 		public void Close()
 		{

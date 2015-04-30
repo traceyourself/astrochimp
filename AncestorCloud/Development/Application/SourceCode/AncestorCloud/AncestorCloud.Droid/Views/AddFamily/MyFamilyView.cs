@@ -88,7 +88,8 @@ namespace AncestorCloud.Droid
 		#endregion
 
 		#region list filteration
-		public List<ListDataStructure> FilterDataList(List<People> mainList){
+		public List<ListDataStructure> FilterDataList(List<People> mainList)
+		{
 
 			List<ListDataStructure> resultList = new List<ListDataStructure> ();
 

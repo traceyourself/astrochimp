@@ -3,10 +3,13 @@ using Foundation;
 using UIKit;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Plugins.Messenger;
+using Cirrious.MvvmCross.Binding.Touch.Views;
+using Cirrious.MvvmCross.Binding.BindingContext;
+using AncestorCloud.Shared;
 
 namespace AncestorCloud.Touch
 {
-	public partial class MyFamilyTableCell : UITableViewCell
+	public partial class MyFamilyTableCell : MvxTableViewCell
 	{
 		public static readonly UINib Nib = UINib.FromName ("MyFamilyTableCell", NSBundle.MainBundle);
 
@@ -17,8 +20,19 @@ namespace AncestorCloud.Touch
 		public Action<object> EditButtonClicked
 		{ get; set; }
 
+//		public MyFamilyTableCell (IntPtr handle) : base (handle)
+//		{
+//		}
+
 		public MyFamilyTableCell (IntPtr handle) : base (handle)
 		{
+			this.DelayBind (() => {
+
+				var set = this.CreateBindingSet<MyFamilyTableCell, People> ();
+				set.Bind (NameLabel).To (vm => vm.Name);
+				//set.Bind(RelationLabel).To(vm => vm.Relation).WithConversion(new RelationshipTextConverter(),null);
+				set.Apply ();
+			});
 		}
 		public MyFamilyTableCell (string[] items) 
 		{

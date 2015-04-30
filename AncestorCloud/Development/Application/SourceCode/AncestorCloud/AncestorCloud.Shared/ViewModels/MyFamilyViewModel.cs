@@ -34,6 +34,18 @@ namespace AncestorCloud.Shared.ViewModels
 				RaisePropertyChanged(() => FamilyList);
 			}
 		}
+			
+		private List<TableItem> tableDataList;
+
+		public List<TableItem> TableDataList
+		{
+			get { return tableDataList; }
+			set
+			{
+				tableDataList = value;
+				RaisePropertyChanged(() => TableDataList);
+			}
+		}
 
 		#endregion
 

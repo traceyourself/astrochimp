@@ -35,11 +35,6 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.07382417929" green="0.0098185838859999996" blue="0.040812871129999997" alpha="0.5" colorSpace="calibratedRGB"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" id="qcx-wR-Nde">
-                                    <rect key="frame" x="112" y="69" width="150" height="150"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.07382417929" green="0.0098185838859999996" blue="0.040812871129999997" alpha="0.67000000000000004" colorSpace="calibratedRGB"/>
-                                </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" id="Hkv-b2-03Q">
                                     <rect key="frame" x="168" y="258" width="44" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -49,11 +44,6 @@
                                     <rect key="frame" x="115" y="334" width="150" height="150"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.07382417929" green="0.0098185838859999996" blue="0.040812871129999997" alpha="0.5" colorSpace="calibratedRGB"/>
-                                </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" id="SlH-Qe-Yft">
-                                    <rect key="frame" x="115" y="334" width="150" height="150"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.07382417929" green="0.0098185838859999996" blue="0.040812871129999997" alpha="0.67000000000000004" colorSpace="calibratedRGB"/>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zfT-4b-wuc">
                                     <rect key="frame" x="115" y="526" width="150" height="30"/>
@@ -65,6 +55,26 @@
                                     </state>
                                     <connections>
                                         <action selector="MatchTapped:" destination="-1" eventType="touchUpInside" id="qp8-qz-0eq"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="INg-5T-FXK">
+                                    <rect key="frame" x="112" y="69" width="150" height="150"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" backgroundImage="noImage.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="FirstImageButtonTapped:" destination="-1" eventType="touchUpInside" id="7nW-Q0-35J"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5Xj-sZ-16d">
+                                    <rect key="frame" x="115" y="334" width="150" height="150"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" backgroundImage="noImage.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="SecondButtonImageTapped:" destination="-1" eventType="touchUpInside" id="vFx-rx-LaH"/>
                                     </connections>
                                 </button>
                             </subviews>

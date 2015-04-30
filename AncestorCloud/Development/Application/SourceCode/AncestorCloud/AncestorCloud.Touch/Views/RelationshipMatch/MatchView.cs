@@ -106,9 +106,25 @@ namespace AncestorCloud.Touch
 			ViewModel.Close();
 		}
 
-
-
 		#endregion
+
+
+		#region firstImage Tapped
+	     partial void FirstImageButtonTapped(NSObject sender)
+		{
+			ViewModel.ShowFriendList();
+			ViewModel.Close();
+		}
+		#endregion
+
+
+		partial void SecondButtonImageTapped (NSObject sender)
+		{
+			ViewModel.ShowFriendList();
+			ViewModel.Close();
+		}
+
+
 	}
 }
 
