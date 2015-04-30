@@ -223,7 +223,6 @@
     <Compile Include="Views\LogOut\LogOutView.cs" />
     <Compile Include="Views\LogOut\LogOutView.designer.cs" />
     <Compile Include="Views\MyFamily\MyFamilyTableCell\MyFamilySectionDataItem.cs" />
-    <Compile Include="Interface\IOSAlert.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Views\FbFamily\FbFamilyView.cs" />
@@ -235,7 +234,6 @@
     <Compile Include="Views\FbFamily\FbFamilyCell\FbFamilyCell.designer.cs">
       <DependentUpon>FbFamilyCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Loader.cs" />
     <Compile Include="Views\ActivityLoader\LoaderView.cs" />
     <Compile Include="Views\ActivityLoader\LoaderView.designer.cs" />
     <Compile Include="Views\ResearchHelper\ResearchHelpView.cs" />
@@ -263,6 +261,9 @@
     <Compile Include="Views\EditFamily\EditFamilyView.designer.cs">
       <DependentUpon>EditFamilyView.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlatformSpecificService\IOSAlert.cs" />
+    <Compile Include="PlatformSpecificService\Loader.cs" />
+    <Compile Include="PlatformSpecificService\FileService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -296,6 +297,7 @@
     <Folder Include="Views\PastMatches\PastMatchesCell\" />
     <Folder Include="Views\AddFamily\" />
     <Folder Include="Views\EditFamily\" />
+    <Folder Include="PlatformSpecificService\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="flyoutnavigation">
@@ -326,5 +328,8 @@
     <BundleResource Include="Resources\blue_smallbtn%402x.png" />
     <BundleResource Include="Resources\fbook_btn2x.png" />
     <BundleResource Include="Resources\myfamily_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Celebs.txt" />
   </ItemGroup>
 </Project>

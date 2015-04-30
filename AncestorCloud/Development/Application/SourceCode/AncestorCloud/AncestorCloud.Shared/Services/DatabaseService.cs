@@ -15,6 +15,7 @@ namespace AncestorCloud.Shared
 			_connection.CreateTable<User>();
 			_connection.CreateTable<People>();
 			_connection.CreateTable<LoginModel>();
+			_connection.CreateTable<Celebrity> ();
 		}
 
 			
@@ -127,6 +128,31 @@ namespace AncestorCloud.Shared
 			return login [0];
 		}
 
+
+
+		public List<Celebrity> GetCelebritiesData ()
+		{
+			List<Celebrity> list = (List<Celebrity>)_connection.Table<Celebrity> ().ToList();
+			return list;
+		}
+
+		public void StoreCelebrities (List<Celebrity> celebDataList)
+		{
+			if (celebDataList == null)
+				throw new ArgumentNullException ("celebDataList");
+			
+			_connection.InsertAll (celebDataList);
+		}
+
+		public List<Celebrity> FilterCelebs (string filter)
+		{
+			if (filter == null)
+				throw new ArgumentNullException ("filter");
+
+			List<Celebrity> list = _connection.Table<Celebrity>().Where(x => x.GivenNames.Contains(filter)).ToList();
+			return list;
+		}
+
 		#endregion
 
 		#region Helper Methods
@@ -166,6 +192,13 @@ namespace AncestorCloud.Shared
 			return count;
 		}
 
+
+		public bool IsCelebStored()
+		{
+
+			int count =  _connection.Table<People>().ToList().Count();
+			return Convert.ToBoolean( count);
+		}
 
 		#endregion
 
