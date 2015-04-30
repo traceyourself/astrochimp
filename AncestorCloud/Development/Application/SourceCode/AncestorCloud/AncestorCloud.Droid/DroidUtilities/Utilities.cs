@@ -37,6 +37,10 @@ namespace AncestorCloud.Droid
 		public static Activity CurrentActiveActivity{ get; set;}
 
 		#endregion
+
+		#region Holding instance of current Activity for Loader
+		public static String AddPersonType{ get; set;}
+		#endregion
 	}
 
 }

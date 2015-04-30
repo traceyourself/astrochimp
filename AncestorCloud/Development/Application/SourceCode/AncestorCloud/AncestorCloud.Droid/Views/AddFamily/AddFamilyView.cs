@@ -27,6 +27,7 @@ namespace AncestorCloud.Droid
 		ActionBar actionBar;
 		EditText first_name,middle_name,last_name,birthLoc;
 
+
 		public new AddFamilyViewModel ViewModel
 		{
 			get { return base.ViewModel as AddFamilyViewModel; }
@@ -52,15 +53,15 @@ namespace AncestorCloud.Droid
 			dateText = FindViewById<TextView> (Resource.Id.birth_year_field);
 			actionBar = FindViewById<ActionBar> (Resource.Id.actionBar);
 
-			first_name = FindViewById<ActionBar> (Resource.Id.first_name_field);
-			middle_name = FindViewById<ActionBar> (Resource.Id.mid_name_field);
-			last_name = FindViewById<ActionBar> (Resource.Id.last_name_field);
-			birthLoc = FindViewById<ActionBar> (Resource.Id.birth_loc_field);
+			first_name = FindViewById<EditText> (Resource.Id.first_name_field);
+			middle_name = FindViewById<EditText> (Resource.Id.mid_name_field);
+			last_name = FindViewById<EditText> (Resource.Id.last_name_field);
+			birthLoc = FindViewById<EditText> (Resource.Id.birth_loc_field);
 		}
 
 		private void ConfigureActionBar()
 		{
-			actionBar.SetCenterText ("Add Grandparents");
+			actionBar.SetCenterText ("Add "+Utilities.AddPersonType);
 			actionBar.SetLeftCornerImage (Resource.Drawable.back);
 			var backButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 
@@ -113,25 +114,29 @@ namespace AncestorCloud.Droid
 			return true;
 		}
 
-		public AddFamilyModel createModel()
+		public People createModel()
 		{
 
-			AddFamilyModel model = new AddFamilyModel ();
+//			People model = new People ();
+//
+//			model.FirstName = first_name.Text.ToString ();
+//			model.MiddleName = middle_name.Text.ToString ();
+//			model.LastName = last_name.Text.ToString ();
+//			model.BirthLocation = birthLoc.Text.ToString ();
+//			model.DateOfBirth = dateText.Text;
+//
+//			if (maleSelected) {
+//				model.Gender = "Male";	
+//			} else {
+//				model.Gender = "Female";
+//			}
+//
 
-			model.FirstName = first_name.Text.ToString ();
-			model.MiddleName = middle_name.Text.ToString ();
-			model.LastName = last_name.Text.ToString ();
-			model.BirthLocation = birthLoc.Text.ToString ();
-			model.BirthYear = dateText.Text;
-
-			if (maleSelected) {
-				model.Gender = "Male";	
-			} else {
-				model.Gender = "Female";
-			}
 
 			return model;
 		}
+
+
 
 
 	}

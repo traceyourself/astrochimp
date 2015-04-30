@@ -18,6 +18,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_addService = service;
 			Alert = alert;
 		}
+		public People familymember { get; set;}
 
 		#region close call
 		public void Close()
@@ -27,7 +28,11 @@ namespace AncestorCloud.Shared.ViewModels
 		#endregion
 
 		#region addPerson
-		public async void AddPerson(AddFamilyModel model){
+		public async void AddPerson(){
+
+//			LoginModel modal = _databaseService.GetLoginDetails ();
+//			modal.Value;
+//			modal.IndiOGFN
 
 			ResponseModel<ResponseDataModel> response = await _addService.AddFamilyMember(model);
 
