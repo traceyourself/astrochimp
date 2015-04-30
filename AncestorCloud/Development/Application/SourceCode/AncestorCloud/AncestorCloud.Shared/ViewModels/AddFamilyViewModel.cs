@@ -11,7 +11,9 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private IAlert Alert;
 
-		public AddFamilyViewModel(ILoginService service, IAlert alert)
+		public String AddType { get; set;}
+
+		public AddFamilyViewModel(IAddFamilyService service, IAlert alert)
 		{
 			_addService = service;
 			Alert = alert;
@@ -25,27 +27,12 @@ namespace AncestorCloud.Shared.ViewModels
 		#endregion
 
 		#region addPerson
-		public void AddPerson(AddFamilyModel model){
+		public async void AddPerson(AddFamilyModel model){
 
-			String response = await _addService.AddFamilyMember(model);
+			ResponseModel<ResponseDataModel> response = await _addService.AddFamilyMember(model);
 
 			if (response.Status == ResponseStatus.OK) {
-
-				_databaseService.InsertLoginDetails(response.loginModal);
-
-				_databaseService.GetLoginDetails ();
-
-				if (Mvx.CanResolve<IAndroidService> ()) 
-				{
-					ShowMyFamilyViewModel ();
-					CloseCommand.Execute (null);
-				}
-				else
-				{
-					IsFbLogin = false;
-					CallFlyoutCommand.Execute(null);
-					CloseCommand.Execute (null);
-				}
+				
 			}
 
 		}

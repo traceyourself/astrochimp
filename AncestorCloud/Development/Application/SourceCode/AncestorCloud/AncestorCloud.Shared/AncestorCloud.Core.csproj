@@ -83,9 +83,9 @@
     <Compile Include="ViewModels\AddFriendViewModel.cs" />
     <Compile Include="ViewModels\EditFamilyViewModel.cs" />
 
-feature/Matcher_Ui_screens
 
-  <Compile Include="Models\AddFamilyModel.cs" /><Compile Include="Services\Interface\IAddFamilyService.cs" /><Compile Include="Services\AddFamilyService.cs" /></ItemGroup>
+
+  <Compile Include="Models\AddFamilyModel.cs" /><Compile Include="Services\Interface\IAddFamilyService.cs" /><Compile Include="Services\AddFamilyService.cs" />
 
   <Compile Include="Models\Celebrity.cs" /><Compile Include="PlatformSpecificService\IAlert.cs" /><Compile Include="PlatformSpecificService\IFileService.cs" /><Compile Include="PlatformSpecificService\ILoader.cs" /><Compile Include="Services\Interface\IStoreCelebService.cs" /><Compile Include="Services\StoreCelebService.cs" /></ItemGroup>
 

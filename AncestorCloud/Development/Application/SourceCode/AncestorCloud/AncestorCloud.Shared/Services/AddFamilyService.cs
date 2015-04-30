@@ -25,16 +25,15 @@ namespace AncestorCloud.Shared
 
 		#region  implementation
 
-		public async Task<String> AddFamilyMember(AddFamilyModel model)
+		public async Task<ResponseModel<ResponseDataModel>> AddFamilyMember(AddFamilyModel model)
 		{
 			_loader.showLoader ();
-
+			ResponseModel<ResponseDataModel> responseModel = new ResponseModel<ResponseDataModel>();
 			//Hit service using HTTP Client
 			try   
 			{
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
-
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
@@ -65,30 +64,42 @@ namespace AncestorCloud.Shared
 
 					param[AppConstant.ADD_PERSON_SESSION_ID] = model.BirthLocation;
 					param[AppConstant.ADD_PERSON_INDIOGFN] = model.BirthLocation;
-					param[AppConstant.ADD_RELATION_INDIOGFN] = responsemodal.BirthYear;
+					param[AppConstant.ADD_RELATION_INDIOGFN] = model.BirthYear;
 					param[AppConstant.ADD_RELATION_TYPE] = model.BirthLocation;
 
 					url = WebServiceHelper.GetWebServiceURL(AppConstant.ADD_PEOPLE_SERVICE,param);
 
 					Mvx.Trace(url);
 
-					var userReadResponse = await _userReadService.MakeUserReadService(modal);
-					//ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
-					//responsemodal.loginModal = modal;
-					//responsemodal.Status = ResponseStatus.OK;
+					response = await client.GetAsync(url);
+
+					String responserelation = response.Content.ReadAsStringAsync().Result;
+
+					dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (responserelation);
+
+					responsemodal = DataParser.GetAddMemberRelationDetails (dict);
+
+					if(responsemodal.Code.Equals("0")){
+						
+					}
+
+					responseModel = new ResponseModel<ResponseDataModel>();
+					responseModel.Content = responsemodal;
+					responsemodal.Status = ResponseStatus.OK;
+
 				}
 
 
-				return userReadResponse as ResponseModel<LoginModel>;
+				return responseModel as ResponseModel<ResponseDataModel> ;
 			}
 			catch(Exception ex)
 			{
 				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
 				//return CommonConstants.FALSE;
-				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
+				ResponseModel<ResponseDataModel> responsemodal = new ResponseModel<ResponseDataModel>();
 				responsemodal.Status = ResponseStatus.Fail;
 
-				return responsemodal;
+				return responseModel as ResponseModel<ResponseDataModel> ;
 			}
 			finally{
 			
