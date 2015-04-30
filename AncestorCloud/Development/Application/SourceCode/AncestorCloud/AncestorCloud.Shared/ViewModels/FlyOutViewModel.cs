@@ -25,7 +25,7 @@ namespace AncestorCloud.Shared.ViewModels
 //			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<Message>(message => this.Close(this));
 
 			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
-			changeFlyoutToken = _flyoutMessenger.SubscribeOnMainThread<ChangeFlyoutFlowMessage>(message => this.SetItemList(message.ChangeFlyoutFlow));
+			changeFlyoutToken = _flyoutMessenger.SubscribeOnMainThread<ChangeFlyoutFlowMessage>(message => this.ReloadMenuList(message.ChangeFlyoutFlow));
 
 			var _messenger = Mvx.Resolve<IMvxMessenger>();
 			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<FlyOutCloseMessage>(message => this.Close(this));
@@ -46,7 +46,7 @@ namespace AncestorCloud.Shared.ViewModels
 		public List<MenuViewModel> MenuItems
 		{
 			get { return this.menuItems; }
-			set { this.menuItems = value; this.RaisePropertyChanged(() => this.MenuItems); DoUpdate (); }
+			set { this.menuItems = value; this.RaisePropertyChanged(() => this.MenuItems); }
 		}
 
 		private MvxCommand<MenuViewModel> m_SelectMenuItemCommand;
@@ -149,6 +149,13 @@ namespace AncestorCloud.Shared.ViewModels
 				};
 			}
 
+		}
+
+
+		private void ReloadMenuList(bool boolValue)
+		{
+			this.SetItemList (boolValue);
+			DoUpdate ();
 		}
 		#endregion
 
