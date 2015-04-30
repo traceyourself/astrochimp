@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/dialog_remaining_part_color">
+    <AncestorCloud.Droid.ActionBar
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ListView
+        android:id="@+id/past_matched_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/dark_div_color"
+        android:dividerHeight="0.8dp" />
+</LinearLayout>

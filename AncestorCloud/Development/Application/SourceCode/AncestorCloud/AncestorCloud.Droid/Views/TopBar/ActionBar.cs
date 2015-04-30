@@ -18,7 +18,7 @@ namespace AncestorCloud.Droid
 	{
 		#region global variables
 		LayoutInflater inflater;
-		ImageView leftImage,leftMenuImage,centerImage,rightImg;
+		ImageView leftImage,leftMenuImage,centerImage,rightImg,rightBigImg;
 		TextView centerTxt;
 		//RelativeLayout leftBtn,rightBtn;
 		#endregion
@@ -47,6 +47,7 @@ namespace AncestorCloud.Droid
 			leftMenuImage = mainView.FindViewById<ImageView> (Resource.Id.action_bar_left_menu_img);
 			centerImage = mainView.FindViewById<ImageView> (Resource.Id.action_center_img);
 			rightImg = mainView.FindViewById<ImageView> (Resource.Id.action_bar_right_img);
+			rightBigImg = mainView.FindViewById<ImageView> (Resource.Id.action_bar_big_right_img);
 
 			centerTxt = mainView.FindViewById<TextView> (Resource.Id.action_center_txt);
 
@@ -93,6 +94,11 @@ namespace AncestorCloud.Droid
 		public void SetRightImage(int imgId)
 		{
 			rightImg.SetImageResource (imgId);
+		}
+
+		public void SetRightBigImage(int imgId)
+		{
+			rightBigImg.SetImageResource (imgId);
 		}
 
 		#endregion

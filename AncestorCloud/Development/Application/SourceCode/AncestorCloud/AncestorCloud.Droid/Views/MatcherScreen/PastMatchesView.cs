@@ -16,16 +16,16 @@ using Android.Graphics;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "RelationshipMatchDetailView")]			
-	public class RelationshipMatchDetailView : BaseActivity
+	[Activity (Label = "PastMatchesView")]			
+	public class PastMatchesView : BaseActivity
 	{
 		
 		ActionBar actionBar;
-		ListView resultlist;
+		ListView matchlist;
 
-		public new RelationshipMatchDetailViewModel ViewModel
+		public new PastMatchesViewModel ViewModel
 		{
-			get { return base.ViewModel as RelationshipMatchDetailViewModel; }
+			get { return base.ViewModel as PastMatchesViewModel; }
 			set { base.ViewModel = value; }
 		}
 
@@ -33,7 +33,7 @@ namespace AncestorCloud.Droid
 		{
 			base.OnCreate (bundle);
 			// Create your application here
-			SetContentView(Resource.Layout.matcher_result);
+			SetContentView(Resource.Layout.past_matches);
 
 			initUI ();
 			configureActionBar ();
@@ -45,7 +45,7 @@ namespace AncestorCloud.Droid
 		#region init ui
 		private void initUI()
 		{
-			resultlist = FindViewById<ListView> (Resource.Id.matched_list);
+			matchlist = FindViewById<ListView> (Resource.Id.past_matched_list);
 		}
 		#endregion
 
@@ -55,29 +55,23 @@ namespace AncestorCloud.Droid
 			actionBar = FindViewById <ActionBar>(Resource.Id.actionBar);
 			actionBar.SetLeftCornerImage (Resource.Drawable.back);
 
-			actionBar.SetCenterImageText (Resource.Drawable.action_menu,Resources.GetString(Resource.String.matcher_menu));
-
-			actionBar.SetRightImage (Resource.Drawable.action_menu);
-			var pastButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_right_btn);
-
-			pastButton.Click += (sender, e) => {
-				ViewModel.ShowPastMatches();
-			};
+			actionBar.SetCenterImageText (Resource.Drawable.action_menu,Resources.GetString(Resource.String.past_matches));
 
 			var backButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 
 			backButton.Click += (sender, e) => {
 				ViewModel.Close();
 			};
+
 		}
 		#endregion
 
 		#region Create List Adapter
 		private void CreateListAdapter ()
 		{
-			MatchedListAdapter adapter = new MatchedListAdapter (this);
-			resultlist.Adapter = adapter;
-			resultlist.Invalidate ();	
+			PastMatchedListAdapter adapter = new PastMatchedListAdapter (this);
+			matchlist.Adapter = adapter;
+			matchlist.Invalidate ();	
 
 		}
 		#endregion
@@ -90,14 +84,13 @@ namespace AncestorCloud.Droid
 
 	}
 
-
 	#region List Adapter
-	public class MatchedListAdapter : BaseAdapter
+	public class PastMatchedListAdapter : BaseAdapter
 	{
 		LayoutInflater inflater;
-		RelationshipMatchDetailView myObj;
+		PastMatchesView myObj;
 
-		public MatchedListAdapter(RelationshipMatchDetailView myObj){
+		public PastMatchedListAdapter(PastMatchesView myObj){
 			this.myObj = myObj;
 			inflater = (LayoutInflater)myObj.GetSystemService (Context.LayoutInflaterService);
 		}
@@ -119,38 +112,34 @@ namespace AncestorCloud.Droid
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
-			MatchedViewHolder holder;
+			MatchedHistoryViewHolder holder;
 
 			if (convertView == null) {
-				convertView = inflater.Inflate (Resource.Layout.matched_list_item, null);
+				convertView = inflater.Inflate (Resource.Layout.matcher_history_list_item, null);
 
-				holder = new MatchedViewHolder ();
+				holder = new MatchedHistoryViewHolder ();
 
-				holder.mainContainer = convertView.FindViewById<RelativeLayout> (Resource.Id.main_container_matched);
+				holder.firstuser_name = convertView.FindViewById<TextView> (Resource.Id.first_user_name);
+				holder.secuser_name = convertView.FindViewById<TextView> (Resource.Id.sec_user_name);
+				holder.matchPercent = convertView.FindViewById<TextView> (Resource.Id.percent);
 
-				holder.common_txt = convertView.FindViewById<TextView> (Resource.Id.common);
+				holder.firstUserImage = convertView.FindViewById<ImageView> (Resource.Id.first_user_img);
+				holder.secUserImage = convertView.FindViewById<ImageView> (Resource.Id.sec_user_img);
 
 				convertView.SetTag (Resource.Id.add_family_list,holder);
 			} else {
-				holder = (MatchedViewHolder)convertView.GetTag (Resource.Id.add_family_list);
+				holder = (MatchedHistoryViewHolder)convertView.GetTag (Resource.Id.add_family_list);
 			}
 
-			if (position == 5) {
-				holder.common_txt.Visibility = ViewStates.Visible;
-				holder.mainContainer.SetBackgroundColor (Color.ParseColor("#94C4EC"));
-			} else {
-				holder.common_txt.Visibility = ViewStates.Gone;
-				holder.mainContainer.SetBackgroundColor (Color.Transparent);
-			}
 
 			return convertView;
 		}
 	}
 
-	public class MatchedViewHolder : Java.Lang.Object{
+	public class MatchedHistoryViewHolder : Java.Lang.Object{
 
-		public RelativeLayout mainContainer;//main_container_matched;
-		public TextView common_txt;
+		public ImageView firstUserImage,secUserImage;
+		public TextView firstuser_name,secuser_name,matchPercent;
 
 	}
 	#endregion

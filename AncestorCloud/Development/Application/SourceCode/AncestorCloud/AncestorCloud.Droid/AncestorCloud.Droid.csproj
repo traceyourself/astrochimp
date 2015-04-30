@@ -112,6 +112,7 @@
     <Compile Include="Views\ResearchHelp\ResearchHelpView.cs" />
     <Compile Include="Views\AddFamily\AddFamilyView.cs" />
     <Compile Include="Views\MatcherScreen\RelationshipMatchDetailView.cs" />
+    <Compile Include="Views\MatcherScreen\PastMatchesView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -207,6 +208,8 @@
     <AndroidResource Include="Resources\layout\matcher_result.axml" />
     <AndroidResource Include="Resources\drawable\circle_back.axml" />
     <AndroidResource Include="Resources\layout\matched_list_item.axml" />
+    <AndroidResource Include="Resources\layout\matcher_history_list_item.axml" />
+    <AndroidResource Include="Resources\layout\past_matches.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

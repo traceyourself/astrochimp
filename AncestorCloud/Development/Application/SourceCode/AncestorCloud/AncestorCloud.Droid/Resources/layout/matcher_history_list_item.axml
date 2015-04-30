@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/transparent"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/upper"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/percent_container">
+            <ImageView
+                android:id="@+id/first_user_img"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/no_img" />
+            <TextView
+                android:id="@+id/first_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:textColor="@color/gray_login_color"
+                android:textSize="12sp"
+                android:text="Me"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/percent_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerInParent="true">
+            <TextView
+                android:id="@+id/percent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_back"
+                android:textColor="@android:color/white"
+                android:text="16º"
+                android:gravity="center"
+                android:textSize="22sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/percent_container">
+            <ImageView
+                android:id="@+id/sec_user_img"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/no_img" />
+            <TextView
+                android:id="@+id/sec_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:textColor="@color/gray_login_color"
+                android:textSize="12sp"
+                android:text="Aj Jacobs"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

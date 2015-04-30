@@ -85,6 +85,7 @@
 	<!--- Matcher Strings -->
 	<string name="select_people_to_match">Select two people to match</string>
 	<string name="match">Match</string>
+	<string name="past_matches">Past Matches</string>
 	<!--- Matcher Strings Ends -->
 
 </resources>
