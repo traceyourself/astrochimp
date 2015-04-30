@@ -8,13 +8,21 @@ namespace AncestorCloud.Shared.ViewModels
 	public class HomePageViewModel :BaseViewModel
 	{
 		#region ShowLoginViewModel
+		private readonly IFileService _fileService;
+
+		private readonly IStoreCelebService _storeCelebService;
 
 		public HomePageViewModel()
 		{
-
+			_fileService = Mvx.Resolve<IFileService> ();
+			_storeCelebService = Mvx.Resolve<IStoreCelebService> ();
 			var messenge = Mvx.Resolve<IMvxMessenger>();
 			messenge.Publish(new FlyOutCloseMessage(this));
+		}
 
+		public void Init()
+		{
+			StoreCelebsData ();
 		}
 
 		public void ShowLoginViewModel()
@@ -39,6 +47,17 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+
+		#region
+
+		private void StoreCelebsData()
+		{
+			string celebsDataString = _fileService.GetCelebsDataString ();
+
+			_storeCelebService.StoreCelebData (celebsDataString);
+		}
+
+		#endregion
 	}
 }
 

@@ -23,6 +23,11 @@ namespace AncestorCloud.Shared
 		User GetUser (int id);
 		List<People> GetFamily ();
 		List<User> GetUsers (string relationFilter);
+
+		List<Celebrity> GetCelebritiesData ();
+		void StoreCelebrities (List<Celebrity> celebDataList);
+		List<Celebrity> FilterCelebs (string filter);
+		bool IsCelebStored ();
 		//int Count { get; }
 	}
 }

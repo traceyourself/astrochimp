@@ -66,7 +66,6 @@
     <Compile Include="Services\SignUpService.cs" />
     <Compile Include="Services\Interface\ISignUpService.cs" />
     <Compile Include="Utility\Utility.cs" />
-    <Compile Include="Helper\IAlert.cs" />
     <Compile Include="Helper\DataParser.cs" />
     <Compile Include="Helper\ValidationClass.cs" />
     <Compile Include="Helper\DataValidator.cs" />
@@ -75,7 +74,6 @@
     <Compile Include="Entities\ChangeFlyoutFlowMessage.cs" />
     <Compile Include="Entities\FlyOutCloseMessage.cs" />
     <Compile Include="Entities\ReloadFlyOutViewMessage.cs" />
-    <Compile Include="Helper\ILoader.cs" />
     <Compile Include="ViewModels\ResearchHelpViewModel.cs" />
     <Compile Include="ViewModels\AddFamilyViewModel.cs" />
     <Compile Include="Services\Interface\IUserReadService.cs" />
@@ -86,7 +84,11 @@
     <Compile Include="ViewModels\EditFamilyViewModel.cs" />
 
 feature/Matcher_Ui_screens
+
   <Compile Include="Models\AddFamilyModel.cs" /><Compile Include="Services\Interface\IAddFamilyService.cs" /><Compile Include="Services\AddFamilyService.cs" /></ItemGroup>
+
+  <Compile Include="Models\Celebrity.cs" /><Compile Include="PlatformSpecificService\IAlert.cs" /><Compile Include="PlatformSpecificService\IFileService.cs" /><Compile Include="PlatformSpecificService\ILoader.cs" /><Compile Include="Services\Interface\IStoreCelebService.cs" /><Compile Include="Services\StoreCelebService.cs" /></ItemGroup>
+
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <ItemGroup>
@@ -136,5 +138,6 @@ feature/Matcher_Ui_screens
     <Folder Include="Utility\" />
     <Folder Include="Helper\" />
     <Folder Include="Converters\" />
+    <Folder Include="PlatformSpecificService\" />
   </ItemGroup>
 </Project>

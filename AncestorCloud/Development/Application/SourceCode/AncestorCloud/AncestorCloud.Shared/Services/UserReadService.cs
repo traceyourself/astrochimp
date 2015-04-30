@@ -48,9 +48,8 @@ namespace AncestorCloud.Shared
 				model= DataParser.GetUserReadData(model,dict);
 
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
-				responsemodal.loginModal = model;
 				responsemodal.Status = ResponseStatus.OK;
-
+				responsemodal.Content= model;
 				return responsemodal;
 
 			}

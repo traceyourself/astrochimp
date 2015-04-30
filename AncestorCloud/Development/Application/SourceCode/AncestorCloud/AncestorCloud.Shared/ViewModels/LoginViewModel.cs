@@ -201,7 +201,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 				if (response.Status == ResponseStatus.OK) {
 
-					_databaseService.InsertLoginDetails(response.loginModal);
+					_databaseService.InsertLoginDetails(response.Content as LoginModel);
 
 					_databaseService.GetLoginDetails ();
 

@@ -45,7 +45,7 @@ namespace AncestorCloud.Shared
 				LoginModel modal = DataParser.GetSignUpDetails (dict);
 				Mvx.Trace("Parced Values : "+modal.Code+" : "+modal.Message+" : "+modal.Value);
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
-				responsemodal.loginModal = modal;
+				responsemodal.Content = modal;
 				responsemodal.Status = ResponseStatus.OK;
 				//== 
 
