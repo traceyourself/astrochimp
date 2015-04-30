@@ -16,18 +16,21 @@ namespace AncestorCloud.Shared
 			if (requestParameters == null)
 				return url;
 
-			string requestString = "";
+			string requestString = String.Empty;
 
-			int index = 0;
+//			int index = requestParameters.Count;
+
+			string and = "";
 
 			foreach(KeyValuePair<string, string> kvp in requestParameters)
 			{
-				requestString = String.Format ("{0}={1}", kvp.Key, kvp.Value);
+				requestString += String.Format (and +"{0}={1}", kvp.Key, kvp.Value);
 
-				if( index < requestParameters.Count - 2 )
-					requestString += "&";
-
-				++index;
+				and = "&";
+//				if( index < requestParameters.Count - 2 )
+//					requestString += "&";
+//
+//				--index;
 			}
 
 			url += "?" + requestString;

@@ -23,10 +23,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_ISignUpService = service;
 			_databaseService = Mvx.Resolve<IDatabaseService>();
 			Alert = alert;
-
-//			Name = "abc";
-//			Email="abc@gmail.com";
-//			Password="abc";
+		
 		}
 
 		#endregion
@@ -215,6 +212,9 @@ namespace AncestorCloud.Shared.ViewModels
 
 				if (response.Status == ResponseStatus.OK) {
 					//tell View about data arriving
+					_databaseService.InsertLoginDetails(response.Content as LoginModel);
+
+					//_databaseService.GetLoginDetails ();
 
 					ShowMyFamilyViewModel();
 					CloseCommand.Execute (null);

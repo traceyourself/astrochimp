@@ -203,7 +203,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 					_databaseService.InsertLoginDetails(response.Content as LoginModel);
 
-					_databaseService.GetLoginDetails ();
+					//_databaseService.GetLoginDetails ();
 
 					if (Mvx.CanResolve<IAndroidService> ()) 
 					{
