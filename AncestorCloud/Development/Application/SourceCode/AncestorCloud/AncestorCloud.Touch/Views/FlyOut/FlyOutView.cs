@@ -33,7 +33,7 @@ namespace AncestorCloud.Touch
 		public FlyOutView () : base ("FlyOutView", null)
 		{
 			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
-			changeFlyoutToken = _flyoutMessenger.SubscribeOnMainThread<ReloadFlyOutViewMessage>(message => this.CreateFlyoutView());
+			changeFlyoutToken = _flyoutMessenger.SubscribeOnMainThread<ReloadFlyOutViewMessage>(message => this.ReloadMenu());
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -142,6 +142,31 @@ namespace AncestorCloud.Touch
 
 			}
 		}
+
+		private void ReloadFlyoutNavigation()
+		{
+
+			var flyoutViewControllers = new List<UIViewController>();
+
+			var homeViewModel = ViewModel as FlyOutViewModel;
+			if (homeViewModel != null)
+			{
+				//create the ViewModels
+				foreach (var viewModel in homeViewModel.MenuItems)
+				{
+					var viewModelRequest = new MvxViewModelRequest
+					{
+						ViewModelType = viewModel.ViewModelType
+					};
+
+					flyoutViewControllers.Add(CreateMenuItemController(viewModelRequest));
+
+				}
+				_navigation.ViewControllers = flyoutViewControllers.ToArray();
+
+
+			}
+		}
 		private void CreateFlyoutView()
 		{
 			//var flyoutViewControllers = new List<UIViewController>();
@@ -168,6 +193,15 @@ namespace AncestorCloud.Touch
 				_navigation.NavigationRoot = rootElement;
 			}
 
+		}
+
+		private void ReloadMenu()
+		{
+			
+			ReloadFlyoutNavigation ();
+			CreateFlyoutView ();
+
+			this.NavigationController.NavigationBarHidden = true;
 		}
 
 //		private void CreateFlyoutView()
@@ -206,6 +240,14 @@ namespace AncestorCloud.Touch
 
 
 		private UIViewController CreateMenuItemController(MvxViewModelRequest viewModelRequest)
+		{
+			var controller = new UINavigationController();
+			var screen = this.CreateViewControllerFor(viewModelRequest) as UIViewController;
+			controller.PushViewController(screen, false);
+			return controller;
+		}
+
+		private UIViewController ReloadMenuItemController(MvxViewModelRequest viewModelRequest)
 		{
 			var controller = new UINavigationController();
 			var screen = this.CreateViewControllerFor(viewModelRequest) as UIViewController;
