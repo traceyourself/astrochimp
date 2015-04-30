@@ -175,6 +175,8 @@
     <InterfaceDefinition Include="Views\AddFriends\AddFriendView.xib" />
     <InterfaceDefinition Include="Views\AddFamily\AddFamilyView.xib" />
     <InterfaceDefinition Include="Views\EditFamily\EditFamilyView.xib" />
+    <InterfaceDefinition Include="Views\Celebrities\CelebritiesView.xib" />
+    <InterfaceDefinition Include="Views\Celebrities\CelebritiesCell\CelebritiesCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -202,7 +204,6 @@
     <Compile Include="Views\MyFamily\MyFamilyView.designer.cs" />
     <Compile Include="Views\MyFamily\MyFamilyTableCell\MyFamilyTableCell.cs" />
     <Compile Include="Views\MyFamily\MyFamilyTableCell\MyFamilyTableCell.designer.cs" />
-    <Compile Include="Views\MyFamily\MyFamilyTableCell\TableItem.cs" />
     <Compile Include="Views\RelationshipMatch\MatchView.cs" />
     <Compile Include="Views\RelationshipMatch\MatchView.designer.cs" />
     <Compile Include="Views\Signup\SignUpView.cs" />
@@ -263,6 +264,16 @@
     <Compile Include="Views\EditFamily\EditFamilyView.designer.cs">
       <DependentUpon>EditFamilyView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\StringConstants.cs" />
+    <Compile Include="Views\Celebrities\CelebritiesView.cs" />
+    <Compile Include="Views\Celebrities\CelebritiesView.designer.cs">
+      <DependentUpon>CelebritiesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Celebrities\CelebritiesCell\CelebritiesCell.cs" />
+    <Compile Include="Views\Celebrities\CelebritiesCell\CelebritiesCell.designer.cs">
+      <DependentUpon>CelebritiesCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Celebrities\CelebritiesTableSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -296,6 +307,8 @@
     <Folder Include="Views\PastMatches\PastMatchesCell\" />
     <Folder Include="Views\AddFamily\" />
     <Folder Include="Views\EditFamily\" />
+    <Folder Include="Views\Celebrities\" />
+    <Folder Include="Views\Celebrities\CelebritiesCell\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="flyoutnavigation">

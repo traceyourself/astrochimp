@@ -1,6 +1,4 @@
-﻿
-using System;
-
+﻿using System;
 using Foundation;
 using UIKit;
 using AncestorCloud.Shared.ViewModels;
@@ -9,14 +7,15 @@ using Cirrious.MvvmCross.Plugins.Messenger;
 using Cirrious.CrossCore;
 using System.Linq;
 using AncestorCloud.Shared;
+using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace AncestorCloud.Touch
 {
 	public partial class MyFamilyView : BaseViewController
 	{
 
-		UITableView table;
 		UILabel cell;
+
 		private MvxSubscriptionToken navigationMenuToken;
 
 		public MyFamilyView () : base ("MyFamilyView", null)
@@ -42,54 +41,103 @@ namespace AncestorCloud.Touch
 			SetFamilyItem ();
 			AddEvents ();
 
-
-			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
-		private void CreateMyFamilyTable(){
-			table = myFamilyTable;//new UITableView(View.Bounds); // defaults to Plain style
-			//string[] tableItems = new string[] {"Medisomes Eames(sister)"+"\n"+"1952","Robert Eames(Father)","Mary Herzog Eames(Mother)","Merrill Eames(Grandfather)" ," + Add family"};
-			List<TableItem> data = CreateTableItems();
+		#region Binding
 
-			table.DataSource = new MyFamilyTableSource(data);
-			table.Delegate = new MyFamilyTableDelegate (data);
-
-
-		}
-
-		protected List<TableItem> CreateTableItems ()
+		private void CreateMyFamilyTable()
 		{
-			List<TableItem> dataList = new List<TableItem>();
+			
+			List<TableItem> data = CreateTableItems(ViewModel.FamilyList);
 
-			List<MyFamilySectionDataItem> childList = new List<MyFamilySectionDataItem>();
-			MyFamilySectionDataItem childItem = new MyFamilySectionDataItem ("Kevin Stevens","1958");
-			childList.Add(childItem);
-			TableItem data = new TableItem (" Siblings","Add Siblings",childList);
-			dataList.Add (data);
+			ViewModel.TableDataList = data;
 
 
-			childList = new List<MyFamilySectionDataItem>();
-			childList.Add(childItem);
-			childList.Add(childItem);
-			data = new TableItem (" Parents","Add Parents",childList);
-			dataList.Add (data);
+			var source = new MyFamilyTableSource (myFamilyTable);
+			myFamilyTable.Source = source;
 
+			var set = this.CreateBindingSet<MyFamilyView , MyFamilyViewModel> ();
+			set.Bind (source).To (vm => vm.TableDataList);
+			set.Apply ();
 
-			childList = new List<MyFamilySectionDataItem>();
-			childList.Add(childItem);
-			childList.Add(childItem);
-			childList.Add(childItem);
-			data = new TableItem (" Grandparents","Add Grandparents",childList);
-			dataList.Add (data);
-
-			childList = new List<MyFamilySectionDataItem>();
-			data = new TableItem (" Great Grandparents","Add Great Grandparents",childList);
-			childList.Add(childItem);
-			dataList.Add (data);
-	
-			return dataList;
 		}
+
+		#endregion
+
+
+		#region list Filteration
+
+		public List<TableItem> CreateTableItems(List<People> mainList)
+		{
+			List<TableItem> resultList = new List<TableItem> ();
+
+			List<People> siblingList = new List<People> ();
+			List<People> parentList = new List<People> ();
+			List<People> grandParentList = new List<People> ();
+			List<People> greatGrandParentList = new List<People> ();
+
+
+			for(int i=0;i<mainList.Count;i++){
+				People item = mainList[i];
+				string relation = item.Relation;
+
+
+				if (relation.Contains (StringConstants.BROTHER_COMPARISON) || relation.Contains (StringConstants.SISTER_COMPARISON))
+				{
+					siblingList.Add (item);
+				}
+
+				if (relation.Contains (StringConstants.FATHER_COMPARISON) || relation.Contains (StringConstants.MOTHER_COMPARISON))
+				{
+					parentList.Add (item);
+				}
+				if (relation.Contains (StringConstants.GRANDFATHER_COMPARISON) || relation.Contains (StringConstants.GRANDMOTHER_COMPARISON))
+				{
+					grandParentList.Add (item);
+				}
+				if (relation.Contains (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Contains (StringConstants.GREATGRANDMOTHER_COMPARISON))
+				{
+					greatGrandParentList.Add (item);
+				}
+
+
+		 }
+
+
+			TableItem siblingData = new TableItem ();
+			siblingData.SectionHeader = "Siblings";
+			siblingData.SectionFooter = "Sibling";
+			siblingData.DataItems = siblingList;
+
+			resultList.Add (siblingData);
+
+			TableItem parentsData= new TableItem ();
+			parentsData.SectionHeader = "Parents";
+			parentsData.SectionFooter = "Parents";
+			parentsData.DataItems = parentList;
+
+			resultList.Add (parentsData);
+
+			TableItem grandParentData= new TableItem ();
+			grandParentData.SectionHeader = "Grand Parents";
+			grandParentData.SectionFooter = "GrandParents";
+			grandParentData.DataItems = grandParentList;
+
+			resultList.Add (grandParentData);
+
+			TableItem greatGrandParentData= new TableItem ();
+			greatGrandParentData.SectionHeader = "Great GrandParents";
+			greatGrandParentData.SectionFooter = "GreatGrandParents";
+			greatGrandParentData.DataItems = greatGrandParentList;
+
+			resultList.Add (greatGrandParentData);
+
+		
+			return resultList;
+		}
+
+		#endregion
 
 		public void SetFamilyItem()
 		{
@@ -107,8 +155,7 @@ namespace AncestorCloud.Touch
 
 		private void AddEvents ()
 		{
-			(table.Delegate as MyFamilyTableDelegate).FooterClickedDelegate += ShowAddParents;
-			 
+			(myFamilyTable.Source as MyFamilyTableSource).FooterClickedDelegate += ShowAddParents;
 			var _messenger = Mvx.Resolve<IMvxMessenger>();
 			navigationMenuToken = _messenger.SubscribeOnMainThread<MyTableCellTappedMessage>(message => this.ShowEditFamily(this));
 
@@ -118,21 +165,16 @@ namespace AncestorCloud.Touch
 		{
 			ViewModel.ShowAddParents ();
 		}
+
 		public void ShowEditFamily(object obj)
 		{
-			//ViewModel.ShowEditFamily ();
-
 			EditFamilyView editFamily = new EditFamilyView ();
-
 			UIWindow window = UIApplication.SharedApplication.KeyWindow;
-
 			window.AddSubview (editFamily.View);
 		}
 
-
 		public override void ViewWillDisappear (bool animated)
 		{
-
 			if (!NavigationController.ViewControllers.Contains (this)) {
 				var messenger = Mvx.Resolve<IMvxMessenger> ();
 				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 

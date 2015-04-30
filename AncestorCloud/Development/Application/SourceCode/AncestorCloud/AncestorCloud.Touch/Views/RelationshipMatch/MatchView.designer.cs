@@ -15,8 +15,20 @@ namespace AncestorCloud.Touch
 		[Outlet]
 		UIKit.UIScrollView scrollViewObj { get; set; }
 
+		[Action ("FirstImageButtonTapped:")]
+		partial void FirstImageButtonTapped (Foundation.NSObject sender);
+
+		[Action ("FirstImageTapped:")]
+		partial void FirstImageTapped (Foundation.NSObject sender);
+
 		[Action ("MatchTapped:")]
 		partial void MatchTapped (Foundation.NSObject sender);
+
+		[Action ("SecondButtonImageTapped:")]
+		partial void SecondButtonImageTapped (Foundation.NSObject sender);
+
+		[Action ("SecondImageTapped:")]
+		partial void SecondImageTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

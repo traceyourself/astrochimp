@@ -5,8 +5,10 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class AddFriendViewModel:BaseViewModel
 	{
-		public AddFriendViewModel ()
+
+		public void ShowCelebrities()
 		{
+			ShowViewModel<CelebritiesViewModel> ();
 		}
 	}
 }

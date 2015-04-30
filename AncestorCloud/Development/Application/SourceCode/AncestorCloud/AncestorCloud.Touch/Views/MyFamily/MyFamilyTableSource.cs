@@ -3,135 +3,89 @@ using UIKit;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using AncestorCloud.Shared;
+using Cirrious.MvvmCross.Binding.Touch.Views;
+using Foundation;
 
 namespace AncestorCloud.Touch
 {
-	public class MyFamilyTableSource :  UITableViewDataSource {
+	public class MyFamilyTableSource :  MvxTableViewSource  
+	{
 
 		readonly string cellIdentifier = "MyFamilyTableCell";
-		Dictionary<string, List<TableItem>> indexedTableItems;
-		string[] keys;
-		List<TableItem> ListItems;
+//		Dictionary<string, List<TableItem>> indexedTableItems;
+//		string[] keys;
+		private List<TableItem> ListItems;
 
+		public Action<object> FooterClickedDelegate
+		{ get; set; }
 
-	
-		public MyFamilyTableSource (List<TableItem> items) 
+		public new List<TableItem> ItemsSource
 		{
-			ListItems = items;
-			indexedTableItems = new Dictionary<string, List<TableItem>>();
-			foreach (var t in items) {
-				if (indexedTableItems.ContainsKey (t.SectionHeader)) {
-					indexedTableItems[t.SectionHeader].Add(t);
-				
-				} else {
-					indexedTableItems.Add (t.SectionHeader, new List<TableItem>() {t});
-
-				}
+			get
+			{
+				return ListItems;
 			}
-			keys = indexedTableItems.Keys.ToArray ();
+			set
+			{
+				ListItems = value;
+				ReloadTableData();
+			}
+		}
+	
+		public MyFamilyTableSource (UITableView tableView): base(tableView)
+		{
+			tableView.RegisterNibForCellReuse(UINib.FromName("MyFamilyTableCell", NSBundle.MainBundle),
+				MyFamilyTableCell.Key);
 
 		}
-		public override nint NumberOfSections (UITableView tableView)
-        {
-			return keys.Length;
+
+		public override nint NumberOfSections(UITableView tableView)
+		{
+			if (ListItems == null)
+				return 0;
+
+			return ListItems.Count;
 		}
 			
+		 
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
 			
 			return ListItems[(int)section].DataItems.Count;
 		}
+			
+		protected override object GetItemAt(NSIndexPath indexPath)
+		{
+			if (ListItems == null)
+				return null;
 
-//		public override string TitleForHeader (UITableView tableView, nint section)
-//		{
-//			return keys[section];
-//		}
+			return ListItems[indexPath.Section].DataItems[indexPath.Row];
+		}
 
-//		public override string TitleForFooter (UITableView tableView, nint section)
-//		{
-//			return keys [section];
-//		}
-
-		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
+		protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
 		{
 			MyFamilyTableCell cell = (MyFamilyTableCell)tableView.DequeueReusableCell (cellIdentifier);
 			// if there are no cells to reuse, create a new one
 			if (cell == null)
 				cell =  MyFamilyTableCell.Create() ;
+        
+			TableItem tableItem = ListItems [indexPath.Section];
 
-
-			/*TableItem item = indexedTableItems [keys [indexPath.Section]];
-
-			MyFamilySectionDataItem childItem = item.DataItems[indexPath.Row];*/
-
-
-			TableItem item = ListItems [indexPath.Section];
-
-			MyFamilySectionDataItem childItem = item.DataItems[indexPath.Row];
+			People childItem = tableItem.DataItems[indexPath.Row];
             
 			if (cell == null)
 			{
-				cell = (MyFamilyTableCell)new UITableViewCell (item.CellStyle, cellIdentifier); 
+				cell = (MyFamilyTableCell)new UITableViewCell (UITableViewCellStyle.Default , cellIdentifier); 
 			}
 
-			System.Diagnostics.Debug.WriteLine ("Section : "+item.SectionHeader);
-			System.Diagnostics.Debug.WriteLine ("Data : "+childItem.PersonName);
-			System.Diagnostics.Debug.WriteLine ("Section Footer:" + item.SectionFooter);
+			System.Diagnostics.Debug.WriteLine ("Section : "+tableItem.SectionHeader);
+			System.Diagnostics.Debug.WriteLine ("Data : "+childItem.Name);
+			System.Diagnostics.Debug.WriteLine ("Section Footer:" + tableItem.SectionFooter);
 
 			tableView.BackgroundColor = UIColor.FromRGB (178,45,116);
 
-			/*
-			//---- set the item text
-			cell.TextLabel.Text = item.Heading;
-
-			//---- if the item has a valid image, and it's not the contact style (doesn't support images)
-			if(!string.IsNullOrEmpty(item.ImageName) && item.CellStyle != UITableViewCellStyle.Value2)
-			{
-				if(File.Exists(item.ImageName))
-				{ cell.ImageView.Image = UIImage.FromBundle(item.ImageName); }
-			}
-
-			//---- set the accessory
-			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
-			*/
-
 			return cell;
-
-		}
-
-
-	}
-	#region Delegate
-
-	public class MyFamilyTableDelegate :UITableViewDelegate
-	{
-
-		List<TableItem> data;
-
-		string[] keys;
-
-		Dictionary<string, List<TableItem>> indexedTableItems;
-
-		public Action<object> FooterClickedDelegate
-		{ get; set; }
-
-
-		public MyFamilyTableDelegate (List<TableItem> items) 
-		{
-
-			data = items;
-
-			indexedTableItems = new Dictionary<string, List<TableItem>>();
-			foreach (var t in items) {
-				if (indexedTableItems.ContainsKey (t.SectionHeader)) {
-					indexedTableItems[t.SectionHeader].Add(t);
-
-				} else {
-					indexedTableItems.Add (t.SectionHeader, new List<TableItem>() {t});
-
-				}
-			}
-			keys = indexedTableItems.Keys.ToArray ();
 
 		}
 
@@ -139,13 +93,23 @@ namespace AncestorCloud.Touch
 		{
 			UILabel view = new UILabel {
 				BackgroundColor=UIColor.FromRGB(178,45,116),
-				Text=keys[section],
+				Text=ListItems[(int)section].SectionHeader,
 				Font= UIFont.FromName("Helvetica", 16f),
 				TextColor=UIColor.White,
 				TextAlignment=UITextAlignment.Center
-     	};
-				
+			};
+
 			return view;
+		}
+
+		public override nfloat GetHeightForHeader (UITableView tableView, nint section)
+		{
+			return 25;
+		}
+
+		public override nfloat GetHeightForFooter (UITableView tableView, nint section)
+		{
+			return 30;
 		}
 
 		public override UIView GetViewForFooter (UITableView tableView, nint section)
@@ -155,7 +119,7 @@ namespace AncestorCloud.Touch
 				BackgroundColor=UIColor.White,
 			};
 
-			btn.SetTitle( "   +Add"+keys[section],UIControlState.Normal);
+			btn.SetTitle( "   +Add"+ListItems[(int)section].SectionFooter,UIControlState.Normal);
 			btn.SetTitleColor(UIColor.Black,UIControlState.Normal);
 			btn.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
 			btn.Font = UIFont.FromName ("Helvetica", 14f);
@@ -169,24 +133,11 @@ namespace AncestorCloud.Touch
 
 			};
 			return btn;
-	
+
 		}
 
-		public override nfloat GetHeightForHeader (UITableView tableView, nint section)
-		{
-			return 25;
-		}
-
-		public override nfloat GetHeightForFooter (UITableView tableView, nint section)
-		{
-			return 30;
-		}
-
-		#endregion
-
-
-		
 	}
+
 
 }
 
