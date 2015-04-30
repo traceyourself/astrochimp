@@ -69,6 +69,7 @@ namespace AncestorCloud.Shared.ViewModels
 			ShowViewModel<EditFamilyViewModel>();
 		}
 
+
 	}
 }
 

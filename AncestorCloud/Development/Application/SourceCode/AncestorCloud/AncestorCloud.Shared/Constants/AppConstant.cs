@@ -45,15 +45,15 @@ namespace AncestorCloud.Shared
 		public const string URL = "url";
 		public const string SESSIONID = "SessionId";
 		public const string SUCCESS = "Success";
-
 		#endregion
 
 
 		#region Webservice URL Constants
-
 		public const string BASEURL = "https://wsdev.onegreatfamily.com/v11.02";
 		public const string USEREADSERVICE = "User.svc/Read";
-	
+		public const string ADD_PEOPLE_SERVICE = "Individual.svc/CreateUpdate";
+		public const string ADD_RELATION_SERVICE = "Individual.svc/AddIndiAsRelation";
+
 		#endregion
 
 		#region Login Constants
@@ -68,8 +68,33 @@ namespace AncestorCloud.Shared
 
 		#endregion
 
+		#region ADD PERSON CONSTS
+		public const string ADD_PERSON_SESSION_ID = "SessionId";
+		public const string ADD_PERSON_INDIOGFN = "IndiOgfn";
+		public const string ADD_PERSON_NAME = "Name";
+		public const string ADD_PERSON_GENDER = "Gender";
+		public const string ADD_PERSON_BIRTHDATE = "BirthDate";
+		public const string ADD_PERSON_BIRTHPLACE = "BirthPlace";
+		#endregion
+	
+		#region ADD PERSON Relation
+		public const string ADD_RELATION_INDIOGFN = "RelatedIndiOgfn";
+		public const string ADD_RELATION_TYPE = "RelationshipType";
+		public const string FATHER_RELATIONSHIP = "FATHER_RELATIONSHIP";
+		public const string MOTHER_RELATIONSHIP = "MOTHER_RELATIONSHIP";
+		public const string HUSBAND_RELATIONSHIP = "HUSBAND_RELATIONSHIP";
+		public const string WIFE_RELATIONSHIP = "WIFE_RELATIONSHIP";
+		public const string CHILD_RELATIONSHIP = "CHILD_RELATIONSHIP";
+		public const string SIBLING_RELATIONSHIP = "SIBLING_RELATIONSHIP";
+		public const string DAUGHTER_RELATIONSHIP = "DAUGHTER_RELATIONSHIP";
+		public const string SON_RELATIONSHIP = "SON_RELATIONSHIP";
+		public const string SISTER_RELATIONSHIP = "SISTER_RELATIONSHIP";
+		public const string BROTHER_RELATIONSHIP = "BROTHER_RELATIONSHIP";
+		public const string UNKNOWN_RELATIONSHIP = "UNKNOWN_RELATIONSHIP";
+		#endregion
+
+
+
 	}
 
-
 }
-

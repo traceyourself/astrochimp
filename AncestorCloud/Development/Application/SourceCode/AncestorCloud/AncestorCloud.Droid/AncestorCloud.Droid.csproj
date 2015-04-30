@@ -113,6 +113,7 @@
     <Compile Include="Views\AddFamily\AddFamilyView.cs" />
     <Compile Include="Views\MatcherScreen\RelationshipMatchDetailView.cs" />
     <Compile Include="Views\MatcherScreen\PastMatchesView.cs" />
+    <Compile Include="DroidUtilities\StringConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

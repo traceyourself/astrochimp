@@ -60,7 +60,7 @@ namespace AncestorCloud.Droid
 
 			actionBar.SetCenterImageText (Resource.Drawable.action_menu,Resources.GetString(Resource.String.matcher_menu));
 
-			actionBar.SetRightImage (Resource.Drawable.action_menu);
+			actionBar.SetRightBigImage (Resource.Drawable.action_menu);
 
 			var menuButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 			menuButton.Click += (sender, e) => {
@@ -100,7 +100,7 @@ namespace AncestorCloud.Droid
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.logout_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
 				if(menu.AnimatedOpened){
-					ViewModel.Close();
+					ViewModel.Logout();
 				}
 			};
 

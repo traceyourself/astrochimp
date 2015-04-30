@@ -80,7 +80,7 @@ namespace AncestorCloud.Droid
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.matcher_menu_btn).Click += (object sender, EventArgs e) => {
 				if(menu.AnimatedOpened){
-					menu.AnimatedOpened = !menu.AnimatedOpened;
+					//menu.AnimatedOpened = !menu.AnimatedOpened;
 					ViewModel.ShowMatcherViewModel();
 					ViewModel.Close();
 				}
@@ -88,7 +88,7 @@ namespace AncestorCloud.Droid
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.research_menu_btn).Click += (object sender, EventArgs e) => {
 				if(menu.AnimatedOpened){
-					menu.AnimatedOpened = !menu.AnimatedOpened;
+					//menu.AnimatedOpened = !menu.AnimatedOpened;
 					ViewModel.ShowResearchHelpViewModel();
 					ViewModel.Close();
 				}
@@ -96,8 +96,8 @@ namespace AncestorCloud.Droid
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.logout_menu_btn).Click += (object sender, EventArgs e) => {
 				if(menu.AnimatedOpened){
-					menu.AnimatedOpened = !menu.AnimatedOpened;
-					ViewModel.ShowHomeViewModel();
+					//menu.AnimatedOpened = !menu.AnimatedOpened;
+					ViewModel.Logout();
 				}
 			};
 

@@ -12,7 +12,7 @@ namespace AncestorCloud.Droid
 		public void showLoader ()
 		{	
 			try{
-				if(Utilities.CurrentActiveActivity != null){
+				if(Utilities.CurrentActiveActivity != null && pd == null){
 					pd = ProgressDialog.Show (Utilities.CurrentActiveActivity,"","Loading...");
 				}
 			}catch(Exception e){
@@ -24,6 +24,7 @@ namespace AncestorCloud.Droid
 			try{
 				if(pd != null){
 					pd.Dismiss ();
+					pd = null;
 				}
 			}catch(Exception e){
 				System.Diagnostics.Debug.WriteLine (e.Message);

@@ -114,11 +114,14 @@ namespace AncestorCloud.Shared
 		{
 			if (login == null)
 				throw new ArgumentNullException ("login");
-			
-			if (Convert.ToBoolean(IsLoggedInUserExists(login.UserEmail)))
-				UpdateLoginUser (login);
-			else
-				_connection.Insert (login);
+			try{
+				if (Convert.ToBoolean(IsLoggedInUserExists(login.UserEmail)))
+					UpdateLoginUser (login);
+				else
+					_connection.Insert (login);
+			}catch(Exception e){
+				System.Diagnostics.Debug.WriteLine (""+e.StackTrace);
+			}
 		}
 
 		public LoginModel GetLoginDetails ()
