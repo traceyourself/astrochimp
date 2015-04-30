@@ -145,23 +145,30 @@ namespace AncestorCloud.Shared
 
 		#region get SignUp details
 
-		public static LoginModel GetSignUpDetails(Dictionary<string,object> dataDic)
+		public static LoginModel GetSignUpDetails(LoginModel modal,Dictionary<string,object> dataDic)
 		{
 			if (ValidationClass.IsDataNull (dataDic)) {
 				Utility.Log ("In GetSignUpDetails() data dictionary is null");
 				return null;
 			}
 
-			LoginModel modal = new LoginModel ();
-
-			if (IsKeyExist (AppConstant.CODE, dataDic)) 
-				modal.Code = GetData (AppConstant.CODE, dataDic);
+			 modal = modal ?? new LoginModel ();
 
 			if (IsKeyExist (AppConstant.Message, dataDic))
 				modal.Message = GetData (AppConstant.Message, dataDic);
 
+			if (IsKeyExist (AppConstant.CODE, dataDic)) {
+				if (!modal.Message.Equals (AppConstant.SUCCESS)) {
+					modal.OGFN = GetData (AppConstant.CODE, dataDic);
+					modal.IndiOGFN = GetData (AppConstant.VALUE, dataDic);
+				}
+				
+			}
 			if (IsKeyExist (AppConstant.VALUE, dataDic))
-				modal.Value = GetData (AppConstant.VALUE, dataDic);
+				modal.OGFN = GetData (AppConstant.VALUE, dataDic);
+
+			if (IsKeyExist (AppConstant.VALUE, dataDic))
+				modal.IndiOGFN = GetData (AppConstant.VALUE, dataDic);
 
 			return modal;
 		}

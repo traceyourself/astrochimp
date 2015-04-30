@@ -29,6 +29,9 @@ namespace AncestorCloud.Shared
 		#region Web service constants
 		public const string DEVELOPERID = "AncestorCloud";
 		public const string DEVELOPERPASSWORD = "492C4DD9-A129-4146-BAE9-D0D45FBC315C";
+		public const string PRODUCTID = "OGF_YEARLY_TRIAL7";
+		public const string DEVUSEREMAIL = "mikeyamadeo@gmail.com";
+		public const string DEVUSERPASSWORD = "password";
 
 		public const string ID = "id";
 		public const string BIRTHDAY = "birthday";
@@ -50,10 +53,10 @@ namespace AncestorCloud.Shared
 
 
 		#region Webservice URL Constants
-
 		public const string BASEURL = "https://wsdev.onegreatfamily.com/v11.02";
 		public const string USEREADSERVICE = "User.svc/Read";
-	
+		public const string USERSIGNINSERVICE = "User.svc/Create";
+		public const string USERLOGINSERVICE = "User.svc/Signin";
 		#endregion
 
 		#region Login Constants
@@ -65,6 +68,18 @@ namespace AncestorCloud.Shared
 		#region User Read Data
 		public const string INDIOGFN = "IndiOgfn";
 		public const string OGFN = "Ogfn";
+
+		#endregion
+
+		#region SignUp service Constants
+		public const string USERNAMEKEY = "username";
+		public const string PASSWORDKEY = "Password";
+		public const string DEVELOPERIDKEY = "DeveloperId";
+		public const string DEVELOPERPASSWORDKEY = "DeveloperPassword";
+		public const string FIRSTNAMEKEY = "FirstName";
+		public const string LASTNAMEKEY = "LastName";
+		public const string EMAILKEY = "EmailAddress";
+		public const string PRODUCTIDKEY = "ProductId";
 
 		#endregion
 
