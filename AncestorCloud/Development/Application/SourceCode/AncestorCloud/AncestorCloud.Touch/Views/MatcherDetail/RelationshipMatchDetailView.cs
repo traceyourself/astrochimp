@@ -51,12 +51,12 @@ namespace AncestorCloud.Touch
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 
 			table = RelationshipMatchTable;//new UITableView(View.Bounds); // defaults to Plain style
-			string[] tableItems = new string[] {"1972"+"   "+"Glenneth Girtrude Gates"+"  " +" 06","1956"+"   "+"Henry Wright Gates"+"          " +" 07","1925"+"   "+"Glenneth Girtrude Gates"+"  " +" 08","1907"+"   "+"Henry Wright Gates"+"          " +" 09","1925"+"   "+"Henry Wright Gates"+"          " +" 10","1907"+"   "+"Glenneth Girtrude Gates"+"  " +" 11","1925"+"   "+"Henry Wright Gates"+"          " +" 12","1921"+"   "+"Glenneth Girtrude Gates"+"  " +" 13","1972"+"   "+"Henry Wright Gates"+"          " +" 14","1956"+"   "+"Glenneth Girtrude Gates"+"  " +" 15"};
+			string[] tableItems = new string[] {"1972"+"   "+"Glenneth Girtrude Gates"+"  " +"    06º","1956"+"   "+"Henry Wright Gates"+"          " +"    07º","1925"+"   "+"Glenneth Girtrude Gates"+"  " +"    08º","1907"+"   "+"Henry Wright Gates"+"          " +"    09º","1925"+"   "+"Henry Wright Gates"+"          " +"    10º","1907"+"   "+"Glenneth Girtrude Gates"+"  " +"    11º","1925"+"   "+"Henry Wright Gates"+"          " +"    12º","1921"+"   "+"Glenneth Girtrude Gates"+"  " +"    13º","1972"+"   "+"Henry Wright Gates"+"          " +"    14º","1956"+"   "+"Glenneth Girtrude Gates"+"  " +"    15º"};
 			table.Source = new RelationshipMatchTableSource(tableItems);
 			this.NavigationItem.TitleView = new MyTitleView (this.Title);
 			this.NavigationController.NavigationBarHidden = false;
 
-			UIImage image = UIImage.FromFile ("cross.png");
+			UIImage image = UIImage.FromFile ("clock_icon.png");
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 

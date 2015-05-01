@@ -83,7 +83,7 @@ namespace AncestorCloud.Touch
 			System.Diagnostics.Debug.WriteLine ("Data : "+childItem.Name);
 			System.Diagnostics.Debug.WriteLine ("Section Footer:" + tableItem.SectionFooter);
 
-			tableView.BackgroundColor = UIColor.FromRGB (178,45,116);
+			//tableView.BackgroundColor = UIColor.FromRGB (178,45,116);
 
 			return cell;
 
@@ -104,12 +104,12 @@ namespace AncestorCloud.Touch
 
 		public override nfloat GetHeightForHeader (UITableView tableView, nint section)
 		{
-			return 25;
+			return 35;
 		}
 
 		public override nfloat GetHeightForFooter (UITableView tableView, nint section)
 		{
-			return 30;
+			return 40;
 		}
 
 		public override UIView GetViewForFooter (UITableView tableView, nint section)

@@ -243,15 +243,6 @@
     <Compile Include="Views\ResearchHelper\ResearchHelpView.designer.cs">
       <DependentUpon>ResearchHelpView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\PastMatches\PastMatchesView.cs" />
-    <Compile Include="Views\PastMatches\PastMatchesView.designer.cs">
-      <DependentUpon>PastMatchesView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PastMatches\PastMatchesTableSoure.cs" />
-    <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.cs" />
-    <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.designer.cs">
-      <DependentUpon>PastMatchesCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\MyFamily\MyFamilyTableSource.cs" />
     <Compile Include="Views\AddFriends\AddFriendView.cs" />
     <Compile Include="Views\AddFriends\AddFriendView.designer.cs" />
@@ -274,6 +265,15 @@
       <DependentUpon>CelebritiesCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Celebrities\CelebritiesTableSource.cs" />
+    <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.cs" />
+    <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.designer.cs">
+      <DependentUpon>PastMatchesCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PastMatches\PastMatchesTableSoure.cs" />
+    <Compile Include="Views\PastMatches\PastMatchesView.cs" />
+    <Compile Include="Views\PastMatches\PastMatchesView.designer.cs">
+      <DependentUpon>PastMatchesView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -339,5 +339,13 @@
     <BundleResource Include="Resources\blue_smallbtn%402x.png" />
     <BundleResource Include="Resources\fbook_btn2x.png" />
     <BundleResource Include="Resources\myfamily_icon.png" />
+    <BundleResource Include="Resources\disclosure_indicator.jpg" />
+    <BundleResource Include="Resources\HomeScreen.png" />
+    <BundleResource Include="Resources\myfamily_titlegrey.png" />
+    <BundleResource Include="Resources\close.png" />
+    <BundleResource Include="Resources\edit.png" />
+    <BundleResource Include="Resources\female.png" />
+    <BundleResource Include="Resources\plus.png" />
+    <BundleResource Include="Resources\clock_icon%402x.png" />
   </ItemGroup>
 </Project>
