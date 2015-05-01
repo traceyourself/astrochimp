@@ -179,8 +179,7 @@ namespace AncestorCloud.Touch
 				//create the ViewModels
 				foreach (var viewModel in homeViewModel.MenuItems)
 				{
-					
-					flyoutMenuElements.Add(new CustomStringElement(viewModel.Title));
+					flyoutMenuElements.Add(new CustomStringElement(viewModel.Title,UIImage.FromBundle(viewModel.Image)));
 
 				}
 

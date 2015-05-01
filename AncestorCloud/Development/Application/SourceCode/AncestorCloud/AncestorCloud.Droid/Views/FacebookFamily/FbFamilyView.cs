@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using Cirrious.MvvmCross.Binding.Droid.Views;
+using AncestorCloud.Shared.ViewModels;
 
 namespace AncestorCloud.Droid
 {
@@ -102,7 +103,7 @@ namespace AncestorCloud.Droid
 			};
 
 			nextBtn.Click += (object sender, EventArgs e) => {
-				ViewModel.ShowMyFamilyViewModel();
+				ViewModel.NextButtonCommand.Execute(null);
 				//ViewModel.CheckValues();
 			};
 

@@ -15,6 +15,15 @@ namespace AncestorCloud.Shared
 			set { this.title = value; this.RaisePropertyChanged(() => this.Title); }
 		
 		}
+
+		private string image = string.Empty;
+
+		public string Image
+		{
+			get { return this.image; }
+			set { this.image = value; this.RaisePropertyChanged(() => this.Image); }
+
+		}
 	}
 }
 

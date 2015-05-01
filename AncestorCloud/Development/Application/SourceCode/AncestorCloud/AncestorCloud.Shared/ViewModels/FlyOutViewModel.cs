@@ -89,18 +89,21 @@ namespace AncestorCloud.Shared.ViewModels
 					{
 						Section = Section.MyFamily,
 						Title = "My Family",
+						Image = "cross.png",
 						ViewModelType = typeof(FbFamilyViewModel),
 					},
 					new MenuViewModel
 					{
 						Section = Section.Matcher,
 						Title = "Matcher",
+						Image = "cross.png",
 						ViewModelType = typeof(MatchViewModel)
 					},   
 					new MenuViewModel
 					{
 						Section = Section.MyFamily,
 						Title = "Research Help",
+						Image = "cross.png",
 						ViewModelType = typeof(ResearchHelpViewModel)
 					},
 					new MenuViewModel
@@ -108,6 +111,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 						Section = Section.Matcher,
 						Title = "Log Out",
+						Image = "cross.png",
 						ViewModelType = typeof(HomePageViewModel),
 
 					},
@@ -123,18 +127,21 @@ namespace AncestorCloud.Shared.ViewModels
 					{
 						Section = Section.MyFamily,
 						Title = "My Family",
+						Image = "cross.png",
 						ViewModelType = typeof(FamilyViewModel),
 					},
 					new MenuViewModel
 					{
 						Section = Section.Matcher,
 						Title = "Matcher",
+						Image = "cross.png",
 						ViewModelType = typeof(MatchViewModel)
 					},   
 					new MenuViewModel
 					{
 						Section = Section.MyFamily,
 						Title = "Research Help",
+						Image = "cross.png",
 						ViewModelType = typeof(ResearchHelpViewModel)
 					},
 					new MenuViewModel
@@ -142,6 +149,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 						Section = Section.Matcher,
 						Title = "Log Out",
+						Image = "cross.png",
 						ViewModelType = typeof(HomePageViewModel),
 
 					},
