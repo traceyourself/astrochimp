@@ -80,6 +80,7 @@ namespace AncestorCloud.Shared
 		#region ADD PERSON Relation
 		public const string ADD_RELATION_INDIOGFN = "RelatedIndiOgfn";
 		public const string ADD_RELATION_TYPE = "RelationshipType";
+
 		public const string FATHER_RELATIONSHIP = "FATHER_RELATIONSHIP";
 		public const string MOTHER_RELATIONSHIP = "MOTHER_RELATIONSHIP";
 		public const string HUSBAND_RELATIONSHIP = "HUSBAND_RELATIONSHIP";

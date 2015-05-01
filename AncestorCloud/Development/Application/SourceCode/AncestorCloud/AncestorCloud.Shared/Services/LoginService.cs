@@ -40,7 +40,6 @@ namespace AncestorCloud.Shared
 				/*email = "mikeyamadeo@gmail.com";
 				password = "password";*/
 
-
 				String url = "https://wsdev.onegreatfamily.com/v11.02/User.svc/Signin?username="+email+"&Password="+password+"&DeveloperId="+developerId+"&DeveloperPassword="+developerPassword;
 				Mvx.Trace(url);
 
@@ -61,7 +60,7 @@ namespace AncestorCloud.Shared
 				var userReadResponse = await _userReadService.MakeUserReadService(modal);
 //				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 //				responsemodal.loginModal = modal;
-//				responsemodal.Status = ResponseStatus.OK;
+				userReadResponse.Status = ResponseStatus.OK;
 
 				return userReadResponse as ResponseModel<LoginModel>;
 			}

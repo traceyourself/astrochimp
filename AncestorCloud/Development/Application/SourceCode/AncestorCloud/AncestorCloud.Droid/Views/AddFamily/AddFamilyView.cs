@@ -87,20 +87,27 @@ namespace AncestorCloud.Droid
 			};
 
 			addBtn.Click += (object sender, EventArgs e) => {
-				//ViewModel.Close();
-				if(Validate())
+				Utilities.RegisterCertificateForApiHit();
+
+				if(maleSelected)
 				{
-					AddFamilyModel model = createModel();
-					ViewModel.AddPerson(model);
+					ViewModel.Gender = "Male";	
+				}else if(femaleSelected)
+				{
+					ViewModel.Gender = "Female";
+				}else{
+					ViewModel.Gender = "";
 				}
+
+				ViewModel.AddType = Utilities.AddPersonType;
+
+				ViewModel.AddPerson();
 			};
 
 			dateText.Click += (object sender, EventArgs e) => {
 				ShowDatePicker();
 			};
-
 		}
-
 
 		public void ShowDatePicker()
 		{
@@ -108,14 +115,6 @@ namespace AncestorCloud.Droid
 			DatePickerDialog dpd = new DatePickerDialog (this,new AddFamilyDateListener(this),cal.Get(Calendar.Year), cal.Get(Calendar.Month),cal.Get(Calendar.DayOfMonth));
 			dpd.Show ();
 		}
-
-		public bool Validate()
-		{
-			return true;
-		}
-
-		public People createModel()
-		{
 
 //			People model = new People ();
 //
@@ -131,13 +130,6 @@ namespace AncestorCloud.Droid
 //				model.Gender = "Female";
 //			}
 //
-
-
-			return model;
-		}
-
-
-
 
 	}
 

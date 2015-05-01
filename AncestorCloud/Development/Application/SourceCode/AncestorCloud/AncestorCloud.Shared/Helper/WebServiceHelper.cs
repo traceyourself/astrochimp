@@ -5,7 +5,7 @@ namespace AncestorCloud.Shared
 {
 	static public class WebServiceHelper
 	{
-		
+
 		public static string GetWebServiceURL(string webServiceName, Dictionary<string,string> requestParameters = null)
 		{
 			if ( webServiceName == null)
@@ -16,18 +16,17 @@ namespace AncestorCloud.Shared
 			if (requestParameters == null)
 				return url;
 
-			string requestString = "";
+			string requestString = String.Empty;
 
-			int index = 0;
+			string and = "";
 
 			foreach(KeyValuePair<string, string> kvp in requestParameters)
 			{
-				requestString = String.Format ("{0}={1}", kvp.Key, kvp.Value);
+				requestString += String.Format (and +"{0}={1}", kvp.Key, kvp.Value);
 
-				if( index < requestParameters.Count - 2 )
-					requestString += "&";
+				if(and.Equals(""))
+					and = "&";
 
-				++index;
 			}
 
 			url += "?" + requestString;
@@ -36,4 +35,3 @@ namespace AncestorCloud.Shared
 		}
 	}
 }
-

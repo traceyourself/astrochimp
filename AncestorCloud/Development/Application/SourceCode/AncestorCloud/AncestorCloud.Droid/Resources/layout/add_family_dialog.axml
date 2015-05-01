@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -37,7 +38,8 @@
                     android:background="@drawable/edit_text_back"
                     android:textColorHint="@color/light_gray_color"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    local:MvxBind="Text FirstName" />
                 <TextView
                     style="@style/GraySmallLeftText"
                     android:text="@string/Middlename"
@@ -50,7 +52,8 @@
                     android:background="@drawable/edit_text_back"
                     android:textColorHint="@color/light_gray_color"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    local:MvxBind="Text MiddleName" />
                 <TextView
                     style="@style/GraySmallLeftText"
                     android:text="@string/Lastname"
@@ -63,7 +66,8 @@
                     android:background="@drawable/edit_text_back"
                     android:textColorHint="@color/light_gray_color"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    local:MvxBind="Text LastName" />
                 <TextView
                     style="@style/GraySmallLeftText"
                     android:text="@string/Birthyear"
@@ -82,7 +86,8 @@
                         android:textSize="14sp"
                         android:gravity="center"
                         android:layout_marginRight="20dp"
-                        android:layout_toLeftOf="@+id/gender_container" />
+                        android:layout_toLeftOf="@+id/gender_container"
+                        local:MvxBind="Text BirthDate" />
                     <RelativeLayout
                         android:layout_width="160dp"
                         android:layout_height="42dp"
@@ -105,7 +110,7 @@
                                 <ImageView
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
-                                    android:src="@drawable/blue_dot" />
+                                    android:background="@drawable/male_check_icon" />
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -124,7 +129,7 @@
                                 <ImageView
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
-                                    android:src="@drawable/blue_dot" />
+                                    android:background="@drawable/female_check_icon" />
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -154,7 +159,8 @@
                     android:background="@drawable/edit_text_back"
                     android:textColorHint="@color/light_gray_color"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    local:MvxBind="Text BirthLocation" />
                 <TextView
                     android:id="@+id/add_person_btn"
                     android:layout_width="match_parent"

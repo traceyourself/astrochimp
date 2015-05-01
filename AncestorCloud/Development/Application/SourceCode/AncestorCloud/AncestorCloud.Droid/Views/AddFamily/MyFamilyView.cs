@@ -333,7 +333,8 @@ namespace AncestorCloud.Droid
 
 				holder.listFooter.Click += (object sender, EventArgs e) => {
 					//System.Diagnostics.Debug.WriteLine("footer clicked at : "+position);
-					Utilities.AddPersonType = structure.HeaderTitle;
+					string []arr = structure.FooterTitle.Split(new char[]{' '},5);
+					Utilities.AddPersonType = arr[1];
 					myFamilyObj.ViewModel.ShowAddFamilyViewModel();
 				};
 			}

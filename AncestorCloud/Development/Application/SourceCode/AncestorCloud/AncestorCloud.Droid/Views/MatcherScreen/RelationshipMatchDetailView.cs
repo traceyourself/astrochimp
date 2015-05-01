@@ -55,9 +55,9 @@ namespace AncestorCloud.Droid
 			actionBar = FindViewById <ActionBar>(Resource.Id.actionBar);
 			actionBar.SetLeftCornerImage (Resource.Drawable.back);
 
-			actionBar.SetCenterImageText (Resource.Drawable.action_menu,Resources.GetString(Resource.String.matcher_menu));
+			actionBar.SetCenterImageText (Resource.Drawable.match_icon,Resources.GetString(Resource.String.matcher_menu));
 
-			actionBar.SetRightBigImage (Resource.Drawable.action_menu);
+			actionBar.SetRightBigImage (Resource.Drawable.clock_icon);
 			var pastButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_right_btn);
 
 			pastButton.Click += (sender, e) => {
