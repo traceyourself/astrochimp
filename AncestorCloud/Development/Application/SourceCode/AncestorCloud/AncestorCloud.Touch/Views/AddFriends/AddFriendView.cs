@@ -37,15 +37,14 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 
 			this.NavigationController.NavigationBarHidden = false;
-
-
-			
+			this.Title="Select Someone to Match";
+	
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
 		partial void CelebritiesButtonTapped (NSObject sender)
 		{
-			ViewModel.ShowCelebrities();
+			//ViewModel.ShowCelebrities();
 		}
 
 		public override void ViewWillDisappear (bool animated)

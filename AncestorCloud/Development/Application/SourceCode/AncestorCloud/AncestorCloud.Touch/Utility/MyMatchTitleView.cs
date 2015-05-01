@@ -5,13 +5,13 @@ using CoreGraphics;
 
 namespace AncestorCloud.Touch
 {
-	public class MyTitleView: UIView
+	public class MyMatchTitleView: UIView
 	{
 
 
-		public MyTitleView (string title,CGRect frame) : base (frame)
+		public MyMatchTitleView (string title,CGRect frame) : base (frame)
 		{
-			UIImageView img = new UIImageView(UIImage.FromFile("myfamily_icon.png"));
+			UIImageView img = new UIImageView(UIImage.FromFile("match_icon.png"));
 			this.AddSubview (img);
 
 			UILabel label = new UILabel {
@@ -25,4 +25,3 @@ namespace AncestorCloud.Touch
 
 	}
 }
-

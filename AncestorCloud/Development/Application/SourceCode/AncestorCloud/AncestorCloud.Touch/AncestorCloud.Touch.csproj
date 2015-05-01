@@ -271,7 +271,7 @@
 
     <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.cs" /><Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.designer.cs"><DependentUpon>PastMatchesCell.cs</DependentUpon></Compile><Compile Include="Views\PastMatches\PastMatchesTableSoure.cs" /><Compile Include="Views\PastMatches\PastMatchesView.cs" /><Compile Include="Views\PastMatches\PastMatchesView.designer.cs"><DependentUpon>PastMatchesView.cs</DependentUpon></Compile>
  feature/Working_Flow
-  </ItemGroup>
+  <Compile Include="Utility\MyMatchTitleView.cs" /><Compile Include="Utility\MyResearchTitleView.cs" /><Compile Include="Utility\MyPastMatchTitleView.cs" /></ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Utility\" />
@@ -340,6 +340,9 @@
     <BundleResource Include="Resources\female.png" />
     <BundleResource Include="Resources\plus.png" />
     <BundleResource Include="Resources\clock_icon%402x.png" />
+    <BundleResource Include="Resources\match_icon%402x.png" />
+    <BundleResource Include="Resources\logout_icon%402x.png" />
+    <BundleResource Include="Resources\search_icon%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />

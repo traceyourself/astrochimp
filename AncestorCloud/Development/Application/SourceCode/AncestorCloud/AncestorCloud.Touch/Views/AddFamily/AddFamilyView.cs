@@ -3,6 +3,7 @@ using System;
 
 using Foundation;
 using UIKit;
+using AncestorCloud.Shared.ViewModels;
 
 namespace AncestorCloud.Touch
 {
@@ -16,6 +17,12 @@ namespace AncestorCloud.Touch
 		{
 		}
 
+		public new AddFamilyViewModel ViewModel
+		{
+			get { return base.ViewModel as AddFamilyViewModel; }
+			set { base.ViewModel = value; }
+		}
+
 		public override void DidReceiveMemoryWarning ()
 		{
 			// Releases the view if it doesn't have a superview.
@@ -27,8 +34,15 @@ namespace AncestorCloud.Touch
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+			setnavigation ();
 		
 			// Perform any additional setup after loading the view, typically from a nib.
+		}
+
+		public void setnavigation()
+		{
+			this.Title="Add Family";
+
 		}
 			
 

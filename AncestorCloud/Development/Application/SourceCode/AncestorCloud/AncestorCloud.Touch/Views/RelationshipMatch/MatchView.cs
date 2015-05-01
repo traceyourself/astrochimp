@@ -58,12 +58,12 @@ namespace AncestorCloud.Touch
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 
-			this.Title = "My Family";
+			this.Title = "Matcher";
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
 			this.NavigationItem.SetHidesBackButton (true, false);
-			//this.NavigationItem.TitleView = new MyTitleView (this.Title);
+			this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,150,20));
 			this.NavigationController.NavigationBarHidden = false;
 
 			#region LeftSide Button

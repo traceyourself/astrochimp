@@ -5,6 +5,7 @@ using Foundation;
 using UIKit;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Plugins.Messenger;
+using System.Drawing;
 
 namespace AncestorCloud.Touch
 {
@@ -33,8 +34,11 @@ namespace AncestorCloud.Touch
 		public void SetNavigationbar()
 		{
 
+			this.Title = "Research Help";
+
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
-		this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+		    this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+			this.NavigationItem.TitleView = new MyResearchTitleView (this.Title,new RectangleF(0,0,200,20));
 
 			UIImage image = UIImage.FromFile ("action_menu.png");
 

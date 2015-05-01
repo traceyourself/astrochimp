@@ -8,6 +8,7 @@ using Cirrious.CrossCore;
 using System.Linq;
 using AncestorCloud.Shared;
 using Cirrious.MvvmCross.Binding.BindingContext;
+using System.Drawing;
 
 namespace AncestorCloud.Touch
 {
@@ -141,13 +142,13 @@ namespace AncestorCloud.Touch
 
 		public void SetFamilyItem()
 		{
-			this.Title = "";
+			this.Title = "My Family";
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
 			//this.NavigationItem.SetHidesBackButton (true, false);
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
-			//this.NavigationItem.TitleView = new MyTitleView ();
+			this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,150,20));
 			this.NavigationController.NavigationBarHidden = false;
 
 
