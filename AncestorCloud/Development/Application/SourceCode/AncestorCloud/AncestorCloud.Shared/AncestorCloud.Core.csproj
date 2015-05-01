@@ -85,7 +85,7 @@
 
 feature/Matcher_Ui_screens
 
-  <Compile Include="Models\Celebrity.cs" /><Compile Include="PlatformSpecificService\IAlert.cs" /><Compile Include="PlatformSpecificService\IFileService.cs" /><Compile Include="PlatformSpecificService\ILoader.cs" /><Compile Include="Services\Interface\IStoreCelebService.cs" /><Compile Include="Services\StoreCelebService.cs" /></ItemGroup>
+  <Compile Include="Models\Celebrity.cs" /><Compile Include="PlatformSpecificService\IAlert.cs" /><Compile Include="PlatformSpecificService\IFileService.cs" /><Compile Include="PlatformSpecificService\ILoader.cs" /><Compile Include="Services\Interface\IStoreCelebService.cs" /><Compile Include="Services\StoreCelebService.cs" />
 
   <Compile Include="Models\TableItem.cs" /><Compile Include="ViewModels\CelebritiesViewModel.cs" /></ItemGroup>
  feature/Working_Flow
