@@ -56,8 +56,11 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void NextButtonTapped()
 		{
-			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
-			_flyoutMessenger.Publish (new ChangeFlyoutFlowMessage (this,false));
+			if (!(Mvx.CanResolve<IAndroidService> ())) {
+				var _flyoutMessenger = Mvx.Resolve<IMvxMessenger> ();
+				_flyoutMessenger.Publish (new ChangeFlyoutFlowMessage (this, false));
+			}
+
 			ShowMyFamilyViewModel ();
 		}
 
@@ -117,6 +120,15 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+
+		#region
+
+		private void SaveFamilyMember()
+		{
+			
+		}
+
+		#endregion
 	}
 }
 

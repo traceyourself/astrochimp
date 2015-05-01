@@ -83,7 +83,7 @@ namespace AncestorCloud.Touch
 			View.AddSubview (_navigation.View);
 			this.AddChildViewController (_navigation);
 
-			this.NavigationItem.TitleView = new MyTitleView (this.Title);
+			//this.NavigationItem.TitleView = new MyTitleView (this.Title);
 			_navigation.NavigationTableView.BackgroundColor = UIColor.FromRGB (46, 58, 73);
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
 
@@ -179,8 +179,7 @@ namespace AncestorCloud.Touch
 				//create the ViewModels
 				foreach (var viewModel in homeViewModel.MenuItems)
 				{
-					
-					flyoutMenuElements.Add(new CustomStringElement(viewModel.Title));
+					flyoutMenuElements.Add(new CustomStringElement(viewModel.Title,UIImage.FromBundle(viewModel.Image)));
 
 				}
 
