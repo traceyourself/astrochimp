@@ -15,7 +15,7 @@ namespace AncestorCloud.Shared
 	public class LoginService : ILoginService
 	{
 
-		private ILoader _loader;
+		private readonly ILoader _loader;
 		private readonly IUserReadService _userReadService;
 
 		public LoginService()

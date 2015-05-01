@@ -19,7 +19,7 @@ namespace AncestorCloud.Touch
 				UIApplication.Main (args, null, "AppDelegate");
 			}
 			catch(Exception e) {
-				System.Diagnostics.Debug.WriteLine ("exception : "+e.InnerException +" StackTrace :"+ e.StackTrace);
+				System.Diagnostics.Debug.WriteLine ("exception : "+e.InnerException +" StackTrace :"+ e.StackTrace +"Message :"+e.Message);
 			}
 		}
 	}
