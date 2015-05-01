@@ -5,6 +5,7 @@ using Foundation;
 using UIKit;
 using Cirrious.MvvmCross.Touch.Views;
 using AncestorCloud.Shared.ViewModels;
+using AncestorCloud.Shared;
 
 namespace AncestorCloud.Touch
 {
@@ -13,6 +14,8 @@ namespace AncestorCloud.Touch
 		public EditFamilyView () : base ("EditFamilyView", null)
 		{
 		}
+
+		public People FamilyMember{ get; set;}
 	
 		public override void DidReceiveMemoryWarning ()
 		{

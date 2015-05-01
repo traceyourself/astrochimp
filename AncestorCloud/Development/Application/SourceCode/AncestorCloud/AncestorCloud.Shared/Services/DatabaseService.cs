@@ -12,12 +12,17 @@ namespace AncestorCloud.Shared
 		public DatabaseService(ISQLiteConnectionFactory factory)
 		{
 			_connection = factory.Create("database.db");
+
+			CreateTables ();
+		}
+
+		public void CreateTables()
+		{
 			_connection.CreateTable<User>();
 			_connection.CreateTable<People>();
 			_connection.CreateTable<LoginModel>();
 			_connection.CreateTable<Celebrity> ();
 		}
-
 			
 		#region IDatabaseService implementation
 
@@ -155,6 +160,12 @@ namespace AncestorCloud.Shared
 
 
 		public void DropAllTables()
+		{
+			DropTables ();
+			CreateTables ();
+		}
+
+		private void DropTables()
 		{
 			_connection.DropTable<LoginModel> ();
 			_connection.DropTable<User>();

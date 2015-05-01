@@ -73,6 +73,8 @@ namespace AncestorCloud.Touch
 			TableItem tableItem = ListItems [indexPath.Section];
 
 			People childItem = tableItem.DataItems[indexPath.Row];
+
+			cell.familyMember = childItem;
             
 			if (cell == null)
 			{
@@ -101,6 +103,8 @@ namespace AncestorCloud.Touch
 
 			return view;
 		}
+
+
 
 		public override nfloat GetHeightForHeader (UITableView tableView, nint section)
 		{
@@ -139,6 +143,16 @@ namespace AncestorCloud.Touch
 	}
 
 
+
+	public class MyTableViewDelegate : UITableViewDelegate
+	{
+
+		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
+		{
+			//throw new System.NotImplementedException ();
+		}
+
+	}
 }
 
 

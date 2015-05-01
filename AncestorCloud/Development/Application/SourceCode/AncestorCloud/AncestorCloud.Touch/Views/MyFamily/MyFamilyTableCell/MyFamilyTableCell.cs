@@ -15,10 +15,12 @@ namespace AncestorCloud.Touch
 
 		public static readonly NSString Key = new NSString ("MyFamilyTableCell");
 
-		readonly string[] tableItems;
+		//readonly string[] tableItems;
 
 		public Action<object> EditButtonClicked
 		{ get; set; }
+
+		public People familyMember{ get; set;}
 
 //		public MyFamilyTableCell (IntPtr handle) : base (handle)
 //		{
@@ -36,7 +38,7 @@ namespace AncestorCloud.Touch
 		}
 		public MyFamilyTableCell (string[] items) 
 		{
-			tableItems = items;
+			//tableItems = items;
 
 		}
 
@@ -57,7 +59,7 @@ namespace AncestorCloud.Touch
 //			}
 
 			var messenger = Mvx.Resolve<IMvxMessenger> ();
-			messenger.Publish (new MyTableCellTappedMessage (this));
+			messenger.Publish (new MyTableCellTappedMessage (this,familyMember));
 		}
 	}
 

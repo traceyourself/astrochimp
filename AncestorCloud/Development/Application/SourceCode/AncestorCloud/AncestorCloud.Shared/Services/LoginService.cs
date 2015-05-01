@@ -15,7 +15,7 @@ namespace AncestorCloud.Shared
 	public class LoginService : ILoginService
 	{
 
-		private ILoader _loader;
+		private readonly ILoader _loader;
 		private readonly IUserReadService _userReadService;
 
 		public LoginService()
@@ -46,7 +46,7 @@ namespace AncestorCloud.Shared
 
 				var response = await client.GetAsync(url);
 
-				String res = response.Content.ReadAsStringAsync().Result;
+				string res = response.Content.ReadAsStringAsync().Result;
 
 				System.Diagnostics.Debug.WriteLine ("Login response : "+res);
 
