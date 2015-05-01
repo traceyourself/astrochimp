@@ -153,6 +153,15 @@ namespace AncestorCloud.Shared
 			return list;
 		}
 
+
+		public void DropAllTables()
+		{
+			_connection.DropTable<LoginModel> ();
+			_connection.DropTable<User>();
+			_connection.DropTable<People>();
+			_connection.DropTable<Celebrity> ();
+		}
+
 		#endregion
 
 		#region Helper Methods

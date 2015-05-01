@@ -28,7 +28,7 @@ namespace AncestorCloud.Shared.ViewModels
 			changeFlyoutToken = _flyoutMessenger.SubscribeOnMainThread<ChangeFlyoutFlowMessage>(message => this.ReloadMenuList(message.ChangeFlyoutFlow));
 
 			var _messenger = Mvx.Resolve<IMvxMessenger>();
-			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<FlyOutCloseMessage>(message => this.Close(this));
+			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<FlyOutCloseMessage>(message => this.CloseFlyoutMenu());
 
 		}
 
@@ -108,7 +108,6 @@ namespace AncestorCloud.Shared.ViewModels
 					},
 					new MenuViewModel
 					{
-
 						Section = Section.Matcher,
 						Title = "Log Out",
 						Image = "cross.png",
@@ -172,6 +171,12 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
 			_flyoutMessenger.Publish (new ReloadFlyOutViewMessage (this));
+		}
+
+		private void CloseFlyoutMenu()
+		{
+			this.ClearDatabase ();
+			this.Close (this);
 		}
 
 		public class DetailParameters
