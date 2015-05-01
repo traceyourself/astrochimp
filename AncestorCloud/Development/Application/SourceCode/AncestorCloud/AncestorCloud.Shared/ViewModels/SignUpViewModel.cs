@@ -290,9 +290,9 @@ namespace AncestorCloud.Shared.ViewModels
 
 			_databaseService.InsertUser (user);
 
-			List<User> list= _databaseService.GetUsers ("1404007466586095");
-
-			User newuser = _databaseService.GetUser (2);
+//			List<User> list= _databaseService.GetUsers ("1404007466586095");
+//
+//			User newuser = _databaseService.GetUser (2);
 		}
 
 		public void SaveFbFamilyData()
@@ -306,7 +306,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 				_databaseService.InsertRelative (people);
 			}
-			List<People> peopleList = _databaseService.RelativeMatching ("brother");
+//			List<People> peopleList = _databaseService.RelativeMatching ("brother");
 		}
 
 		public void SaveFbFriendsData()
