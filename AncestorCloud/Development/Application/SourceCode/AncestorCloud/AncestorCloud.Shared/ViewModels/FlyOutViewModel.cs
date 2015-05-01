@@ -28,7 +28,7 @@ namespace AncestorCloud.Shared.ViewModels
 			changeFlyoutToken = _flyoutMessenger.SubscribeOnMainThread<ChangeFlyoutFlowMessage>(message => this.ReloadMenuList(message.ChangeFlyoutFlow));
 
 			var _messenger = Mvx.Resolve<IMvxMessenger>();
-			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<FlyOutCloseMessage>(message => this.Close(this));
+			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<FlyOutCloseMessage>(message => this.CloseFlyoutMenu());
 
 		}
 
@@ -89,25 +89,28 @@ namespace AncestorCloud.Shared.ViewModels
 					{
 						Section = Section.MyFamily,
 						Title = "My Family",
+						Image = "cross.png",
 						ViewModelType = typeof(FbFamilyViewModel),
 					},
 					new MenuViewModel
 					{
 						Section = Section.Matcher,
 						Title = "Matcher",
+						Image = "cross.png",
 						ViewModelType = typeof(MatchViewModel)
 					},   
 					new MenuViewModel
 					{
 						Section = Section.MyFamily,
 						Title = "Research Help",
+						Image = "cross.png",
 						ViewModelType = typeof(ResearchHelpViewModel)
 					},
 					new MenuViewModel
 					{
-
 						Section = Section.Matcher,
 						Title = "Log Out",
+						Image = "cross.png",
 						ViewModelType = typeof(HomePageViewModel),
 
 					},
@@ -123,18 +126,21 @@ namespace AncestorCloud.Shared.ViewModels
 					{
 						Section = Section.MyFamily,
 						Title = "My Family",
+						Image = "cross.png",
 						ViewModelType = typeof(FamilyViewModel),
 					},
 					new MenuViewModel
 					{
 						Section = Section.Matcher,
 						Title = "Matcher",
+						Image = "cross.png",
 						ViewModelType = typeof(MatchViewModel)
 					},   
 					new MenuViewModel
 					{
 						Section = Section.MyFamily,
 						Title = "Research Help",
+						Image = "cross.png",
 						ViewModelType = typeof(ResearchHelpViewModel)
 					},
 					new MenuViewModel
@@ -142,6 +148,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 						Section = Section.Matcher,
 						Title = "Log Out",
+						Image = "cross.png",
 						ViewModelType = typeof(HomePageViewModel),
 
 					},
@@ -164,6 +171,12 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
 			_flyoutMessenger.Publish (new ReloadFlyOutViewMessage (this));
+		}
+
+		private void CloseFlyoutMenu()
+		{
+			this.ClearDatabase ();
+			this.Close (this);
 		}
 
 		public class DetailParameters

@@ -8,6 +8,7 @@ using Cirrious.CrossCore;
 using AncestorCloud.Shared;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using System.Linq;
+using System.Drawing;
 
 namespace AncestorCloud.Touch
 {
@@ -52,7 +53,7 @@ namespace AncestorCloud.Touch
 			set.Apply ();
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
 			this.NavigationItem.SetHidesBackButton (true, false);
-			this.NavigationItem.TitleView = new MyTitleView (this.Title);
+			this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,150,20));
 
 			UIImage image = UIImage.FromFile ("action_menu.png");
 

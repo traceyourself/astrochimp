@@ -4,9 +4,9 @@ using MonoTouch.Dialog;
 
 namespace AncestorCloud.Touch
 {
-	public class CustomStringElement : StringElement
+	public class CustomStringElement : ImageStringElement
 	{
-		public CustomStringElement(String caption): base(caption)
+		public CustomStringElement(string caption, UIImage image): base(caption,image)
 		{
 
 		}

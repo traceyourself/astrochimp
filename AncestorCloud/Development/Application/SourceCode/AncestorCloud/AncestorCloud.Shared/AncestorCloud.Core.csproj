@@ -83,12 +83,10 @@
     <Compile Include="ViewModels\AddFriendViewModel.cs" />
     <Compile Include="ViewModels\EditFamilyViewModel.cs" />
 
-feature/Matcher_Ui_screens
 
-  <Compile Include="Models\Celebrity.cs" /><Compile Include="PlatformSpecificService\IAlert.cs" /><Compile Include="PlatformSpecificService\IFileService.cs" /><Compile Include="PlatformSpecificService\ILoader.cs" /><Compile Include="Services\Interface\IStoreCelebService.cs" /><Compile Include="Services\StoreCelebService.cs" />
 
-  <Compile Include="Models\TableItem.cs" /><Compile Include="ViewModels\CelebritiesViewModel.cs" /></ItemGroup>
- feature/Working_Flow
+  <Compile Include="Models\Celebrity.cs" /><Compile Include="PlatformSpecificService\IAlert.cs" /><Compile Include="PlatformSpecificService\IFileService.cs" /><Compile Include="PlatformSpecificService\ILoader.cs" /><Compile Include="Services\Interface\IStoreCelebService.cs" /><Compile Include="Services\StoreCelebService.cs" /><Compile Include="Models\TableItem.cs" /><Compile Include="ViewModels\CelebritiesViewModel.cs" /></ItemGroup>
+
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <ItemGroup>
@@ -141,3 +139,4 @@ feature/Matcher_Ui_screens
     <Folder Include="PlatformSpecificService\" />
   </ItemGroup>
 </Project>
+
