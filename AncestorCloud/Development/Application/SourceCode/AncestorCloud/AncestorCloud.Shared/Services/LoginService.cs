@@ -46,7 +46,7 @@ namespace AncestorCloud.Shared
 
 				var response = await client.GetAsync(url);
 
-				String res = response.Content.ReadAsStringAsync().Result;
+				string res = response.Content.ReadAsStringAsync().Result;
 
 				System.Diagnostics.Debug.WriteLine ("Login response : "+res);
 

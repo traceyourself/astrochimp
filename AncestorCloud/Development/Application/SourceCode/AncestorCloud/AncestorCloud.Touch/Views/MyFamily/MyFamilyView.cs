@@ -15,7 +15,7 @@ namespace AncestorCloud.Touch
 	public partial class MyFamilyView : BaseViewController
 	{
 
-		UILabel cell;
+		//UILabel cell;
 
 		private MvxSubscriptionToken navigationMenuToken;
 
@@ -26,13 +26,6 @@ namespace AncestorCloud.Touch
 		{
 			get { return base.ViewModel as MyFamilyViewModel; }
 			set { base.ViewModel = value; }
-		}
-		public override void DidReceiveMemoryWarning ()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
 		}
 
 		public override void ViewDidLoad ()
@@ -49,14 +42,14 @@ namespace AncestorCloud.Touch
 
 		private void CreateMyFamilyTable()
 		{
-			
 			List<TableItem> data = CreateTableItems(ViewModel.FamilyList);
 
 			ViewModel.TableDataList = data;
 
-
 			var source = new MyFamilyTableSource (myFamilyTable);
 			myFamilyTable.Source = source;
+
+			//myFamilyTable.Delegate = new MyTableViewDelegate ();
 
 			var set = this.CreateBindingSet<MyFamilyView , MyFamilyViewModel> ();
 			set.Bind (source).To (vm => vm.TableDataList);
@@ -66,6 +59,54 @@ namespace AncestorCloud.Touch
 
 		#endregion
 
+
+
+
+		public void SetFamilyItem()
+		{
+			this.Title = "My Family";
+			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
+				{ TextColor = UIColor.FromRGB (255,255,255) });
+			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+			//this.NavigationItem.SetHidesBackButton (true, false);
+			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
+			this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,150,20));
+			this.NavigationController.NavigationBarHidden = false;
+
+
+		}
+
+		private void AddEvents ()
+		{
+			(myFamilyTable.Source as MyFamilyTableSource).FooterClickedDelegate += ShowAddParents;
+			var _messenger = Mvx.Resolve<IMvxMessenger>();
+			navigationMenuToken = _messenger.SubscribeOnMainThread<MyTableCellTappedMessage>(message => this.ShowEditFamily(message.FamilyMember));
+
+		}
+
+		public void ShowAddParents(object obj)
+		{
+			ViewModel.ShowAddParents ();
+		}
+
+		public void ShowEditFamily(People member)
+		{
+			EditFamilyView editFamily = new EditFamilyView ();
+			editFamily.FamilyMember = member;
+
+			UIWindow window = UIApplication.SharedApplication.KeyWindow;
+			window.AddSubview (editFamily.View);
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			if (!NavigationController.ViewControllers.Contains (this)) {
+				var messenger = Mvx.Resolve<IMvxMessenger> ();
+				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
+
+			}
+			base.ViewWillDisappear (animated);
+		}
 
 		#region list Filteration
 
@@ -101,9 +142,7 @@ namespace AncestorCloud.Touch
 				{
 					greatGrandParentList.Add (item);
 				}
-
-
-		 }
+			}
 
 
 			TableItem siblingData = new TableItem ();
@@ -134,55 +173,11 @@ namespace AncestorCloud.Touch
 
 			resultList.Add (greatGrandParentData);
 
-		
+
 			return resultList;
 		}
 
 		#endregion
-
-		public void SetFamilyItem()
-		{
-			this.Title = "My Family";
-			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
-				{ TextColor = UIColor.FromRGB (255,255,255) });
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
-			//this.NavigationItem.SetHidesBackButton (true, false);
-			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
-			this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,150,20));
-			this.NavigationController.NavigationBarHidden = false;
-
-
-		}
-
-		private void AddEvents ()
-		{
-			(myFamilyTable.Source as MyFamilyTableSource).FooterClickedDelegate += ShowAddParents;
-			var _messenger = Mvx.Resolve<IMvxMessenger>();
-			navigationMenuToken = _messenger.SubscribeOnMainThread<MyTableCellTappedMessage>(message => this.ShowEditFamily(this));
-
-		}
-
-		public void ShowAddParents(object obj)
-		{
-			ViewModel.ShowAddParents ();
-		}
-
-		public void ShowEditFamily(object obj)
-		{
-			EditFamilyView editFamily = new EditFamilyView ();
-			UIWindow window = UIApplication.SharedApplication.KeyWindow;
-			window.AddSubview (editFamily.View);
-		}
-
-		public override void ViewWillDisappear (bool animated)
-		{
-			if (!NavigationController.ViewControllers.Contains (this)) {
-				var messenger = Mvx.Resolve<IMvxMessenger> ();
-				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
-
-			}
-			base.ViewWillDisappear (animated);
-		}
 
 	}
 }

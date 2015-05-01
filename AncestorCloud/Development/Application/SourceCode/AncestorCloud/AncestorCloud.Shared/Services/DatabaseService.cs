@@ -161,12 +161,16 @@ namespace AncestorCloud.Shared
 
 		public void DropAllTables()
 		{
+			DropTables ();
+			CreateTables ();
+		}
+
+		private void DropTables()
+		{
 			_connection.DropTable<LoginModel> ();
 			_connection.DropTable<User>();
 			_connection.DropTable<People>();
 			_connection.DropTable<Celebrity> ();
-
-			CreateTables ();
 		}
 
 		#endregion

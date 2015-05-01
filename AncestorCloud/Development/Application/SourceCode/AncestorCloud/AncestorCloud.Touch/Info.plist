@@ -32,5 +32,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.smartdata.astrochimp</string>
 </dict>
 </plist>
