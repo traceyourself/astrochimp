@@ -111,12 +111,9 @@
     <Compile Include="Views\ResearchHelp\ResearchHelpView.cs" />
     <Compile Include="Views\AddFamily\AddFamilyView.cs" />
     <Compile Include="Views\MatcherScreen\RelationshipMatchDetailView.cs" />
-
     <Compile Include="Views\MatcherScreen\PastMatchesView.cs" />
-
     <Compile Include="PlatformSpecificService\Loader.cs" />
     <Compile Include="PlatformSpecificService\FileService.cs" />
-
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -216,12 +213,6 @@
     <AndroidResource Include="Resources\layout\past_matches.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\AncestorCloud.Shared\AncestorCloud.Core.csproj">
-      <Project>{ED8A9D7B-B591-4204-BE58-FAC4EE55E0E5}</Project>
-      <Name>AncestorCloud.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Login\" />
     <Folder Include="Views\Home\" />

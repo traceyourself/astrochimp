@@ -262,11 +262,9 @@
     <Compile Include="Views\EditFamily\EditFamilyView.designer.cs">
       <DependentUpon>EditFamilyView.cs</DependentUpon>
     </Compile>
-
     <Compile Include="PlatformSpecificService\IOSAlert.cs" />
     <Compile Include="PlatformSpecificService\Loader.cs" />
     <Compile Include="PlatformSpecificService\FileService.cs" />
-
     <Compile Include="Helpers\StringConstants.cs" />
     <Compile Include="Views\Celebrities\CelebritiesView.cs" />
     <Compile Include="Views\Celebrities\CelebritiesView.designer.cs">
@@ -280,12 +278,6 @@
  feature/Working_Flow
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\AncestorCloud.Shared\AncestorCloud.Core.csproj">
-      <Project>{ED8A9D7B-B591-4204-BE58-FAC4EE55E0E5}</Project>
-      <Name>AncestorCloud.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <Folder Include="Utility\" />
     <Folder Include="Helpers\" />
@@ -311,9 +303,7 @@
     <Folder Include="Views\PastMatches\PastMatchesCell\" />
     <Folder Include="Views\AddFamily\" />
     <Folder Include="Views\EditFamily\" />
-
     <Folder Include="PlatformSpecificService\" />
-
     <Folder Include="Views\Celebrities\" />
     <Folder Include="Views\Celebrities\CelebritiesCell\" />
  feature/Working_Flow
