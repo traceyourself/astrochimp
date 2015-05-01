@@ -6,6 +6,9 @@ using UIKit;
 
 using AncestorCloud.Shared;
 using AncestorCloud.Shared.ViewModels;
+using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using System.Linq;
 
 namespace AncestorCloud.Touch
 {
@@ -34,6 +37,8 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 
 			this.NavigationController.NavigationBarHidden = false;
+
+
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -41,6 +46,17 @@ namespace AncestorCloud.Touch
 		partial void CelebritiesButtonTapped (NSObject sender)
 		{
 			ViewModel.ShowCelebrities();
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			if (!NavigationController.ViewControllers.Contains (this)) {
+				var messenger = Mvx.Resolve<IMvxMessenger> ();
+				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
+
+			}
+			base.ViewWillDisappear (animated);
+
 		}
 	}
 }

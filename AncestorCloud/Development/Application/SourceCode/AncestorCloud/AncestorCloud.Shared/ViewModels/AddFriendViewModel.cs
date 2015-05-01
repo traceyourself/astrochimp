@@ -8,7 +8,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowCelebrities()
 		{
-			ShowViewModel<CelebritiesViewModel> ();
+			ShowViewModel<PastMatchesViewModel> ();
 		}
 	}
 }
