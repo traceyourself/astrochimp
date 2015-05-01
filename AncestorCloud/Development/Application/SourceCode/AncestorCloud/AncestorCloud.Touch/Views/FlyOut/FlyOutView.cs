@@ -201,7 +201,7 @@ namespace AncestorCloud.Touch
 			ReloadFlyoutNavigation ();
 			CreateFlyoutView ();
 
-			this.NavigationController.NavigationBarHidden = true;
+			//this.NavigationController.NavigationBarHidden = true;
 		}
 
 //		private void CreateFlyoutView()
