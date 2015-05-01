@@ -28,7 +28,6 @@ namespace AncestorCloud.Shared.ViewModels
 
 		#endregion
 
-
 		#region
 
 		private string _password;
@@ -67,6 +66,18 @@ namespace AncestorCloud.Shared.ViewModels
 			{
 				_name = value;
 				RaisePropertyChanged(() => Name);
+			}
+		}
+
+		private bool isFbLogin;
+
+		public bool IsFbLogin
+		{
+			get { return isFbLogin; }
+			set
+			{
+				isFbLogin = value;
+				RaisePropertyChanged(() => IsFbLogin);
 			}
 		}
 
@@ -145,7 +156,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowFlyOutViewModel()
 		{
-			ShowViewModel<FlyOutViewModel> ();
+			ShowViewModel<FlyOutViewModel> (new FlyOutViewModel.DetailParameters { IsFBLogin = IsFbLogin });
 		}
 		#endregion
 
@@ -216,8 +227,17 @@ namespace AncestorCloud.Shared.ViewModels
 
 					//_databaseService.GetLoginDetails ();
 
-					ShowMyFamilyViewModel();
-					CloseCommand.Execute (null);
+					if (Mvx.CanResolve<IAndroidService> ()) 
+					{
+						ShowMyFamilyViewModel ();
+						CloseCommand.Execute (null);
+					}
+					else
+					{
+						IsFbLogin = false;
+						CallFlyoutCommand.Execute(null);
+						CloseCommand.Execute (null);
+					}
 
 				}
 			}
@@ -290,9 +310,9 @@ namespace AncestorCloud.Shared.ViewModels
 
 			_databaseService.InsertUser (user);
 
-			List<User> list= _databaseService.GetUsers ("1404007466586095");
-
-			User newuser = _databaseService.GetUser (2);
+//			List<User> list= _databaseService.GetUsers ("1404007466586095");
+//
+//			User newuser = _databaseService.GetUser (2);
 		}
 
 		public void SaveFbFamilyData()
@@ -306,7 +326,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 				_databaseService.InsertRelative (people);
 			}
-			List<People> peopleList = _databaseService.RelativeMatching ("brother");
+//			List<People> peopleList = _databaseService.RelativeMatching ("brother");
 		}
 
 		public void SaveFbFriendsData()

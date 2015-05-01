@@ -57,7 +57,8 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 			SetNavigationBar ();
 			BindViewModel ();
-			
+//			EmailTextFeild.BecomeFirstResponder ();
+//			PasswordTextFeild.BecomeFirstResponder ();
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 		#region NavigationBar Property
@@ -113,7 +114,23 @@ namespace AncestorCloud.Touch
 			DoFbLogin();
 		}
 
+		public virtual bool HandlesKeyboardNotifications
+		{
+			get { return false; }
+		}
+
 		#endregion
+
+		public  void OnKeyboardChanged (bool visible, nfloat height)
+		{
+			//We "center" the popup when the keyboard appears/disappears
+			var frame = container.Frame;
+			if (visible)
+				frame.Y -= height / 2;
+			else
+				frame.Y += height / 2;
+			container.Frame = frame;
+		}
 
 	
 		#region Facebook services

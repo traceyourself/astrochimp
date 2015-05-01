@@ -10,6 +10,7 @@
                 <outlet property="Facebookbutton" destination="qZb-I6-hR6" id="0cL-Ey-hBi"/>
                 <outlet property="LoginButton" destination="TiT-Gg-6TK" id="Kf0-fc-IV9"/>
                 <outlet property="PasswordTextFeild" destination="ea4-tg-WeE" id="rIu-U4-vxP"/>
+                <outlet property="container" destination="iN0-l3-epB" id="OKj-63-48a"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
         </placeholder>
