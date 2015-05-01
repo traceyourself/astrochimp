@@ -269,15 +269,7 @@
 
  feature/Working_Flow
 
-    <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.cs" />
-    <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.designer.cs">
-      <DependentUpon>PastMatchesCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PastMatches\PastMatchesTableSoure.cs" />
-    <Compile Include="Views\PastMatches\PastMatchesView.cs" />
-    <Compile Include="Views\PastMatches\PastMatchesView.designer.cs">
-      <DependentUpon>PastMatchesView.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.cs" /><Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.designer.cs"><DependentUpon>PastMatchesCell.cs</DependentUpon></Compile><Compile Include="Views\PastMatches\PastMatchesTableSoure.cs" /><Compile Include="Views\PastMatches\PastMatchesView.cs" /><Compile Include="Views\PastMatches\PastMatchesView.designer.cs"><DependentUpon>PastMatchesView.cs</DependentUpon></Compile>
  feature/Working_Flow
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -351,5 +343,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AncestorCloud.Shared\AncestorCloud.Core.csproj">
+      <Project>{ED8A9D7B-B591-4204-BE58-FAC4EE55E0E5}</Project>
+      <Name>AncestorCloud.Core</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

@@ -6,10 +6,11 @@ using UIKit;
 using FlyoutNavigation;
 using MonoTouch.Dialog; 
 using System.Linq;
-using AncestorCloud.Shared.ViewModels;
+
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Plugins.Messenger;
-using AncestorCloud.Shared;
+using AncestorCloud.Shared.ViewModels;
+
 
 namespace AncestorCloud.Touch
 {
