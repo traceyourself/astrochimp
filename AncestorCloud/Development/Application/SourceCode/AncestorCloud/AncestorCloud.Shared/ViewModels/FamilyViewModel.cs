@@ -6,7 +6,6 @@ namespace AncestorCloud.Shared.ViewModels
 	public class FamilyViewModel : BaseViewModel
 	{
 
-
 		#region Relationship View
 
 		public void ShowEditViewModel()
