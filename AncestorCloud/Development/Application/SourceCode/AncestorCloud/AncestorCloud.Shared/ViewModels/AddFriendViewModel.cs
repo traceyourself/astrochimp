@@ -10,6 +10,13 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			ShowViewModel<PastMatchesViewModel> ();
 		}
+
+		#region Close Method
+		public void Close()
+		{
+			this.Close(this);
+		}
+		#endregion
 	}
 }
 

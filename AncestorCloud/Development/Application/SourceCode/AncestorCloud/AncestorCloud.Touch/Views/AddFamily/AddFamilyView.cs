@@ -53,7 +53,7 @@ namespace AncestorCloud.Touch
 		void BindSubViews()
 		{
 			var set = this.CreateBindingSet<AddFamilyView, AddFamilyViewModel > ();
-			set.Bind (FirstNameTextField).To (vm => vm.FamilyMember.FirstName);
+			//set.Bind (FirstNameTextField).To (vm => vm.FirstName);
 			set.Bind (MiddleNameTextFeild).To (vm => vm.FamilyMember.FirstName);
 			set.Bind (LastNameTextField).To (vm => vm.FamilyMember.LastName);
 			set.Bind (BirthLocationTextField).To (vm => vm.FamilyMember.BirthLocation);
