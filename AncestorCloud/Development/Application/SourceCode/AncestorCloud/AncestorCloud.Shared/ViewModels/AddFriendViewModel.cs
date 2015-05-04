@@ -20,6 +20,13 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			ShowViewModel<ContactsViewModel> ();
 		}
+
+		#region Close Method
+		public void Close()
+		{
+			this.Close(this);
+		}
+		#endregion
 	}
 }
 
