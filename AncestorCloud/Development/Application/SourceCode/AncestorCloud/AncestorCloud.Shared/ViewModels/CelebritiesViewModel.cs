@@ -25,16 +25,16 @@ namespace AncestorCloud.Shared
 
 		public void GetCelebritiesData()
 			{
-				List<People> list = _databaseService.RelativeMatching ("");
+			List<Celebrity> list = _databaseService.GetCelebritiesData();
 			CelebritiesList = list;
 			}
 			#endregion
 
 			#region Properties
 
-		private List<People> celebritiesList;
+		private List<Celebrity> celebritiesList;
 
-		public List<People> CelebritiesList
+		public List<Celebrity> CelebritiesList
 			{
 			get { return celebritiesList; }
 				set

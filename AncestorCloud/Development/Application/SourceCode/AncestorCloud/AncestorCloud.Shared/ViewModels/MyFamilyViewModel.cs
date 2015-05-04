@@ -12,8 +12,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = service;
 			GetFbFamilyData ();
 		}
-
-
+			
 		#region Properties
 
 		private List<People> familyList;
@@ -81,6 +80,7 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			ShowViewModel<EditFamilyViewModel>();
 		}
+
 
 	}
 }

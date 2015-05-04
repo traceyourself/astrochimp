@@ -1,4 +1,5 @@
 ﻿using System;
+using Cirrious.MvvmCross.Plugins.Sqlite;
 
 namespace AncestorCloud.Shared
 {
@@ -6,6 +7,10 @@ namespace AncestorCloud.Shared
 	{
 		public string Relation { get; set; }
 		public bool IsSelected { get; set; }
+		public string IndiOgfn { get; set; }
+
+		[Ignore]
+		public string MiddleName { get; set; }
 
 	}
 }
