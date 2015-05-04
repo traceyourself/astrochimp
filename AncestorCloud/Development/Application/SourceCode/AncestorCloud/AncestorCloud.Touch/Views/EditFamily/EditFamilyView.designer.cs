@@ -27,27 +27,25 @@ namespace AncestorCloud.Touch
 		[Outlet]
 		UIKit.UITextField MiddleNameTextField { get; set; }
 
-		[Outlet]
-		UIKit.UIView SaveButtonTapped { get; set; }
-
 		[Action ("CrossButtonTapped:")]
 		partial void CrossButtonTapped (Foundation.NSObject sender);
+
+		[Action ("GenderSegmentChanged:")]
+		partial void GenderSegmentChanged (Foundation.NSObject sender);
+
+		[Action ("SaveButtonTapped:")]
+		partial void SaveButtonTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (BirthLocationField != null) {
+				BirthLocationField.Dispose ();
+				BirthLocationField = null;
+			}
+
 			if (FirstNameTextField != null) {
 				FirstNameTextField.Dispose ();
 				FirstNameTextField = null;
-			}
-
-			if (MiddleNameTextField != null) {
-				MiddleNameTextField.Dispose ();
-				MiddleNameTextField = null;
-			}
-
-			if (LastNameTextField != null) {
-				LastNameTextField.Dispose ();
-				LastNameTextField = null;
 			}
 
 			if (GenderSegment != null) {
@@ -55,14 +53,14 @@ namespace AncestorCloud.Touch
 				GenderSegment = null;
 			}
 
-			if (BirthLocationField != null) {
-				BirthLocationField.Dispose ();
-				BirthLocationField = null;
+			if (LastNameTextField != null) {
+				LastNameTextField.Dispose ();
+				LastNameTextField = null;
 			}
 
-			if (SaveButtonTapped != null) {
-				SaveButtonTapped.Dispose ();
-				SaveButtonTapped = null;
+			if (MiddleNameTextField != null) {
+				MiddleNameTextField.Dispose ();
+				MiddleNameTextField = null;
 			}
 		}
 	}

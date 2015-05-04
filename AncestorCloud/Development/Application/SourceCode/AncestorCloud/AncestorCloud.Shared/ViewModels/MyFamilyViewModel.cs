@@ -12,16 +12,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = service;
 			GetFbFamilyData ();
 		}
-
-		#region show Add family dialog model
-		public void ShowAddFamilyViewModel()
-		{
-			ShowViewModel<AddFamilyViewModel> ();
-		}
-
-		#endregion
-
-
+			
 		#region Properties
 
 		private List<People> familyList;
@@ -49,6 +40,14 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 
 		#endregion
+
+		#region show Add family dialog model
+		public void ShowAddFamilyViewModel()
+		{
+			ShowViewModel<AddFamilyViewModel> ();
+		}
+		#endregion
+
 
 		#region Sqlite Methods
 

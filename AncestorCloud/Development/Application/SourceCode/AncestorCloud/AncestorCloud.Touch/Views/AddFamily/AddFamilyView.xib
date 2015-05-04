@@ -6,6 +6,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddFamilyView">
             <connections>
+                <outlet property="AddButton" destination="HkY-tN-lcD" id="0qa-3S-iRc"/>
+                <outlet property="BirthLocationTextField" destination="MCb-nl-Qzu" id="AhH-ZA-lW7"/>
+                <outlet property="BirthYearButton" destination="3q1-Ac-gMH" id="Ahp-SY-OnH"/>
+                <outlet property="FirstNameTextField" destination="nmI-OK-KNh" id="Mj8-sW-i2c"/>
+                <outlet property="GenderSegmentControl" destination="nYL-CQ-MHX" id="nOY-RF-pdW"/>
+                <outlet property="LastNameTextField" destination="xGt-6S-hzU" id="ilW-Gg-xct"/>
+                <outlet property="MiddleNameTextFeild" destination="bQD-3z-XOO" id="Tdk-SU-sI9"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
         </placeholder>
@@ -67,14 +74,14 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfJ-Dp-eaV">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfJ-Dp-eaV">
                             <rect key="frame" x="219" y="238" width="34" height="30"/>
                             <state key="normal" title="Male">
                                 <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ot9-rY-DBc">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ot9-rY-DBc">
                             <rect key="frame" x="280" y="238" width="53" height="30"/>
                             <state key="normal" title="Female">
                                 <color key="titleColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -87,6 +94,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
+                                <action selector="BirthYearButtonTaped:" destination="-1" eventType="touchUpInside" id="Ce4-cD-tcZ"/>
                                 <action selector="Birthlabel:" destination="-1" eventType="touchUpInside" id="9t8-l9-Svc"/>
                             </connections>
                         </button>
@@ -99,6 +107,17 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nYL-CQ-MHX">
+                            <rect key="frame" x="210" y="238" width="146" height="29"/>
+                            <segments>
+                                <segment title="Male"/>
+                                <segment title="Female"/>
+                            </segments>
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="GenderSegmentControlChanged:" destination="-1" eventType="valueChanged" id="iW9-kL-4q8"/>
+                            </connections>
+                        </segmentedControl>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
