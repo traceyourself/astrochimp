@@ -85,6 +85,9 @@
                     <state key="normal" backgroundImage="disclosure_indicator.jpg">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="ContactButtonTapped:" destination="-1" eventType="touchUpInside" id="SoI-SO-5Jn"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3zF-E1-Eny">
                     <rect key="frame" x="321" y="146" width="46" height="30"/>
@@ -102,6 +105,9 @@
                     <state key="normal" backgroundImage="disclosure_indicator.jpg">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="FacebookButtonTapped:" destination="-1" eventType="touchUpInside" id="5Az-rA-tYr"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite using their email address " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fr6-7y-fL5">
                     <rect key="frame" x="59" y="155" width="242" height="21"/>

@@ -8,17 +8,18 @@ using System.Drawing;
 
 namespace AncestorCloud.Touch
 {
-	public partial class PastMatchesView : BaseViewController
+	public partial class FacebookFriendView : BaseViewController
 	{
-		public PastMatchesView () : base ("PastMatchesView", null)
+		public FacebookFriendView () : base ("FacebookFriendView", null)
 		{
 		}
 
-		public new PastMatchesViewModel ViewModel
+		public new FacebookFriendViewModel ViewModel
 		{
-			get { return base.ViewModel as PastMatchesViewModel; }
+			get { return base.ViewModel as FacebookFriendViewModel; }
 			set { base.ViewModel = value; }
 		}
+
 
 		public override void DidReceiveMemoryWarning ()
 		{
@@ -39,15 +40,15 @@ namespace AncestorCloud.Touch
 		public void SetTableView()
 		{
 
-			this.Title = "Past Matches";
-			var source = new PastMatchesTableSoure (PastMatchesTableVIew);
+			this.Title = "Facebook Friends";
+			var source = new FacebookFriendTableSource (FacebookFriendTableView);
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
-			PastMatchesTableVIew.Source = source;
+			FacebookFriendTableView.Source = source;
 
-			this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,150,20));
+			//this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,150,20));
 
-			var set = this.CreateBindingSet<PastMatchesView , PastMatchesViewModel> ();
-			set.Bind (source).To (vm => vm.PastMatchesList);
+			var set = this.CreateBindingSet<FacebookFriendView , FacebookFriendViewModel> ();
+			set.Bind (source).To (vm => vm.FacebookFriendList);
 			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
 			//this.NavigationController.NavigationBarHidden = true;

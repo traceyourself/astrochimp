@@ -88,9 +88,13 @@ namespace AncestorCloud.Touch
 
 		#endregion
 
-
-	
-
+		#region  HelpButton
+		partial  void HelpButtonTaped (NSObject sender)
+		{
+			ViewModel.ShowHelpViewModel();
+			ViewModel.Close();
+		}
+		#endregion
 
 	}
 }

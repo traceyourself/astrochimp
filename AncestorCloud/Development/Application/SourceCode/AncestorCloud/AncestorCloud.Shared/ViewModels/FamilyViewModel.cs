@@ -14,6 +14,15 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+		#region Help
+
+		public void ShowHelpViewModel()
+		{
+			ShowViewModel<HelpViewModel> ();
+		}
+
+		#endregion
+
 		#region Close Method
 		public void Close()
 		{

@@ -1,4 +1,4 @@
-﻿// WARNING
+// WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
@@ -13,6 +13,9 @@ namespace AncestorCloud.Touch
 	partial class CelebritiesCell
 	{
 		[Outlet]
+		UIKit.UILabel LastName { get; set; }
+
+		[Outlet]
 		UIKit.UILabel NameLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
@@ -20,6 +23,11 @@ namespace AncestorCloud.Touch
 			if (NameLabel != null) {
 				NameLabel.Dispose ();
 				NameLabel = null;
+			}
+
+			if (LastName != null) {
+				LastName.Dispose ();
+				LastName = null;
 			}
 		}
 	}

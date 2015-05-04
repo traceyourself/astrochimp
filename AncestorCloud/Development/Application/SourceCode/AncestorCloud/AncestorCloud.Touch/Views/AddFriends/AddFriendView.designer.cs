@@ -14,6 +14,12 @@ namespace AncestorCloud.Touch
 	{
 		[Action ("CelebritiesButtonTapped:")]
 		partial void CelebritiesButtonTapped (Foundation.NSObject sender);
+
+		[Action ("ContactButtonTapped:")]
+		partial void ContactButtonTapped (Foundation.NSObject sender);
+
+		[Action ("FacebookButtonTapped:")]
+		partial void FacebookButtonTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

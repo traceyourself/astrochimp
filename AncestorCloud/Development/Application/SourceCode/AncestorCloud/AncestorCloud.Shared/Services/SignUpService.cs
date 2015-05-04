@@ -19,7 +19,7 @@ namespace AncestorCloud.Shared
 		}
 
 		#region ISignUpService implementation
-		public async Task<ResponseModel<LoginModel>> SignUp (string name, string email, string password, string developerId, string developerPassword)
+		public async Task<ResponseModel<LoginModel>> SignUp (string FirstName,string LastName, string email, string password, string developerId, string developerPassword)
 		{
 			_loader.showLoader ();
 
@@ -69,8 +69,8 @@ namespace AncestorCloud.Shared
 				Dictionary <string,string> paramDic = new Dictionary<string, string>();
 				paramDic[AppConstant.SESSIONID]=modal.Value;
 				paramDic[AppConstant.EMAILKEY]=email;
-				paramDic[AppConstant.FIRSTNAMEKEY]=name;
-				paramDic[AppConstant.LASTNAMEKEY]=name;
+				paramDic[AppConstant.FIRSTNAMEKEY]=FirstName;
+				paramDic[AppConstant.LASTNAMEKEY]=LastName;
 				paramDic[AppConstant.PRODUCTIDKEY]=AppConstant.PRODUCTID;
 				paramDic[AppConstant.DEVELOPERIDKEY]=developerId;
 				paramDic[AppConstant.DEVELOPERPASSWORDKEY]=developerPassword;

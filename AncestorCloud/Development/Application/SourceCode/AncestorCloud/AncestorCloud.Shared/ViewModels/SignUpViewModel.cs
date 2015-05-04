@@ -57,17 +57,30 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 
 
-		private string _name;
+		private string _firstName;
 
-		public string Name
+		public string FirstName
 		{
-			get { return _name; }
+			get { return _firstName; }
 			set
 			{
-				_name = value;
-				RaisePropertyChanged(() => Name);
+				_firstName = value;
+				RaisePropertyChanged(() => FirstName);
 			}
 		}
+
+		private string _lastName;
+
+		public string LastName
+		{
+			get { return _lastName; }
+			set
+			{
+				_lastName = value;
+				RaisePropertyChanged(() => LastName);
+			}
+		}
+
 
 		private bool isFbLogin;
 
@@ -219,7 +232,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 			if (ValidateCredentials ()) {
 				// Validate Parameters
-				ResponseModel<LoginModel> response = await _ISignUpService.SignUp (Name, Email, Password, AppConstant.DEVELOPERID, AppConstant.DEVELOPERPASSWORD);
+				ResponseModel<LoginModel> response = await _ISignUpService.SignUp (FirstName,LastName, Email, Password, AppConstant.DEVELOPERID, AppConstant.DEVELOPERPASSWORD);
 
 				if (response.Status == ResponseStatus.OK) {
 					//tell View about data arriving
@@ -251,11 +264,17 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			bool ok = true; 
 
-			if (String.IsNullOrEmpty (this.Name)) 
+			if (String.IsNullOrEmpty (this.FirstName)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Name is required,please enter a value for the field","Name Missing");
+				Alert.ShowAlert("FirstName is required,please enter a value for the field","Name Missing");
 			}
+			else if (String.IsNullOrEmpty (this.LastName)) 
+			{
+				ok = false;
+				Alert.ShowAlert("LastName is required,please enter a value for the field","Name Missing");
+			}
+
 			else if (String.IsNullOrEmpty (this.Email)) 
 			{
 				ok = false;

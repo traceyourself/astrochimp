@@ -12,12 +12,16 @@ namespace AncestorCloud.Touch
 
 		public static readonly UINib Nib = UINib.FromName ("CelebritiesCell", NSBundle.MainBundle);
 		public static readonly NSString Key = new NSString ("CelebritiesCell");
+
+
 		public CelebritiesCell (IntPtr handle) : base (handle)
 		{
 			this.DelayBind (() => {
 
-				var set = this.CreateBindingSet<CelebritiesCell, People> ();
-				set.Bind (NameLabel).To (vm => vm.Name);
+				var set = this.CreateBindingSet<CelebritiesCell, Celebrity> ();
+				set.Bind (NameLabel).To (vm => vm.GivenNames);
+				set.Bind(LastName).To (vm => vm.LastName);
+
 				//set.Bind(OtherNameLabel).To(vm => vm.Relation).WithConversion(new RelationshipTextConverter(),null);
 				set.Apply ();
 			});

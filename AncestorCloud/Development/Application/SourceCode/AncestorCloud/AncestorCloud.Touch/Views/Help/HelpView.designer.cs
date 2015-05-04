@@ -9,21 +9,14 @@ using System.CodeDom.Compiler;
 
 namespace AncestorCloud.Touch
 {
-	[Register ("MyFamilyView")]
-	partial class MyFamilyView
+	[Register ("HelpView")]
+	partial class HelpView
 	{
-		[Outlet]
-		UIKit.UITableView myFamilyTable { get; set; }
-
-		[Action ("CrossButtonTaped:")]
-		partial void CrossButtonTaped (Foundation.NSObject sender);
+		[Action ("CrossButonTapped:")]
+		partial void CrossButonTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (myFamilyTable != null) {
-				myFamilyTable.Dispose ();
-				myFamilyTable = null;
-			}
 		}
 	}
 }

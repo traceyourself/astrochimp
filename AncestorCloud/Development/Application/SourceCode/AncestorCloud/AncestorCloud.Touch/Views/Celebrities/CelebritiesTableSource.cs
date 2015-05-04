@@ -7,7 +7,7 @@ namespace AncestorCloud.Touch
 {
 	public class CelebritiesTableSource : MvxTableViewSource
 	{
-
+		
 		readonly string cellIdentifier = "CelebritiesCell";
 
 

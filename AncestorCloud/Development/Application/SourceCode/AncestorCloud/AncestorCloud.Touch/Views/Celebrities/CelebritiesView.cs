@@ -8,6 +8,7 @@ namespace AncestorCloud.Touch
 {
 	public partial class CelebritiesView : BaseViewController
 	{
+
 		public CelebritiesView () : base ("CelebritiesView", null)
 		{
 		}
@@ -31,6 +32,7 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 
 			SetTableView ();
+			Search ();
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -38,6 +40,8 @@ namespace AncestorCloud.Touch
 
 		public void SetTableView()
 		{
+
+			this.Title="Celebrities";
 			var source = new CelebritiesTableSource (CelebritiesTableVIew);
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
 			CelebritiesTableVIew.Source = source;
@@ -48,6 +52,12 @@ namespace AncestorCloud.Touch
 			set.Apply ();
 			//this.NavigationController.NavigationBarHidden = true;
 
+		}
+
+
+		public void Search()
+		{
+			
 		}
 	}
 }

@@ -14,6 +14,9 @@ namespace AncestorCloud.Touch
 	{
 		[Action ("AddFamilyButtonTapped:")]
 		partial void AddFamilyButtonTapped (Foundation.NSObject sender);
+
+		[Action ("HelpButtonTaped:")]
+		partial void HelpButtonTaped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

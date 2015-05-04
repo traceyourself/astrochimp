@@ -1,4 +1,4 @@
-// WARNING
+﻿// WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
@@ -9,20 +9,17 @@ using System.CodeDom.Compiler;
 
 namespace AncestorCloud.Touch
 {
-	[Register ("MyFamilyView")]
-	partial class MyFamilyView
+	[Register ("ContactsView")]
+	partial class ContactsView
 	{
 		[Outlet]
-		UIKit.UITableView myFamilyTable { get; set; }
-
-		[Action ("CrossButtonTaped:")]
-		partial void CrossButtonTaped (Foundation.NSObject sender);
+		UIKit.UITableView ContactsTableView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (myFamilyTable != null) {
-				myFamilyTable.Dispose ();
-				myFamilyTable = null;
+			if (ContactsTableView != null) {
+				ContactsTableView.Dispose ();
+				ContactsTableView = null;
 			}
 		}
 	}

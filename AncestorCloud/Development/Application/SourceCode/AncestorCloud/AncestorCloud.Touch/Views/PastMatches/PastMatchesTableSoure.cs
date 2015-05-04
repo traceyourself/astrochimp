@@ -18,14 +18,6 @@ namespace AncestorCloud.Touch
 
 		}
 
-		//		public override nint RowsInSection (UITableView tableView, nint section)
-		//		{
-		//
-		//			return 5;
-		//		}
-
-
-
 		protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
 		{
 			return tableView.DequeueReusableCell(PastMatchesCell.Key, indexPath);

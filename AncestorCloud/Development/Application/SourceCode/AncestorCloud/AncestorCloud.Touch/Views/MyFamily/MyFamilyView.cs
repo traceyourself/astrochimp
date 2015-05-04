@@ -14,9 +14,6 @@ namespace AncestorCloud.Touch
 {
 	public partial class MyFamilyView : BaseViewController
 	{
-
-		//UILabel cell;
-
 		private MvxSubscriptionToken navigationMenuToken;
 
 		public MyFamilyView () : base ("MyFamilyView", null)
@@ -34,7 +31,6 @@ namespace AncestorCloud.Touch
 			CreateMyFamilyTable ();
 			SetFamilyItem ();
 			AddEvents ();
-
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
@@ -43,24 +39,15 @@ namespace AncestorCloud.Touch
 		private void CreateMyFamilyTable()
 		{
 			List<TableItem> data = CreateTableItems(ViewModel.FamilyList);
-
 			ViewModel.TableDataList = data;
-
 			var source = new MyFamilyTableSource (myFamilyTable);
 			myFamilyTable.Source = source;
-
-			//myFamilyTable.Delegate = new MyTableViewDelegate ();
-
 			var set = this.CreateBindingSet<MyFamilyView , MyFamilyViewModel> ();
 			set.Bind (source).To (vm => vm.TableDataList);
 			set.Apply ();
-
 		}
 
 		#endregion
-
-
-
 
 		public void SetFamilyItem()
 		{
@@ -72,8 +59,6 @@ namespace AncestorCloud.Touch
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 			this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,150,20));
 			this.NavigationController.NavigationBarHidden = false;
-
-
 		}
 
 		private void AddEvents ()
@@ -96,6 +81,11 @@ namespace AncestorCloud.Touch
 
 			UIWindow window = UIApplication.SharedApplication.KeyWindow;
 			window.AddSubview (editFamily.View);
+		}
+
+		partial void CrossButtonTaped (NSObject sender)
+		{
+			//ViewModel.ShowHelpViewModel();
 		}
 
 		public override void ViewWillDisappear (bool animated)
@@ -173,11 +163,11 @@ namespace AncestorCloud.Touch
 
 			resultList.Add (greatGrandParentData);
 
-
 			return resultList;
 		}
 
 		#endregion
+
 
 	}
 }

@@ -9,20 +9,17 @@ using System.CodeDom.Compiler;
 
 namespace AncestorCloud.Touch
 {
-	[Register ("MyFamilyView")]
-	partial class MyFamilyView
+	[Register ("FacebookFriendView")]
+	partial class FacebookFriendView
 	{
 		[Outlet]
-		UIKit.UITableView myFamilyTable { get; set; }
-
-		[Action ("CrossButtonTaped:")]
-		partial void CrossButtonTaped (Foundation.NSObject sender);
+		UIKit.UITableView FacebookFriendTableView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (myFamilyTable != null) {
-				myFamilyTable.Dispose ();
-				myFamilyTable = null;
+			if (FacebookFriendTableView != null) {
+				FacebookFriendTableView.Dispose ();
+				FacebookFriendTableView = null;
 			}
 		}
 	}

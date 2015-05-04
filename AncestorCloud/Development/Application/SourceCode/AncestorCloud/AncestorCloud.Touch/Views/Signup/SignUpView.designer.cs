@@ -19,6 +19,9 @@ namespace AncestorCloud.Touch
 		UIKit.UIButton Facebookbutton { get; set; }
 
 		[Outlet]
+		UIKit.UITextField LastNameTextField { get; set; }
+
+		[Outlet]
 		UIKit.UITextField NameTextFeild { get; set; }
 
 		[Outlet]
@@ -35,14 +38,14 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (EmailTextField != null) {
+				EmailTextField.Dispose ();
+				EmailTextField = null;
+			}
+
 			if (Facebookbutton != null) {
 				Facebookbutton.Dispose ();
 				Facebookbutton = null;
-			}
-
-			if (SignUpButton != null) {
-				SignUpButton.Dispose ();
-				SignUpButton = null;
 			}
 
 			if (NameTextFeild != null) {
@@ -50,14 +53,19 @@ namespace AncestorCloud.Touch
 				NameTextFeild = null;
 			}
 
-			if (EmailTextField != null) {
-				EmailTextField.Dispose ();
-				EmailTextField = null;
+			if (LastNameTextField != null) {
+				LastNameTextField.Dispose ();
+				LastNameTextField = null;
 			}
 
 			if (PasswordTextField != null) {
 				PasswordTextField.Dispose ();
 				PasswordTextField = null;
+			}
+
+			if (SignUpButton != null) {
+				SignUpButton.Dispose ();
+				SignUpButton = null;
 			}
 		}
 	}

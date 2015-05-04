@@ -43,6 +43,8 @@ namespace AncestorCloud.Touch
 
 		public void SetTableView()
 		{
+
+			this.Title= "My Family";
 			var source = new FbFamilyTableViewSource (fbFamilyTableView);
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
 			fbFamilyTableView.Source = source;

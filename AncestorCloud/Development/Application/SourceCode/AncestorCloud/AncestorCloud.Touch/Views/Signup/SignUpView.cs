@@ -27,7 +27,8 @@ namespace AncestorCloud.Touch
 		{
 			var set = this.CreateBindingSet<SignUpView, SignUpViewModel>();
 			set.Bind (SignUpButton).To (v => v.SignUpCommand);
-			set.Bind(NameTextFeild).For(et => et.Text).To(ViewModel => ViewModel.Name);
+			set.Bind(NameTextFeild).For(et => et.Text).To(ViewModel => ViewModel.FirstName);
+			set.Bind (LastNameTextField).For (et => et.Text).To (ViewModel => ViewModel.LastName);
 			set.Bind(EmailTextField).For(et => et.Text).To(ViewModel => ViewModel.Email);
 			set.Bind(PasswordTextField).For(et =>et.Text).To(ViewModel => ViewModel.Password);
 			set.Apply();
