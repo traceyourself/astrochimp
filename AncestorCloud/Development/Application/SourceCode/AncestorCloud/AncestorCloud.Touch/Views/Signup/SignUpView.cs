@@ -89,6 +89,7 @@ namespace AncestorCloud.Touch
 
 		void DoSignUp()
 		{
+			ViewModel.IsFbLogin = true;
 			ViewModel.CallFlyoutCommand.Execute(null);
 			ViewModel.CloseCommand.Execute(null);
 		}

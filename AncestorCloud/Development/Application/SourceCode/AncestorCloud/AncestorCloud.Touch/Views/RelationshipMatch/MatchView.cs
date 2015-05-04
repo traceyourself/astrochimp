@@ -1,11 +1,8 @@
-﻿
-using System;
-
+﻿using System;
 using Foundation;
 using UIKit;
 using Cirrious.MvvmCross.Touch.Views;
 using AncestorCloud.Shared.ViewModels;
-
 using CrossUI.Touch.Dialog.Elements;
 using System.Collections.Generic;
 using Cirrious.MvvmCross.ViewModels;
@@ -45,9 +42,6 @@ namespace AncestorCloud.Touch
 
 			setNavigationBar ();
 
-	
-			
-			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
 		public void setNavigationBar()
@@ -93,8 +87,7 @@ namespace AncestorCloud.Touch
 				, true);
 
 			#endregion
-
-			
+		
 		}
 
 
@@ -108,7 +101,6 @@ namespace AncestorCloud.Touch
 
 		#endregion
 
-
 		#region firstImage Tapped
 	     partial void FirstImageButtonTapped(NSObject sender)
 		{
@@ -117,14 +109,11 @@ namespace AncestorCloud.Touch
 		}
 		#endregion
 
-
 		partial void SecondButtonImageTapped (NSObject sender)
 		{
 			ViewModel.ShowFriendList();
 			ViewModel.Close();
 		}
-
-
 	}
 }
 

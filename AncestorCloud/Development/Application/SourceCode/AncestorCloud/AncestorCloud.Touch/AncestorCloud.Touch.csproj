@@ -53,6 +53,11 @@
     <MtouchDebug>true</MtouchDebug>
     <IpaPackageName>
     </IpaPackageName>
+
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+
     <CodesignProvision>aba7ba1e-3246-4cbe-983b-8a28c09b217a</CodesignProvision>
     <MtouchProfiling>true</MtouchProfiling>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
@@ -281,7 +286,7 @@
     </Compile>
     <Compile Include="Views\Celebrities\CelebritiesTableSource.cs" />
 
- feature/Working_Flow
+
 
     <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.cs" /><Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.designer.cs"><DependentUpon>PastMatchesCell.cs</DependentUpon></Compile><Compile Include="Views\PastMatches\PastMatchesTableSoure.cs" /><Compile Include="Views\PastMatches\PastMatchesView.cs" /><Compile Include="Views\PastMatches\PastMatchesView.designer.cs"><DependentUpon>PastMatchesView.cs</DependentUpon></Compile>
  feature/Working_Flow
@@ -357,6 +362,7 @@
     <BundleResource Include="Resources\match_icon%402x.png" />
     <BundleResource Include="Resources\logout_icon%402x.png" />
     <BundleResource Include="Resources\search_icon%402x.png" />
+    <BundleResource Include="Resources\pink-btnsmall.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />

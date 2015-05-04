@@ -28,7 +28,6 @@ namespace AncestorCloud.Shared.ViewModels
 
 		#endregion
 
-
 		#region
 
 		private string _password;
@@ -67,6 +66,18 @@ namespace AncestorCloud.Shared.ViewModels
 			{
 				_name = value;
 				RaisePropertyChanged(() => Name);
+			}
+		}
+
+		private bool isFbLogin;
+
+		public bool IsFbLogin
+		{
+			get { return isFbLogin; }
+			set
+			{
+				isFbLogin = value;
+				RaisePropertyChanged(() => IsFbLogin);
 			}
 		}
 
@@ -145,7 +156,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowFlyOutViewModel()
 		{
-			ShowViewModel<FlyOutViewModel> ();
+			ShowViewModel<FlyOutViewModel> (new FlyOutViewModel.DetailParameters { IsFBLogin = IsFbLogin });
 		}
 		#endregion
 
@@ -216,8 +227,17 @@ namespace AncestorCloud.Shared.ViewModels
 
 					//_databaseService.GetLoginDetails ();
 
-					ShowMyFamilyViewModel();
-					CloseCommand.Execute (null);
+					if (Mvx.CanResolve<IAndroidService> ()) 
+					{
+						ShowMyFamilyViewModel ();
+						CloseCommand.Execute (null);
+					}
+					else
+					{
+						IsFbLogin = false;
+						CallFlyoutCommand.Execute(null);
+						CloseCommand.Execute (null);
+					}
 
 				}
 			}

@@ -13,6 +13,9 @@ namespace AncestorCloud.Touch
 	partial class LoginView
 	{
 		[Outlet]
+		UIKit.UIView container { get; set; }
+
+		[Outlet]
 		UIKit.UITextField EmailTextFeild { get; set; }
 
 		[Outlet]
@@ -40,11 +43,6 @@ namespace AncestorCloud.Touch
 				EmailTextFeild = null;
 			}
 
-			if (PasswordTextFeild != null) {
-				PasswordTextFeild.Dispose ();
-				PasswordTextFeild = null;
-			}
-
 			if (Facebookbutton != null) {
 				Facebookbutton.Dispose ();
 				Facebookbutton = null;
@@ -53,6 +51,16 @@ namespace AncestorCloud.Touch
 			if (LoginButton != null) {
 				LoginButton.Dispose ();
 				LoginButton = null;
+			}
+
+			if (PasswordTextFeild != null) {
+				PasswordTextFeild.Dispose ();
+				PasswordTextFeild = null;
+			}
+
+			if (container != null) {
+				container.Dispose ();
+				container = null;
 			}
 		}
 	}
