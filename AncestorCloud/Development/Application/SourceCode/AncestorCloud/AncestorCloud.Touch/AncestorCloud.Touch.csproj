@@ -53,11 +53,9 @@
     <MtouchDebug>true</MtouchDebug>
     <IpaPackageName>
     </IpaPackageName>
-
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n>
     </MtouchI18n>
-
     <CodesignProvision>aba7ba1e-3246-4cbe-983b-8a28c09b217a</CodesignProvision>
     <MtouchProfiling>true</MtouchProfiling>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
@@ -202,7 +200,6 @@
     <None Include="packages.config" />
     <None Include="ToDo-MvvmCross\_ Touch UI.txt" />
     <None Include="AppDelegate.cs.txt" />
-    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -285,10 +282,15 @@
       <DependentUpon>CelebritiesCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Celebrities\CelebritiesTableSource.cs" />
-
-
-
-    <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.cs" /><Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.designer.cs"><DependentUpon>PastMatchesCell.cs</DependentUpon></Compile><Compile Include="Views\PastMatches\PastMatchesTableSoure.cs" /><Compile Include="Views\PastMatches\PastMatchesView.cs" /><Compile Include="Views\PastMatches\PastMatchesView.designer.cs"><DependentUpon>PastMatchesView.cs</DependentUpon></Compile>
+    <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.cs" />
+    <Compile Include="Views\PastMatches\PastMatchesCell\PastMatchesCell.designer.cs">
+      <DependentUpon>PastMatchesCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PastMatches\PastMatchesTableSoure.cs" />
+    <Compile Include="Views\PastMatches\PastMatchesView.cs" />
+    <Compile Include="Views\PastMatches\PastMatchesView.designer.cs">
+      <DependentUpon>PastMatchesView.cs</DependentUpon>
+    </Compile>
  feature/Working_Flow
   <Compile Include="Utility\MyMatchTitleView.cs" /><Compile Include="Utility\MyResearchTitleView.cs" /><Compile Include="Utility\MyPastMatchTitleView.cs" /></ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
