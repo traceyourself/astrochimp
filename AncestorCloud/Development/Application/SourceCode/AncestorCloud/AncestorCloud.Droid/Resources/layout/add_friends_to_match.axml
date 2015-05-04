@@ -13,40 +13,146 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <RelativeLayout
+            android:id="@+id/fb_friend_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="7dp">
+            android:background="@android:color/white"
+            android:padding="8dp">
             <ImageView
                 android:id="@+id/left_fb_img"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:src="@drawable/fb_icon" />
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/no_img_small"
+                android:layout_centerVertical="true" />
             <TextView
                 android:id="@+id/first_title_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:text="@string/facebook"
-                android:layout_toRightOf="@+id/first_title_text"
+                android:layout_toRightOf="@+id/left_fb_img"
                 android:layout_toLeftOf="@+id/right_arr_img"
-                android:textColor="@color/gray_login_color" />
+                android:textColor="@color/gray_login_color"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="5dp" />
             <TextView
                 android:id="@+id/first_desc_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:text="@string/fb_desc"
                 android:textColor="@color/gray_login_color"
-                android:layout_toRightOf="@+id/first_title_text"
+                android:layout_toRightOf="@+id/left_fb_img"
                 android:layout_toLeftOf="@+id/right_arr_img"
-                android:layout_marginLeft="7dp" />
+                android:layout_marginLeft="7dp"
+                android:layout_below="@+id/first_title_txt"
+                android:layout_marginTop="1dp" />
             <ImageView
                 android:id="@+id/right_arr_img"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:src="@android:drawable/arrow_down_float"
-                android:layout_alignParentRight="true" />
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
         </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/dark_div_color" />
+        <RelativeLayout
+            android:id="@+id/contacts_friend_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="7dp">
+            <ImageView
+                android:id="@+id/left_fb_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/no_img_small"
+                android:layout_centerVertical="true" />
+            <TextView
+                android:id="@+id/sec_title_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="@string/contacts"
+                android:layout_toRightOf="@+id/left_fb_img"
+                android:layout_toLeftOf="@+id/right_arr_img"
+                android:textColor="@color/gray_login_color"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="5dp" />
+            <TextView
+                android:id="@+id/sec_desc_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text="@string/contact_desc"
+                android:textColor="@color/gray_login_color"
+                android:layout_toRightOf="@+id/left_fb_img"
+                android:layout_toLeftOf="@+id/right_arr_img"
+                android:layout_marginLeft="7dp"
+                android:layout_below="@+id/sec_title_txt" />
+            <ImageView
+                android:id="@+id/right_arr_img"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@android:drawable/arrow_down_float"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/dark_div_color" />
+        <RelativeLayout
+            android:id="@+id/celeb_friend_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="7dp">
+            <ImageView
+                android:id="@+id/left_fb_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/no_img_small"
+                android:layout_centerVertical="true" />
+            <TextView
+                android:id="@+id/third_title_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="@string/celebrities"
+                android:layout_toRightOf="@+id/left_fb_img"
+                android:layout_toLeftOf="@+id/right_arr_img"
+                android:textColor="@color/gray_login_color"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="5dp" />
+            <TextView
+                android:id="@+id/third_desc_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text="@string/celeb_desc"
+                android:textColor="@color/gray_login_color"
+                android:layout_toRightOf="@+id/left_fb_img"
+                android:layout_toLeftOf="@+id/right_arr_img"
+                android:layout_marginLeft="7dp"
+                android:layout_below="@+id/third_title_txt" />
+            <ImageView
+                android:id="@+id/right_arr_img"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@android:drawable/arrow_down_float"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/dark_div_color" />
     </LinearLayout>
 </LinearLayout>

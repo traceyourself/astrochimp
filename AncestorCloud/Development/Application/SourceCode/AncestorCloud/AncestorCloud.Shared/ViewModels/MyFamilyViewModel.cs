@@ -36,7 +36,7 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 		}
 			
-		private List<TableItem> tableDataList;
+		/*private List<TableItem> tableDataList;
 
 		public List<TableItem> TableDataList
 		{
@@ -46,7 +46,7 @@ namespace AncestorCloud.Shared.ViewModels
 				tableDataList = value;
 				RaisePropertyChanged(() => TableDataList);
 			}
-		}
+		}*/
 
 		#endregion
 

@@ -14,7 +14,7 @@
     <AndroidApplication>True</AndroidApplication>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AssemblyName>AncestorCloud.Droid</AssemblyName>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -116,6 +116,7 @@
     <Compile Include="PlatformSpecificService\FileService.cs" />
     <Compile Include="DroidUtilities\StringConstants.cs" />
     <Compile Include="Views\AddFriend\AddFriendView.cs" />
+    <Compile Include="Views\Celebrities\CelebritiesView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -239,6 +240,9 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\match_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\search_icon.png" />
     <AndroidResource Include="Resources\layout\add_friends_to_match.axml" />
+    <AndroidResource Include="Resources\layout\celebrities_screen.axml" />
+    <AndroidResource Include="Resources\layout\celebs_list_item.axml" />
+    <AndroidResource Include="Resources\drawable\search_box_back.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -257,6 +261,7 @@
     <Folder Include="Views\ResearchHelp\" />
     <Folder Include="PlatformSpecificService\" />
     <Folder Include="Views\AddFriend\" />
+    <Folder Include="Views\Celebrities\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.social">

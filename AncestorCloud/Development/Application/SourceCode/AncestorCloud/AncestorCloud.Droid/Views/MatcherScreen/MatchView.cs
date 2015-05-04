@@ -22,6 +22,7 @@ namespace AncestorCloud.Droid
 		ActionBar actionBar;
 		LinearLayout menuLayout,contentLayout;
 		TextView matchBtn;
+		ImageView first_img,sec_img;
 
 
 		public new MatchViewModel ViewModel
@@ -49,6 +50,11 @@ namespace AncestorCloud.Droid
 			menuLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutMenu);
 			contentLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutContent);
 			matchBtn = contentLayout.FindViewById<TextView> (Resource.Id.match_btn);
+			first_img = contentLayout.FindViewById<ImageView> (Resource.Id.first_img);
+			sec_img = contentLayout.FindViewById<ImageView> (Resource.Id.sec_img);
+
+
+
 		}
 		#endregion
 
@@ -107,6 +113,16 @@ namespace AncestorCloud.Droid
 			matchBtn.Click += (object sender, EventArgs e) => {
 				ViewModel.ShowRelationshipMatchDetailViewModel();
 			};
+
+
+			first_img.Click += (object sender, EventArgs e) => {
+				ViewModel.ShowFriendList();
+			};
+
+			sec_img.Click += (object sender, EventArgs e) => {
+				ViewModel.ShowFriendList();
+			};
+
 		}
 		#endregion
 

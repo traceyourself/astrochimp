@@ -14,13 +14,10 @@ using AncestorCloud.Shared.ViewModels;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "AddFriendView")]			
-	public class AddFriendView : BaseActivity
+	[Activity (Label = "CelebritiesView")]			
+	public class CelebritiesView : BaseActivity
 	{
 		ActionBar actionBar;
-	
-		RelativeLayout fb_btn,contacts_btn,celeb_btn;
-
 
 		public new AddFriendViewModel ViewModel
 		{
@@ -31,7 +28,7 @@ namespace AncestorCloud.Droid
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			SetContentView (Resource.Layout.add_friends_to_match);
+			SetContentView (Resource.Layout.celebrities_screen);
 
 			initUI ();
 			configureActionBar ();
@@ -42,16 +39,10 @@ namespace AncestorCloud.Droid
 
 		private void initUI()
 		{
-			fb_btn = FindViewById<RelativeLayout> (Resource.Id.fb_friend_btn);
-			contacts_btn = FindViewById<RelativeLayout> (Resource.Id.contacts_friend_btn);
-			celeb_btn = FindViewById<RelativeLayout> (Resource.Id.celeb_friend_btn);
+			
 		}
 
 		private void ApplyActions(){
-
-			celeb_btn.Click += (object sender, EventArgs e) => {
-				
-			};
 
 		}
 
