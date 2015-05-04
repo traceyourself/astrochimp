@@ -163,24 +163,24 @@ namespace AncestorCloud.Shared.ViewModels
 			ShowViewModel <FbFamilyViewModel> ();
 
 		}
-
-
+			
 		#region Flyout View
 
 		public void ShowFlyOutViewModel()
 		{
 			ShowViewModel<FlyOutViewModel> (new FlyOutViewModel.DetailParameters { IsFBLogin = IsFbLogin });
 		}
+
 		#endregion
 
 		#region Close Method
+
 		public void Close()
 		{
 			this.Close(this);
 		}
+
 		#endregion
-
-
 
 		private ACCommand _signUpCommand;
 

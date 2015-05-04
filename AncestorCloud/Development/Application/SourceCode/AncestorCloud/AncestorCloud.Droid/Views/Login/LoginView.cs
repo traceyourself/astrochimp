@@ -63,7 +63,7 @@ namespace AncestorCloud.Droid
 		private void ConfigureActionBar()
 		{
 			actionBar.SetCenterText (Resources.GetString(Resource.String.log_in));
-			actionBar.SetLeftCornerImage (Resource.Drawable.cross_btn);
+			actionBar.SetLeftCornerImage (Resource.Drawable.close_icon);
 			actionBar.FindViewById<RelativeLayout> (Resource.Id.action_bar_left_btn).Click += (object sender, EventArgs e) => {
 				ViewModel.ShowHomeViewModel();
 				ViewModel.Close();
@@ -84,22 +84,24 @@ namespace AncestorCloud.Droid
 
 		private void UseFacebookToLogin()
 		{
-			var facebook = new FacebookService { ClientId = "591314537670509",
-												 ClientSecret = "659bacca4a45654358bb632f5607eeb0",
-												 Scope = "publish_stream,email,user_friends,publish_actions"
+			var facebook = new FacebookService { ClientId = AppConstant.FBAPIKEY,
+												 ClientSecret = AppConstant.FBAPISECRETKEY,
+												 Scope = AppConstant.FBSCOPE 
 											   };
 
 			var authIntent = facebook.GetAuthenticateUI (this, accounts => {
 
-			    Account account = accounts;
+				Account account = accounts;
 
 				System.Diagnostics.Debug.WriteLine ("accounts :" + account);
 
 				if(account != null){
 					var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me"),account );//friends ///me/invitable_friends ///me/taggable_friends
+
+
 					request.GetResponseAsync ().ContinueWith (response => {
 						// parse the JSON in response.GetResponseText ()
-						//System.Diagnostics.Debug.WriteLine ("tagable frnds  :" + response.Result.GetResponseText());
+						//System.Diagnostics.Debug.WriteLine ("accounts :" + response.Result.GetResponseText());
 
 						ViewModel.FbResponseText = response.Result.GetResponseText();
 
@@ -108,33 +110,51 @@ namespace AncestorCloud.Droid
 						var familyRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/family"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
 						familyRequest.GetResponseAsync ().ContinueWith (famResponse => {
 
-							//System.Diagnostics.Debug.WriteLine ("me family : "+famResponse.Result.GetResponseText());
+							//System.Diagnostics.Debug.WriteLine (famResponse.Result.GetResponseText());
 							ViewModel.FbFamilyResponseText = famResponse.Result.GetResponseText();
 
 							ViewModel.SaveFbFamilyData();
 
 							//ViewModel.GetFbData();
-							if(account!=null)
-							{
+							if(account != null){
 								DoFBLogin();
 							}
-
 						});
+
 					});
-
-
 
 				}
 			});
 
 			StartActivity (authIntent);
 		}
-		 
 
 		public void DoFBLogin(){
 			ViewModel.ShowFbFamilyViewModel ();
 			ViewModel.Close ();
 		}
+
+
+		#region Helper methods
+		ProgressDialog pd;
+		private void ShowLoader()
+		{
+			if(pd != null){
+				if(pd.IsShowing){
+					pd.Dismiss ();
+				}
+			}
+			pd = ProgressDialog.Show (this,"","Loading...");
+		}
+
+		private void HideLoader()
+		{
+			if(pd != null){
+				pd.Dismiss ();
+			}
+		}
+		#endregion
+
 
 	}
 }

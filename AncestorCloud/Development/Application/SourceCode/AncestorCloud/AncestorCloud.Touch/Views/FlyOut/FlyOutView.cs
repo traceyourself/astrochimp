@@ -23,36 +23,36 @@ namespace AncestorCloud.Touch
 		private MvxSubscriptionToken navigationMenuToggleToken;
 		private MvxSubscriptionToken navigationBarHiddenToken;
 		private MvxSubscriptionToken changeFlyoutToken;
-		string[] Tasks = {
+		IMvxMessenger _messenger;
 
-			"My Family",
-			"Matcher",
-			"Research Help",
-			"Log Out",
-		};
+//		string[] Tasks = {
+//
+//			"My Family",
+//			"Matcher",
+//			"Research Help",
+//			"Log Out",
+//		};
+
+		#region LifeCycle Methods
 		public FlyOutView () : base ("FlyOutView", null)
 		{
-			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
-			changeFlyoutToken = _flyoutMessenger.SubscribeOnMainThread<ReloadFlyOutViewMessage>(message => this.ReloadMenu());
+			_messenger = Mvx.Resolve<IMvxMessenger>();
 		}
 
-		public override void DidReceiveMemoryWarning ()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
-		}
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			Flyout ();
+			AddMessengers ();
 
-//			var messenger = Mvx.Resolve<IMvxMessenger>();
-//			navigationBarHiddenToken = messenger.SubscribeOnMainThread<NavigationBarHiddenMessage>(message => NavigationController.NavigationBarHidden = message.NavigationBarHidden);
-			
-			// Perform any additional setup after loading the view, typically from a nib.
+		}
+
+		public override void ViewWillUnload ()
+		{
+			RemoveMessengers ();
+
+			base.ViewWillUnload ();
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -62,15 +62,8 @@ namespace AncestorCloud.Touch
 			CreateFlyoutView ();
 		}
 
-//		public override void ViewWillDisappear (bool animated)
-//		{
-//
-//			if (!NavigationController.ViewControllers.Contains (this)) {
-//				var messenger = Mvx.Resolve<IMvxMessenger> ();
-//				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
-//			}
-//			base.ViewWillDisappear (animated);
-//		}
+		#endregion
+			
 
 		public  void Flyout ()
 		{
@@ -112,10 +105,6 @@ namespace AncestorCloud.Touch
 			CreateFlyoutNavigation ();
 
 
-			//Listen to messages to toggle the menu and hide MvvmCrosses navigation bar
-			var _messenger = Mvx.Resolve<IMvxMessenger>();
-			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<ToggleFlyoutMenuMessage>(message => _navigation.ToggleMenu());
-			navigationBarHiddenToken = _messenger.SubscribeOnMainThread<NavigationBarHiddenMessage>(message => this.NavigationController.NavigationBarHidden = message.NavigationBarHidden);
 		}
 
 		private void CreateFlyoutNavigation()
@@ -202,42 +191,7 @@ namespace AncestorCloud.Touch
 
 			//this.NavigationController.NavigationBarHidden = true;
 		}
-
-//		private void CreateFlyoutView()
-//		{
-//			var flyoutViewControllers = new List<UIViewController>();
-//
-//			//var flyoutMenuElements = new Section();
-//
-//			var homeViewModel = ViewModel as FlyOutViewModel;
-//			if (homeViewModel != null)
-//			{
-//				//create the ViewModels
-//				foreach (var viewModel in homeViewModel.MenuItems)
-//				{
-//					var viewModelRequest = new MvxViewModelRequest
-//					{
-//						ViewModelType = viewModel.ViewModelType
-//					};
-//
-//					flyoutViewControllers.Add(CreateMenuItemController(viewModelRequest));
-//					//flyoutMenuElements.Add(new CustomStringElement(viewModel.Title));
-//
-//				}
-//				_navigation.ViewControllers = flyoutViewControllers.ToArray();
-//
-//				//add the menu elements
-////				var rootElement = new RootElement("")
-////				{
-////					flyoutMenuElements
-////				};
-//
-//				//_navigation.NavigationRoot = rootElement;
-//			}
-//
-//		}
-
-
+			
 		private UIViewController CreateMenuItemController(MvxViewModelRequest viewModelRequest)
 		{
 			var controller = new UINavigationController();
@@ -246,13 +200,33 @@ namespace AncestorCloud.Touch
 			return controller;
 		}
 
-		private UIViewController ReloadMenuItemController(MvxViewModelRequest viewModelRequest)
+
+		#region Helper Methods
+
+		void HideNavBar(bool boolValue)
 		{
-			var controller = new UINavigationController();
-			var screen = this.CreateViewControllerFor(viewModelRequest) as UIViewController;
-			controller.PushViewController(screen, false);
-			return controller;
+			if (this.NavigationController != null) {
+
+				this.NavigationController.NavigationBarHidden = boolValue;
+			}
 		}
+
+
+		void AddMessengers()
+		{
+			changeFlyoutToken = _messenger.SubscribeOnMainThread<ReloadFlyOutViewMessage>(message => this.ReloadMenu());
+			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<ToggleFlyoutMenuMessage>(message => _navigation.ToggleMenu());
+			navigationBarHiddenToken = _messenger.SubscribeOnMainThread<NavigationBarHiddenMessage>(message => this.HideNavBar( message.NavigationBarHidden));
+		}
+
+		void RemoveMessengers()
+		{
+			_messenger.Unsubscribe<ReloadFlyOutViewMessage> (changeFlyoutToken);
+			_messenger.Unsubscribe<ToggleFlyoutMenuMessage> (navigationMenuToggleToken);
+			_messenger.Unsubscribe<NavigationBarHiddenMessage> (navigationBarHiddenToken);
+		}
+
+		#endregion
 
 	}
 

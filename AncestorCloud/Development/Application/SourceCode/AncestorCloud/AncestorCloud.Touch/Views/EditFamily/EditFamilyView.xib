@@ -11,7 +11,6 @@
                 <outlet property="GenderSegment" destination="ctC-n1-g4U" id="BZ7-3A-ZrX"/>
                 <outlet property="LastNameTextField" destination="QUO-Mv-0nS" id="VdO-iG-P9F"/>
                 <outlet property="MiddleNameTextField" destination="yQD-6k-OSc" id="gSg-ul-z7t"/>
-                <outlet property="SaveButtonTapped" destination="c0d-xC-zmC" id="Hnu-K3-9V7"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
         </placeholder>
@@ -114,6 +113,9 @@
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="SaveButtonTapped:" destination="-1" eventType="touchUpInside" id="fBt-ig-ZQW"/>
+                            </connections>
                         </button>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ctC-n1-g4U">
                             <rect key="frame" x="196" y="331" width="143" height="29"/>
@@ -122,6 +124,9 @@
                                 <segment title="Female"/>
                             </segments>
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="GenderSegmentChanged:" destination="-1" eventType="valueChanged" id="hyU-UM-28u"/>
+                            </connections>
                         </segmentedControl>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -114,6 +114,8 @@
     <Compile Include="Views\MatcherScreen\PastMatchesView.cs" />
     <Compile Include="PlatformSpecificService\Loader.cs" />
     <Compile Include="PlatformSpecificService\FileService.cs" />
+    <Compile Include="DroidUtilities\StringConstants.cs" />
+    <Compile Include="Views\AddFriend\AddFriendView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -211,6 +213,32 @@
     <AndroidResource Include="Resources\layout\matched_list_item.axml" />
     <AndroidResource Include="Resources\layout\matcher_history_list_item.axml" />
     <AndroidResource Include="Resources\layout\past_matches.axml" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\img.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\img.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\img.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\img.png" />
+    <AndroidResource Include="Resources\drawable\family_grey_icon.png" />
+    <AndroidResource Include="Resources\drawable\female_check_icon.png" />
+    <AndroidResource Include="Resources\drawable\male_check_icon.png" />
+    <AndroidResource Include="Resources\drawable\plus.png" />
+    <AndroidResource Include="Resources\drawable\clock_icon.png" />
+    <AndroidResource Include="Resources\drawable\close_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\logout_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\match_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\search_icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\logout_icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\match_icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\search_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\logout_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\match_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\search_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\logout_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\match_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\search_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\logout_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\match_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\search_icon.png" />
+    <AndroidResource Include="Resources\layout\add_friends_to_match.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -228,6 +256,7 @@
     <Folder Include="Helper\" />
     <Folder Include="Views\ResearchHelp\" />
     <Folder Include="PlatformSpecificService\" />
+    <Folder Include="Views\AddFriend\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.social">

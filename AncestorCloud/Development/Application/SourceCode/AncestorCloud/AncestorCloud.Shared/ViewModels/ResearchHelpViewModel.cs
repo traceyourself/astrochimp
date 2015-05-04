@@ -45,6 +45,15 @@ namespace AncestorCloud.Shared.ViewModels
 			this.Close(this);
 		}
 		#endregion
+
+		#region logout
+		public void Logout()
+		{
+			ShowViewModel<HomePageViewModel>();
+			this.Close(this);
+		}
+		#endregion
+
 	}
 }
 

@@ -73,7 +73,7 @@ namespace AncestorCloud.Droid
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.logout_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
 				if(menu.AnimatedOpened){
-					ViewModel.ShowHomeViewModel();
+					ViewModel.Logout();
 				}
 			};
 		}
@@ -84,7 +84,7 @@ namespace AncestorCloud.Droid
 			actionBar = FindViewById <ActionBar>(Resource.Id.actionBar);
 			actionBar.SetLeftCornerMenuImage (Resource.Drawable.action_menu);
 
-			actionBar.SetCenterText (Resources.GetString(Resource.String.research_menu));
+			actionBar.SetCenterImageText (Resource.Drawable.search_icon,Resources.GetString(Resource.String.research_menu));
 
 			var menuButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 

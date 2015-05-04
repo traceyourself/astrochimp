@@ -18,15 +18,15 @@
                 android:id="@+id/top_img"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="200dp" />
+                android:background="@drawable/img"
+                android:minHeight="280dp" />
             <ImageView
                 android:id="@+id/family_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15dp"
-                android:minWidth="50dp"
-                android:minHeight="50dp"
+                android:src="@drawable/family_grey_icon"
                 android:layout_below="@+id/top_img" />
             <TextView
                 android:id="@+id/relation_text"
@@ -74,6 +74,9 @@
                 android:layout_marginTop="15dp"
                 android:src="@drawable/help_icon"
                 android:layout_below="@+id/add_family_btn" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

@@ -221,6 +221,51 @@ namespace AncestorCloud.Shared
 
 		#endregion
 
+
+		#region get add member response
+		public static ResponseDataModel GetAddMemberDetails(Dictionary<string,object> dataDic)
+		{
+			if (ValidationClass.IsDataNull (dataDic)) {
+				Utility.Log ("In GetAddMemberDetails() data dictionary is null");
+				return null;
+			}
+			ResponseDataModel modal = new ResponseDataModel ();
+
+			if (IsKeyExist (AppConstant.CODE, dataDic)) 
+				modal.Code = GetData (AppConstant.CODE, dataDic);
+
+			if (IsKeyExist (AppConstant.Message, dataDic))
+				modal.Message = GetData (AppConstant.Message, dataDic);
+
+			if (IsKeyExist (AppConstant.VALUE, dataDic))
+				modal.value = GetData (AppConstant.VALUE, dataDic);
+
+			return modal;
+		}
+		#endregion
+
+		#region get add member relation response
+		public static ResponseDataModel GetAddMemberRelationDetails(Dictionary<string,object> dataDic)
+		{
+			if (ValidationClass.IsDataNull (dataDic)) {
+				Utility.Log ("In GetAddMemberRelationDetails() data dictionary is null");
+				return null;
+			}
+			ResponseDataModel modal = new ResponseDataModel ();
+
+			if (IsKeyExist (AppConstant.CODE, dataDic)) 
+				modal.Code = GetData (AppConstant.CODE, dataDic);
+
+			if (IsKeyExist (AppConstant.Message, dataDic))
+				modal.Message = GetData (AppConstant.Message, dataDic);
+
+			return modal;
+		}
+		#endregion
+
+
+
+
 		#region helper Methods
 
 		private static bool IsKeyExist(string key , Dictionary<string,object> data)

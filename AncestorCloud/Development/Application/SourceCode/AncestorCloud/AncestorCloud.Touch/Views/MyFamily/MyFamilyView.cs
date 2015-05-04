@@ -16,6 +16,8 @@ namespace AncestorCloud.Touch
 	{
 		private MvxSubscriptionToken navigationMenuToken;
 
+		#region View Life Cycle Methods
+
 		public MyFamilyView () : base ("MyFamilyView", null)
 		{
 		}
@@ -33,6 +35,18 @@ namespace AncestorCloud.Touch
 			AddEvents ();
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			if (!NavigationController.ViewControllers.Contains (this)) {
+				var messenger = Mvx.Resolve<IMvxMessenger> ();
+				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
+
+			}
+			base.ViewWillDisappear (animated);
+		}
+
+		#endregion
 
 		#region Binding
 
@@ -65,24 +79,17 @@ namespace AncestorCloud.Touch
 		{
 			(myFamilyTable.Source as MyFamilyTableSource).FooterClickedDelegate += ShowAddParents;
 			var _messenger = Mvx.Resolve<IMvxMessenger>();
+
 			navigationMenuToken = _messenger.SubscribeOnMainThread<MyTableCellTappedMessage>(message => this.ShowEditFamily(message.FamilyMember));
 
 		}
 
 		public void ShowAddParents(object obj)
 		{
+
 			ViewModel.ShowAddParents ();
 		}
-
-		public void ShowEditFamily(People member)
-		{
-			EditFamilyView editFamily = new EditFamilyView ();
-			editFamily.FamilyMember = member;
-
-			UIWindow window = UIApplication.SharedApplication.KeyWindow;
-			window.AddSubview (editFamily.View);
-		}
-
+			
 		partial void CrossButtonTaped (NSObject sender)
 		{
 			//ViewModel.ShowHelpViewModel();
@@ -97,6 +104,7 @@ namespace AncestorCloud.Touch
 			}
 			base.ViewWillDisappear (animated);
 		}
+
 
 		#region list Filteration
 
@@ -168,6 +176,20 @@ namespace AncestorCloud.Touch
 
 		#endregion
 
+
+		#region EditFamilyView Methods
+
+
+		public void ShowEditFamily(People member)
+		{
+			EditFamilyView editFamily = new EditFamilyView ();
+			editFamily.FamilyMember = member;
+
+			UIWindow window = UIApplication.SharedApplication.KeyWindow;
+			window.AddSubview (editFamily.View);
+		}
+	
+		#endregion
 
 	}
 }

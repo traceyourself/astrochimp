@@ -13,6 +13,7 @@ using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using Xamarin.Social.Services;
 using Xamarin.Auth;
+using AncestorCloud.Shared;
 
 namespace AncestorCloud.Droid
 {
@@ -52,7 +53,7 @@ namespace AncestorCloud.Droid
 		private void ConfigureActionBar()
 		{
 			actionBar.SetCenterText (Resources.GetString(Resource.String.sign_up));
-			actionBar.SetLeftCornerImage (Resource.Drawable.cross_btn);
+			actionBar.SetLeftCornerImage (Resource.Drawable.close_icon);
 			actionBar.FindViewById<RelativeLayout> (Resource.Id.action_bar_left_btn).Click += (object sender, EventArgs e) => {
 				ViewModel.ShowHomeViewModel();
 				ViewModel.Close();
@@ -74,10 +75,10 @@ namespace AncestorCloud.Droid
 
 		private void UseFacebookToRegister()
 		{
-			var facebook = new FacebookService { ClientId = "591314537670509",
-				ClientSecret = "659bacca4a45654358bb632f5607eeb0",
-				Scope = "publish_stream,email,user_friends,publish_actions"
-			};
+			var facebook = new FacebookService { ClientId = AppConstant.FBAPIKEY,
+												ClientSecret = AppConstant.FBAPISECRETKEY,
+												Scope = AppConstant.FBSCOPE
+												};
 
 
 			var authIntent = facebook.GetAuthenticateUI (this, accounts => {
@@ -87,7 +88,7 @@ namespace AncestorCloud.Droid
 				System.Diagnostics.Debug.WriteLine ("accounts :" + account);
 
 				if(account != null){
-					var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/taggable_friends"),account );//friends ///me/invitable_friends ///me/taggable_friends
+					var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me"),account );//friends ///me/invitable_friends ///me/taggable_friends
 					request.GetResponseAsync ().ContinueWith (response => {
 						// parse the JSON in response.GetResponseText ()
 						//System.Diagnostics.Debug.WriteLine ("accounts :" + response.Result.GetResponseText());
