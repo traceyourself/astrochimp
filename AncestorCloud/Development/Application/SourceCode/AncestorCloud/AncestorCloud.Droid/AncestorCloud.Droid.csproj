@@ -115,6 +115,7 @@
     <Compile Include="DroidUtilities\StringConstants.cs" />
     <Compile Include="PlatformSpecificService\Loader.cs" />
     <Compile Include="PlatformSpecificService\FileService.cs" />
+    <Compile Include="Views\AddFriend\AddFriendView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -237,6 +238,7 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\logout_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\match_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\search_icon.png" />
+    <AndroidResource Include="Resources\layout\add_friends_to_match.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -260,6 +262,7 @@
     <Folder Include="Helper\" />
     <Folder Include="Views\ResearchHelp\" />
     <Folder Include="PlatformSpecificService\" />
+    <Folder Include="Views\AddFriend\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.social">
