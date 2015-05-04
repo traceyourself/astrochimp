@@ -14,6 +14,7 @@ using Android.Graphics;
 using AncestorCloud.Shared.ViewModels;
 using Java.Util;
 using Java.Text;
+using AncestorCloud.Shared;
 
 namespace AncestorCloud.Droid
 {
@@ -24,6 +25,8 @@ namespace AncestorCloud.Droid
 		public TextView addBtn,dateText;
 		bool maleSelected = false,femaleSelected=false;
 		ActionBar actionBar;
+		EditText first_name,middle_name,last_name,birthLoc;
+
 
 		public new AddFamilyViewModel ViewModel
 		{
@@ -48,11 +51,17 @@ namespace AncestorCloud.Droid
 			femalecheck = FindViewById<LinearLayout> (Resource.Id.female_container);
 			addBtn = FindViewById<TextView> (Resource.Id.add_person_btn);
 			dateText = FindViewById<TextView> (Resource.Id.birth_year_field);
+			actionBar = FindViewById<ActionBar> (Resource.Id.actionBar);
+
+			first_name = FindViewById<EditText> (Resource.Id.first_name_field);
+			middle_name = FindViewById<EditText> (Resource.Id.mid_name_field);
+			last_name = FindViewById<EditText> (Resource.Id.last_name_field);
+			birthLoc = FindViewById<EditText> (Resource.Id.birth_loc_field);
 		}
 
 		private void ConfigureActionBar()
 		{
-			actionBar.SetCenterText ("Add Grandparents");
+			actionBar.SetCenterText ("Add "+Utilities.AddPersonType);
 			actionBar.SetLeftCornerImage (Resource.Drawable.back);
 			var backButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 
@@ -78,15 +87,27 @@ namespace AncestorCloud.Droid
 			};
 
 			addBtn.Click += (object sender, EventArgs e) => {
-				ViewModel.Close();
+				Utilities.RegisterCertificateForApiHit();
+
+				if(maleSelected)
+				{
+					ViewModel.Gender = "Male";	
+				}else if(femaleSelected)
+				{
+					ViewModel.Gender = "Female";
+				}else{
+					ViewModel.Gender = "";
+				}
+
+				ViewModel.AddType = Utilities.AddPersonType;
+
+				ViewModel.AddPerson();
 			};
 
 			dateText.Click += (object sender, EventArgs e) => {
 				ShowDatePicker();
 			};
-
 		}
-
 
 		public void ShowDatePicker()
 		{
@@ -94,6 +115,21 @@ namespace AncestorCloud.Droid
 			DatePickerDialog dpd = new DatePickerDialog (this,new AddFamilyDateListener(this),cal.Get(Calendar.Year), cal.Get(Calendar.Month),cal.Get(Calendar.DayOfMonth));
 			dpd.Show ();
 		}
+
+//			People model = new People ();
+//
+//			model.FirstName = first_name.Text.ToString ();
+//			model.MiddleName = middle_name.Text.ToString ();
+//			model.LastName = last_name.Text.ToString ();
+//			model.BirthLocation = birthLoc.Text.ToString ();
+//			model.DateOfBirth = dateText.Text;
+//
+//			if (maleSelected) {
+//				model.Gender = "Male";	
+//			} else {
+//				model.Gender = "Female";
+//			}
+//
 
 	}
 
@@ -105,7 +141,7 @@ namespace AncestorCloud.Droid
 		public AddFamilyDateListener(AddFamilyView obj)
 		{
 			this.obj = obj;
-			dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Java.Util.Locale.Us);
+			dateFormatter = new SimpleDateFormat("MMM dd yyyy", Java.Util.Locale.Us);
 		}
 
 		public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {

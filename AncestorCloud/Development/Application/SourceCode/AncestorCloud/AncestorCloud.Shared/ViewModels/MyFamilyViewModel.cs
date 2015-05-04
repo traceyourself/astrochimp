@@ -18,6 +18,7 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			ShowViewModel<AddFamilyViewModel> ();
 		}
+
 		#endregion
 
 
@@ -80,6 +81,7 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			ShowViewModel<EditFamilyViewModel>();
 		}
+
 
 	}
 }

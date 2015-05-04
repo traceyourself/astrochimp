@@ -106,25 +106,25 @@ namespace AncestorCloud.Droid
 				People item = mainList[i];
 				string relation = item.Relation;
 
-				if (relation.Contains (Resources.GetString(Resource.String.Brother_comparison)) || relation.Contains (Resources.GetString(Resource.String.Sister_comparison))) 
+				if (relation.Contains (StringConstants.Brother_comparison) || relation.Contains (StringConstants.Sister_comparison)) 
 				{
 					listStruct = new ListDataStructure(false,false,true,"","",item);
 					siblingList.Add (listStruct);
 				}
 
-				else if(relation.Contains (Resources.GetString(Resource.String.Father_comparison)) || relation.Contains (Resources.GetString(Resource.String.Mother_comparison)))
+				else if(relation.Contains (StringConstants.Father_comparison) || relation.Contains (StringConstants.Mother_comparison))
 				{
 					listStruct = new ListDataStructure(false,false,true,"","",item);
 					parentList.Add (listStruct);
 				}
 
-				else if(relation.Contains (Resources.GetString(Resource.String.GrandFather_comparison)) || relation.Contains (Resources.GetString(Resource.String.GrandMother_comparison)))
+				else if(relation.Contains (StringConstants.GrandFather_comparison) || relation.Contains (StringConstants.GrandMother_comparison))
 				{
 					listStruct = new ListDataStructure(false,false,true,"","",item);
 					grandParentList.Add (listStruct);
 				}
 
-				else if(relation.Contains (Resources.GetString(Resource.String.GreatGrandFather_comparison)) || relation.Contains (Resources.GetString(Resource.String.GreatGrandMother_comparison)))
+				else if(relation.Contains (StringConstants.GreatGrandFather_comparison) || relation.Contains (StringConstants.GreatGrandMother_comparison))
 				{
 					listStruct = new ListDataStructure(false,false,true,"","",item);
 					greatGrandParentList.Add (listStruct);
@@ -334,6 +334,8 @@ namespace AncestorCloud.Droid
 
 				holder.listFooter.Click += (object sender, EventArgs e) => {
 					//System.Diagnostics.Debug.WriteLine("footer clicked at : "+position);
+					string []arr = structure.FooterTitle.Split(new char[]{' '},5);
+					Utilities.AddPersonType = arr[1];
 					myFamilyObj.ViewModel.ShowAddFamilyViewModel();
 				};
 			}

@@ -88,4 +88,14 @@
 	<string name="past_matches">Past Matches</string>
 	<!--- Matcher Strings Ends -->
 
+	<!---Select Matcher Strings -->
+	<string name="select_someone_to_match">Select Someone to Match</string>
+	<string name="contacts">Contacts</string>
+	<string name="celebrities">Celebrities</string>
+	<string name="fb_desc">Connect with Facebook to add friends easily</string>
+	<string name="contact_desc">Find friends from my phone contacts</string>
+	<string name="celeb_desc"> </string>
+	<!---Select Matcher Strings Ends -->
+
+
 </resources>
