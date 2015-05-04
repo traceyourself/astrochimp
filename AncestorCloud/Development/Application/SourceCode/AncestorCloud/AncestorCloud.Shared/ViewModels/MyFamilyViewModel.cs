@@ -59,13 +59,6 @@ namespace AncestorCloud.Shared.ViewModels
 
 		#endregion
 
-		#region show Add family dialog model
-		public void ShowAddFamilyViewModel()
-		{
-			ShowViewModel<AddFamilyViewModel> ();
-		}
-		#endregion
-
 
 		#region Sqlite Methods
 

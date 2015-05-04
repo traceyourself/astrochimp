@@ -54,11 +54,11 @@ namespace AncestorCloud.Touch
 		{
 			var set = this.CreateBindingSet<AddFamilyView, AddFamilyViewModel > ();
 			//set.Bind (FirstNameTextField).To (vm => vm.FirstName);
-			set.Bind (MiddleNameTextFeild).To (vm => vm.FamilyMember.FirstName);
-			set.Bind (LastNameTextField).To (vm => vm.FamilyMember.LastName);
-			set.Bind (BirthLocationTextField).To (vm => vm.FamilyMember.BirthLocation);
+			set.Bind (MiddleNameTextFeild).To (vm => vm.FirstName);
+			set.Bind (LastNameTextField).To (vm => vm.LastName);
+			set.Bind (BirthLocationTextField).To (vm => vm.BirthLocation);
 			//set.Bind (Birthlabel).To (vm => vm.FamilyMember.DateOfBirth);
-			set.Bind (GenderSegmentControl).To (vm => vm.FamilyMember.Gender).WithConversion(new GenderTextConverter(),null);
+			set.Bind (GenderSegmentControl).To (vm => vm.Gender).WithConversion(new GenderTextConverter(),null);
 			set.Bind (AddButton).To (vm => vm.AddPersonCommand);
 			set.Apply ();
 		}

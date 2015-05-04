@@ -34,6 +34,8 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 		}
 
+
+
 		private string _middlename;
 		public string MiddleName
 		{
@@ -88,6 +90,8 @@ namespace AncestorCloud.Shared.ViewModels
 				RaisePropertyChanged(() => BirthLocation);
 			}
 		}
+
+		#endregion
 
 //		private People _familyMember;
 //
