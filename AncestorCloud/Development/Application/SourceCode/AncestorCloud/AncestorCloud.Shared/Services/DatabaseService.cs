@@ -218,7 +218,7 @@ namespace AncestorCloud.Shared
 
 		public bool IsCelebStored()
 		{
-			int count =  _connection.Table<People>().ToList().Count();
+			int count = _connection.Table <Celebrity>().ToList().Count();
 			return Convert.ToBoolean( count);
 		}
 

@@ -79,9 +79,9 @@ namespace AncestorCloud.Droid
 
 		CelebritiesView myCelebObj;
 		LayoutInflater inflater;
-		List<People> dataList;
+		List<Celebrity> dataList;
 
-		public CelebrityListAdapter(CelebritiesView myCelebObj,List<People> dataList){
+		public CelebrityListAdapter(CelebritiesView myCelebObj,List<Celebrity> dataList){
 			this.myCelebObj = myCelebObj;
 			this.dataList = dataList;
 			inflater = (LayoutInflater)myCelebObj.GetSystemService (Context.LayoutInflaterService);
@@ -120,7 +120,7 @@ namespace AncestorCloud.Droid
 				holder = (CelebViewHolder)convertView.GetTag (Resource.Id.celeb_list);
 			}
 
-			holder.nametxt.Text = dataList[position].FirstName+" "+dataList[position].FirstName;
+			holder.nametxt.Text = dataList[position].GivenNames+" "+dataList[position].LastName;
 
 			holder.plus.Click += (object sender, EventArgs e) => {
 				myCelebObj.ViewModel.Close();
