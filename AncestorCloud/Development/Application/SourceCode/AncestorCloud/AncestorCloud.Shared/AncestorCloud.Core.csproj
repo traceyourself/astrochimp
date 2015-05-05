@@ -82,13 +82,17 @@
     <Compile Include="ViewModels\PastMatchesViewModel.cs" />
     <Compile Include="ViewModels\AddFriendViewModel.cs" />
     <Compile Include="ViewModels\EditFamilyViewModel.cs" />
-
-
-
-  <Compile Include="Models\AddFamilyModel.cs" /><Compile Include="Services\Interface\IAddFamilyService.cs" /><Compile Include="Services\AddFamilyService.cs" />
-
-  <Compile Include="Models\Celebrity.cs" /><Compile Include="PlatformSpecificService\IAlert.cs" /><Compile Include="PlatformSpecificService\IFileService.cs" /><Compile Include="PlatformSpecificService\ILoader.cs" /><Compile Include="Services\Interface\IStoreCelebService.cs" /><Compile Include="Services\StoreCelebService.cs" /></ItemGroup>
-
+    <Compile Include="Models\AddFamilyModel.cs" />
+    <Compile Include="Services\Interface\IAddFamilyService.cs" />
+    <Compile Include="Services\AddFamilyService.cs" />
+    <Compile Include="Models\Celebrity.cs" />
+    <Compile Include="PlatformSpecificService\IAlert.cs" />
+    <Compile Include="PlatformSpecificService\IFileService.cs" />
+    <Compile Include="PlatformSpecificService\ILoader.cs" />
+    <Compile Include="Services\Interface\IStoreCelebService.cs" />
+    <Compile Include="Services\StoreCelebService.cs" />
+    <Compile Include="ViewModels\CelebritiesViewModel.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <ItemGroup>

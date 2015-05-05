@@ -50,7 +50,7 @@ namespace AncestorCloud.Droid
 		private void ApplyActions(){
 
 			celeb_btn.Click += (object sender, EventArgs e) => {
-				
+				ViewModel.ShowCelebrities();
 			};
 
 		}
