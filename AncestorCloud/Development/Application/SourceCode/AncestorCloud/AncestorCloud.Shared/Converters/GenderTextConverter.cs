@@ -9,7 +9,10 @@ namespace AncestorCloud.Shared
 		{
 			int gender = 0;
 
-			if(value.Equals("female") || value.Equals("FeMale"))
+			if (value == null)
+				return gender;
+
+			if(value.Equals("female") || value.Equals("Female"))
 			{
 				gender = 1;
 			}

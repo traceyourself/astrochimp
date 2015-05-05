@@ -21,6 +21,11 @@ namespace AncestorCloud.Shared.ViewModels
 			Alert = alert;
 		}
 
+		public void Init(DetailParameter param)
+		{
+			this.AddType = param.AddPersonType;
+		}
+
 		#region fields
 		private string _firstName;
 
@@ -196,6 +201,10 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+		public class DetailParameter
+		{
+			public String AddPersonType{ get; set;}
+		}
 
 	}
 

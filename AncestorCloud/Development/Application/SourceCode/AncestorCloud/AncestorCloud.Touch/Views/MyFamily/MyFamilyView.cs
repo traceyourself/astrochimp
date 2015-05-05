@@ -86,8 +86,9 @@ namespace AncestorCloud.Touch
 
 		public void ShowAddParents(object obj)
 		{
+			TableItem item = obj as TableItem;
 
-			ViewModel.ShowAddParents ();
+			ViewModel.ShowAddParents (item.SectionFooter);
 		}
 			
 		partial void CrossButtonTaped (NSObject sender)

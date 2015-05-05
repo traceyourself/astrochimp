@@ -31,6 +31,7 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 			SetNavigationTitle ();
 			BindSubViews ();
+			GenderSegmentControlChanged (null);
 		
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -58,11 +59,40 @@ namespace AncestorCloud.Touch
 			set.Bind (LastNameTextField).To (vm => vm.LastName);
 			set.Bind (BirthLocationTextField).To (vm => vm.BirthLocation);
 			//set.Bind (Birthlabel).To (vm => vm.FamilyMember.DateOfBirth);
-			set.Bind (GenderSegmentControl).To (vm => vm.Gender).WithConversion(new GenderTextConverter(),null);
+			set.Bind (GenderSegmentControl).For(l => l.SelectedSegment).To (vm => vm.Gender).WithConversion(new GenderTextConverter(),null).TwoWay();
 			set.Bind (AddButton).To (vm => vm.AddPersonCommand);
 			set.Apply ();
 		}
 
+		#endregion
+
+
+		#region
+
+		partial void GenderSegmentControlChanged (NSObject sender)
+		{
+			switch(GenderSegmentControl.SelectedSegment)
+			{
+
+			case 0:
+				ViewModel.Gender = "Male";
+				break;
+					
+			case 1:
+				ViewModel.Gender = "Female";
+				break;
+			}
+		}
+
+		partial void AddButtonTapped (NSObject sender)
+		{
+			
+		}
+
+		partial void BirthYearButtonTaped (NSObject sender)
+		{
+			
+		}
 		#endregion
 
 	}

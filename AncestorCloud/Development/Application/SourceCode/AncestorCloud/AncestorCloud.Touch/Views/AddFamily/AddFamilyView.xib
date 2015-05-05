@@ -115,7 +115,7 @@
                             </segments>
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="GenderSegmentControlChanged:" destination="-1" eventType="valueChanged" id="iW9-kL-4q8"/>
+                                <action selector="GenderSegmentControlChanged:" destination="-1" eventType="valueChanged" id="Bnr-rv-tN1"/>
                             </connections>
                         </segmentedControl>
                     </subviews>

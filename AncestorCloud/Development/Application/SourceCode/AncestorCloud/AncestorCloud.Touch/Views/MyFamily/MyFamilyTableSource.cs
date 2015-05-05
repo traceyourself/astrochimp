@@ -132,7 +132,7 @@ namespace AncestorCloud.Touch
 				System.Diagnostics.Debug.WriteLine("Add Button Tapped");
 
 				if (FooterClickedDelegate != null) {
-					FooterClickedDelegate (null);
+					FooterClickedDelegate (ListItems[(int)section]);
 				}
 
 			};
