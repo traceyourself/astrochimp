@@ -24,7 +24,7 @@ namespace AncestorCloud.Shared
 
 			foreach (People member in list) 
 			{
-				if (!member.IsSelected)
+				if (member.IsSelected)
 				{
 					member.SessionId = loginData.Value;
 
