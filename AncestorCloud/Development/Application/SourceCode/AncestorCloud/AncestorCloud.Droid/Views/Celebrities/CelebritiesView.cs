@@ -20,6 +20,7 @@ namespace AncestorCloud.Droid
 	{
 		ActionBar actionBar;
 		ListView celebList;
+		EditText searchEd;
 
 		public new CelebritiesViewModel ViewModel
 		{
@@ -41,10 +42,20 @@ namespace AncestorCloud.Droid
 		private void initUI()
 		{
 			celebList = FindViewById<ListView> (Resource.Id.celeb_list);
+			searchEd = FindViewById<EditText> (Resource.Id.search_ed);
 		}
 
 		private void ApplyActions(){
-			
+			searchEd.AfterTextChanged += (object sender, Android.Text.AfterTextChangedEventArgs e) => {
+				string data = searchEd.Text.ToString();
+				data = data.Trim();
+				if(data.Length == 0){
+					ViewModel.GetCelebritiesData();
+				}else{
+					ViewModel.SearchKey = data;
+				}
+				setCelebListAdapter();
+			};
 		}
 
 		#region celebrity List Adapter

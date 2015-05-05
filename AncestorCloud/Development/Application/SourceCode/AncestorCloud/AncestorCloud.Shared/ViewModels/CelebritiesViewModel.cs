@@ -24,10 +24,14 @@ namespace AncestorCloud.Shared
 		public void GetCelebritiesData()
 		{
 			List<Celebrity> list = _databaseService.GetCelebritiesData();
-
 			CelebritiesList = list;
 		}
 
+		public void GetCelebritiesDataSearched()
+		{
+			List<Celebrity> list = _databaseService.FilterCelebs (SearchKey);
+			CelebritiesList = list;
+		}
 		#endregion
 
 
@@ -42,6 +46,19 @@ namespace AncestorCloud.Shared
 			{
 				celebritiesList = value;
 				RaisePropertyChanged(() => CelebritiesList);
+			}
+		}
+
+		private string searchKey;
+
+		public string SearchKey
+		{
+			get { return searchKey; }
+			set
+			{
+				searchKey = value;
+				RaisePropertyChanged(() => SearchKey);
+				GetCelebritiesDataSearched ();
 			}
 		}
 		#endregion

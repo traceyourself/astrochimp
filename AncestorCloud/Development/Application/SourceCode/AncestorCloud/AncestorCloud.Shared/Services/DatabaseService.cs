@@ -157,7 +157,7 @@ namespace AncestorCloud.Shared
 			if (filter == null)
 				throw new ArgumentNullException ("filter");
 
-			List<Celebrity> list = _connection.Table<Celebrity>().Where(x => x.GivenNames.Contains(filter)).ToList();
+			List<Celebrity> list = _connection.Table<Celebrity>().Where(x => x.GivenNames.Contains(filter) || x.LastName.Contains(filter)).ToList();
 			return list;
 		}
 
