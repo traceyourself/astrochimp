@@ -157,7 +157,6 @@ namespace AncestorCloud.Shared.ViewModels
 				modal.DateOfBirth = this.BirthDate;
 				modal.BirthLocation = this.BirthLocation;
 				modal.Gender = this.Gender;
-				modal.IndiOgfn = lModal.IndiOGFN;
 				modal.SessionId = lModal.Value;
 				modal.Relation = this.AddType;
 					

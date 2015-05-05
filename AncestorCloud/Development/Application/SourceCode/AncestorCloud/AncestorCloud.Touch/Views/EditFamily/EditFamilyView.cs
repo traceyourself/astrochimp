@@ -14,7 +14,7 @@ namespace AncestorCloud.Touch
 		#region Globals
 
 		public People FamilyMember{ get; set;}
-
+		public Action<object> SaveButtonTappedClickedDelegate { get; set; }
 		#endregion
 
 		#region View Life Cycle Methods
@@ -83,7 +83,7 @@ namespace AncestorCloud.Touch
 
 		void SetMiddleName()
 		{
-			MiddleNameTextField.Text = FamilyMember.LastName;
+			MiddleNameTextField.Text = FamilyMember.MiddleName;
 		}
 
 		void SetBirthLocation()
@@ -108,7 +108,47 @@ namespace AncestorCloud.Touch
 		partial void SaveButtonTapped (NSObject sender)
 		{
 			//TODO: Hit a edit relationship service
+			if(SaveButtonTappedClickedDelegate !=null)
+			{   
+				GetFamilyMemberData();
+				
+				SaveButtonTappedClickedDelegate(FamilyMember);
+			}
+
 			this.View.RemoveFromSuperview();
+		}
+
+		#endregion
+
+		#region
+
+		void GetFamilyMemberData()
+		{
+			FamilyMember.FirstName = FirstNameTextField.Text;
+			FamilyMember.LastName = LastNameTextField.Text;
+			FamilyMember.MiddleName = MiddleNameTextField.Text;
+			FamilyMember.BirthLocation = BirthLocationField.Text;
+			FamilyMember.Gender = GetGender ();
+			//TODO: Get birthyear
+		}
+
+		private string GetGender ()
+		{
+			String gender= String.Empty;
+
+			switch(GenderSegment.SelectedSegment)
+			{
+
+			case 0:
+				gender = "Male";
+				break;
+
+			case 1:
+				gender = "Female";
+				break;
+			}
+
+			return gender;
 		}
 
 		#endregion

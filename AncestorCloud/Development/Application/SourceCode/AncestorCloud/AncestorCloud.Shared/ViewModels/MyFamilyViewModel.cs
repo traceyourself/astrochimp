@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Shared.ViewModels
 {
@@ -7,9 +8,15 @@ namespace AncestorCloud.Shared.ViewModels
 	{
 		private readonly IDatabaseService _databaseService;
 
+		private readonly IAddFamilyService _addService;
+
+		private readonly IAlert Alert;
+
 		public MyFamilyViewModel(IDatabaseService  service)
 		{
 			_databaseService = service;
+			_addService = Mvx.Resolve<IAddFamilyService>();;
+			Alert = Mvx.Resolve<IAlert>();;
 			GetFbFamilyData ();
 		}
 
@@ -30,9 +37,23 @@ namespace AncestorCloud.Shared.ViewModels
 		#endregion
 
 
+		#region __IOS__ Only
+
+		private People familyMember;
+
+		public People FamilyMember
+		{
+			get { return familyMember; }
+			set
+			{
+				familyMember = value;
+				RaisePropertyChanged(() => FamilyMember);
+			}
+		}
+
+		#endregion
 
 		#region Properties
-
 		private List<People> familyList;
 
 		public List<People> FamilyList
@@ -92,7 +113,28 @@ namespace AncestorCloud.Shared.ViewModels
 			ShowViewModel<EditFamilyViewModel>();
 		}
 
+		#region EDIT SERVICE __IOS__ Only
+		public async void EditPerson()
+		{
+			LoginModel lModal = _databaseService.GetLoginDetails ();
 
+			FamilyMember.SessionId = lModal.Value;
+
+			//TODO : Remove this line when data is live
+			FamilyMember.IndiOgfn = lModal.IndiOGFN;
+
+			ResponseModel<ResponseDataModel> response = await _addService.EditFamilyMember(FamilyMember);
+
+			if (response.Status == ResponseStatus.OK) {
+				Alert.ShowAlert ("Successfully Edited","Success");
+			} 
+			else {
+				Alert.ShowAlert ("Failed to add, Please try Again...","Error");
+			}
+
+		} 
+
+		#endregion
 	}
 }
 

@@ -23,6 +23,60 @@ namespace AncestorCloud.Shared
 
 		}
 
+		#region
+
+		public async Task<ResponseModel<ResponseDataModel>> EditFamilyMember(People model)
+		{
+			_loader.showLoader ();
+
+			ResponseModel<ResponseDataModel> responseModel = new ResponseModel<ResponseDataModel>();
+			//Hit service using HTTP Client
+			try   
+			{
+				HttpClient client = new HttpClient(new NativeMessageHandler());
+				client.DefaultRequestHeaders.Add("Accept","application/json");
+
+				Dictionary <string,string> param = new Dictionary<string, string>();
+
+				param[AppConstant.ADD_PERSON_SESSION_ID] = model.SessionId;
+				param[AppConstant.ADD_PERSON_INDIOGFN] = model.IndiOgfn;
+				param[AppConstant.ADD_PERSON_NAME] = GetName(model);
+				param[AppConstant.ADD_PERSON_GENDER] = model.Gender;
+				param[AppConstant.ADD_PERSON_BIRTHDATE] = model.DateOfBirth;
+				param[AppConstant.ADD_PERSON_BIRTHPLACE] = model.BirthLocation;
+
+				String url = WebServiceHelper.GetWebServiceURL(AppConstant.ADD_PEOPLE_SERVICE,param);
+
+				Mvx.Trace(url);
+
+				var response = await client.GetAsync(url);
+
+				String res = response.Content.ReadAsStringAsync().Result;
+
+				System.Diagnostics.Debug.WriteLine ("add family response : "+res);
+
+				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
+
+				ResponseDataModel responsemodal = DataParser.GetAddMemberDetails (dict);
+
+				return responseModel as ResponseModel<ResponseDataModel> ;
+			}
+			catch(Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
+				//return CommonConstants.FALSE;
+				ResponseModel<ResponseDataModel> responsemodal = new ResponseModel<ResponseDataModel>();
+				responsemodal.Status = ResponseStatus.Fail;
+
+				return responseModel as ResponseModel<ResponseDataModel> ;
+			}
+			finally{
+
+				_loader.hideLoader();
+			}
+		}
+		#endregion
+
 		#region  implementation
 
 		public async Task<ResponseModel<ResponseDataModel>> AddFamilyMember(People model)
@@ -38,8 +92,7 @@ namespace AncestorCloud.Shared
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
 				param[AppConstant.ADD_PERSON_SESSION_ID] = model.SessionId;
-				//param[AppConstant.ADD_PERSON_INDIOGFN] = model.IndiOgfn;
-				param[AppConstant.ADD_PERSON_NAME] = model.FirstName;
+				param[AppConstant.ADD_PERSON_NAME] = GetName(model);
 				param[AppConstant.ADD_PERSON_GENDER] = model.Gender;
 				param[AppConstant.ADD_PERSON_BIRTHDATE] = model.DateOfBirth;
 				param[AppConstant.ADD_PERSON_BIRTHPLACE] = model.BirthLocation;
@@ -172,7 +225,16 @@ namespace AncestorCloud.Shared
 				}
 			}
 			return type;
-		} 
+		}
+
+		#region Helper Methods
+
+		string GetName(People member)
+		{
+			return String.Format ("{0} \"{1}\" /{2}/", member.FirstName, member.MiddleName, member.LastName);
+		}
+
+		#endregion
 	}
 }
 
