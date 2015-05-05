@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white">
+    <AncestorCloud.Droid.ActionBar
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+        <EditText
+            android:id="@+id/search_ed"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="30dp"
+            android:paddingTop="3dp"
+            android:hint="Search"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/add_family_data_txt_color"
+            android:background="@drawable/search_box_back"
+            android:textSize="13sp"
+            android:paddingBottom="3dp" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/search_icon"
+            android:tint="@color/gray_login_color"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/add_family_div_color" />
+    <ListView
+        android:id="@+id/celeb_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="1dp"
+        android:layout_marginTop="5dp"
+        android:divider="@color/add_family_div_color" />
+</LinearLayout>

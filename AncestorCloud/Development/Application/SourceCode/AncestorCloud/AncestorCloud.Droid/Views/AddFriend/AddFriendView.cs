@@ -18,11 +18,11 @@ namespace AncestorCloud.Droid
 	public class AddFriendView : BaseActivity
 	{
 		ActionBar actionBar;
-		LinearLayout menuLayout,contentLayout;
-		TextView addFamilyBtn;
+	
+		RelativeLayout fb_btn,contacts_btn,celeb_btn;
 
 
-		/*public new AddFriendViewModel ViewModel
+		public new AddFriendViewModel ViewModel
 		{
 			get { return base.ViewModel as AddFriendViewModel; }
 			set { base.ViewModel = value; }
@@ -31,7 +31,7 @@ namespace AncestorCloud.Droid
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			SetContentView (Resource.Layout.my_familiy_fly_out);
+			SetContentView (Resource.Layout.add_friends_to_match);
 
 			initUI ();
 			configureActionBar ();
@@ -42,37 +42,15 @@ namespace AncestorCloud.Droid
 
 		private void initUI()
 		{
-			menu = FindViewById<FlyOutContainer> (Resource.Id.flyOutContainerLay);
-			menuLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutMenu);
-			contentLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutContent);
-			addFamilyBtn = contentLayout.FindViewById<TextView> (Resource.Id.add_family_btn);
+			fb_btn = FindViewById<RelativeLayout> (Resource.Id.fb_friend_btn);
+			contacts_btn = FindViewById<RelativeLayout> (Resource.Id.contacts_friend_btn);
+			celeb_btn = FindViewById<RelativeLayout> (Resource.Id.celeb_friend_btn);
 		}
-
 
 		private void ApplyActions(){
 
-			addFamilyBtn.Click += (object sender, EventArgs e) => {
-				ViewModel.ShowEditViewModel();
-			};
-
-			menuLayout.FindViewById<LinearLayout> (Resource.Id.my_family_menu_btn).Click += (object sender, EventArgs e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
-			};
-
-			menuLayout.FindViewById<LinearLayout> (Resource.Id.matcher_menu_btn).Click += (object sender, EventArgs e) => {
-				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.CallMatcher();
-			};
-
-			menuLayout.FindViewById<LinearLayout> (Resource.Id.research_menu_btn).Click += (object sender, EventArgs e) => {
-				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.ShowResearchHelpViewModel();
-				ViewModel.Close();
-			};
-
-			menuLayout.FindViewById<LinearLayout> (Resource.Id.logout_menu_btn).Click += (object sender, EventArgs e) => {
-				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.Logout();
+			celeb_btn.Click += (object sender, EventArgs e) => {
+				ViewModel.ShowCelebrities();
 			};
 
 		}
@@ -81,17 +59,17 @@ namespace AncestorCloud.Droid
 		private void configureActionBar(){
 
 			actionBar = FindViewById <ActionBar>(Resource.Id.actionBar);
-			actionBar.SetLeftCornerMenuImage (Resource.Drawable.action_menu);
+			actionBar.SetLeftCornerImage (Resource.Drawable.close_icon);
 
-			actionBar.SetCenterImageText (Resource.Drawable.myfamily_title,Resources.GetString(Resource.String.my_family_menu));
+			actionBar.SetCenterText (Resources.GetString(Resource.String.select_someone_to_match));
 
-			var menuButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
+			var crossButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 
-			menuButton.Click += (sender, e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
+			crossButton.Click += (sender, e) => {
+				ViewModel.Close();
 			};
 		}
-		#endregion*/
+		#endregion
 	}
 }
 
