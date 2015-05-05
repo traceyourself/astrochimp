@@ -13,6 +13,15 @@ namespace AncestorCloud.Touch
 			
 		}
 
+		public BaseViewController (IntPtr handle) : base (handle)
+		{
+			//Only do this if required
+			if (HandlesKeyboardNotifications) {
+				NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillHideNotification, OnKeyboardNotification);
+				NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillShowNotification, OnKeyboardNotification);
+			}
+		}
+
 		public override void DidReceiveMemoryWarning ()
 		{
 			// Releases the view if it doesn't have a superview.
@@ -46,21 +55,22 @@ namespace AncestorCloud.Touch
 		#endregion
 
 
-		public override void ViewWillAppear (bool animated)
-		{
-			base.ViewWillAppear (animated);
-
-			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardNotification);
-			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardNotification);
-		}
-
-		public override void ViewWillDisappear (bool animated)
-		{
-			base.ViewWillDisappear (animated);
-
-			NSNotificationCenter.DefaultCenter.RemoveObserver(UIKeyboard.WillHideNotification);
-			NSNotificationCenter.DefaultCenter.RemoveObserver(UIKeyboard.WillShowNotification);
-		}
+//		public override void ViewWillAppear (bool animated)
+//		{
+//			base.ViewWillAppear (animated);
+//
+//			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardNotification);
+//			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardNotification);
+//		}
+//
+//		public override void ViewWillDisappear (bool animated)
+//		{
+//			base.ViewWillDisappear (animated);
+//
+//			NSNotificationCenter.DefaultCenter.RemoveObserver(UIKeyboard.WillHideNotification);
+//			NSNotificationCenter.DefaultCenter.RemoveObserver(UIKeyboard.WillShowNotification);
+//
+//		}
 
 
 
@@ -68,9 +78,9 @@ namespace AncestorCloud.Touch
 
 		protected UIView ViewToCenterOnKeyboardShown;
 
-		public virtual bool HandlesKeyboardNotifications()
+		public virtual bool HandlesKeyboardNotifications
 		{
-			return false;
+			get { return false; }
 		}
 
 
@@ -111,6 +121,8 @@ namespace AncestorCloud.Touch
 			
 		}
 		#endregion
+
+
 
 
 	}

@@ -22,9 +22,6 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="XBU-hU-cVY">
                         <rect key="frame" x="8" y="8" width="26" height="28"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="check.png" translatesAutoresizingMaskIntoConstraints="NO" id="HSb-4k-OV8">
-                        <rect key="frame" x="322" y="10" width="22" height="22"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWE-a9-bIz">
                         <rect key="frame" x="164" y="11" width="80" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -34,11 +31,16 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="uncheck.png" translatesAutoresizingMaskIntoConstraints="NO" id="GZh-oe-jgR">
                         <rect key="frame" x="322" y="10" width="22" height="22"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="check.png" translatesAutoresizingMaskIntoConstraints="NO" id="93B-1o-Rno">
+                        <rect key="frame" x="322" y="11" width="22" height="22"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="CheckedButtonTapped" destination="93B-1o-Rno" id="luk-r0-Z0U"/>
                 <outlet property="NameLabel" destination="Rtv-8E-x5U" id="Keh-dr-OBQ"/>
                 <outlet property="RelationLabel" destination="uWE-a9-bIz" id="KV1-iw-c2N"/>
+                <outlet property="UncheckedButtonTapped" destination="GZh-oe-jgR" id="Rj3-4J-mor"/>
             </connections>
             <point key="canvasLocation" x="339" y="309"/>
         </tableViewCell>

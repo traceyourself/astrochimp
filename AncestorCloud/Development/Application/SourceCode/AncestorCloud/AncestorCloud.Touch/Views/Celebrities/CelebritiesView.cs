@@ -3,6 +3,7 @@ using Foundation;
 using UIKit;
 using AncestorCloud.Shared;
 using Cirrious.MvvmCross.Binding.BindingContext;
+using System.Drawing;
 
 namespace AncestorCloud.Touch
 {
@@ -45,6 +46,15 @@ namespace AncestorCloud.Touch
 			var source = new CelebritiesTableSource (CelebritiesTableVIew);
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
 			CelebritiesTableVIew.Source = source;
+
+			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
+				{ TextColor = UIColor.FromRGB (255,255,255) });
+
+			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+
+			//	this.NavigationItem.BackBarButtonItem.TintColor = UIColor.White;
+			
+			this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,150,20));
 
 			var set = this.CreateBindingSet<CelebritiesView , CelebritiesViewModel> ();
 			set.Bind (source).To (vm => vm.CelebritiesList);

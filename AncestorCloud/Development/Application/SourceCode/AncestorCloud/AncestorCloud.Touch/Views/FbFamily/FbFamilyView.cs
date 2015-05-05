@@ -51,6 +51,7 @@ namespace AncestorCloud.Touch
 
 			var set = this.CreateBindingSet<FbFamilyView , FbFamilyViewModel> ();
 			set.Bind (source).To (vm => vm.FamilyList);
+
 			set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);

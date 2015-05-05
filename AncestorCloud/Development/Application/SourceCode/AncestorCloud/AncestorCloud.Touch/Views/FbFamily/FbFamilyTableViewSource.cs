@@ -2,6 +2,8 @@
 using UIKit;
 using Cirrious.MvvmCross.Binding.Touch.Views;
 using Foundation;
+using AncestorCloud.Shared;
+using System.Collections.Generic;
 
 namespace AncestorCloud.Touch
 {
@@ -52,6 +54,22 @@ namespace AncestorCloud.Touch
 //			return cell;
 //
 //		}
+	}
+
+	public class FbFamilyTableViewDelegate : UITableViewDelegate
+	{
+
+		public FbFamilyTableViewDelegate(List<People> people)
+		{
+			//List<People> peopleList = new List<People> ();
+
+			People _people = people();
+		}
+
+		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
+		{
+			
+		}
 	}
 }
 

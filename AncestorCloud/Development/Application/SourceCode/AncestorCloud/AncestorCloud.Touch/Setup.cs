@@ -2,7 +2,6 @@ using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.Touch.Platform;
 using UIKit;
-
 using Cirrious.MvvmCross.Touch.Views.Presenters;
 using Cirrious.CrossCore;
 using AncestorCloud.Shared;
