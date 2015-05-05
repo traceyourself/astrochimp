@@ -193,11 +193,11 @@
     <InterfaceDefinition Include="Views\EditFamily\EditFamilyView.xib" />
     <InterfaceDefinition Include="Views\Celebrities\CelebritiesView.xib" />
     <InterfaceDefinition Include="Views\Celebrities\CelebritiesCell\CelebritiesCell.xib" />
-    <InterfaceDefinition Include="Views\Help\HelpView.xib" />
     <InterfaceDefinition Include="Views\Facebook Friends\FacebookFriendView.xib" />
     <InterfaceDefinition Include="Views\Facebook Friends\FacebookFriendCell\FacebookFriendCell.xib" />
     <InterfaceDefinition Include="Views\Contacts\ContactsView.xib" />
     <InterfaceDefinition Include="Views\Contacts\ContactsCell\ContactsCell.xib" />
+    <InterfaceDefinition Include="Views\Help\HelpView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -297,7 +297,12 @@
       <DependentUpon>PastMatchesView.cs</DependentUpon>
     </Compile>
  feature/Working_Flow
-  <Compile Include="Utility\MyMatchTitleView.cs" /><Compile Include="Utility\MyResearchTitleView.cs" /><Compile Include="Utility\MyPastMatchTitleView.cs" /><Compile Include="Views\Help\HelpView.cs" /><Compile Include="Views\Help\HelpView.designer.cs"><DependentUpon>HelpView.cs</DependentUpon></Compile><Compile Include="Views\Facebook Friends\FacebookFriendView.cs" /><Compile Include="Views\Facebook Friends\FacebookFriendView.designer.cs"><DependentUpon>FacebookFriendView.cs</DependentUpon></Compile><Compile Include="Views\Facebook Friends\FacebookFriendTableSource.cs" /><Compile Include="Views\Facebook Friends\FacebookFriendCell\FacebookFriendCell.cs" /><Compile Include="Views\Facebook Friends\FacebookFriendCell\FacebookFriendCell.designer.cs"><DependentUpon>FacebookFriendCell.cs</DependentUpon></Compile><Compile Include="Views\Contacts\ContactsView.cs" /><Compile Include="Views\Contacts\ContactsView.designer.cs"><DependentUpon>ContactsView.cs</DependentUpon></Compile><Compile Include="Views\Contacts\ContactsCell\ContactsCell.cs" /><Compile Include="Views\Contacts\ContactsCell\ContactsCell.designer.cs"><DependentUpon>ContactsCell.cs</DependentUpon></Compile><Compile Include="Views\Contacts\ContactsTableSource.cs" /><Compile Include="AncestorCloud_TouchViewController.cs" /><Compile Include="AncestorCloud_TouchViewController.designer.cs"><DependentUpon>AncestorCloud_TouchViewController.cs</DependentUpon></Compile></ItemGroup>
+
+  <Compile Include="Utility\MyMatchTitleView.cs" /><Compile Include="Utility\MyResearchTitleView.cs" /><Compile Include="Utility\MyPastMatchTitleView.cs" /><Compile Include="Views\Help\HelpView.cs" /><Compile Include="Views\Help\HelpView.designer.cs"><DependentUpon>HelpView.cs</DependentUpon></Compile><Compile Include="Views\Facebook Friends\FacebookFriendView.cs" /><Compile Include="Views\Facebook Friends\FacebookFriendView.designer.cs"><DependentUpon>FacebookFriendView.cs</DependentUpon></Compile><Compile Include="Views\Facebook Friends\FacebookFriendTableSource.cs" /><Compile Include="Views\Facebook Friends\FacebookFriendCell\FacebookFriendCell.cs" /><Compile Include="Views\Facebook Friends\FacebookFriendCell\FacebookFriendCell.designer.cs"><DependentUpon>FacebookFriendCell.cs</DependentUpon></Compile><Compile Include="Views\Contacts\ContactsView.cs" /><Compile Include="Views\Contacts\ContactsView.designer.cs"><DependentUpon>ContactsView.cs</DependentUpon></Compile><Compile Include="Views\Contacts\ContactsCell\ContactsCell.cs" /><Compile Include="Views\Contacts\ContactsCell\ContactsCell.designer.cs"><DependentUpon>ContactsCell.cs</DependentUpon></Compile><Compile Include="Views\Contacts\ContactsTableSource.cs" /><Compile Include="AncestorCloud_TouchViewController.cs" /><Compile Include="AncestorCloud_TouchViewController.designer.cs"><DependentUpon>AncestorCloud_TouchViewController.cs</DependentUpon></Compile>
+
+
+</ItemGroup>
+
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Utility\" />

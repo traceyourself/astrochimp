@@ -38,6 +38,10 @@ namespace AncestorCloud.Touch
 
 			this.NavigationController.NavigationBarHidden = false;
 			this.Title="Select Someone to Match";
+
+			UIImage image = UIImage.FromFile ("cross_white.png");
+
+			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 	
 			// Perform any additional setup after loading the view, typically from a nib.
 		}

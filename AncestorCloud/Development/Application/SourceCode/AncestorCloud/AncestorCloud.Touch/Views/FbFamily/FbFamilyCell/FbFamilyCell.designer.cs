@@ -13,10 +13,16 @@ namespace AncestorCloud.Touch
 	partial class FbFamilyCell
 	{
 		[Outlet]
+		UIKit.UIImageView CheckedButtonTapped { get; set; }
+
+		[Outlet]
 		UIKit.UILabel NameLabel { get; set; }
 
 		[Outlet]
 		UIKit.UILabel RelationLabel { get; set; }
+
+		[Outlet]
+		UIKit.UIImageView UncheckedButtonTapped { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -28,6 +34,16 @@ namespace AncestorCloud.Touch
 			if (RelationLabel != null) {
 				RelationLabel.Dispose ();
 				RelationLabel = null;
+			}
+
+			if (CheckedButtonTapped != null) {
+				CheckedButtonTapped.Dispose ();
+				CheckedButtonTapped = null;
+			}
+
+			if (UncheckedButtonTapped != null) {
+				UncheckedButtonTapped.Dispose ();
+				UncheckedButtonTapped = null;
 			}
 		}
 	}

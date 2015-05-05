@@ -63,6 +63,10 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+		public void ShowPastMatches()
+		{
+			ShowViewModel<PastMatchesViewModel> ();
+		}
 
 	}
 }

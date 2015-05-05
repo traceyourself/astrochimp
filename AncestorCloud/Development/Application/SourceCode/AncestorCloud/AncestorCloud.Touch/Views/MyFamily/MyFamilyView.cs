@@ -143,21 +143,21 @@ namespace AncestorCloud.Touch
 
 			TableItem parentsData= new TableItem ();
 			parentsData.SectionHeader = "Parents";
-			parentsData.SectionFooter = "Parents";
+			parentsData.SectionFooter = "Parent";
 			parentsData.DataItems = parentList;
 
 			resultList.Add (parentsData);
 
 			TableItem grandParentData= new TableItem ();
-			grandParentData.SectionHeader = "Grand Parents";
-			grandParentData.SectionFooter = "GrandParents";
+			grandParentData.SectionHeader = "Grandparents";
+			grandParentData.SectionFooter = "Grandparent";
 			grandParentData.DataItems = grandParentList;
 
 			resultList.Add (grandParentData);
 
 			TableItem greatGrandParentData= new TableItem ();
-			greatGrandParentData.SectionHeader = "Great GrandParents";
-			greatGrandParentData.SectionFooter = "GreatGrandParents";
+			greatGrandParentData.SectionHeader = "Great Grandparents";
+			greatGrandParentData.SectionFooter = "GreatGrandparent";
 			greatGrandParentData.DataItems = greatGrandParentList;
 
 			resultList.Add (greatGrandParentData);

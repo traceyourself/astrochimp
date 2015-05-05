@@ -1,6 +1,4 @@
-﻿ 
-using System;
-
+﻿using System;
 using Foundation;
 using UIKit;
 using Cirrious.MvvmCross.Touch.Views;
@@ -20,11 +18,8 @@ namespace AncestorCloud.Touch
 	public partial class LoginView : BaseViewController, IMvxModalTouchView
 	{
 
-
-
 //		FlyoutNavigationController navigation;
 //		List<LoginViewModel> MenuItems;
-
 
 		public LoginView () : base ("LoginView", null)
 		{
@@ -86,6 +81,18 @@ namespace AncestorCloud.Touch
 					})
 				, true);
 
+			EmailTextFeild.ShouldReturn = _ => {
+				EmailTextFeild.BecomeFirstResponder ();
+				return false;
+			};
+
+
+
+			PasswordTextFeild.ShouldReturn = _ => {
+				PasswordTextFeild.BecomeFirstResponder ();
+				return false;
+			};
+
 		}
 		#endregion
 
@@ -116,8 +123,9 @@ namespace AncestorCloud.Touch
 
 		public virtual bool HandlesKeyboardNotifications
 		{
-			get { return false; }
+			get { return true; }
 		}
+
 
 		#endregion
 

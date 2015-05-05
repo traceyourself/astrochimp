@@ -18,6 +18,9 @@ namespace AncestorCloud.Touch
 		[Outlet]
 		UIKit.UILabel NameLabel { get; set; }
 
+		[Outlet]
+		UIKit.UILabel RelationLabel { get; set; }
+
 		[Action ("EditButtonTapped:")]
 		partial void EditButtonTapped (Foundation.NSObject sender);
 		
@@ -31,6 +34,11 @@ namespace AncestorCloud.Touch
 			if (NameLabel != null) {
 				NameLabel.Dispose ();
 				NameLabel = null;
+			}
+
+			if (RelationLabel != null) {
+				RelationLabel.Dispose ();
+				RelationLabel = null;
 			}
 		}
 	}

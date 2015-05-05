@@ -91,15 +91,12 @@
     <Compile Include="PlatformSpecificService\ILoader.cs" />
     <Compile Include="Services\Interface\IStoreCelebService.cs" />
     <Compile Include="Services\StoreCelebService.cs" />
-
     <Compile Include="Models\TableItem.cs" />
-    <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="ViewModels\CelebritiesViewModel.cs" />
     <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\FacebookFriendViewModel.cs" />
     <Compile Include="Converters\GenderTextConverter.cs" />
-
-    
+    <Compile Include="ViewModels\HelpViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

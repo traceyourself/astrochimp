@@ -77,11 +77,16 @@ namespace AncestorCloud.Touch
 			#endregion
 
 			#region RightSide Button
+
+			UIImage rightImage = UIImage.FromFile ("clock_icon.png");
+
+			rightImage = rightImage.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
+
 			this.NavigationItem.SetRightBarButtonItem(
-				new UIBarButtonItem(image
+				new UIBarButtonItem(rightImage
 					, UIBarButtonItemStyle.Plain
 					, (sender,args) => {
-
+						ViewModel.ShowPastMatches();
 						System.Diagnostics.Debug.WriteLine("PAST MATCHER");
 					})
 				, true);

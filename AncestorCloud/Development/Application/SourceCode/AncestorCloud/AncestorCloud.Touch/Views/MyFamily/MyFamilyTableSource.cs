@@ -123,8 +123,8 @@ namespace AncestorCloud.Touch
 				BackgroundColor=UIColor.White,
 			};
 
-			btn.SetTitle( "   +Add"+ListItems[(int)section].SectionFooter,UIControlState.Normal);
-			btn.SetTitleColor(UIColor.Black,UIControlState.Normal);
+			btn.SetTitle( "   + Add "+ListItems[(int)section].SectionFooter,UIControlState.Normal);
+			btn.SetTitleColor(UIColor.FromRGB(178,45,116),UIControlState.Normal);
 			btn.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
 			btn.Font = UIFont.FromName ("Helvetica", 14f);
 
