@@ -139,7 +139,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowFlyOutViewModel()
 		{
-			ShowViewModel<FlyOutViewModel> (new FlyOutViewModel.DetailParameters { IsFBLogin = IsFbLogin });
+			ShowViewModel<FlyOutViewModel> (new FlyOutViewModel.DetailParameters { IsFBLogin = true });
 		}
 		#endregion
 
