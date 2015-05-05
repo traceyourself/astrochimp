@@ -87,14 +87,24 @@
                 android:layout_marginRight="30dp"
                 android:orientation="vertical">
                 <EditText
-                    android:id="@+id/full_name_field"
+                    android:id="@+id/first_name_field"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
                     android:background="@drawable/edit_text_back"
-                    android:hint="@string/full_name"
+                    android:hint="@string/first_name"
                     android:textColorHint="@color/light_gray_color"
                     android:textColor="@android:color/black"
-                    local:MvxBind="Text Name" />
+                    local:MvxBind="Text FirstName" />
+                <EditText
+                    android:id="@+id/last_name_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:background="@drawable/edit_text_back"
+                    android:layout_marginTop="15dp"
+                    android:hint="@string/last_name"
+                    android:textColorHint="@color/light_gray_color"
+                    android:textColor="@android:color/black"
+                    local:MvxBind="Text LastName" />
                 <EditText
                     android:id="@+id/email_field"
                     android:layout_width="match_parent"
@@ -128,6 +138,9 @@
                     android:gravity="center"
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

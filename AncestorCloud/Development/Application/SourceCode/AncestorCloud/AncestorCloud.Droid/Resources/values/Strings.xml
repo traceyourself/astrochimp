@@ -12,7 +12,7 @@
 	<string name="log_in">Log In</string>
 	<string name="facebook">Facebook</string>
 	<string name="continue_with">Continue with</string>
-	<string name="login_with_email">Log in with Email</string>
+	<string name="login_with_email">Log in with email</string>
 	<string name="or">or</string>
 	<string name="email">Email</string>
 	<string name="password">Password</string>
@@ -20,8 +20,9 @@
 
 	<!--  Sign Up Strings  -->
 	<string name="sign_up">Sign Up</string>
-	<string name="sign_up_email">Sign up with Email</string>
-	<string name="full_name">Full name</string>
+	<string name="sign_up_email">Sign up with email</string>
+	<string name="first_name">First name</string>
+	<string name="last_name">Last name</string>
 	<!--  Sign up Strings End  -->
 
 	<!--- My Family Strings -->

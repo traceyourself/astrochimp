@@ -1,9 +1,7 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -14,6 +12,7 @@ using AncestorCloud.Shared.ViewModels;
 using Xamarin.Social.Services;
 using Xamarin.Auth;
 using AncestorCloud.Shared;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Droid
 {
@@ -49,7 +48,6 @@ namespace AncestorCloud.Droid
 			signUpBtn = FindViewById<TextView> (Resource.Id.sign_up_btn);
 		}
 
-
 		private void ConfigureActionBar()
 		{
 			actionBar.SetCenterText (Resources.GetString(Resource.String.sign_up));
@@ -63,10 +61,12 @@ namespace AncestorCloud.Droid
 		private void ApplyActions()
 		{
 			fbBtn.Click += (object sender, EventArgs e) => {
+				Utilities.RegisterCertificateForApiHit();
 				UseFacebookToRegister();
 			};	
 
 			signUpBtn.Click += (object sender, EventArgs e) => {
+				Utilities.LoggedInUsingFb = false;
 				Utilities.RegisterCertificateForApiHit();
 				ViewModel.DoSignUp();
 			};
@@ -89,6 +89,9 @@ namespace AncestorCloud.Droid
 
 				if(account != null){
 					var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me"),account );//friends ///me/invitable_friends ///me/taggable_friends
+
+					ShowLoader();
+
 					request.GetResponseAsync ().ContinueWith (response => {
 						// parse the JSON in response.GetResponseText ()
 						//System.Diagnostics.Debug.WriteLine ("accounts :" + response.Result.GetResponseText());
@@ -96,6 +99,8 @@ namespace AncestorCloud.Droid
 						ViewModel.FbResponseText = response.Result.GetResponseText();
 
 						ViewModel.SaveFbData();
+
+						Mvx.Trace("saved result of me ");
 
 						var familyRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/family"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
 						familyRequest.GetResponseAsync ().ContinueWith (famResponse => {
@@ -105,14 +110,28 @@ namespace AncestorCloud.Droid
 
 							ViewModel.SaveFbFamilyData();
 
-							//ViewModel.GetFbData();
-							if(account != null){
-								DoFbSignUp();
-							}
+							Mvx.Trace("saved result of family ");
+
+							var friendRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/taggable_friends"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
+							friendRequest.GetResponseAsync().ContinueWith(friendResponse => {
+								//System.Diagnostics.Debug.WriteLine ("friendresponse :"+friendResponse.Result.GetResponseText());
+								ViewModel.FbFriendResponseText = friendResponse.Result.GetResponseText();
+								ViewModel.SaveFbFriendsData();  	
+
+								Mvx.Trace("saved result of taggable friends ");
+
+								HideLoader();
+
+								//ViewModel.GetFbData();
+								if(account != null){
+									DoFbSignUp();
+								}
+
+							});
+
 						});
 
 					});
-
 
 				}
 
@@ -122,9 +141,32 @@ namespace AncestorCloud.Droid
 		}
 
 		public void DoFbSignUp(){
+			Utilities.LoggedInUsingFb = true;
 			ViewModel.ShowFbFamilyViewModel ();
 			ViewModel.Close ();
 		}
+
+
+
+		#region Helper methods
+		ProgressDialog pd;
+		private void ShowLoader()
+		{
+			if(pd != null){
+				if(pd.IsShowing){
+					pd.Dismiss ();
+				}
+			}
+			pd = ProgressDialog.Show (this,"","Loading...");
+		}
+
+		private void HideLoader()
+		{
+			if(pd != null){
+				pd.Dismiss ();
+			}
+		}
+		#endregion
 
 	}
 }
