@@ -53,7 +53,7 @@ namespace AncestorCloud.Shared
 
 				String res = response.Content.ReadAsStringAsync().Result;
 
-				System.Diagnostics.Debug.WriteLine ("add family response : "+res);
+				System.Diagnostics.Debug.WriteLine ("Edit family response : "+res);
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
