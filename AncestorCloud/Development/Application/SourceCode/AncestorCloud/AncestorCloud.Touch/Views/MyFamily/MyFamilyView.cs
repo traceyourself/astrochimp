@@ -175,9 +175,17 @@ namespace AncestorCloud.Touch
 		{
 			EditFamilyView editFamily = new EditFamilyView ();
 			editFamily.FamilyMember = member;
+			editFamily.SaveButtonTappedClickedDelegate += SaveEditedFamilyDetails;
 
 			UIWindow window = UIApplication.SharedApplication.KeyWindow;
 			window.AddSubview (editFamily.View);
+		}
+
+
+		public void SaveEditedFamilyDetails(object member)
+		{
+			ViewModel.FamilyMember = member as People;
+			ViewModel.EditPerson ();
 		}
 	
 		#endregion
