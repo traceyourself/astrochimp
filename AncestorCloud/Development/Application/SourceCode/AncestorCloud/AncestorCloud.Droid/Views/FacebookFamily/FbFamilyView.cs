@@ -104,6 +104,7 @@ namespace AncestorCloud.Droid
 
 			nextBtn.Click += (object sender, EventArgs e) => {
 				ViewModel.NextButtonCommand.Execute(null);
+				ViewModel.Close();
 				//ViewModel.CheckValues();
 			};
 

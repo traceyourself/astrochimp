@@ -192,6 +192,27 @@ namespace AncestorCloud.Touch
 		}
 
 		#endregion
+
+		#region Helper methods
+		ProgressDialog pd;
+		private void ShowLoader()
+		{
+			if(pd != null){
+				if(pd.IsShowing){
+					pd.Dismiss ();
+				}
+			}
+			pd = ProgressDialog.Show (this,"","Loading...");
+		}
+
+		private void HideLoader()
+		{
+			if(pd != null){
+				pd.Dismiss ();
+			}
+		}
+		#endregion
+
 	}
 }
 
