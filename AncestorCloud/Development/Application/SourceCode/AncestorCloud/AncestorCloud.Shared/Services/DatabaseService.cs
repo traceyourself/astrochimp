@@ -66,6 +66,7 @@ namespace AncestorCloud.Shared
 		{
 			if (relative == null)
 				throw new ArgumentNullException ("relative");
+			
 			_connection.Update(relative);
 		}
 		public void DeleteRelative (People relative)

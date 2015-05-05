@@ -17,6 +17,7 @@ namespace AncestorCloud.Shared
 
 		private ILoader _loader;
 
+
 		public AddFamilyService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
@@ -79,10 +80,10 @@ namespace AncestorCloud.Shared
 
 		#region  implementation
 
-		public async Task<ResponseModel<ResponseDataModel>> AddFamilyMember(People model)
+		public async Task<ResponseModel<People>> AddFamilyMember(People model)
 		{
 			_loader.showLoader ();
-			ResponseModel<ResponseDataModel> responseModel = new ResponseModel<ResponseDataModel>();
+			ResponseModel<People> responseModel = new ResponseModel<People>();
 			//Hit service using HTTP Client
 			try   
 			{
@@ -113,13 +114,14 @@ namespace AncestorCloud.Shared
 
 				if(responsemodal.Code.Equals("0")){
 
-					responseModel = await AddFamilyMemberRelation(model,responsemodal.value);
+					model.IndiOgfn = responsemodal.value;
+					responseModel = await AddFamilyMemberRelation(model);
 
 				}else{
 					responsemodal.Status = ResponseStatus.Fail;
 				}
 
-				return responseModel as ResponseModel<ResponseDataModel> ;
+				return responseModel as ResponseModel<People> ;
 			}
 			catch(Exception ex)
 			{
@@ -128,7 +130,7 @@ namespace AncestorCloud.Shared
 				ResponseModel<ResponseDataModel> responsemodal = new ResponseModel<ResponseDataModel>();
 				responsemodal.Status = ResponseStatus.Fail;
 
-				return responseModel as ResponseModel<ResponseDataModel> ;
+				return responseModel as ResponseModel<People> ;
 			}
 			finally{
 			
@@ -140,10 +142,10 @@ namespace AncestorCloud.Shared
 
 		#region Add Relationship
 
-		public async Task<ResponseModel<ResponseDataModel>> AddFamilyMemberRelation(People model,string indiogfn)
+		public async Task<ResponseModel<People>> AddFamilyMemberRelation(People model)
 		{
 			_loader.showLoader ();
-			ResponseModel<ResponseDataModel> responseModel = new ResponseModel<ResponseDataModel>();
+			ResponseModel<People> responseModel = new ResponseModel<People>();
 			//Hit service using HTTP Client
 			try   
 			{
@@ -155,8 +157,8 @@ namespace AncestorCloud.Shared
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
 				param[AppConstant.ADD_PERSON_SESSION_ID] = model.SessionId;
-				param[AppConstant.ADD_PERSON_INDIOGFN] = model.IndiOgfn;
-				param[AppConstant.ADD_RELATION_INDIOGFN] = indiogfn;
+				param[AppConstant.ADD_PERSON_INDIOGFN] = model.LoggedinUserINDIOFGN;
+				param[AppConstant.ADD_RELATION_INDIOGFN] = model.IndiOgfn;
 				param[AppConstant.ADD_RELATION_TYPE] = relationType;
 
 				string url = WebServiceHelper.GetWebServiceURL(AppConstant.ADD_RELATION_SERVICE,param);
@@ -174,14 +176,14 @@ namespace AncestorCloud.Shared
 				ResponseDataModel responsemodal = DataParser.GetAddMemberRelationDetails (dict);
 
 				if(responsemodal.Code.Equals("0")){
-					responseModel = new ResponseModel<ResponseDataModel>();
-					responseModel.Content = responsemodal;
+					responseModel = new ResponseModel<People>();
+					responseModel.Content = model;
 					responsemodal.Status = ResponseStatus.OK;	
 				}else{
 					responsemodal.Status = ResponseStatus.Fail;
 				}
 
-				return responseModel as ResponseModel<ResponseDataModel> ;
+				return responseModel as ResponseModel<People> ;
 			}
 			catch(Exception ex)
 			{
@@ -190,7 +192,7 @@ namespace AncestorCloud.Shared
 				ResponseModel<ResponseDataModel> responsemodal = new ResponseModel<ResponseDataModel>();
 				responsemodal.Status = ResponseStatus.Fail;
 
-				return responseModel as ResponseModel<ResponseDataModel> ;
+				return responseModel as ResponseModel<People> ;
 			}
 			finally{
 
@@ -203,6 +205,10 @@ namespace AncestorCloud.Shared
 		private string GetTypeDetail(string gender,string relation)
 		{
 			string type = "";
+
+			if (gender == null)
+				gender = String.Empty;
+
 			if(gender.Equals("Male")){
 				if(relation.Equals("Siblings")){
 					type = AppConstant.BROTHER_RELATIONSHIP;
@@ -223,6 +229,26 @@ namespace AncestorCloud.Shared
 				}else if(relation.Equals("Great Grandparents")){
 					type = AppConstant.UNKNOWN_RELATIONSHIP;
 				}
+				else if(relation.ToLower().Equals("mother")){
+					type = AppConstant.MOTHER_RELATIONSHIP;
+				}else if(relation.ToLower().Equals("father")){
+					type = AppConstant.FATHER_RELATIONSHIP;
+				}else if(relation.ToLower().Equals("daughter")){
+					type = AppConstant.DAUGHTER_RELATIONSHIP;
+				}
+				else if(relation.ToLower().Equals("son")){
+					type = AppConstant.SON_RELATIONSHIP;
+				}else if(relation.ToLower().Equals("sister")){
+					type = AppConstant.SISTER_RELATIONSHIP;
+				}else if(relation.ToLower().Equals("brother")){
+					type = AppConstant.BROTHER_RELATIONSHIP;
+				}
+				else {
+					type = AppConstant.UNKNOWN_RELATIONSHIP;
+				}
+
+
+
 			}
 			return type;
 		}
