@@ -82,9 +82,9 @@ namespace AncestorCloud.Shared.ViewModels
 			ShowViewModel <LoginViewModel> ();
 		}
 
-		public void ShowAddParents()
+		public void ShowAddParents(String relation)
 		{
-			ShowViewModel<AddFamilyViewModel> ();
+			ShowViewModel<AddFamilyViewModel> (new AddFamilyViewModel.DetailParameter { AddPersonType = relation });
 		}
 
 		public void ShowEditFamily()

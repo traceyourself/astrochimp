@@ -26,19 +26,13 @@ namespace AncestorCloud.Shared
 
 			foreach(KeyValuePair<string, string> kvp in requestParameters)
 			{
+				if (kvp.Value == null)
+					continue;
+				
 				requestString += String.Format (and +"{0}={1}", kvp.Key, kvp.Value);
-
-
-				and = "&";
-//				if( index < requestParameters.Count - 2 )
-//					requestString += "&";
-//
-//				--index;
-
 
 				if(and.Equals(""))
 					and = "&";
-
 
 			}
 
