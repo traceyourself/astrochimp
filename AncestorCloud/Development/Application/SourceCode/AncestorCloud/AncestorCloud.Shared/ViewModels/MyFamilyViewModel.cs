@@ -130,9 +130,10 @@ namespace AncestorCloud.Shared.ViewModels
 			//TODO : Remove this line when data is live
 			FamilyMember.IndiOgfn = lModal.IndiOGFN;
 
-			ResponseModel<ResponseDataModel> response = await _addService.EditFamilyMember(FamilyMember);
+			ResponseModel<People> response = await _addService.EditFamilyMember(FamilyMember);
 
 			if (response.Status == ResponseStatus.OK) {
+				_databaseService.UpdateRelative (response.Content as People);
 				Alert.ShowAlert ("Successfully Edited","Success");
 			} 
 			else {
