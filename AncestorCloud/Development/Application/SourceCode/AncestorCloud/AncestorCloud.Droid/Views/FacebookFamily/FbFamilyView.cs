@@ -42,7 +42,6 @@ namespace AncestorCloud.Droid
 			InitViews ();
 			ConfigureActionBar ();
 			ApplyActions ();
-			//CreateListAdapter ();
 
 		}
 
@@ -116,50 +115,6 @@ namespace AncestorCloud.Droid
 		}
 		#endregion
 
-		#region Create List Adapter
-		private void CreateListAdapter ()
-		{
-			dataList = new List<FBListDataStructure> ();
-
-			FBListDataStructure first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-
-
-			/*FbFamilyListAdapter adapter = new FbFamilyListAdapter (this,dataList);
-			listView.Adapter = adapter;
-			listView.Invalidate ();*/
-		}
-		#endregion
 	}
 
 	#region List Adapter
