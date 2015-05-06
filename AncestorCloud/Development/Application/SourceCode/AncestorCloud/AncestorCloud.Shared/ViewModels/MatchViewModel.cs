@@ -1,15 +1,27 @@
 ﻿using System;
 using Cirrious.MvvmCross.ViewModels;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Shared.ViewModels
 {
 	public class MatchViewModel:BaseViewModel
 	{
+		private readonly IMatchService _matchService;
+		private readonly IDatabaseService _databaseService;
+
+		public MatchViewModel()
+		{
+			_matchService = Mvx.Resolve<IMatchService> ();	
+			_databaseService = Mvx.Resolve<IDatabaseService> ();
+		}
+
+
 		#region Relationship View
 
 		public void ShowRelationshipMatchDetailViewModel()
 		{
-			ShowViewModel<RelationshipMatchDetailViewModel> ();
+			//ShowViewModel<RelationshipMatchDetailViewModel> ();
+			MatchService();
 		}
 		#endregion
 
@@ -67,6 +79,23 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			ShowViewModel<PastMatchesViewModel> ();
 		}
+
+		#region MATCH Service
+
+		public async void MatchService()
+		{
+			LoginModel data = _databaseService.GetLoginDetails ();
+
+			ResponseModel<RelationshipFindResult> result = await _matchService.Match(data.Value,"747510545","747227929");
+
+			if (result.Status == ResponseStatus.OK) 
+			{
+				ShowViewModel<RelationshipMatchDetailViewModel> ();
+			}
+				
+
+		}
+		#endregion
 
 	}
 }

@@ -111,6 +111,7 @@ namespace AncestorCloud.Touch
 		{
 //			ViewModel.ShowFbFamilyViewModel ();
 //			ViewModel.Close ();
+
 			ViewModel.IsFbLogin = true;
 			ViewModel.CallFlyoutCommand.Execute(null);
 			ViewModel.CloseCommand.Execute(null);

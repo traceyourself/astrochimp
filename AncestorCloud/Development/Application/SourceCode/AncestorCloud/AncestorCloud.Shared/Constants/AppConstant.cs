@@ -59,6 +59,7 @@ namespace AncestorCloud.Shared
 
 		public const string ADD_PEOPLE_SERVICE = "Individual.svc/CreateUpdate";
 		public const string ADD_RELATION_SERVICE = "Individual.svc/AddIndiAsRelation";
+		public const string RELATIONSHIP_MATCH_SERVICE = "Individual.svc/RelationshipFind";
 
 		#endregion
 
@@ -113,6 +114,15 @@ namespace AncestorCloud.Shared
 		public const string SISTER_RELATIONSHIP = "SISTER_RELATIONSHIP";
 		public const string BROTHER_RELATIONSHIP = "BROTHER_RELATIONSHIP";
 		public const string UNKNOWN_RELATIONSHIP = "UNKNOWN_RELATIONSHIP";
+		#endregion
+
+		#region Match Service
+
+		public const string INDIOGFN1KEY= "IndiOgfn1";
+		public const string INDIOGFN2KEY= "IndiOgfn2";
+		public const string TYPEKEY= "Type";
+		public const string MATCHTYPE = "DLA";
+
 		#endregion
 
 	}

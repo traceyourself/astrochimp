@@ -15,10 +15,11 @@ using AncestorCloud.Shared.ViewModels;
 using Android.Graphics;
 using Java.Text;
 using Java.Util;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "AddFamilyView")]			
+	[Activity (Label = "MyFamilyView")]			
 	public class MyFamilyView : BaseActivity
 	{
 
@@ -64,6 +65,10 @@ namespace AncestorCloud.Droid
 			var backButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 
 			backButton.Click += (sender, e) => {
+				if(Utilities.LoggedInUsingFb){
+					Utilities.LoggedInUsingFb = false;
+					ViewModel.ShowFamilyViewModel();
+				}
 				ViewModel.Close();
 			};
 		}
@@ -74,6 +79,15 @@ namespace AncestorCloud.Droid
 		}
 		#endregion
 
+		public override void OnBackPressed ()
+		{
+			if(Utilities.LoggedInUsingFb){
+				Utilities.LoggedInUsingFb = false;
+				ViewModel.ShowFamilyViewModel();
+			}
+			ViewModel.Close();
+
+		}
 
 		#region Create List Adapter
 		private void CreateListAdapter ()
@@ -99,8 +113,6 @@ namespace AncestorCloud.Droid
 			List<ListDataStructure> greatGrandParentList = new List<ListDataStructure> ();
 
 			ListDataStructure listStruct;
-
-
 
 			for(int i=0;i<mainList.Count;i++){
 				People item = mainList[i];
@@ -183,10 +195,10 @@ namespace AncestorCloud.Droid
 		}
 		#endregion
 
-
 		#region Edit Dialog
 		public void ShowEditDialog(int position)
 		{
+			
 			editDialog = new Dialog (this,Android.Resource.Style.ThemeTranslucentNoTitleBar);
 			editDialog.SetContentView (Resource.Layout.edit_family_dialog);
 
@@ -195,6 +207,13 @@ namespace AncestorCloud.Droid
 			RelativeLayout crossbtn = editDialog.FindViewById<RelativeLayout> (Resource.Id.cross_edit_btn);
 			birthDateDialogTxt = editDialog.FindViewById<TextView> (Resource.Id.birth_year_field);
 			TextView saveBtn = editDialog.FindViewById<TextView> (Resource.Id.save_btn);
+
+			EditText first_name = editDialog.FindViewById<EditText> (Resource.Id.first_name_field);
+			EditText mid_name = editDialog.FindViewById<EditText> (Resource.Id.mid_name_field);
+			EditText last_name = editDialog.FindViewById<EditText> (Resource.Id.last_name_field);
+			EditText birth_loc = editDialog.FindViewById<EditText> (Resource.Id.birth_loc_field);
+			TextView year_field = editDialog.FindViewById<TextView> (Resource.Id.birth_year_field);
+			Spinner yearSelector = editDialog.FindViewById<Spinner> (Resource.Id.year_selector);
 
 			male.Click += (object sender, EventArgs e) => {
 				male.SetBackgroundResource(Resource.Drawable.male_selected);	
@@ -207,7 +226,8 @@ namespace AncestorCloud.Droid
 			};
 
 			birthDateDialogTxt.Click += (object sender, EventArgs e) => {
-				ShowDatePicker();
+				//ShowDatePicker();
+				yearSelector.PerformClick();
 			};
 
 			crossbtn.Click += (object sender, EventArgs e) => {
@@ -218,9 +238,88 @@ namespace AncestorCloud.Droid
 				editDialog.Dismiss();
 			};
 
+
+			List<string> populateList = new List<string> ();
+
+			Calendar cal = Calendar.GetInstance (Java.Util.Locale.Us);
+			int start = 1900;
+			int upto = cal.Get (Calendar.Year);
+
+			for(int i=start;i<=upto;i++){
+				populateList.Add (""+i);
+			}
+
+			var adapter = new ArrayAdapter (this,Android.Resource.Layout.SimpleListItem1,populateList);
+
+			//adapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			yearSelector.Adapter = adapter;
+
+			yearSelector.ItemSelected += (object sender, AdapterView.ItemSelectedEventArgs e) => {
+				year_field.Text = yearSelector.SelectedItem.ToString();
+			};
+
+			//Set data Accordingly===
+			People peopleData = dataList[position].PersonData;
+
+			try{
+				try{
+					first_name.Text = peopleData.FirstName;
+					mid_name.Text = peopleData.MiddleName;
+					last_name.Text = peopleData.LastName;
+					birth_loc.Text = peopleData.BirthLocation;
+
+					if (peopleData.Gender.Equals ("Male")) {
+						male.PerformClick ();
+					} else {
+						female.PerformClick ();
+					}
+				}catch(Exception e){
+					Mvx.Trace(e.Message);
+				}
+
+				//Year Selection process==
+				int diff = GetYearPosition(start,peopleData.DateOfBirth);
+				yearSelector.SetSelection(diff);
+				//=========
+			}catch(Exception e){
+				Mvx.Trace (e.StackTrace);
+			}
+			//=====
+
 			editDialog.Show ();
 		}
 		#endregion
+
+
+		#region getYear for spinner
+		public int GetYearPosition(int start,string date)
+		{
+			string year = "";
+			try{
+				if(date.Length > 0){
+					if(date.Contains("-")){
+						string []arr = date.Split(new char[]{'-'},5);
+						year = arr[arr.Length-1];
+					}else{
+						year = date;
+					}	
+				}
+			}catch(Exception e){
+				Mvx.Trace (e.Message);
+			}
+
+			int diff = 0;
+			if(year.Length == 4){
+				int yy = int.Parse(year);
+				if(yy > start){
+					diff = yy-start;
+				}
+			}
+			return diff;
+		}
+		#endregion
+
+
 
 		public void ShowDatePicker()
 		{
@@ -228,6 +327,7 @@ namespace AncestorCloud.Droid
 			DatePickerDialog dpd = new DatePickerDialog (this,new DateListener(this),cal.Get(Calendar.Year), cal.Get(Calendar.Month),cal.Get(Calendar.DayOfMonth));
 			dpd.Show ();
 		}
+
 	}
 
 	public class DateListener : Java.Lang.Object,Android.App.DatePickerDialog.IOnDateSetListener

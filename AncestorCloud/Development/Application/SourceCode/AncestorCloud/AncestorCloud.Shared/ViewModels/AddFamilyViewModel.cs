@@ -148,7 +148,7 @@ namespace AncestorCloud.Shared.ViewModels
 			if(Validate())
 			{
 				LoginModel lModal = _databaseService.GetLoginDetails ();
-
+			
 				People modal = new People ();
 
 				modal.FirstName = this.FirstName;
@@ -159,10 +159,12 @@ namespace AncestorCloud.Shared.ViewModels
 				modal.Gender = this.Gender;
 				modal.SessionId = lModal.Value;
 				modal.Relation = this.AddType;
+				modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;
 					
-				ResponseModel<ResponseDataModel> response = await _addService.AddFamilyMember(modal);
+				ResponseModel<People> response = await _addService.AddFamilyMember(modal);
 
 				if (response.Status == ResponseStatus.OK) {
+					_databaseService.InsertRelative (response.Content as People);
 					Alert.ShowAlert ("Successfully Added","Success");
 					Close ();
 				} else {

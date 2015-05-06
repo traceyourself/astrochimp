@@ -5,8 +5,8 @@ namespace AncestorCloud.Shared
 {
 	public interface IAddFamilyService
 	{
-		Task<ResponseModel<ResponseDataModel>> AddFamilyMember(People model);
-		Task<ResponseModel<ResponseDataModel>> EditFamilyMember(People model);
+		Task<ResponseModel<People>> AddFamilyMember(People model);
+		Task<ResponseModel<People>> EditFamilyMember(People model);
 	}
 }
 

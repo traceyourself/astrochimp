@@ -96,8 +96,17 @@
     <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\FacebookFriendViewModel.cs" />
     <Compile Include="Converters\GenderTextConverter.cs" />
+
     <Compile Include="ViewModels\HelpViewModel.cs" />
+
     <Compile Include="ViewModels\NoMatchesViewModel.cs" />
+
+    <Compile Include="Helper\FbFamilyDataManager.cs" />
+    <Compile Include="Services\Interface\IMatchService.cs" />
+    <Compile Include="Services\MatchService.cs" />
+    <Compile Include="Models\RelationshipFindResult.cs" />
+
+
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

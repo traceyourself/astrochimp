@@ -73,10 +73,12 @@ namespace AncestorCloud.Droid
 		private void ApplyActions()
 		{
 			FbBtn.Click+= (object sender, EventArgs e) => {
+				Utilities.RegisterCertificateForApiHit();
 				UseFacebookToLogin();
 			};
 
 			loginBtn.Click += (object sender, EventArgs e) => {
+				Utilities.LoggedInUsingFb = false;
 				Utilities.RegisterCertificateForApiHit();
 				ViewModel.DoLogin();
 			};
@@ -98,6 +100,7 @@ namespace AncestorCloud.Droid
 				if(account != null){
 					var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me"),account );//friends ///me/invitable_friends ///me/taggable_friends
 
+					ShowLoader();
 
 					request.GetResponseAsync ().ContinueWith (response => {
 						// parse the JSON in response.GetResponseText ()
@@ -107,6 +110,8 @@ namespace AncestorCloud.Droid
 
 						ViewModel.SaveFbData();
 
+						Mvx.Trace("saved result of me ");
+
 						var familyRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/family"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
 						familyRequest.GetResponseAsync ().ContinueWith (famResponse => {
 
@@ -115,10 +120,25 @@ namespace AncestorCloud.Droid
 
 							ViewModel.SaveFbFamilyData();
 
-							//ViewModel.GetFbData();
-							if(account != null){
-								DoFBLogin();
-							}
+							Mvx.Trace("saved result of family ");
+
+							var friendRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/taggable_friends"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
+							friendRequest.GetResponseAsync().ContinueWith(friendResponse => {
+								//System.Diagnostics.Debug.WriteLine ("friendresponse :"+friendResponse.Result.GetResponseText());
+								ViewModel.FbFriendResponseText = friendResponse.Result.GetResponseText();
+								ViewModel.SaveFbFriendsData();  	
+
+								Mvx.Trace("saved result of taggable friends ");
+
+								HideLoader();
+
+								//ViewModel.GetFbData();
+								if(account != null){
+									DoFBLogin();
+								}
+
+							});
+
 						});
 
 					});
@@ -130,6 +150,7 @@ namespace AncestorCloud.Droid
 		}
 
 		public void DoFBLogin(){
+			Utilities.LoggedInUsingFb = true;
 			ViewModel.ShowFbFamilyViewModel ();
 			ViewModel.Close ();
 		}

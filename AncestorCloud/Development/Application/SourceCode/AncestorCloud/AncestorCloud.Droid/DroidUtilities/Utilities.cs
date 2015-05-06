@@ -38,9 +38,14 @@ namespace AncestorCloud.Droid
 
 		#endregion
 
-		#region Holding instance of current Activity for Loader
+		#region Holding person type
 		public static String AddPersonType{ get; set;}
 		#endregion
+
+		#region Holding Bool to check if from fb or normal login
+		public static bool LoggedInUsingFb{ get; set;}
+		#endregion
+
 	}
 
 }
