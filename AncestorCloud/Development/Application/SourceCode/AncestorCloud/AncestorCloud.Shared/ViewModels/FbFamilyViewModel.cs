@@ -47,10 +47,13 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly IDatabaseService _databaseService;
 
+		private readonly FbFamilyDataManager _fbManager;
+
 		public FbFamilyViewModel(IDatabaseService  service)
 		{
 			_databaseService = service;
 			GetFbFamilyData ();
+			_fbManager = new FbFamilyDataManager ();
 		}
 
 
@@ -60,6 +63,7 @@ namespace AncestorCloud.Shared.ViewModels
 				var _flyoutMessenger = Mvx.Resolve<IMvxMessenger> ();
 				_flyoutMessenger.Publish (new ChangeFlyoutFlowMessage (this, false));
 			}
+			AddSelectedFamily ();
 
 			ShowMyFamilyViewModel ();
 		}
@@ -115,18 +119,15 @@ namespace AncestorCloud.Shared.ViewModels
 
 
 		#region Add Family on server
-		public void AddSelectedFamily(){
-				
+		public void AddSelectedFamily()
+		{
+			_fbManager.AddFbFamilyMembers (FamilyList);	
 		}
+
 		#endregion
 
 
 		#region
-
-		private void SaveFamilyMember()
-		{
-			
-		}
 
 		#endregion
 

@@ -27,6 +27,13 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+		#region show my family
+		public void ShowFamilyViewModel()
+		{
+			ShowViewModel<FamilyViewModel> ();
+		}
+		#endregion
+
 		#region Help
 
 		public void ShowHelpViewModel()

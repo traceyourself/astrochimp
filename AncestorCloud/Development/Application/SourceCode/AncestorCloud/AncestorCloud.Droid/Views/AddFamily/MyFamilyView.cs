@@ -18,7 +18,7 @@ using Java.Util;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "AddFamilyView")]			
+	[Activity (Label = "MyFamilyView")]			
 	public class MyFamilyView : BaseActivity
 	{
 
@@ -64,6 +64,10 @@ namespace AncestorCloud.Droid
 			var backButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 
 			backButton.Click += (sender, e) => {
+				if(Utilities.LoggedInUsingFb){
+					Utilities.LoggedInUsingFb = false;
+					ViewModel.ShowFamilyViewModel();
+				}
 				ViewModel.Close();
 			};
 		}
@@ -74,6 +78,15 @@ namespace AncestorCloud.Droid
 		}
 		#endregion
 
+		public override void OnBackPressed ()
+		{
+			if(Utilities.LoggedInUsingFb){
+				Utilities.LoggedInUsingFb = false;
+				ViewModel.ShowFamilyViewModel();
+			}
+			ViewModel.Close();
+
+		}
 
 		#region Create List Adapter
 		private void CreateListAdapter ()
@@ -99,8 +112,6 @@ namespace AncestorCloud.Droid
 			List<ListDataStructure> greatGrandParentList = new List<ListDataStructure> ();
 
 			ListDataStructure listStruct;
-
-
 
 			for(int i=0;i<mainList.Count;i++){
 				People item = mainList[i];
@@ -228,6 +239,8 @@ namespace AncestorCloud.Droid
 			DatePickerDialog dpd = new DatePickerDialog (this,new DateListener(this),cal.Get(Calendar.Year), cal.Get(Calendar.Month),cal.Get(Calendar.DayOfMonth));
 			dpd.Show ();
 		}
+
+
 	}
 
 	public class DateListener : Java.Lang.Object,Android.App.DatePickerDialog.IOnDateSetListener

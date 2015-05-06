@@ -159,8 +159,9 @@ namespace AncestorCloud.Shared.ViewModels
 				modal.Gender = this.Gender;
 				modal.SessionId = lModal.Value;
 				modal.Relation = this.AddType;
+				modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;
 					
-				ResponseModel<ResponseDataModel> response = await _addService.AddFamilyMember(modal);
+				ResponseModel<People> response = await _addService.AddFamilyMember(modal);
 
 				if (response.Status == ResponseStatus.OK) {
 					Alert.ShowAlert ("Successfully Added","Success");
