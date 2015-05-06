@@ -69,6 +69,7 @@ namespace AncestorCloud.Shared.ViewModels
 					MatchResult.CommonResult = member;
 				}
 			}
+			MatchResultList = MatchResultList ?? new List<RelationshipFindResult> ();
 
 			MatchResultList.Add (MatchResult);
 		}
