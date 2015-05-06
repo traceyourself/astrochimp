@@ -93,7 +93,7 @@ namespace AncestorCloud.Touch
 			
 		partial void CrossButtonTaped (NSObject sender)
 		{
-			ViewModel.ShowHelpViewModel();
+			//ViewModel.ShowHelpViewModel();
 		}
 
 

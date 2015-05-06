@@ -46,7 +46,7 @@ namespace AncestorCloud.Shared
 
 				RelationshipFindResult result = new RelationshipFindResult();
 
-				if(dict["Value"])
+				if(dict.ContainsKey("Value"))
 					result = JsonConvert.DeserializeObject<RelationshipFindResult> (dict["Value"].ToString());
 
 				//string str = dict["Value"].ToString();
