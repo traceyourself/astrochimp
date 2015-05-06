@@ -1,32 +1,38 @@
 ﻿using System;
 using UIKit;
+using Cirrious.MvvmCross.Binding.Touch.Views;
+using Foundation;
 
 namespace AncestorCloud.Touch
 {
-	public class RelationshipMatchTableSource : UITableViewSource {
+	public class RelationshipMatchTableSource : MvxTableViewSource {
 
 		string[] tableItems;
 		string cellIdentifier = "TableCell";
 
-		public RelationshipMatchTableSource (string[] items) 
+//		public RelationshipMatchTableSource (string[] items) 
+//		{
+//			tableItems = items;
+//		}
+
+		public RelationshipMatchTableSource(UITableView tableView): base(tableView)
 		{
-			tableItems = items;
+			tableView.RegisterClassForCellReuse(typeof(UITableViewCell), cellIdentifier);
+			//tableView.RegisterNibForCellReuse(UINib.FromName("FbFamilyCell", NSBundle.MainBundle),FbFamilyCell.Key);
+
 		}
-		public override nint RowsInSection (UITableView tableview, nint section)
+
+
+		protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
 		{
-			return tableItems.Length;
-		}
-		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
-		{
-			UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier);
-			// if there are no cells to reuse, create a new one
-			if (cell == null)
-				cell = new UITableViewCell (UITableViewCellStyle.Default, cellIdentifier);
+			//			FbFamilyCell cell = (FbFamilyCell)tableView.DequeueReusableCell (cellIdentifier);
+			//			// if there are no cells to reuse, create a new one
+			//			if (cell == null)
+			//				cell =  FbFamilyCell.Create() ;
+			//
+			//			return cell;
 
-
-			cell.TextLabel.Text = tableItems[indexPath.Row];
-
-			return cell;
+			return tableView.DequeueReusableCell(cellIdentifier, indexPath);
 		}
 	}
 

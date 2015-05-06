@@ -1,6 +1,7 @@
 ﻿using System;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.CrossCore;
+using Cirrious.CrossCore.Platform;
 
 namespace AncestorCloud.Shared.ViewModels
 {
@@ -90,9 +91,18 @@ namespace AncestorCloud.Shared.ViewModels
 
 			if (result.Status == ResponseStatus.OK) 
 			{
-				ShowViewModel<RelationshipMatchDetailViewModel> ();
+				if (result.Content.Found) 
+				{
+
+					var matchString = Mvx.Resolve<IMvxJsonConverter>().SerializeObject(result.Content);
+
+					ShowViewModel<RelationshipMatchDetailViewModel> (new RelationshipMatchDetailViewModel.DetailParameter { MatchResult = matchString });
+				}
+				else 
+				{
+					//TODO: Show No Match Screen
+				}
 			}
-				
 
 		}
 		#endregion
