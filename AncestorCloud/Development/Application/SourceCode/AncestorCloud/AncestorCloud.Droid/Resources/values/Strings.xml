@@ -57,13 +57,13 @@
 	<string name="GreatGrandMother_comparison">great grandmother</string>
 
 	<string name="Sibling_header">Siblings</string>
-	<string name="Sibling_Footer">Add Siblings</string>
+	<string name="Sibling_Footer">Add Sibling</string>
 	<string name="Parent_header">Parents</string>
-	<string name="Parent_Footer">Add Parents</string>
+	<string name="Parent_Footer">Add Parent</string>
 	<string name="Grandparent_header">Grandparents</string>
-	<string name="Grandparent_Footer">Add Grandparents</string>
+	<string name="Grandparent_Footer">Add Grandparent</string>
 	<string name="Greatgrandparent_header">Great Grandparents</string>
-	<string name="GreatGrandparent_Footer">Add Great Grandparents</string>
+	<string name="GreatGrandparent_Footer">Add Great Grandparent</string>
 	<!--- My Family Screen  Strings ENDS -->
 
 

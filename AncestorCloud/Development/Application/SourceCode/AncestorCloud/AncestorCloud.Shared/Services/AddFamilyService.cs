@@ -204,23 +204,23 @@ namespace AncestorCloud.Shared
 		{
 			string type = "";
 			if(gender.Equals("Male")){
-				if(relation.Equals("Siblings")){
+				if(relation.Equals("Sibling")){
 					type = AppConstant.BROTHER_RELATIONSHIP;
-				}else if(relation.Equals("Parents")){
+				}else if(relation.Equals("Parent")){
 					type = AppConstant.FATHER_RELATIONSHIP;
-				}else if(relation.Equals("Grandparents")){
+				}else if(relation.Equals("Grandparent")){
 					type = AppConstant.UNKNOWN_RELATIONSHIP;
-				}else if(relation.Equals("Great Grandparents")){
+				}else if(relation.Equals("Great Grandparent")){
 					type = AppConstant.UNKNOWN_RELATIONSHIP;
 				}
 			}else{
-				if(relation.Equals("Siblings")){
+				if(relation.Equals("Sibling")){
 					type = AppConstant.SISTER_RELATIONSHIP;
-				}else if(relation.Equals("Parents")){
+				}else if(relation.Equals("Parent")){
 					type = AppConstant.MOTHER_RELATIONSHIP;
-				}else if(relation.Equals("Grandparents")){
+				}else if(relation.Equals("Grandparent")){
 					type = AppConstant.UNKNOWN_RELATIONSHIP;
-				}else if(relation.Equals("Great Grandparents")){
+				}else if(relation.Equals("Great Grandparent")){
 					type = AppConstant.UNKNOWN_RELATIONSHIP;
 				}
 			}

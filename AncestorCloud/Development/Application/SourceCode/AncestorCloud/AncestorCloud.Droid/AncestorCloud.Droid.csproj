@@ -262,6 +262,7 @@
     <Folder Include="PlatformSpecificService\" />
     <Folder Include="Views\AddFriend\" />
     <Folder Include="Views\Celebrities\" />
+    <Folder Include="Views\Contacts\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.social">
