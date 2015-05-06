@@ -26,11 +26,11 @@ namespace AncestorCloud.Shared
 
 		#region
 
-		public async Task<ResponseModel<ResponseDataModel>> EditFamilyMember(People model)
+		public async Task<ResponseModel<People>> EditFamilyMember(People model)
 		{
 			_loader.showLoader ();
 
-			ResponseModel<ResponseDataModel> responseModel = new ResponseModel<ResponseDataModel>();
+			ResponseModel<People> responseModel = new ResponseModel<People>();
 			//Hit service using HTTP Client
 			try   
 			{
@@ -60,7 +60,16 @@ namespace AncestorCloud.Shared
 
 				ResponseDataModel responsemodal = DataParser.GetAddMemberDetails (dict);
 
-				return responseModel as ResponseModel<ResponseDataModel> ;
+				if(responsemodal.Code.Equals("0")){
+
+					responseModel.Status = ResponseStatus.OK;
+					responseModel.Content = model;
+
+				}else{
+					responseModel.Status = ResponseStatus.Fail;
+				}
+
+				return responseModel as ResponseModel<People> ;
 			}
 			catch(Exception ex)
 			{
@@ -69,7 +78,7 @@ namespace AncestorCloud.Shared
 				ResponseModel<ResponseDataModel> responsemodal = new ResponseModel<ResponseDataModel>();
 				responsemodal.Status = ResponseStatus.Fail;
 
-				return responseModel as ResponseModel<ResponseDataModel> ;
+				return responseModel as ResponseModel<People> ;
 			}
 			finally{
 
