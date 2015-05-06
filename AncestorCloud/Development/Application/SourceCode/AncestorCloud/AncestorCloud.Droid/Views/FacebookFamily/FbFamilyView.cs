@@ -25,7 +25,7 @@ namespace AncestorCloud.Droid
 		FlyOutContainer menu;
 		LinearLayout menuLayout,contentLayout;
 		TextView nextBtn;
-
+		ImageView helpicon;
 
 		public new FbFamilyViewModel ViewModel
 		{
@@ -56,6 +56,7 @@ namespace AncestorCloud.Droid
 			actionBar = contentLayout.FindViewById<ActionBar> (Resource.Id.actionBar);
 			listView = contentLayout.FindViewById<MvxListView> (Resource.Id.fb_family_list);
 			nextBtn = contentLayout.FindViewById<TextView> (Resource.Id.next_btn);
+			helpicon = contentLayout.FindViewById<ImageView> (Resource.Id.question_icon);
 		}
 
 		private void ConfigureActionBar()
@@ -106,6 +107,10 @@ namespace AncestorCloud.Droid
 				ViewModel.NextButtonCommand.Execute(null);
 				ViewModel.Close();
 				//ViewModel.CheckValues();
+			};
+
+			helpicon.Click += (object sender, EventArgs e) => {
+				new HelpDialog(this).ShowHelpDialog();
 			};
 
 		}

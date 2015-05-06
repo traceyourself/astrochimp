@@ -21,7 +21,7 @@ namespace AncestorCloud.Droid
 		ActionBar actionBar;
 		LinearLayout menuLayout,contentLayout;
 		TextView addFamilyBtn;
-
+		ImageView helpIcon;
 
 		public new FamilyViewModel ViewModel
 		{
@@ -47,6 +47,7 @@ namespace AncestorCloud.Droid
 			menuLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutMenu);
 			contentLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutContent);
 			addFamilyBtn = contentLayout.FindViewById<TextView> (Resource.Id.add_family_btn);
+			helpIcon = contentLayout.FindViewById<ImageView> (Resource.Id.help_icon);
 		}
 
 
@@ -74,6 +75,10 @@ namespace AncestorCloud.Droid
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.logout_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
 				ViewModel.Logout();
+			};
+
+			helpIcon.Click += (object sender, EventArgs e) => {
+				new HelpDialog(this).ShowHelpDialog();
 			};
 
 		}
