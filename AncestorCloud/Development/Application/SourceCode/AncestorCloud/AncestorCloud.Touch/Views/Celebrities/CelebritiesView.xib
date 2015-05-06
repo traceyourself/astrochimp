@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CelebritiesView">
             <connections>
                 <outlet property="CelebritiesTableVIew" destination="1oO-SD-rrc" id="9fx-ww-jdi"/>
+                <outlet property="SearchViewController" destination="FgS-4n-Z4w" id="Vck-kO-aFt"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
         </placeholder>

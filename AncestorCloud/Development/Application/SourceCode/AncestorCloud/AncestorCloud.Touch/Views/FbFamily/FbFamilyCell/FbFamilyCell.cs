@@ -14,6 +14,10 @@ namespace AncestorCloud.Touch
 
 		public FbFamilyCell (IntPtr handle) : base (handle)
 		{
+			//BindData ();
+		}
+
+		public void BindData(){
 			this.DelayBind (() => {
 
 				var set = this.CreateBindingSet<FbFamilyCell, People> ();

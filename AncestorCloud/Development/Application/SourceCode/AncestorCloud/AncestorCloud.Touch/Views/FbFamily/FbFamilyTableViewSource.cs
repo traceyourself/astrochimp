@@ -4,6 +4,7 @@ using Cirrious.MvvmCross.Binding.Touch.Views;
 using Foundation;
 using AncestorCloud.Shared;
 using System.Collections.Generic;
+using UIKit;
 
 namespace AncestorCloud.Touch
 {
@@ -24,14 +25,6 @@ namespace AncestorCloud.Touch
 
 		}
 
-//		public override nint RowsInSection (UITableView tableView, nint section)
-//		{
-//
-//			return 5;
-//		}
-
-
-
 		protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
 		{
 //			FbFamilyCell cell = (FbFamilyCell)tableView.DequeueReusableCell (cellIdentifier);
@@ -41,7 +34,11 @@ namespace AncestorCloud.Touch
 //
 //			return cell;
 
-			return tableView.DequeueReusableCell(FbFamilyCell.Key, indexPath);
+			FbFamilyCell cell = (FbFamilyCell) tableView.DequeueReusableCell(FbFamilyCell.Key, indexPath);
+
+			cell.BindData ();
+
+			return cell;
 		}
 
 //		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
@@ -59,16 +56,21 @@ namespace AncestorCloud.Touch
 	public class FbFamilyTableViewDelegate : UITableViewDelegate
 	{
 
+		 List<People> peopleList;
+
 		public FbFamilyTableViewDelegate(List<People> people)
 		{
-			//List<People> peopleList = new List<People> ();
+        	peopleList=people;
 
-			//People _people = people();
 		}
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			
+			People member = peopleList [indexPath.Row];
+
+			member.IsSelected = !member.IsSelected;
+
+			tableView.ReloadData ();
 		}
 	}
 }

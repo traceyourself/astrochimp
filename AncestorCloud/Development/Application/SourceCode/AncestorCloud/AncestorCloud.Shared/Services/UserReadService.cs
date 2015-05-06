@@ -42,7 +42,7 @@ namespace AncestorCloud.Shared
 				String res = response.Content.ReadAsStringAsync().Result;
 
 				//System.Diagnostics.Debug.WriteLine ("Login response : "+res);
-				//Mvx.Trace("Login response : "+res);
+				Mvx.Trace("Login response : "+res);
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 

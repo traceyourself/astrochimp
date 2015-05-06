@@ -58,6 +58,7 @@ namespace AncestorCloud.Touch
 
 			var set = this.CreateBindingSet<CelebritiesView , CelebritiesViewModel> ();
 			set.Bind (source).To (vm => vm.CelebritiesList);
+			set.Bind (SearchViewController).To (vm => vm.SearchKey).TwoWay();
 			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
 			//this.NavigationController.NavigationBarHidden = true;

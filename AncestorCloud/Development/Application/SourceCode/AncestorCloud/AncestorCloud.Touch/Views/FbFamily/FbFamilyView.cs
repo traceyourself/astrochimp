@@ -49,6 +49,8 @@ namespace AncestorCloud.Touch
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
 			fbFamilyTableView.Source = source;
 
+			fbFamilyTableView.Delegate = new FbFamilyTableViewDelegate (ViewModel.FamilyList);
+
 			var set = this.CreateBindingSet<FbFamilyView , FbFamilyViewModel> ();
 			set.Bind (source).To (vm => vm.FamilyList);
 

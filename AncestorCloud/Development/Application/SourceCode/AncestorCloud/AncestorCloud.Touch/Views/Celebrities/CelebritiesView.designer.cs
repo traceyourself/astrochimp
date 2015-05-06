@@ -1,4 +1,4 @@
-﻿// WARNING
+// WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
@@ -14,12 +14,20 @@ namespace AncestorCloud.Touch
 	{
 		[Outlet]
 		UIKit.UITableView CelebritiesTableVIew { get; set; }
+
+		[Outlet]
+		UIKit.UISearchBar SearchViewController { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (CelebritiesTableVIew != null) {
 				CelebritiesTableVIew.Dispose ();
 				CelebritiesTableVIew = null;
+			}
+
+			if (SearchViewController != null) {
+				SearchViewController.Dispose ();
+				SearchViewController = null;
 			}
 		}
 	}
