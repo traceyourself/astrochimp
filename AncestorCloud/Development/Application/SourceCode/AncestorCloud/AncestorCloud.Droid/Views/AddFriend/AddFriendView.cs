@@ -48,9 +48,17 @@ namespace AncestorCloud.Droid
 		}
 
 		private void ApplyActions(){
+			fb_btn.Click += (object sender, EventArgs e) => {
+				ViewModel.ShowFacebookFriend();
+			};
+
 
 			celeb_btn.Click += (object sender, EventArgs e) => {
 				ViewModel.ShowCelebrities();
+			};
+
+			contacts_btn.Click += (object sender, EventArgs e) => {
+				ViewModel.ShowContacts();
 			};
 
 		}
