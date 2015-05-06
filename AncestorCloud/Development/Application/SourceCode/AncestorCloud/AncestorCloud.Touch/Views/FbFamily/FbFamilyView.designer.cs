@@ -18,6 +18,9 @@ namespace AncestorCloud.Touch
 		[Outlet]
 		UIKit.UIButton NextButton { get; set; }
 
+		[Action ("HelpButtonTapped:")]
+		partial void HelpButtonTapped (Foundation.NSObject sender);
+
 		[Action ("NextButtonTaped:")]
 		partial void NextButtonTaped (Foundation.NSObject sender);
 		

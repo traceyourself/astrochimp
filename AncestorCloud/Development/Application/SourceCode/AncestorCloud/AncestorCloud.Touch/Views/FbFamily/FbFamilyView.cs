@@ -90,6 +90,12 @@ namespace AncestorCloud.Touch
 //			}
 //			base.ViewWillDisappear (animated);
 //		}
+
+
+		partial void HelpButtonTapped (NSObject sender)
+		{
+			ViewModel.ShowHelpView();
+		}
 //
 	}
 }

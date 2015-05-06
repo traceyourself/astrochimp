@@ -18,7 +18,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowHelpViewModel()
 		{
-			ShowViewModel<EditFamilyViewModel> ();
+			ShowViewModel<HelpViewModel> ();
 		}
 
 		#endregion
