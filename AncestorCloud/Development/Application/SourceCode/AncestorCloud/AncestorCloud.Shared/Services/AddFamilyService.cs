@@ -219,7 +219,7 @@ namespace AncestorCloud.Shared
 				gender = String.Empty;
 
 			if(gender.Equals("Male")){
-				if(relation.Equals("Siblings")){
+				if(relation.Equals("Sibling")){
 					type = AppConstant.BROTHER_RELATIONSHIP;
 				}else if(relation.Equals("Parents")){
 					type = AppConstant.FATHER_RELATIONSHIP;
