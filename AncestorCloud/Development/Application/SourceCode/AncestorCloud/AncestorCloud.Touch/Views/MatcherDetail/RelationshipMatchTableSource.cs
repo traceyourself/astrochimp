@@ -5,6 +5,7 @@ using Foundation;
 
 namespace AncestorCloud.Touch
 {
+
 	public class RelationshipMatchTableSource :MvxTableViewSource
 	{
 		readonly string cellIdentifier = "RelationshipMatchDetailCell";
@@ -20,6 +21,7 @@ namespace AncestorCloud.Touch
 		{
 			return tableView.DequeueReusableCell(RelationshipMatchDetailCell.Key, indexPath);
 		}
+
 
 	}
 }

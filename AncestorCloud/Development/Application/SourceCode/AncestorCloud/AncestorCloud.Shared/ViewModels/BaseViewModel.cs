@@ -1,6 +1,8 @@
 ﻿using System;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.CrossCore;
+using Cirrious.CrossCore.Platform;
+using Cirrious.MvvmCross.Plugins.Json;
 
 namespace AncestorCloud.Shared
 {
@@ -11,6 +13,7 @@ namespace AncestorCloud.Shared
 		public BaseViewModel()
 		{
 			_databaseService = Mvx.Resolve<IDatabaseService> ();
+			Mvx.RegisterType<IMvxJsonConverter, MvxJsonConverter>();
 		}
 		private string title = string.Empty;
     	/// <summary>
