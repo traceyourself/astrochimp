@@ -6,6 +6,7 @@ using UIKit;
 using Cirrious.MvvmCross.Touch.Views;
 using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
+using System.Collections.Generic;
 
 namespace AncestorCloud.Touch
 {
@@ -15,6 +16,12 @@ namespace AncestorCloud.Touch
 
 		public People FamilyMember{ get; set;}
 		public Action<object> SaveButtonTappedClickedDelegate { get; set; }
+
+	
+		PickerModel picker_model;
+
+		UIPickerView picker;
+
 		#endregion
 
 		#region View Life Cycle Methods
@@ -27,6 +34,8 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 
 			BindSubview ();
+
+			PickerButtonTapped.TouchUpInside += PickerButtonTappedEvent;
 		
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -39,6 +48,8 @@ namespace AncestorCloud.Touch
 		{
 			if (FamilyMember == null)
 				return;
+
+			SetEditLabel ();
 
 			SetFirstName ();
 
@@ -66,6 +77,16 @@ namespace AncestorCloud.Touch
 			{
 				GenderSegment.SelectedSegment = 1;
 			}
+		}
+
+		void SetEditLabel()
+		{
+			//For debugging purpose
+			EditLabel.Text = FamilyMember.Name;
+//			EditLabel.Text = FamilyMember.LastName;
+//			EditLabel.Text = FamilyMember.Relation;
+			//TODO: Uncomment this line when data is live
+			//FirstNameTextField.Text = FamilyMember.FirstName;
 		}
 			
 		void SetFirstName()
@@ -152,6 +173,66 @@ namespace AncestorCloud.Touch
 		}
 
 		#endregion
+
+		#region picker
+		 
+		async void PickerButtonTappedEvent (object sender, EventArgs e)
+		{
+
+			System.Diagnostics.Debug.WriteLine ("PickerButtonTapped");
+
+			DataItem ();
+	
+		}
+		#endregion
+
+
+		public void DataItem()
+		{
+	
+
+			List<Object> state_list= new List<Object> ();
+			state_list.Add ("ACT");
+			state_list.Add ("NSW");
+			state_list.Add ("NT");
+			state_list.Add ("QLD");
+			state_list.Add ("SA");
+			state_list.Add ("TAS");
+			state_list.Add ("VIC");
+			state_list.Add ("WA");
+			picker_model = new PickerModel (state_list);
+
+			picker =  new UIPickerView ();
+			picker.Model = picker_model;
+			picker.ShowSelectionIndicator = true;
+
+			UIToolbar toolbar = new UIToolbar ();
+			toolbar.BarStyle = UIBarStyle.Black;
+			toolbar.Translucent = true;
+			toolbar.SizeToFit ();
+
+			UIBarButtonItem doneButton = new UIBarButtonItem("Done",UIBarButtonItemStyle.Done,(s,e) =>
+				{
+					foreach (UIView view in this.View.Subviews) 
+					{
+						if (view.IsFirstResponder)
+						{
+							UITextField textview = (UITextField)view;
+							//textview.Text = picker_model.values[picker.SelectedRowInComponent (0)].ToString ();
+							textview.ResignFirstResponder ();
+						}
+					}
+
+				});
+			toolbar.SetItems (new UIBarButtonItem[]{doneButton},true);
+
+			this.View.AddSubview (picker);
+
+		
+
+
+
+		}
 	}
 }
 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Cirrious.CrossCore.Platform;
 using Cirrious.CrossCore;
+
 
 namespace AncestorCloud.Shared.ViewModels
 {
@@ -95,6 +97,41 @@ namespace AncestorCloud.Shared.ViewModels
 		public class DetailParameter
 		{
 			public String MatchResult { get; set;}
+		}
+
+
+
+		private readonly IDatabaseService _databaseService;
+
+		public RelationshipMatchDetailViewModel(IDatabaseService  service)
+		{
+			_databaseService = service;
+			GetRelationshipMatchDetailData ();
+		}
+
+		#endregion
+
+		#region Sqlite Methods
+
+		public void GetRelationshipMatchDetailData()
+		{
+			List<People> list = _databaseService.RelativeMatching ("");
+			RelationshipMatchDetailList = list;
+		}
+		#endregion
+
+		#region Properties
+
+		private List<People> relationshipMatchDetailList;
+
+		public List<People> RelationshipMatchDetailList
+		{
+			get { return relationshipMatchDetailList; }
+			set
+			{
+				relationshipMatchDetailList = value;
+				RaisePropertyChanged(() => RelationshipMatchDetailList);
+			}
 		}
 
 		#endregion
