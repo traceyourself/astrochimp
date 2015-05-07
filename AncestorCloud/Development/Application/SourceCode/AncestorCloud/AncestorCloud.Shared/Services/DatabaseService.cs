@@ -163,9 +163,7 @@ namespace AncestorCloud.Shared
 //			return list;
 			filter = filter.ToLower().Trim();
 			string words = filter.Replace(" ", "','");
-			Mvx.Trace ("words :"+words);
 			String query = "SELECT * FROM Celebrity WHERE GivenNames LIKE '%"+filter+"%' OR LastName LIKE '%"+filter+"%' OR LOWER(LastName) IN ('"+words+"') OR LOWER(GivenNames) IN ('"+words+"')";
-			Mvx.Trace ("query :" +query);
 			List<Celebrity> list = _connection.Query<Celebrity>(query);
 			return list;
 		}
