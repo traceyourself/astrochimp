@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using Cirrious.MvvmCross.Plugins.Sqlite;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Shared
 {
@@ -158,7 +159,14 @@ namespace AncestorCloud.Shared
 			if (filter == null)
 				throw new ArgumentNullException ("filter");
 
-			List<Celebrity> list = _connection.Table<Celebrity>().Where(x => x.GivenNames.Contains(filter) || x.LastName.Contains(filter)).ToList();
+//			List<Celebrity> list = _connection.Table<Celebrity>().Where(x => x.GivenNames.Contains(filter) || x.LastName.Contains(filter)).ToList();
+//			return list;
+			filter = filter.ToLower().Trim();
+			string words = filter.Replace(" ", "','");
+			Mvx.Trace ("words :"+words);
+			String query = "SELECT * FROM Celebrity WHERE GivenNames LIKE '%"+filter+"%' OR LastName LIKE '%"+filter+"%' OR LOWER(LastName) IN ('"+words+"') OR LOWER(GivenNames) IN ('"+words+"')";
+			Mvx.Trace ("query :" +query);
+			List<Celebrity> list = _connection.Query<Celebrity>(query);
 			return list;
 		}
 
