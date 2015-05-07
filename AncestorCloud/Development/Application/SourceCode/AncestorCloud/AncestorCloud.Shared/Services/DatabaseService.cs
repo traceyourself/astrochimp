@@ -78,10 +78,10 @@ namespace AncestorCloud.Shared
 			_connection.Update(relative);
 		}
 
-		public User GetUser(int id)
+		public User GetUser()
 		{
-			User user=  (User)_connection.Table<User> ().Where (x => x.Id.Equals (id));
-			return user;
+			List<User> user=  (List<User>)_connection.Table<User> ().ToList();
+			return user[0];
 		}
 
 		public List<User> GetUsers(string relationFilter)

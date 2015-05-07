@@ -56,6 +56,7 @@ namespace AncestorCloud.Shared
 		public const string USEREADSERVICE = "User.svc/Read";
 		public const string USERSIGNINSERVICE = "User.svc/Create";
 		public const string USERLOGINSERVICE = "User.svc/Signin";
+		public const string DEVELOPERLOGINSERVICE = "Developer.svc/Login";
 
 		public const string ADD_PEOPLE_SERVICE = "Individual.svc/CreateUpdate";
 		public const string ADD_RELATION_SERVICE = "Individual.svc/AddIndiAsRelation";
@@ -123,6 +124,13 @@ namespace AncestorCloud.Shared
 		public const string TYPEKEY= "Type";
 		public const string MATCHTYPE = "DLA";
 
+		#endregion
+
+		#region
+
+		public const string LINKIDKEY= "linkId";
+		public const string LINKTYPEKEY= "linkType";
+		public const string LINKTYPE = "FACEBOOK_OGF";
 		#endregion
 
 	}
