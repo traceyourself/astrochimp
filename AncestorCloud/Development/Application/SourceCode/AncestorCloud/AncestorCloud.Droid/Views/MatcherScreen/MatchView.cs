@@ -23,7 +23,8 @@ namespace AncestorCloud.Droid
 		LinearLayout menuLayout,contentLayout;
 		TextView matchBtn;
 		ImageView first_img,sec_img;
-
+		RelativeLayout firstCrossContainer,secCrossContainer;
+		ImageView firstCrossImg,secCrossImg;
 
 		public new MatchViewModel ViewModel
 		{
@@ -53,8 +54,50 @@ namespace AncestorCloud.Droid
 			first_img = contentLayout.FindViewById<ImageView> (Resource.Id.first_img);
 			sec_img = contentLayout.FindViewById<ImageView> (Resource.Id.sec_img);
 
+			firstCrossContainer = contentLayout.FindViewById<RelativeLayout> (Resource.Id.first_cross_container);
+			secCrossContainer = contentLayout.FindViewById<RelativeLayout> (Resource.Id.sec_cross_container);
+			firstCrossImg = contentLayout.FindViewById<ImageView> (Resource.Id.first_cross_img);
+			secCrossImg = contentLayout.FindViewById<ImageView> (Resource.Id.sec_cross_img);
+
+		}
+		#endregion
+
+		#region dynamic changing of width height of cross btn
+		public override void OnWindowFocusChanged (bool hasFocus)
+		{
+			base.OnWindowFocusChanged (hasFocus);
+
+			int firstHeight = first_img.Height;
+
+			if(firstHeight > 0){
+				int containerDimen = firstHeight / 2;
+				ChangeDimensionsAccordingly (containerDimen);
+			}
+		}
+
+		private void ChangeDimensionsAccordingly(int containerDimen)
+		{
+			ViewGroup.LayoutParams layParams = firstCrossContainer.LayoutParameters;
+			layParams.Height = containerDimen;
+			layParams.Width = containerDimen;
+			firstCrossContainer.LayoutParameters = layParams;
+			firstCrossContainer.Invalidate ();
+
+			secCrossContainer.LayoutParameters = layParams;
+			secCrossContainer.Invalidate ();
 
 
+			layParams = firstCrossImg.LayoutParameters;
+			layParams.Height = ((containerDimen/2)-25);
+			layParams.Width = ((containerDimen/2)-25);
+			firstCrossImg.LayoutParameters = layParams;
+			firstCrossImg.Invalidate ();
+
+			secCrossImg.LayoutParameters = layParams;
+			secCrossImg.Invalidate ();
+
+			//firstCrossContainer.Visibility = ViewStates.Visible;
+			//secCrossContainer.Visibility = ViewStates.Visible;
 		}
 		#endregion
 

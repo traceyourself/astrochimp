@@ -35,9 +35,32 @@
                     android:id="@+id/first_img"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/no_img"
+                    android:src="@drawable/empty_matcher_img"
                     android:scaleType="centerInside"
                     android:layout_centerHorizontal="true" />
+                <View
+                    android:id="@+id/first_center_view"
+                    android:layout_width="1dp"
+                    android:layout_height="1dp"
+                    android:layout_centerHorizontal="true" />
+                <RelativeLayout
+                    android:id="@+id/first_cross_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_toRightOf="@+id/first_center_view">
+                    <View
+                        android:id="@+id/first_inner_view"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        android:layout_centerInParent="true" />
+                    <ImageView
+                        android:id="@+id/first_cross_img"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/blue_cross"
+                        android:layout_toRightOf="@+id/first_inner_view" />
+                </RelativeLayout>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/center_plus"
@@ -59,9 +82,32 @@
                     android:id="@+id/sec_img"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/no_img"
+                    android:src="@drawable/empty_matcher_img"
                     android:scaleType="centerInside"
                     android:layout_centerHorizontal="true" />
+                <View
+                    android:id="@+id/sec_center_view"
+                    android:layout_width="1dp"
+                    android:layout_height="1dp"
+                    android:layout_centerHorizontal="true" />
+                <RelativeLayout
+                    android:id="@+id/sec_cross_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_toRightOf="@+id/sec_center_view">
+                    <View
+                        android:id="@+id/sec_inner_view"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        android:layout_centerInParent="true" />
+                    <ImageView
+                        android:id="@+id/sec_cross_img"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/blue_cross"
+                        android:layout_toRightOf="@+id/sec_inner_view" />
+                </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>
         <TextView

@@ -80,7 +80,7 @@ namespace AncestorCloud.Droid
 			actionBar = FindViewById <ActionBar>(Resource.Id.actionBar);
 			actionBar.SetLeftCornerImage (Resource.Drawable.back);
 
-			actionBar.SetCenterImageText (Resource.Drawable.action_menu,Resources.GetString(Resource.String.celebrities));
+			actionBar.SetCenterImageText (Resource.Drawable.star_white,Resources.GetString(Resource.String.celebrities));
 
 			var crossButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 

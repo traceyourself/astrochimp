@@ -43,7 +43,6 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 		}
 
-
 		//TODO: Need to check it is required or not: Based on client's reply
 		private  List<RelationshipFindResult> _matchResultList;
 
@@ -56,7 +55,6 @@ namespace AncestorCloud.Shared.ViewModels
 				RaisePropertyChanged (() => MatchResultList);
 			}
 		}
-
 
 		#endregion
 

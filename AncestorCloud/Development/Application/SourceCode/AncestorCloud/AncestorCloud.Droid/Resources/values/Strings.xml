@@ -87,7 +87,7 @@
 	<string name="select_people_to_match">Select two people to match</string>
 	<string name="match">Match</string>
 	<string name="past_matches">Past Matches</string>
-	<string name="no_past_matches">Sorry to say this but you don't have any matches yet.</string>
+	<string name="no_past_matches">Sorry to say this but you don\'t have any matches yet.</string>
 	<!--- Matcher Strings Ends -->
 
 	<!---Select Matcher Strings -->
