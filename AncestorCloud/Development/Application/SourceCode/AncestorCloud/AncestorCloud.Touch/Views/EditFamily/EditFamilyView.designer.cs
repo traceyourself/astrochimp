@@ -16,6 +16,9 @@ namespace AncestorCloud.Touch
 		UIKit.UITextField BirthLocationField { get; set; }
 
 		[Outlet]
+		UIKit.UILabel EditLabel { get; set; }
+
+		[Outlet]
 		UIKit.UITextField FirstNameTextField { get; set; }
 
 		[Outlet]
@@ -26,6 +29,9 @@ namespace AncestorCloud.Touch
 
 		[Outlet]
 		UIKit.UITextField MiddleNameTextField { get; set; }
+
+		[Outlet]
+		UIKit.UIButton PickerButtonTapped { get; set; }
 
 		[Action ("CrossButtonTapped:")]
 		partial void CrossButtonTapped (Foundation.NSObject sender);
@@ -61,6 +67,16 @@ namespace AncestorCloud.Touch
 			if (MiddleNameTextField != null) {
 				MiddleNameTextField.Dispose ();
 				MiddleNameTextField = null;
+			}
+
+			if (EditLabel != null) {
+				EditLabel.Dispose ();
+				EditLabel = null;
+			}
+
+			if (PickerButtonTapped != null) {
+				PickerButtonTapped.Dispose ();
+				PickerButtonTapped = null;
 			}
 		}
 	}
