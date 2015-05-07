@@ -29,6 +29,7 @@ namespace AncestorCloud.Droid
 		public TextView birthDateDialogTxt;
 		List<ListDataStructure> dataList;
 		Dialog editDialog;
+		ImageView helpIcon;
 
 		public new MyFamilyViewModel ViewModel
 		{
@@ -56,6 +57,7 @@ namespace AncestorCloud.Droid
 		{
 			actionBar = FindViewById<ActionBar> (Resource.Id.actionBar);
 			listView = FindViewById<ListView> (Resource.Id.add_family_list);
+			helpIcon = FindViewById<ImageView> (Resource.Id.question_icon);
 		}
 
 		private void ConfigureActionBar()
@@ -71,6 +73,11 @@ namespace AncestorCloud.Droid
 				}
 				ViewModel.Close();
 			};
+
+			helpIcon.Click += (object sender, EventArgs e) => {
+				new HelpDialog(this).ShowHelpDialog();
+			};
+
 		}
 
 		private void ApplyActions()
@@ -202,6 +209,7 @@ namespace AncestorCloud.Droid
 			editDialog = new Dialog (this,Android.Resource.Style.ThemeTranslucentNoTitleBar);
 			editDialog.SetContentView (Resource.Layout.edit_family_dialog);
 
+			TextView nameTitle = editDialog.FindViewById<TextView> (Resource.Id.name_title);
 			LinearLayout male = editDialog.FindViewById<LinearLayout> (Resource.Id.male_container);
 			LinearLayout female = editDialog.FindViewById<LinearLayout> (Resource.Id.female_container);
 			RelativeLayout crossbtn = editDialog.FindViewById<RelativeLayout> (Resource.Id.cross_edit_btn);
@@ -267,6 +275,7 @@ namespace AncestorCloud.Droid
 					mid_name.Text = peopleData.MiddleName;
 					last_name.Text = peopleData.LastName;
 					birth_loc.Text = peopleData.BirthLocation;
+					nameTitle.Text = peopleData.FirstName+" "+peopleData.MiddleName+" "+peopleData.LastName+"("+peopleData.Relation+")";
 
 					if (peopleData.Gender.Equals ("Male")) {
 						male.PerformClick ();

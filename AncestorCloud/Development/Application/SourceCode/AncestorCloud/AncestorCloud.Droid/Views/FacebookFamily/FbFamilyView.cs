@@ -25,7 +25,7 @@ namespace AncestorCloud.Droid
 		FlyOutContainer menu;
 		LinearLayout menuLayout,contentLayout;
 		TextView nextBtn;
-
+		ImageView helpicon;
 
 		public new FbFamilyViewModel ViewModel
 		{
@@ -42,7 +42,6 @@ namespace AncestorCloud.Droid
 			InitViews ();
 			ConfigureActionBar ();
 			ApplyActions ();
-			//CreateListAdapter ();
 
 		}
 
@@ -56,6 +55,7 @@ namespace AncestorCloud.Droid
 			actionBar = contentLayout.FindViewById<ActionBar> (Resource.Id.actionBar);
 			listView = contentLayout.FindViewById<MvxListView> (Resource.Id.fb_family_list);
 			nextBtn = contentLayout.FindViewById<TextView> (Resource.Id.next_btn);
+			helpicon = contentLayout.FindViewById<ImageView> (Resource.Id.question_icon);
 		}
 
 		private void ConfigureActionBar()
@@ -108,53 +108,13 @@ namespace AncestorCloud.Droid
 				//ViewModel.CheckValues();
 			};
 
+			helpicon.Click += (object sender, EventArgs e) => {
+				new HelpDialog(this).ShowHelpDialog();
+			};
+
 		}
 		#endregion
 
-		#region Create List Adapter
-		private void CreateListAdapter ()
-		{
-			dataList = new List<FBListDataStructure> ();
-
-			FBListDataStructure first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-			first = new FBListDataStructure (false,"Robert Eames(father)","");
-			dataList.Add (first);
-
-
-			/*FbFamilyListAdapter adapter = new FbFamilyListAdapter (this,dataList);
-			listView.Adapter = adapter;
-			listView.Invalidate ();*/
-		}
-		#endregion
 	}
 
 	#region List Adapter
