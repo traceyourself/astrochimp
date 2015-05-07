@@ -16,7 +16,7 @@ using AncestorCloud.Shared.ViewModels;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "MyFamilyFacebookView")]			
+	
 	public class FbFamilyView : BaseActivity
 	{
 		MvxListView listView;
