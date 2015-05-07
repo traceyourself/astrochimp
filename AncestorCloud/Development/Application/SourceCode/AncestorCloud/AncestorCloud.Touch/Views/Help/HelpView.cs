@@ -7,16 +7,24 @@ using AncestorCloud.Shared;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using System.Linq;
+using Cirrious.MvvmCross.Touch.Views;
+using AncestorCloud.Shared.ViewModels;
 
 namespace AncestorCloud.Touch
 {
-	public partial class HelpView : BaseViewController
+	public partial class HelpView : BaseViewController,IMvxModalTouchView
 	{
 
 		public People FamilyMember{ get; set;}
 
 		public HelpView () : base ("HelpView", null)
 		{
+		}
+
+		public new HelpViewModel ViewModel
+		{
+			get { return base.ViewModel as HelpViewModel; }
+			set { base.ViewModel = value; }
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -46,6 +54,20 @@ namespace AncestorCloud.Touch
 			this.Title="Help";
 			this.NavigationController.NavigationBarHidden = false;
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+
+
+			UIImage image = UIImage.FromFile ("cross_white.png");
+
+			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
+
+
+			this.NavigationItem.SetLeftBarButtonItem(
+				new UIBarButtonItem(image
+					, UIBarButtonItemStyle.Plain
+					, (sender,args) => {
+						ViewModel.Close();
+					})
+				, true);
 		}
 		public override void ViewWillDisappear (bool animated)
 		{

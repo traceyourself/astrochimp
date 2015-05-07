@@ -16,8 +16,9 @@ namespace AncestorCloud.Touch
 		{
 			this.DelayBind (() => {
 
-				var set = this.CreateBindingSet<RelationshipMatchDetailCell, People> ();
-				set.Bind (NameLabel).To (vm => vm.Name);
+				var set = this.CreateBindingSet<RelationshipMatchDetailCell, RelationshipFindResult > ();
+				set.Bind (NameLabel).To (vm => vm.CommonResult.Name);
+				set.Bind (MatchDegreeLabel).To(vm => vm.Degrees);
 				set.Apply ();
 			});
 		}

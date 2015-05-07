@@ -4,6 +4,9 @@ using UIKit;
 using AncestorCloud.Shared;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using System.Drawing;
+using Cirrious.CrossCore;
+using System.Linq;
+using Cirrious.MvvmCross.Plugins.Messenger;
 
 namespace AncestorCloud.Touch
 {
@@ -54,14 +57,25 @@ namespace AncestorCloud.Touch
 
 			//	this.NavigationItem.BackBarButtonItem.TintColor = UIColor.White;
 			
-			this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,150,20));
+			this.NavigationItem.TitleView = new MyCelebritiesTitleView (this.Title,new RectangleF(0,0,150,20));
 
 			var set = this.CreateBindingSet<CelebritiesView , CelebritiesViewModel> ();
 			set.Bind (source).To (vm => vm.CelebritiesList);
 			set.Bind (SearchViewController).To (vm => vm.SearchKey).TwoWay();
 			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
-			//this.NavigationController.NavigationBarHidden = true;
+			this.NavigationController.NavigationBarHidden = false;
+
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			if (!NavigationController.ViewControllers.Contains (this)) {
+				var messenger = Mvx.Resolve<IMvxMessenger> ();
+				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
+
+			}
+			base.ViewWillDisappear (animated);
 
 		}
 

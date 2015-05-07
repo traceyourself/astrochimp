@@ -344,6 +344,9 @@
     </Compile>
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Views\PickerModel.cs" />
+    <Compile Include="Utility\MyCelebritiesTitleView.cs" />
+    <Compile Include="Utility\MyContactTitleView.cs" />
+    <Compile Include="Utility\MyFacebookFriendTitleView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -406,8 +409,6 @@
     <BundleResource Include="Resources\fbook_btn2x.png" />
     <BundleResource Include="Resources\myfamily_icon.png" />
     <BundleResource Include="Resources\disclosure_indicator.jpg" />
-    <BundleResource Include="Resources\HomeScreen.png" />
-    <BundleResource Include="Resources\myfamily_titlegrey.png" />
     <BundleResource Include="Resources\close.png" />
     <BundleResource Include="Resources\edit.png" />
     <BundleResource Include="Resources\female.png" />
@@ -418,6 +419,25 @@
     <BundleResource Include="Resources\search_icon%402x.png" />
     <BundleResource Include="Resources\pink-btnsmall.png" />
     <BundleResource Include="Resources\Views\Celebrities\sear" />
+    <BundleResource Include="Resources\HomeScreen%402x.png" />
+    <BundleResource Include="Resources\myfamily_titlegrey%402x.png" />
+    <BundleResource Include="Resources\blue_x.png" />
+    <BundleResource Include="Resources\dashed_pinkbrd.png" />
+    <BundleResource Include="Resources\location_grey.png" />
+    <BundleResource Include="Resources\nomatch.png" />
+    <BundleResource Include="Resources\plus_blue.png" />
+    <BundleResource Include="Resources\small_close.png" />
+    <BundleResource Include="Resources\title_star.png" />
+    <BundleResource Include="Resources\contacts_grey%402x.png" />
+    <BundleResource Include="Resources\fbook_grey%402x.png" />
+    <BundleResource Include="Resources\star_grey%402x.png" />
+    <BundleResource Include="Resources\ellipsis.gif" />
+    <BundleResource Include="Resources\chevron%402x.png" />
+    <BundleResource Include="Resources\CircleMatcher%402x.png" />
+    <BundleResource Include="Resources\Bluebackground.png" />
+    <BundleResource Include="Resources\facebook_white%402x.png" />
+    <BundleResource Include="Resources\contact_white%402x.png" />
+    <BundleResource Include="Resources\celebrity_white%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />

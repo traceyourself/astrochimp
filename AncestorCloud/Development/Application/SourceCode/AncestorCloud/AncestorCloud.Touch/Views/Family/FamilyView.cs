@@ -41,9 +41,10 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 			SetFamilyItem ();
 
-//			var messenger = Mvx.Resolve<IMvxMessenger>();
-//			messenger.Publish(new NavigationBarHiddenMessage(this, false));
-			//Flyout ();
+			this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Leading, 0, this.View, NSLayoutAttribute.Left, 1.0f, 0));
+
+			this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Trailing , 0, this.View, NSLayoutAttribute.Right, 1.0f, 0));
+
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 

@@ -10,12 +10,7 @@ namespace AncestorCloud.Shared.ViewModels
 	public class RelationshipMatchDetailViewModel :BaseViewModel
 	{
 
-		public RelationshipMatchDetailViewModel()
-		{
-			
-		}
-
-
+	
 		public void Init(DetailParameter parameter)
 		{
 			//this.MatchResult = parameter.MatchResult;
@@ -49,7 +44,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public List<RelationshipFindResult> MatchResultList 
 		{
-			get  { return _matchResultList ?? new  List<RelationshipFindResult> ();}
+			get  { return _matchResultList;}
 			set
 			{
 				_matchResultList = value;
@@ -106,35 +101,14 @@ namespace AncestorCloud.Shared.ViewModels
 		public RelationshipMatchDetailViewModel(IDatabaseService  service)
 		{
 			_databaseService = service;
-			GetRelationshipMatchDetailData ();
+
 		}
 
 		#endregion
 
-		#region Sqlite Methods
 
-		public void GetRelationshipMatchDetailData()
-		{
-			List<People> list = _databaseService.RelativeMatching ("");
-			RelationshipMatchDetailList = list;
-		}
-		#endregion
 
-		#region Properties
 
-		private List<People> relationshipMatchDetailList;
-
-		public List<People> RelationshipMatchDetailList
-		{
-			get { return relationshipMatchDetailList; }
-			set
-			{
-				relationshipMatchDetailList = value;
-				RaisePropertyChanged(() => RelationshipMatchDetailList);
-			}
-		}
-
-		#endregion
 
 	}
 }

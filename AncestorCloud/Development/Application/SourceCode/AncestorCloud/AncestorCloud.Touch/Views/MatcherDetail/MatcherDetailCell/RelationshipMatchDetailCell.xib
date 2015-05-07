@@ -32,6 +32,12 @@
                     </label>
                 </subviews>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="MatchDegreeLabel" destination="a8I-sK-3sc" id="E1f-kF-9yj"/>
+                <outlet property="NameLabel" destination="mPB-4X-fyf" id="xjE-Nr-NkT"/>
+                <outlet property="YearLabel" destination="ZQe-EM-0aG" id="peQ-sv-CjN"/>
+            </connections>
             <point key="canvasLocation" x="304.5" y="271"/>
         </tableViewCell>
     </objects>

@@ -8,7 +8,7 @@ namespace AncestorCloud.Touch
 
 	public class RelationshipMatchTableSource :MvxTableViewSource
 	{
-		readonly string cellIdentifier = "RelationshipMatchDetailCell";
+		//readonly string cellIdentifier = "RelationshipMatchDetailCell";
 
 		public RelationshipMatchTableSource(UITableView tableView): base(tableView)
 		{

@@ -18,7 +18,6 @@
             <subviews>
                 <view alpha="0.5" contentMode="center" id="Sk0-Xf-FQ7">
                     <rect key="frame" x="112" y="294" width="150" height="80"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3uA-v6-6kc">
                             <rect key="frame" x="37" y="8" width="77" height="21"/>

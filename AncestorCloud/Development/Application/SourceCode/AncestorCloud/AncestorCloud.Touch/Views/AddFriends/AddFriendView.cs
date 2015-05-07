@@ -9,10 +9,11 @@ using AncestorCloud.Shared.ViewModels;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using System.Linq;
+using Cirrious.MvvmCross.Touch.Views;
 
 namespace AncestorCloud.Touch
 {
-	public partial class AddFriendView : BaseViewController
+	public partial class AddFriendView : BaseViewController,IMvxModalTouchView
 	{
 		public AddFriendView () : base ("AddFriendView", null)
 		{
@@ -41,7 +42,23 @@ namespace AncestorCloud.Touch
 
 			UIImage image = UIImage.FromFile ("cross_white.png");
 
+			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+
+			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
+				{ TextColor = UIColor.FromRGB (255,255,255) });
+
+
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
+
+
+			this.NavigationItem.SetLeftBarButtonItem(
+				new UIBarButtonItem(image
+					, UIBarButtonItemStyle.Plain
+					, (sender,args) => {
+						ViewModel.Close();
+
+					})
+				, true);
 	
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -49,16 +66,19 @@ namespace AncestorCloud.Touch
 		partial void CelebritiesButtonTapped (NSObject sender)
 		{
 			ViewModel.ShowCelebrities();
+			ViewModel.CloseCommand.Execute(null);
 		}
 
 		partial void FacebookButtonTapped (NSObject sender)
 		{
 			ViewModel.ShowFacebookFriend();
+			ViewModel.CloseCommand.Execute(null);
 		}
 
 		partial void ContactButtonTapped (NSObject sender)
 		{
 			ViewModel.ShowContacts();
+			ViewModel.CloseCommand.Execute(null);
 		}
 		public override void ViewWillDisappear (bool animated)
 		{
