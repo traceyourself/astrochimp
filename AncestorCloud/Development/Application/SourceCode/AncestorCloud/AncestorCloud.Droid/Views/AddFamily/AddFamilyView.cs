@@ -26,7 +26,7 @@ namespace AncestorCloud.Droid
 		bool maleSelected = false,femaleSelected=false;
 		ActionBar actionBar;
 		EditText first_name,middle_name,last_name,birthLoc;
-
+		Spinner yearSelector;
 
 		public new AddFamilyViewModel ViewModel
 		{
@@ -57,6 +57,7 @@ namespace AncestorCloud.Droid
 			middle_name = FindViewById<EditText> (Resource.Id.mid_name_field);
 			last_name = FindViewById<EditText> (Resource.Id.last_name_field);
 			birthLoc = FindViewById<EditText> (Resource.Id.birth_loc_field);
+			yearSelector = FindViewById<Spinner> (Resource.Id.yearSpin);
 		}
 
 		private void ConfigureActionBar()
@@ -72,6 +73,30 @@ namespace AncestorCloud.Droid
 
 		protected void ApplyActions()
 		{
+
+			List<string> populateList = new List<string> ();
+
+			Calendar cal = Calendar.GetInstance (Java.Util.Locale.Us);
+			int start = 1900;
+			int upto = cal.Get (Calendar.Year);
+
+			for(int i=start;i<=upto;i++){
+				populateList.Add (""+i);
+			}
+
+			var adapter = new ArrayAdapter (this,Android.Resource.Layout.SimpleListItem1,populateList);
+
+			//adapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			yearSelector.Adapter = adapter;
+
+			yearSelector.ItemSelected += (object sender, AdapterView.ItemSelectedEventArgs e) => {
+				dateText.Text = yearSelector.SelectedItem.ToString();
+			};
+
+			dateText.Click+= (object sender, EventArgs e) => {
+				yearSelector.PerformClick();	
+			};
+
 			malecheck.Click += (object sender, EventArgs e) => {
 				malecheck.SetBackgroundResource(Resource.Drawable.male_selected);	
 				femalecheck.SetBackgroundColor(Color.ParseColor("#00000000"));
@@ -104,9 +129,9 @@ namespace AncestorCloud.Droid
 				ViewModel.AddPerson();
 			};
 
-			dateText.Click += (object sender, EventArgs e) => {
+			/*dateText.Click += (object sender, EventArgs e) => {
 				ShowDatePicker();
-			};
+			};*/
 		}
 
 		public void ShowDatePicker()
@@ -115,21 +140,6 @@ namespace AncestorCloud.Droid
 			DatePickerDialog dpd = new DatePickerDialog (this,new AddFamilyDateListener(this),cal.Get(Calendar.Year), cal.Get(Calendar.Month),cal.Get(Calendar.DayOfMonth));
 			dpd.Show ();
 		}
-
-//			People model = new People ();
-//
-//			model.FirstName = first_name.Text.ToString ();
-//			model.MiddleName = middle_name.Text.ToString ();
-//			model.LastName = last_name.Text.ToString ();
-//			model.BirthLocation = birthLoc.Text.ToString ();
-//			model.DateOfBirth = dateText.Text;
-//
-//			if (maleSelected) {
-//				model.Gender = "Male";	
-//			} else {
-//				model.Gender = "Female";
-//			}
-//
 
 	}
 

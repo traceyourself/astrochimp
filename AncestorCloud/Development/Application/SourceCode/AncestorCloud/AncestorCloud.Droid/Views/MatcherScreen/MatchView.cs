@@ -227,7 +227,6 @@ namespace AncestorCloud.Droid
 
 				}else if(ViewModel.FirstPersonPeople != null){
 					ViewModel.WhichImageClicked = 0;
-					isSecondPersonSelected = true;
 
 					firstPersonImage = ViewModel.FirstPersonPeople.ProfilePicURL;
 					isFirstPersonSelected = true;
@@ -236,7 +235,7 @@ namespace AncestorCloud.Droid
 			} else if (ViewModel.WhichImageClicked == 2){
 				if (ViewModel.SecondPersonCeleb != null) {
 					ViewModel.WhichImageClicked = 0;
-					Mvx.Trace("celeb name in match view for sec image: "+ViewModel.SecondPersonCeleb.GivenNames);
+					//Mvx.Trace("celeb name in match view for sec image: "+ViewModel.SecondPersonCeleb.GivenNames);
 
 					secondPersonImage = ViewModel.SecondPersonCeleb.Img;
 					isSecondPersonSelected = true;
@@ -244,7 +243,7 @@ namespace AncestorCloud.Droid
 
 				}else if(ViewModel.SecondPersonPeople != null){
 					ViewModel.WhichImageClicked = 0;
-					Mvx.Trace("People name in match view for Sec image: "+ViewModel.SecondPersonPeople.Name);
+					//Mvx.Trace("People name in match view for Sec image: "+ViewModel.SecondPersonPeople.Name);
 
 					secondPersonImage = ViewModel.SecondPersonPeople.ProfilePicURL;
 					isSecondPersonSelected = true;
