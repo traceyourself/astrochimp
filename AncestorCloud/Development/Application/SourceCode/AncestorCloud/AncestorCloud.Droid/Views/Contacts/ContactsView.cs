@@ -47,7 +47,7 @@ namespace AncestorCloud.Droid
 
 		private void ApplyActions(){
 			mePlus.Click += (object sender, EventArgs e) => {
-				ViewModel.Close();
+				ViewModel.MePlusClicked();
 			};
 		}
 
@@ -66,7 +66,7 @@ namespace AncestorCloud.Droid
 			actionBar = FindViewById <ActionBar>(Resource.Id.actionBar);
 			actionBar.SetLeftCornerImage (Resource.Drawable.back);
 
-			actionBar.SetCenterImageText (Resource.Drawable.action_menu,Resources.GetString(Resource.String.contacts));
+			actionBar.SetCenterImageText (Resource.Drawable.contacts_white,Resources.GetString(Resource.String.contacts));
 
 			var crossButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 

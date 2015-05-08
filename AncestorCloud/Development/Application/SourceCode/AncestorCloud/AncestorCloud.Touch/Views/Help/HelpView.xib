@@ -11,34 +11,34 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="help_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="YKv-5K-idE">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="help_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="YKv-5K-idE">
                     <rect key="frame" x="172" y="30" width="30" height="30"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How it work" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOR-JN-mFi">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="How it work" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOR-JN-mFi">
                     <rect key="frame" x="131" y="68" width="112" height="26"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.5490196078431373" green="0.50980392156862742" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEH-Mf-ixW">
-                    <rect key="frame" x="20" y="102" width="335" height="142"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEH-Mf-ixW">
+                    <rect key="frame" x="11" y="102" width="300" height="142"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">Relationship matching is a complex process with no guarentees.To increase the chance of our software finding a common relationship between you and friend or stranger we nedd as much information from you as possible.The information you can put in about you ancestors the higher the matching confidence.</string>
                     <color key="textColor" red="0.5490196078431373" green="0.50980392156862742" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="29% Matching Confidence" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drS-sa-ye4">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="29% Matching Confidence" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drS-sa-ye4">
                     <rect key="frame" x="42" y="252" width="305" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                     <color key="textColor" red="0.019607843137254902" green="0.38823529411764707" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsr-J8-v2W">
-                    <rect key="frame" x="11" y="281" width="335" height="142"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsr-J8-v2W">
+                    <rect key="frame" x="8" y="281" width="300" height="142"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">The matching confidence is defined by set of computer rule that predict the chances of you getting matches.As you put in more information about yur relatives we can better connect you into our global family and find you a match! With this , the more  the better.</string>
                     <color key="textColor" red="0.54901960780000003" green="0.50980392159999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -47,7 +47,14 @@
                 </textView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="YKv-5K-idE" secondAttribute="centerX" constant="0.5" id="2HU-sS-buc"/>
+                <constraint firstAttribute="centerX" secondItem="iEH-Mf-ixW" secondAttribute="centerX" id="3jx-uu-ASb"/>
+                <constraint firstAttribute="centerX" secondItem="drS-sa-ye4" secondAttribute="centerX" constant="-7" id="6JR-gF-0Iz"/>
+                <constraint firstAttribute="centerX" secondItem="jOR-JN-mFi" secondAttribute="centerX" constant="0.5" id="A6Z-v2-eMK"/>
+                <constraint firstAttribute="centerX" secondItem="Hsr-J8-v2W" secondAttribute="centerX" constant="9" id="Yz3-Kj-MAv"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="322.5" y="304.5"/>
         </view>
     </objects>

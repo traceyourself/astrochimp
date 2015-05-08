@@ -20,9 +20,9 @@
             android:padding="8dp">
             <ImageView
                 android:id="@+id/left_fb_img"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/no_img_small"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/fb_grey"
                 android:layout_centerVertical="true" />
             <TextView
                 android:id="@+id/first_title_txt"
@@ -50,9 +50,9 @@
                 android:layout_marginTop="1dp" />
             <ImageView
                 android:id="@+id/right_arr_img"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@android:drawable/arrow_down_float"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/right_arrow_grey"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true" />
         </RelativeLayout>
@@ -68,9 +68,9 @@
             android:padding="7dp">
             <ImageView
                 android:id="@+id/left_fb_img"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/no_img_small"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/contacts_grey"
                 android:layout_centerVertical="true" />
             <TextView
                 android:id="@+id/sec_title_txt"
@@ -97,9 +97,9 @@
                 android:layout_below="@+id/sec_title_txt" />
             <ImageView
                 android:id="@+id/right_arr_img"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@android:drawable/arrow_down_float"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/right_arrow_grey"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true" />
         </RelativeLayout>
@@ -115,9 +115,9 @@
             android:padding="7dp">
             <ImageView
                 android:id="@+id/left_fb_img"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/no_img_small"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/star_grey"
                 android:layout_centerVertical="true" />
             <TextView
                 android:id="@+id/third_title_txt"
@@ -144,9 +144,9 @@
                 android:layout_below="@+id/third_title_txt" />
             <ImageView
                 android:id="@+id/right_arr_img"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@android:drawable/arrow_down_float"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/right_arrow_grey"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true" />
         </RelativeLayout>
@@ -154,5 +154,46 @@
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
             android:background="@color/dark_div_color" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentBottom="true"
+                android:gravity="center">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/dark_div_color" />
+                <ImageView
+                    android:layout_marginTop="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/location_grey"
+                    android:minWidth="40dp"
+                    android:minHeight="40dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:text="@string/finding_near"
+                    android:gravity="center"
+                    android:textColor="@color/gray_login_color"
+                    android:layout_marginTop="10dp" />
+                <ImageView
+                    android:layout_marginTop="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ellipsis"
+                    android:minWidth="40dp"
+                    android:minHeight="40dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

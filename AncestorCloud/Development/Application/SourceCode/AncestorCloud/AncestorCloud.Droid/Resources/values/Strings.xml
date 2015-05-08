@@ -87,7 +87,7 @@
 	<string name="select_people_to_match">Select two people to match</string>
 	<string name="match">Match</string>
 	<string name="past_matches">Past Matches</string>
-	<string name="no_past_matches">Sorry to say this but you don't have any matches yet.</string>
+	<string name="no_past_matches">Sorry to say this but you don\'t have any matches yet.</string>
 	<!--- Matcher Strings Ends -->
 
 	<!---Select Matcher Strings -->
@@ -97,7 +97,8 @@
 	<string name="fb_friends">Facebook Friends</string>
 	<string name="fb_desc">Connect with Facebook to add friends easily</string>
 	<string name="contact_desc">Find friends from my phone contacts</string>
-	<string name="celeb_desc"> Celeberities </string>
+	<string name="celeb_desc">Celeberities</string>
+	<string name="finding_near">Searching for people near me</string>
 	<!---Select Matcher Strings Ends -->
 
 	<!---help_dialog strings -->
