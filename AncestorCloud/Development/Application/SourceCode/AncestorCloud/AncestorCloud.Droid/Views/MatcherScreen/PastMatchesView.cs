@@ -22,6 +22,7 @@ namespace AncestorCloud.Droid
 		
 		ActionBar actionBar;
 		ListView matchlist;
+		RelativeLayout noMatchLay;
 
 		public new PastMatchesViewModel ViewModel
 		{
@@ -46,6 +47,7 @@ namespace AncestorCloud.Droid
 		private void initUI()
 		{
 			matchlist = FindViewById<ListView> (Resource.Id.past_matched_list);
+			noMatchLay = FindViewById<RelativeLayout> (Resource.Id.no_match_lay);
 		}
 		#endregion
 
@@ -69,19 +71,27 @@ namespace AncestorCloud.Droid
 		#region Create List Adapter
 		private void CreateListAdapter ()
 		{
-			PastMatchedListAdapter adapter = new PastMatchedListAdapter (this);
-			matchlist.Adapter = adapter;
-			matchlist.Invalidate ();	
-
+			//if(){
+				PastMatchedListAdapter adapter = new PastMatchedListAdapter (this);
+				matchlist.Adapter = adapter;
+				matchlist.Invalidate ();	
+			//}else{
+			//	NoMatchesFound();
+			//}
 		}
 		#endregion
+
+
+		public void NoMatchesFound(){
+			matchlist.Visibility = ViewStates.Gone;
+			noMatchLay.Visibility = ViewStates.Visible;
+		}
 
 		#region Apply Actions
 		private void ApplyActions(){
 			
 		}
 		#endregion
-
 	}
 
 	#region List Adapter

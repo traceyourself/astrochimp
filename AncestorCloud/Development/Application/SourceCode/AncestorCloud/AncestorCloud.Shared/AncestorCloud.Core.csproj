@@ -103,6 +103,7 @@
     <Compile Include="Services\MatchService.cs" />
     <Compile Include="Models\RelationshipFindResult.cs" />
 
+
     <Compile Include="Converters\DegreeConverter.cs" />
 
     <Compile Include="Services\Interface\IFbSigninService.cs" />
@@ -110,6 +111,9 @@
     <Compile Include="Services\Interface\IDeveloperLoginService.cs" />
     <Compile Include="Services\DeveloperLoginService.cs" />
     <Compile Include="Helper\FaceBookLinkManager.cs" />
+
+
+    <Compile Include="Entities\MatchGetPersonMeassage.cs" />
 
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

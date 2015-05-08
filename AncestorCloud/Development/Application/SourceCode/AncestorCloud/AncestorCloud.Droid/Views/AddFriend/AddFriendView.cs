@@ -1,14 +1,7 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 
@@ -50,15 +43,17 @@ namespace AncestorCloud.Droid
 		private void ApplyActions(){
 			fb_btn.Click += (object sender, EventArgs e) => {
 				ViewModel.ShowFacebookFriend();
+				ViewModel.Close();
 			};
-
 
 			celeb_btn.Click += (object sender, EventArgs e) => {
 				ViewModel.ShowCelebrities();
+				ViewModel.Close();
 			};
 
 			contacts_btn.Click += (object sender, EventArgs e) => {
 				ViewModel.ShowContacts();
+				ViewModel.Close();
 			};
 
 		}

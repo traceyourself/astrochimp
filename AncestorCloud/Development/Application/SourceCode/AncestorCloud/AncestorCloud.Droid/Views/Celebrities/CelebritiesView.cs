@@ -60,7 +60,7 @@ namespace AncestorCloud.Droid
 			};
 
 			mePlus.Click += (object sender, EventArgs e) => {
-				ViewModel.Close();
+				ViewModel.MePlusClicked();
 			};
 
 		}
@@ -80,7 +80,7 @@ namespace AncestorCloud.Droid
 			actionBar = FindViewById <ActionBar>(Resource.Id.actionBar);
 			actionBar.SetLeftCornerImage (Resource.Drawable.back);
 
-			actionBar.SetCenterImageText (Resource.Drawable.action_menu,Resources.GetString(Resource.String.celebrities));
+			actionBar.SetCenterImageText (Resource.Drawable.star_white,Resources.GetString(Resource.String.celebrities));
 
 			var crossButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 
@@ -141,7 +141,9 @@ namespace AncestorCloud.Droid
 			holder.nametxt.Text = dataList[position].GivenNames+" "+dataList[position].LastName;
 
 			holder.plus.Click += (object sender, EventArgs e) => {
-				myCelebObj.ViewModel.Close();
+
+				myCelebObj.ViewModel.CelebrityPlusClickHandler(dataList[position]);
+
 			};
 
 			return convertView;
