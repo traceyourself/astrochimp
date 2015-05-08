@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using AncestorCloud.Shared.ViewModels;
+using Cirrious.CrossCore;
+using Cirrious.CrossCore.Platform;
+using Cirrious.MvvmCross.Plugins.Messenger;
 
 namespace AncestorCloud.Shared
 {
@@ -35,12 +39,46 @@ namespace AncestorCloud.Shared
 		#endregion
 
 
+		#region plus click event
+
+		public void CelebrityPlusClickHandler(Celebrity celeb)
+		{
+			ResponseModel<Celebrity> modeltosend = new ResponseModel<Celebrity> ();
+			modeltosend.Content = celeb;
+			var matchString = Mvx.Resolve<IMvxJsonConverter>().SerializeObject(modeltosend);
+			var _matcherMessenger = Mvx.Resolve<IMvxMessenger>();
+			_matcherMessenger.Publish (new MatchGetPersonMeassage(this,matchString,true));
+			Close ();
+		}
+
+		public void PeoplePlusClickHandler(People people)
+		{
+			ResponseModel<People> modeltosend = new ResponseModel<People> ();
+			modeltosend.Content = people;
+			var matchString = Mvx.Resolve<IMvxJsonConverter>().SerializeObject(modeltosend);
+			var _matcherMessenger = Mvx.Resolve<IMvxMessenger>();
+			_matcherMessenger.Publish (new MatchGetPersonMeassage(this,matchString,false));
+			Close ();
+		}
+
+		public void MePlusClicked()
+		{
+			LoginModel data = _databaseService.GetLoginDetails ();
+
+			People peopledata = new People ();
+			peopledata.ProfilePicURL = "";
+			peopledata.IndiOgfn = data.IndiOGFN;
+			PeoplePlusClickHandler(peopledata);
+		}
+		#endregion
+
+
 		#region Properties
 
 		private List<Celebrity> celebritiesList;
 
 		public List<Celebrity> CelebritiesList
-			{
+		{
 			get { return celebritiesList; }
 			set
 			{

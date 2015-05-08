@@ -13,6 +13,7 @@ using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using Cirrious.CrossCore;
 using Android.Graphics;
+using AncestorCloud.Shared;
 
 namespace AncestorCloud.Droid
 {
@@ -75,7 +76,7 @@ namespace AncestorCloud.Droid
 		#region Create List Adapter
 		private void CreateListAdapter ()
 		{
-			MatchedListAdapter adapter = new MatchedListAdapter (this);
+			MatchedListAdapter adapter = new MatchedListAdapter (this,ViewModel.MatchResultList);
 			resultlist.Adapter = adapter;
 			resultlist.Invalidate ();	
 
@@ -96,15 +97,16 @@ namespace AncestorCloud.Droid
 	{
 		LayoutInflater inflater;
 		RelationshipMatchDetailView myObj;
+		List<RelationshipFindResult> dataList; 
 
-		public MatchedListAdapter(RelationshipMatchDetailView myObj){
+		public MatchedListAdapter(RelationshipMatchDetailView myObj,List<RelationshipFindResult> data){
 			this.myObj = myObj;
+			dataList = data;
 			inflater = (LayoutInflater)myObj.GetSystemService (Context.LayoutInflaterService);
 		}
 
 		public override int Count {
-			//get { return dataList.Count; }
-			get{ return 10;}
+			get { return dataList.Count; }
 		}
 
 		public override Java.Lang.Object GetItem (int position) {
@@ -129,18 +131,33 @@ namespace AncestorCloud.Droid
 				holder.mainContainer = convertView.FindViewById<RelativeLayout> (Resource.Id.main_container_matched);
 
 				holder.common_txt = convertView.FindViewById<TextView> (Resource.Id.common);
+				holder.username = convertView.FindViewById<TextView> (Resource.Id.username);
+				holder.year = convertView.FindViewById<TextView> (Resource.Id.year);
+				holder.percent_right = convertView.FindViewById<TextView> (Resource.Id.percent_right);
 
 				convertView.SetTag (Resource.Id.add_family_list,holder);
 			} else {
 				holder = (MatchedViewHolder)convertView.GetTag (Resource.Id.add_family_list);
 			}
 
-			if (position == 5) {
+			/*if (position == 5) {
 				holder.common_txt.Visibility = ViewStates.Visible;
 				holder.mainContainer.SetBackgroundColor (Color.ParseColor("#94C4EC"));
 			} else {
 				holder.common_txt.Visibility = ViewStates.Gone;
 				holder.mainContainer.SetBackgroundColor (Color.Transparent);
+			}*/
+
+			if(dataList[position].CommonResult != null){
+				holder.username.Text = dataList [position].CommonResult.Name;
+				holder.percent_right.Text = dataList [position].Degrees+"º";
+				holder.year.Text = "";
+
+				holder.common_txt.Visibility = ViewStates.Visible;
+				holder.mainContainer.SetBackgroundColor (Color.ParseColor("#94C4EC"));
+			}else{
+				holder.common_txt.Visibility = ViewStates.Gone;
+				holder.mainContainer.SetBackgroundColor (Color.Transparent);	
 			}
 
 			return convertView;
@@ -149,8 +166,8 @@ namespace AncestorCloud.Droid
 
 	public class MatchedViewHolder : Java.Lang.Object{
 
-		public RelativeLayout mainContainer;//main_container_matched;
-		public TextView common_txt;
+		public RelativeLayout mainContainer;
+		public TextView common_txt,username,year,percent_right;
 
 	}
 	#endregion

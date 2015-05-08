@@ -155,9 +155,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 				};
 			}
-
 		}
-
 
 		private void ReloadMenuList(bool boolValue)
 		{

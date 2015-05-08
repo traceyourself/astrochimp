@@ -123,7 +123,6 @@
     <Compile Include="DroidUtilities\StringConstants.cs" />
     <Compile Include="Views\AddFriend\AddFriendView.cs" />
     <Compile Include="Views\Celebrities\CelebritiesView.cs" />
-
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Views\Contacts\ContactsView.cs" />
     <Compile Include="Views\FacebookFriends\FacebookFriendView.cs" />
@@ -169,7 +168,6 @@
     <AndroidResource Include="Resources\layout\add_family.axml" />
     <AndroidResource Include="Resources\layout\add_family_list_item.axml" />
     <AndroidResource Include="Resources\drawable\plus_sign.png" />
-    <AndroidResource Include="Resources\drawable\edit_pen.png" />
     <AndroidResource Include="Resources\layout\my_family_facebook.axml" />
     <AndroidResource Include="Resources\drawable\fb_icon.jpeg" />
     <AndroidResource Include="Resources\drawable\help_icon.png" />
@@ -257,6 +255,25 @@
     <AndroidResource Include="Resources\layout\contacts_screen.axml" />
     <AndroidResource Include="Resources\layout\help_dialog.axml" />
     <AndroidResource Include="Resources\drawable\help_icon_big.png" />
+    <AndroidResource Include="Resources\drawable\blue_plus.png" />
+    <AndroidResource Include="Resources\drawable\thumb_down.png" />
+    <AndroidResource Include="Resources\drawable\edit_pen.png" />
+    <AndroidResource Include="Resources\drawable\contacts_grey.png" />
+    <AndroidResource Include="Resources\drawable\contacts_white.png" />
+    <AndroidResource Include="Resources\drawable\fb_grey.png" />
+    <AndroidResource Include="Resources\drawable\fb_white.png" />
+    <AndroidResource Include="Resources\drawable\star_grey.png" />
+    <AndroidResource Include="Resources\drawable\star_white.png" />
+    <AndroidResource Include="Resources\drawable\right_arrow_grey.png" />
+    <AndroidResource Include="Resources\drawable\empty_matcher_img.png" />
+    <AndroidResource Include="Resources\drawable\blue_cross.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\location_grey.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\location_grey.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\location_grey.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\location_grey.png" />
+    <AndroidResource Include="Resources\drawable\ellipsis.gif" />
+    <AndroidResource Include="Resources\drawable-xhdpi\location_grey.png" />
+    <AndroidResource Include="Resources\drawable\user_no_img.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
