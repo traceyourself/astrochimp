@@ -28,9 +28,12 @@
                         <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dh6-St-d5q">
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dh6-St-d5q">
                         <rect key="frame" x="329" y="15" width="30" height="30"/>
-                        <state key="normal" backgroundImage="plus.png">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="4Qh-sU-rk0"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="plus_blue.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
@@ -46,14 +49,17 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="Q2b-Nh-85o" secondAttribute="bottom" constant="10" id="57Q-Pl-nAP"/>
+                    <constraint firstItem="dh6-St-d5q" firstAttribute="top" secondItem="qkj-p1-4r6" secondAttribute="topMargin" constant="7" id="5vr-3f-kEv"/>
                     <constraint firstItem="Q2b-Nh-85o" firstAttribute="leading" secondItem="Ll4-p1-Bcn" secondAttribute="trailing" constant="8" id="A9J-LC-U1p"/>
                     <constraint firstItem="Ll4-p1-Bcn" firstAttribute="top" secondItem="qkj-p1-4r6" secondAttribute="topMargin" constant="-3" id="Aj0-xd-lLa"/>
                     <constraint firstItem="Ll4-p1-Bcn" firstAttribute="leading" secondItem="qkj-p1-4r6" secondAttribute="leadingMargin" id="Owu-6J-cXA"/>
                     <constraint firstAttribute="bottomMargin" secondItem="vcm-E0-9Cq" secondAttribute="bottom" constant="8" id="XSH-8W-pMe"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Ll4-p1-Bcn" secondAttribute="bottom" constant="2" id="beL-wL-e1l"/>
                     <constraint firstItem="vcm-E0-9Cq" firstAttribute="leading" secondItem="Q2b-Nh-85o" secondAttribute="trailing" constant="5" id="dTv-Nq-2JJ"/>
+                    <constraint firstItem="dh6-St-d5q" firstAttribute="trailing" secondItem="qkj-p1-4r6" secondAttribute="trailingMargin" constant="8" id="m07-6T-S7p"/>
                     <constraint firstItem="vcm-E0-9Cq" firstAttribute="top" secondItem="qkj-p1-4r6" secondAttribute="topMargin" constant="14" id="o2Z-Pc-ZNi"/>
                     <constraint firstItem="Q2b-Nh-85o" firstAttribute="top" secondItem="qkj-p1-4r6" secondAttribute="topMargin" constant="13" id="pcM-OT-saZ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="dh6-St-d5q" secondAttribute="bottom" constant="6" id="wcZ-pb-ir0"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -65,7 +71,7 @@
     </objects>
     <resources>
         <image name="noImage.png" width="265" height="265"/>
-        <image name="plus.png" width="30" height="30"/>
+        <image name="plus_blue.png" width="21" height="21"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

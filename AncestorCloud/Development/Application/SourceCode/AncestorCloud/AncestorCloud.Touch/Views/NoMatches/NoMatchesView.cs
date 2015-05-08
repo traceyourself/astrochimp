@@ -33,6 +33,18 @@ namespace AncestorCloud.Touch
 			this.Title="Past Matches";
 			this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,150,20));
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+
+
+		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			this.NavigationController.NavigationBarHidden = false;
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			this.NavigationController.NavigationBarHidden = true;
 		}
 	}
 }

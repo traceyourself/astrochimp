@@ -424,8 +424,6 @@
     <BundleResource Include="Resources\blue_x.png" />
     <BundleResource Include="Resources\dashed_pinkbrd.png" />
     <BundleResource Include="Resources\location_grey.png" />
-    <BundleResource Include="Resources\nomatch.png" />
-    <BundleResource Include="Resources\plus_blue.png" />
     <BundleResource Include="Resources\small_close.png" />
     <BundleResource Include="Resources\title_star.png" />
     <BundleResource Include="Resources\contacts_grey%402x.png" />
@@ -438,6 +436,8 @@
     <BundleResource Include="Resources\facebook_white%402x.png" />
     <BundleResource Include="Resources\contact_white%402x.png" />
     <BundleResource Include="Resources\celebrity_white%402x.png" />
+    <BundleResource Include="Resources\nomatch%402x.png" />
+    <BundleResource Include="Resources\plus_blue%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />

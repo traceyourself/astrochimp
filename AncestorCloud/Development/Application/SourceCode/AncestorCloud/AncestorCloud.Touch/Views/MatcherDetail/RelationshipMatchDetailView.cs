@@ -51,6 +51,10 @@ namespace AncestorCloud.Touch
 			}
 			base.ViewWillDisappear (animated);
 		}
+		public override void ViewWillAppear (bool animated)
+		{
+			this.NavigationController.NavigationBarHidden = false;
+		}
 
 
 		#region Relationship table
@@ -77,6 +81,8 @@ namespace AncestorCloud.Touch
 					, (sender,args) => {
 						System.Diagnostics .Debug.WriteLine("PAST MATCHER");
 						ViewModel.ShowPastMatches();
+
+
 					})
 				, true);
 			//Add (table);
