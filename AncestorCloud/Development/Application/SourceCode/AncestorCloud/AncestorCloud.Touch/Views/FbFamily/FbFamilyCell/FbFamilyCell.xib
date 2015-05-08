@@ -46,6 +46,7 @@
                     </imageView>
                 </subviews>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="CheckedButtonTapped" destination="93B-1o-Rno" id="luk-r0-Z0U"/>
                 <outlet property="NameLabel" destination="Rtv-8E-x5U" id="Keh-dr-OBQ"/>

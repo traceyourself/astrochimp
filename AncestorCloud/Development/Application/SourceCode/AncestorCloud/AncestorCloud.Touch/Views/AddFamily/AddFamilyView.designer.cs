@@ -33,14 +33,14 @@ namespace AncestorCloud.Touch
 		[Outlet]
 		UIKit.UITextField MiddleNameTextFeild { get; set; }
 
+		[Outlet]
+		UIKit.UIButton PickerButtonTapped { get; set; }
+
 		[Action ("AddButtonTapped:")]
 		partial void AddButtonTapped (Foundation.NSObject sender);
 
 		[Action ("Birthlabel:")]
 		partial void Birthlabel (Foundation.NSObject sender);
-
-		[Action ("BirthYearButtonTaped:")]
-		partial void BirthYearButtonTaped (Foundation.NSObject sender);
 
 		[Action ("GenderSegmentControlChanged:")]
 		partial void GenderSegmentControlChanged (Foundation.NSObject sender);
@@ -52,14 +52,19 @@ namespace AncestorCloud.Touch
 				AddButton = null;
 			}
 
+			if (BirthLocationTextField != null) {
+				BirthLocationTextField.Dispose ();
+				BirthLocationTextField = null;
+			}
+
 			if (BirthYearButton != null) {
 				BirthYearButton.Dispose ();
 				BirthYearButton = null;
 			}
 
-			if (BirthLocationTextField != null) {
-				BirthLocationTextField.Dispose ();
-				BirthLocationTextField = null;
+			if (FirstNameTextField != null) {
+				FirstNameTextField.Dispose ();
+				FirstNameTextField = null;
 			}
 
 			if (GenderSegmentControl != null) {
@@ -72,14 +77,14 @@ namespace AncestorCloud.Touch
 				LastNameTextField = null;
 			}
 
-			if (FirstNameTextField != null) {
-				FirstNameTextField.Dispose ();
-				FirstNameTextField = null;
-			}
-
 			if (MiddleNameTextFeild != null) {
 				MiddleNameTextFeild.Dispose ();
 				MiddleNameTextFeild = null;
+			}
+
+			if (PickerButtonTapped != null) {
+				PickerButtonTapped.Dispose ();
+				PickerButtonTapped = null;
 			}
 		}
 	}

@@ -8,11 +8,11 @@
             <connections>
                 <outlet property="AddButton" destination="HkY-tN-lcD" id="0qa-3S-iRc"/>
                 <outlet property="BirthLocationTextField" destination="MCb-nl-Qzu" id="AhH-ZA-lW7"/>
-                <outlet property="BirthYearButton" destination="3q1-Ac-gMH" id="Ahp-SY-OnH"/>
                 <outlet property="FirstNameTextField" destination="nmI-OK-KNh" id="Mj8-sW-i2c"/>
                 <outlet property="GenderSegmentControl" destination="nYL-CQ-MHX" id="nOY-RF-pdW"/>
                 <outlet property="LastNameTextField" destination="xGt-6S-hzU" id="ilW-Gg-xct"/>
                 <outlet property="MiddleNameTextFeild" destination="bQD-3z-XOO" id="Tdk-SU-sI9"/>
+                <outlet property="PickerButtonTapped" destination="3q1-Ac-gMH" id="iTp-wk-qXK"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
         </placeholder>
@@ -79,15 +79,11 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3q1-Ac-gMH">
-                            <rect key="frame" x="50" y="238" width="46" height="30"/>
+                            <rect key="frame" x="27" y="238" width="69" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <connections>
-                                <action selector="BirthYearButtonTaped:" destination="-1" eventType="touchUpInside" id="Ce4-cD-tcZ"/>
-                                <action selector="Birthlabel:" destination="-1" eventType="touchUpInside" id="9t8-l9-Svc"/>
-                            </connections>
                         </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="nmI-OK-KNh">
                             <rect key="frame" x="19" y="37" width="341" height="30"/>
@@ -116,14 +112,23 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="AddButtonTapped:" destination="-1" eventType="touchUpInside" id="Lzn-n8-v7L"/>
+                            </connections>
                         </button>
+                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="XpB-md-HHY">
+                            <rect key="frame" x="19" y="238" width="97" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="207" y="217"/>
+            <point key="canvasLocation" x="206.5" y="216.5"/>
         </view>
     </objects>
     <resources>
