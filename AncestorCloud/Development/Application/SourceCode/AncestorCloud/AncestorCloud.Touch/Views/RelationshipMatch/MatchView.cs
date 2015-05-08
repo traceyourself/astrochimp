@@ -38,7 +38,20 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewDidLoad ();
 
-			scrollViewObj.ContentSize = new SizeF(300, 500);
+//			scrollViewObj.Frame = this.View.Frame;
+//			scrollViewObj.ContentSize = new SizeF(320, 550);
+
+			float constant = 0.88f;
+
+			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
+
+			if (width <= 320f)
+				constant = 1.0f;
+
+			this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Leading, 0, this.View, NSLayoutAttribute.Left, 1.0f, 0));
+
+			this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Trailing , 0, this.View, NSLayoutAttribute.Right, constant, 0));
+
 
 			setNavigationBar ();
 

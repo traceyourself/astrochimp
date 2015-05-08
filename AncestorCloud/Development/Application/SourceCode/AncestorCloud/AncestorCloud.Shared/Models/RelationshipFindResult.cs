@@ -19,9 +19,7 @@ namespace AncestorCloud.Shared
 		public string NotFoundReason { get; set;}
 		public string Type { get; set;}
 		public int UserOgfn { get; set;}
-
 		public CommonMember CommonResult { get; set;}
-
 	}
 
 	public class CommonMember

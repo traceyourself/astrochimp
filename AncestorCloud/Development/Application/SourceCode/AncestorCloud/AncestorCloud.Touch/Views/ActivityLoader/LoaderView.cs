@@ -28,6 +28,7 @@ namespace AncestorCloud.Touch
 			ActivityLoader.StartAnimating ();
 			BlackView.Layer.CornerRadius=5f;
 			BlackView.Layer.MasksToBounds = true;
+			BlackView.Center =  new CoreGraphics.CGPoint((float) UIScreen.MainScreen.ApplicationFrame.Width/2,(float) UIScreen.MainScreen.ApplicationFrame.Height/2) ;
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}

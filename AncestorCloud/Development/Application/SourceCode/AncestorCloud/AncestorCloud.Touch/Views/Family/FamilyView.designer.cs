@@ -12,6 +12,12 @@ namespace AncestorCloud.Touch
 	[Register ("FamilyView")]
 	partial class FamilyView
 	{
+		[Outlet]
+		UIKit.UIView ContentView { get; set; }
+
+		[Outlet]
+		UIKit.UIScrollView ScrollViewObj { get; set; }
+
 		[Action ("AddFamilyButtonTapped:")]
 		partial void AddFamilyButtonTapped (Foundation.NSObject sender);
 
@@ -20,6 +26,15 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (ScrollViewObj != null) {
+				ScrollViewObj.Dispose ();
+				ScrollViewObj = null;
+			}
+
+			if (ContentView != null) {
+				ContentView.Dispose ();
+				ContentView = null;
+			}
 		}
 	}
 }

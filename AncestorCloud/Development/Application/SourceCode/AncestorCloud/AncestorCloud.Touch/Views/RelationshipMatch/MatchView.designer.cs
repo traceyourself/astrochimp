@@ -13,6 +13,9 @@ namespace AncestorCloud.Touch
 	partial class MatchView
 	{
 		[Outlet]
+		UIKit.UIView ContentView { get; set; }
+
+		[Outlet]
 		UIKit.UIScrollView scrollViewObj { get; set; }
 
 		[Action ("FirstImageButtonTapped:")]
@@ -32,6 +35,11 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (ContentView != null) {
+				ContentView.Dispose ();
+				ContentView = null;
+			}
+
 			if (scrollViewObj != null) {
 				scrollViewObj.Dispose ();
 				scrollViewObj = null;

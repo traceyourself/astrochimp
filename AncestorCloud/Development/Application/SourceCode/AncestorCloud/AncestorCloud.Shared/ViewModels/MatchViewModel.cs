@@ -79,7 +79,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowPastMatches()
 		{
-			ShowViewModel<PastMatchesViewModel> ();
+			ShowViewModel<NoMatchesViewModel> ();
 		}
 
 		#region MATCH Service

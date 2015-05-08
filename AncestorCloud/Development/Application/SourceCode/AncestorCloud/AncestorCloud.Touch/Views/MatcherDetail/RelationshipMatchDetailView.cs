@@ -51,6 +51,10 @@ namespace AncestorCloud.Touch
 			}
 			base.ViewWillDisappear (animated);
 		}
+		public override void ViewWillAppear (bool animated)
+		{
+			this.NavigationController.NavigationBarHidden = false;
+		}
 
 
 		#region Relationship table
@@ -61,7 +65,7 @@ namespace AncestorCloud.Touch
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 
 
-			SetTableView ();
+			//SetTableView ();
 
 
 			this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,150,20));
@@ -77,6 +81,8 @@ namespace AncestorCloud.Touch
 					, (sender,args) => {
 						System.Diagnostics .Debug.WriteLine("PAST MATCHER");
 						ViewModel.ShowPastMatches();
+
+
 					})
 				, true);
 			//Add (table);
@@ -92,29 +98,30 @@ namespace AncestorCloud.Touch
 
 			var set = this.CreateBindingSet<RelationshipMatchDetailView , RelationshipMatchDetailViewModel > ();
 			set.Bind (source).To (vm => vm.MatchResultList);
+			System.Diagnostics.Debug.WriteLine (ViewModel.MatchResultList);
 			set.Apply ();
 		}
 
 
 		#region DATABINDING
 
-		public void SetTableView()
-		{
-
-
-			var source = new RelationshipMatchTableSource (RelationshipMatchTable);
-			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
-			RelationshipMatchTable.Source = source;
-
-			//this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,150,20));
-
-			var set = this.CreateBindingSet<RelationshipMatchDetailView , RelationshipMatchDetailViewModel> ();
-			set.Bind (source).To (vm => vm.RelationshipMatchDetailList);
-			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
-			set.Apply ();
-			//this.NavigationController.NavigationBarHidden = true;
-
-		}
+//		public void SetTableView()
+//		{
+//
+//
+//			var source = new RelationshipMatchTableSource (RelationshipMatchTable);
+//			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
+//			RelationshipMatchTable.Source = source;
+//
+//			//this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,150,20));
+//
+//			var set = this.CreateBindingSet<RelationshipMatchDetailView , RelationshipMatchDetailViewModel> ();
+//			set.Bind (source).To (vm => vm.RelationshipMatchDetailList);
+//			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
+//			set.Apply ();
+//			//this.NavigationController.NavigationBarHidden = true;
+//
+//		}
 		#endregion
 
 

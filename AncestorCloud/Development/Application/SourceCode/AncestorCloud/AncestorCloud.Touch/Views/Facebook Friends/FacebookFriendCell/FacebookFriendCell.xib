@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,22 +13,42 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DPW-YN-tzN" id="yJM-E6-Tmj">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="QfW-Fg-vHR">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="QfW-Fg-vHR">
                         <rect key="frame" x="8" y="8" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="4Qv-qz-R9i"/>
+                            <constraint firstAttribute="width" constant="44" id="tLK-t4-h4J"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mcv-np-1Yx">
-                        <rect key="frame" x="60" y="20" width="168" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mcv-np-1Yx">
+                        <rect key="frame" x="60" y="20" width="38" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="I1y-32-EFx"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="168" id="Tjc-QJ-6Rm"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgh-K8-ido">
-                        <rect key="frame" x="329" y="18" width="30" height="30"/>
-                        <state key="normal" backgroundImage="plus.png">
+                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgh-K8-ido">
+                        <rect key="frame" x="329" y="16" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="Pb5-Vb-HhT"/>
+                            <constraint firstAttribute="height" constant="30" id="yFW-t8-zG4"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="plus_blue.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="QfW-Fg-vHR" firstAttribute="leading" secondItem="yJM-E6-Tmj" secondAttribute="leadingMargin" id="93j-yY-xlm"/>
+                    <constraint firstItem="Mcv-np-1Yx" firstAttribute="top" secondItem="yJM-E6-Tmj" secondAttribute="topMargin" constant="12" id="PBW-tr-uLr"/>
+                    <constraint firstItem="Mcv-np-1Yx" firstAttribute="leading" secondItem="QfW-Fg-vHR" secondAttribute="trailing" constant="8" id="b7F-tb-9MC"/>
+                    <constraint firstItem="Mcv-np-1Yx" firstAttribute="leading" secondItem="QfW-Fg-vHR" secondAttribute="trailing" constant="8" id="dph-9a-7fs"/>
+                    <constraint firstItem="QfW-Fg-vHR" firstAttribute="top" secondItem="yJM-E6-Tmj" secondAttribute="topMargin" id="qP0-ES-2hv"/>
+                    <constraint firstItem="xgh-K8-ido" firstAttribute="trailing" secondItem="yJM-E6-Tmj" secondAttribute="trailingMargin" constant="8" id="yZq-cy-8ck"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="NameLabel" destination="Mcv-np-1Yx" id="hd7-NP-Kay"/>
@@ -37,7 +58,7 @@
     </objects>
     <resources>
         <image name="noImage.png" width="265" height="265"/>
-        <image name="plus.png" width="30" height="30"/>
+        <image name="plus_blue.png" width="21" height="21"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

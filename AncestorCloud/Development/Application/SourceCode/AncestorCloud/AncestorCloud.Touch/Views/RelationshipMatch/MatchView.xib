@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MatchView">
             <connections>
+                <outlet property="ContentView" destination="1tI-qn-ne9" id="8Hb-bO-T2G"/>
                 <outlet property="scrollViewObj" destination="FHJ-YM-EZc" id="zuJ-PT-frb"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
@@ -15,34 +16,50 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FHJ-YM-EZc">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="568"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHJ-YM-EZc">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1tI-qn-ne9">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="568"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tI-qn-ne9">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select two people to match" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gW5-4w-qED">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select two people to match" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gW5-4w-qED">
                                     <rect key="frame" x="82" y="23" width="211" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="2Pr-cz-cuM"/>
+                                        <constraint firstAttribute="width" constant="211" id="4hq-a3-goD"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.47999999999999998" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plus.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hkv-b2-03Q">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hkv-b2-03Q">
                                     <rect key="frame" x="165" y="241" width="44" height="44"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.56000000000000005" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="0.56000000000000005" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="EPf-16-pzD"/>
+                                        <constraint firstAttribute="height" constant="44" id="XzV-2Z-ljt"/>
+                                    </constraints>
                                 </imageView>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xj-sZ-16d">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xj-sZ-16d">
                                     <rect key="frame" x="97" y="293" width="180" height="180"/>
-                                    <state key="normal" backgroundImage="noImage.png">
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="180" id="QMF-y3-JHh"/>
+                                        <constraint firstAttribute="width" constant="180" id="fBb-xf-MzX"/>
+                                    </constraints>
+                                    <state key="normal" backgroundImage="CircleMatcher.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
                                         <action selector="SecondButtonImageTapped:" destination="-1" eventType="touchUpInside" id="vFx-rx-LaH"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfT-4b-wuc">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfT-4b-wuc">
                                     <rect key="frame" x="97" y="481" width="180" height="44"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.67000000000000004" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="0.67000000000000004" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="180" id="5qf-oj-CJE"/>
+                                        <constraint firstAttribute="height" constant="44" id="kt7-B4-lVu"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <state key="normal" title="Match" backgroundImage="pink-btnsmall.png">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,9 +69,14 @@
                                         <action selector="MatchTapped:" destination="-1" eventType="touchUpInside" id="qp8-qz-0eq"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INg-5T-FXK">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INg-5T-FXK">
                                     <rect key="frame" x="97" y="53" width="180" height="180"/>
-                                    <state key="normal" backgroundImage="noImage.png">
+                                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="0.56000000000000005" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="180" id="KaL-Kp-b8y"/>
+                                        <constraint firstAttribute="width" constant="180" id="ofK-Se-0qL"/>
+                                    </constraints>
+                                    <state key="normal" backgroundImage="CircleMatcher.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -62,19 +84,47 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="5Xj-sZ-16d" firstAttribute="top" secondItem="Hkv-b2-03Q" secondAttribute="bottom" constant="8" id="E7T-KE-U1g"/>
+                                <constraint firstItem="gW5-4w-qED" firstAttribute="top" secondItem="1tI-qn-ne9" secondAttribute="top" constant="23" id="FKp-9T-K2H"/>
+                                <constraint firstAttribute="centerX" secondItem="gW5-4w-qED" secondAttribute="centerX" id="Ieq-Sc-2ba"/>
+                                <constraint firstItem="INg-5T-FXK" firstAttribute="top" secondItem="gW5-4w-qED" secondAttribute="bottom" constant="9" id="MUM-IK-oRu"/>
+                                <constraint firstAttribute="centerX" secondItem="zfT-4b-wuc" secondAttribute="centerX" constant="0.5" id="QTP-kf-RHY"/>
+                                <constraint firstAttribute="centerX" secondItem="Hkv-b2-03Q" secondAttribute="centerX" constant="0.5" id="RPR-v7-35P"/>
+                                <constraint firstAttribute="height" constant="667" id="ffH-Ho-6L9"/>
+                                <constraint firstAttribute="centerX" secondItem="INg-5T-FXK" secondAttribute="centerX" constant="0.5" id="k2f-g5-dRb"/>
+                                <constraint firstAttribute="centerX" secondItem="5Xj-sZ-16d" secondAttribute="centerX" constant="0.5" id="l2s-5S-O4E"/>
+                                <constraint firstItem="zfT-4b-wuc" firstAttribute="top" secondItem="5Xj-sZ-16d" secondAttribute="bottom" constant="8" id="pgo-I1-OIm"/>
+                                <constraint firstItem="Hkv-b2-03Q" firstAttribute="top" secondItem="INg-5T-FXK" secondAttribute="bottom" constant="8" id="qfh-aU-3iz"/>
+                                <constraint firstAttribute="width" constant="375" id="w8V-kX-ZXc"/>
+                            </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="1tI-qn-ne9" secondAttribute="trailing" id="CVZ-0F-4V0"/>
+                        <constraint firstAttribute="bottom" secondItem="1tI-qn-ne9" secondAttribute="bottom" id="GE5-n4-a80"/>
+                        <constraint firstItem="1tI-qn-ne9" firstAttribute="leading" secondItem="FHJ-YM-EZc" secondAttribute="leading" id="Lwu-Sr-X4N"/>
+                        <constraint firstItem="1tI-qn-ne9" firstAttribute="top" secondItem="FHJ-YM-EZc" secondAttribute="top" id="RLv-zW-tYU"/>
+                        <constraint firstAttribute="height" constant="667" id="bsI-xR-Ptb"/>
+                        <constraint firstAttribute="width" constant="375" id="tL0-cu-uEu"/>
+                    </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="FHJ-YM-EZc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8O1-fQ-ae7"/>
+                <constraint firstAttribute="bottom" secondItem="FHJ-YM-EZc" secondAttribute="bottom" id="DNN-8d-2CA"/>
+                <constraint firstAttribute="trailing" secondItem="FHJ-YM-EZc" secondAttribute="trailing" id="KcP-Fl-SIA"/>
+                <constraint firstItem="FHJ-YM-EZc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="w6z-cm-Ikz"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="291.5" y="239.5"/>
         </view>
     </objects>
     <resources>
-        <image name="noImage.png" width="265" height="265"/>
+        <image name="CircleMatcher.png" width="304" height="304"/>
         <image name="pink-btnsmall.png" width="335" height="97"/>
         <image name="plus.png" width="30" height="30"/>
     </resources>

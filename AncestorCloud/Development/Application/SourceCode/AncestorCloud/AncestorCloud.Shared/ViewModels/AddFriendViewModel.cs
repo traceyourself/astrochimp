@@ -1,5 +1,6 @@
 ﻿using System;
 using Cirrious.MvvmCross.ViewModels;
+using System.Windows.Input;
 
 namespace AncestorCloud.Shared.ViewModels
 {
@@ -28,6 +29,16 @@ namespace AncestorCloud.Shared.ViewModels
 			this.Close(this);
 		}
 		#endregion
+
+		private ACCommand _closeCommand;
+
+		public ICommand CloseCommand
+		{
+			get
+			{
+				return this._closeCommand ?? (this._closeCommand = new ACCommand(this.Close));
+			}
+		}
 	}
 }
 

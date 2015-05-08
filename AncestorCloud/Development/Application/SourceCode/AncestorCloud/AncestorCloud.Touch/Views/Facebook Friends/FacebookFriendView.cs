@@ -5,6 +5,9 @@ using AncestorCloud.Shared;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using AncestorCloud.Shared.ViewModels;
 using System.Drawing;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using System.Linq;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Touch
 {
@@ -48,10 +51,22 @@ namespace AncestorCloud.Touch
 			//this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,150,20));
 
 			var set = this.CreateBindingSet<FacebookFriendView , FacebookFriendViewModel> ();
+			this.NavigationItem.TitleView = new MyFacebookFriendTitleView (this.Title,new RectangleF(0,0,150,20));
 			set.Bind (source).To (vm => vm.FacebookFriendList);
 			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
-			//this.NavigationController.NavigationBarHidden = true;
+			this.NavigationController.NavigationBarHidden = false;
+
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			if (!NavigationController.ViewControllers.Contains (this)) {
+				var messenger = Mvx.Resolve<IMvxMessenger> ();
+				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
+
+			}
+			base.ViewWillDisappear (animated);
 
 		}
 	}

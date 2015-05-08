@@ -102,11 +102,15 @@
     <Compile Include="Services\Interface\IMatchService.cs" />
     <Compile Include="Services\MatchService.cs" />
     <Compile Include="Models\RelationshipFindResult.cs" />
+
+    <Compile Include="Converters\DegreeConverter.cs" />
+
     <Compile Include="Services\Interface\IFbSigninService.cs" />
     <Compile Include="Services\FbSigninService.cs" />
     <Compile Include="Services\Interface\IDeveloperLoginService.cs" />
     <Compile Include="Services\DeveloperLoginService.cs" />
     <Compile Include="Helper\FaceBookLinkManager.cs" />
+
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

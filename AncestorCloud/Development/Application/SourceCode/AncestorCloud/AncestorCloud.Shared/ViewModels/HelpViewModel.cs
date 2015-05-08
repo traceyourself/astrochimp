@@ -11,6 +11,8 @@ namespace AncestorCloud.Shared.ViewModels
 			this.Close(this);
 		}
 		#endregion
+
+
 		
 	}
 }

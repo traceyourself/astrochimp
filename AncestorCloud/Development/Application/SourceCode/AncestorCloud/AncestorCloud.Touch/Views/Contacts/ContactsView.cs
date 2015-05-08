@@ -5,6 +5,9 @@ using AncestorCloud.Shared;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using AncestorCloud.Shared.ViewModels;
 using System.Drawing;
+using System.Linq;
+using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Plugins.Messenger;
 
 namespace AncestorCloud.Touch
 {
@@ -49,9 +52,23 @@ namespace AncestorCloud.Touch
 
 			var set = this.CreateBindingSet<ContactsView , ContactsViewModel> ();
 			set.Bind (source).To (vm => vm.ContactsList);
+
+
+			this.NavigationItem.TitleView = new MyContactTitleView (this.Title,new RectangleF(0,0,150,20));
 			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
-			//this.NavigationController.NavigationBarHidden = true;
+			this.NavigationController.NavigationBarHidden = false;
+
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			if (!NavigationController.ViewControllers.Contains (this)) {
+				var messenger = Mvx.Resolve<IMvxMessenger> ();
+				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
+
+			}
+			base.ViewWillDisappear (animated);
 
 		}
 	}
