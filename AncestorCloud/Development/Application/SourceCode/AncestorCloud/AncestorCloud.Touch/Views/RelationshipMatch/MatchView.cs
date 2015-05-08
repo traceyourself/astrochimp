@@ -101,7 +101,6 @@ namespace AncestorCloud.Touch
 		{
 
 			ViewModel.ShowRelationshipMatchDetailViewModel();
-			ViewModel.Close();
 		}
 
 		#endregion

@@ -8,12 +8,14 @@ namespace AncestorCloud.Shared.ViewModels
 	public class MatchViewModel:BaseViewModel
 	{
 		private readonly IMatchService _matchService;
+		private readonly IAlert _alert;
 		private readonly IDatabaseService _databaseService;
 
 		public MatchViewModel()
 		{
 			_matchService = Mvx.Resolve<IMatchService> ();	
 			_databaseService = Mvx.Resolve<IDatabaseService> ();
+			_alert = Mvx.Resolve<IAlert> ();
 		}
 
 
@@ -86,12 +88,13 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			LoginModel data = _databaseService.GetLoginDetails ();
 
-			ResponseModel<RelationshipFindResult> result = await _matchService.Match(data.Value,"747510545","747227929");
+			ResponseModel<RelationshipFindResult> result = await _matchService.Match(data.Value,"747510545","747227929");//747510545//
 
 			if (result.Status == ResponseStatus.OK) 
 			{
 				if (result.Content.Found) 
 				{
+					Close();
 
 					var matchString = Mvx.Resolve<IMvxJsonConverter>().SerializeObject(result.Content);
 
@@ -100,6 +103,7 @@ namespace AncestorCloud.Shared.ViewModels
 				else 
 				{
 					//TODO: Show No Match Screen
+					_alert.ShowAlert("Oops!! No match found. Try again", "Matcher");
 				}
 			}
 
