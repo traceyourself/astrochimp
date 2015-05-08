@@ -8,7 +8,7 @@ namespace AncestorCloud.Shared
 		void InsertUser(User user);
 		void UpdateUser(User user);
 		void DeleteUser(User user);
-		User GetUser (int id);
+		User GetUser ();
 		List<User> GetUsers (string relationFilter);
 
 		void InsertRelative(People relative);

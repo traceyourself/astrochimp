@@ -15,24 +15,23 @@ using AncestorCloud.Shared;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "CelebritiesView")]			
-	public class CelebritiesView : BaseActivity
+	[Activity (Label = "FacebookFriendView")]			
+	public class FacebookFriendView : BaseActivity
 	{
 		ActionBar actionBar;
-		ListView celebList;
-		EditText searchEd;
+		ListView friendsList;
 		RelativeLayout mePlus;
 
-		public new CelebritiesViewModel ViewModel
+		public new FacebookFriendViewModel ViewModel
 		{
-			get { return base.ViewModel as CelebritiesViewModel; }
+			get { return base.ViewModel as FacebookFriendViewModel; }
 			set { base.ViewModel = value; }
 		}
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			SetContentView (Resource.Layout.celebrities_screen);
+			SetContentView (Resource.Layout.contacts_screen);
 
 			initUI ();
 			configureActionBar ();
@@ -42,35 +41,22 @@ namespace AncestorCloud.Droid
 
 		private void initUI()
 		{
-			celebList = FindViewById<ListView> (Resource.Id.celeb_list);
-			searchEd = FindViewById<EditText> (Resource.Id.search_ed);
+			friendsList = FindViewById<ListView> (Resource.Id.contacts_list);
 			mePlus = FindViewById<RelativeLayout> (Resource.Id.me_plus_box_right);
 		}
 
 		private void ApplyActions(){
-			searchEd.AfterTextChanged += (object sender, Android.Text.AfterTextChangedEventArgs e) => {
-				string data = searchEd.Text.ToString();
-				data = data.Trim();
-				if(data.Length == 0){
-					ViewModel.GetCelebritiesData();
-				}else{
-					ViewModel.SearchKey = data;
-				}
-				setCelebListAdapter();
-			};
-
 			mePlus.Click += (object sender, EventArgs e) => {
 				ViewModel.Close();
 			};
-
 		}
 
-		#region celebrity List Adapter
+		#region List Adapter
 		private void setCelebListAdapter()
 		{
-			CelebrityListAdapter adapter = new CelebrityListAdapter (this,ViewModel.CelebritiesList);
-			celebList.Adapter = adapter;
-			celebList.Invalidate ();
+			FbListAdapter adapter = new FbListAdapter (this,ViewModel.FacebookFriendList);
+			friendsList.Adapter = adapter;
+			friendsList.Invalidate ();
 		}
 		#endregion
 
@@ -80,7 +66,7 @@ namespace AncestorCloud.Droid
 			actionBar = FindViewById <ActionBar>(Resource.Id.actionBar);
 			actionBar.SetLeftCornerImage (Resource.Drawable.back);
 
-			actionBar.SetCenterImageText (Resource.Drawable.action_menu,Resources.GetString(Resource.String.celebrities));
+			actionBar.SetCenterImageText (Resource.Drawable.action_menu,Resources.GetString(Resource.String.fb_friends));
 
 			var crossButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 
@@ -92,17 +78,16 @@ namespace AncestorCloud.Droid
 	}
 
 	#region adapter
-	public class CelebrityListAdapter : BaseAdapter
+	public class FbListAdapter : BaseAdapter
 	{
-
-		CelebritiesView myCelebObj;
+		FacebookFriendView myFbObj;
 		LayoutInflater inflater;
-		List<Celebrity> dataList;
+		List<People> dataList;
 
-		public CelebrityListAdapter(CelebritiesView myCelebObj,List<Celebrity> dataList){
-			this.myCelebObj = myCelebObj;
+		public FbListAdapter(FacebookFriendView myFbObj,List<People> dataList){
+			this.myFbObj = myFbObj;
 			this.dataList = dataList;
-			inflater = (LayoutInflater)myCelebObj.GetSystemService (Context.LayoutInflaterService);
+			inflater = (LayoutInflater)myFbObj.GetSystemService (Context.LayoutInflaterService);
 		}
 
 		public override int Count {
@@ -121,12 +106,12 @@ namespace AncestorCloud.Droid
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
-			CelebViewHolder holder;
+			FbFriendsViewHolder holder;
 
 			if (convertView == null) {
 				convertView = inflater.Inflate (Resource.Layout.celebs_list_item, null);
 
-				holder = new CelebViewHolder ();
+				holder = new FbFriendsViewHolder ();
 
 				holder.userImg = convertView.FindViewById<ImageView> (Resource.Id.user_img);
 				holder.plus = convertView.FindViewById<RelativeLayout> (Resource.Id.plus_box_right);
@@ -135,20 +120,20 @@ namespace AncestorCloud.Droid
 
 				convertView.SetTag (Resource.Id.celeb_list,holder);
 			} else {
-				holder = (CelebViewHolder)convertView.GetTag (Resource.Id.celeb_list);
+				holder = (FbFriendsViewHolder)convertView.GetTag (Resource.Id.celeb_list);
 			}
 
-			holder.nametxt.Text = dataList[position].GivenNames+" "+dataList[position].LastName;
+			holder.nametxt.Text = dataList[position].Name;
 
 			holder.plus.Click += (object sender, EventArgs e) => {
-				myCelebObj.ViewModel.Close();
+				myFbObj.ViewModel.Close();
 			};
 
 			return convertView;
 		}
 	}
 
-	public class CelebViewHolder : Java.Lang.Object{
+	public class FbFriendsViewHolder : Java.Lang.Object{
 
 		public RelativeLayout plus;
 		public ImageView userImg;

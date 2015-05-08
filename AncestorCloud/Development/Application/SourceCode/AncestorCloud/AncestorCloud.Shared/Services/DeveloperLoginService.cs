@@ -1,39 +1,39 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Cirrious.CrossCore;
 using System.Net.Http;
 using ModernHttpClient;
 using System.Collections.Generic;
+using Cirrious.CrossCore;
 using Newtonsoft.Json;
 
 namespace AncestorCloud.Shared
 {
-	public class UserReadService : IUserReadService
+	public class DeveloperLoginService : IDeveloperLoginService
 	{
-		private ILoader _loader;
+		private readonly ILoader _loader;
 
-		public UserReadService()
+
+		public DeveloperLoginService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+
 		}
 
-		public async Task<ResponseModel<LoginModel>> MakeUserReadService(LoginModel model)
+		public async Task<ResponseModel<String>> DevelopeLogin ()
 		{
 			_loader.showLoader ();
-			//https://wsdev.onegreatfamily.com/v11.02/User.svc/Read?SessionId=s4zxi523e3hlgnhbgjh3hlm4
+
 			try   
 			{
-
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
-				//String url = "https://wsdev.onegreatfamily.com/v11.02/User.svc/Read?SessionId=s4zxi523e3hlgnhbgjh3hlm4";
-
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.SESSIONID]=model.Value;
+				param[AppConstant.DEVELOPERIDKEY] = AppConstant.DEVELOPERID;
+				param[AppConstant.PASSWORDKEY] = AppConstant.DEVELOPERPASSWORD;
 
-				String url = WebServiceHelper.GetWebServiceURL(AppConstant.USEREADSERVICE,param);
+				String url = WebServiceHelper.GetWebServiceURL(AppConstant.DEVELOPERLOGINSERVICE,param);
 
 				Mvx.Trace(url);
 
@@ -41,26 +41,20 @@ namespace AncestorCloud.Shared
 
 				String res = response.Content.ReadAsStringAsync().Result;
 
-				//System.Diagnostics.Debug.WriteLine ("Login response : "+res);
-
-				Mvx.Trace("User read response : "+res);
-
+				System.Diagnostics.Debug.WriteLine ("DevelopeLogin response : "+res);
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
-				model= DataParser.GetUserReadData(model,dict);
-
-				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
+				ResponseModel<String> responsemodal = new ResponseModel<String>();
 				responsemodal.Status = ResponseStatus.OK;
-				responsemodal.Content= model;
-				return responsemodal;
+				responsemodal.Content= dict[AppConstant.VALUE].ToString();
 
+				return responsemodal;
 			}
 			catch(Exception ex)
 			{
 				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
-				//return CommonConstants.FALSE;
-				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
+				ResponseModel<String> responsemodal = new ResponseModel<String>();
 				responsemodal.Status = ResponseStatus.Fail;
 
 				return responsemodal;
@@ -69,7 +63,6 @@ namespace AncestorCloud.Shared
 
 				_loader.hideLoader();
 			}
-
 		}
 	}
 }

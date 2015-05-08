@@ -87,16 +87,30 @@
 	<string name="select_people_to_match">Select two people to match</string>
 	<string name="match">Match</string>
 	<string name="past_matches">Past Matches</string>
+	<string name="no_past_matches">Sorry to say this but you don't have any matches yet.</string>
 	<!--- Matcher Strings Ends -->
 
 	<!---Select Matcher Strings -->
 	<string name="select_someone_to_match">Select Someone to Match</string>
 	<string name="contacts">Contacts</string>
 	<string name="celebrities">Celebrities</string>
+	<string name="fb_friends">Facebook Friends</string>
 	<string name="fb_desc">Connect with Facebook to add friends easily</string>
 	<string name="contact_desc">Find friends from my phone contacts</string>
 	<string name="celeb_desc"> Celeberities </string>
 	<!---Select Matcher Strings Ends -->
+
+	<!---help_dialog strings -->
+	<string name="how_it_works">How it works</string>
+	<string name="matching_confidence">29% Matching Confidence</string>
+	<string name="first_desc_help">Relationship matching is a complex process with no guarentees. 
+								   To increase the chance of our software finding a common relationship between you or stranger
+								   we need as much information from you as possible. The more information you can put in about your 
+								   ancestors the higher the matching confidence.</string>
+	<string name="sec_desc_help">The matching confidence is determined by set of computer rules that predict the chance of you 
+								 getting matches. As you put in more information about your relatives we can better connect you a match!
+								 with this, the more the better.</string>
+	<!---help_dialog strings ends -->
 
 
 </resources>

@@ -8,32 +8,33 @@ using Newtonsoft.Json;
 
 namespace AncestorCloud.Shared
 {
-	public class UserReadService : IUserReadService
+	public class FbSigninService : IFbSigninService
 	{
-		private ILoader _loader;
+		private readonly ILoader _loader;
 
-		public UserReadService()
+
+		public FbSigninService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+
 		}
 
-		public async Task<ResponseModel<LoginModel>> MakeUserReadService(LoginModel model)
+		public async Task<ResponseModel<LoginModel>> LinkFacebookUser (User user, String sessionID)
 		{
 			_loader.showLoader ();
-			//https://wsdev.onegreatfamily.com/v11.02/User.svc/Read?SessionId=s4zxi523e3hlgnhbgjh3hlm4
+
 			try   
 			{
-
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
-				//String url = "https://wsdev.onegreatfamily.com/v11.02/User.svc/Read?SessionId=s4zxi523e3hlgnhbgjh3hlm4";
-
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.SESSIONID]=model.Value;
+				param[AppConstant.LINKIDKEY] = user.UserID;
+				param[AppConstant.LINKTYPEKEY] = AppConstant.LINKTYPE;
+				param[AppConstant.SESSIONID] = sessionID;
 
-				String url = WebServiceHelper.GetWebServiceURL(AppConstant.USEREADSERVICE,param);
+				String url = WebServiceHelper.GetWebServiceURL(AppConstant.USERLOGINSERVICE,param);
 
 				Mvx.Trace(url);
 
@@ -41,25 +42,24 @@ namespace AncestorCloud.Shared
 
 				String res = response.Content.ReadAsStringAsync().Result;
 
-				//System.Diagnostics.Debug.WriteLine ("Login response : "+res);
-
-				Mvx.Trace("User read response : "+res);
-
+				System.Diagnostics.Debug.WriteLine ("LinkFacebookUser response : "+res);
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
-				model= DataParser.GetUserReadData(model,dict);
+				LoginModel login = new LoginModel();
+
+				login.Value = sessionID;
+				login.UserEmail = user.Email;
 
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 				responsemodal.Status = ResponseStatus.OK;
-				responsemodal.Content= model;
-				return responsemodal;
+				responsemodal.Content= login;
 
+				return responsemodal;
 			}
 			catch(Exception ex)
 			{
 				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
-				//return CommonConstants.FALSE;
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 				responsemodal.Status = ResponseStatus.Fail;
 
@@ -69,7 +69,7 @@ namespace AncestorCloud.Shared
 
 				_loader.hideLoader();
 			}
-
+		
 		}
 	}
 }

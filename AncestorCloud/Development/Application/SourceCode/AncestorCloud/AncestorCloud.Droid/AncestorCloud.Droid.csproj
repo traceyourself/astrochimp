@@ -14,7 +14,7 @@
     <AndroidApplication>True</AndroidApplication>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AssemblyName>AncestorCloud.Droid</AssemblyName>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -123,7 +123,11 @@
     <Compile Include="DroidUtilities\StringConstants.cs" />
     <Compile Include="Views\AddFriend\AddFriendView.cs" />
     <Compile Include="Views\Celebrities\CelebritiesView.cs" />
+
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
+    <Compile Include="Views\Contacts\ContactsView.cs" />
+    <Compile Include="Views\FacebookFriends\FacebookFriendView.cs" />
+    <Compile Include="Views\HelpDialog\HelpDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -250,6 +254,9 @@
     <AndroidResource Include="Resources\layout\celebrities_screen.axml" />
     <AndroidResource Include="Resources\layout\celebs_list_item.axml" />
     <AndroidResource Include="Resources\drawable\search_box_back.axml" />
+    <AndroidResource Include="Resources\layout\contacts_screen.axml" />
+    <AndroidResource Include="Resources\layout\help_dialog.axml" />
+    <AndroidResource Include="Resources\drawable\help_icon_big.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -270,6 +277,8 @@
     <Folder Include="Views\AddFriend\" />
     <Folder Include="Views\Celebrities\" />
     <Folder Include="Views\Contacts\" />
+    <Folder Include="Views\FacebookFriends\" />
+    <Folder Include="Views\HelpDialog\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.social">

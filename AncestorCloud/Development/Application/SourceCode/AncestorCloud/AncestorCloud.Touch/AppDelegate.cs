@@ -24,6 +24,12 @@ namespace AncestorCloud.Touch
 			var startup = Mvx.Resolve<IMvxAppStart>();
 			startup.Start();
 
+
+			var documents = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User) [0];
+			string mydocumentpath = documents.ToString();
+
+			System.Diagnostics.Debug.WriteLine("app dir: "+ mydocumentpath);
+
 			_window.MakeKeyAndVisible();
 
 			return true;

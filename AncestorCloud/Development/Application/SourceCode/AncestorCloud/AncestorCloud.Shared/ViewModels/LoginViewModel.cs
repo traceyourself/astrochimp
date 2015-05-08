@@ -21,12 +21,15 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private IAlert Alert;
 
+		private readonly FaceBookLinkManager _facebookLinkManager;
+
 
 		public LoginViewModel(ILoginService service, IAlert alert)
 		{
 			_loginService = service;
 			_databaseService = Mvx.Resolve<IDatabaseService>();
 			Alert = alert;
+			_facebookLinkManager = new FaceBookLinkManager ();
 			Email = "mikeyamadeo@gmail.com";
 			Password = "password";
 
@@ -187,6 +190,16 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 		}
 
+		private ACCommand _linkFbUserData;
+
+		public ICommand LinkFbUserData
+		{
+			get
+			{
+				return this._linkFbUserData ?? (this._linkFbUserData = new ACCommand(this.DoFacebookLoginUserLink));
+			}
+		}
+
 		#endregion
 
 
@@ -303,6 +316,24 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+
+		#region Facebook User Link Service
+
+		public void DoFacebookLoginUserLink()
+		{
+			_facebookLinkManager.LinkFaceBookLoginUser ();
+
+			Login ();
+		}
+
+		private void Login()
+		{
+			IsFbLogin = true;
+			CallFlyoutCommand.Execute(null);
+			CloseCommand.Execute (null);
+		}
+
+		#endregion
 
 	}
 

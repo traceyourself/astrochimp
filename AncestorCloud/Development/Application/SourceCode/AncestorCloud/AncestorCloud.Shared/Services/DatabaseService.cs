@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using Cirrious.MvvmCross.Plugins.Sqlite;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Shared
 {
@@ -77,10 +78,10 @@ namespace AncestorCloud.Shared
 			_connection.Update(relative);
 		}
 
-		public User GetUser(int id)
+		public User GetUser()
 		{
-			User user=  (User)_connection.Table<User> ().Where (x => x.Id.Equals (id));
-			return user;
+			List<User> user=  (List<User>)_connection.Table<User> ().ToList();
+			return user[0];
 		}
 
 		public List<User> GetUsers(string relationFilter)
@@ -158,7 +159,12 @@ namespace AncestorCloud.Shared
 			if (filter == null)
 				throw new ArgumentNullException ("filter");
 
-			List<Celebrity> list = _connection.Table<Celebrity>().Where(x => x.GivenNames.Contains(filter) || x.LastName.Contains(filter)).ToList();
+//			List<Celebrity> list = _connection.Table<Celebrity>().Where(x => x.GivenNames.Contains(filter) || x.LastName.Contains(filter)).ToList();
+//			return list;
+			filter = filter.ToLower().Trim();
+			string words = filter.Replace(" ", "','");
+			String query = "SELECT * FROM Celebrity WHERE GivenNames LIKE '%"+filter+"%' OR LastName LIKE '%"+filter+"%' OR LOWER(LastName) IN ('"+words+"') OR LOWER(GivenNames) IN ('"+words+"')";
+			List<Celebrity> list = _connection.Query<Celebrity>(query);
 			return list;
 		}
 
