@@ -43,8 +43,6 @@ namespace AncestorCloud.Shared
 
 				//System.Diagnostics.Debug.WriteLine ("Login response : "+res);
 
-				Mvx.Trace("Login response : "+res);
-
 				Mvx.Trace("User read response : "+res);
 
 

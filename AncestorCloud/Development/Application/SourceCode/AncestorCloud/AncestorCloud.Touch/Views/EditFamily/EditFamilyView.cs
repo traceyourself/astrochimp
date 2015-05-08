@@ -92,7 +92,7 @@ namespace AncestorCloud.Touch
 		void SetFirstName()
 		{
 			//For debugging purpose
-			FirstNameTextField.Text = FamilyMember.Name;
+			FirstNameTextField.Text = FamilyMember.FirstName;
 			//TODO: Uncomment this line when data is live
 			//FirstNameTextField.Text = FamilyMember.FirstName;
 		}
