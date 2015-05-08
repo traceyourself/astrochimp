@@ -170,6 +170,7 @@
     <Reference Include="Cirrious.MvvmCross.Plugins.Json">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Json.3.5.1\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Dynamic.Interpreter" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
