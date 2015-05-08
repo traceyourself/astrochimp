@@ -348,6 +348,7 @@
     <Compile Include="Utility\MyCelebritiesTitleView.cs" />
     <Compile Include="Utility\MyContactTitleView.cs" />
     <Compile Include="Utility\MyFacebookFriendTitleView.cs" />
+    <Compile Include="Utility\MyAddButtonTappedMessage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

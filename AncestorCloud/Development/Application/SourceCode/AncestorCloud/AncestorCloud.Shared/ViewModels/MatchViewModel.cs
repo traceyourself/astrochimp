@@ -190,7 +190,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 
 				if (SecondPersonCeleb == null && SecondPersonPeople == null) {
-					Alert.ShowAlert("Please Select Second Person to match","Person not selected");
+					_alert.ShowAlert("Please Select Second Person to match","Person not selected");
 					isValid = false;
 				} else {
 					if(SecondPersonCeleb != null){
@@ -200,7 +200,7 @@ namespace AncestorCloud.Shared.ViewModels
 					}
 				}
 			}else{
-				Alert.ShowAlert("Please Select First Person to match","Person not selected");
+				_alert.ShowAlert("Please Select First Person to match","Person not selected");
 				isValid = false;
 			}
 			return isValid;

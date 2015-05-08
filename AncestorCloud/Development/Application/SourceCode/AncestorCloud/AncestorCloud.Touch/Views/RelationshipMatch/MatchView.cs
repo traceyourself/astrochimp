@@ -16,6 +16,11 @@ namespace AncestorCloud.Touch
 {
 	public partial class MatchView : BaseViewController
 	{
+
+		String firstPersonImage = "",secondPersonImage = "";
+		bool isFirstPersonSelected = false;
+		bool isSecondPersonSelected = false;
+
 		public MatchView () : base ("MatchView", null)
 		{
 		}
@@ -121,15 +126,88 @@ namespace AncestorCloud.Touch
 		#region firstImage Tapped
 	     partial void FirstImageButtonTapped(NSObject sender)
 		{
+				ViewModel.WhichImageClicked = 1;
+
 			ViewModel.ShowFriendList();
-			ViewModel.Close();
+			//ViewModel.Close();
+
+
 		}
 		#endregion
 
 		partial void SecondButtonImageTapped (NSObject sender)
 		{
+			
+				ViewModel.WhichImageClicked = 2;
+
 			ViewModel.ShowFriendList();
-			ViewModel.Close();
+			//ViewModel.Close();
+
+		}
+
+
+		#region GetData
+
+		public void GetData()
+		{
+			if (ViewModel.WhichImageClicked == 1) {
+				if (ViewModel.FirstPersonCeleb != null) {
+					ViewModel.WhichImageClicked = 0;
+					//Mvx.Trace("celeb name in match view for first image: "+ViewModel.FirstPersonCeleb.GivenNames);
+
+					firstPersonImage = ViewModel.FirstPersonCeleb.Img;
+					isFirstPersonSelected = true;
+					HandleFirstPersonSelected ();
+
+				}else if(ViewModel.FirstPersonPeople != null){
+					ViewModel.WhichImageClicked = 0;
+					isSecondPersonSelected = true;
+
+					firstPersonImage = ViewModel.FirstPersonPeople.ProfilePicURL;
+					isFirstPersonSelected = true;
+					HandleFirstPersonSelected ();
+				}
+			} else if (ViewModel.WhichImageClicked == 2){
+				if (ViewModel.SecondPersonCeleb != null) {
+					ViewModel.WhichImageClicked = 0;
+					Mvx.Trace("celeb name in match view for sec image: "+ViewModel.SecondPersonCeleb.GivenNames);
+
+					secondPersonImage = ViewModel.SecondPersonCeleb.Img;
+					isSecondPersonSelected = true;
+					HandleSecondPersonSelected ();
+
+				}else if(ViewModel.SecondPersonPeople != null){
+					ViewModel.WhichImageClicked = 0;
+					Mvx.Trace("People name in match view for Sec image: "+ViewModel.SecondPersonPeople.Name);
+
+					secondPersonImage = ViewModel.SecondPersonPeople.ProfilePicURL;
+					isSecondPersonSelected = true;
+					HandleSecondPersonSelected ();
+				}
+			}
+		}
+
+		#endregion
+
+		public void HandleFirstPersonSelected()
+		{
+
+			if (isFirstPersonSelected) {
+
+			
+				//first_img.SetImageResource(Resource.Drawable.user_no_img);
+
+				//firstCrossContainer.Visibility = ViewStates.Visible;
+			} else {
+//				first_img.SetImageResource (Resource.Drawable.empty_matcher_img);
+//				firstCrossContainer.Visibility = ViewStates.Gone;
+			}
+			
+		}
+
+		public void HandleSecondPersonSelected()
+		{
+			
 		}
 	}
 }

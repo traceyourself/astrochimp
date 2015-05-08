@@ -12,6 +12,7 @@ namespace AncestorCloud.Touch
 {
 	public partial class CelebritiesView : BaseViewController
 	{
+		private MvxSubscriptionToken navigationMenuToken;
 
 		public CelebritiesView () : base ("CelebritiesView", null)
 		{
@@ -37,6 +38,10 @@ namespace AncestorCloud.Touch
 
 			SetTableView ();
 			Search ();
+
+			AddEvents ();
+
+
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -83,6 +88,23 @@ namespace AncestorCloud.Touch
 		public void Search()
 		{
 			
+		}
+
+
+		private void AddEvents ()
+		{
+			
+			var _messenger = Mvx.Resolve<IMvxMessenger>();
+
+			navigationMenuToken = _messenger.SubscribeOnMainThread<MyAddButtonTappedMessage>(message => this.ShowAddEvent(message.FamilyMember));
+
+		}
+
+		public void ShowAddEvent(Celebrity celebs)
+		{
+			System.Diagnostics.Debug.WriteLine ("ADD BUTTON TAPPED :"  + celebs);
+
+			ViewModel.MePlusClicked();
 		}
 	}
 }
