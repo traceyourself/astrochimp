@@ -3,11 +3,20 @@ using Foundation;
 using UIKit;
 using Cirrious.MvvmCross.Touch.Views;
 using System.Drawing;
+using CoreGraphics;
 
 namespace AncestorCloud.Touch
 {
 	public partial class BaseViewController : MvxViewController
 	{
+
+		public event EventHandler<OnKeyboardChangedArgs> OnKeyboardChanged;
+
+		public class OnKeyboardChangedArgs : EventArgs{
+			public bool visible {get;set;}
+			public CGRect Frame {get;set;} 
+		}
+
 		public BaseViewController (String nibName, NSBundle bundle) : base (nibName, null)
 		{
 			
@@ -55,22 +64,22 @@ namespace AncestorCloud.Touch
 		#endregion
 
 
-//		public override void ViewWillAppear (bool animated)
-//		{
-//			base.ViewWillAppear (animated);
-//
-//			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardNotification);
-//			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardNotification);
-//		}
-//
-//		public override void ViewWillDisappear (bool animated)
-//		{
-//			base.ViewWillDisappear (animated);
-//
-//			NSNotificationCenter.DefaultCenter.RemoveObserver(UIKeyboard.WillHideNotification);
-//			NSNotificationCenter.DefaultCenter.RemoveObserver(UIKeyboard.WillShowNotification);
-//
-//		}
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+
+			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillHideNotification, OnKeyboardNotification);
+			NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.WillShowNotification, OnKeyboardNotification);
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+
+			NSNotificationCenter.DefaultCenter.RemoveObserver(UIKeyboard.WillHideNotification);
+			NSNotificationCenter.DefaultCenter.RemoveObserver(UIKeyboard.WillShowNotification);
+
+		}
 
 
 
@@ -86,6 +95,7 @@ namespace AncestorCloud.Touch
 
 		private void OnKeyboardNotification (NSNotification notification)
 		{
+
 			if (IsViewLoaded) {
 
 				//Check if the keyboard is becoming visible
@@ -98,15 +108,19 @@ namespace AncestorCloud.Touch
 				UIView.SetAnimationCurve ((UIViewAnimationCurve)UIKeyboard.AnimationCurveFromNotification (notification));
 
 				//Pass the notification, calculating keyboard height, etc.
-				bool landscape = InterfaceOrientation == UIInterfaceOrientation.LandscapeLeft || InterfaceOrientation == UIInterfaceOrientation.LandscapeRight;
+				//bool landscape = InterfaceOrientation == UIInterfaceOrientation.LandscapeLeft || InterfaceOrientation == UIInterfaceOrientation.LandscapeRight;
 				if (visible) {
 					var keyboardFrame = UIKeyboard.FrameEndFromNotification (notification);
-
-					OnKeyboardChanged (visible, landscape ? keyboardFrame.Width : keyboardFrame.Height);
+					if(this.OnKeyboardChanged != null)
+						this.OnKeyboardChanged (this, new OnKeyboardChangedArgs {visible =visible , Frame = keyboardFrame });
 				} else {
 					var keyboardFrame = UIKeyboard.FrameBeginFromNotification (notification);
 
-					OnKeyboardChanged (visible, landscape ? keyboardFrame.Width : keyboardFrame.Height);
+					if (this.OnKeyboardChanged != null)
+						this.OnKeyboardChanged (this, new OnKeyboardChangedArgs {
+							visible = visible ,
+							Frame =  keyboardFrame
+						});
 				}
 
 				//Commit the animation
@@ -116,10 +130,10 @@ namespace AncestorCloud.Touch
 
 		}
 
-		public void OnKeyboardChanged(bool visible, nfloat height)
-		{
-			
-		}
+//		public void OnKeyboardChanged(bool visible, nfloat height)
+//		{
+//			
+//		}
 		#endregion
 
 

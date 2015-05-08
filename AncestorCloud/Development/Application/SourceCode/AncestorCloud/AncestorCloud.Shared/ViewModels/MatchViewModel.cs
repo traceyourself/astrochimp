@@ -155,11 +155,15 @@ namespace AncestorCloud.Shared.ViewModels
 
 				LoginModel data = _databaseService.GetLoginDetails ();
 
-				ResponseModel<RelationshipFindResult> result = await _matchService.Match (data.Value, "747510545", "747227929");
+				ResponseModel<RelationshipFindResult> result = await _matchService.Match (data.Value,FirstPersonOgfn,SecondPersonOgfn);//"747510545", "747227929");
 
 				if (result.Status == ResponseStatus.OK) {
 					if (result.Content.Found) {
-						Close();
+						if (!Mvx.CanResolve<IAndroidService> ()) 
+						{
+							Close();
+						}
+
 						var matchString = Mvx.Resolve<IMvxJsonConverter> ().SerializeObject (result.Content);
 
 						ShowViewModel<RelationshipMatchDetailViewModel> (new RelationshipMatchDetailViewModel.DetailParameter { MatchResult = matchString });

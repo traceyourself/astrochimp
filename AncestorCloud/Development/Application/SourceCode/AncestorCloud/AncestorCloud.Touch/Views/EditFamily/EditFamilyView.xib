@@ -121,9 +121,6 @@
                                 <segment title="Female"/>
                             </segments>
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="GenderSegmentChanged:" destination="-1" eventType="valueChanged" id="hyU-UM-28u"/>
-                            </connections>
                         </segmentedControl>
                         <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ZV-Z5-ZrG">
                             <rect key="frame" x="17" y="330" width="97" height="30"/>

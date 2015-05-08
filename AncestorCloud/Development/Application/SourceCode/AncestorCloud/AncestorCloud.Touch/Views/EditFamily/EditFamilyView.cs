@@ -210,7 +210,7 @@ namespace AncestorCloud.Touch
 
 		public void DataItem(object sender)
 		{
-			UIButton button = (UIButton)sender;
+			//UIButton button = (UIButton)sender;
 			ShowHidePicker(new RectangleF( 0f,(float)this.View.Frame.Height-(float)PickerContainer.Frame.Height,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
 
 		}
