@@ -34,14 +34,17 @@ namespace AncestorCloud.Touch
 		{
 			return 40f;
 		}
+	
 
-		public  void Selected (UIPickerView picker, int row, int component)
+		public override void Selected (UIPickerView pickerView, nint row, nint component)
 		{
 			if (this.PickerChanged != null)
 			{
-				this.PickerChanged(this, new PickerChangedEventArgs{SelectedValue = values[row]});
+				this.PickerChanged(this, new PickerChangedEventArgs{SelectedValue = values[(int)row]});
 			}
 		}
+
+
 	}
 
 	public class PickerChangedEventArgs : EventArgs{

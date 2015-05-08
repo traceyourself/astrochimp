@@ -115,7 +115,7 @@
                             </connections>
                         </button>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ctC-n1-g4U">
-                            <rect key="frame" x="196" y="331" width="143" height="29"/>
+                            <rect key="frame" x="173" y="331" width="166" height="29"/>
                             <segments>
                                 <segment title="Male"/>
                                 <segment title="Female"/>
@@ -125,10 +125,15 @@
                                 <action selector="GenderSegmentChanged:" destination="-1" eventType="valueChanged" id="hyU-UM-28u"/>
                             </connections>
                         </segmentedControl>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPu-xJ-1Lh">
+                        <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ZV-Z5-ZrG">
+                            <rect key="frame" x="17" y="330" width="97" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPu-xJ-1Lh">
                             <rect key="frame" x="22" y="331" width="87" height="30"/>
-                            <color key="backgroundColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>

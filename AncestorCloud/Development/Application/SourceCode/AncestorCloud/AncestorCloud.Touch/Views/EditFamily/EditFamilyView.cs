@@ -7,11 +7,16 @@ using Cirrious.MvvmCross.Touch.Views;
 using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
 using System.Collections.Generic;
+using System.Drawing;
+using CoreGraphics;
+using Microsoft.Scripting.Utils;
 
 namespace AncestorCloud.Touch
 {
 	public partial class EditFamilyView : UIViewController
 	{
+		
+
 		#region Globals
 
 		public People FamilyMember{ get; set;}
@@ -19,6 +24,8 @@ namespace AncestorCloud.Touch
 
 	
 		PickerModel picker_model;
+
+		UIView PickerContainer;
 
 		UIPickerView picker;
 
@@ -33,10 +40,12 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewDidLoad ();
 
-			BindSubview ();
+			CreatePicker ();
 
-			PickerButtonTapped.TouchUpInside += PickerButtonTappedEvent;
+			BindSubview ();
 		
+
+			PickerButtonTapped.TouchUpInside += PickerButtonTappedEvent; 
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
@@ -114,7 +123,20 @@ namespace AncestorCloud.Touch
 
 		void SetBirthYear()
 		{
+			SetBirthButtonText (FamilyMember.DateOfBirth);
+
+			int index = picker_model.values.FindIndex(f => f.ToString().Equals(FamilyMember.DateOfBirth) );
+
+			if (index <= 0)
+				index = 0;
 			
+			picker.Select(index,0,false);
+
+		}
+
+		void SetBirthButtonText(string title)
+		{
+			PickerButtonTapped.SetTitle (title, UIControlState.Normal);
 		}
 
 		#endregion
@@ -150,7 +172,7 @@ namespace AncestorCloud.Touch
 			FamilyMember.MiddleName = MiddleNameTextField.Text;
 			FamilyMember.BirthLocation = BirthLocationField.Text;
 			FamilyMember.Gender = GetGender ();
-			//TODO: Get birthyear
+			FamilyMember.DateOfBirth = PickerButtonTapped.TitleLabel.Text;
 		}
 
 		private string GetGender ()
@@ -176,34 +198,41 @@ namespace AncestorCloud.Touch
 
 		#region picker
 		 
-		async void PickerButtonTappedEvent (object sender, EventArgs e)
+		 void PickerButtonTappedEvent (object sender, EventArgs e)
 		{
-
 			System.Diagnostics.Debug.WriteLine ("PickerButtonTapped");
 
-			DataItem ();
+			DataItem (sender);
 	
 		}
 		#endregion
 
 
-		public void DataItem()
+		public void DataItem(object sender)
 		{
-	
+			UIButton button = (UIButton)sender;
+			ShowHidePicker(new RectangleF( 0f,(float)this.View.Frame.Height-(float)PickerContainer.Frame.Height,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
 
-			List<Object> state_list= new List<Object> ();
-			state_list.Add ("ACT");
-			state_list.Add ("NSW");
-			state_list.Add ("NT");
-			state_list.Add ("QLD");
-			state_list.Add ("SA");
-			state_list.Add ("TAS");
-			state_list.Add ("VIC");
-			state_list.Add ("WA");
+		}
+
+		#region Create Picker
+
+		void CreatePicker()
+		{
+			
+			List<Object> state_list = new List<Object> ();
+
+			for (int i = 1900; i < 2015; i++) {
+
+				state_list.Add (i);
+			}
+
 			picker_model = new PickerModel (state_list);
+			picker_model.PickerChanged += PickerValueChanged;
 
 			picker =  new UIPickerView ();
-			picker.Model = picker_model;
+			picker.DataSource = picker_model;
+			picker.Delegate = picker_model;
 			picker.ShowSelectionIndicator = true;
 
 			UIToolbar toolbar = new UIToolbar ();
@@ -211,28 +240,55 @@ namespace AncestorCloud.Touch
 			toolbar.Translucent = true;
 			toolbar.SizeToFit ();
 
-			UIBarButtonItem doneButton = new UIBarButtonItem("Done",UIBarButtonItemStyle.Done,(s,e) =>
-				{
-					foreach (UIView view in this.View.Subviews) 
-					{
-						if (view.IsFirstResponder)
-						{
-							UITextField textview = (UITextField)view;
-							//textview.Text = picker_model.values[picker.SelectedRowInComponent (0)].ToString ();
-							textview.ResignFirstResponder ();
-						}
-					}
-
-				});
-			toolbar.SetItems (new UIBarButtonItem[]{doneButton},true);
-
-			this.View.AddSubview (picker);
-
+			picker.Frame = new RectangleF (0f,(float)toolbar.Frame.Height + 1f,(float) this.View.Frame.Size.Width,(float) picker.Frame.Height);
 		
 
+			PickerContainer = new  UIView(new RectangleF( 0,(float)this.View.Frame.Height+1f,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
 
 
+			UIBarButtonItem doneButton = new UIBarButtonItem("Done",UIBarButtonItemStyle.Done, (s, e) =>
+				{
+					
+					ShowHidePicker(new RectangleF( 0,(float)this.View.Frame.Height+1f,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
+
+						
+				});
+				
+			UIBarButtonItem flexibutton = new UIBarButtonItem (UIBarButtonSystemItem.FlexibleSpace);
+
+			toolbar.SetItems (new UIBarButtonItem[]{flexibutton,doneButton},true);
+
+			PickerContainer.AddSubview (toolbar);
+
+			PickerContainer.AddSubview (picker);
+
+			PickerContainer.BackgroundColor = UIColor.White;
+
+			this.View.AddSubview (PickerContainer);
 		}
+
+		#endregion
+
+		#region PickerDelegate Methdos
+
+		void PickerValueChanged(object sender, PickerChangedEventArgs e)
+		{
+			SetBirthButtonText (e.SelectedValue.ToString ());
+		}
+
+		#endregion
+
+
+		void ShowHidePicker(CGRect frame)
+		{
+			UIView.Animate (0.3,
+				() => {
+					PickerContainer.Frame = frame;
+
+				});
+		}
+
+
 	}
 }
 
