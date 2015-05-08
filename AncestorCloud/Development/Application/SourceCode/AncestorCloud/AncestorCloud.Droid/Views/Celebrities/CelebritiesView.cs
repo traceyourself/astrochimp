@@ -60,7 +60,7 @@ namespace AncestorCloud.Droid
 			};
 
 			mePlus.Click += (object sender, EventArgs e) => {
-				ViewModel.Close();
+				ViewModel.MePlusClicked();
 			};
 
 		}
@@ -141,7 +141,9 @@ namespace AncestorCloud.Droid
 			holder.nametxt.Text = dataList[position].GivenNames+" "+dataList[position].LastName;
 
 			holder.plus.Click += (object sender, EventArgs e) => {
-				myCelebObj.ViewModel.Close();
+
+				myCelebObj.ViewModel.CelebrityPlusClickHandler(dataList[position]);
+
 			};
 
 			return convertView;

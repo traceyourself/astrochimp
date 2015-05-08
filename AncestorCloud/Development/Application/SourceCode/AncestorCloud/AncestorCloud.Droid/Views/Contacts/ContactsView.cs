@@ -47,7 +47,7 @@ namespace AncestorCloud.Droid
 
 		private void ApplyActions(){
 			mePlus.Click += (object sender, EventArgs e) => {
-				ViewModel.Close();
+				ViewModel.MePlusClicked();
 			};
 		}
 

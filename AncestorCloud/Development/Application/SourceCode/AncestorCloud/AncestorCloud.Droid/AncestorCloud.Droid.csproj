@@ -267,6 +267,13 @@
     <AndroidResource Include="Resources\drawable\right_arrow_grey.png" />
     <AndroidResource Include="Resources\drawable\empty_matcher_img.png" />
     <AndroidResource Include="Resources\drawable\blue_cross.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\location_grey.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\location_grey.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\location_grey.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\location_grey.png" />
+    <AndroidResource Include="Resources\drawable\ellipsis.gif" />
+    <AndroidResource Include="Resources\drawable-xhdpi\location_grey.png" />
+    <AndroidResource Include="Resources\drawable\user_no_img.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

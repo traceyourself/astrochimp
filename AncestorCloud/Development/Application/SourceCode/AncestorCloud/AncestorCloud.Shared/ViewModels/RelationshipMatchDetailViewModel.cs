@@ -25,7 +25,7 @@ namespace AncestorCloud.Shared.ViewModels
 			IMvxJsonConverter converter = Mvx.Resolve<IMvxJsonConverter>();
 			MatchResult = converter.DeserializeObject<RelationshipFindResult>(parameter.MatchResult);
 			//RealInit(deserialized);
-
+			 
 			SetCommonResult ();
 		}
 

@@ -161,7 +161,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_alignParentBottom="true">
+                android:layout_alignParentBottom="true"
+                android:gravity="center">
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.8dp"
@@ -171,7 +172,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/help_icon"
+                    android:src="@drawable/location_grey"
                     android:minWidth="40dp"
                     android:minHeight="40dp" />
                 <TextView
@@ -186,7 +187,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/help_icon"
+                    android:src="@drawable/ellipsis"
                     android:minWidth="40dp"
                     android:minHeight="40dp" />
                 <View
