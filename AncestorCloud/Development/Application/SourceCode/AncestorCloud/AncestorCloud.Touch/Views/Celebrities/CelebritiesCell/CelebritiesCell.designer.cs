@@ -13,6 +13,9 @@ namespace AncestorCloud.Touch
 	partial class CelebritiesCell
 	{
 		[Outlet]
+		UIKit.UIButton AddButtonTapped { get; set; }
+
+		[Outlet]
 		UIKit.UILabel LastName { get; set; }
 
 		[Outlet]
@@ -20,14 +23,19 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (LastName != null) {
+				LastName.Dispose ();
+				LastName = null;
+			}
+
 			if (NameLabel != null) {
 				NameLabel.Dispose ();
 				NameLabel = null;
 			}
 
-			if (LastName != null) {
-				LastName.Dispose ();
-				LastName = null;
+			if (AddButtonTapped != null) {
+				AddButtonTapped.Dispose ();
+				AddButtonTapped = null;
 			}
 		}
 	}

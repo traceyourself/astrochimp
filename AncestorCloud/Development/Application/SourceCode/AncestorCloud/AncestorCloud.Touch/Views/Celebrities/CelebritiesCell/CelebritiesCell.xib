@@ -63,6 +63,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="AddButtonTapped" destination="dh6-St-d5q" id="l5r-wr-Ss9"/>
                 <outlet property="LastName" destination="vcm-E0-9Cq" id="aZ9-2q-2IY"/>
                 <outlet property="NameLabel" destination="Q2b-Nh-85o" id="DZU-Gm-dCp"/>
             </connections>
