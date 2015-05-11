@@ -48,11 +48,22 @@ namespace AncestorCloud.Shared
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
-				model= DataParser.GetUserReadData(model,dict);
-
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
-				responsemodal.Status = ResponseStatus.OK;
+
+				if(dict.ContainsKey(AppConstant.Message))
+				{
+					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
+					{
+						responsemodal.Status = ResponseStatus.OK;
+						model= DataParser.GetUserReadData(model,dict);
+					}else
+					{
+						responsemodal.Status = ResponseStatus.Fail;
+					}
+				}
+					
 				responsemodal.Content= model;
+
 				return responsemodal;
 
 			}

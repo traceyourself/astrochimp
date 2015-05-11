@@ -34,9 +34,20 @@ namespace AncestorCloud.Shared
 		{
 			String sessionID = await DeveloperLogin ();
 
+			if (sessionID.Equals (String.Empty))
+				return;
+			
 			LoginModel loginData = await FbSignInLink (sessionID);
 
+			if (loginData == null)
+				return;
+			//TODO: Throw error message
+
 			loginData = await UserReadService (loginData);
+
+			if (loginData == null)
+				return;
+			//TODO: Throw error message
 
 			SaveLoginDetailInDB (loginData);
 		}
@@ -49,6 +60,9 @@ namespace AncestorCloud.Shared
 		{
 			ResponseModel<String> data = await _developerLoginService.DevelopeLogin ();
 
+			if (data.Status == ResponseStatus.Fail)
+				return String.Empty;
+			
 			return data.Content;
 		}
 		#endregion
@@ -61,6 +75,9 @@ namespace AncestorCloud.Shared
 
 			ResponseModel<LoginModel> data = await _fbSignInService.LinkFacebookUser (fbUser,sessionID);
 
+			if (data.Status ==ResponseStatus.Fail)
+				return null;
+			
 			return data.Content;
 		}
 
@@ -72,6 +89,9 @@ namespace AncestorCloud.Shared
 		{
 			ResponseModel<LoginModel> data = await _userReadService.MakeUserReadService (loginData);
 
+			if (data.Status == ResponseStatus.Fail)
+				return null;
+			
 			return data.Content;
 		}
 
