@@ -17,7 +17,7 @@ namespace AncestorCloud.Touch
 			this.DelayBind (() => {
 
 				var set = this.CreateBindingSet<ContactsCell, People> ();
-				set.Bind (NameLabel).To (vm => vm.Name);
+				set.Bind (NameLabel).To (vm => vm.FirstName);
 				set.Apply ();
 			});
 		}

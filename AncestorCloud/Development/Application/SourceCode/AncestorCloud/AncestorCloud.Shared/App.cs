@@ -11,7 +11,7 @@ namespace AncestorCloud.Shared
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 				
-			RegisterAppStart<ViewModels.HomePageViewModel>();
+			RegisterAppStart<ViewModels.ContactsViewModel>();
 
 
         }
