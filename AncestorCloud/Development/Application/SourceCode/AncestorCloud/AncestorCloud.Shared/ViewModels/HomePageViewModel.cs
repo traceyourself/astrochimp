@@ -18,6 +18,8 @@ namespace AncestorCloud.Shared.ViewModels
 			_storeCelebService = Mvx.Resolve<IStoreCelebService> ();
 			var messenge = Mvx.Resolve<IMvxMessenger>();
 			messenge.Publish(new FlyOutCloseMessage(this));
+
+			base.ClearDatabase ();
 		}
 
 		public void Init()
