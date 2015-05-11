@@ -12,6 +12,10 @@ using Android.Views;
 using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using Cirrious.CrossCore;
+using Android.Webkit;
+using Android.Graphics.Drawables.Shapes;
+using Android.Graphics.Drawables;
+using Android.Graphics;
 
 namespace AncestorCloud.Droid
 {
@@ -23,11 +27,14 @@ namespace AncestorCloud.Droid
 		LinearLayout menuLayout,contentLayout;
 		TextView matchBtn;
 		ImageView first_img,sec_img;
+		ImageView first_img_cover,sec_img_cover;
 		RelativeLayout firstCrossContainer,secCrossContainer;
 		ImageView firstCrossImg,secCrossImg;
+
 		bool isFirstPersonSelected = false;
 		bool isSecondPersonSelected = false;
 		String firstPersonImage = "",secondPersonImage = "";
+
 
 		public new MatchViewModel ViewModel
 		{
@@ -62,6 +69,8 @@ namespace AncestorCloud.Droid
 			firstCrossImg = contentLayout.FindViewById<ImageView> (Resource.Id.first_cross_img);
 			secCrossImg = contentLayout.FindViewById<ImageView> (Resource.Id.sec_cross_img);
 
+			first_img_cover = contentLayout.FindViewById<ImageView> (Resource.Id.first_img_circular_cover);
+			sec_img_cover = contentLayout.FindViewById<ImageView> (Resource.Id.sec_img_circular_cover);
 		}
 		#endregion
 
@@ -82,6 +91,18 @@ namespace AncestorCloud.Droid
 
 		private void ChangeDimensionsAccordingly(int containerDimenFirst,int containerDimenSec)
 		{
+			ViewGroup.LayoutParams layParamsFirst = first_img.LayoutParameters;
+			layParamsFirst.Height = containerDimenFirst+containerDimenFirst;
+			layParamsFirst.Width = containerDimenFirst+containerDimenFirst;
+			first_img.LayoutParameters = layParamsFirst;
+			first_img.Invalidate ();
+
+			sec_img.LayoutParameters = layParamsFirst;
+
+			first_img_cover.LayoutParameters = layParamsFirst;
+			sec_img_cover.LayoutParameters = layParamsFirst;
+
+
 			ViewGroup.LayoutParams layParams = firstCrossContainer.LayoutParameters;
 			layParams.Height = containerDimenFirst;
 			layParams.Width = containerDimenFirst;
@@ -109,6 +130,20 @@ namespace AncestorCloud.Droid
 
 			//firstCrossContainer.Visibility = ViewStates.Visible;
 			//secCrossContainer.Visibility = ViewStates.Visible;
+
+			first_img_cover.SetBackgroundDrawable (new ImageCoverDrawable((float)containerDimenFirst));
+			sec_img_cover.SetBackgroundDrawable (new ImageCoverDrawable((float)containerDimenFirst));
+		}
+		#endregion
+
+		#region cover Image
+		public class ImageCoverDrawable : GradientDrawable {
+
+			public ImageCoverDrawable(float radius) {
+				SetShape(ShapeType.Oval);
+				SetCornerRadius(radius);
+				SetColor(Color.Transparent);
+			}
 		}
 		#endregion
 
@@ -148,6 +183,8 @@ namespace AncestorCloud.Droid
 
 		#region Apply Actions
 		private void ApplyActions(){
+
+
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.my_family_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
 				if(menu.AnimatedOpened){
@@ -255,11 +292,11 @@ namespace AncestorCloud.Droid
 		public void HandleFirstPersonSelected()
 		{
 			if (isFirstPersonSelected) {
-				//if (firstPersonImage.Length != 0) {
-					//first_img.SetImageURI (new rstPersonImage);
-				//} else {
-				first_img.SetImageResource(Resource.Drawable.user_no_img);
-				//}
+				if (URLUtil.IsValidUrl(firstPersonImage)) {
+					first_img.SetImageURI (Android.Net.Uri.Parse (firstPersonImage));
+				} else {
+					first_img.SetImageResource(Resource.Drawable.user_no_img);
+				}
 				firstCrossContainer.Visibility = ViewStates.Visible;
 			} else {
 				first_img.SetImageResource (Resource.Drawable.empty_matcher_img);
@@ -270,17 +307,37 @@ namespace AncestorCloud.Droid
 		public void HandleSecondPersonSelected()
 		{
 			if (isSecondPersonSelected) {
-				//if (secondPersonImage.Length != 0) {
-					//first_img.SetImageURI (new rstPersonImage);
-				//} else {
+				if (URLUtil.IsValidUrl(secondPersonImage)) {
+					sec_img.SetImageURI (Android.Net.Uri.Parse (secondPersonImage));
+				} else {
 					sec_img.SetImageResource (Resource.Drawable.user_no_img);
-				//}
+				}
 				secCrossContainer.Visibility = ViewStates.Visible;
 			} else {
 				sec_img.SetImageResource (Resource.Drawable.empty_matcher_img);
 				secCrossContainer.Visibility = ViewStates.Gone;
 			}
 		}
+
+
+		/*private Bitmap GetImageBitmapFromUrl(string url)
+		{
+			Bitmap imageBitmap = null;
+
+			using (var webClient = new WebClient())
+			{
+				var imageBytes = webClient.DownloadData(url);
+				if (imageBytes != null && imageBytes.Length > 0)
+				{
+					imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+				}
+			}
+
+			return imageBitmap;
+		}
+
+		var imageBitmap = GetImageBitmapFromUrl("http://xamarin.com/resources/design/home/devices.png");
+		imagen.SetImageBitmap(imageBitmap);*/
 
 	}
 }

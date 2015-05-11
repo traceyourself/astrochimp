@@ -38,6 +38,12 @@
                     android:src="@drawable/empty_matcher_img"
                     android:scaleType="centerInside"
                     android:layout_centerHorizontal="true" />
+                <ImageView
+                    android:id="@+id/first_img_circular_cover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:layout_centerHorizontal="true" />
                 <View
                     android:id="@+id/first_center_view"
                     android:layout_width="1dp"
@@ -83,6 +89,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:src="@drawable/empty_matcher_img"
+                    android:scaleType="centerInside"
+                    android:layout_centerHorizontal="true" />
+                <ImageView
+                    android:id="@+id/sec_img_circular_cover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:scaleType="centerInside"
                     android:layout_centerHorizontal="true" />
                 <View

@@ -205,7 +205,9 @@ namespace AncestorCloud.Droid
 		#region Edit Dialog
 		public void ShowEditDialog(int position)
 		{
-			
+			People peopleData = dataList[position].PersonData;
+			String gender = "";
+
 			editDialog = new Dialog (this,Android.Resource.Style.ThemeTranslucentNoTitleBar);
 			editDialog.SetContentView (Resource.Layout.edit_family_dialog);
 
@@ -226,11 +228,13 @@ namespace AncestorCloud.Droid
 			male.Click += (object sender, EventArgs e) => {
 				male.SetBackgroundResource(Resource.Drawable.male_selected);	
 				female.SetBackgroundColor(Color.ParseColor("#00000000"));
+				gender = "Male";
 			};
 
 			female.Click += (object sender, EventArgs e) => {
 				male.SetBackgroundColor(Color.ParseColor("#00000000"));	
 				female.SetBackgroundResource(Resource.Drawable.female_selected);
+				gender = "Female";
 			};
 
 			birthDateDialogTxt.Click += (object sender, EventArgs e) => {
@@ -243,7 +247,32 @@ namespace AncestorCloud.Droid
 			};
 
 			saveBtn.Click += (object sender, EventArgs e) => {
-				editDialog.Dismiss();
+			
+				Boolean isValid = true;
+
+				if(String.IsNullOrEmpty(first_name.Text))
+				{
+					isValid = false;
+					Toast.MakeText(this,"Please enter First Name",ToastLength.Short).Show();
+				}else if(String.IsNullOrEmpty(gender)){
+					isValid = false;
+					Toast.MakeText(this,"Please select Gender",ToastLength.Short).Show();
+				}
+
+				if(isValid)
+				{
+					peopleData.FirstName = first_name.Text.ToString();
+					peopleData.LastName = last_name.Text.ToString();
+					peopleData.MiddleName = mid_name.Text.ToString();
+					peopleData.DateOfBirth = year_field.Text.ToString();
+					peopleData.BirthLocation = birth_loc.Text.ToString();
+					peopleData.Gender = gender;
+
+					ViewModel.FamilyMember = peopleData;
+					ViewModel.EditPerson();
+
+					editDialog.Dismiss();
+				}
 			};
 
 
@@ -267,7 +296,7 @@ namespace AncestorCloud.Droid
 			};
 
 			//Set data Accordingly===
-			People peopleData = dataList[position].PersonData;
+
 
 			try{
 				try{

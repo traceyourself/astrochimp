@@ -113,7 +113,6 @@ namespace AncestorCloud.Touch
 				People item = mainList[i];
 				string relation = item.Relation;
 
-
 				if (relation.Contains (StringConstants.BROTHER_COMPARISON) || relation.Contains (StringConstants.SISTER_COMPARISON))
 				{
 					siblingList.Add (item);
@@ -169,7 +168,6 @@ namespace AncestorCloud.Touch
 
 
 		#region EditFamilyView Methods
-
 
 		public void ShowEditFamily(People member)
 		{

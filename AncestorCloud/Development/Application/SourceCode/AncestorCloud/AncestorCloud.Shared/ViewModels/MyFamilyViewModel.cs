@@ -137,12 +137,10 @@ namespace AncestorCloud.Shared.ViewModels
 				Alert.ShowAlert ("Successfully Edited","Success");
 			} 
 			else {
-				Alert.ShowAlert ("Failed to add, Please try Again...","Error");
+				Alert.ShowAlert ("Failed to edit, Please try Again...","Error");
 			}
 
 		} 
-
 		#endregion
 	}
 }
-
