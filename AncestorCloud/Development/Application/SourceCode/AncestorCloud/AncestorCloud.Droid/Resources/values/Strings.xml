@@ -114,4 +114,10 @@
 	<!---help_dialog strings ends -->
 
 
+	<!---Upload Profie -->
+	<string name="Upload_profile_pic">Upload a profile image\n to finish your profile.</string>
+	<string name="Upload">Upload</string>
+	<string name="Skip">skip</string>
+	<!---Upload Profie Ends -->
+
 </resources>

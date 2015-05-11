@@ -12,74 +12,69 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white">
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/above_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/center_txt"
             android:orientation="vertical"
-            android:layout_above="@+id/center_txt">
-            <TextView
-                style="@style/GrayMediumText"
-                android:text="@string/continue_with" />
-            <TextView
-                android:id="@+id/fb_btn_login"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:background="@drawable/fb_btn_back"
-                android:layout_marginLeft="45dp"
-                android:layout_marginRight="45dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:text="@string/facebook"
-                android:gravity="center"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="100"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:gravity="center_vertical">
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="0.5dp"
-                    android:background="@color/gray_login_color"
-                    android:layout_weight="40" />
-                <TextView
-                    android:text="@string/or"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="20"
-                    android:textColor="@color/light_gray_color"
-                    android:textSize="18sp"
-                    android:gravity="center" />
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_weight="40"
-                    android:layout_height="0.5dp"
-                    android:background="@color/gray_login_color" />
-            </LinearLayout>
-        </LinearLayout>
+            android:gravity="center">
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/no_img" />
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/circle_cover" />
+        </RelativeLayout>
         <TextView
             android:id="@+id/center_txt"
-            style="@style/GrayMediumText"
-            android:text="@string/login_with_email"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp" />
-        <ScrollView
+            android:text="@string/Upload_profile_pic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/center_txt">
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/gray_login_color"
+            android:textSize="20sp" />
+        <RelativeLayout
+            android:id="@+id/below_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_below="@+id/center_txt"
+            android:orientation="vertical">
             <LinearLayout
-                android:id="@+id/below_container"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:orientation="vertical" />
-        </ScrollView>
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/upload_btn"
+                    android:layout_width="140dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/login_btn_back"
+                    android:text="@string/Upload"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/upload_btn"
+                    android:layout_width="140dp"
+                    android:layout_height="42dp"
+                    android:text="@string/Skip"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/gray_login_color"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

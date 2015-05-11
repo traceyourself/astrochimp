@@ -275,6 +275,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\location_grey.png" />
     <AndroidResource Include="Resources\drawable\user_no_img.png" />
     <AndroidResource Include="Resources\layout\upload_pic.axml" />
+    <AndroidResource Include="Resources\drawable\circle_cover.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
