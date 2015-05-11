@@ -319,11 +319,17 @@ namespace AncestorCloud.Shared.ViewModels
 
 		#region Facebook User Link Service
 
-		public void DoFacebookLoginUserLink()
+		public async void DoFacebookLoginUserLink()
 		{
-			_facebookLinkManager.LinkFaceBookLoginUser ();
+			ResponseStatus status = await _facebookLinkManager.LinkFaceBookLoginUser ();
 
-			Login ();
+			if (status == ResponseStatus.Fail) {
+				Alert.ShowAlert ("Not able to link Faccebbok user to OGF. Please retry by log-in again", "ERROR");
+			} else {
+				Login ();
+			}
+
+
 		}
 
 		private void Login()

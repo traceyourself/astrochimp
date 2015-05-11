@@ -15,6 +15,8 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private IAlert Alert;
 
+		private readonly FaceBookLinkManager _facebookLinkManager;
+
 		#region SignUpViewModel
 
 		public SignUpViewModel(ISignUpService service,IAlert alert)//, IDatabaseService dService)
@@ -23,6 +25,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_ISignUpService = service;
 			_databaseService = Mvx.Resolve<IDatabaseService>();
 			Alert = alert;
+			_facebookLinkManager = new FaceBookLinkManager ();
 		
 		}
 
@@ -224,6 +227,16 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 		}
 
+		private ACCommand _linkFbUserData;
+
+		public ICommand LinkFbUserData
+		{
+			get
+			{
+				return this._linkFbUserData ?? (this._linkFbUserData = new ACCommand(this.DoFacebookSignInUserLink));
+			}
+		}
+
 
 		#region
 
@@ -363,6 +376,31 @@ namespace AncestorCloud.Shared.ViewModels
 			//
 			//			System.Diagnostics.Debug.WriteLine ("PEOPLE LIST :" + peopleList);
 		}
+		#endregion
+
+
+		#region Facebook User Link Service
+
+		public async void DoFacebookSignInUserLink()
+		{
+			ResponseStatus status = await _facebookLinkManager.LinkFaceBookSignUpUser ();
+
+			if (status == ResponseStatus.Fail) {
+				Alert.ShowAlert ("Not able to link Faccebbok user to OGF. Please retry by log-in again", "ERROR");
+			} else {
+				SignUp ();
+			}
+
+
+		}
+
+		private void SignUp()
+		{
+			IsFbLogin = true;
+			CallFlyoutCommand.Execute(null);
+			CloseCommand.Execute (null);
+		}
+
 		#endregion
 
 

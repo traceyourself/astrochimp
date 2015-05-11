@@ -159,8 +159,10 @@ namespace AncestorCloud.Shared
 
 			if (IsKeyExist (AppConstant.CODE, dataDic)) {
 				if (!modal.Message.Equals (AppConstant.SUCCESS)) {
-					modal.OGFN = GetData (AppConstant.CODE, dataDic);
-					modal.IndiOGFN = GetData (AppConstant.VALUE, dataDic);
+					//modal.OGFN = GetData (AppConstant.CODE, dataDic);
+					//modal.IndiOGFN = GetData (AppConstant.VALUE, dataDic);
+
+					return modal;
 				}
 				
 			}
@@ -226,8 +228,6 @@ namespace AncestorCloud.Shared
 
 
 
-
-
 		#region helper Methods
 
 		private static bool IsKeyExist(string key , Dictionary<string,object> data)
@@ -246,6 +246,9 @@ namespace AncestorCloud.Shared
 			if (key == null || key.Trim ().Length == 0 || data == null)
 				return null;
 
+			if (data [key] == null)
+				return "";
+			
 			string dataString = data [key].ToString();
 
 			if (dataString == null || dataString.Trim ().Length == 0)
