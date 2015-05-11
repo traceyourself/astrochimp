@@ -30,26 +30,28 @@ namespace AncestorCloud.Shared
 			
 		}
 
-		public async void LinkFaceBookLoginUser()
+		public async Task<ResponseStatus> LinkFaceBookLoginUser()
 		{
 			String sessionID = await DeveloperLogin ();
 
 			if (sessionID.Equals (String.Empty))
-				return;
+				return ResponseStatus.Fail;
 			
 			LoginModel loginData = await FbSignInLink (sessionID);
 
 			if (loginData == null)
-				return;
+				return ResponseStatus.Fail;
 			//TODO: Throw error message
 
 			loginData = await UserReadService (loginData);
 
 			if (loginData == null)
-				return;
+				return ResponseStatus.Fail;
 			//TODO: Throw error message
 
 			SaveLoginDetailInDB (loginData);
+
+			return ResponseStatus.OK;
 		}
 
 		#endregion
