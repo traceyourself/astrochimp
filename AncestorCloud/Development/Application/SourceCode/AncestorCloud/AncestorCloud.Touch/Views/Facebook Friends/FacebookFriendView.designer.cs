@@ -14,9 +14,17 @@ namespace AncestorCloud.Touch
 	{
 		[Outlet]
 		UIKit.UITableView FacebookFriendTableView { get; set; }
+
+		[Outlet]
+		UIKit.UIButton MeImage { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (MeImage != null) {
+				MeImage.Dispose ();
+				MeImage = null;
+			}
+
 			if (FacebookFriendTableView != null) {
 				FacebookFriendTableView.Dispose ();
 				FacebookFriendTableView = null;

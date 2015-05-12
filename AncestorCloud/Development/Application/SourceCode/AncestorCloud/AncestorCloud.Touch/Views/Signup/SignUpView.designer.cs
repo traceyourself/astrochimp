@@ -38,6 +38,12 @@ namespace AncestorCloud.Touch
 
 		[Action ("SignUpButttonTapped:")]
 		partial void SignUpButttonTapped (Foundation.NSObject sender);
+
+		[Action ("T:")]
+		partial void T (Foundation.NSObject sender);
+
+		[Action ("TCButtonTaped:")]
+		partial void TCButtonTaped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

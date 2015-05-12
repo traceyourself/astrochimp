@@ -11,6 +11,7 @@ using Xamarin.Social.Services;
 using Xamarin.Auth;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using AncestorCloud.Shared;
+using CoreGraphics;
 
 
 namespace AncestorCloud.Touch
@@ -20,6 +21,8 @@ namespace AncestorCloud.Touch
 
 //		FlyoutNavigationController navigation;
 //		List<LoginViewModel> MenuItems;
+
+		CGRect preFrame;
 
 		public LoginView () : base ("LoginView", null)
 		{
@@ -54,6 +57,9 @@ namespace AncestorCloud.Touch
 			BindViewModel ();
 
 			base.OnKeyboardChanged += OnKeyboardChanged;
+
+
+
 //			EmailTextFeild.BecomeFirstResponder ();
 //			PasswordTextFeild.BecomeFirstResponder ();
 			// Perform any additional setup after loading the view, typically from a nib.
@@ -145,13 +151,15 @@ namespace AncestorCloud.Touch
 
 			var frame = container.Frame;
 
+			//preFrame = frame;
+
 			if (frame.Size.Height  - args.Frame.Size.Height > point.Y + 50)
 				return;
 			
 			if (args.visible)
-				frame.Y -= point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height) ;
+				frame.Y -= point.Y + 50 - (frame.Size.Height - args.Frame.Size.Height);
 			else
-				frame.Y += point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height);
+				frame = preFrame;//.Y += point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height);
 
 			container.Frame = frame;
 		}
@@ -272,6 +280,12 @@ namespace AncestorCloud.Touch
 		 * */
 
 		#endregion
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			preFrame = container.Frame;
+		}
 
 
 

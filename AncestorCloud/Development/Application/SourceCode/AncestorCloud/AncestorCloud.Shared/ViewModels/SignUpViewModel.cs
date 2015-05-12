@@ -151,6 +151,7 @@ namespace AncestorCloud.Shared.ViewModels
 		public void ShowProfilePicViewModel()
 		{
 			ShowViewModel <ProfilePicViewModel> ();
+			this.Close ();
 		}
 
 		public void ShowMyFamilyViewModel()
@@ -261,12 +262,14 @@ namespace AncestorCloud.Shared.ViewModels
 					{
 						//ShowMyFamilyViewModel ();
 						ShowProfilePicViewModel();
+						this.Close (this);
 						CloseCommand.Execute (null);
 					}
 					else
 					{
 						IsFbLogin = false;
 						ShowProfilePicViewModel();
+						this.Close (this);//XXXXXX
 						//CallFlyoutCommand.Execute(null);
 						CloseCommand.Execute (null);
 					}
@@ -408,6 +411,13 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 
 		#endregion
+
+
+		public void ShowTermsandCondition()
+		{
+			ShowViewModel<TermsandConditionViewModel> ();
+			this.Close ();
+		}
 
 
 

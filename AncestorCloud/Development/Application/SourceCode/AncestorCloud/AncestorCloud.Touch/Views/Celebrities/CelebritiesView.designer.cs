@@ -16,6 +16,9 @@ namespace AncestorCloud.Touch
 		UIKit.UITableView CelebritiesTableVIew { get; set; }
 
 		[Outlet]
+		UIKit.UIButton MeImage { get; set; }
+
+		[Outlet]
 		UIKit.UISearchBar SearchViewController { get; set; }
 
 		[Action ("AddMeButtonTapped:")]
@@ -23,6 +26,11 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (MeImage != null) {
+				MeImage.Dispose ();
+				MeImage = null;
+			}
+
 			if (CelebritiesTableVIew != null) {
 				CelebritiesTableVIew.Dispose ();
 				CelebritiesTableVIew = null;

@@ -116,9 +116,9 @@ namespace AncestorCloud.Shared.ViewModels
 					},
 					new MenuViewModel 
 					{
-						Section = Section.Matcher,
+						Section = Section.Unknown,
 						Title = "Profile",
-						Image = "logout_icon.png",
+						Image = "noImage.png",
 						ViewModelType = typeof(ProfilePicViewModel),	
 					}
 
@@ -161,10 +161,11 @@ namespace AncestorCloud.Shared.ViewModels
 					},
 					new MenuViewModel 
 					{
-						Section = Section.Matcher,
+						Section= Section.Unknown,
 						Title = "Profile",
-						Image = "logout_icon.png",
+						Image = "noImage.png",
 						ViewModelType = typeof(ProfilePicViewModel),	
+
 					}
 
 				};

@@ -7,12 +7,15 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using Xamarin.Social.Services;
 using AncestorCloud.Shared;
 using Xamarin.Auth;
+using CoreGraphics;
 
 
 namespace AncestorCloud.Touch
 {
 	public partial class SignUpView : BaseViewController,IMvxModalTouchView
 	{
+		CGRect preFrame;
+
 		public SignUpView () : base ("SignUpView", null)
 		{
 		}
@@ -50,7 +53,14 @@ namespace AncestorCloud.Touch
 
 			base.OnKeyboardChanged += OnKeyboardChanged;
 
+
 			// Perform any additional setup after loading the view, typically from a nib.
+		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			preFrame = _container.Frame;
 		}
 
 
@@ -229,24 +239,48 @@ namespace AncestorCloud.Touch
 		public  void OnKeyboardChanged (object sender,OnKeyboardChangedArgs args)
 		{
 
-			UITextField current = NameTextFeild.IsFirstResponder ? NameTextFeild : LastNameTextField;
+			UITextField current; //= NameTextFeild.IsFirstResponder ? NameTextFeild : LastNameTextField;
+
+			if (NameTextFeild.IsFirstResponder) {
+				current = NameTextFeild;
+			} else if (LastNameTextField.IsFirstResponder) {
+				current = LastNameTextField;
+			} else if (EmailTextField.IsFirstResponder) {
+				current = EmailTextField;
+			} else {
+				current = PasswordTextField;
+			}
 
 			var point = this.View.ConvertRectToView (current.Frame, this.View.Superview);
 
 			var frame = _container.Frame;
 
-			if (frame.Size.Height  - args.Frame.Size.Height > point.Y + 50)
+			if (frame.Size.Height  - args.Frame.Size.Height > point.Y + 100)
 				return;
 
 			if (args.visible)
-				frame.Y -= point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height) ;
+				frame.Y -= point.Y + 100 - (frame.Size.Height - args.Frame.Size.Height);
 			else
-				frame.Y += point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height);
+				frame = preFrame;
 
 			_container.Frame = frame;
 		}
 
 		#endregion
+		partial void TCButtonTaped (NSObject sender)
+		{
+			System.Diagnostics.Debug.WriteLine("T&C");
+			ViewModel.ShowTermsandCondition();
+
+		}
+
+//		public override void TouchesBegan (NSSet touches, UIEvent evt)
+//		{
+//			//if (this.View.IsFirstResponder)
+//				this.View.ResignFirstResponder ();
+//
+//			base.TouchesBegan (touches, evt);
+//		}
 
 
 	}

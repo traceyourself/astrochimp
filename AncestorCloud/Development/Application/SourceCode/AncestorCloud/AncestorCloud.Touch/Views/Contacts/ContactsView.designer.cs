@@ -1,4 +1,4 @@
-﻿// WARNING
+// WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
@@ -14,9 +14,17 @@ namespace AncestorCloud.Touch
 	{
 		[Outlet]
 		UIKit.UITableView ContactsTableView { get; set; }
+
+		[Outlet]
+		UIKit.UIButton MeImage { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (MeImage != null) {
+				MeImage.Dispose ();
+				MeImage = null;
+			}
+
 			if (ContactsTableView != null) {
 				ContactsTableView.Dispose ();
 				ContactsTableView = null;

@@ -38,6 +38,8 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 
 			SetUpView ();
+
+
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -63,8 +65,11 @@ namespace AncestorCloud.Touch
 		}
 		partial void SkipButtonTapped (NSObject sender)
 		{
-			System.Diagnostics.Debug.WriteLine("Skip Button Tapped");
+
 			ViewModel.ShowFamiyViewModel();
+			this.ViewModel.Close();
+	
+
 		}
 
 		 void ProfilePicSetUp(object sender, EventArgs e)
@@ -218,7 +223,7 @@ namespace AncestorCloud.Touch
 			// dismiss the picker
 			imagePicker.DismissViewControllerAsync (true);
 		}
-
+	
 
 	}
 }

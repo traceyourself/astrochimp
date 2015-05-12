@@ -56,6 +56,8 @@ namespace AncestorCloud.Touch
 			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
 			this.NavigationController.NavigationBarHidden = false;
+			MeImage.Layer.CornerRadius = 22f;
+			MeImage.ClipsToBounds = true;
 
 		}
 
