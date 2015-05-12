@@ -93,8 +93,8 @@ namespace AncestorCloud.Touch
 			contact.LastName = person.LastName;
 			contact.MiddleName = person.MiddleName;
 			contact.DateOfBirth = (person.Birthday != null) ? person.Birthday.ToString() : String.Empty;
-			contact.Email = (person.GetEmails().Count > 0) ? person.GetEmails ().ElementAt (0).ToString() : String.Empty;
-
+			contact.Email = (person.GetEmails().Count > 0) ? person.GetEmails ().ElementAt (0).Value.ToString() : String.Empty;
+			contact.Contact = (person.GetPhones().Count > 0) ? person.GetPhones ().ElementAt (0).Value.ToString() : String.Empty;
 			return contact;
 		}
 		#endregion

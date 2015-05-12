@@ -26,5 +26,7 @@ namespace AncestorCloud.Touch
 		{
 			return (ContactsCell)Nib.Instantiate (null, null) [0];
 		}
+
+
 	}
 }

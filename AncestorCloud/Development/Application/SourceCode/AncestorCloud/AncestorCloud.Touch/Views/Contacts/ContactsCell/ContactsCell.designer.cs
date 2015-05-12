@@ -14,6 +14,9 @@ namespace AncestorCloud.Touch
 	{
 		[Outlet]
 		UIKit.UILabel NameLabel { get; set; }
+
+		[Action ("PlusbuttonTapped:")]
+		partial void PlusbuttonTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

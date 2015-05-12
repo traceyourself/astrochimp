@@ -10,6 +10,7 @@ namespace AncestorCloud.Shared
 		public string IndiOgfn { get; set; }
 	
 		public string MiddleName { get; set; }
+		public string Contact { get; set; }
 
 	}
 }

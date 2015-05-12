@@ -132,6 +132,7 @@
     <Compile Include="Views\HelpDialog\HelpDialog.cs" />
     <Compile Include="PlatformSpecificService\AndroidContactService.cs" />
     <Compile Include="DroidUtilities\RoundedImageView.cs" />
+    <Compile Include="PlatformSpecificService\DroidSMSService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
