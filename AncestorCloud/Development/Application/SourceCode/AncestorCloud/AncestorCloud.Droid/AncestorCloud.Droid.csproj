@@ -128,6 +128,7 @@
     <Compile Include="Views\FacebookFriends\FacebookFriendView.cs" />
     <Compile Include="Views\HelpDialog\HelpDialog.cs" />
     <Compile Include="PlatformSpecificService\AndroidContactService.cs" />
+    <Compile Include="DroidUtilities\RoundedImageView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
