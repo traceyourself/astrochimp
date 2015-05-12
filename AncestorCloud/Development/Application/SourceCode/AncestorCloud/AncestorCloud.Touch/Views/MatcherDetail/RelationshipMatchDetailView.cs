@@ -65,7 +65,11 @@ namespace AncestorCloud.Touch
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 
 
-			//SetTableView ();
+			FirstMatchPic.Layer.CornerRadius = 40f;
+			FirstMatchPic.ClipsToBounds = true;
+
+			SecondMatchPic.Layer.CornerRadius = 40f;
+			SecondMatchPic.ClipsToBounds = true;
 
 
 			this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,150,20));

@@ -207,6 +207,7 @@
     <InterfaceDefinition Include="Views\Help\HelpView.xib" />
     <InterfaceDefinition Include="Views\NoMatches\NoMatchesView.xib" />
     <InterfaceDefinition Include="Views\MatcherDetail\MatcherDetailCell\RelationshipMatchDetailCell.xib" />
+    <InterfaceDefinition Include="Views\ProfilePic\ProfilePicView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -348,7 +349,15 @@
     <Compile Include="Utility\MyCelebritiesTitleView.cs" />
     <Compile Include="Utility\MyContactTitleView.cs" />
     <Compile Include="Utility\MyFacebookFriendTitleView.cs" />
+
     <Compile Include="PlatformSpecificService\IOSContactService.cs" />
+
+    <Compile Include="Utility\MyAddButtonTappedMessage.cs" />
+    <Compile Include="Views\ProfilePic\ProfilePicView.cs" />
+    <Compile Include="Views\ProfilePic\ProfilePicView.designer.cs">
+      <DependentUpon>ProfilePicView.cs</DependentUpon>
+    </Compile>
+
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -380,7 +389,7 @@
     <Folder Include="Views\Celebrities\" />
     <Folder Include="Views\Celebrities\CelebritiesCell\" />
  feature/Working_Flow
-  <Folder Include="Views\Help\" /><Folder Include="Views\Facebook Friends\" /><Folder Include="Views\Facebook Friends\FacebookFriendCell\" /><Folder Include="Views\Contacts\" /><Folder Include="Views\Contacts\ContactsCell\" /><Folder Include="Views\NoMatches\" /><Folder Include="Views\MatcherDetail\MatcherDetailCell\" /></ItemGroup>
+  <Folder Include="Views\Help\" /><Folder Include="Views\Facebook Friends\" /><Folder Include="Views\Facebook Friends\FacebookFriendCell\" /><Folder Include="Views\Contacts\" /><Folder Include="Views\Contacts\ContactsCell\" /><Folder Include="Views\NoMatches\" /><Folder Include="Views\MatcherDetail\MatcherDetailCell\" /><Folder Include="Views\ProfilePic\" /></ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="flyoutnavigation">
       <Version>1.5.1</Version>
@@ -440,6 +449,8 @@
     <BundleResource Include="Resources\celebrity_white%402x.png" />
     <BundleResource Include="Resources\nomatch%402x.png" />
     <BundleResource Include="Resources\plus_blue%402x.png" />
+    <BundleResource Include="Resources\user_no_img.png" />
+    <BundleResource Include="Resources\profile%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />

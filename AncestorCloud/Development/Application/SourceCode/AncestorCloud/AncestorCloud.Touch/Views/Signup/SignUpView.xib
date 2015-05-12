@@ -12,6 +12,7 @@
                 <outlet property="NameTextFeild" destination="9uj-1T-Whk" id="PfY-dE-7zx"/>
                 <outlet property="PasswordTextField" destination="LeW-xh-I5j" id="q1u-Zf-kiT"/>
                 <outlet property="SignUpButton" destination="ido-Vx-5Sx" id="fke-lc-Zuc"/>
+                <outlet property="_container" destination="iN0-l3-epB" id="ctD-Zh-t8C"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
         </placeholder>

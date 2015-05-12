@@ -48,6 +48,8 @@ namespace AncestorCloud.Touch
 			SetNavigationBar();
 			BindViewModel ();
 
+			base.OnKeyboardChanged += OnKeyboardChanged;
+
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
@@ -74,6 +76,29 @@ namespace AncestorCloud.Touch
 						ViewModel.Close();
 					})
 				, true);
+
+
+			NameTextFeild.ShouldReturn = _ => {
+				NameTextFeild.BecomeFirstResponder ();
+				return false;
+			};
+
+
+
+			LastNameTextField.ShouldReturn = _ => {
+				LastNameTextField.BecomeFirstResponder ();
+				return false;
+			};
+
+			EmailTextField.ShouldReturn = _ => {
+				EmailTextField.BecomeFirstResponder ();
+				return false;
+			};
+
+			PasswordTextField.ShouldReturn = _ => {
+				PasswordTextField.BecomeFirstResponder ();
+				return false;
+			};
 
 		}
 
@@ -194,6 +219,35 @@ namespace AncestorCloud.Touch
 		}
 
 		#endregion
+
+		#region KeyBoard
+		public virtual bool HandlesKeyboardNotifications
+		{
+			get { return true; }
+		}
+
+		public  void OnKeyboardChanged (object sender,OnKeyboardChangedArgs args)
+		{
+
+			UITextField current = NameTextFeild.IsFirstResponder ? NameTextFeild : LastNameTextField;
+
+			var point = this.View.ConvertRectToView (current.Frame, this.View.Superview);
+
+			var frame = _container.Frame;
+
+			if (frame.Size.Height  - args.Frame.Size.Height > point.Y + 50)
+				return;
+
+			if (args.visible)
+				frame.Y -= point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height) ;
+			else
+				frame.Y += point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height);
+
+			_container.Frame = frame;
+		}
+
+		#endregion
+
 
 	}
 }

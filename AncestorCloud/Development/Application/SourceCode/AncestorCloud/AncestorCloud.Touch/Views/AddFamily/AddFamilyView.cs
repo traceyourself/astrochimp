@@ -1,6 +1,4 @@
-﻿
-using System;
-
+﻿using System;
 using Foundation;
 using UIKit;
 using AncestorCloud.Shared.ViewModels;
@@ -9,13 +7,14 @@ using AncestorCloud.Shared;
 using System.Collections.Generic;
 using System.Drawing;
 using CoreGraphics;
+using Microsoft.Scripting.Utils;
 
 namespace AncestorCloud.Touch
 {
 	public partial class AddFamilyView : BaseViewController
 	{
 		
-
+		public People FamilyMember{ get; set;}
 		PickerModel picker_model;
 
 		UIView PickerContainer;
@@ -38,11 +37,20 @@ namespace AncestorCloud.Touch
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+
 			SetNavigationTitle ();
+
+			CreatePicker ();
+
 			BindSubViews ();
+
 			GenderSegmentControlChanged (null);
 
+			//SetBirthYear ();
+
 			PickerButtonTapped.TouchUpInside += PickerButtonTappedEvent;
+
+			base.OnKeyboardChanged += OnKeyboardChanged;
 		
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -72,7 +80,11 @@ namespace AncestorCloud.Touch
 			//set.Bind (Birthlabel).To (vm => vm.FamilyMember.DateOfBirth);
 			set.Bind (GenderSegmentControl).For(l => l.SelectedSegment).To (vm => vm.Gender).WithConversion(new GenderTextConverter(),null).TwoWay();
 			set.Bind (AddButton).To (vm => vm.AddPersonCommand);
+			//SetBirthYear ();
 			set.Apply ();
+
+
+
 		}
 
 		#endregion
@@ -111,7 +123,7 @@ namespace AncestorCloud.Touch
 
 		public void DataItem(object sender)
 		{
-			UIButton button = (UIButton)sender;
+			//UIButton button = (UIButton)sender;
 			ShowHidePicker(new RectangleF( 0f,(float)this.View.Frame.Height-(float)PickerContainer.Frame.Height,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
 
 
@@ -169,6 +181,8 @@ namespace AncestorCloud.Touch
 
 
 
+
+
 		#region PickerDelegate Methdos
 
 		void PickerValueChanged(object sender, PickerChangedEventArgs e)
@@ -192,6 +206,33 @@ namespace AncestorCloud.Touch
 		{
 			PickerButtonTapped.SetTitle (title, UIControlState.Normal);
 		}
+
+
+		public virtual bool HandlesKeyboardNotifications
+		{
+			get { return true; }
+		}
+
+		public  void OnKeyboardChanged (object sender,OnKeyboardChangedArgs args)
+		{
+
+			UITextField current = FirstNameTextField.IsFirstResponder ? FirstNameTextField: MiddleNameTextFeild;
+
+			var point = this.View.ConvertRectToView (current.Frame, this.View.Superview);
+
+			var frame = container.Frame;
+
+			if (frame.Size.Height  - args.Frame.Size.Height > point.Y + 50)
+				return;
+
+			if (args.visible)
+				frame.Y -= point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height) ;
+			else
+				frame.Y += point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height);
+
+			container.Frame = frame;
+		}
+
 
 
 	}

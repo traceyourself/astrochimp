@@ -98,18 +98,18 @@ namespace AncestorCloud.Shared.ViewModels
 
 		#endregion
 
-//		private People _familyMember;
-//
-//		public People FamilyMember 
-//		{ 
-//			get { return _familyMember ?? new People(); }
-//			set
-//			{
-//				_familyMember = value;
-//				RaisePropertyChanged(() => FamilyMember);
-//			}
-//		
-//		}
+		private People _familyMember;
+
+		public People FamilyMember 
+		{ 
+			get { return _familyMember ?? new People(); }
+			set
+			{
+				_familyMember = value;
+				RaisePropertyChanged(() => FamilyMember);
+			}
+		
+		}
 
 
 		#region Commands

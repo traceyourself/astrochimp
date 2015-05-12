@@ -7,6 +7,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MatchView">
             <connections>
                 <outlet property="ContentView" destination="1tI-qn-ne9" id="8Hb-bO-T2G"/>
+                <outlet property="FirstCrossButton" destination="iTi-gN-QWf" id="6Hj-Fa-coe"/>
+                <outlet property="FirstImageButton" destination="INg-5T-FXK" id="zYE-sN-pK9"/>
+                <outlet property="SecondCrossButton" destination="kKw-0V-oR0" id="zuN-P0-qpD"/>
+                <outlet property="SecondImageButton" destination="5Xj-sZ-16d" id="CaI-jx-qfz"/>
                 <outlet property="scrollViewObj" destination="FHJ-YM-EZc" id="zuJ-PT-frb"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
@@ -83,6 +87,24 @@
                                         <action selector="FirstImageButtonTapped:" destination="-1" eventType="touchUpInside" id="7nW-Q0-35J"/>
                                     </connections>
                                 </button>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTi-gN-QWf">
+                                    <rect key="frame" x="245" y="77" width="20" height="20"/>
+                                    <state key="normal" backgroundImage="blue_x.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="firstCrossImg:" destination="-1" eventType="touchUpInside" id="wVT-Z5-09D"/>
+                                    </connections>
+                                </button>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKw-0V-oR0">
+                                    <rect key="frame" x="245" y="316" width="20" height="20"/>
+                                    <state key="normal" backgroundImage="blue_x.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="secCrossImg:" destination="-1" eventType="touchUpInside" id="yWY-Bp-Np6"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -125,6 +147,7 @@
     </objects>
     <resources>
         <image name="CircleMatcher.png" width="304" height="304"/>
+        <image name="blue_x.png" width="50" height="50"/>
         <image name="pink-btnsmall.png" width="335" height="97"/>
         <image name="plus.png" width="30" height="30"/>
     </resources>

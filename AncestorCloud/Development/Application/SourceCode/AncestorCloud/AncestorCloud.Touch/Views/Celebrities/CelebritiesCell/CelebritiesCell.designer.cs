@@ -17,17 +17,21 @@ namespace AncestorCloud.Touch
 
 		[Outlet]
 		UIKit.UILabel NameLabel { get; set; }
+
+
+		[Action ("AddCelbButtonTapped:")]
+		partial void AddCelbButtonTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (NameLabel != null) {
-				NameLabel.Dispose ();
-				NameLabel = null;
-			}
-
 			if (LastName != null) {
 				LastName.Dispose ();
 				LastName = null;
+			}
+
+			if (NameLabel != null) {
+				NameLabel.Dispose ();
+				NameLabel = null;
 			}
 		}
 	}

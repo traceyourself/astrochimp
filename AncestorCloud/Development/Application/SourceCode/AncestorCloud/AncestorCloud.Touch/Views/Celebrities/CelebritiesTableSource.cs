@@ -2,11 +2,16 @@
 using UIKit;
 using Cirrious.MvvmCross.Binding.Touch.Views;
 using Foundation;
+using AncestorCloud.Shared;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AncestorCloud.Touch
 {
 	public class CelebritiesTableSource : MvxTableViewSource
 	{
+
+
 		
 		readonly string cellIdentifier = "CelebritiesCell";
 
@@ -18,18 +23,23 @@ namespace AncestorCloud.Touch
 
 		}
 
-		//		public override nint RowsInSection (UITableView tableView, nint section)
-		//		{
-		//
-		//			return 5;
-		//		}
-
-
 
 		protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item)
 		{
-			return tableView.DequeueReusableCell(CelebritiesCell.Key, indexPath);
+			CelebritiesCell cell = (CelebritiesCell) tableView.DequeueReusableCell(CelebritiesCell.Key, indexPath);
+  		
+			IEnumerable<Celebrity> myEnumerable = this.ItemsSource as IEnumerable<Celebrity>;
+
+			List<Celebrity> listAgain = myEnumerable.ToList();
+
+			Celebrity childItem = listAgain [indexPath.Row];
+
+			cell.familyMember = childItem;
+
+			return cell;
 		}
+
+
 
 
 	}

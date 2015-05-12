@@ -16,6 +16,12 @@ namespace AncestorCloud.Touch
 {
 	public partial class MatchView : BaseViewController
 	{
+
+		String firstPersonImage = "",secondPersonImage = "";
+		bool isFirstPersonSelected = false;
+		bool isSecondPersonSelected = false;
+
+
 		public MatchView () : base ("MatchView", null)
 		{
 		}
@@ -38,6 +44,9 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewDidLoad ();
 
+
+
+
 //			scrollViewObj.Frame = this.View.Frame;
 //			scrollViewObj.ContentSize = new SizeF(320, 550);
 
@@ -54,6 +63,9 @@ namespace AncestorCloud.Touch
 
 
 			setNavigationBar ();
+
+
+
 
 		}
 
@@ -121,16 +133,140 @@ namespace AncestorCloud.Touch
 		#region firstImage Tapped
 	     partial void FirstImageButtonTapped(NSObject sender)
 		{
-			ViewModel.ShowFriendList();
-			ViewModel.Close();
+
+
+			if(!isFirstPersonSelected){
+				ViewModel.WhichImageClicked = 1;
+				ViewModel.ShowFriendList();
+			}
+
 		}
 		#endregion
 
 		partial void SecondButtonImageTapped (NSObject sender)
 		{
-			ViewModel.ShowFriendList();
-			ViewModel.Close();
+				if(!isSecondPersonSelected){
+					ViewModel.WhichImageClicked = 2;
+					ViewModel.ShowFriendList();
+				}
+
 		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			GetData ();
+
+
+
+		}
+
+
+		#region GetData
+
+		public void GetData()
+		{
+			if (ViewModel.WhichImageClicked == 1) {
+				if (ViewModel.FirstPersonCeleb != null) {
+					ViewModel.WhichImageClicked = 0;
+					//Mvx.Trace("celeb name in match view for first image: "+ViewModel.FirstPersonCeleb.GivenNames);
+
+					firstPersonImage = ViewModel.FirstPersonCeleb.Img;
+					isFirstPersonSelected = true;
+					HandleFirstPersonSelected ();
+
+				}else if(ViewModel.FirstPersonPeople != null){
+					ViewModel.WhichImageClicked = 0;
+					//isSecondPersonSelected = true;
+
+					firstPersonImage = ViewModel.FirstPersonPeople.ProfilePicURL;
+					isFirstPersonSelected = true;
+					HandleFirstPersonSelected ();
+				}
+			} else if (ViewModel.WhichImageClicked == 2){
+				if (ViewModel.SecondPersonCeleb != null) {
+					ViewModel.WhichImageClicked = 0;
+					Mvx.Trace("celeb name in match view for sec image: "+ViewModel.SecondPersonCeleb.GivenNames);
+
+					secondPersonImage = ViewModel.SecondPersonCeleb.Img;
+					isSecondPersonSelected = true;
+					HandleSecondPersonSelected ();
+
+				}else if(ViewModel.SecondPersonPeople != null){
+					ViewModel.WhichImageClicked = 0;
+					Mvx.Trace("People name in match view for Sec image: "+ViewModel.SecondPersonPeople.Name);
+
+					secondPersonImage = ViewModel.SecondPersonPeople.ProfilePicURL;
+					isSecondPersonSelected = true;
+					HandleSecondPersonSelected ();
+				}
+			}
+
+
+		}
+
+		#endregion
+
+		public void HandleFirstPersonSelected()
+		{
+
+			if (isFirstPersonSelected) {
+
+				FirstImageButton.SetBackgroundImage(UIImage.FromBundle("noImage.png"),UIControlState.Normal);
+				FirstImageButton.Layer.CornerRadius = 90f;
+				FirstImageButton.ClipsToBounds = true;
+
+				FirstCrossButton.Hidden = false;
+			} else {
+				FirstImageButton.SetBackgroundImage(UIImage.FromBundle("CircleMatcher.png"),UIControlState.Normal);
+				FirstImageButton.Layer.CornerRadius = 90f;
+				FirstImageButton.ClipsToBounds = true;
+				FirstCrossButton.Hidden = true;
+			}
+			
+		}
+
+		public void HandleSecondPersonSelected()
+		{
+
+			if (isSecondPersonSelected)
+			{
+
+				SecondImageButton.SetBackgroundImage(UIImage.FromBundle("noImage.png"),UIControlState.Normal);
+				SecondImageButton.Layer.CornerRadius = 90f;
+				SecondImageButton.ClipsToBounds = true;
+
+				SecondCrossButton.Hidden = false;
+			} else {
+				SecondImageButton.SetBackgroundImage(UIImage.FromBundle("CircleMatcher.png"),UIControlState.Normal);
+				SecondImageButton.Layer.CornerRadius = 90f;
+				SecondImageButton.ClipsToBounds = true;
+				SecondCrossButton.Hidden = true;
+			}
+			
+		}
+
+		partial void firstCrossImg (UIKit.UIButton sender)
+		{
+			System.Diagnostics.Debug.WriteLine("CrossButtonTaped");
+			isFirstPersonSelected = false;
+			ViewModel.FirstPersonCeleb = null;
+			ViewModel.FirstPersonPeople = null;
+			HandleFirstPersonSelected();
+		}
+
+		partial void secCrossImg (UIKit.UIButton sender)
+		{
+			System.Diagnostics.Debug.WriteLine("CrossButtonTaped");
+			isSecondPersonSelected = false;
+			ViewModel.SecondPersonCeleb = null;
+			ViewModel.SecondPersonPeople = null;
+			HandleSecondPersonSelected();
+		}
+
+
+
+	
+
 	}
 }
 
