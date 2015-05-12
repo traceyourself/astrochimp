@@ -13,6 +13,9 @@ namespace AncestorCloud.Touch
 	partial class SignUpView
 	{
 		[Outlet]
+		UIKit.UIView _container { get; set; }
+
+		[Outlet]
 		UIKit.UITextField EmailTextField { get; set; }
 
 		[Outlet]
@@ -38,6 +41,11 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (_container != null) {
+				_container.Dispose ();
+				_container = null;
+			}
+
 			if (EmailTextField != null) {
 				EmailTextField.Dispose ();
 				EmailTextField = null;
@@ -48,14 +56,14 @@ namespace AncestorCloud.Touch
 				Facebookbutton = null;
 			}
 
-			if (NameTextFeild != null) {
-				NameTextFeild.Dispose ();
-				NameTextFeild = null;
-			}
-
 			if (LastNameTextField != null) {
 				LastNameTextField.Dispose ();
 				LastNameTextField = null;
+			}
+
+			if (NameTextFeild != null) {
+				NameTextFeild.Dispose ();
+				NameTextFeild = null;
 			}
 
 			if (PasswordTextField != null) {

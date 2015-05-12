@@ -17,6 +17,9 @@ namespace AncestorCloud.Touch
 
 		[Outlet]
 		UIKit.UISearchBar SearchViewController { get; set; }
+
+		[Action ("AddMeButtonTapped:")]
+		partial void AddMeButtonTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

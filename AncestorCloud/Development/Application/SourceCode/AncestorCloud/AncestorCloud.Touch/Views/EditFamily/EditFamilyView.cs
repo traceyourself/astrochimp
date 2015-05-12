@@ -1,6 +1,4 @@
-﻿
-using System;
-
+﻿using System;
 using Foundation;
 using UIKit;
 using Cirrious.MvvmCross.Touch.Views;
@@ -134,10 +132,7 @@ namespace AncestorCloud.Touch
 
 		}
 
-		void SetBirthButtonText(string title)
-		{
-			PickerButtonTapped.SetTitle (title, UIControlState.Normal);
-		}
+
 
 		#endregion
 
@@ -287,6 +282,13 @@ namespace AncestorCloud.Touch
 
 				});
 		}
+
+		void SetBirthButtonText(string title)
+		{
+			PickerButtonTapped.SetTitle (title, UIControlState.Normal);
+		}
+
+
 
 
 	}

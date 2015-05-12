@@ -114,6 +114,13 @@ namespace AncestorCloud.Shared.ViewModels
 						ViewModelType = typeof(HomePageViewModel),
 
 					},
+					new MenuViewModel 
+					{
+						Section = Section.Matcher,
+						Title = "Profile",
+						Image = "logout_icon.png",
+						ViewModelType = typeof(ProfilePicViewModel),	
+					}
 
 				};
 			} 
@@ -152,6 +159,13 @@ namespace AncestorCloud.Shared.ViewModels
 						ViewModelType = typeof(HomePageViewModel),
 
 					},
+					new MenuViewModel 
+					{
+						Section = Section.Matcher,
+						Title = "Profile",
+						Image = "logout_icon.png",
+						ViewModelType = typeof(ProfilePicViewModel),	
+					}
 
 				};
 			}

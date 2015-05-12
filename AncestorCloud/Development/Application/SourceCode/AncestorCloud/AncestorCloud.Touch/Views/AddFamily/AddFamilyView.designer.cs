@@ -22,6 +22,9 @@ namespace AncestorCloud.Touch
 		UIKit.UIButton BirthYearButton { get; set; }
 
 		[Outlet]
+		UIKit.UIView container { get; set; }
+
+		[Outlet]
 		UIKit.UITextField FirstNameTextField { get; set; }
 
 		[Outlet]
@@ -47,6 +50,11 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (container != null) {
+				container.Dispose ();
+				container = null;
+			}
+
 			if (AddButton != null) {
 				AddButton.Dispose ();
 				AddButton = null;

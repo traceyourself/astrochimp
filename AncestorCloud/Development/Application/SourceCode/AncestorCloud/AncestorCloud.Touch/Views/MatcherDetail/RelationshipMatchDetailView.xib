@@ -6,7 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RelationshipMatchDetailView">
             <connections>
+                <outlet property="FirstMatchPic" destination="Lw0-U0-CK3" id="JIM-RU-N5D"/>
                 <outlet property="RelationshipMatchTable" destination="An6-nW-CHK" id="q4q-XS-Efu"/>
+                <outlet property="SecondMatchPic" destination="lv0-jB-0LL" id="2v8-kr-NHz"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
         </placeholder>
@@ -15,22 +17,12 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" id="saU-g9-lim">
-                    <rect key="frame" x="287" y="49" width="80" height="80"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                    <color key="backgroundColor" red="0.27254971590909094" green="0.056645811891980931" blue="0.18020612300007838" alpha="0.5" colorSpace="calibratedRGB"/>
-                </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="An6-nW-CHK">
                     <rect key="frame" x="0.0" y="175" width="367" height="526"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="sectionIndexColor" red="0.12535511363636365" green="0.0043073994648611747" blue="0.1021489488836944" alpha="0.57000000000000006" colorSpace="calibratedRGB"/>
                 </tableView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" id="4r5-eX-BbQ">
-                    <rect key="frame" x="10" y="49" width="80" height="80"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                    <color key="backgroundColor" red="0.2177635732323232" green="0.044808932005033712" blue="0.14495883632794176" alpha="0.48999999999999999" colorSpace="calibratedRGB"/>
-                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="EY2-tj-qPI">
                     <rect key="frame" x="-1" y="153" width="500" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -41,12 +33,26 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16º" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Ub-5v-wlh">
-                    <rect key="frame" x="166" y="75" width="44" height="33"/>
+                    <rect key="frame" x="165" y="72" width="44" height="33"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Lw0-U0-CK3">
+                    <rect key="frame" x="8" y="49" width="80" height="80"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                    <state key="normal" backgroundImage="noImage.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lv0-jB-0LL">
+                    <rect key="frame" x="287" y="49" width="80" height="80"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                    <state key="normal" backgroundImage="noImage.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
