@@ -13,6 +13,7 @@ using Android.Widget;
 using Android.Graphics;
 using System.Net;
 using Android.Graphics.Drawables;
+using Android.Media;
 
 namespace AncestorCloud.Droid
 {
@@ -168,6 +169,44 @@ namespace AncestorCloud.Droid
 			Bitmap resizedBitmap = BitmapFactory.DecodeFile(fileName, options);
 
 			return resizedBitmap;
+		}
+
+
+		public static Bitmap RotateImageIfRequired(Context context,Bitmap img,String path) {
+
+			// Detect rotation
+			int rotation = GetRotation(path);
+			if(rotation!=0){
+				Matrix matrix = new Matrix();
+				matrix.PostRotate(rotation);
+				Bitmap rotatedImg = Bitmap.CreateBitmap(img, 0, 0,img.Width,img.Height, matrix, true);
+				img.Recycle();
+				return rotatedImg;        
+			}else{
+				return img;
+			}
+		}
+
+		public static int GetRotation(String imgPath)
+		{
+			ExifInterface ei = new ExifInterface(imgPath);
+			int orientation = ei.GetAttributeInt(ExifInterface.TagOrientation,6);
+			int rotation = 0;
+			switch (orientation) {
+			case 6:
+				rotation = 90;
+				break;
+			case 1:
+				rotation = 180;
+				break;
+			case 8:
+				rotation = -90;
+				break;
+			default :
+				rotation = 0;
+				break;
+			}
+			return rotation;
 		}
 		#endregion
 	}

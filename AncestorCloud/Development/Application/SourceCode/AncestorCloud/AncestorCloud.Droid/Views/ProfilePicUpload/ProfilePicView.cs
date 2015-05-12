@@ -183,8 +183,10 @@ namespace AncestorCloud.Droid
 				// and cause the application to crash.
 				/*int height = Resources.DisplayMetrics.HeightPixels;
 				int width = _imageView.Width ;*/
+
 				CameraDataHolder.bitmap = Utilities.LoadAndResizeBitmap (CameraDataHolder._file.Path,1024,1024);
 				Bitmap bmp = Utilities.GetRoundedImageFromBitmap (this, CameraDataHolder.bitmap, 150);
+				bmp = Utilities.RotateImageIfRequired (this,bmp,CameraDataHolder._file.Path);
 				profileImg.SetImageBitmap (bmp);
 			}
 		}
