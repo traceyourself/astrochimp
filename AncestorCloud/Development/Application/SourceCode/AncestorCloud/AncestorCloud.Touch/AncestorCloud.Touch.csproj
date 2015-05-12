@@ -171,6 +171,9 @@
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Json.3.5.1\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.Json.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Dynamic.Interpreter" />
+    <Reference Include="GoogleAnalytics.iOS">
+      <HintPath>..\Components\googleanalytics-3.0.10.3\lib\ios-unified\GoogleAnalytics.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
@@ -388,6 +391,10 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamarin.social">
       <Version>1.1.7</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="googleanalytics">
+      <Version>3.0.10.3</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
