@@ -21,6 +21,7 @@ namespace AncestorCloud.Touch
 		bool isFirstPersonSelected = false;
 		bool isSecondPersonSelected = false;
 
+
 		public MatchView () : base ("MatchView", null)
 		{
 		}
@@ -43,6 +44,9 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewDidLoad ();
 
+
+
+
 //			scrollViewObj.Frame = this.View.Frame;
 //			scrollViewObj.ContentSize = new SizeF(320, 550);
 
@@ -59,6 +63,9 @@ namespace AncestorCloud.Touch
 
 
 			setNavigationBar ();
+
+
+
 
 		}
 
@@ -126,22 +133,30 @@ namespace AncestorCloud.Touch
 		#region firstImage Tapped
 	     partial void FirstImageButtonTapped(NSObject sender)
 		{
+
+
+			if(!isFirstPersonSelected){
 				ViewModel.WhichImageClicked = 1;
-
-			ViewModel.ShowFriendList();
-			//ViewModel.Close();
-
+				ViewModel.ShowFriendList();
+			}
 
 		}
 		#endregion
 
 		partial void SecondButtonImageTapped (NSObject sender)
 		{
-			
-				ViewModel.WhichImageClicked = 2;
+				if(!isSecondPersonSelected){
+					ViewModel.WhichImageClicked = 2;
+					ViewModel.ShowFriendList();
+				}
 
-			ViewModel.ShowFriendList();
-			//ViewModel.Close();
+		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			GetData ();
+
+
 
 		}
 
@@ -161,7 +176,7 @@ namespace AncestorCloud.Touch
 
 				}else if(ViewModel.FirstPersonPeople != null){
 					ViewModel.WhichImageClicked = 0;
-					isSecondPersonSelected = true;
+					//isSecondPersonSelected = true;
 
 					firstPersonImage = ViewModel.FirstPersonPeople.ProfilePicURL;
 					isFirstPersonSelected = true;
@@ -185,6 +200,8 @@ namespace AncestorCloud.Touch
 					HandleSecondPersonSelected ();
 				}
 			}
+
+
 		}
 
 		#endregion
@@ -194,21 +211,62 @@ namespace AncestorCloud.Touch
 
 			if (isFirstPersonSelected) {
 
-			
-				//first_img.SetImageResource(Resource.Drawable.user_no_img);
+				FirstImageButton.SetBackgroundImage(UIImage.FromBundle("noImage.png"),UIControlState.Normal);
+				FirstImageButton.Layer.CornerRadius = 90f;
+				FirstImageButton.ClipsToBounds = true;
 
-				//firstCrossContainer.Visibility = ViewStates.Visible;
+				FirstCrossButton.Hidden = false;
 			} else {
-//				first_img.SetImageResource (Resource.Drawable.empty_matcher_img);
-//				firstCrossContainer.Visibility = ViewStates.Gone;
+				FirstImageButton.SetBackgroundImage(UIImage.FromBundle("CircleMatcher.png"),UIControlState.Normal);
+				FirstImageButton.Layer.CornerRadius = 90f;
+				FirstImageButton.ClipsToBounds = true;
+				FirstCrossButton.Hidden = true;
 			}
 			
 		}
 
 		public void HandleSecondPersonSelected()
 		{
+
+			if (isSecondPersonSelected)
+			{
+
+				SecondImageButton.SetBackgroundImage(UIImage.FromBundle("noImage.png"),UIControlState.Normal);
+				SecondImageButton.Layer.CornerRadius = 90f;
+				SecondImageButton.ClipsToBounds = true;
+
+				SecondCrossButton.Hidden = false;
+			} else {
+				SecondImageButton.SetBackgroundImage(UIImage.FromBundle("CircleMatcher.png"),UIControlState.Normal);
+				SecondImageButton.Layer.CornerRadius = 90f;
+				SecondImageButton.ClipsToBounds = true;
+				SecondCrossButton.Hidden = true;
+			}
 			
 		}
+
+		partial void firstCrossImg (UIKit.UIButton sender)
+		{
+			System.Diagnostics.Debug.WriteLine("CrossButtonTaped");
+			isFirstPersonSelected = false;
+			ViewModel.FirstPersonCeleb = null;
+			ViewModel.FirstPersonPeople = null;
+			HandleFirstPersonSelected();
+		}
+
+		partial void secCrossImg (UIKit.UIButton sender)
+		{
+			System.Diagnostics.Debug.WriteLine("CrossButtonTaped");
+			isSecondPersonSelected = false;
+			ViewModel.SecondPersonCeleb = null;
+			ViewModel.SecondPersonPeople = null;
+			HandleSecondPersonSelected();
+		}
+
+
+
+	
+
 	}
 }
 

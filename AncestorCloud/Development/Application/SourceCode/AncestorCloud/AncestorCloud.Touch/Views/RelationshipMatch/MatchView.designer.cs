@@ -16,22 +16,40 @@ namespace AncestorCloud.Touch
 		UIKit.UIView ContentView { get; set; }
 
 		[Outlet]
+		UIKit.UIButton FirstCrossButton { get; set; }
+
+		[Outlet]
+		UIKit.UIButton FirstImageButton { get; set; }
+
+		[Outlet]
 		UIKit.UIScrollView scrollViewObj { get; set; }
+
+		[Outlet]
+		UIKit.UIButton SecondCrossButton { get; set; }
+
+		[Outlet]
+		UIKit.UIButton SecondImageButton { get; set; }
+
+		[Action ("firstCrossImg:")]
+		partial void firstCrossImg (UIKit.UIButton sender);
 
 		[Action ("FirstImageButtonTapped:")]
 		partial void FirstImageButtonTapped (Foundation.NSObject sender);
 
 		[Action ("FirstImageTapped:")]
-		partial void FirstImageTapped (Foundation.NSObject sender);
+		partial void FirstImageTapped (UIKit.UIButton sender);
 
 		[Action ("MatchTapped:")]
 		partial void MatchTapped (Foundation.NSObject sender);
+
+		[Action ("secCrossImg:")]
+		partial void secCrossImg (UIKit.UIButton sender);
 
 		[Action ("SecondButtonImageTapped:")]
 		partial void SecondButtonImageTapped (Foundation.NSObject sender);
 
 		[Action ("SecondImageTapped:")]
-		partial void SecondImageTapped (Foundation.NSObject sender);
+		partial void SecondImageTapped (UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -40,9 +58,29 @@ namespace AncestorCloud.Touch
 				ContentView = null;
 			}
 
+			if (FirstCrossButton != null) {
+				FirstCrossButton.Dispose ();
+				FirstCrossButton = null;
+			}
+
+			if (FirstImageButton != null) {
+				FirstImageButton.Dispose ();
+				FirstImageButton = null;
+			}
+
 			if (scrollViewObj != null) {
 				scrollViewObj.Dispose ();
 				scrollViewObj = null;
+			}
+
+			if (SecondCrossButton != null) {
+				SecondCrossButton.Dispose ();
+				SecondCrossButton = null;
+			}
+
+			if (SecondImageButton != null) {
+				SecondImageButton.Dispose ();
+				SecondImageButton = null;
 			}
 		}
 	}

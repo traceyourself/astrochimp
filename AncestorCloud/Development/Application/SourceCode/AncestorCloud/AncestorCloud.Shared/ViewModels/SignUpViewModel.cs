@@ -145,6 +145,10 @@ namespace AncestorCloud.Shared.ViewModels
 
 		#endregion
 
+		public void ShowProfilePicViewModel()
+		{
+			ShowViewModel <ProfilePicViewModel> ();
+		}
 
 		public void ShowMyFamilyViewModel()
 		{
@@ -242,13 +246,15 @@ namespace AncestorCloud.Shared.ViewModels
 
 					if (Mvx.CanResolve<IAndroidService> ()) 
 					{
-						ShowMyFamilyViewModel ();
+						//ShowMyFamilyViewModel ();
+						ShowProfilePicViewModel();
 						CloseCommand.Execute (null);
 					}
 					else
 					{
 						IsFbLogin = false;
-						CallFlyoutCommand.Execute(null);
+						ShowProfilePicViewModel();
+						//CallFlyoutCommand.Execute(null);
 						CloseCommand.Execute (null);
 					}
 

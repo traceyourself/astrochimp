@@ -104,6 +104,13 @@ namespace AncestorCloud.Touch
 		{
 			System.Diagnostics.Debug.WriteLine ("ADD BUTTON TAPPED :"  + celebs);
 
+			ViewModel.CelebrityPlusClickHandler(celebs);
+		}
+
+		partial void AddMeButtonTapped (NSObject sender)
+		{
+			System.Diagnostics.Debug.WriteLine("MeButtonTapped");
+
 			ViewModel.MePlusClicked();
 		}
 	}
