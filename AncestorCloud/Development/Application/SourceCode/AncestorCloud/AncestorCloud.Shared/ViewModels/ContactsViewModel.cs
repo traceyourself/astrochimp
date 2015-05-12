@@ -20,9 +20,12 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly IDatabaseService _databaseService;
 
-		public ContactsViewModel(IDatabaseService  service)
+		private readonly IContactService _contactService;
+
+		public ContactsViewModel(IDatabaseService  service, IContactService contact)
 		{
 			_databaseService = service;
+			_contactService = contact;
 			GetContactsData ();
 		}
 
@@ -31,7 +34,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void GetContactsData()
 		{
-			List<People> list = _databaseService.RelativeMatching ("");
+			List<People> list =  _contactService.GetDeviceContacts();
 			ContactsList = list;
 		}
 		#endregion

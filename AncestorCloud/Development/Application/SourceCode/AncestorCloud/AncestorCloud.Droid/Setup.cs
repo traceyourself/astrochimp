@@ -30,6 +30,7 @@ namespace AncestorCloud.Droid
 			Mvx.RegisterSingleton<IAndroidService>(new IsAndroidService());
 			Mvx.RegisterSingleton<ILoader>(new Loader());
 			Mvx.RegisterSingleton<IFileService>(new FileService());
+			Mvx.RegisterSingleton<IContactService>(new AndroidContactService());
 			base.InitializeFirstChance();
 		}
 

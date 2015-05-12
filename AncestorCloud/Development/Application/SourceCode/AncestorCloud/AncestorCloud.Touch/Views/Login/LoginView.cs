@@ -52,6 +52,8 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 			SetNavigationBar ();
 			BindViewModel ();
+
+			base.OnKeyboardChanged += OnKeyboardChanged;
 //			EmailTextFeild.BecomeFirstResponder ();
 //			PasswordTextFeild.BecomeFirstResponder ();
 			// Perform any additional setup after loading the view, typically from a nib.
@@ -112,17 +114,19 @@ namespace AncestorCloud.Touch
 //			ViewModel.ShowFbFamilyViewModel ();
 //			ViewModel.Close ();
 
-			//ViewModel.LinkFbUserData.Execute (null);
+			ViewModel.LinkFbUserData.Execute (null);
 
-			ViewModel.IsFbLogin = true;
-			ViewModel.CallFlyoutCommand.Execute(null);
-			ViewModel.CloseCommand.Execute (null);
+//			ViewModel.IsFbLogin = true;
+//			ViewModel.CallFlyoutCommand.Execute(null);
+//			ViewModel.CloseCommand.Execute (null);
 		}
 
 		partial void FacebookButtonTapped (NSObject sender)
 		{
 			DoFbLogin();
 		}
+
+
 
 		public virtual bool HandlesKeyboardNotifications
 		{
@@ -132,14 +136,23 @@ namespace AncestorCloud.Touch
 
 		#endregion
 
-		public  void OnKeyboardChanged (bool visible, nfloat height)
+		public  void OnKeyboardChanged (object sender,OnKeyboardChangedArgs args)
 		{
-			//We "center" the popup when the keyboard appears/disappears
+
+			UITextField current = EmailTextFeild.IsFirstResponder ? EmailTextFeild: PasswordTextFeild;
+
+			var point = this.View.ConvertRectToView (current.Frame, this.View.Superview);
+
 			var frame = container.Frame;
-			if (visible)
-				frame.Y -= height / 2;
+
+			if (frame.Size.Height  - args.Frame.Size.Height > point.Y + 50)
+				return;
+			
+			if (args.visible)
+				frame.Y -= point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height) ;
 			else
-				frame.Y += height / 2;
+				frame.Y += point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height);
+
 			container.Frame = frame;
 		}
 

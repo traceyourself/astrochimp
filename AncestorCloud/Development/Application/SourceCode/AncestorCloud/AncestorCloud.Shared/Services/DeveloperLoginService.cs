@@ -46,9 +46,19 @@ namespace AncestorCloud.Shared
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
 				ResponseModel<String> responsemodal = new ResponseModel<String>();
-				responsemodal.Status = ResponseStatus.OK;
-				responsemodal.Content= dict[AppConstant.VALUE].ToString();
 
+				if(dict.ContainsKey(AppConstant.Message))
+				{
+					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
+					{
+						responsemodal.Status = ResponseStatus.OK;
+						responsemodal.Content= dict[AppConstant.VALUE].ToString();
+					}else
+					{
+						responsemodal.Status = ResponseStatus.Fail;
+					}
+				}
+					
 				return responsemodal;
 			}
 			catch(Exception ex)

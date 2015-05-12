@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "AncestorCloud.Touch", "AncestorCloud.Touch\AncestorCloud.Touch.csproj", "{F28C01AA-A255-4834-A258-54D7B2CA0841}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AncestorCloud.Touch", "AncestorCloud.Touch\AncestorCloud.Touch.csproj", "{F28C01AA-A255-4834-A258-54D7B2CA0841}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AncestorCloud.Core", "AncestorCloud.Shared\AncestorCloud.Core.csproj", "{ED8A9D7B-B591-4204-BE58-FAC4EE55E0E5}"
 EndProject
