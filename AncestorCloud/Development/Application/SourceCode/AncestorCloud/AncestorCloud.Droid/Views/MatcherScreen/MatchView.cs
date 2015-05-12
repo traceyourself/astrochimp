@@ -295,7 +295,7 @@ namespace AncestorCloud.Droid
 				if (URLUtil.IsValidUrl(firstPersonImage)) {
 					first_img.SetImageURI (Android.Net.Uri.Parse (firstPersonImage));
 				} else {
-					first_img.SetImageResource(Resource.Drawable.user_no_img);
+					first_img.SetImageResource(Resource.Drawable.no_img);
 				}
 				firstCrossContainer.Visibility = ViewStates.Visible;
 			} else {
