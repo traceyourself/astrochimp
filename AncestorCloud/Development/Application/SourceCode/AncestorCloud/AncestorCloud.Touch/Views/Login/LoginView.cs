@@ -120,11 +120,11 @@ namespace AncestorCloud.Touch
 //			ViewModel.ShowFbFamilyViewModel ();
 //			ViewModel.Close ();
 
-			ViewModel.LinkFbUserData.Execute (null);
+			//ViewModel.LinkFbUserData.Execute (null);
 
-//			ViewModel.IsFbLogin = true;
-//			ViewModel.CallFlyoutCommand.Execute(null);
-//			ViewModel.CloseCommand.Execute (null);
+			ViewModel.IsFbLogin = true;
+			ViewModel.CallFlyoutCommand.Execute(null);
+			ViewModel.CloseCommand.Execute (null);
 		}
 
 		partial void FacebookButtonTapped (NSObject sender)

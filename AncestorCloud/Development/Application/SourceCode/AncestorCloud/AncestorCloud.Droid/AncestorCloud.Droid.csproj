@@ -91,6 +91,7 @@
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\packages\Xamarin.Android.Support.v4.22.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Android.Support.v4" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -130,6 +131,8 @@
     <Compile Include="Views\FacebookFriends\FacebookFriendView.cs" />
     <Compile Include="Views\HelpDialog\HelpDialog.cs" />
     <Compile Include="PlatformSpecificService\AndroidContactService.cs" />
+    <Compile Include="DroidUtilities\RoundedImageView.cs" />
+    <Compile Include="PlatformSpecificService\DroidSMSService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

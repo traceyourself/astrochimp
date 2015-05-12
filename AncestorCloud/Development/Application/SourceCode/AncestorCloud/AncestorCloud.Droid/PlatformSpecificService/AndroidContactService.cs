@@ -19,7 +19,7 @@ namespace AncestorCloud.Droid
 		public List<People> GetDeviceContacts ()
 		{
 			
-			return FillContacts;
+			return FillContacts();
 		}
 
 		private List<People> FillContacts ()
@@ -30,7 +30,8 @@ namespace AncestorCloud.Droid
 			string[] projection = {
 				ContactsContract.Contacts.InterfaceConsts.Id,
 				ContactsContract.Contacts.InterfaceConsts.DisplayName,
-				ContactsContract.Contacts.InterfaceConsts.PhotoId
+				ContactsContract.Contacts.InterfaceConsts.PhotoId,
+				ContactsContract.Contacts.InterfaceConsts.HasPhoneNumber
 			};
 
 			// CursorLoader introduced in Honeycomb (3.0, API11)
@@ -40,9 +41,10 @@ namespace AncestorCloud.Droid
 			if (cursor.MoveToFirst ()) {
 				do {
 					contactList.Add (new People{
-						Id = cursor.GetLong (cursor.GetColumnIndex (projection [0])),
+						Id = (int)cursor.GetLong (cursor.GetColumnIndex (projection [0])),
 						Name = cursor.GetString (cursor.GetColumnIndex (projection [1])),
-						ProfilePicURL = cursor.GetString (cursor.GetColumnIndex (projection [2]))
+						ProfilePicURL = cursor.GetString (cursor.GetColumnIndex (projection [2])),
+						Contact =  cursor.GetString (cursor.GetColumnIndex (projection [3]))
 					});
 				} while (cursor.MoveToNext());
 			}

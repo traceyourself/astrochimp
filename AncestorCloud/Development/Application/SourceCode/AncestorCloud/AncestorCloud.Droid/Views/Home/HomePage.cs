@@ -13,6 +13,7 @@ using Android.Widget;
 using Android.Graphics;
 using AncestorCloud.Shared.ViewModels;
 using Android.Content.PM;
+using Android.Support.V4.View;
 
 
 namespace AncestorCloud.Droid

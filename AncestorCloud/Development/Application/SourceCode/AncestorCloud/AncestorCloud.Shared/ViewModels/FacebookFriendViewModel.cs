@@ -30,7 +30,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void GetFacebookFriendData()
 		{
-			List<People> list = _databaseService.RelativeMatching ("");
+			List<People> list = _databaseService.RelativeMatching (AppConstant.FRIENDKEY);
 			FacebookFriendList = list;
 		}
 		#endregion

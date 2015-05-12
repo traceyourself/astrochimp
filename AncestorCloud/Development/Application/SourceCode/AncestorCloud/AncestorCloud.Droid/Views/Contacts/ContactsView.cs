@@ -54,7 +54,7 @@ namespace AncestorCloud.Droid
 		#region List Adapter
 		private void setCelebListAdapter()
 		{
-			ContactsListAdapter adapter = new ContactsListAdapter (this,new List<String>());
+			ContactsListAdapter adapter = new ContactsListAdapter (this,ViewModel.ContactsList);
 			contactList.Adapter = adapter;
 			contactList.Invalidate ();
 		}
@@ -82,16 +82,16 @@ namespace AncestorCloud.Droid
 	{
 		ContactsView mycontObj;
 		LayoutInflater inflater;
-		List<String> dataList;
+		List<People> dataList;
 
-		public ContactsListAdapter(ContactsView mycontObj,List<String> dataList){
+		public ContactsListAdapter(ContactsView mycontObj,List<People> dataList){
 			this.mycontObj = mycontObj;
 			this.dataList = dataList;
 			inflater = (LayoutInflater)mycontObj.GetSystemService (Context.LayoutInflaterService);
 		}
 
 		public override int Count {
-			get { return 15; }
+			get { return dataList.Count; }
 		}
 
 		public override Java.Lang.Object GetItem (int position) {
@@ -123,7 +123,7 @@ namespace AncestorCloud.Droid
 				holder = (ContViewHolder)convertView.GetTag (Resource.Id.celeb_list);
 			}
 
-			holder.nametxt.Text = "Contact Name";
+			holder.nametxt.Text = dataList[position].Name;
 
 			holder.plus.Click += (object sender, EventArgs e) => {
 				mycontObj.ViewModel.Close();

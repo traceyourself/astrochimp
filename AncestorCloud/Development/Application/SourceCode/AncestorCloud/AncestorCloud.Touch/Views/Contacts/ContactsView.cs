@@ -52,11 +52,11 @@ namespace AncestorCloud.Touch
 
 			var set = this.CreateBindingSet<ContactsView , ContactsViewModel> ();
 			set.Bind (source).To (vm => vm.ContactsList);
-
-
-			this.NavigationItem.TitleView = new MyContactTitleView (this.Title,new RectangleF(0,0,150,20));
+			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.SendMessageCommand);
 			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
+
+			this.NavigationItem.TitleView = new MyContactTitleView (this.Title,new RectangleF(0,0,150,20));
 			this.NavigationController.NavigationBarHidden = false;
 
 			MeImage.Layer.CornerRadius = 22f;

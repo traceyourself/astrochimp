@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Plugins.Messenger;
+using Cirrious.MvvmCross.ViewModels;
+using System.Windows.Input;
 
 namespace AncestorCloud.Shared.ViewModels
 {
 	public class ContactsViewModel:BaseViewModel
 	{
-
-
 
 		#region Close Method
 		public void Close()
@@ -22,10 +22,13 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly IContactService _contactService;
 
-		public ContactsViewModel(IDatabaseService  service, IContactService contact)
+		private readonly ISMSService _smsService;
+
+		public ContactsViewModel(IDatabaseService  service, IContactService contact, ISMSService smsService)
 		{
 			_databaseService = service;
 			_contactService = contact;
+			_smsService = smsService;
 			GetContactsData ();
 		}
 
@@ -79,6 +82,28 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+		#region Commands
+
+		private ACCommand _sendMessageCommand;
+
+		public ICommand SendMessageCommand
+		{
+			get
+			{
+				//return this._sendMessageCommand ?? (this._sendMessageCommand = new MvxCommand<People>(item =>(this.SendMessage(item))));
+				return new MvxCommand<People>(item => this.SendMessage(item));
+			}
+		}
+		#endregion
+
+		#region
+
+		void SendMessage(People people)
+		{
+			_smsService.SendSMS (people);
+		}
+
+		#endregion
 	}
 }
 

@@ -3,6 +3,8 @@ using Cirrious.MvvmCross.Touch.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using Foundation;
 using UIKit;
+using GoogleAnalytics.iOS;
+using AncestorCloud.Shared;
 
 namespace AncestorCloud.Touch
 {
@@ -12,6 +14,8 @@ namespace AncestorCloud.Touch
 		UIWindow _window;
 
 		LoaderView _loaderView;
+
+		public IGAITracker Tracker;
 
 		public override bool FinishedLaunching(UIApplication application , NSDictionary launchOptions)
 		{
@@ -23,17 +27,33 @@ namespace AncestorCloud.Touch
 
 			var startup = Mvx.Resolve<IMvxAppStart>();
 			startup.Start();
+		
+//			var documents = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User) [0];
+//			string mydocumentpath = documents.ToString();
+//
+//			System.Diagnostics.Debug.WriteLine("app dir: "+ mydocumentpath);
 
-
-			var documents = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User) [0];
-			string mydocumentpath = documents.ToString();
-
-			System.Diagnostics.Debug.WriteLine("app dir: "+ mydocumentpath);
+			RegisterGoogleAnalytics ();
 
 			_window.MakeKeyAndVisible();
 
 			return true;
 		}
+
+		#region RegisterGoogleAnalytics
+
+		void RegisterGoogleAnalytics()
+		{
+			// Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+			GAI.SharedInstance.DispatchInterval = 20;
+
+			// Optional: automatically send uncaught exceptions to Google Analytics.
+			GAI.SharedInstance.TrackUncaughtExceptions = true;
+
+			// Initialize tracker.
+			Tracker = GAI.SharedInstance.GetTracker (AppConstant.GATRACKINGID);
+		}
+		#endregion
 
 
 		public void  ShowActivityLoader()
