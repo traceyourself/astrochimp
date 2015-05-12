@@ -37,7 +37,8 @@ namespace AncestorCloud.Touch
 		{
 			string contact = people.Contact;
 			string[] tokens = contact.Split(new string[] { ")" }, StringSplitOptions.None);
-			contact = tokens [0] + tokens [1].Trim ();
+			if(tokens.Length > 1)
+				contact = tokens [0] + tokens [1].Trim ();
 			contact = contact.Replace ("(", "").Replace (") ", "").Replace ("-", "").Replace (" ", string.Empty);
 			return contact;
 		}
