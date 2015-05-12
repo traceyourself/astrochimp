@@ -1,103 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="300dp"
     android:layout_height="fill_parent"
     android:background="@color/menu_back_color">
     <LinearLayout
-        android:id="@+id/my_family_menu_btn"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="15dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="32dp"
-            android:src="@drawable/myfamily_title" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/my_family_menu"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:layout_marginLeft="10dp" />
+        android:orientation="vertical"
+        android:layout_width="300dp"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:id="@+id/my_family_menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="32dp"
+                android:src="@drawable/myfamily_title" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/my_family_menu"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/menu_div_color" />
+        <LinearLayout
+            android:id="@+id/matcher_menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="32dp"
+                android:src="@drawable/match_icon" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/matcher_menu"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/menu_div_color" />
+        <LinearLayout
+            android:id="@+id/research_menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="32dp"
+                android:src="@drawable/search_icon" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/research_menu"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/menu_div_color" />
+        <LinearLayout
+            android:id="@+id/logout_menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="32dp"
+                android:src="@drawable/logout_icon" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/log_out_menu"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/menu_div_color" />
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/menu_div_color" />
     <LinearLayout
-        android:id="@+id/matcher_menu_btn"
+        android:id="@+id/profile_menu_btn"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="80dp"
         android:gravity="center_vertical"
         android:paddingLeft="15dp"
-        android:orientation="horizontal">
+        android:paddingBottom="20dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="32dp"
-            android:src="@drawable/match_icon" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/matcher_menu"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:layout_marginLeft="10dp" />
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/menu_div_color" />
-    <LinearLayout
-        android:id="@+id/research_menu_btn"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="15dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="32dp"
-            android:src="@drawable/search_icon" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/research_menu"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:layout_marginLeft="10dp" />
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/menu_div_color" />
-    <LinearLayout
-        android:id="@+id/logout_menu_btn"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="15dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="32dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/logout_icon" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/log_out_menu"
+            android:text="UserName"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:layout_marginLeft="10dp" />
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/menu_div_color" />
-</LinearLayout>
+</RelativeLayout>

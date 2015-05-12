@@ -9,6 +9,16 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			ShowViewModel<FlyOutViewModel> ();
 		}
+
+
+
+		#region close 
+		public void Close()
+		{
+			this.Close (this);			
+		}
+		#endregion
+
 	}
 }
 

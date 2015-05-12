@@ -23,7 +23,7 @@ namespace AncestorCloud.Droid
 			this.actObj = actObj;
 		}
 
-		#region Edit Dialog
+		#region Help Dialog
 		public void ShowHelpDialog()
 		{
 

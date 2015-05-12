@@ -132,6 +132,7 @@
     <Compile Include="Views\HelpDialog\HelpDialog.cs" />
     <Compile Include="PlatformSpecificService\AndroidContactService.cs" />
     <Compile Include="DroidUtilities\RoundedImageView.cs" />
+    <Compile Include="Views\ProfilePicUpload\ProfilePicView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -281,6 +282,7 @@
     <AndroidResource Include="Resources\drawable\user_no_img.png" />
     <AndroidResource Include="Resources\layout\upload_pic.axml" />
     <AndroidResource Include="Resources\drawable\circle_cover.axml" />
+    <AndroidResource Include="Resources\layout\terms_dialog.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -303,6 +305,7 @@
     <Folder Include="Views\Contacts\" />
     <Folder Include="Views\FacebookFriends\" />
     <Folder Include="Views\HelpDialog\" />
+    <Folder Include="Views\ProfilePicUpload\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.social">
