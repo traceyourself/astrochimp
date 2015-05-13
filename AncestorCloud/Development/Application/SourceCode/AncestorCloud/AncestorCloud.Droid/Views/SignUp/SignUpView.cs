@@ -20,7 +20,8 @@ namespace AncestorCloud.Droid
 	public class SignUpView : BaseActivity
 	{
 		ActionBar actionBar;
-		TextView fbBtn,signUpBtn;
+		TextView fbBtn,signUpBtn,termsText;
+		Dialog termsDialog;
 
 		public new SignUpViewModel ViewModel
 		{
@@ -46,6 +47,7 @@ namespace AncestorCloud.Droid
 			actionBar = FindViewById<ActionBar> (Resource.Id.actionBar);
 			fbBtn = FindViewById<TextView> (Resource.Id.fb_btn_reg);
 			signUpBtn = FindViewById<TextView> (Resource.Id.sign_up_btn);
+			termsText = FindViewById<TextView> (Resource.Id.terms_txt);
 		}
 
 		private void ConfigureActionBar()
@@ -71,7 +73,27 @@ namespace AncestorCloud.Droid
 				ViewModel.DoSignUp();
 			};
 
+			termsText.Click+= (object sender, EventArgs e) => {
+				ShowTermsDialog();
+			};
 		}
+
+		#region Terms Dialog
+		public void ShowTermsDialog()
+		{
+
+			termsDialog = new Dialog (this,Android.Resource.Style.ThemeTranslucentNoTitleBar);
+			termsDialog.SetContentView (Resource.Layout.terms_dialog);
+
+			RelativeLayout crossbtn = termsDialog.FindViewById<RelativeLayout> (Resource.Id.cross_edit_btn);
+
+			crossbtn.Click += (object sender, EventArgs e) => {
+				termsDialog.Dismiss();
+			};
+
+			termsDialog.Show ();
+		}
+		#endregion
 
 		private void UseFacebookToRegister()
 		{

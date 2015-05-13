@@ -1,4 +1,6 @@
 ﻿using System;
+using Cirrious.CrossCore;
+using System.IO;
 
 namespace AncestorCloud.Shared.ViewModels
 {
@@ -29,10 +31,9 @@ namespace AncestorCloud.Shared.ViewModels
 		#region logout
 		public void Logout()
 		{
-			ShowViewModel<HomePageViewModel>();
-			this.Close(this);
+			ShowViewModel<HomePageViewModel> ();
+			this.Close (this);
 		}
-		#endregion
 
 
 		#region Properties
@@ -49,7 +50,16 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 		}
 
+		#region ProfilePic Path
+		public Stream ProfilePicStream{ get; set;}
+		#endregion
 
+
+		#region Upload image
+		public void UploadImage()
+		{
+			Mvx.Trace ("Stream Length : "+ProfilePicStream.Length);
+		}
 		#endregion
 	}
 }

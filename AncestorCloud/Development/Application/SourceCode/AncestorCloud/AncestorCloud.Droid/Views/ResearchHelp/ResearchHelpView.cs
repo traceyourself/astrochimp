@@ -18,7 +18,8 @@ namespace AncestorCloud.Droid
 	{
 		FlyOutContainer menu;
 		ActionBar actionBar;
-		LinearLayout menuLayout,contentLayout;
+		LinearLayout contentLayout;
+		RelativeLayout menuLayout;
 		TextView research_help_txt;
 
 		public new ResearchHelpViewModel ViewModel
@@ -40,7 +41,7 @@ namespace AncestorCloud.Droid
 		private void initUI()
 		{
 			menu = FindViewById<FlyOutContainer> (Resource.Id.flyOutContainerLay);
-			menuLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutMenu);
+			menuLayout = FindViewById<RelativeLayout> (Resource.Id.FlyOutMenu);
 			contentLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutContent);
 			research_help_txt = contentLayout.FindViewById<TextView> (Resource.Id.help_txt);
 		}
@@ -76,6 +77,12 @@ namespace AncestorCloud.Droid
 					ViewModel.Logout();
 				}
 			};
+
+			menuLayout.FindViewById<LinearLayout> (Resource.Id.profile_menu_btn).Click += (object sender, EventArgs e) => {
+				menu.AnimatedOpened = !menu.AnimatedOpened;
+				ViewModel.ShowProfilePicModel();
+			};
+
 		}
 
 		#region Action Bar Configuration
