@@ -1,17 +1,39 @@
 ﻿using System;
 using Cirrious.CrossCore;
 using System.IO;
+using Cirrious.CrossCore.Platform;
 
 namespace AncestorCloud.Shared.ViewModels
 {
 	public class ProfilePicViewModel : BaseViewModel
 	{
 
+		public void Init(DetailParameter parameter)
+		{
+			//this.MatchResult = parameter.MatchResult;
+
+			if (parameter == null) return;
+			IsFromSignup = parameter.FromSignUp;
+		}
+
+		#region from sign up
+		public bool IsFromSignup{ get; set;}
+		#endregion
+
+		#region Parameter Class
+
+		public class DetailParameter
+		{
+			public bool FromSignUp { get; set;}
+		}
+		#endregion
+
 		public void ShowFamiyViewModel()
 		{
 			ShowViewModel<FlyOutViewModel> ();
 			this.Close (this);//XXXXX
 		}
+
 
 		#region Close Method
 		public void Close()
@@ -63,6 +85,10 @@ namespace AncestorCloud.Shared.ViewModels
 			Mvx.Trace ("Stream Length : "+ProfilePicStream.Length);
 		}
 		#endregion
+
+
+
+
 	}
 }
 
