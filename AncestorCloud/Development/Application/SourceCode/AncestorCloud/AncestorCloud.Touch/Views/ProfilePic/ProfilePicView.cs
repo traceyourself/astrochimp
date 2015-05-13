@@ -4,6 +4,7 @@ using UIKit;
 using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
 using System.Drawing;
+using System.IO;
 
 namespace AncestorCloud.Touch
 {
@@ -61,7 +62,8 @@ namespace AncestorCloud.Touch
 
 		partial void UploadButtonTapped (NSObject sender)
 		{
-			System.Diagnostics.Debug.WriteLine("Upload Button Tapped");
+			//System.Diagnostics.Debug.WriteLine("Upload Button Tapped");
+			ViewModel.UploadImage();
 		}
 		partial void SkipButtonTapped (NSObject sender)
 		{
@@ -225,8 +227,10 @@ namespace AncestorCloud.Touch
 				NSError err = null;
 				if (imgData.Save(jpgFilename, false, out err))
 				{
-					Console.WriteLine("saved as " + jpgFilename);
-					ViewModel.ProfilePicURL = jpgFilename;
+					Console.WriteLine("saved at " + jpgFilename);
+					Stream stream = File.OpenRead (jpgFilename);
+					ViewModel.ProfilePicStream = stream;
+					
 				} else {
 					Console.WriteLine("NOT saved as" + jpgFilename + " because" + err.LocalizedDescription);
 				}
