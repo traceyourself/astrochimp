@@ -122,6 +122,7 @@ namespace AncestorCloud.Shared.ViewModels
 						ViewModelType = typeof(ProfilePicViewModel),	
 					}
 
+
 				};
 			} 
 			else 
@@ -157,6 +158,7 @@ namespace AncestorCloud.Shared.ViewModels
 						Title = "Log Out",
 						Image = "logout_icon.png",
 						ViewModelType = typeof(HomePageViewModel),
+
 
 					},
 					new MenuViewModel 

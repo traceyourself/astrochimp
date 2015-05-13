@@ -65,6 +65,7 @@ namespace AncestorCloud.Touch
 			this.NavigationItem.SetHidesBackButton (true, false);
 			this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,150,20));
 
+
 			UIImage image = UIImage.FromFile ("action_menu.png");
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
@@ -101,8 +102,6 @@ namespace AncestorCloud.Touch
 		{
 			ViewModel.ShowHelpViewModel();
 			ViewModel.Close();
-
-
 
 		}
 		#endregion

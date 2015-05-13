@@ -14,11 +14,14 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public String AddType { get; set;}
 
-		public AddFamilyViewModel(IAddFamilyService service, IAlert alert)
+		private readonly IReachabilityService _reachabilityService;
+
+		public AddFamilyViewModel(IAddFamilyService service, IAlert alert,IReachabilityService reachabilty)
 		{
 			_addService = service;
 			_databaseService = Mvx.Resolve<IDatabaseService>();
 			Alert = alert;
+			_reachabilityService = reachabilty;
 		}
 
 		public void Init(DetailParameter param)
@@ -145,30 +148,34 @@ namespace AncestorCloud.Shared.ViewModels
 		#region addPerson
 		public async void AddPerson(){
 
-			if(Validate())
-			{
-				LoginModel lModal = _databaseService.GetLoginDetails ();
-			
-				People modal = new People ();
-
-				modal.FirstName = this.FirstName;
-				modal.MiddleName = this.MiddleName;
-				modal.LastName = this.LastName;
-				modal.DateOfBirth = this.BirthDate;
-				modal.BirthLocation = this.BirthLocation;
-				modal.Gender = this.Gender;
-				modal.SessionId = lModal.Value;
-				modal.Relation = this.AddType;
-				modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;
-					
-				ResponseModel<People> response = await _addService.AddFamilyMember(modal);
-
-				if (response.Status == ResponseStatus.OK) {
-					_databaseService.InsertRelative (response.Content as People);
-					Alert.ShowAlert ("Successfully Added","Success");
-					Close ();
+			if (Validate ()) {
+				if (_reachabilityService.IsNetworkNotReachable ()) {
+					Mvx.Resolve<IAlert> ().ShowAlert ("Please check internet connection", "Network not available");
 				} else {
-					Alert.ShowAlert ("Failed to add, Please try Again...","Error");
+
+					LoginModel lModal = _databaseService.GetLoginDetails ();
+			
+					People modal = new People ();
+
+					modal.FirstName = this.FirstName;
+					modal.MiddleName = this.MiddleName;
+					modal.LastName = this.LastName;
+					modal.DateOfBirth = this.BirthDate;
+					modal.BirthLocation = this.BirthLocation;
+					modal.Gender = this.Gender;
+					modal.SessionId = lModal.Value;
+					modal.Relation = this.AddType;
+					modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;
+					
+					ResponseModel<People> response = await _addService.AddFamilyMember (modal);
+
+					if (response.Status == ResponseStatus.OK) {
+						_databaseService.InsertRelative (response.Content as People);
+						Alert.ShowAlert ("Successfully Added", "Success");
+						Close ();
+					} else {
+						Alert.ShowAlert ("Failed to add, Please try Again...", "Error");
+					}
 				}
 			}
 		}

@@ -23,8 +23,10 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly FaceBookLinkManager _facebookLinkManager;
 
+		private readonly IReachabilityService _reachabilityService;
 
-		public LoginViewModel(ILoginService service, IAlert alert)
+
+		public LoginViewModel(ILoginService service, IAlert alert, IReachabilityService reachabilty)
 		{
 			_loginService = service;
 			_databaseService = Mvx.Resolve<IDatabaseService>();
@@ -32,6 +34,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_facebookLinkManager = new FaceBookLinkManager ();
 			Email = "mikeyamadeo@gmail.com";
 			Password = "password";
+			_reachabilityService = reachabilty;
 
 		}
 
@@ -115,7 +118,9 @@ namespace AncestorCloud.Shared.ViewModels
 		#region Close Method
 		public void Close()
 		{
-			this.Close(this);
+			this.Close(this);if (_reachabilityService.IsNetworkNotReachable ()) {
+				Alert.ShowAlert ("Please check internet connection", "Network not available");
+			}
 		}
 		#endregion
 
@@ -210,24 +215,26 @@ namespace AncestorCloud.Shared.ViewModels
 			// Validate Parameters
 
 			if (ValidateCredentials ()) {
-				ResponseModel<LoginModel> response = await _loginService.Login (Email, Password, AppConstant.DEVELOPERID, AppConstant.DEVELOPERPASSWORD);
 
-				if (response.Status == ResponseStatus.OK) {
+				if (_reachabilityService.IsNetworkNotReachable ()) {
+					Alert.ShowAlert ("Please check internet connection", "Network not available");
+				} else {
+					ResponseModel<LoginModel> response = await _loginService.Login (Email, Password, AppConstant.DEVELOPERID, AppConstant.DEVELOPERPASSWORD);
 
-					_databaseService.InsertLoginDetails(response.Content as LoginModel);
+					if (response.Status == ResponseStatus.OK) {
 
-					//_databaseService.GetLoginDetails ();
+						_databaseService.InsertLoginDetails (response.Content as LoginModel);
 
-					if (Mvx.CanResolve<IAndroidService> ()) 
-					{
-						ShowMyFamilyViewModel ();
-						CloseCommand.Execute (null);
-					}
-					else
-					{
-						IsFbLogin = false;
-						CallFlyoutCommand.Execute(null);
-						CloseCommand.Execute (null);
+						//_databaseService.GetLoginDetails ();
+
+						if (Mvx.CanResolve<IAndroidService> ()) {
+							ShowMyFamilyViewModel ();
+							CloseCommand.Execute (null);
+						} else {
+							IsFbLogin = false;
+							CallFlyoutCommand.Execute (null);
+							CloseCommand.Execute (null);
+						}
 					}
 				}
 			}

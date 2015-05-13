@@ -16,7 +16,7 @@ namespace AncestorCloud.Touch
      public partial class HomePage : BaseViewController
 
 	{
-
+		
 	
 //		private MvxSubscriptionToken navigationMenuToggleToken;
 //		private MvxSubscriptionToken navigationBarHiddenToken;
@@ -64,9 +64,9 @@ namespace AncestorCloud.Touch
 
 		partial void signUpClicked (NSObject sender)
 		{
-			
-			ViewModel.ShowSignViewModel();
-			ViewModel.Close();
+				ViewModel.ShowSignViewModel();
+				ViewModel.Close();
+
 		}
 
 		#region CollectionView

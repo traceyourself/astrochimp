@@ -11,13 +11,15 @@ namespace AncestorCloud.Shared.ViewModels
 		private readonly IAddFamilyService _addService;
 
 		private readonly IAlert Alert;
+		private readonly IReachabilityService _reachabilityService;
 
-		public MyFamilyViewModel(IDatabaseService  service)
+		public MyFamilyViewModel(IDatabaseService  service, IReachabilityService reachabilty)
 		{
 			_databaseService = service;
 			_addService = Mvx.Resolve<IAddFamilyService>();;
 			Alert = Mvx.Resolve<IAlert>();;
 			GetFbFamilyData ();
+			_reachabilityService = reachabilty;
 		}
 
 		#region show Add family dialog model
@@ -130,14 +132,18 @@ namespace AncestorCloud.Shared.ViewModels
 			//TODO : Remove this line when data is live
 			FamilyMember.IndiOgfn = lModal.IndiOGFN;
 
-			ResponseModel<People> response = await _addService.EditFamilyMember(FamilyMember);
+			if (_reachabilityService.IsNetworkNotReachable ()) {
+				Mvx.Resolve<IAlert> ().ShowAlert ("Please check internet connection", "Network not available");
+			} else {
 
-			if (response.Status == ResponseStatus.OK) {
-				_databaseService.UpdateRelative (response.Content as People);
-				Alert.ShowAlert ("Successfully Edited","Success");
-			} 
-			else {
-				Alert.ShowAlert ("Failed to edit, Please try Again...","Error");
+				ResponseModel<People> response = await _addService.EditFamilyMember (FamilyMember);
+
+				if (response.Status == ResponseStatus.OK) {
+					_databaseService.UpdateRelative (response.Content as People);
+					Alert.ShowAlert ("Successfully Edited", "Success");
+				} else {
+					Alert.ShowAlert ("Failed to edit, Please try Again...", "Error");
+				}
 			}
 
 		} 

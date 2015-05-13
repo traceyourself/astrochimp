@@ -15,9 +15,10 @@ namespace AncestorCloud.Shared.ViewModels
 		IMvxMessenger _matcherMessenger;
 		public Celebrity FirstPersonCeleb,SecondPersonCeleb;
 		public People FirstPersonPeople,SecondPersonPeople;
+		private readonly IReachabilityService _reachabilityService;
 
 
-		public MatchViewModel()
+		public MatchViewModel(IReachabilityService reachabilty)
 		{
 			
 			_matchService = Mvx.Resolve<IMatchService> ();	
@@ -30,6 +31,8 @@ namespace AncestorCloud.Shared.ViewModels
 			matcherChosenToken = _matcherMessenger.Subscribe<MatchGetPersonMeassage>(message => {
 				HandleSelectedPerson(message);
 			});
+
+			_reachabilityService = reachabilty;
 		}
 
 		public void HandleSelectedPerson(MatchGetPersonMeassage message)
@@ -152,6 +155,10 @@ namespace AncestorCloud.Shared.ViewModels
 		public async void MatchService()
 		{
 			if (Validate ()) {
+
+				if (_reachabilityService.IsNetworkNotReachable ()) {
+					Mvx.Resolve<IAlert>().ShowAlert ("Please check internet connection", "Network not available");
+				}
 
 				LoginModel data = _databaseService.GetLoginDetails ();
 
