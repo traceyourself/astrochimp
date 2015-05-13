@@ -57,6 +57,7 @@ namespace AncestorCloud.Shared
 
 
 		#region Webservice URL Constants
+
 		public const string BASEURL = "https://wsdev.onegreatfamily.com/v11.02";
 		public const string USEREADSERVICE = "User.svc/Read";
 		public const string USERSIGNINSERVICE = "User.svc/Create";
@@ -67,6 +68,8 @@ namespace AncestorCloud.Shared
 		public const string ADD_RELATION_SERVICE = "Individual.svc/AddIndiAsRelation";
 		public const string RELATIONSHIP_MATCH_SERVICE = "Individual.svc/RelationshipFind";
 		public const string UPLOAD_MEDIA_SERVICE = "Individual.svc/MediaAdd";
+		public const string INDIVIDUAL_READ_SERVICE = "Individual.svc/Read";
+
 		#endregion
 
 		#region Login Constants
@@ -78,6 +81,16 @@ namespace AncestorCloud.Shared
 		#region User Read Data
 		public const string INDIOGFN = "IndiOgfn";
 		public const string OGFN = "Ogfn";
+
+		#endregion
+
+		#region Indi Read Data
+		public const string AVATARINDIOGFN = "AvatarId";
+		public const string AVATARINDIOGFNKEY = "avatarOgfn";
+		public const string IMAGETYPEKEY = "ImageType";
+		public const string IMAGESIZEKEY = "ImageSize";
+		public const string IMAGESIZE = "100%2c100";
+
 
 		#endregion
 
