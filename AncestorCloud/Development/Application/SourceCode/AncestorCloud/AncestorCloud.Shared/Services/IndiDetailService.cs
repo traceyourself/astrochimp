@@ -1,12 +1,83 @@
 ﻿using System;
+using Cirrious.CrossCore;
+using System.Net.Http;
+using ModernHttpClient;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace AncestorCloud.Shared
 {
-	public class IndiDetailService
+	public class IndiDetailService : IIndiDetailService
 	{
-		public IndiDetailService ()
+		private readonly ILoader _loader;
+
+
+		public IndiDetailService()
 		{
+			_loader = Mvx.Resolve<ILoader> ();
+
 		}
+
+		#region IIndiDetailService implementation
+
+		public async System.Threading.Tasks.Task<ResponseModel<LoginModel>> GetIndiDetails (LoginModel login)
+		{
+			try   
+			{
+				HttpClient client = new HttpClient(new NativeMessageHandler());
+				client.DefaultRequestHeaders.Add("Accept","application/json");
+
+				Dictionary <string,string> param = new Dictionary<string, string>();
+				param[AppConstant.SESSIONID] = login.Value;
+				param[AppConstant.INDIOGFN] = login.IndiOGFN;
+
+				String url = WebServiceHelper.GetWebServiceURL(AppConstant.INDIVIDUAL_READ_SERVICE,param);
+
+				Mvx.Trace(url);
+
+				var response = await client.GetAsync(url);
+
+				String res = response.Content.ReadAsStringAsync().Result;
+
+				System.Diagnostics.Debug.WriteLine ("GetIndiDetails response : "+res);
+
+				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
+
+				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
+
+				if(dict.ContainsKey(AppConstant.Message))
+				{
+					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
+					{
+						responsemodal.Status = ResponseStatus.OK;
+
+						login= DataParser.GetIndiReadData(login,dict);
+
+					}else
+					{
+						responsemodal.Status = ResponseStatus.Fail;
+					}
+				}
+
+				responsemodal.Content= login;
+
+				return responsemodal;
+			}
+			catch(Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
+				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
+				responsemodal.Status = ResponseStatus.Fail;
+				responsemodal.Content= login;
+				return responsemodal;
+			}
+			finally{
+
+				_loader.hideLoader();
+			}
+		}
+
+		#endregion
 	}
 }
 

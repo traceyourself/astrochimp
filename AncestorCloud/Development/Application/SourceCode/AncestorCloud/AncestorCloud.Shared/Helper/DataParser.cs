@@ -225,6 +225,50 @@ namespace AncestorCloud.Shared
 
 
 	
+		#region GetIndiData
+
+		public static LoginModel GetIndiReadData(LoginModel model, Dictionary<string,object> dataDic)
+		{
+			if (ValidationClass.IsDataNull (dataDic)) {
+				Utility.Log ("In GetIndiReadData() data dictionary is null");
+				return null;
+			}
+
+			model = model ?? new LoginModel ();
+
+			if (IsKeyExist (AppConstant.Message, dataDic)) 
+			{
+				if (! GetData (AppConstant.Message, dataDic).Equals (AppConstant.SUCCESS)) 
+				{
+					return model;
+				}
+			}
+
+			if (IsKeyExist (AppConstant.VALUE, dataDic))
+				model = GetIndiData (model,AppConstant.VALUE,dataDic);
+
+			return model;
+		}
+		private static LoginModel GetIndiData(LoginModel model,string key , Dictionary<string,object> data)
+		{
+			if (ValidationClass.IsDataNull (data)) {
+				Utility.Log ("In GetIndiData() data dictionary is null");
+				return null;
+			}
+
+			JObject obj = data [key] as JObject;
+
+			Dictionary<string,object> dict = obj.ToObject<Dictionary<string,object>> ();
+
+			if (IsKeyExist (AppConstant.INDIOGFN, dict))
+				model.AvatarOGFN = GetData (AppConstant.AVATARINDIOGFN, dict);
+
+			return model;
+		}
+
+
+
+		#endregion
 
 
 
