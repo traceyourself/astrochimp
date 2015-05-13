@@ -84,19 +84,16 @@ namespace AncestorCloud.Shared.ViewModels
 
 		#region Commands
 
-		private ACCommand _sendMessageCommand;
-
 		public ICommand SendMessageCommand
 		{
 			get
 			{
-				//return this._sendMessageCommand ?? (this._sendMessageCommand = new MvxCommand<People>(item =>(this.SendMessage(item))));
 				return new MvxCommand<People>(item => this.SendMessage(item));
 			}
 		}
 		#endregion
 
-		#region
+		#region SendMessage
 
 		void SendMessage(People people)
 		{
