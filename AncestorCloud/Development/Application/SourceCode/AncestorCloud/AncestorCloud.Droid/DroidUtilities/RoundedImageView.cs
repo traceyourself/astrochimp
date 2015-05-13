@@ -4,6 +4,7 @@ using Android.Widget;
 using Android.Graphics.Drawables;
 using Android.Graphics;
 using Android.Util;
+using Java.Lang;
 
 namespace AncestorCloud.Droid
 {
@@ -34,6 +35,17 @@ namespace AncestorCloud.Droid
 			Bitmap roundBitmap = GetRoundedCroppedBitmap(bitmap, w);
 			canvas.DrawBitmap(roundBitmap, 0, 0, null);
 
+	
+			/*Paint paint = new Paint(PaintFlags.AntiAlias);
+			Shader shader = new BitmapShader(bitmap, Shader.TileMode.Clamp, Shader.TileMode.Clamp);
+			paint.SetShader(shader);
+
+			// Draw a circle with the required radius.
+			float halfWidth = canvas.Width/2;
+			float halfHeight = canvas.Height/2;
+			float radius = Math.Max(halfWidth, halfHeight);
+			canvas.DrawCircle(halfWidth, halfHeight, radius, paint);
+			*/
 		}
 
 		public static Bitmap GetRoundedCroppedBitmap(Bitmap bitmap, int radius) {

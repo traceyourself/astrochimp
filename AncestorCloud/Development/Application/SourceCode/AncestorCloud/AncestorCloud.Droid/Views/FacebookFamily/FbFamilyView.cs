@@ -23,7 +23,8 @@ namespace AncestorCloud.Droid
 		ActionBar actionBar;
 		List<FBListDataStructure> dataList;
 		FlyOutContainer menu;
-		LinearLayout menuLayout,contentLayout;
+		LinearLayout contentLayout;
+		RelativeLayout menuLayout;
 		TextView nextBtn;
 		ImageView helpicon;
 
@@ -50,7 +51,7 @@ namespace AncestorCloud.Droid
 		private void InitViews()
 		{
 			menu = FindViewById<FlyOutContainer> (Resource.Id.flyOutContainerLay);
-			menuLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutMenu);
+			menuLayout = FindViewById<RelativeLayout> (Resource.Id.FlyOutMenu);
 			contentLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutContent);
 			actionBar = contentLayout.FindViewById<ActionBar> (Resource.Id.actionBar);
 			listView = contentLayout.FindViewById<MvxListView> (Resource.Id.fb_family_list);
@@ -68,7 +69,6 @@ namespace AncestorCloud.Droid
 			menuButton.Click += (sender, e) => {
 				menu.AnimatedOpened = !menu.AnimatedOpened;
 			};
-
 		}
 
 		private void ApplyActions()
@@ -100,6 +100,11 @@ namespace AncestorCloud.Droid
 					//menu.AnimatedOpened = !menu.AnimatedOpened;
 					ViewModel.Logout();
 				}
+			};
+
+			menuLayout.FindViewById<LinearLayout> (Resource.Id.profile_menu_btn).Click += (object sender, EventArgs e) => {
+				menu.AnimatedOpened = !menu.AnimatedOpened;
+				ViewModel.ShowProfilePicModel();
 			};
 
 			nextBtn.Click += (object sender, EventArgs e) => {

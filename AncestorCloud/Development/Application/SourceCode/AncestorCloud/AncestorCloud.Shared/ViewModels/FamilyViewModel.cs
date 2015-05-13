@@ -61,6 +61,13 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+		#region ProfilePic
+		public void ShowProfilePicModel()
+		{
+			ShowViewModel<ProfilePicViewModel>();
+		}
+		#endregion
+
 	}
 }
 

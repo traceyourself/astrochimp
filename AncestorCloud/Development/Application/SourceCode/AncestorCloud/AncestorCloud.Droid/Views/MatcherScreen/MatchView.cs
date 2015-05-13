@@ -24,7 +24,8 @@ namespace AncestorCloud.Droid
 	{
 		FlyOutContainer menu;
 		ActionBar actionBar;
-		LinearLayout menuLayout,contentLayout;
+		LinearLayout contentLayout;
+		RelativeLayout menuLayout;
 		TextView matchBtn;
 		ImageView first_img,sec_img;
 		ImageView first_img_cover,sec_img_cover;
@@ -34,7 +35,7 @@ namespace AncestorCloud.Droid
 		bool isFirstPersonSelected = false;
 		bool isSecondPersonSelected = false;
 		String firstPersonImage = "",secondPersonImage = "";
-
+		int radius= 150;
 
 		public new MatchViewModel ViewModel
 		{
@@ -58,7 +59,7 @@ namespace AncestorCloud.Droid
 		private void initUI()
 		{
 			menu = FindViewById<FlyOutContainer> (Resource.Id.flyOutContainerLay);
-			menuLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutMenu);
+			menuLayout = FindViewById<RelativeLayout> (Resource.Id.FlyOutMenu);
 			contentLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutContent);
 			matchBtn = contentLayout.FindViewById<TextView> (Resource.Id.match_btn);
 			first_img = contentLayout.FindViewById<ImageView> (Resource.Id.first_img);
@@ -69,8 +70,7 @@ namespace AncestorCloud.Droid
 			firstCrossImg = contentLayout.FindViewById<ImageView> (Resource.Id.first_cross_img);
 			secCrossImg = contentLayout.FindViewById<ImageView> (Resource.Id.sec_cross_img);
 
-			first_img_cover = contentLayout.FindViewById<ImageView> (Resource.Id.first_img_circular_cover);
-			sec_img_cover = contentLayout.FindViewById<ImageView> (Resource.Id.sec_img_circular_cover);
+
 		}
 		#endregion
 
@@ -85,6 +85,7 @@ namespace AncestorCloud.Droid
 			if(firstHeight > 0 && secHeight > 0){
 				int containerDimenfirst = firstHeight / 2;
 				int containerDimensec = secHeight / 2;
+				radius = containerDimenfirst;
 				ChangeDimensionsAccordingly (containerDimenfirst,containerDimensec);
 			}
 		}
@@ -98,9 +99,6 @@ namespace AncestorCloud.Droid
 			first_img.Invalidate ();
 
 			sec_img.LayoutParameters = layParamsFirst;
-
-			first_img_cover.LayoutParameters = layParamsFirst;
-			sec_img_cover.LayoutParameters = layParamsFirst;
 
 
 			ViewGroup.LayoutParams layParams = firstCrossContainer.LayoutParameters;
@@ -128,34 +126,16 @@ namespace AncestorCloud.Droid
 			secCrossImg.LayoutParameters = layParams1;
 			secCrossImg.Invalidate ();
 
-			//firstCrossContainer.Visibility = ViewStates.Visible;
-			//secCrossContainer.Visibility = ViewStates.Visible;
-
-			first_img_cover.SetBackgroundDrawable (new ImageCoverDrawable((float)containerDimenFirst));
-			sec_img_cover.SetBackgroundDrawable (new ImageCoverDrawable((float)containerDimenFirst));
 		}
 		#endregion
 
-		#region cover Image
-		public class ImageCoverDrawable : GradientDrawable {
-
-			public ImageCoverDrawable(float radius) {
-				SetShape(ShapeType.Oval);
-				SetCornerRadius(radius);
-				SetColor(Color.Transparent);
-			}
-		}
-		#endregion
 
 		#region backpressed
-
 		public override void OnBackPressed ()
 		{
 			ViewModel.Close ();
 		}
-
 		#endregion
-
 
 		#region Action Bar Configuration
 		private void configureActionBar(){
@@ -209,6 +189,11 @@ namespace AncestorCloud.Droid
 				if(menu.AnimatedOpened){
 					ViewModel.Logout();
 				}
+			};
+
+			menuLayout.FindViewById<LinearLayout> (Resource.Id.profile_menu_btn).Click += (object sender, EventArgs e) => {
+				menu.AnimatedOpened = !menu.AnimatedOpened;
+				ViewModel.ShowProfilePicModel();
 			};
 
 			matchBtn.Click += (object sender, EventArgs e) => {
@@ -293,9 +278,11 @@ namespace AncestorCloud.Droid
 		{
 			if (isFirstPersonSelected) {
 				if (URLUtil.IsValidUrl(firstPersonImage)) {
-					first_img.SetImageURI (Android.Net.Uri.Parse (firstPersonImage));
+					//first_img.SetImageURI (Android.Net.Uri.Parse (firstPersonImage));
+					first_img.SetImageBitmap(Utilities.GetRoundedimage(this,firstPersonImage,0,radius));
 				} else {
-					first_img.SetImageResource(Resource.Drawable.no_img);
+					first_img.SetImageBitmap(Utilities.GetRoundedimage(this,"",Resource.Drawable.user_no_img,radius));
+					//first_img.SetImageResource(Resource.Drawable.no_img);
 				}
 				firstCrossContainer.Visibility = ViewStates.Visible;
 			} else {
@@ -308,9 +295,11 @@ namespace AncestorCloud.Droid
 		{
 			if (isSecondPersonSelected) {
 				if (URLUtil.IsValidUrl(secondPersonImage)) {
-					sec_img.SetImageURI (Android.Net.Uri.Parse (secondPersonImage));
+					//sec_img.SetImageURI (Android.Net.Uri.Parse (secondPersonImage));
+					sec_img.SetImageBitmap(Utilities.GetRoundedimage(this,secondPersonImage,0,radius));
 				} else {
-					sec_img.SetImageResource (Resource.Drawable.user_no_img);
+					//sec_img.SetImageResource (Resource.Drawable.user_no_img);
+					sec_img.SetImageBitmap(Utilities.GetRoundedimage(this,"",Resource.Drawable.user_no_img,radius));
 				}
 				secCrossContainer.Visibility = ViewStates.Visible;
 			} else {

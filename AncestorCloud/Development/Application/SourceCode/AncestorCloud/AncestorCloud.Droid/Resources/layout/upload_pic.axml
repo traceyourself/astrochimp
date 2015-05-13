@@ -20,15 +20,11 @@
             android:orientation="vertical"
             android:gravity="center">
             <ImageView
+                android:id="@+id/selected_pic"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/no_img" />
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/circle_cover" />
         </RelativeLayout>
         <TextView
             android:id="@+id/center_txt"
@@ -66,7 +62,7 @@
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
                 <TextView
-                    android:id="@+id/upload_btn"
+                    android:id="@+id/skip_txt"
                     android:layout_width="140dp"
                     android:layout_height="42dp"
                     android:text="@string/Skip"

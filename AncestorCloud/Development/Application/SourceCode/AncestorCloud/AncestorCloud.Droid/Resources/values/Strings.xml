@@ -23,6 +23,8 @@
 	<string name="sign_up_email">Sign up with email</string>
 	<string name="first_name">First name</string>
 	<string name="last_name">Last name</string>
+	<string name="by_signing">By signing up you agree to the</string>
+	<string name="term_condition">terms and conditions</string>
 	<!--  Sign up Strings End  -->
 
 	<!--- My Family Strings -->
@@ -118,6 +120,19 @@
 	<string name="Upload_profile_pic">Upload a profile image\n to finish your profile.</string>
 	<string name="Upload">Upload</string>
 	<string name="Skip">skip</string>
+	<string name="profile_pic">Profile Picture</string>
+	<string name="select_pic">Select Picture</string>
+	<string name="select_option">Select an option</string>
+	<string name="camera">Camera</string>
+	<string name="gallery">Gallery</string>
+	<string name="cancel">Cancel</string>
+
 	<!---Upload Profie Ends -->
+
+
+
+	<!---Terms and Conditions -->
+	<string name="terms">Terms and Conditions</string>
+	<!---Terms and Conditions -->
 
 </resources>
