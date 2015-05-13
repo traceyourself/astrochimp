@@ -71,6 +71,9 @@ namespace AncestorCloud.Touch
 			set.Apply ();
 			this.NavigationController.NavigationBarHidden = false;
 
+			MeImage.Layer.CornerRadius = 22f;
+			MeImage.ClipsToBounds = true;
+
 		}
 
 		public override void ViewWillDisappear (bool animated)

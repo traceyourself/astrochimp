@@ -59,6 +59,9 @@ namespace AncestorCloud.Touch
 			this.NavigationItem.TitleView = new MyContactTitleView (this.Title,new RectangleF(0,0,150,20));
 			this.NavigationController.NavigationBarHidden = false;
 
+			MeImage.Layer.CornerRadius = 22f;
+			MeImage.ClipsToBounds = true;
+
 		}
 
 		public override void ViewWillDisappear (bool animated)

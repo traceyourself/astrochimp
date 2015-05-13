@@ -11,12 +11,13 @@ using Microsoft.Scripting.Utils;
 
 namespace AncestorCloud.Touch
 {
-	public partial class EditFamilyView : UIViewController
+	public partial class EditFamilyView : UIViewController,IUITextFieldDelegate
 	{
 		
 
 		#region Globals
 
+		CGRect preFrame;
 		public People FamilyMember{ get; set;}
 		public Action<object> SaveButtonTappedClickedDelegate { get; set; }
 
@@ -42,10 +43,20 @@ namespace AncestorCloud.Touch
 
 			BindSubview ();
 		
-
 			PickerButtonTapped.TouchUpInside += PickerButtonTappedEvent; 
+
+
+
+
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			preFrame = container.Frame;
+		}
+
 
 		#endregion
 	
@@ -290,6 +301,42 @@ namespace AncestorCloud.Touch
 
 
 
+
+		public  void OnKeyboardChanged (object sender,AncestorCloud.Touch.BaseViewController.OnKeyboardChangedArgs args)
+		{
+
+			UITextField current;
+			if (FirstNameTextField.IsFirstResponder) {
+				current = FirstNameTextField;
+			} else if (MiddleNameTextField.IsFirstResponder) {
+				current = MiddleNameTextField;
+			} else if (LastNameTextField.IsFirstResponder) {
+				current = LastNameTextField;
+			} else {
+				current = BirthLocationField;
+			}
+
+			var point = this.View.ConvertRectToView (current.Frame, this.View.Superview);
+
+			var frame = container.Frame;
+
+			if (frame.Size.Height  - args.Frame.Size.Height > point.Y + 100)
+				return;
+
+			if (args.visible)
+				frame.Y -= point.Y + 100 - (frame.Size.Height - args.Frame.Size.Height);
+			else
+				frame = preFrame;
+
+			container.Frame = frame;
+		}
+
+		public override void TouchesBegan (NSSet touches, UIEvent evt)
+		{
+			this.View.EndEditing (true);
+
+			base.TouchesBegan (touches, evt);
+		}
 
 	}
 }

@@ -36,6 +36,8 @@ namespace AncestorCloud.Shared
 		}
 
 
+
+
 		public void ClearDatabase()
 		{
 			_databaseService.DropAllTables ();

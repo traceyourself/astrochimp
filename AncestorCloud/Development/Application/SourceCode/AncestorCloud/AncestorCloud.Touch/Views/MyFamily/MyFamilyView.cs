@@ -16,6 +16,9 @@ namespace AncestorCloud.Touch
 	{
 		private MvxSubscriptionToken navigationMenuToken;
 
+		EditFamilyView editFamily;
+		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
+
 		#region View Life Cycle Methods
 
 		public MyFamilyView () : base ("MyFamilyView", null)
@@ -33,6 +36,12 @@ namespace AncestorCloud.Touch
 			CreateMyFamilyTable ();
 			SetFamilyItem ();
 			AddEvents ();
+
+			OnKeyboardChanged += (object sender, OnKeyboardChangedArgs e) => {
+
+				if(editFamily != null)
+					editFamily.OnKeyboardChanged(sender,e);
+			};
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
@@ -43,7 +52,16 @@ namespace AncestorCloud.Touch
 				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
 
 			}
+
+			RemoveMessengers ();
 			base.ViewWillDisappear (animated);
+		}
+
+		public override void ViewWillUnload ()
+		{
+			RemoveMessengers ();
+
+			base.ViewWillUnload ();
 		}
 
 		#endregion
@@ -78,9 +96,18 @@ namespace AncestorCloud.Touch
 		private void AddEvents ()
 		{
 			(myFamilyTable.Source as MyFamilyTableSource).FooterClickedDelegate += ShowAddParents;
-			var _messenger = Mvx.Resolve<IMvxMessenger>();
+
 
 			navigationMenuToken = _messenger.SubscribeOnMainThread<MyTableCellTappedMessage>(message => this.ShowEditFamily(message.FamilyMember));
+
+		}
+
+		void RemoveMessengers()
+		{
+			_messenger.Unsubscribe<MyTableCellTappedMessage> (navigationMenuToken);
+//			_messenger.Unsubscribe<ToggleFlyoutMenuMessage> (navigationMenuToggleToken);
+//			_messenger.Unsubscribe<NavigationBarHiddenMessage> (navigationBarHiddenToken);
+
 
 		}
 
@@ -171,13 +198,16 @@ namespace AncestorCloud.Touch
 
 		public void ShowEditFamily(People member)
 		{
-			EditFamilyView editFamily = new EditFamilyView ();
+			if(editFamily == null)
+				editFamily = new EditFamilyView ();
+			
 			editFamily.FamilyMember = member;
 			editFamily.SaveButtonTappedClickedDelegate += SaveEditedFamilyDetails;
 
 			UIWindow window = UIApplication.SharedApplication.KeyWindow;
 			window.AddSubview (editFamily.View);
 		}
+
 
 
 		public void SaveEditedFamilyDetails(object member)

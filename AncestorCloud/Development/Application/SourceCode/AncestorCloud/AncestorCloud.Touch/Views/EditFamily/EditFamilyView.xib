@@ -13,6 +13,7 @@
                 <outlet property="LastNameTextField" destination="QUO-Mv-0nS" id="VdO-iG-P9F"/>
                 <outlet property="MiddleNameTextField" destination="yQD-6k-OSc" id="gSg-ul-z7t"/>
                 <outlet property="PickerButtonTapped" destination="jPu-xJ-1Lh" id="Enc-iC-lRa"/>
+                <outlet property="container" destination="iN0-l3-epB" id="pqT-re-vXJ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
         </placeholder>

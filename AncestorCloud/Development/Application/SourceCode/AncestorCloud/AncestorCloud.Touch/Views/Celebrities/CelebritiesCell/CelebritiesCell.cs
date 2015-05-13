@@ -31,6 +31,8 @@ namespace AncestorCloud.Touch
 
 				//set.Bind(OtherNameLabel).To(vm => vm.Relation).WithConversion(new RelationshipTextConverter(),null);
 				set.Apply ();
+				CelbImage.Layer.CornerRadius=22f;
+				CelbImage.ClipsToBounds=true;
 			});
 		}
 

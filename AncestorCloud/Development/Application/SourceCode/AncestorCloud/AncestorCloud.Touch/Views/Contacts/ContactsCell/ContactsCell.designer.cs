@@ -13,6 +13,9 @@ namespace AncestorCloud.Touch
 	partial class ContactsCell
 	{
 		[Outlet]
+		UIKit.UIButton ContactImages { get; set; }
+
+		[Outlet]
 		UIKit.UILabel NameLabel { get; set; }
 
 		[Action ("PlusbuttonTapped:")]
@@ -20,6 +23,11 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (ContactImages != null) {
+				ContactImages.Dispose ();
+				ContactImages = null;
+			}
+
 			if (NameLabel != null) {
 				NameLabel.Dispose ();
 				NameLabel = null;

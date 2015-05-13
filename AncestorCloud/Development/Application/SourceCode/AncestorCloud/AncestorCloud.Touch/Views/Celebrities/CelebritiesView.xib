@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CelebritiesView">
             <connections>
                 <outlet property="CelebritiesTableVIew" destination="1oO-SD-rrc" id="9fx-ww-jdi"/>
+                <outlet property="MeImage" destination="Kxv-rT-OnF" id="AjH-zJ-qXa"/>
                 <outlet property="SearchViewController" destination="FgS-4n-Z4w" id="Vck-kO-aFt"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
@@ -38,10 +39,6 @@
                     <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage.png" id="P3i-ea-oJK">
-                    <rect key="frame" x="8" y="52" width="44" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rQB-TH-y6X">
                     <rect key="frame" x="337" y="59" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
@@ -51,6 +48,13 @@
                     <connections>
                         <action selector="AddMeButtonTapped:" destination="-1" eventType="touchUpInside" id="iYe-ou-wIe"/>
                     </connections>
+                </button>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kxv-rT-OnF">
+                    <rect key="frame" x="8" y="52" width="44" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="noImage.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

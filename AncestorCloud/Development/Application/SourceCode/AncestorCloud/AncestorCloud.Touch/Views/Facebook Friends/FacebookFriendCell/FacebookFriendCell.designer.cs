@@ -1,4 +1,4 @@
-﻿// WARNING
+// WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
@@ -13,10 +13,18 @@ namespace AncestorCloud.Touch
 	partial class FacebookFriendCell
 	{
 		[Outlet]
+		UIKit.UIButton fbFriendImage { get; set; }
+
+		[Outlet]
 		UIKit.UILabel NameLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (fbFriendImage != null) {
+				fbFriendImage.Dispose ();
+				fbFriendImage = null;
+			}
+
 			if (NameLabel != null) {
 				NameLabel.Dispose ();
 				NameLabel = null;

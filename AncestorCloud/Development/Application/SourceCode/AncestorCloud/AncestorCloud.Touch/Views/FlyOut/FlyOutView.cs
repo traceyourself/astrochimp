@@ -224,6 +224,7 @@ namespace AncestorCloud.Touch
 			_messenger.Unsubscribe<ReloadFlyOutViewMessage> (changeFlyoutToken);
 			_messenger.Unsubscribe<ToggleFlyoutMenuMessage> (navigationMenuToggleToken);
 			_messenger.Unsubscribe<NavigationBarHiddenMessage> (navigationBarHiddenToken);
+		
 		}
 
 		#endregion

@@ -9,26 +9,14 @@ using System.CodeDom.Compiler;
 
 namespace AncestorCloud.Touch
 {
-	[Register ("ContactsView")]
-	partial class ContactsView
+	[Register ("Terms_ConditionView")]
+	partial class TermsandConditionView
 	{
-		[Outlet]
-		UIKit.UITableView ContactsTableView { get; set; }
-
-		[Outlet]
-		UIKit.UIButton MeImage { get; set; }
+		[Action ("CrossButtonTapped:")]
+		partial void CrossButtonTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (MeImage != null) {
-				MeImage.Dispose ();
-				MeImage = null;
-			}
-
-			if (ContactsTableView != null) {
-				ContactsTableView.Dispose ();
-				ContactsTableView = null;
-			}
 		}
 	}
 }

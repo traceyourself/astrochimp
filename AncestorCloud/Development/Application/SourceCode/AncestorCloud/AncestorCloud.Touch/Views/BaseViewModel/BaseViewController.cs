@@ -7,7 +7,7 @@ using CoreGraphics;
 
 namespace AncestorCloud.Touch
 {
-	public partial class BaseViewController : MvxViewController
+	public partial class BaseViewController : MvxViewController,IUITextFieldDelegate
 	{
 
 		public event EventHandler<OnKeyboardChangedArgs> OnKeyboardChanged;
@@ -136,9 +136,16 @@ namespace AncestorCloud.Touch
 //		}
 		#endregion
 
-
+		public override void TouchesBegan (NSSet touches, UIEvent evt)
+		{
+			this.View.EndEditing (true);
+			
+			base.TouchesBegan (touches, evt);
+		}
 
 
 	}
+
+
 }
 

@@ -13,6 +13,8 @@ namespace AncestorCloud.Touch
 {
 	public partial class AddFamilyView : BaseViewController
 	{
+
+		CGRect preFrame;
 		
 		public People FamilyMember{ get; set;}
 		PickerModel picker_model;
@@ -51,11 +53,19 @@ namespace AncestorCloud.Touch
 			PickerButtonTapped.TouchUpInside += PickerButtonTappedEvent;
 
 			base.OnKeyboardChanged += OnKeyboardChanged;
+
+
 		
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
 		#endregion
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			preFrame = container.Frame;
+		}
 
 
 		#region Nav Bar Methods
@@ -216,7 +226,16 @@ namespace AncestorCloud.Touch
 		public  void OnKeyboardChanged (object sender,OnKeyboardChangedArgs args)
 		{
 
-			UITextField current = FirstNameTextField.IsFirstResponder ? FirstNameTextField: MiddleNameTextFeild;
+			UITextField current;
+			if (FirstNameTextField.IsFirstResponder) {
+				current = FirstNameTextField;
+			} else if (MiddleNameTextFeild.IsFirstResponder) {
+				current = MiddleNameTextFeild;
+			} else if (LastNameTextField.IsFirstResponder) {
+				current = LastNameTextField;
+			} else {
+				current = BirthLocationTextField;
+			}
 
 			var point = this.View.ConvertRectToView (current.Frame, this.View.Superview);
 
@@ -226,9 +245,9 @@ namespace AncestorCloud.Touch
 				return;
 
 			if (args.visible)
-				frame.Y -= point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height) ;
+				frame.Y -= point.Y + 50 - (frame.Size.Height - args.Frame.Size.Height);
 			else
-				frame.Y += point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height);
+				frame = preFrame;
 
 			container.Frame = frame;
 		}

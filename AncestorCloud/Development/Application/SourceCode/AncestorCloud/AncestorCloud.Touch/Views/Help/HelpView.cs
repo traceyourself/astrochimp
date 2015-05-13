@@ -26,7 +26,7 @@ namespace AncestorCloud.Touch
 			get { return base.ViewModel as HelpViewModel; }
 			set { base.ViewModel = value; }
 		}
-
+//
 		public override void DidReceiveMemoryWarning ()
 		{
 			// Releases the view if it doesn't have a superview.

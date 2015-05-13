@@ -101,6 +101,9 @@ namespace AncestorCloud.Touch
 		{
 			ViewModel.ShowHelpViewModel();
 			ViewModel.Close();
+
+
+
 		}
 		#endregion
 

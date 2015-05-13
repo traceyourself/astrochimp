@@ -13,17 +13,24 @@ namespace AncestorCloud.Touch
 	partial class CelebritiesCell
 	{
 		[Outlet]
+		UIKit.UIButton CelbImage { get; set; }
+
+		[Outlet]
 		UIKit.UILabel LastName { get; set; }
 
 		[Outlet]
 		UIKit.UILabel NameLabel { get; set; }
-
 
 		[Action ("AddCelbButtonTapped:")]
 		partial void AddCelbButtonTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (CelbImage != null) {
+				CelbImage.Dispose ();
+				CelbImage = null;
+			}
+
 			if (LastName != null) {
 				LastName.Dispose ();
 				LastName = null;

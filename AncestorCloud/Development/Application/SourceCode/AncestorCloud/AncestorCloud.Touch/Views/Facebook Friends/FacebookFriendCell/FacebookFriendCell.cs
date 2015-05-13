@@ -19,6 +19,8 @@ namespace AncestorCloud.Touch
 				var set = this.CreateBindingSet<FacebookFriendCell, People> ();
 				set.Bind (NameLabel).To (vm => vm.Name);
 				set.Apply ();
+				fbFriendImage.Layer.CornerRadius=22f;
+				fbFriendImage.ClipsToBounds=true;
 			});
 		}
 
