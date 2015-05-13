@@ -72,7 +72,8 @@ namespace AncestorCloud.Droid
 				if(CurrentImagePath.Length == 0){
 					Toast.MakeText(this,"Please select an image to upload",ToastLength.Short).Show();
 				}else{
-					ViewModel.ProfilePicPath = CurrentImagePath;
+					var stream = System.IO.File.OpenRead(CurrentImagePath);
+					ViewModel.ProfilePicStream = stream;
 					ViewModel.UploadImage();
 				}
 			};
@@ -210,7 +211,7 @@ namespace AncestorCloud.Droid
 				try{
 					Java.IO.File f = CameraDataHolder._file;
 					string filename = "";
-					if(f.Exists){
+					if(f.Exists()){
 						filename = f.Name;
 						f.Delete ();
 					}
