@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/img"
-                android:minHeight="280dp" />
+                android:minHeight="260dp" />
             <ImageView
                 android:id="@+id/family_icon"
                 android:layout_width="60dp"

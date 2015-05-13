@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Cirrious.CrossCore;
+using Cirrious.CrossCore.Platform;
 
 
 namespace AncestorCloud.Shared.ViewModels
@@ -17,11 +18,32 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = databaseService;
 		}
 
+		public void Init(DetailParameter parameter)
+		{
+			//this.MatchResult = parameter.MatchResult;
+
+			if (parameter == null) return;
+			IsFromSignup = parameter.FromSignUp;
+		}
+
+		#region from sign up
+		public bool IsFromSignup{ get; set;}
+		#endregion
+
+		#region Parameter Class
+
+		public class DetailParameter
+		{
+			public bool FromSignUp { get; set;}
+		}
+		#endregion
+
 		public void ShowFamiyViewModel()
 		{
 			ShowViewModel<FlyOutViewModel> ();
 			this.Close (this);//XXXXX
 		}
+
 
 		#region Close Method
 		public void Close()
@@ -81,6 +103,10 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 
 		#endregion
+
+
+
+
 	}
 }
 

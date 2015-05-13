@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Cirrious.CrossCore;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Cirrious.CrossCore.Platform;
 
 namespace AncestorCloud.Shared.ViewModels
 {
@@ -153,7 +154,9 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowProfilePicViewModel()
 		{
-			ShowViewModel <ProfilePicViewModel> ();
+			ShowViewModel<ProfilePicViewModel> (new ProfilePicViewModel.DetailParameter { FromSignUp = true });
+
+			//ShowViewModel <ProfilePicViewModel> ();
 			this.Close ();
 		}
 
