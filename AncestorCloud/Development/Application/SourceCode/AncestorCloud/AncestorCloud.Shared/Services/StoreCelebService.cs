@@ -34,6 +34,11 @@ namespace AncestorCloud.Shared
 		{
 			List<Celebrity> celebList = JsonConvert.DeserializeObject<List<Celebrity>> (dataString);
 
+			foreach (Celebrity celeb in celebList) {
+				celeb.Img = AppConstant.CELEBBASEURL + celeb.Img + AppConstant.CELEBIMAGEEXTENSION;
+			}
+
+
 			return celebList;
 		}
 

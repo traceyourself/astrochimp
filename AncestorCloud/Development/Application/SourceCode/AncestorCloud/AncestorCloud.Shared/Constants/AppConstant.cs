@@ -162,6 +162,13 @@ namespace AncestorCloud.Shared
 	
 		#endregion
 
+		#region
+
+		public const string CELEBBASEURL = "https://www.kin2.me/img/color/";
+		public const string CELEBIMAGEEXTENSION = ".jpg";
+
+		#endregion
+
 	}
 
 }

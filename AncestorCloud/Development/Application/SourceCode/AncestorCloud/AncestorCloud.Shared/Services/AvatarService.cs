@@ -76,7 +76,7 @@ namespace AncestorCloud.Shared
 
 				_loader.hideLoader();
 			}
-		}
+		
 		}
 		#endregion
 	}
