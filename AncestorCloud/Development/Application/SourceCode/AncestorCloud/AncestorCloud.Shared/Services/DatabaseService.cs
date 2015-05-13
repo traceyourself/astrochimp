@@ -81,7 +81,7 @@ namespace AncestorCloud.Shared
 		public User GetUser()
 		{
 			List<User> user=  (List<User>)_connection.Table<User> ().ToList();
-			return user[0];
+			return user.Count > 0 ? user[user.Count - 1] : new User();
 		}
 
 		public List<User> GetUsers(string relationFilter)

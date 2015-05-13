@@ -18,8 +18,8 @@ namespace AncestorCloud.Shared
 	static public class AppConstant
 	{
 		#region FB Constants
-		public const string FBAPIKEY = "1428257997477283";//1428257997477283//591314537670509
-		public const string FBAPISECRETKEY = "141797ed935391946dd464c525495a0b";//141797ed935391946dd464c525495a0b//659bacca4a45654358bb632f5607eeb0
+		public const string FBAPIKEY = "591314537670509";//1428257997477283//591314537670509
+		public const string FBAPISECRETKEY = "659bacca4a45654358bb632f5607eeb0";//141797ed935391946dd464c525495a0b//659bacca4a45654358bb632f5607eeb0
 		public const string FBSCOPE = "email,publish_actions,user_birthday,user_friends,user_relationships";
 		public const string FRIENDKEY = "friend";
 		#endregion
@@ -66,7 +66,7 @@ namespace AncestorCloud.Shared
 		public const string ADD_PEOPLE_SERVICE = "Individual.svc/CreateUpdate";
 		public const string ADD_RELATION_SERVICE = "Individual.svc/AddIndiAsRelation";
 		public const string RELATIONSHIP_MATCH_SERVICE = "Individual.svc/RelationshipFind";
-
+		public const string UPLOAD_MEDIA_SERVICE = "Individual.svc/MediaAdd";
 		#endregion
 
 		#region Login Constants
@@ -131,11 +131,22 @@ namespace AncestorCloud.Shared
 
 		#endregion
 
-		#region
+		#region Fb Link
 
 		public const string LINKIDKEY= "linkId";
 		public const string LINKTYPEKEY= "linkType";
 		public const string LINKTYPE = "FACEBOOK_OGF";
+		#endregion
+
+		#region Media Upload 
+
+		public const string FILENAMEKEY= "FileName";
+		public const string FILENAME= "ProfilePic.jpg";
+		public const string FILETYPEKEY = "FileType";
+		public const string FILETYPE = "jpg";
+		public const string MEDIATITLEKEY = "Title";
+		public const string MEDIATITLE = "ProfilePic";
+	
 		#endregion
 
 	}

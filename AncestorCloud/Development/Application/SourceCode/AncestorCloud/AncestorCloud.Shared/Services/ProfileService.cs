@@ -1,0 +1,90 @@
+﻿using System;
+using System.IO;
+using System.Net.Http;
+using ModernHttpClient;
+using System.Collections.Generic;
+using Cirrious.CrossCore;
+using Newtonsoft.Json;
+
+namespace AncestorCloud.Shared
+{
+	public class ProfileService : IProfileService
+	{
+		private readonly ILoader _loader;
+
+
+		public ProfileService()
+		{
+			_loader = Mvx.Resolve<ILoader> ();
+
+		}
+
+		#region IProfileService implementation
+
+		public async System.Threading.Tasks.Task<ResponseModel<ResponseDataModel>> PostProfileData (LoginModel login, Stream stream)
+		{
+			_loader.showLoader ();
+
+			try   
+			{
+
+				HttpClient client = new HttpClient(new NativeMessageHandler());
+				client.DefaultRequestHeaders.Add("Accept","application/json");
+				client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type","text/raw");
+
+				Dictionary <string,string> param = new Dictionary<string, string>();
+
+				param[AppConstant.SESSIONID] = login.Value;
+				param[AppConstant.INDIOGFN] = login.IndiOGFN;
+				param[AppConstant.FILENAMEKEY] = AppConstant.FILENAME;
+				param[AppConstant.FILETYPEKEY] = AppConstant.FILETYPE;
+				param [AppConstant.MEDIATITLEKEY] = AppConstant.MEDIATITLE;
+			
+				String url = WebServiceHelper.GetWebServiceURL(AppConstant.UPLOAD_MEDIA_SERVICE,param);
+
+				Mvx.Trace(url);
+
+				var response = await client.PostAsync(url, new StreamContent(stream));
+
+				String res = response.Content.ReadAsStringAsync().Result;
+
+				System.Diagnostics.Debug.WriteLine ("PostProfileData response : "+res + "response.EnsureSuccessStatusCode(); " +response.EnsureSuccessStatusCode());
+
+				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
+
+				ResponseDataModel model = DataParser.GetAddMemberDetails(dict);
+
+				ResponseModel<ResponseDataModel> responsemodal = new ResponseModel<ResponseDataModel>();
+
+				if(dict.ContainsKey(AppConstant.Message))
+				{
+					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
+					{
+						responsemodal.Status = ResponseStatus.OK;
+						responsemodal.Content = model;
+					}else
+					{
+						responsemodal.Status = ResponseStatus.Fail;
+					}
+				}
+				return responsemodal;
+			}
+			catch(Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
+				ResponseModel<ResponseDataModel> responsemodal = new ResponseModel<ResponseDataModel>();
+				responsemodal.Status = ResponseStatus.Fail;
+
+				return responsemodal;
+			}
+			finally{
+
+				_loader.hideLoader();
+			}
+
+		}
+
+		#endregion
+	}
+}
+

@@ -1,11 +1,21 @@
 ﻿using System;
-using Cirrious.CrossCore;
 using System.IO;
+using Cirrious.CrossCore;
+
 
 namespace AncestorCloud.Shared.ViewModels
 {
 	public class ProfilePicViewModel : BaseViewModel
 	{
+		private readonly IProfileService _profileService;
+
+		private readonly IDatabaseService _databaseService;
+
+		public ProfilePicViewModel(IProfileService profileService,IDatabaseService databaseService)
+		{
+			_profileService = profileService;
+			_databaseService = databaseService;
+		}
 
 		public void ShowFamiyViewModel()
 		{
@@ -39,29 +49,37 @@ namespace AncestorCloud.Shared.ViewModels
 
 		#region Properties
 
-		private string _profilePicURL;
+		private Stream _profilePicStream;
 
-		public string ProfilePicURL
+		public Stream ProfilePicStream
 		{
-			get { return _profilePicURL;}
+			get { return _profilePicStream;}
 
 			set {
-				_profilePicURL = value;
-				RaisePropertyChanged(()=> ProfilePicURL);
+				_profilePicStream = value;
+				RaisePropertyChanged(()=> ProfilePicStream);
 			}
 		}
 		#endregion
 
-		#region ProfilePic Path
-		public Stream ProfilePicStream{ get; set;}
-		#endregion
+		#region Methods
 
-
-		#region Upload image
-		public void UploadImage()
+		public async void UploadImage()
 		{
-			Mvx.Trace ("Stream Length : "+ProfilePicStream.Length);
+			LoginModel model = _databaseService.GetLoginDetails ();
+
+			ResponseModel<ResponseDataModel> response = await _profileService.PostProfileData (model,_profilePicStream);
+
+			if (response.Status == ResponseStatus.OK) {
+				Mvx.Resolve<IAlert> ().ShowAlert ("Profile pic uploaded successfully","Success");
+				ShowFamiyViewModel ();
+			} 
+			else 
+			{
+				Mvx.Resolve<IAlert> ().ShowAlert ("Profile pic upload unsuccessfull","Upload Error");
+			}
 		}
+
 		#endregion
 	}
 }
