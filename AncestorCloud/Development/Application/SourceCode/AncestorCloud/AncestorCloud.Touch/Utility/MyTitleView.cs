@@ -12,6 +12,7 @@ namespace AncestorCloud.Touch
 		public MyTitleView (string title,CGRect frame) : base (frame)
 		{
 			UIImageView img = new UIImageView(UIImage.FromFile("myfamily_icon.png"));
+
 			this.AddSubview (img);
 
 			UILabel label = new UILabel {
@@ -20,6 +21,8 @@ namespace AncestorCloud.Touch
 				Frame= new RectangleF((float)img.Frame.Size.Width+5.0f,0,100,20)
 			};
 			this.AddSubview (label);
+
+
 
 		}
 

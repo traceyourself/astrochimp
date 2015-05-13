@@ -83,7 +83,8 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="GNQ-v2-0hh" firstAttribute="top" secondItem="gvC-21-7an" secondAttribute="bottom" constant="8" id="1v9-k1-v56"/>
                                 <constraint firstAttribute="height" constant="603" id="AbW-Nh-4BB"/>
@@ -104,6 +105,8 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="5kz-2Q-Huc" firstAttribute="top" secondItem="ZyC-zA-JAa" secondAttribute="top" id="18I-6t-xzf"/>
                         <constraint firstAttribute="width" constant="375" id="Kml-0Z-yIT"/>
@@ -115,6 +118,7 @@
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="ZyC-zA-JAa" secondAttribute="centerX" id="IHm-F2-c0R"/>
                 <constraint firstAttribute="trailing" secondItem="ZyC-zA-JAa" secondAttribute="trailing" id="cgG-dA-xcY"/>

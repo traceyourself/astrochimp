@@ -26,6 +26,8 @@ namespace AncestorCloud.Shared
 		
 		}
 
+
+
 		private string image = string.Empty;
 
 		public string Image

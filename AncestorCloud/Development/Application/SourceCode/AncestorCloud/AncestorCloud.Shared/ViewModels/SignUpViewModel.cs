@@ -17,15 +17,18 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly FaceBookLinkManager _facebookLinkManager;
 
+		private readonly IReachabilityService _reachabilityService;
+
 		#region SignUpViewModel
 
-		public SignUpViewModel(ISignUpService service,IAlert alert)//, IDatabaseService dService)
+		public SignUpViewModel(ISignUpService service,IAlert alert, IReachabilityService reachabilty)//, IDatabaseService dService)
 
 		{
 			_ISignUpService = service;
 			_databaseService = Mvx.Resolve<IDatabaseService>();
 			Alert = alert;
 			_facebookLinkManager = new FaceBookLinkManager ();
+			_reachabilityService = reachabilty;
 		
 		}
 
@@ -249,6 +252,10 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 
 			if (ValidateCredentials ()) {
+
+				if (_reachabilityService.IsNetworkNotReachable ()) {
+					Alert.ShowAlert ("Please check internet connection", "Network not available");
+				}
 				// Validate Parameters
 				ResponseModel<LoginModel> response = await _ISignUpService.SignUp (FirstName,LastName, Email, Password, AppConstant.DEVELOPERID, AppConstant.DEVELOPERPASSWORD);
 

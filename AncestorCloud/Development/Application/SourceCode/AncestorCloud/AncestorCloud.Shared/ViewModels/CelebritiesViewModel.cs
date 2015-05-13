@@ -22,6 +22,7 @@ namespace AncestorCloud.Shared
 		{
 			_databaseService = service;
 		    GetCelebritiesData ();
+
 		}
 
 		#region Sqlite Methods
@@ -43,6 +44,7 @@ namespace AncestorCloud.Shared
 
 		public void CelebrityPlusClickHandler(Celebrity celeb)
 		{
+
 			ResponseModel<Celebrity> modeltosend = new ResponseModel<Celebrity> ();
 			modeltosend.Content = celeb;
 			var matchString = Mvx.Resolve<IMvxJsonConverter>().SerializeObject(modeltosend);

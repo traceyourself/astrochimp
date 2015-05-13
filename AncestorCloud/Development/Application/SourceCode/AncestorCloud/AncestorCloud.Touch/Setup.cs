@@ -38,6 +38,7 @@ namespace AncestorCloud.Touch
 			Mvx.RegisterSingleton<IFileService>(new FileService());
 			Mvx.RegisterSingleton<IContactService>(new IOSContactService());
 			Mvx.RegisterSingleton<ISMSService>(new IOSSMSService());
+			Mvx.RegisterSingleton<IReachabilityService>(new IOSReachabilityService());
 
 			base.InitializeFirstChance();
 		}
