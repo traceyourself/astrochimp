@@ -121,6 +121,12 @@
 	<string name="Upload">Upload</string>
 	<string name="Skip">skip</string>
 	<string name="profile_pic">Profile Picture</string>
+	<string name="select_pic">Select Picture</string>
+	<string name="select_option">Select an option</string>
+	<string name="camera">Camera</string>
+	<string name="gallery">Gallery</string>
+	<string name="cancel">Cancel</string>
+
 	<!---Upload Profie Ends -->
 
 

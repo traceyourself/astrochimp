@@ -34,6 +34,7 @@ namespace AncestorCloud.Shared.ViewModels
 			ShowViewModel<HomePageViewModel> ();
 			this.Close (this);
 		}
+		#endregion
 
 
 		#region Properties
@@ -49,6 +50,7 @@ namespace AncestorCloud.Shared.ViewModels
 				RaisePropertyChanged(()=> ProfilePicURL);
 			}
 		}
+		#endregion
 
 		#region ProfilePic Path
 		public Stream ProfilePicStream{ get; set;}

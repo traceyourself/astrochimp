@@ -16,6 +16,7 @@ namespace AncestorCloud.Droid
 	
 	public class StringConstants
 	{
+		#region relation consts
 		public static readonly string Brother_comparison = "brother";
 		public static readonly string Sister_comparison = "sister";
 		public static readonly string Father_comparison = "father";
@@ -24,9 +25,9 @@ namespace AncestorCloud.Droid
 		public static readonly string GrandMother_comparison = "grandmother";
 		public static readonly string GreatGrandFather_comparison = "great grandfather";
 		public static readonly string GreatGrandMother_comparison = "great grandmother";
+		#endregion
 
-
-		//Relation constants for adding relation service
+		#region Relation constants for adding relation service
 		public static readonly string FATHER_RELATIONSHIP = "FATHER_RELATIONSHIP";
 		public static readonly string MOTHER_RELATIONSHIP = "MOTHER_RELATIONSHIP";
 		public static readonly string HUSBAND_RELATIONSHIP = "HUSBAND_RELATIONSHIP";
@@ -38,9 +39,12 @@ namespace AncestorCloud.Droid
 		public static readonly string SISTER_RELATIONSHIP = "SISTER_RELATIONSHIP";
 		public static readonly string BROTHER_RELATIONSHIP = "BROTHER_RELATIONSHIP";
 		public static readonly string UNKNOWN_RELATIONSHIP = "UNKNOWN_RELATIONSHIP";
-		//=========
+		#endregion
 
 
+		#region Uploads Pic Const
+		public static readonly string DIRECTORY_NAME = "Ancestor Cloud";
+		#endregion
 
 	}
 }

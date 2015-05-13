@@ -25,7 +25,6 @@ namespace AncestorCloud.Droid
 	public class ProfilePicView : BaseActivity
 	{
 		ActionBar actionBar;
-		LinearLayout menuLayout,contentLayout;
 		TextView uploadBtn,skipTxt;
 		ImageView profileImg;
 		AlertDialog optionDialog;
@@ -99,12 +98,12 @@ namespace AncestorCloud.Droid
 		{
 			AlertDialog.Builder dialog = new AlertDialog.Builder (this);
 
-			dialog.SetTitle ("Select an option");
+			dialog.SetTitle (Resources.GetString(Resource.String.select_option));
 
 			List<string> _lstDataItem = new List<string> ();
-			_lstDataItem.Add ("Camera");
-			_lstDataItem.Add ("Gallery");
-			_lstDataItem.Add ("Cancel");
+			_lstDataItem.Add (Resources.GetString(Resource.String.camera));
+			_lstDataItem.Add (Resources.GetString(Resource.String.gallery));
+			_lstDataItem.Add (Resources.GetString(Resource.String.cancel));
 
 
 			var listView = new ListView (this);
@@ -141,7 +140,7 @@ namespace AncestorCloud.Droid
 					Intent = new Intent();
 					Intent.SetType("image/*");
 					Intent.SetAction(Intent.ActionGetContent);
-					StartActivityForResult(Intent.CreateChooser(Intent, "Select Picture"), PickImageGalleryId);
+					StartActivityForResult(Intent.CreateChooser(Intent,Resources.GetString(Resource.String.select_pic)), PickImageGalleryId);
 					optionDialog.Dismiss ();
 
 					break;
@@ -164,7 +163,7 @@ namespace AncestorCloud.Droid
 		}
 		private void CreateDirectoryForPictures()
 		{
-			CameraDataHolder._dir = new Java.IO.File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures), "Ancestor Cloud");
+			CameraDataHolder._dir = new Java.IO.File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures),StringConstants.DIRECTORY_NAME);
 			if (!CameraDataHolder._dir.Exists())
 			{
 				CameraDataHolder._dir.Mkdir ();
@@ -173,7 +172,7 @@ namespace AncestorCloud.Droid
 
 		private Java.IO.File CreateDirectoryForGalleryPictures()
 		{
-			Java.IO.File file = new Java.IO.File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures), "Ancestor Cloud");
+			Java.IO.File file = new Java.IO.File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures), StringConstants.DIRECTORY_NAME);
 			if (!file.Exists())
 			{
 				file.Mkdir ();
@@ -222,10 +221,8 @@ namespace AncestorCloud.Droid
 					stream.Close();
 					CameraDataHolder._file = new Java.IO.File(filePath);
 					CurrentImagePath = filePath;
-				} catch (Java.IO.FileNotFoundException e) {
-					System.Console.WriteLine ("FILENOTFOUND");
-				} catch (Java.IO.IOException e) {
-					System.Console.WriteLine ("IOEXCEPTION");
+				} catch(Java.Lang.Exception e){
+					System.Diagnostics.Debug.WriteLine (e.StackTrace);
 				}
 				//=============
 
