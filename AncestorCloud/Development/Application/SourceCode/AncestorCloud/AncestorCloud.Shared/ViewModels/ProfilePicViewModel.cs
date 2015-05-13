@@ -33,6 +33,24 @@ namespace AncestorCloud.Shared.ViewModels
 			this.Close(this);
 		}
 		#endregion
+
+
+		#region Properties
+
+		private string _profilePicURL;
+
+		public string ProfilePicURL
+		{
+			get { return _profilePicURL;}
+
+			set {
+				_profilePicURL = value;
+				RaisePropertyChanged(()=> ProfilePicURL);
+			}
+		}
+
+
+		#endregion
 	}
 }
 

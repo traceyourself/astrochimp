@@ -19,8 +19,8 @@ namespace AncestorCloud.Touch
 				var set = this.CreateBindingSet<ContactsCell, People> ();
 				set.Bind (NameLabel).To (vm => vm.FirstName);
 				set.Apply ();
-				ContactImages.Layer.CornerRadius=22f;
-				ContactImages.ClipsToBounds=true;
+				//ContactImages.Layer.CornerRadius=22f;
+				//ContactImages.ClipsToBounds=true;
 			});
 		}
 

@@ -126,6 +126,14 @@ namespace AncestorCloud.Touch
 				// show the picker
 				NavigationController.PresentModalViewController(imagePicker, true);
 
+//			TweetStation.Camera.TakePicture (this, (obj) =>{
+//				var photo = obj.ValueForKey(new NSString("UIImagePickerControllerOriginalImage")) as UIImage;
+//				var meta = obj.ValueForKey(new NSString("UIImagePickerControllerMediaMetadata")) as NSDictionary;
+//
+//
+//			}
+
+
 		}
 		public void Camera()
 		{
@@ -203,22 +211,36 @@ namespace AncestorCloud.Touch
 				}
 
 				//- get the image metadata
-				NSDictionary imageMetadata = e.Info[UIImagePickerController.MediaMetadata] as NSDictionary;
-				if(imageMetadata != null) {
-					// do something with the metadata
-					Console.WriteLine ("got image metadata");
+//				NSDictionary imageMetadata = e.Info[UIImagePickerController.MediaMetadata] as NSDictionary;
+//				if(imageMetadata != null) {
+//					// do something with the metadata
+//					Console.WriteLine ("got image metadata");
+//				}
+
+
+				var documentsDirectory = Environment.GetFolderPath
+					(Environment.SpecialFolder.Personal);
+				string jpgFilename = System.IO.Path.Combine (documentsDirectory, "ProfilePic.jpg");
+				NSData imgData = originalImage.AsJPEG();
+				NSError err = null;
+				if (imgData.Save(jpgFilename, false, out err))
+				{
+					Console.WriteLine("saved as " + jpgFilename);
+					ViewModel.ProfilePicURL = jpgFilename;
+				} else {
+					Console.WriteLine("NOT saved as" + jpgFilename + " because" + err.LocalizedDescription);
 				}
 
 			}
-			// if it's a video
-			else {
-				// get video url
-				NSUrl mediaURL = e.Info[UIImagePickerController.MediaURL] as NSUrl;
-				if(mediaURL != null) {
-					//
-					Console.WriteLine(mediaURL.ToString());
-				}
-			}
+//			// if it's a video
+//			else {
+//				// get video url
+//				NSUrl mediaURL = e.Info[UIImagePickerController.MediaURL] as NSUrl;
+//				if(mediaURL != null) {
+//					//
+//					Console.WriteLine(mediaURL.ToString());
+//				}
+//			}
 
 			// dismiss the picker
 			imagePicker.DismissViewControllerAsync (true);
