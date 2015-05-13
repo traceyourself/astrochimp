@@ -76,20 +76,25 @@ namespace AncestorCloud.Droid
 					ViewModel.UploadImage();
 				}
 			};
+
+			if(!ViewModel.IsFromSignup){
+				skipTxt.Visibility = ViewStates.Gone;
+			}
 		}
 
 		#region Action Bar Configuration
 		private void configureActionBar(){
 			actionBar = FindViewById <ActionBar>(Resource.Id.actionBar);
-			actionBar.SetLeftCornerImage (Resource.Drawable.back);
 
 			actionBar.SetCenterText (Resources.GetString(Resource.String.profile_pic));
 
-			var backButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
-
-			backButton.Click += (sender, e) => {
-				ViewModel.Close();
-			};
+			if (!ViewModel.IsFromSignup) {
+				actionBar.SetLeftCornerImage (Resource.Drawable.back);
+				var backButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
+				backButton.Click += (sender, e) => {
+					ViewModel.Close();
+				};
+			}
 		}
 		#endregion
 
@@ -105,7 +110,6 @@ namespace AncestorCloud.Droid
 			_lstDataItem.Add (Resources.GetString(Resource.String.gallery));
 			_lstDataItem.Add (Resources.GetString(Resource.String.cancel));
 
-
 			var listView = new ListView (this);
 			listView.Adapter = new AlertListViewAdapter (this, _lstDataItem);
 			listView.ItemClick += listViewItemClick;
@@ -113,7 +117,6 @@ namespace AncestorCloud.Droid
 
 			optionDialog = dialog.Create ();
 			optionDialog.Show ();
-
 		}
 
 		#region Dialog list click handler

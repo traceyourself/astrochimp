@@ -150,7 +150,7 @@ namespace AncestorCloud.Shared.ViewModels
 		#region ProfilePic
 		public void ShowProfilePicModel()
 		{
-			ShowViewModel<ProfilePicViewModel>();
+			ShowViewModel<ProfilePicViewModel> (new ProfilePicViewModel.DetailParameter { FromSignUp = false });
 		}
 		#endregion
 

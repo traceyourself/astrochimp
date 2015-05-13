@@ -92,6 +92,9 @@
       <HintPath>..\packages\Xamarin.Android.Support.v4.22.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android.Support.v4" />
+    <Reference Include="UrlImageViewHelper">
+      <HintPath>..\Components\urlimageviewhelper-1.0.4\lib\android\UrlImageViewHelper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -132,11 +135,8 @@
     <Compile Include="Views\HelpDialog\HelpDialog.cs" />
     <Compile Include="PlatformSpecificService\AndroidContactService.cs" />
     <Compile Include="DroidUtilities\RoundedImageView.cs" />
-
     <Compile Include="PlatformSpecificService\DroidSMSService.cs" />
-
     <Compile Include="Views\ProfilePicUpload\ProfilePicView.cs" />
-
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -287,6 +287,10 @@
     <AndroidResource Include="Resources\layout\upload_pic.axml" />
     <AndroidResource Include="Resources\drawable\circle_cover.axml" />
     <AndroidResource Include="Resources\layout\terms_dialog.axml" />
+    <AndroidResource Include="Resources\drawable\user_no_img_small.png" />
+    <AndroidResource Include="Resources\drawable\image_cover_round_medium.png" />
+    <AndroidResource Include="Resources\drawable\image_cover_round_small.png" />
+    <AndroidResource Include="Resources\drawable\image_cover_round.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -314,6 +318,10 @@
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.social">
       <Version>1.1.7</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="urlimageviewhelper">
+      <Version>1.0.4</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

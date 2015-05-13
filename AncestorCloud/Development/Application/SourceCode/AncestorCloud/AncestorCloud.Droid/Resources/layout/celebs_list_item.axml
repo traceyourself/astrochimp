@@ -3,15 +3,24 @@
     android:background="@android:color/transparent"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-    <ImageView
-        android:id="@+id/user_img"
+    <RelativeLayout
+        android:id="@+id/img_container"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/no_img_small"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="10dp">
+        <ImageView
+            android:id="@+id/user_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/user_no_img_small" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/image_cover_round_small" />
+    </RelativeLayout>
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
@@ -21,9 +30,9 @@
         android:textColor="@color/add_family_data_txt_color"
         android:textSize="14sp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="5dp"
         android:layout_toLeftOf="@+id/plus_box_right"
-        android:layout_toRightOf="@+id/user_img" />
+        android:layout_toRightOf="@+id/img_container" />
 <!--    <TextView
         android:id="@+id/relation"
         android:layout_width="wrap_content"

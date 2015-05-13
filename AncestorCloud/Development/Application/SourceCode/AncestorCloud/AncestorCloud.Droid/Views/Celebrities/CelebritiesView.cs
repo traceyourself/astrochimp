@@ -146,6 +146,10 @@ namespace AncestorCloud.Droid
 
 			};
 
+			//https://www.kin2.me/img/color/abraham_lincoln.jpg
+
+			Koush.UrlImageViewHelper.SetUrlDrawable (holder.userImg,dataList[position].Img, Resource.Drawable.user_no_img_small);
+
 			return convertView;
 		}
 	}
