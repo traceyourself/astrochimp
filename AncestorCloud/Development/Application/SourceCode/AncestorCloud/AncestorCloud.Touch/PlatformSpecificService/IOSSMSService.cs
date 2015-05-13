@@ -2,6 +2,7 @@
 using AncestorCloud.Shared;
 using Foundation;
 using UIKit;
+using MessageUI;
 
 namespace AncestorCloud.Touch
 {
@@ -18,16 +19,34 @@ namespace AncestorCloud.Touch
 		{
 
 
-			string str = "sms:" + GetPhoneNumber(people);
+			//string reciepent = "sms:" + GetPhoneNumber(people);
 
-			var smsTo = NSUrl.FromString(str);
+			string reciepent = GetPhoneNumber(people);
 
-			if (UIApplication.SharedApplication.CanOpenUrl(smsTo))
-			{
-				UIApplication.SharedApplication.OpenUrl(smsTo);
-			} 
-			else {
-				//TODO: Show Alert for Warning	
+			//var smsTo = NSUrl.FromString(str);
+
+//			if (UIApplication.SharedApplication.CanOpenUrl(smsTo))
+//			{
+//				UIApplication.SharedApplication.OpenUrl(smsTo);
+//			} 
+//			else {
+//				//TODO: Show Alert for Warning	
+//			}
+
+			if (MFMessageComposeViewController.CanSendText) {
+
+				MFMessageComposeViewController smsView = new MFMessageComposeViewController(); 
+
+				smsView.Body = @"SMS message here";
+				smsView.Recipients = new string[]{ reciepent};
+
+				smsView.Finished += (object s, MFMessageComposeResultEventArgs args) => args.Controller.DismissViewController (true, null);
+		
+				UIWindow window = UIApplication.SharedApplication.KeyWindow;
+
+				UIViewController rootViewController = window.RootViewController;
+
+				rootViewController.PresentViewController (smsView, true,null);
 			}
 		}
 
