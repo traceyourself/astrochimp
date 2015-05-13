@@ -112,7 +112,7 @@ namespace AncestorCloud.Droid
 					sourceBitmap.Height), 
 				new Rect(0, 0, targetWidth, targetHeight), null);
 			return targetBitmap;
-		}
+		}  
 		#endregion
 
 		#region get image apth

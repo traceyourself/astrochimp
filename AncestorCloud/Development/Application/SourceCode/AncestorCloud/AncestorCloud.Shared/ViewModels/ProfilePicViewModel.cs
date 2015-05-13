@@ -1,4 +1,5 @@
 ﻿using System;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Shared.ViewModels
 {
@@ -19,6 +20,19 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+
+
+		#region ProfilePic Path
+		public string ProfilePicPath{ get; set;}
+		#endregion
+
+
+		#region Upload image
+		public void UploadImage()
+		{
+			Mvx.Trace (""+ProfilePicPath);
+		}
+		#endregion
 	}
 }
 
