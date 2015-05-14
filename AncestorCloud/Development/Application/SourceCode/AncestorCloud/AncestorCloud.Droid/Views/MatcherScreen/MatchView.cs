@@ -200,7 +200,6 @@ namespace AncestorCloud.Droid
 				ViewModel.ShowRelationshipMatchDetailViewModel();
 			};
 
-
 			first_img.Click += (object sender, EventArgs e) => {
 				if(!isFirstPersonSelected){
 					ViewModel.WhichImageClicked = 1;

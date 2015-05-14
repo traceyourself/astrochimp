@@ -5,6 +5,7 @@ using Android.Provider;
 using Android.Content;
 using Android.App;
 using Android.Database;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Droid
 {
@@ -14,43 +15,64 @@ namespace AncestorCloud.Droid
 		{
 		}
 
-
-
 		public List<People> GetDeviceContacts ()
 		{
 			
-			return FillContacts();
+			//return FillContacts();
+			return ReadContacts();
 		}
 
-		private List<People> FillContacts ()
+
+		private List<People> ReadContacts()
 		{
+			
 			List<People> contactList = new List<People> ();
 
-			var uri = ContactsContract.Contacts.ContentUri;
-			string[] projection = {
-				ContactsContract.Contacts.InterfaceConsts.Id,
-				ContactsContract.Contacts.InterfaceConsts.DisplayName,
-				ContactsContract.Contacts.InterfaceConsts.PhotoId,
-				ContactsContract.Contacts.InterfaceConsts.HasPhoneNumber
-			};
+			ContentResolver contentResolver = Utilities.CurrentActiveActivity.ContentResolver;
 
-			// CursorLoader introduced in Honeycomb (3.0, API11)
-			var loader = new CursorLoader(Utilities.CurrentActiveActivity, uri, projection, null, null, null);
-			var cursor = (ICursor)loader.LoadInBackground();
-			contactList = new List<People> ();  
-			if (cursor.MoveToFirst ()) {
+			ICursor cursor = null;
+			try {
+				cursor = contentResolver.Query(ContactsContract.CommonDataKinds.Phone.ContentUri, null, null, null, null);
+				int contactIdIdx = cursor.GetColumnIndex(ContactsContract.Contacts.InterfaceConsts.Id);
+				int nameIdx = cursor.GetColumnIndex(ContactsContract.Contacts.InterfaceConsts.DisplayName);
+				int phoneNumberIdx = cursor.GetColumnIndex(ContactsContract.CommonDataKinds.Phone.Number);
+				int photoIdIdx = cursor.GetColumnIndex(ContactsContract.Contacts.InterfaceConsts.PhotoId);
+
+				cursor.MoveToFirst();
+
 				do {
-					contactList.Add (new People{
-						Id = (int)cursor.GetLong (cursor.GetColumnIndex (projection [0])),
-						Name = cursor.GetString (cursor.GetColumnIndex (projection [1])),
-						ProfilePicURL = cursor.GetString (cursor.GetColumnIndex (projection [2])),
-						Contact =  cursor.GetString (cursor.GetColumnIndex (projection [3]))
-					});
+					int idContact = (int)cursor.GetLong(contactIdIdx);
+					String name = cursor.GetString(nameIdx);
+					String photo = cursor.GetString(photoIdIdx);
+					String phoneNumber = "";
+					try{
+						phoneNumber = cursor.GetString(phoneNumberIdx);
+					}catch(Exception ee){
+						Mvx.Trace(ee.StackTrace);
+					}
+
+					People people = new People();
+
+					people.Id = idContact;
+					people.Name = name;
+					people.ProfilePicURL = photo;
+					people.Contact = phoneNumber;
+
+					contactList.Add(people);
+				
 				} while (cursor.MoveToNext());
+
+			} catch (Exception e) {
+				Mvx.Trace(e.StackTrace);
+			} finally {
+				if (cursor != null) {
+					cursor.Close();
+				}
 			}
 
 			return contactList;
 		}
+
 	}
 }
 

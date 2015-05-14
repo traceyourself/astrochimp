@@ -88,9 +88,6 @@
     <Reference Include="Cirrious.MvvmCross.Plugins.Json">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Json.3.5.1\lib\MonoAndroid\Cirrious.MvvmCross.Plugins.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\packages\Xamarin.Android.Support.v4.22.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Android.Support.v4" />
     <Reference Include="UrlImageViewHelper">
       <HintPath>..\Components\urlimageviewhelper-1.0.4\lib\android\UrlImageViewHelper.dll</HintPath>
@@ -137,6 +134,7 @@
     <Compile Include="DroidUtilities\RoundedImageView.cs" />
     <Compile Include="PlatformSpecificService\DroidSMSService.cs" />
     <Compile Include="Views\ProfilePicUpload\ProfilePicView.cs" />
+    <Compile Include="Interfaces\DroidReachabilityService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
