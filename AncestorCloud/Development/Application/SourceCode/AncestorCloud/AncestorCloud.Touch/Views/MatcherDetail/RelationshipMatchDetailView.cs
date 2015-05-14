@@ -94,39 +94,21 @@ namespace AncestorCloud.Touch
 
 		#endregion
 
+		#region DATABINDING
 		void BindData()
 		{
 			var source = new RelationshipMatchTableSource (RelationshipMatchTable);
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
 			RelationshipMatchTable.Source = source;
 
+			RelationshipMatchTable.Delegate = new RelationshipMatchTableDelegate ();
+
 			var set = this.CreateBindingSet<RelationshipMatchDetailView , RelationshipMatchDetailViewModel > ();
 			set.Bind (source).To (vm => vm.MatchResultList);
-			System.Diagnostics.Debug.WriteLine (ViewModel.MatchResultList);
+			//System.Diagnostics.Debug.WriteLine (ViewModel.MatchResultList);
 			set.Apply ();
 
 		}
-
-
-		#region DATABINDING
-
-//		public void SetTableView()
-//		{
-//
-//
-//			var source = new RelationshipMatchTableSource (RelationshipMatchTable);
-//			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
-//			RelationshipMatchTable.Source = source;
-//
-//			//this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,150,20));
-//
-//			var set = this.CreateBindingSet<RelationshipMatchDetailView , RelationshipMatchDetailViewModel> ();
-//			set.Bind (source).To (vm => vm.RelationshipMatchDetailList);
-//			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
-//			set.Apply ();
-//			//this.NavigationController.NavigationBarHidden = true;
-//
-//		}
 		#endregion
 
 
