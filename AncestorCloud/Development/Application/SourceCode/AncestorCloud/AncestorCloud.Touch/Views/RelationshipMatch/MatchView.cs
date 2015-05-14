@@ -11,6 +11,7 @@ using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using AncestorCloud.Shared;
 using System.Linq;
+using Cirrious.MvvmCross.Binding.Touch.Views;
 
 namespace AncestorCloud.Touch
 {
@@ -152,12 +153,13 @@ namespace AncestorCloud.Touch
 
 		}
 
+
+
 		public override void ViewWillAppear (bool animated)
 		{
+			base.ViewWillAppear (animated);
+
 			GetData ();
-
-
-
 		}
 
 
@@ -210,17 +212,23 @@ namespace AncestorCloud.Touch
 		{
 
 			if (isFirstPersonSelected) {
-
-				FirstImageButton.SetBackgroundImage(UIImage.FromBundle("noImage.png"),UIControlState.Normal);
+				MvxImageViewLoader _imageViewLoader = new MvxImageViewLoader(() => this.FirstImageView);
+				//FirstImageButton.SetBackgroundImage(UIImage.FromBundle("noImage.png"),UIControlState.Normal);
 				FirstImageButton.Layer.CornerRadius = 90f;
 				FirstImageButton.ClipsToBounds = true;
-
+				FirstImageButton.SetBackgroundImage (UIImage.FromFile (firstPersonImage), UIControlState.Normal);
 				FirstCrossButton.Hidden = false;
+				_imageViewLoader.ImageUrl = firstPersonImage;
+				FirstImageView.Layer.CornerRadius = 90f;
+				FirstImageView.ClipsToBounds = true;
+				FirstImageView.Hidden = false;
 			} else {
 				FirstImageButton.SetBackgroundImage(UIImage.FromBundle("CircleMatcher.png"),UIControlState.Normal);
 				FirstImageButton.Layer.CornerRadius = 90f;
 				FirstImageButton.ClipsToBounds = true;
 				FirstCrossButton.Hidden = true;
+				FirstImageView.Hidden = true;
+
 			}
 			
 		}
@@ -230,17 +238,21 @@ namespace AncestorCloud.Touch
 
 			if (isSecondPersonSelected)
 			{
-
+				MvxImageViewLoader _imageViewLoader = new MvxImageViewLoader(() => this.SecondImageView);
 				SecondImageButton.SetBackgroundImage(UIImage.FromBundle("noImage.png"),UIControlState.Normal);
 				SecondImageButton.Layer.CornerRadius = 90f;
 				SecondImageButton.ClipsToBounds = true;
-
 				SecondCrossButton.Hidden = false;
+				_imageViewLoader.ImageUrl = secondPersonImage;
+				SecondImageView.Layer.CornerRadius = 90f;
+				SecondImageView.ClipsToBounds = true;
+				SecondImageView.Hidden = false;
 			} else {
 				SecondImageButton.SetBackgroundImage(UIImage.FromBundle("CircleMatcher.png"),UIControlState.Normal);
 				SecondImageButton.Layer.CornerRadius = 90f;
 				SecondImageButton.ClipsToBounds = true;
 				SecondCrossButton.Hidden = true;
+				SecondImageView.Hidden = true;
 			}
 			
 		}
