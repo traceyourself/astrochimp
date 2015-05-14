@@ -16,6 +16,9 @@ namespace AncestorCloud.Touch
 		UIKit.UIButton CelbImage { get; set; }
 
 		[Outlet]
+		UIKit.UIImageView CelebImageView { get; set; }
+
+		[Outlet]
 		UIKit.UILabel LastName { get; set; }
 
 		[Outlet]
@@ -26,6 +29,11 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (CelebImageView != null) {
+				CelebImageView.Dispose ();
+				CelebImageView = null;
+			}
+
 			if (CelbImage != null) {
 				CelbImage.Dispose ();
 				CelbImage = null;

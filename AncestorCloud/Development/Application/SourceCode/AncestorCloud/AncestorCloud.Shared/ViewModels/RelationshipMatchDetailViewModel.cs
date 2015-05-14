@@ -9,8 +9,12 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class RelationshipMatchDetailViewModel :BaseViewModel
 	{
+		public String FirstPersonURL{ get; set;}
+		public String SecondPersonURL{ get; set;}
+		public String FirstPersonNAME{ get; set;}
+		public String SecondPersonNAME{ get; set;}
 
-	
+
 		public void Init(DetailParameter parameter)
 		{
 			//this.MatchResult = parameter.MatchResult;
@@ -20,7 +24,10 @@ namespace AncestorCloud.Shared.ViewModels
 			IMvxJsonConverter converter = Mvx.Resolve<IMvxJsonConverter>();
 			MatchResult = converter.DeserializeObject<RelationshipFindResult>(parameter.MatchResult);
 			//RealInit(deserialized);
-			 
+			FirstPersonURL= parameter.FirstPersonUrl;
+			SecondPersonURL = parameter.SecondPersonUrl;
+			FirstPersonNAME = parameter.FirstPersonName;
+			SecondPersonNAME = parameter.SecondPersonName;
 			SetCommonResult ();
 		}
 
@@ -92,6 +99,10 @@ namespace AncestorCloud.Shared.ViewModels
 		public class DetailParameter
 		{
 			public String MatchResult { get; set;}
+			public String FirstPersonUrl{ get; set;}
+			public String SecondPersonUrl{ get; set;}
+			public String FirstPersonName{ get; set;}
+			public String SecondPersonName{ get; set;}
 		}
 
 

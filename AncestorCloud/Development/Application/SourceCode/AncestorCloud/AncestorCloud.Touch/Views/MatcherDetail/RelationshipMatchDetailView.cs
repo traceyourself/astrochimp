@@ -8,11 +8,17 @@ using AncestorCloud.Shared;
 using AncestorCloud.Shared.ViewModels;
 using System.Drawing;
 using Cirrious.MvvmCross.Binding.BindingContext;
+using Cirrious.MvvmCross.Binding.Touch.Views;
 
 namespace AncestorCloud.Touch
 {
 	public partial class RelationshipMatchDetailView : BaseViewController
 	{
+
+		String firstPersonImage = "",secondPersonImage = "";
+		String firstPersonName="",secondPersonName="";
+
+
 		public RelationshipMatchDetailView () : base ("RelationshipMatchDetailView", null)
 		{
 		}
@@ -65,11 +71,28 @@ namespace AncestorCloud.Touch
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 
 
-			FirstMatchPic.Layer.CornerRadius = 40f;
-			FirstMatchPic.ClipsToBounds = true;
+//			_FirstMatchPic.Layer.CornerRadius = 40f;
+//			_FirstMatchPic.ClipsToBounds = true;
+//			MvxImageViewLoader _imageViewLoader = new MvxImageViewLoader(() => this._FirstMatchPic);
+//
+//			firstPersonImage = ViewModel.FirstPersonURL;
+//			_imageViewLoader.ImageUrl = firstPersonImage;
+//
+//
+//			firstPersonName = ViewModel.FirstPersonNAME;
 
-			SecondMatchPic.Layer.CornerRadius = 40f;
-			SecondMatchPic.ClipsToBounds = true;
+
+
+
+//			_SecondMatchPic.Layer.CornerRadius = 40f;
+//			_SecondMatchPic.ClipsToBounds = true;
+//
+//			MvxImageViewLoader _secImageViewLoader = new MvxImageViewLoader(() => this._SecondMatchPic);
+//
+//			//secondPersonImage = ViewModel.SecondPersonURL;
+//			_secImageViewLoader.ImageUrl = ViewModel.SecondPersonURL;
+//
+//			secondPersonName = ViewModel.SecondPersonNAME;
 
 
 			this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,150,20));
@@ -103,8 +126,15 @@ namespace AncestorCloud.Touch
 
 			RelationshipMatchTable.Delegate = new RelationshipMatchTableDelegate ();
 
+			MvxImageViewLoader _imageViewLoader = new MvxImageViewLoader(() => this._FirstMatchPic);
+			MvxImageViewLoader _secImageViewLoader = new MvxImageViewLoader(() => this._SecondMatchPic);
+
 			var set = this.CreateBindingSet<RelationshipMatchDetailView , RelationshipMatchDetailViewModel > ();
 			set.Bind (source).To (vm => vm.MatchResultList);
+			set.Bind (FirstPersonName).To (vm => vm.FirstPersonNAME);
+			set.Bind (SecondPersonName).To (vm => vm.SecondPersonNAME);
+			set.Bind (_imageViewLoader).To (vm => vm.FirstPersonURL);
+			set.Bind (_secImageViewLoader).To (vm => vm.SecondPersonURL);
 			//System.Diagnostics.Debug.WriteLine (ViewModel.MatchResultList);
 			set.Apply ();
 		}

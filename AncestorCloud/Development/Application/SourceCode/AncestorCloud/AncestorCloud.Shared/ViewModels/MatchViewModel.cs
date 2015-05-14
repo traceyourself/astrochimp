@@ -144,11 +144,16 @@ namespace AncestorCloud.Shared.ViewModels
 
 		#region property holding the clicked image 
 		public int WhichImageClicked{ get; set;}
+		public String FirstPersonImageUrl{ get; set;}
+		public String SecondPersonImageUrl{ get; set;}
+		public String FirstPersonImageName{ get; set;}
+		public String SecondPersonImageName{ get; set;}
 		#endregion
 
 		#region Ogfn holders
 		public String FirstPersonOgfn{ get; set;}
 		public String SecondPersonOgfn{ get; set;}
+
 		#endregion
 
 		#region MATCH Service
@@ -166,14 +171,14 @@ namespace AncestorCloud.Shared.ViewModels
 
 				if (result.Status == ResponseStatus.OK) {
 					if (result.Content.Found) {
-						if (!Mvx.CanResolve<IAndroidService> ()) 
-						{
-							Close();
-						}
+//						if (!Mvx.CanResolve<IAndroidService> ()) 
+//						{
+//							Close();
+//						}
 
 						var matchString = Mvx.Resolve<IMvxJsonConverter> ().SerializeObject (result.Content);
 
-						ShowViewModel<RelationshipMatchDetailViewModel> (new RelationshipMatchDetailViewModel.DetailParameter { MatchResult = matchString });
+						ShowViewModel<RelationshipMatchDetailViewModel> (new RelationshipMatchDetailViewModel.DetailParameter { MatchResult = matchString ,FirstPersonUrl = FirstPersonImageUrl,SecondPersonUrl = SecondPersonImageUrl,FirstPersonName= FirstPersonImageName,SecondPersonName= SecondPersonImageName});
 					} else 
 					{
 						//TODO: Show No Match Screen
@@ -193,10 +198,15 @@ namespace AncestorCloud.Shared.ViewModels
 
 			if(FirstPersonCeleb != null || FirstPersonPeople != null){
 
-				if(FirstPersonCeleb != null){
+				if (FirstPersonCeleb != null) {
 					FirstPersonOgfn = FirstPersonCeleb.OGFN;
-				}else if(FirstPersonPeople != null){
+					FirstPersonImageUrl = FirstPersonCeleb.Img;
+					FirstPersonImageName = FirstPersonCeleb.GivenNames;
+
+				} else if (FirstPersonPeople != null) {
 					FirstPersonOgfn = FirstPersonPeople.IndiOgfn;
+					FirstPersonImageUrl = FirstPersonPeople.ProfilePicURL;
+					FirstPersonImageName = FirstPersonPeople.FirstName;
 				}
 
 
@@ -206,8 +216,12 @@ namespace AncestorCloud.Shared.ViewModels
 				} else {
 					if(SecondPersonCeleb != null){
 						SecondPersonOgfn = SecondPersonCeleb.OGFN;
+						SecondPersonImageUrl = SecondPersonCeleb.Img;
+						SecondPersonImageName = SecondPersonCeleb.GivenNames;
 					}else if(SecondPersonPeople != null){
 						SecondPersonOgfn = SecondPersonPeople.IndiOgfn;
+						SecondPersonImageUrl = SecondPersonPeople.ProfilePicURL;
+						SecondPersonImageName = SecondPersonPeople.FirstName;
 					}
 				}
 			}else{

@@ -20,19 +20,23 @@ namespace AncestorCloud.Touch
 
 		public Celebrity familyMember{ get; set;}
 
+		private readonly MvxImageViewLoader _imageViewLoader;
 
 		public CelebritiesCell (IntPtr handle) : base (handle)
 		{
+			_imageViewLoader = new MvxImageViewLoader(() => this.CelebImageView);
+
 			this.DelayBind (() => {
 
 				var set = this.CreateBindingSet<CelebritiesCell, Celebrity> ();
 				set.Bind (NameLabel).To (vm => vm.GivenNames);
 				set.Bind(LastName).To (vm => vm.LastName);
+				set.Bind(_imageViewLoader).To (vm => vm.Img);
 
 				//set.Bind(OtherNameLabel).To(vm => vm.Relation).WithConversion(new RelationshipTextConverter(),null);
 				set.Apply ();
-				CelbImage.Layer.CornerRadius=22f;
-				CelbImage.ClipsToBounds=true;
+				CelebImageView.Layer.CornerRadius=22f;
+				CelebImageView.ClipsToBounds=true;
 			});
 		}
 

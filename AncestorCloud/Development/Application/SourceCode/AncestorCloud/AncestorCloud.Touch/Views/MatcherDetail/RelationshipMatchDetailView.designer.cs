@@ -13,24 +13,40 @@ namespace AncestorCloud.Touch
 	partial class RelationshipMatchDetailView
 	{
 		[Outlet]
-		UIKit.UIButton FirstMatchPic { get; set; }
+		UIKit.UIImageView _FirstMatchPic { get; set; }
+
+		[Outlet]
+		UIKit.UIImageView _SecondMatchPic { get; set; }
+
+		[Outlet]
+		UIKit.UILabel FirstPersonName { get; set; }
 
 		[Outlet]
 		UIKit.UITableView RelationshipMatchTable { get; set; }
 
 		[Outlet]
-		UIKit.UIButton SecondMatchPic { get; set; }
+		UIKit.UILabel SecondPersonName { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (SecondMatchPic != null) {
-				SecondMatchPic.Dispose ();
-				SecondMatchPic = null;
+			if (FirstPersonName != null) {
+				FirstPersonName.Dispose ();
+				FirstPersonName = null;
 			}
 
-			if (FirstMatchPic != null) {
-				FirstMatchPic.Dispose ();
-				FirstMatchPic = null;
+			if (SecondPersonName != null) {
+				SecondPersonName.Dispose ();
+				SecondPersonName = null;
+			}
+
+			if (_FirstMatchPic != null) {
+				_FirstMatchPic.Dispose ();
+				_FirstMatchPic = null;
+			}
+
+			if (_SecondMatchPic != null) {
+				_SecondMatchPic.Dispose ();
+				_SecondMatchPic = null;
 			}
 
 			if (RelationshipMatchTable != null) {

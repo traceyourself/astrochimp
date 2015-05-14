@@ -22,6 +22,9 @@ namespace AncestorCloud.Touch
 		UIKit.UIButton FirstImageButton { get; set; }
 
 		[Outlet]
+		UIKit.UIImageView FirstImageView { get; set; }
+
+		[Outlet]
 		UIKit.UIScrollView scrollViewObj { get; set; }
 
 		[Outlet]
@@ -29,6 +32,9 @@ namespace AncestorCloud.Touch
 
 		[Outlet]
 		UIKit.UIButton SecondImageButton { get; set; }
+
+		[Outlet]
+		UIKit.UIImageView SecondImageView { get; set; }
 
 		[Action ("firstCrossImg:")]
 		partial void firstCrossImg (UIKit.UIButton sender);
@@ -53,6 +59,16 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (FirstImageView != null) {
+				FirstImageView.Dispose ();
+				FirstImageView = null;
+			}
+
+			if (SecondImageView != null) {
+				SecondImageView.Dispose ();
+				SecondImageView = null;
+			}
+
 			if (ContentView != null) {
 				ContentView.Dispose ();
 				ContentView = null;
