@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RelationshipMatchDetailView">
             <connections>
+                <outlet property="DegreeLabel" destination="0Ub-5v-wlh" id="oTb-PV-LCO"/>
                 <outlet property="FirstPersonName" destination="xNv-Vm-4Ig" id="13U-IP-Jpf"/>
                 <outlet property="RelationshipMatchTable" destination="An6-nW-CHK" id="q4q-XS-Efu"/>
                 <outlet property="SecondPersonName" destination="XfD-CM-9oX" id="KnO-o1-oLX"/>

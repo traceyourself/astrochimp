@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MatchView">
@@ -103,8 +104,11 @@
                                         <constraint firstAttribute="width" constant="180" id="dVh-zy-5Ob"/>
                                     </constraints>
                                 </imageView>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTi-gN-QWf">
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTi-gN-QWf">
                                     <rect key="frame" x="245" y="68" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="iTi-gN-QWf" secondAttribute="height" multiplier="1:1" id="KC0-NU-YI2"/>
+                                    </constraints>
                                     <state key="normal" backgroundImage="blue_x.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -112,8 +116,11 @@
                                         <action selector="firstCrossImg:" destination="-1" eventType="touchUpInside" id="wVT-Z5-09D"/>
                                     </connections>
                                 </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKw-0V-oR0">
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKw-0V-oR0">
                                     <rect key="frame" x="245" y="310" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="kKw-0V-oR0" secondAttribute="height" multiplier="1:1" id="Hvf-iD-Jel"/>
+                                    </constraints>
                                     <state key="normal" backgroundImage="blue_x.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -124,6 +131,7 @@
                             </subviews>
                             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
+                                <constraint firstItem="iTi-gN-QWf" firstAttribute="trailing" secondItem="lmP-wb-5kU" secondAttribute="trailing" constant="-7" id="06K-ey-hDN"/>
                                 <constraint firstAttribute="centerX" secondItem="lmP-wb-5kU" secondAttribute="centerX" constant="0.5" id="0z0-KA-8Zm"/>
                                 <constraint firstItem="5Xj-sZ-16d" firstAttribute="top" secondItem="Hkv-b2-03Q" secondAttribute="bottom" constant="8" id="E7T-KE-U1g"/>
                                 <constraint firstItem="gW5-4w-qED" firstAttribute="top" secondItem="1tI-qn-ne9" secondAttribute="top" constant="23" id="FKp-9T-K2H"/>
@@ -133,6 +141,7 @@
                                 <constraint firstItem="INg-5T-FXK" firstAttribute="top" secondItem="gW5-4w-qED" secondAttribute="bottom" constant="9" id="MUM-IK-oRu"/>
                                 <constraint firstAttribute="centerX" secondItem="zfT-4b-wuc" secondAttribute="centerX" constant="0.5" id="QTP-kf-RHY"/>
                                 <constraint firstAttribute="centerX" secondItem="Hkv-b2-03Q" secondAttribute="centerX" constant="0.5" id="RPR-v7-35P"/>
+                                <constraint firstItem="iTi-gN-QWf" firstAttribute="leading" secondItem="lmP-wb-5kU" secondAttribute="leading" constant="148" id="YjM-d6-VBW"/>
                                 <constraint firstAttribute="height" constant="667" id="ffH-Ho-6L9"/>
                                 <constraint firstAttribute="centerX" secondItem="INg-5T-FXK" secondAttribute="centerX" constant="0.5" id="k2f-g5-dRb"/>
                                 <constraint firstAttribute="centerX" secondItem="5Xj-sZ-16d" secondAttribute="centerX" constant="0.5" id="l2s-5S-O4E"/>
@@ -141,7 +150,9 @@
                                 <constraint firstItem="zfT-4b-wuc" firstAttribute="top" secondItem="5Xj-sZ-16d" secondAttribute="bottom" constant="8" id="pgo-I1-OIm"/>
                                 <constraint firstItem="kDi-1X-9na" firstAttribute="top" secondItem="Hkv-b2-03Q" secondAttribute="bottom" constant="8" id="ppz-wX-MT7"/>
                                 <constraint firstItem="Hkv-b2-03Q" firstAttribute="top" secondItem="INg-5T-FXK" secondAttribute="bottom" constant="8" id="qfh-aU-3iz"/>
+                                <constraint firstItem="kDi-1X-9na" firstAttribute="trailing" secondItem="kKw-0V-oR0" secondAttribute="trailing" constant="7" id="ujr-bw-xBW"/>
                                 <constraint firstAttribute="width" constant="375" id="w8V-kX-ZXc"/>
+                                <constraint firstItem="kDi-1X-9na" firstAttribute="leading" secondItem="kKw-0V-oR0" secondAttribute="leading" constant="-148" id="yRD-od-TZB"/>
                             </constraints>
                         </view>
                     </subviews>
