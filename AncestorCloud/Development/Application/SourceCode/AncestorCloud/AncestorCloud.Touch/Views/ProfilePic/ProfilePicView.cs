@@ -91,13 +91,9 @@ namespace AncestorCloud.Touch
 		}
 		partial void SkipButtonTapped (NSObject sender)
 		{
-
 			this.NavigationController.PopViewController(false);
-
 			ViewModel.ShowFamiyViewModel();
 			this.ViewModel.Close();
-	
-
 		}
 
 		 void ProfilePicSetUp(object sender, EventArgs e)

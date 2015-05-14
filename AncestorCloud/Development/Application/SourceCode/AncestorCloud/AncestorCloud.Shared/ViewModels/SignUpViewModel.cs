@@ -422,8 +422,10 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowTermsandCondition()
 		{
+
+			//this.Close ();
 			ShowViewModel<TermsandConditionViewModel> ();
-			this.Close ();
+
 		}
 
 

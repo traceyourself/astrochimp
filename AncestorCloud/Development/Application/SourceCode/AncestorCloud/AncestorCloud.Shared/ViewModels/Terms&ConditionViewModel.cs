@@ -10,6 +10,12 @@ namespace AncestorCloud.Shared.ViewModels
 			this.Close(this);
 		}
 		#endregion
+
+		public void ShowSignUpView()
+		{
+			ShowViewModel<SignUpViewModel> ();
+			this.Close ();
+		}
 	}
 }
 

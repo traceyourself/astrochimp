@@ -269,7 +269,9 @@ namespace AncestorCloud.Touch
 		#endregion
 		partial void TCButtonTaped (NSObject sender)
 		{
-			System.Diagnostics.Debug.WriteLine("T&C");
+			//System.Diagnostics.Debug.WriteLine("T&C");
+			this.NavigationController.DismissViewController(false,null);
+			ViewModel.Close();
 			ViewModel.ShowTermsandCondition();
 
 		}
