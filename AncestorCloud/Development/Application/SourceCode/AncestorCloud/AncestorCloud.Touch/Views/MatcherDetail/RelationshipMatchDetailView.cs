@@ -71,8 +71,8 @@ namespace AncestorCloud.Touch
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 
 
-//			_FirstMatchPic.Layer.CornerRadius = 40f;
-//			_FirstMatchPic.ClipsToBounds = true;
+			_FirstMatchPic.Layer.CornerRadius = 40f;
+			_FirstMatchPic.ClipsToBounds = true;
 //			MvxImageViewLoader _imageViewLoader = new MvxImageViewLoader(() => this._FirstMatchPic);
 //
 //			firstPersonImage = ViewModel.FirstPersonURL;
@@ -84,8 +84,8 @@ namespace AncestorCloud.Touch
 
 
 
-//			_SecondMatchPic.Layer.CornerRadius = 40f;
-//			_SecondMatchPic.ClipsToBounds = true;
+			_SecondMatchPic.Layer.CornerRadius = 40f;
+			_SecondMatchPic.ClipsToBounds = true;
 //
 //			MvxImageViewLoader _secImageViewLoader = new MvxImageViewLoader(() => this._SecondMatchPic);
 //
