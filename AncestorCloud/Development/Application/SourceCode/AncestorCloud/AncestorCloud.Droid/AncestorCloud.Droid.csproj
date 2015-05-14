@@ -287,6 +287,7 @@
     <AndroidResource Include="Resources\layout\terms_dialog.axml" />
     <AndroidResource Include="Resources\drawable\user_no_img_small.png" />
     <AndroidResource Include="Resources\drawable\image_cover_round_medium.png" />
+    <AndroidResource Include="Resources\drawable\image_cover_round_small_white.png" />
     <AndroidResource Include="Resources\drawable\image_cover_round_small.png" />
     <AndroidResource Include="Resources\drawable\image_cover_round.png" />
   </ItemGroup>

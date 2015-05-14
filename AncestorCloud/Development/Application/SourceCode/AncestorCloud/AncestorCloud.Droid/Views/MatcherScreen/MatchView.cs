@@ -237,6 +237,8 @@ namespace AncestorCloud.Droid
 		{
 			base.OnResume ();
 
+			Utilities.CurrentActiveActivity = this;
+
 			if (ViewModel.WhichImageClicked == 1) {
 				if (ViewModel.FirstPersonCeleb != null) {
 					ViewModel.WhichImageClicked = 0;
