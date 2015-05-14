@@ -2,6 +2,7 @@
 using System.IO;
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.Platform;
+using Cirrious.MvvmCross.Plugins.Messenger;
 
 
 namespace AncestorCloud.Shared.ViewModels
@@ -12,10 +13,16 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly IDatabaseService _databaseService;
 
+		private MvxSubscriptionToken navigationMenuToggleToken;
+
 		public ProfilePicViewModel(IProfileService profileService,IDatabaseService databaseService)
 		{
 			_profileService = profileService;
 			_databaseService = databaseService;
+
+			var _messenger = Mvx.Resolve<IMvxMessenger>();
+			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<FlyOutCloseMessage>(message => this.Close());
+
 		}
 
 		public void Init(DetailParameter parameter)
@@ -40,16 +47,25 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowFamiyViewModel()
 		{
-			ShowViewModel<FlyOutViewModel> ();
+			//ShowViewModel<M> ();
+
+			ShowViewModel<FlyOutViewModel> (new FlyOutViewModel.DetailParameters { IsFBLogin = false });
+
 			this.Close (this);//XXXXX
 		}
 
+		#region IDisposable implementation
+
+
+			
+		#endregion
 
 		#region Close Method
 		public void Close()
 		{
-			this.Close(this);
+			this.Close (this);
 		}
+
 		#endregion
 
 		#region call home for logout

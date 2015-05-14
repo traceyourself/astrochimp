@@ -5,6 +5,8 @@ using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
 using System.Drawing;
 using System.IO;
+using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Plugins.Messenger;
 
 namespace AncestorCloud.Touch
 {
@@ -40,8 +42,9 @@ namespace AncestorCloud.Touch
 
 			SetUpView ();
 
-
-			
+			if (!ViewModel.IsFromSignup) {
+				SkipButton.Hidden = true;
+			}
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
@@ -58,6 +61,27 @@ namespace AncestorCloud.Touch
 			this.NavigationController.NavigationBar.BarTintColor= UIColor.FromRGB (179, 45, 116);
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
+
+			if (ViewModel.IsFromSignup)
+				return;
+			
+			UIImage image = UIImage.FromFile ("action_menu.png");
+
+			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
+
+
+			this.NavigationItem.SetLeftBarButtonItem(
+				new UIBarButtonItem(image
+					, UIBarButtonItemStyle.Plain
+					, (sender,args) => {
+						{
+							//message to show the menu
+							var messenger = Mvx.Resolve<IMvxMessenger>();
+							messenger.Publish(new ToggleFlyoutMenuMessage(this));
+						}
+
+					})
+				, true);
 		}
 
 		partial void UploadButtonTapped (NSObject sender)
@@ -67,6 +91,8 @@ namespace AncestorCloud.Touch
 		}
 		partial void SkipButtonTapped (NSObject sender)
 		{
+
+			this.NavigationController.PopViewController(false);
 
 			ViewModel.ShowFamiyViewModel();
 			this.ViewModel.Close();

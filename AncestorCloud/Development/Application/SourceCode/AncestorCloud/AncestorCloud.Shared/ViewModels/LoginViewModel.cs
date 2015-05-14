@@ -118,7 +118,8 @@ namespace AncestorCloud.Shared.ViewModels
 		#region Close Method
 		public void Close()
 		{
-			this.Close(this);if (_reachabilityService.IsNetworkNotReachable ()) {
+			this.Close(this);
+			if (_reachabilityService.IsNetworkNotReachable ()) {
 				Alert.ShowAlert ("Please check internet connection", "Network not available");
 			}
 		}

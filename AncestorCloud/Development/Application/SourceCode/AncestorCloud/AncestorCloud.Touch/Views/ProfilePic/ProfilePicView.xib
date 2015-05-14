@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfilePicView">
             <connections>
                 <outlet property="ProfilePic" destination="sP8-RB-P6t" id="HzK-MV-xCe"/>
+                <outlet property="SkipButton" destination="pPK-2y-WdS" id="n7N-Ag-fEj"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
         </placeholder>

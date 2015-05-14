@@ -63,8 +63,11 @@ namespace AncestorCloud.Touch
 				{ TextColor = UIColor.FromRGB (255,255,255) });
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
 			this.NavigationItem.SetHidesBackButton (true, false);
-			this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,150,20));
+			//this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,150,20));
+			MyTitleView view = new MyTitleView (this.Title,new RectangleF(0,0,150,20));
 
+			//view.Center = new CoreGraphics.CGPoint (this.View.Center.X, view.Center.Y);
+			this.NavigationItem.TitleView = view;
 
 			UIImage image = UIImage.FromFile ("action_menu.png");
 

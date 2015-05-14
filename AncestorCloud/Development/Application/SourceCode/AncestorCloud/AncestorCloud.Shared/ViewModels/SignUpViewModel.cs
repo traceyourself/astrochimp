@@ -253,7 +253,6 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public async void DoSignUp()
 		{
-
 			if (ValidateCredentials ()) {
 
 				if (_reachabilityService.IsNetworkNotReachable ()) {
@@ -279,8 +278,8 @@ namespace AncestorCloud.Shared.ViewModels
 					{
 						IsFbLogin = false;
 						ShowProfilePicViewModel();
-						this.Close (this);//XXXXXX
-						//CallFlyoutCommand.Execute(null);
+						//this.Close (this);//XXXXXX
+//						CallFlyoutCommand.Execute(null);
 						CloseCommand.Execute (null);
 					}
 
@@ -409,8 +408,6 @@ namespace AncestorCloud.Shared.ViewModels
 			} else {
 				SignUp ();
 			}
-
-
 		}
 
 		private void SignUp()

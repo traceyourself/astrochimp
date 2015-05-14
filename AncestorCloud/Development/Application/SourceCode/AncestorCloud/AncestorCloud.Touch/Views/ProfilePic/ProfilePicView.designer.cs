@@ -15,6 +15,9 @@ namespace AncestorCloud.Touch
 		[Outlet]
 		UIKit.UIButton ProfilePic { get; set; }
 
+		[Outlet]
+		UIKit.UIButton SkipButton { get; set; }
+
 		[Action ("SkipButtonTapped:")]
 		partial void SkipButtonTapped (Foundation.NSObject sender);
 
@@ -23,6 +26,11 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (SkipButton != null) {
+				SkipButton.Dispose ();
+				SkipButton = null;
+			}
+
 			if (ProfilePic != null) {
 				ProfilePic.Dispose ();
 				ProfilePic = null;

@@ -20,11 +20,16 @@ namespace AncestorCloud.Touch
 				set.Bind (NameLabel).To (vm => vm.CommonResult.Name);
 				set.Bind (MatchDegreeLabel).To(vm => vm.Degrees);//.WithConversion(new DegreeConverter(),null);
 				set.Apply ();
+
+
 			});
+
+
 		}
 
 		public static RelationshipMatchDetailCell Create ()
 		{
+			
 			return (RelationshipMatchDetailCell)Nib.Instantiate (null, null) [0];
 		}
 	}

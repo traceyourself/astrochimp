@@ -104,6 +104,7 @@ namespace AncestorCloud.Touch
 			set.Bind (source).To (vm => vm.MatchResultList);
 			System.Diagnostics.Debug.WriteLine (ViewModel.MatchResultList);
 			set.Apply ();
+
 		}
 
 
