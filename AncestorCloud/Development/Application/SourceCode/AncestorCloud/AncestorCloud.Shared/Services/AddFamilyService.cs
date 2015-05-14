@@ -190,6 +190,7 @@ namespace AncestorCloud.Shared
 					responsemodal.Status = ResponseStatus.OK;	
 				}else{
 					responsemodal.Status = ResponseStatus.Fail;
+					responseModel.Content = model;
 				}
 
 				return responseModel as ResponseModel<People> ;

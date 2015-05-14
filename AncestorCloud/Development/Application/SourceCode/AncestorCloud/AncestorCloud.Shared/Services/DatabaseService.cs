@@ -215,9 +215,6 @@ namespace AncestorCloud.Shared
 
 		private int IsRelativeExist(string filter)
 		{
-			if (filter == null)
-				throw new ArgumentNullException ("filter");
-
 			int count =  _connection.Table<People>().Where(x => x.UserID.Contains(filter)).ToList().Count();
 			return count;
 		}
