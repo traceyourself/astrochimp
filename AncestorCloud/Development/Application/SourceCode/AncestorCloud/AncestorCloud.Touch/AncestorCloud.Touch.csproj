@@ -430,7 +430,6 @@
   <ItemGroup>
     <BundleResource Include="Resources\cross.png" />
     <BundleResource Include="Resources\noImage.png" />
-    <BundleResource Include="Resources\sec_coin.jpg" />
     <BundleResource Include="Resources\action_menu.png" />
     <BundleResource Include="Resources\action_menu%402x.png" />
     <BundleResource Include="Resources\splash.png" />
@@ -478,7 +477,6 @@
     <BundleResource Include="Resources\plus_blue%402x.png" />
     <BundleResource Include="Resources\user_no_img.png" />
     <BundleResource Include="Resources\profile%402x.png" />
-    <BundleResource Include="Resources\grey51.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />

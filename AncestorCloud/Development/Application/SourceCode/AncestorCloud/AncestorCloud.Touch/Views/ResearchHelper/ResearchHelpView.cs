@@ -38,7 +38,19 @@ namespace AncestorCloud.Touch
 
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 		    this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
-			this.NavigationItem.TitleView = new MyResearchTitleView (this.Title,new RectangleF(0,0,200,20));
+
+			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
+
+
+			if (width <= 320f) {
+				this.NavigationItem.TitleView = new MyResearchTitleView (this.Title,new RectangleF(0,0,140,20));
+
+			} else if (width >= 321f && width <=375) {
+				this.NavigationItem.TitleView = new MyResearchTitleView (this.Title, new RectangleF (0, 0, 200, 20));
+			} else {
+				this.NavigationItem.TitleView = new MyResearchTitleView (this.Title, new RectangleF (0, 0, 230, 20));
+			}
+				
 
 			UIImage image = UIImage.FromFile ("action_menu.png");
 

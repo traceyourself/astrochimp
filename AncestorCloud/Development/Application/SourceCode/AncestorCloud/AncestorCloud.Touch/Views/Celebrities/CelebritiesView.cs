@@ -62,7 +62,7 @@ namespace AncestorCloud.Touch
 
 			//	this.NavigationItem.BackBarButtonItem.TintColor = UIColor.White;
 			
-			this.NavigationItem.TitleView = new MyCelebritiesTitleView (this.Title,new RectangleF(0,0,150,20));
+			this.NavigationItem.TitleView = new MyCelebritiesTitleView (this.Title,new RectangleF(0,0,120,20));
 
 			var set = this.CreateBindingSet<CelebritiesView , CelebritiesViewModel> ();
 			set.Bind (source).To (vm => vm.CelebritiesList);

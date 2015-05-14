@@ -83,7 +83,21 @@ namespace AncestorCloud.Touch
 				{ TextColor = UIColor.FromRGB (255,255,255) });
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
 			this.NavigationItem.SetHidesBackButton (true, false);
-			this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,150,20));
+
+			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
+
+			MyMatchTitleView view;
+
+			if (width <= 320f) 
+			{
+				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,100,20));
+			}else if (width >= 321f && width <=375) {
+				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 150, 20));
+			} else {
+				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 180, 20));
+			}
+
+
 			this.NavigationController.NavigationBarHidden = false;
 
 			#region LeftSide Button

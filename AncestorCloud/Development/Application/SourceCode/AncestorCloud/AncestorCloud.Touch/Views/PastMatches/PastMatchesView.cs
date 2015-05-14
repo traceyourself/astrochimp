@@ -44,7 +44,17 @@ namespace AncestorCloud.Touch
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
 			PastMatchesTableVIew.Source = source;
 
-			this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,150,20));
+			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
+
+
+			if (width <= 320f) {
+				this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,130,20));
+			} else if (width >= 321f && width <=375) {
+				this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title, new RectangleF (0, 0, 150, 20));
+			} else {
+				this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title, new RectangleF (0, 0, 180, 20));
+			}
+				
 
 			var set = this.CreateBindingSet<PastMatchesView , PastMatchesViewModel> ();
 			set.Bind (source).To (vm => vm.PastMatchesList);

@@ -12,12 +12,13 @@ namespace AncestorCloud.Touch
 		public MyPastMatchTitleView (string title,CGRect frame) : base (frame)
 		{
 			UIImageView img = new UIImageView(UIImage.FromFile("clock_icon.png"));
+
 			this.AddSubview (img);
 
 			UILabel label = new UILabel {
 				Text= title,
 				TextColor = UIColor.White,
-				Frame= new RectangleF((float)img.Frame.Size.Width+5.0f,0,150,20)
+				Frame= new RectangleF((float)img.Frame.Size.Width+5.0f,0,110,20)
 			};
 			this.AddSubview (label);
 

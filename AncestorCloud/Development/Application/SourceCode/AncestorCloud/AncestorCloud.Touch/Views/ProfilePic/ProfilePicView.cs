@@ -51,7 +51,7 @@ namespace AncestorCloud.Touch
 		public void SetUpView()
 		{
 			ProfilePic.TouchUpInside += ProfilePicSetUp;
-			ProfilePic.Layer.CornerRadius=75f;
+			ProfilePic.Layer.CornerRadius=120f;
 			ProfilePic.ClipsToBounds = true;
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });

@@ -56,7 +56,7 @@ namespace AncestorCloud.Touch
 			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
 
-			this.NavigationItem.TitleView = new MyContactTitleView (this.Title,new RectangleF(0,0,150,20));
+			this.NavigationItem.TitleView = new MyContactTitleView (this.Title,new RectangleF(0,0,100,20));
 			this.NavigationController.NavigationBarHidden = false;
 
 			MeImage.Layer.CornerRadius = 22f;
