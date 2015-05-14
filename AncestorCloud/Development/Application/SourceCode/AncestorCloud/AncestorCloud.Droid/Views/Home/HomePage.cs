@@ -46,7 +46,6 @@ namespace AncestorCloud.Droid
 		}
 		#endregion
 
-
 		#region intialize components
 		private void InitializeUIComponents ()
 		{

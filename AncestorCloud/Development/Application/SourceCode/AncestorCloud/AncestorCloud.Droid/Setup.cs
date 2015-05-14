@@ -28,6 +28,7 @@ namespace AncestorCloud.Droid
 		{
 			Mvx.RegisterSingleton<IAlert>(new DroidAlerts());
 			Mvx.RegisterSingleton<IAndroidService>(new IsAndroidService());
+			Mvx.RegisterSingleton<IReachabilityService>(new DroidReachabilityService());
 			Mvx.RegisterSingleton<ILoader>(new Loader());
 			Mvx.RegisterSingleton<IFileService>(new FileService());
 			Mvx.RegisterSingleton<IContactService>(new AndroidContactService());

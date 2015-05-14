@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
+using Android.Telephony.Gsm;
 
 namespace AncestorCloud.Droid
 {
@@ -36,7 +37,7 @@ namespace AncestorCloud.Droid
 			initUI ();
 			configureActionBar ();
 			ApplyActions ();
-			setCelebListAdapter ();
+			setContactListAdapter ();
 		}
 
 		private void initUI()
@@ -52,7 +53,7 @@ namespace AncestorCloud.Droid
 		}
 
 		#region List Adapter
-		private void setCelebListAdapter()
+		private void setContactListAdapter()
 		{
 			ContactsListAdapter adapter = new ContactsListAdapter (this,ViewModel.ContactsList);
 			contactList.Adapter = adapter;
@@ -126,10 +127,17 @@ namespace AncestorCloud.Droid
 			holder.nametxt.Text = dataList[position].Name;
 
 			holder.plus.Click += (object sender, EventArgs e) => {
-				mycontObj.ViewModel.Close();
+				PopulateMessage(dataList[position]);
 			};
 
 			return convertView;
+		}
+
+		public void PopulateMessage(People people){
+			var smsUri = Android.Net.Uri.Parse("smsto:"+people.Contact);
+			var smsIntent = new Intent (Intent.ActionSendto, smsUri);
+			smsIntent.PutExtra ("sms_body", "Hello from Ancestor Cloud");  
+			mycontObj.StartActivity (smsIntent);
 		}
 	}
 

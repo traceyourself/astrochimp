@@ -72,11 +72,11 @@ namespace AncestorCloud.Droid
 		private void CreateListAdapter ()
 		{
 			//if(){
-				PastMatchedListAdapter adapter = new PastMatchedListAdapter (this);
-				matchlist.Adapter = adapter;
-				matchlist.Invalidate ();	
+				//PastMatchedListAdapter adapter = new PastMatchedListAdapter (this);
+				//matchlist.Adapter = adapter;
+				//matchlist.Invalidate ();	
 			//}else{
-			//	NoMatchesFound();
+				NoMatchesFound();
 			//}
 		}
 		#endregion
