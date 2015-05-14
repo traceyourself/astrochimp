@@ -277,8 +277,8 @@ namespace AncestorCloud.Droid
 		{
 			if (isFirstPersonSelected) {
 				if (URLUtil.IsValidUrl(firstPersonImage)) {
-					//first_img.SetImageURI (Android.Net.Uri.Parse (firstPersonImage));
-					first_img.SetImageBitmap(Utilities.GetRoundedimage(this,firstPersonImage,0,radius));
+					//first_img.SetImageBitmap(Utilities.GetRoundedimage(this,firstPersonImage,0,radius));
+					new FirstImageTask(this,firstPersonImage).Execute();
 				} else {
 					first_img.SetImageBitmap(Utilities.GetRoundedimage(this,"",Resource.Drawable.user_no_img,radius));
 					//first_img.SetImageResource(Resource.Drawable.no_img);
@@ -295,7 +295,8 @@ namespace AncestorCloud.Droid
 			if (isSecondPersonSelected) {
 				if (URLUtil.IsValidUrl(secondPersonImage)) {
 					//sec_img.SetImageURI (Android.Net.Uri.Parse (secondPersonImage));
-					sec_img.SetImageBitmap(Utilities.GetRoundedimage(this,secondPersonImage,0,radius));
+					//sec_img.SetImageBitmap(Utilities.GetRoundedimage(this,secondPersonImage,0,radius));
+					new SecondImageTask(this,secondPersonImage).Execute();
 				} else {
 					//sec_img.SetImageResource (Resource.Drawable.user_no_img);
 					sec_img.SetImageBitmap(Utilities.GetRoundedimage(this,"",Resource.Drawable.user_no_img,radius));
@@ -307,25 +308,67 @@ namespace AncestorCloud.Droid
 			}
 		}
 
-
-		/*private Bitmap GetImageBitmapFromUrl(string url)
+		#region first image downloader
+		public class FirstImageTask : AsyncTask
 		{
-			Bitmap imageBitmap = null;
+			Bitmap resultBMP = null;
+			MatchView myObj;
+			string url;
 
-			using (var webClient = new WebClient())
+			public FirstImageTask(MatchView myObj,string url)
 			{
-				var imageBytes = webClient.DownloadData(url);
-				if (imageBytes != null && imageBytes.Length > 0)
-				{
-					imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-				}
+				this.myObj = myObj;
+				this.url = url;
 			}
 
-			return imageBitmap;
-		}
+			protected override void OnPreExecute()
+			{
+				myObj.first_img.SetImageBitmap(Utilities.GetRoundedimage(myObj,"",Resource.Drawable.user_no_img,myObj.radius));
+			}
 
-		var imageBitmap = GetImageBitmapFromUrl("http://xamarin.com/resources/design/home/devices.png");
-		imagen.SetImageBitmap(imageBitmap);*/
+			protected override Java.Lang.Object DoInBackground(params Java.Lang.Object[] @params)
+			{
+				resultBMP = Utilities.GetRoundedimage(myObj,url,0,myObj.radius);
+				return "";
+			}
+
+			protected override void OnPostExecute(Java.Lang.Object result)
+			{
+				myObj.first_img.SetImageBitmap(resultBMP);
+			}
+		}
+		#endregion
+
+		#region Second image loader
+		public class SecondImageTask : AsyncTask
+		{
+			Bitmap resultBMP = null;
+			MatchView myObj;
+			string url;
+
+			public SecondImageTask(MatchView myObj,string url)
+			{
+				this.myObj = myObj;
+				this.url = url;
+			}
+
+			protected override void OnPreExecute()
+			{
+				myObj.sec_img.SetImageBitmap(Utilities.GetRoundedimage(myObj,"",Resource.Drawable.user_no_img,myObj.radius));
+			}
+
+			protected override Java.Lang.Object DoInBackground(params Java.Lang.Object[] @params)
+			{
+				resultBMP = Utilities.GetRoundedimage(myObj,url,0,myObj.radius);
+				return "";
+			}
+
+			protected override void OnPostExecute(Java.Lang.Object result)
+			{
+				myObj.sec_img.SetImageBitmap(resultBMP);
+			}
+		}
+		#endregion
 
 	}
 }

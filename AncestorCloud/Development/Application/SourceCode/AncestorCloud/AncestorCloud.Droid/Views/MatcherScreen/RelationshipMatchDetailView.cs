@@ -23,6 +23,8 @@ namespace AncestorCloud.Droid
 		
 		ActionBar actionBar;
 		ListView resultlist;
+		ImageView firstPersonImage,secondPersonImage;
+		TextView firstName,secName;
 
 		public new RelationshipMatchDetailViewModel ViewModel
 		{
@@ -47,6 +49,10 @@ namespace AncestorCloud.Droid
 		private void initUI()
 		{
 			resultlist = FindViewById<ListView> (Resource.Id.matched_list);
+			firstPersonImage = FindViewById<ImageView> (Resource.Id.first_user_img);
+			secondPersonImage = FindViewById<ImageView> (Resource.Id.sec_user_img);
+			firstName = FindViewById<TextView> (Resource.Id.first_user_name);
+			secName = FindViewById<TextView> (Resource.Id.sec_user_name);
 		}
 		#endregion
 
@@ -86,6 +92,15 @@ namespace AncestorCloud.Droid
 		#region Apply Actions
 		private void ApplyActions(){
 			
+		}
+		#endregion
+
+
+		#region Apply Data
+		private void ApplyData(){
+			//firstPersonImage,secondPersonImage;
+			//firstName,secName;
+
 		}
 		#endregion
 
