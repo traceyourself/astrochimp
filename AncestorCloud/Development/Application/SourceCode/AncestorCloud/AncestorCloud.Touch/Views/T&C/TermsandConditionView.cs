@@ -8,7 +8,7 @@ using AncestorCloud.Shared.ViewModels;
 
 namespace AncestorCloud.Touch
 {
-	public partial class TermsandConditionView : BaseViewController
+	public partial class TermsandConditionView : BaseViewController,IMvxModalTouchView
 	{
 		public TermsandConditionView () : base ("Terms_ConditionView", null)
 		{
@@ -30,6 +30,8 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewDidLoad ();
 			setTerms_Condition ();
+
+			this.NavigationController.NavigationBar.Hidden = true;
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -41,7 +43,11 @@ namespace AncestorCloud.Touch
 
 		partial void CrossButtonTapped (NSObject sender)
 		{
+			//ViewModel.Close();
+			this.NavigationController.DismissViewController(false,null);
 			ViewModel.Close();
+			ViewModel.ShowSignUpView();
+
 		}
 	}
 }
