@@ -37,7 +37,7 @@ namespace AncestorCloud.Touch
 
 				MFMessageComposeViewController smsView = new MFMessageComposeViewController(); 
 
-				smsView.Body = @"SMS message here";
+				smsView.Body = @"Come join Cousin App and see how we're related!";
 				smsView.Recipients = new string[]{ reciepent};
 
 				smsView.Finished += (object s, MFMessageComposeResultEventArgs args) => args.Controller.DismissViewController (true, null);
