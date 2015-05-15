@@ -14,6 +14,9 @@ using AncestorCloud.Shared.ViewModels;
 using Cirrious.CrossCore;
 using Android.Graphics;
 using AncestorCloud.Shared;
+using Android.Webkit;
+using Xamarin.Social.Services;
+using Xamarin.Social;
 
 namespace AncestorCloud.Droid
 {
@@ -24,7 +27,7 @@ namespace AncestorCloud.Droid
 		ActionBar actionBar;
 		ListView resultlist;
 		ImageView firstPersonImage,secondPersonImage;
-		TextView firstName,secName;
+		TextView firstName,secName,degree;
 
 		public new RelationshipMatchDetailViewModel ViewModel
 		{
@@ -43,6 +46,7 @@ namespace AncestorCloud.Droid
 
 			ApplyActions ();
 			CreateListAdapter ();
+			ApplyData ();
 		}
 
 		#region init ui
@@ -53,6 +57,7 @@ namespace AncestorCloud.Droid
 			secondPersonImage = FindViewById<ImageView> (Resource.Id.sec_user_img);
 			firstName = FindViewById<TextView> (Resource.Id.first_user_name);
 			secName = FindViewById<TextView> (Resource.Id.sec_user_name);
+			degree = FindViewById<TextView> (Resource.Id.percent);
 		}
 		#endregion
 
@@ -86,6 +91,9 @@ namespace AncestorCloud.Droid
 			resultlist.Adapter = adapter;
 			resultlist.Invalidate ();	
 
+			resultlist.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
+				ShareOnTwitter(e.Position);
+			};
 		}
 		#endregion
 
@@ -98,14 +106,57 @@ namespace AncestorCloud.Droid
 
 		#region Apply Data
 		private void ApplyData(){
-			//firstPersonImage,secondPersonImage;
-			//firstName,secName;
+			try{
+				firstName.Text = ""+ViewModel.FirstPersonNAME;
+				secName.Text = "" + ViewModel.SecondPersonNAME;
+			
+				if (URLUtil.IsValidUrl(ViewModel.FirstPersonURL)) {
+					Koush.UrlImageViewHelper.SetUrlDrawable (firstPersonImage,ViewModel.FirstPersonURL,Resource.Drawable.user_no_img);
+				} else {
+					firstPersonImage.SetImageResource(Resource.Drawable.user_no_img);
+				}
 
+				if (URLUtil.IsValidUrl(ViewModel.SecondPersonURL)) {
+					Koush.UrlImageViewHelper.SetUrlDrawable (secondPersonImage,ViewModel.SecondPersonURL,Resource.Drawable.user_no_img);
+				} else {
+					secondPersonImage.SetImageResource(Resource.Drawable.user_no_img);
+				}
+
+				degree.Text = ""+ViewModel.MatchResult.Degrees+"º";
+			}catch(Exception e){
+				Mvx.Trace (e.StackTrace);
+			}
 		}
 		#endregion
 
-	}
+		public void ShareOnTwitter(int position)
+		{
 
+			TwitterService mTwitter=  new TwitterService {
+				ConsumerKey = "AUhsvThNimDhDYM6lNhaE3uZ1", 
+				ConsumerSecret = "gHXfS0c91rYwT4BQG0gcOAd3KVFgES6ruOaN4ryl8HozLFzAyj",
+				CallbackUrl = new Uri ("callback://twitter")
+			};
+
+			Item item = new Item {
+				Text = "Ancestor Cloud"
+			};
+
+			Intent intent = mTwitter.GetShareUI (this, item, shareResult => {
+				//shareButton.Text = service.Title + " shared: " + shareResult;
+				try{
+					Toast.MakeText(this,""+shareResult,ToastLength.Short).Show();
+				}catch(Exception e){
+					Mvx.Trace(e.StackTrace);
+				}
+			});
+
+			StartActivity (intent);
+
+			
+		}
+
+	}
 
 	#region List Adapter
 	public class MatchedListAdapter : BaseAdapter
@@ -169,7 +220,7 @@ namespace AncestorCloud.Droid
 				holder.year.Text = "";
 
 				holder.common_txt.Visibility = ViewStates.Visible;
-				holder.mainContainer.SetBackgroundColor (Color.ParseColor("#94C4EC"));
+				holder.mainContainer.SetBackgroundColor (Color.ParseColor("#ACD7DA"));
 			}else{
 				holder.common_txt.Visibility = ViewStates.Gone;
 				holder.mainContainer.SetBackgroundColor (Color.Transparent);	
@@ -177,6 +228,7 @@ namespace AncestorCloud.Droid
 
 			return convertView;
 		}
+
 	}
 
 	public class MatchedViewHolder : Java.Lang.Object{

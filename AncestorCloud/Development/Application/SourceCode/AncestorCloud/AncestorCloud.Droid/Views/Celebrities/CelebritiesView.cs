@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Droid
 {
@@ -147,9 +148,12 @@ namespace AncestorCloud.Droid
 			};
 
 			//https://www.kin2.me/img/color/abraham_lincoln.jpg
-
-			Koush.UrlImageViewHelper.SetUrlDrawable (holder.userImg,dataList[position].Img, Resource.Drawable.user_no_img_small);
-
+			try{
+				Koush.UrlImageViewHelper.SetUrlDrawable (holder.userImg,dataList[position].Img, Resource.Drawable.user_no_img_small);
+			}catch(Exception e)
+			{
+				Mvx.Trace (e.StackTrace);
+			}
 			return convertView;
 		}
 	}

@@ -336,15 +336,19 @@ namespace AncestorCloud.Shared.ViewModels
 			} else {
 				Login ();
 			}
-
-
 		}
 
 		private void Login()
 		{
-			IsFbLogin = true;
-			CallFlyoutCommand.Execute(null);
-			CloseCommand.Execute (null);
+			if (Mvx.CanResolve<IAndroidService> ()) {
+				//ShowMyFamilyViewModel ();
+				ShowFbFamilyViewModel();
+				CloseCommand.Execute (null);
+			} else {
+				IsFbLogin = false;
+				CallFlyoutCommand.Execute (null);
+				CloseCommand.Execute (null);
+			}
 		}
 
 		#endregion

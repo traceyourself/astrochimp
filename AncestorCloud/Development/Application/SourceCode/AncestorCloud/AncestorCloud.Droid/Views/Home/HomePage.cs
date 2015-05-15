@@ -16,6 +16,7 @@ using Android.Content.PM;
 using Android.Support.V4.View;
 
 
+
 namespace AncestorCloud.Droid
 {
 	[Activity (Label = "HomeView", NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]			
@@ -66,10 +67,10 @@ namespace AncestorCloud.Droid
 		public void CreateMultiPager()
 		{
 			int[] images = {
-				Resource.Drawable.no_img,
-				Resource.Drawable.no_img,
-				Resource.Drawable.no_img,
-				Resource.Drawable.no_img
+				Resource.Drawable.home_slider_img,
+				Resource.Drawable.home_slider_img,
+				Resource.Drawable.home_slider_img,
+				Resource.Drawable.home_slider_img
 			}; 
 
 			ImagePagerAdapter adapter = new ImagePagerAdapter (this,images);
@@ -97,7 +98,7 @@ namespace AncestorCloud.Droid
 	}
 
 	#region Page change listener
-	public class MyPageChangelistener : Java.Lang.Object,Android.Support.V4.View.ViewPager.IOnPageChangeListener
+	public class MyPageChangelistener : Java.Lang.Object,ViewPager.IOnPageChangeListener
 	{
 		HomePage homePage;
 
@@ -130,7 +131,7 @@ namespace AncestorCloud.Droid
 
 
 	#region View Pager Adapter
-	public class ImagePagerAdapter : Android.Support.V4.View.PagerAdapter
+	public class ImagePagerAdapter : PagerAdapter
 	{
 
 		Context mContext;

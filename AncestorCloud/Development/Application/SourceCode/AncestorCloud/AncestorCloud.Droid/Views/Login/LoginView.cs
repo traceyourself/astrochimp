@@ -150,9 +150,10 @@ namespace AncestorCloud.Droid
 		}
 
 		public void DoFBLogin(){
-			Utilities.LoggedInUsingFb = true;
+			/*Utilities.LoggedInUsingFb = true;
 			ViewModel.ShowFbFamilyViewModel ();
-			ViewModel.Close ();
+			ViewModel.Close ();*/
+			ViewModel.LinkFbUserData.Execute (null);
 		}
 
 

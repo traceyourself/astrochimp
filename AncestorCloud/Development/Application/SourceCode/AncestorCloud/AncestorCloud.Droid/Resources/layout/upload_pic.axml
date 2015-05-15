@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:background="@android:color/black">
         <RelativeLayout
             android:id="@+id/above_container"
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/no_img" />
+                android:src="@drawable/user_plus_img" />
         </RelativeLayout>
         <TextView
             android:id="@+id/center_txt"

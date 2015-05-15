@@ -412,9 +412,19 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private void SignUp()
 		{
-			IsFbLogin = true;
-			CallFlyoutCommand.Execute(null);
-			CloseCommand.Execute (null);
+			if (Mvx.CanResolve<IAndroidService> ()) 
+			{
+				ShowMyFamilyViewModel ();
+				this.Close (this);
+				CloseCommand.Execute (null);
+			}
+			else
+			{
+				IsFbLogin = true;
+				CallFlyoutCommand.Execute(null);
+				CloseCommand.Execute (null);
+			}
+
 		}
 
 		#endregion

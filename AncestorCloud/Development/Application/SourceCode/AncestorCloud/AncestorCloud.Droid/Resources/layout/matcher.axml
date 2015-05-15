@@ -56,8 +56,8 @@
                         android:layout_centerInParent="true" />
                     <ImageView
                         android:id="@+id/first_cross_img"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@drawable/blue_cross"
                         android:layout_toRightOf="@+id/first_inner_view" />
                 </RelativeLayout>
@@ -103,8 +103,8 @@
                         android:layout_centerInParent="true" />
                     <ImageView
                         android:id="@+id/sec_cross_img"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@drawable/blue_cross"
                         android:layout_toRightOf="@+id/sec_inner_view" />
                 </RelativeLayout>
