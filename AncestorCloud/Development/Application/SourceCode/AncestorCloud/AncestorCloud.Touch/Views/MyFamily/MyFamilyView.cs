@@ -9,6 +9,7 @@ using System.Linq;
 using AncestorCloud.Shared;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using System.Drawing;
+using CoreGraphics;
 
 namespace AncestorCloud.Touch
 {
@@ -209,6 +210,11 @@ namespace AncestorCloud.Touch
 			
 			editFamily.FamilyMember = member;
 			editFamily.SaveButtonTappedClickedDelegate += SaveEditedFamilyDetails;
+			//editFamily.View.Frame = this.View.Frame;
+
+			CGRect frame = editFamily.View.Frame;
+			frame.Width = this.View.Frame.Size.Width;
+			editFamily.View.Frame = frame;
 
 			UIWindow window = UIApplication.SharedApplication.KeyWindow;
 			window.AddSubview (editFamily.View);
