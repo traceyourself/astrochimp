@@ -66,10 +66,10 @@ namespace AncestorCloud.Droid
 		public void CreateMultiPager()
 		{
 			int[] images = {
-				Resource.Drawable.no_img,
-				Resource.Drawable.no_img,
-				Resource.Drawable.no_img,
-				Resource.Drawable.no_img
+				Resource.Drawable.home_slider_img,
+				Resource.Drawable.home_slider_img,
+				Resource.Drawable.home_slider_img,
+				Resource.Drawable.home_slider_img
 			}; 
 
 			ImagePagerAdapter adapter = new ImagePagerAdapter (this,images);

@@ -220,7 +220,7 @@ namespace AncestorCloud.Droid
 				holder.year.Text = "";
 
 				holder.common_txt.Visibility = ViewStates.Visible;
-				holder.mainContainer.SetBackgroundColor (Color.ParseColor("#94C4EC"));
+				holder.mainContainer.SetBackgroundColor (Color.ParseColor("#ACD7DA"));
 			}else{
 				holder.common_txt.Visibility = ViewStates.Gone;
 				holder.mainContainer.SetBackgroundColor (Color.Transparent);	

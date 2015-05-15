@@ -4,7 +4,7 @@
     android:shape="oval">
 
    <solid 
-       android:color="@color/light_blue_color"/>
+       android:color="@color/degree_circle_color"/>
 
    
 </shape>

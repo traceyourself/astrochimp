@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="17% Matching Confidence"
             android:gravity="center"
-            android:textColor="@color/login_btn_color"
+            android:textColor="@color/action_bar_back_color"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_centerInParent="true" />
