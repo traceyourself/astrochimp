@@ -54,9 +54,10 @@ namespace AncestorCloud.Touch
 				Frame = new RectangleF (0f,0f ,240f, 240f);
 				SelectedBackgroundView = new UIView{BackgroundColor = UIColor.Black};
 
-				imageView = new UIImageView (UIImage.FromBundle ("noImage.png"));
+				imageView = new UIImageView (UIImage.FromBundle ("21.png"));
 				imageView.Frame = Frame;
 				imageView.Center = ContentView.Center;
+				imageView.ContentMode= UIViewContentMode.ScaleAspectFit;
 				ContentView.AddSubview (imageView);
 			}
 

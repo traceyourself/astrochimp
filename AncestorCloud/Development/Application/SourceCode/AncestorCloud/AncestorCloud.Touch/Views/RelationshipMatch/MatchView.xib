@@ -39,7 +39,7 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.47999999999999998" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hkv-b2-03Q">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus_pink.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hkv-b2-03Q">
                                     <rect key="frame" x="165" y="241" width="44" height="44"/>
                                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="0.56000000000000005" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -181,8 +181,8 @@
     <resources>
         <image name="CircleMatcher.png" width="304" height="304"/>
         <image name="blue_btn.png" width="229" height="56"/>
-        <image name="blue_cross.png" width="30" height="30"/>
-        <image name="plus.png" width="30" height="30"/>
+        <image name="blue_cross.png" width="51" height="51"/>
+        <image name="plus_pink.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

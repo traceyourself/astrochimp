@@ -73,7 +73,7 @@
         </view>
     </objects>
     <resources>
-        <image name="blue_btn.png" width="161" height="42"/>
+        <image name="blue_btn.png" width="229" height="56"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

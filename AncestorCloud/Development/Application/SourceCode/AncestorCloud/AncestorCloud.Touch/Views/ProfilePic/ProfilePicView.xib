@@ -20,7 +20,7 @@
                     <rect key="frame" x="80" y="36" width="173" height="173"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" backgroundImage="noImage.png">
+                    <state key="normal" backgroundImage="big_img.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -60,8 +60,8 @@
         </view>
     </objects>
     <resources>
+        <image name="big_img.png" width="300" height="301"/>
         <image name="blue_btn.png" width="229" height="56"/>
-        <image name="noImage.png" width="265" height="265"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

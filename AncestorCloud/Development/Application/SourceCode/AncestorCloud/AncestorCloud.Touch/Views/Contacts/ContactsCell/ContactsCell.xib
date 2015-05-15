@@ -50,6 +50,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="ContactImage" destination="0Fa-lt-Afr" id="3VS-uv-Jc0"/>
                 <outlet property="NameLabel" destination="Tpv-ed-HL0" id="M3w-5H-LBl"/>
             </connections>
             <point key="canvasLocation" x="272.5" y="267"/>

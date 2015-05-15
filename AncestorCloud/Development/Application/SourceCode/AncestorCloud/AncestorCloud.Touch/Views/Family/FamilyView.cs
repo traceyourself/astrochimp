@@ -48,7 +48,7 @@ namespace AncestorCloud.Touch
 			if (width <= 320f)
 				constant = 1.0f;
 
-			if (width >= 375f)
+			if (width > 375f)
 				constant = 0.80f;
 
 

@@ -58,7 +58,7 @@ namespace AncestorCloud.Touch
 			if (width <= 320f)
 				constant = 1.0f;
 
-			if (width >= 375f)
+			if (width > 375f)
 				constant = 0.80f;
 
 			this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Leading, 0, this.View, NSLayoutAttribute.Left, 1.0f, 0));
@@ -233,7 +233,7 @@ namespace AncestorCloud.Touch
 				//FirstImageButton.SetBackgroundImage(UIImage.FromBundle("noImage.png"),UIControlState.Normal);
 				FirstImageButton.Layer.CornerRadius = 90f;
 				FirstImageButton.ClipsToBounds = true;
-				FirstImageButton.SetBackgroundImage (UIImage.FromFile (firstPersonImage), UIControlState.Normal);
+				FirstImageButton.SetBackgroundImage (UIImage.FromFile ("noImage.png"), UIControlState.Normal);
 				FirstCrossButton.Hidden = false;
 				_imageViewLoader.ImageUrl = firstPersonImage;
 				FirstImageView.Layer.CornerRadius = 90f;

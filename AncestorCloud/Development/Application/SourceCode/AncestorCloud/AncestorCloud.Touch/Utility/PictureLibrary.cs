@@ -16,7 +16,7 @@ namespace AncestorCloud.Touch
 		}
 		public UIImage Image{
 			get{
-				return UIImage.FromBundle("noImage.png");
+				return UIImage.FromBundle("21.png");
 			}
 		}
 	}

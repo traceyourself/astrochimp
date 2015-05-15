@@ -12,8 +12,7 @@ namespace AncestorCloud.Touch
 	[Register ("Terms_ConditionView")]
 	partial class TermsandConditionView
 	{
-		[Action ("CrossButtonTapped:")]
-		partial void CrossButtonTapped (Foundation.NSObject sender);
+		
 		
 		void ReleaseDesignerOutlets ()
 		{

@@ -31,7 +31,24 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 			setTerms_Condition ();
 
-			this.NavigationController.NavigationBar.Hidden = true;
+			this.Title="Terms & Conditions";
+			this.NavigationController.NavigationBar.Hidden = false;
+			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
+
+			UIImage image = UIImage.FromFile ("cross_white.png");
+
+			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
+
+			this.NavigationItem.SetLeftBarButtonItem(
+				new UIBarButtonItem(image
+					, UIBarButtonItemStyle.Plain
+					, (sender,args) => {
+						this.NavigationController.DismissViewController(false,null);
+						ViewModel.Close();
+						ViewModel.ShowSignUpView();
+
+					})
+				, true);
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -41,14 +58,14 @@ namespace AncestorCloud.Touch
 			//this.NavigationController.NavigationBarHidden= true;
 		}
 
-		partial void CrossButtonTapped (NSObject sender)
-		{
-			//ViewModel.Close();
-			this.NavigationController.DismissViewController(false,null);
-			ViewModel.Close();
-			ViewModel.ShowSignUpView();
-
-		}
+//		partial void CrossButtonTapped (NSObject sender)
+//		{
+//			//ViewModel.Close();
+//			this.NavigationController.DismissViewController(false,null);
+//			ViewModel.Close();
+//			ViewModel.ShowSignUpView();
+//
+//		}
 	}
 }
 

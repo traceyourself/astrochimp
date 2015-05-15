@@ -13,7 +13,7 @@ namespace AncestorCloud.Touch
 	partial class ContactsCell
 	{
 		[Outlet]
-		UIKit.UIButton ContactImages { get; set; }
+		UIKit.UIImageView ContactImage { get; set; }
 
 		[Outlet]
 		UIKit.UILabel NameLabel { get; set; }
@@ -23,9 +23,9 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ContactImages != null) {
-				ContactImages.Dispose ();
-				ContactImages = null;
+			if (ContactImage != null) {
+				ContactImage.Dispose ();
+				ContactImage = null;
 			}
 
 			if (NameLabel != null) {

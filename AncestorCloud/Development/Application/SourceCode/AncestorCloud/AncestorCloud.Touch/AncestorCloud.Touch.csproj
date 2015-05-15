@@ -499,6 +499,13 @@
     <BundleResource Include="Resources\uncheck_pink%402x.png" />
     <BundleResource Include="Resources\c%402x.png" />
     <BundleResource Include="Resources\Shape%402x.png" />
+    <BundleResource Include="Resources\splash6.png" />
+    <BundleResource Include="Resources\Logo%402x.png" />
+    <BundleResource Include="Resources\cross_grey.png" />
+    <BundleResource Include="Resources\plus_pink%402x.png" />
+    <BundleResource Include="Resources\21%403x.png" />
+    <BundleResource Include="Resources\big_img%402x.png" />
+    <BundleResource Include="Resources\profile_img.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />
