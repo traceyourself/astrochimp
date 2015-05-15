@@ -31,7 +31,7 @@ namespace AncestorCloud.Touch
 			this.DelayBind (() => {
 
 				var set = this.CreateBindingSet<MyFamilyTableCell, People> ();
-				set.Bind (NameLabel).To (vm => vm.Name);
+				//set.Bind (NameLabel).To (vm => vm.Name);
 				set.Bind(RelationLabel).To(vm => vm.Relation).WithConversion(new RelationshipTextConverter(),null);
 				set.Apply ();
 			});
@@ -60,6 +60,14 @@ namespace AncestorCloud.Touch
 
 			var messenger = Mvx.Resolve<IMvxMessenger> ();
 			messenger.Publish (new MyTableCellTappedMessage (this,familyMember));
+		}
+
+		public void SetName()
+		{	
+			if (familyMember.Name == null)
+				NameLabel.Text = familyMember.FirstName +" "+ familyMember.MiddleName +" "+ familyMember.LastName;
+			else
+				NameLabel.Text = familyMember.Name;
 		}
 	}
 

@@ -267,7 +267,9 @@ namespace AncestorCloud.Shared
 
 		string GetName(People member)
 		{
-			return String.Format ("{0} \"{1}\" /{2}/", member.FirstName, member.MiddleName, member.LastName);
+			//return String.Format ("{0} \"{1}\" /{2}/", member.FirstName, member.MiddleName, member.LastName);
+
+			return String.Format ("{0} {1} {2}", member.FirstName, member.MiddleName, member.LastName);
 		}
 
 		#endregion
