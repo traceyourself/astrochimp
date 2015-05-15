@@ -120,6 +120,7 @@
     <Compile Include="Services\Interface\IAvatarService.cs" />
     <Compile Include="Services\AvatarService.cs" />
     <Compile Include="PlatformSpecificService\IReachabilityService.cs" />
+    <Compile Include="Entities\MyFamilyReloadMessage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

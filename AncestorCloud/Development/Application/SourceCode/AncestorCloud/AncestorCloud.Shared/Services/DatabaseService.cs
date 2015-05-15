@@ -135,7 +135,7 @@ namespace AncestorCloud.Shared
 		public LoginModel GetLoginDetails ()
 		{
 			List<LoginModel> login = (List<LoginModel>)_connection.Table<LoginModel> ().ToList();
-			return login.Count > 0 ? login[0] : new LoginModel();
+			return login.Count > 0 ? login[login.Count - 1] : new LoginModel();
 		}
 
 

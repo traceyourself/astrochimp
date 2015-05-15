@@ -17,6 +17,8 @@ namespace AncestorCloud.Touch
 	{
 		private MvxSubscriptionToken navigationMenuToken;
 
+		private MvxSubscriptionToken ReloadViewToken;
+
 		EditFamilyView editFamily;
 		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
 
@@ -54,7 +56,7 @@ namespace AncestorCloud.Touch
 
 			}
 
-			RemoveMessengers ();
+			//RemoveMessengers ();
 			base.ViewWillDisappear (animated);
 		}
 
@@ -63,6 +65,19 @@ namespace AncestorCloud.Touch
 			RemoveMessengers ();
 
 			base.ViewWillUnload ();
+		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			ReloadView ();
+		}
+
+		private void ReloadView()
+		{
+			ViewModel.GetFbFamilyData ();
+			CreateMyFamilyTable ();
+			AddEvents ();
 		}
 
 		#endregion
@@ -76,7 +91,7 @@ namespace AncestorCloud.Touch
 			var source = new MyFamilyTableSource (myFamilyTable);
 			myFamilyTable.Source = source;
 			var set = this.CreateBindingSet<MyFamilyView , MyFamilyViewModel> ();
-			set.Bind (source).To (vm => vm.TableDataList);
+			set.Bind (source).To (vm => vm.TableDataList).TwoWay();
 			set.Apply ();
 		}
 
@@ -106,12 +121,13 @@ namespace AncestorCloud.Touch
 
 
 			navigationMenuToken = _messenger.SubscribeOnMainThread<MyTableCellTappedMessage>(message => this.ShowEditFamily(message.FamilyMember));
-
+			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.ReloadView());
 		}
 
 		void RemoveMessengers()
 		{
 			_messenger.Unsubscribe<MyTableCellTappedMessage> (navigationMenuToken);
+			_messenger.Unsubscribe<MyFamilyReloadMessage> (ReloadViewToken);
 //			_messenger.Unsubscribe<ToggleFlyoutMenuMessage> (navigationMenuToggleToken);
 //			_messenger.Unsubscribe<NavigationBarHiddenMessage> (navigationBarHiddenToken);
 
@@ -147,20 +163,20 @@ namespace AncestorCloud.Touch
 				People item = mainList[i];
 				string relation = item.Relation;
 
-				if (relation.Contains (StringConstants.BROTHER_COMPARISON) || relation.Contains (StringConstants.SISTER_COMPARISON))
+				if (relation.Contains (StringConstants.BROTHER_COMPARISON) || relation.Contains (StringConstants.SISTER_COMPARISON) || relation.Contains ("Sibling"))
 				{
 					siblingList.Add (item);
 				}
 
-				if (relation.Contains (StringConstants.FATHER_COMPARISON) || relation.Contains (StringConstants.MOTHER_COMPARISON))
+				if (relation.Contains (StringConstants.FATHER_COMPARISON) || relation.Contains (StringConstants.MOTHER_COMPARISON) || relation.Contains ("Parent") )
 				{
 					parentList.Add (item);
 				}
-				if (relation.Contains (StringConstants.GRANDFATHER_COMPARISON) || relation.Contains (StringConstants.GRANDMOTHER_COMPARISON))
+				if (relation.Contains (StringConstants.GRANDFATHER_COMPARISON) || relation.Contains (StringConstants.GRANDMOTHER_COMPARISON) || relation.Contains ("Grandparent"))
 				{
 					grandParentList.Add (item);
 				}
-				if (relation.Contains (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Contains (StringConstants.GREATGRANDMOTHER_COMPARISON))
+				if (relation.Contains (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Contains (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Contains ("GreatGrandparent"))
 				{
 					greatGrandParentList.Add (item);
 				}
@@ -205,8 +221,8 @@ namespace AncestorCloud.Touch
 
 		public void ShowEditFamily(People member)
 		{
-			if(editFamily == null)
-				editFamily = new EditFamilyView ();
+			//if(editFamily == null)
+			editFamily = new EditFamilyView ();
 			
 			editFamily.FamilyMember = member;
 			editFamily.SaveButtonTappedClickedDelegate += SaveEditedFamilyDetails;
@@ -226,6 +242,7 @@ namespace AncestorCloud.Touch
 		{
 			ViewModel.FamilyMember = member as People;
 			ViewModel.EditPerson ();
+			//ReloadView ();
 		}
 	
 		#endregion
