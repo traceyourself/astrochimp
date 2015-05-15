@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using AncestorCloud.Touch;
 
 namespace AncestorCloud.Shared.ViewModels
 {
@@ -11,7 +13,10 @@ namespace AncestorCloud.Shared.ViewModels
 		private readonly IAddFamilyService _addService;
 
 		private readonly IAlert Alert;
+
 		private readonly IReachabilityService _reachabilityService;
+
+		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
 
 		public MyFamilyViewModel(IDatabaseService  service, IReachabilityService reachabilty)
 		{
@@ -140,6 +145,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 				if (response.Status == ResponseStatus.OK) {
 					_databaseService.UpdateRelative (response.Content as People);
+					_messenger.Publish(new MyFamilyReloadMessage(this));
 					Alert.ShowAlert ("Successfully Edited", "Success");
 				} else {
 					Alert.ShowAlert ("Failed to edit, Please try Again...", "Error");

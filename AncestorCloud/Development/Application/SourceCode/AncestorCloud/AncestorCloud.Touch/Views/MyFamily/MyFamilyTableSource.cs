@@ -81,9 +81,11 @@ namespace AncestorCloud.Touch
 				cell = (MyFamilyTableCell)new UITableViewCell (UITableViewCellStyle.Default , cellIdentifier); 
 			}
 
-			System.Diagnostics.Debug.WriteLine ("Section : "+tableItem.SectionHeader);
-			System.Diagnostics.Debug.WriteLine ("Data : "+childItem.Name);
-			System.Diagnostics.Debug.WriteLine ("Section Footer:" + tableItem.SectionFooter);
+
+			cell.SetName ();
+//			System.Diagnostics.Debug.WriteLine ("Section : "+tableItem.SectionHeader);
+//			System.Diagnostics.Debug.WriteLine ("Data : "+childItem.Name);
+//			System.Diagnostics.Debug.WriteLine ("Section Footer:" + tableItem.SectionFooter);
 
 			//tableView.BackgroundColor = UIColor.FromRGB (178,45,116);
 
