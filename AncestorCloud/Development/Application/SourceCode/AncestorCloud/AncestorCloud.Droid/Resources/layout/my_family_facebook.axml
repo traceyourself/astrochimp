@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:local="http://schemas.android.com/apk/res/AncestorCloud.Droid"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/dialog_remaining_part_color">
+    android:background="@android:color/white">
     <AncestorCloud.Droid.ActionBar
         android:id="@+id/actionBar"
         android:layout_width="match_parent"

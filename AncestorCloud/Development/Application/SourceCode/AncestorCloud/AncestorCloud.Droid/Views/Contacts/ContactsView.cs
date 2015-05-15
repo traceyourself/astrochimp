@@ -136,7 +136,7 @@ namespace AncestorCloud.Droid
 		public void PopulateMessage(People people){
 			var smsUri = Android.Net.Uri.Parse("smsto:"+people.Contact);
 			var smsIntent = new Intent (Intent.ActionSendto, smsUri);
-			smsIntent.PutExtra ("sms_body", "Hello from Ancestor Cloud");  
+			smsIntent.PutExtra ("sms_body", "Come join Cousin App and see how we're related!");  
 			mycontObj.StartActivity (smsIntent);
 		}
 	}

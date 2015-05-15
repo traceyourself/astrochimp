@@ -16,7 +16,7 @@ using Android.Webkit;
 using Android.Graphics.Drawables.Shapes;
 using Android.Graphics.Drawables;
 using Android.Graphics;
-using Android.Gms.Analytics;
+
 
 namespace AncestorCloud.Droid
 {
@@ -215,7 +215,7 @@ namespace AncestorCloud.Droid
 			};
 
 
-			firstCrossImg.Click += (object sender, EventArgs e) => {
+			/*firstCrossImg.Click += (object sender, EventArgs e) => {
 				isFirstPersonSelected = false;
 				ViewModel.FirstPersonCeleb = null;
 				ViewModel.FirstPersonPeople = null;
@@ -223,6 +223,20 @@ namespace AncestorCloud.Droid
 			};
 
 			secCrossImg.Click += (object sender, EventArgs e) => {
+				isSecondPersonSelected = false;
+				ViewModel.SecondPersonCeleb = null;
+				ViewModel.SecondPersonPeople = null;
+				HandleSecondPersonSelected();
+			};*/
+
+			firstCrossContainer.Click += (object sender, EventArgs e) => {
+				isFirstPersonSelected = false;
+				ViewModel.FirstPersonCeleb = null;
+				ViewModel.FirstPersonPeople = null;
+				HandleFirstPersonSelected();
+			};
+
+			secCrossContainer.Click += (object sender, EventArgs e) => {
 				isSecondPersonSelected = false;
 				ViewModel.SecondPersonCeleb = null;
 				ViewModel.SecondPersonPeople = null;
