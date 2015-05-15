@@ -16,6 +16,8 @@ using Android.Graphics;
 using Java.Text;
 using Java.Util;
 using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using AncestorCloud.Core;
 
 namespace AncestorCloud.Droid
 {
@@ -30,6 +32,8 @@ namespace AncestorCloud.Droid
 		List<ListDataStructure> dataList;
 		Dialog editDialog;
 		ImageView helpIcon;
+		IMvxMessenger _messenger;
+		private MvxSubscriptionToken ReloadViewToken;
 
 		public new MyFamilyViewModel ViewModel
 		{
@@ -47,10 +51,26 @@ namespace AncestorCloud.Droid
 			InitViews ();
 			ConfigureActionBar ();
 			ApplyActions ();
-			CreateListAdapter ();
+			_messenger = Mvx.Resolve<IMvxMessenger>();
 
 		}
 		#endregion
+
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+			CreateListAdapter ();
+			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.CreateListAdapter ());
+		}
+
+
+		protected override void OnPause ()
+		{
+			base.OnPause ();
+			_messenger.Unsubscribe<MyFamilyReloadMessage> (ReloadViewToken);
+		}
+
+
 
 		#region customized methods
 		private void InitViews()
@@ -99,6 +119,7 @@ namespace AncestorCloud.Droid
 		#region Create List Adapter
 		private void CreateListAdapter ()
 		{
+			ViewModel.GetFbFamilyData ();
 			dataList = FilterDataList (ViewModel.FamilyList);
 
 			MyFamilyListAdapter adapter = new MyFamilyListAdapter (this,dataList);
@@ -125,25 +146,25 @@ namespace AncestorCloud.Droid
 				People item = mainList[i];
 				string relation = item.Relation;
 
-				if (relation.Contains (StringConstants.Brother_comparison) || relation.Contains (StringConstants.Sister_comparison)) 
+				if (relation.Contains (StringConstants.Brother_comparison) || relation.Contains (StringConstants.Sister_comparison) || relation.Contains (StringConstants.Sibling_comparison)) 
 				{
 					listStruct = new ListDataStructure(false,false,true,"","",item);
 					siblingList.Add (listStruct);
 				}
 
-				else if(relation.Contains (StringConstants.Father_comparison) || relation.Contains (StringConstants.Mother_comparison))
+				else if(relation.Contains (StringConstants.Father_comparison) || relation.Contains (StringConstants.Mother_comparison) || relation.Contains (StringConstants.Parent_comparison))
 				{
 					listStruct = new ListDataStructure(false,false,true,"","",item);
 					parentList.Add (listStruct);
 				}
 
-				else if(relation.Contains (StringConstants.GrandFather_comparison) || relation.Contains (StringConstants.GrandMother_comparison))
+				else if(relation.Contains (StringConstants.GrandFather_comparison) || relation.Contains (StringConstants.GrandMother_comparison) || relation.Contains (StringConstants.GrandParent_comparison))
 				{
 					listStruct = new ListDataStructure(false,false,true,"","",item);
 					grandParentList.Add (listStruct);
 				}
 
-				else if(relation.Contains (StringConstants.GreatGrandFather_comparison) || relation.Contains (StringConstants.GreatGrandMother_comparison))
+				else if(relation.Contains (StringConstants.GreatGrandFather_comparison) || relation.Contains (StringConstants.GreatGrandMother_comparison) || relation.Contains (StringConstants.GreatGrandParent_comparison))
 				{
 					listStruct = new ListDataStructure(false,false,true,"","",item);
 					greatGrandParentList.Add (listStruct);
@@ -300,7 +321,14 @@ namespace AncestorCloud.Droid
 
 			try{
 				try{
-					first_name.Text = peopleData.FirstName;
+
+					if(peopleData.Name != null){
+						first_name.Text = peopleData.Name;
+						nameTitle.Text = peopleData.Name+"("+peopleData.Relation+")";
+					}else{
+						first_name.Text = peopleData.FirstName;
+					}
+
 					mid_name.Text = peopleData.MiddleName;
 					last_name.Text = peopleData.LastName;
 					birth_loc.Text = peopleData.BirthLocation;
@@ -452,7 +480,12 @@ namespace AncestorCloud.Droid
 			}
 			else if(structure.isData)
 			{
-				holder.nameTxt.Text = structure.PersonData.Name;
+				if (structure.PersonData.Name == null) {
+					holder.nameTxt.Text = structure.PersonData.FirstName+" "+structure.PersonData.MiddleName+" "+structure.PersonData.LastName;
+				} else {
+					holder.nameTxt.Text = structure.PersonData.Name;
+				}
+
 				holder.yearTxt.Text = structure.PersonData.DateOfBirth;
 				holder.listHeader.Visibility = ViewStates.Gone;
 				holder.listFooter.Visibility = ViewStates.Gone;

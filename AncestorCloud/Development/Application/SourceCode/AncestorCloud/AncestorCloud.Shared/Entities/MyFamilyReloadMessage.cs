@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AncestorCloud.Touch
+namespace AncestorCloud.Core
 {
 	using Cirrious.MvvmCross.Plugins.Messenger;
 

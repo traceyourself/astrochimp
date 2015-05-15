@@ -21,6 +21,12 @@ namespace AncestorCloud.Droid
 		public static readonly string Sister_comparison = "sister";
 		public static readonly string Father_comparison = "father";
 		public static readonly string Mother_comparison = "mother";
+
+		public static readonly string Sibling_comparison = "Sibling";
+		public static readonly string Parent_comparison = "Parent";
+		public static readonly string GrandParent_comparison = "Grandparent";
+		public static readonly string GreatGrandParent_comparison = "GreatGrandparent";
+
 		public static readonly string GrandFather_comparison = "grandfather";
 		public static readonly string GrandMother_comparison = "grandmother";
 		public static readonly string GreatGrandFather_comparison = "great grandfather";

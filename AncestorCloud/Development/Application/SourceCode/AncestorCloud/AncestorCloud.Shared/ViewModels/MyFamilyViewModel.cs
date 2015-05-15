@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Plugins.Messenger;
-using AncestorCloud.Touch;
+using AncestorCloud.Core;
+
 
 namespace AncestorCloud.Shared.ViewModels
 {
@@ -151,7 +152,7 @@ namespace AncestorCloud.Shared.ViewModels
 					Alert.ShowAlert ("Failed to edit, Please try Again...", "Error");
 				}
 			}
-
+			return ;
 		} 
 		#endregion
 	}
