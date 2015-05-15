@@ -37,7 +37,7 @@ namespace AncestorCloud.Touch
 			this.Title = "Research Help";
 
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
-		    this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
 
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
 

@@ -94,7 +94,7 @@ namespace AncestorCloud.Touch
 		public override UIView GetViewForHeader (UITableView tableView, nint section)
 		{
 			UILabel view = new UILabel {
-				BackgroundColor=UIColor.FromRGB(178,45,116),
+				BackgroundColor=UIColor.FromRGB(248,183,21),
 				Text=ListItems[(int)section].SectionHeader,
 				Font= UIFont.FromName("Helvetica", 16f),
 				TextColor=UIColor.White,

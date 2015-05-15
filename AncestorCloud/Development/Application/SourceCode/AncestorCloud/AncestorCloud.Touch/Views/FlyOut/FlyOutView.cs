@@ -78,7 +78,7 @@ namespace AncestorCloud.Touch
 
 			//this.NavigationItem.TitleView = new MyTitleView (this.Title);
 			_navigation.NavigationTableView.BackgroundColor = UIColor.FromRGB (46, 58, 73);
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
 
 			this.NavigationItem.SetHidesBackButton (true, false);
 

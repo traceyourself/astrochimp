@@ -29,11 +29,11 @@
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Upload a profile image     to finish your profile" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dzu-sV-CaC">
                     <rect key="frame" x="66" y="210" width="199" height="61"/>
-                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="dzu-sV-CaC" secondAttribute="height" multiplier="199:61" id="45g-Ws-br4"/>
                     </constraints>
-                    <color key="textColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
@@ -42,7 +42,7 @@
                     <constraints>
                         <constraint firstAttribute="width" secondItem="v2c-0a-Pjg" secondAttribute="height" multiplier="139:44" id="2nQ-UJ-Mgg"/>
                     </constraints>
-                    <state key="normal" title="Upload" backgroundImage="blue_smallbtn.png">
+                    <state key="normal" title="Upload" backgroundImage="blue_btn.png">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -61,7 +61,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="dzu-sV-CaC" secondAttribute="centerX" constant="-5.5" id="7pL-fW-Sjg"/>
                 <constraint firstAttribute="centerY" secondItem="dzu-sV-CaC" secondAttribute="centerY" constant="-0.5" id="FSb-LD-mVv"/>
@@ -77,7 +77,7 @@
         </view>
     </objects>
     <resources>
-        <image name="blue_smallbtn.png" width="161" height="42"/>
+        <image name="blue_btn.png" width="229" height="56"/>
         <image name="noImage.png" width="265" height="265"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

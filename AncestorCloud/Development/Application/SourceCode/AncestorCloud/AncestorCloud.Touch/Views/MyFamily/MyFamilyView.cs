@@ -86,7 +86,7 @@ namespace AncestorCloud.Touch
 			this.Title= "My Family";
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
 			//this.NavigationItem.SetHidesBackButton (true, false);
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;

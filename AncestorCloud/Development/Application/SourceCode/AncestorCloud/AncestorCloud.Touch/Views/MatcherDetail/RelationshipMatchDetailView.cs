@@ -67,7 +67,7 @@ namespace AncestorCloud.Touch
 
 		private void SetRelationShipDetailView()
 		{
-			this.Title = "Matcher";
+			this.Title = "Cousin Match";
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 
 
@@ -98,11 +98,11 @@ namespace AncestorCloud.Touch
 
 			if (width <= 320f) 
 			{
-				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,100,20));
+				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,130,20));
 			}else if (width >= 321f && width <=375) {
-				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 130, 20));
+				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 150, 20));
 			} else {
-				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 130, 20));
+				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 180, 20));
 			}
 
 			this.NavigationController.NavigationBarHidden = false;

@@ -53,7 +53,7 @@ namespace AncestorCloud.Touch
 		{
 			this.Title="Help";
 			this.NavigationController.NavigationBarHidden = false;
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
 
 
 			UIImage image = UIImage.FromFile ("cross_white.png");

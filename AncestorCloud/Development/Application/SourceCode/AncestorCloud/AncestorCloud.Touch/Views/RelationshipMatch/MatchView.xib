@@ -75,7 +75,7 @@
                                         <constraint firstAttribute="height" constant="44" id="kt7-B4-lVu"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <state key="normal" title="Match" backgroundImage="pink-btnsmall.png">
+                                    <state key="normal" title="Match" backgroundImage="blue_btn.png">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -109,7 +109,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="iTi-gN-QWf" secondAttribute="height" multiplier="1:1" id="KC0-NU-YI2"/>
                                     </constraints>
-                                    <state key="normal" backgroundImage="blue_x.png">
+                                    <state key="normal" backgroundImage="blue_cross.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -121,7 +121,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="kKw-0V-oR0" secondAttribute="height" multiplier="1:1" id="Hvf-iD-Jel"/>
                                     </constraints>
-                                    <state key="normal" backgroundImage="blue_x.png">
+                                    <state key="normal" backgroundImage="blue_cross.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -180,8 +180,8 @@
     </objects>
     <resources>
         <image name="CircleMatcher.png" width="304" height="304"/>
-        <image name="blue_x.png" width="50" height="50"/>
-        <image name="pink-btnsmall.png" width="335" height="97"/>
+        <image name="blue_btn.png" width="229" height="56"/>
+        <image name="blue_cross.png" width="30" height="30"/>
         <image name="plus.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

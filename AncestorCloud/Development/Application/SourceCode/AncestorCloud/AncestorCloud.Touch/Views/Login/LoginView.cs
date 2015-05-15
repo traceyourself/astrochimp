@@ -72,7 +72,7 @@ namespace AncestorCloud.Touch
 				{ TextColor = UIColor.FromRGB (255,255,255) });
 			
 			this.Title="Log In";
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
 			var navController = base.NavigationController;
 
 			UIImage image = UIImage.FromFile ("cross_white.png");

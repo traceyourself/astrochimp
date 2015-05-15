@@ -58,7 +58,7 @@ namespace AncestorCloud.Touch
 			this.Title="Profile Picture";
 			this.NavigationItem.HidesBackButton = true;
 			this.NavigationController.NavigationBarHidden = false;
-			this.NavigationController.NavigationBar.BarTintColor= UIColor.FromRGB (179, 45, 116);
+			this.NavigationController.NavigationBar.BarTintColor= UIColor.FromRGB (64,172,176);
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
 

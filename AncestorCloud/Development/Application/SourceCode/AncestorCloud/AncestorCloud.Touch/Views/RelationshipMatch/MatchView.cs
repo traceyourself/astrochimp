@@ -78,10 +78,10 @@ namespace AncestorCloud.Touch
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 
-			this.Title = "Matcher";
+			this.Title = "Cousin Match";
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
 			this.NavigationItem.SetHidesBackButton (true, false);
 
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
@@ -90,11 +90,11 @@ namespace AncestorCloud.Touch
 
 			if (width <= 320f) 
 			{
-				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,100,20));
+				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,120,20));
 			}else if (width >= 321f && width <=375) {
-				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 150, 20));
+				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 170, 20));
 			} else {
-				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 180, 20));
+				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 200, 20));
 			}
 
 

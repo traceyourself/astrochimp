@@ -477,6 +477,16 @@
     <BundleResource Include="Resources\plus_blue%402x.png" />
     <BundleResource Include="Resources\user_no_img.png" />
     <BundleResource Include="Resources\profile%402x.png" />
+    <BundleResource Include="Resources\blue_btnsmall.png" />
+    <BundleResource Include="Resources\blue_btnsmall%402x.png" />
+    <BundleResource Include="Resources\blue_btn%403x.png" />
+    <BundleResource Include="Resources\blue_btn%402x.png" />
+    <BundleResource Include="Resources\help-icon%402x.png" />
+    <BundleResource Include="Resources\help-iconbig%402x.png" />
+    <BundleResource Include="Resources\add%402x.png" />
+    <BundleResource Include="Resources\blue_cross%402x.png" />
+    <BundleResource Include="Resources\check_pink%402x.png" />
+    <BundleResource Include="Resources\uncheck_pink%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />

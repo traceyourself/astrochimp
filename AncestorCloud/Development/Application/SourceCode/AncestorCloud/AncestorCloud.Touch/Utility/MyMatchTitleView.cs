@@ -17,7 +17,7 @@ namespace AncestorCloud.Touch
 			UILabel label = new UILabel {
 				Text= title,
 				TextColor = UIColor.White,
-				Frame= new RectangleF((float)img.Frame.Size.Width+5.0f,0,80,20)
+				Frame= new RectangleF((float)img.Frame.Size.Width+5.0f,0,110,20)
 			};
 			this.AddSubview (label);
 

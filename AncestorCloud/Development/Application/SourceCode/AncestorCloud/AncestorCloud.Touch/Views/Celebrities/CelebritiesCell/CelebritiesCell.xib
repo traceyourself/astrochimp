@@ -27,7 +27,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="4Qh-sU-rk0"/>
                         </constraints>
-                        <state key="normal" backgroundImage="plus_blue.png">
+                        <state key="normal" backgroundImage="add.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -73,7 +73,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="plus_blue.png" width="21" height="21"/>
+        <image name="add.png" width="20" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
