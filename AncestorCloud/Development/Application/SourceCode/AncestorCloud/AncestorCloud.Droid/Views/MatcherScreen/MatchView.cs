@@ -16,6 +16,7 @@ using Android.Webkit;
 using Android.Graphics.Drawables.Shapes;
 using Android.Graphics.Drawables;
 using Android.Graphics;
+using Android.Gms.Analytics;
 
 namespace AncestorCloud.Droid
 {
@@ -52,7 +53,6 @@ namespace AncestorCloud.Droid
 			configureActionBar ();
 
 			ApplyActions ();
-
 		}
 
 		#region init ui
