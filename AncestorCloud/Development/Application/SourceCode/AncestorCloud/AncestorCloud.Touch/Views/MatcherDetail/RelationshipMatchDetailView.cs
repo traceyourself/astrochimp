@@ -144,9 +144,16 @@ namespace AncestorCloud.Touch
 			set.Bind (SecondPersonName).To (vm => vm.SecondPersonNAME);
 			set.Bind (_imageViewLoader).To (vm => vm.FirstPersonURL);
 			set.Bind (_secImageViewLoader).To (vm => vm.SecondPersonURL);
-			set.Bind (DegreeLabel).To (vm => vm.MatchResult.Degrees);//.WithConversion(new DegreeConverter(),null);;
+			set.Bind (DegreeLabel).To (vm => vm.MatchResult.Degrees);//.WithConversion(new RelationshipTextConverter(),null);
 			//System.Diagnostics.Debug.WriteLine (ViewModel.MatchResultList);
 			set.Apply ();
+
+			//TODO: Change this condition
+
+			if (ViewModel.MatchResultList[0].CommonResult != null) {
+				RelationshipMatchTable.BackgroundColor = UIColor.FromRGB (239,239,239);
+				
+			}
 
 		}
 		#endregion

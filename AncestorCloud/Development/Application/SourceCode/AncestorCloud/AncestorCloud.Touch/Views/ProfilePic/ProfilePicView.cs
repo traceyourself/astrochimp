@@ -51,7 +51,7 @@ namespace AncestorCloud.Touch
 		public void SetUpView()
 		{
 			ProfilePic.TouchUpInside += ProfilePicSetUp;
-			ProfilePic.Layer.CornerRadius=120f;
+			ProfilePic.Layer.CornerRadius=90f;
 			ProfilePic.ClipsToBounds = true;
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
@@ -59,8 +59,8 @@ namespace AncestorCloud.Touch
 			this.NavigationItem.HidesBackButton = true;
 			this.NavigationController.NavigationBarHidden = false;
 			this.NavigationController.NavigationBar.BarTintColor= UIColor.FromRGB (64,172,176);
-			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
-				{ TextColor = UIColor.FromRGB (255,255,255) });
+
+
 
 			if (ViewModel.IsFromSignup)
 				return;
@@ -270,6 +270,13 @@ namespace AncestorCloud.Touch
 
 			// dismiss the picker
 			imagePicker.DismissViewControllerAsync (true);
+		}
+
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			this.View.BackgroundColor = UIColor.FromRGB (0, 0, 0);
 		}
 	
 

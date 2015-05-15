@@ -95,8 +95,8 @@ namespace AncestorCloud.Shared.ViewModels
 					new MenuViewModel
 					{
 						Section = Section.Matcher,
-						Title = "Matcher",
-						Image = "match_icon.png",
+						Title = "Cousin Match",
+						Image = "c.png",
 						ViewModelType = typeof(MatchViewModel)
 					},   
 					new MenuViewModel
@@ -147,8 +147,8 @@ namespace AncestorCloud.Shared.ViewModels
 					new MenuViewModel
 					{
 						Section = Section.Matcher,
-						Title = "Matcher",
-						Image = "match_icon.png",
+						Title = "Cousin Match",
+						Image = "c.png",
 						ViewModelType = typeof(MatchViewModel)
 					},   
 					new MenuViewModel

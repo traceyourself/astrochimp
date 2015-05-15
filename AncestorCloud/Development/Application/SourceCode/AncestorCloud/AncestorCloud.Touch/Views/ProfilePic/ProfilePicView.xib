@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfilePicView">
@@ -17,31 +16,25 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sP8-RB-P6t">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sP8-RB-P6t">
                     <rect key="frame" x="80" y="36" width="173" height="173"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="sP8-RB-P6t" secondAttribute="height" multiplier="1:1" id="gEN-ac-2OF"/>
-                    </constraints>
                     <state key="normal" backgroundImage="noImage.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Upload a profile image     to finish your profile" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dzu-sV-CaC">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Upload a profile image     to finish your profile" textAlignment="center" id="dzu-sV-CaC">
                     <rect key="frame" x="66" y="210" width="199" height="61"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="dzu-sV-CaC" secondAttribute="height" multiplier="199:61" id="45g-Ws-br4"/>
-                    </constraints>
                     <color key="textColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v2c-0a-Pjg">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="v2c-0a-Pjg">
                     <rect key="frame" x="97" y="311" width="139" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="v2c-0a-Pjg" secondAttribute="height" multiplier="139:44" id="2nQ-UJ-Mgg"/>
-                    </constraints>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Upload" backgroundImage="blue_btn.png">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -50,8 +43,9 @@
                         <action selector="UploadButtonTapped:" destination="-1" eventType="touchUpInside" id="aII-un-V0P"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPK-2y-WdS">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pPK-2y-WdS">
                     <rect key="frame" x="126" y="369" width="80" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Skip">
                         <color key="titleColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,17 +56,6 @@
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstAttribute="centerX" secondItem="dzu-sV-CaC" secondAttribute="centerX" constant="-5.5" id="7pL-fW-Sjg"/>
-                <constraint firstAttribute="centerY" secondItem="dzu-sV-CaC" secondAttribute="centerY" constant="-0.5" id="FSb-LD-mVv"/>
-                <constraint firstItem="dzu-sV-CaC" firstAttribute="top" secondItem="sP8-RB-P6t" secondAttribute="bottom" constant="1" id="UCa-JQ-yy1"/>
-                <constraint firstAttribute="centerY" secondItem="sP8-RB-P6t" secondAttribute="centerY" constant="118" id="Y5p-x4-v7C"/>
-                <constraint firstAttribute="centerX" secondItem="sP8-RB-P6t" secondAttribute="centerX" constant="-6" id="Y6e-hS-wFH"/>
-                <constraint firstAttribute="centerY" secondItem="v2c-0a-Pjg" secondAttribute="centerY" constant="-93" id="gmA-zB-tb0"/>
-                <constraint firstAttribute="centerX" secondItem="v2c-0a-Pjg" secondAttribute="centerX" constant="-6.5" id="mYb-9Q-CpE"/>
-                <constraint firstAttribute="centerX" secondItem="pPK-2y-WdS" secondAttribute="centerX" constant="-6" id="vnQ-Yd-eQG"/>
-                <constraint firstAttribute="centerY" secondItem="pPK-2y-WdS" secondAttribute="centerY" constant="-144" id="wRW-Ll-bIb"/>
-            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>

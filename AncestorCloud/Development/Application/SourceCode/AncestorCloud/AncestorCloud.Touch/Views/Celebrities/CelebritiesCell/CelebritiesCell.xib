@@ -35,7 +35,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcm-E0-9Cq">
-                        <rect key="frame" x="113" y="18" width="106" height="21"/>
+                        <rect key="frame" x="113" y="15" width="106" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="106" id="56R-Qd-1Ko"/>
                         </constraints>

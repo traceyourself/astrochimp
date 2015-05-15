@@ -25,6 +25,8 @@ namespace AncestorCloud.Touch
 			});
 
 
+
+
 		}
 
 		public static RelationshipMatchDetailCell Create ()

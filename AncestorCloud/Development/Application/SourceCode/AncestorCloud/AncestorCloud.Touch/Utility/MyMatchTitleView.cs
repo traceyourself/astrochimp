@@ -11,7 +11,7 @@ namespace AncestorCloud.Touch
 
 		public MyMatchTitleView (string title,CGRect frame) : base (frame)
 		{
-			UIImageView img = new UIImageView(UIImage.FromFile("match_icon.png"));
+			UIImageView img = new UIImageView(UIImage.FromFile("Shape.png"));
 			this.AddSubview (img);
 
 			UILabel label = new UILabel {
