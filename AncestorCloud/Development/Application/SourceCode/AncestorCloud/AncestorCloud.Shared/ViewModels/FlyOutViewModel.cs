@@ -117,7 +117,14 @@ namespace AncestorCloud.Shared.ViewModels
 					new MenuViewModel 
 					{
 						Section = Section.Unknown,
-						Title = "Profile",
+						//Title = "Profile",
+						//Image = "noImage.png",
+						ViewModelType = typeof(TestViewModel),	
+					},
+					new MenuViewModel 
+					{
+						Section = Section.Unknown,
+						Title = "",
 						Image = "noImage.png",
 						ViewModelType = typeof(ProfilePicViewModel),	
 					}
@@ -163,11 +170,17 @@ namespace AncestorCloud.Shared.ViewModels
 					},
 					new MenuViewModel 
 					{
-						Section= Section.Unknown,
+						Section = Section.Unknown,
+						//Title = "Profile",
+						//Image = "noImage.png",
+						ViewModelType = typeof(TestViewModel),	
+					},
+					new MenuViewModel 
+					{
+						Section = Section.Unknown,
 						Title = "Profile",
 						Image = "noImage.png",
 						ViewModelType = typeof(ProfilePicViewModel),	
-
 					}
 
 				};
