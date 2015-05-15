@@ -17,6 +17,8 @@ namespace AncestorCloud.Touch
 	{
 		private MvxSubscriptionToken navigationMenuToken;
 
+		private MvxSubscriptionToken ReloadViewToken;
+
 		EditFamilyView editFamily;
 		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
 
@@ -68,12 +70,15 @@ namespace AncestorCloud.Touch
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
+			ReloadView ();
+		}
+
+		private void ReloadView()
+		{
 			ViewModel.GetFbFamilyData ();
 			CreateMyFamilyTable ();
 			AddEvents ();
 		}
-
-
 
 		#endregion
 
@@ -116,12 +121,13 @@ namespace AncestorCloud.Touch
 
 
 			navigationMenuToken = _messenger.SubscribeOnMainThread<MyTableCellTappedMessage>(message => this.ShowEditFamily(message.FamilyMember));
-
+			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.ReloadView());
 		}
 
 		void RemoveMessengers()
 		{
 			_messenger.Unsubscribe<MyTableCellTappedMessage> (navigationMenuToken);
+			_messenger.Unsubscribe<MyFamilyReloadMessage> (ReloadViewToken);
 //			_messenger.Unsubscribe<ToggleFlyoutMenuMessage> (navigationMenuToggleToken);
 //			_messenger.Unsubscribe<NavigationBarHiddenMessage> (navigationBarHiddenToken);
 
@@ -215,8 +221,8 @@ namespace AncestorCloud.Touch
 
 		public void ShowEditFamily(People member)
 		{
-			if(editFamily == null)
-				editFamily = new EditFamilyView ();
+			//if(editFamily == null)
+			editFamily = new EditFamilyView ();
 			
 			editFamily.FamilyMember = member;
 			editFamily.SaveButtonTappedClickedDelegate += SaveEditedFamilyDetails;
@@ -236,6 +242,7 @@ namespace AncestorCloud.Touch
 		{
 			ViewModel.FamilyMember = member as People;
 			ViewModel.EditPerson ();
+			//ReloadView ();
 		}
 	
 		#endregion
