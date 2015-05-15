@@ -123,6 +123,12 @@ namespace AncestorCloud.Touch
 						ViewModelType = viewModel.ViewModelType
 					};
 
+					if (viewModel.ViewModelType == typeof(TestViewModel)) {
+
+						flyoutViewControllers.Add(null);
+						continue;
+					}
+
 					flyoutViewControllers.Add(CreateMenuItemController(viewModelRequest));
 
 				}
@@ -148,12 +154,15 @@ namespace AncestorCloud.Touch
 						ViewModelType = viewModel.ViewModelType
 					};
 
+					if (viewModel.ViewModelType == typeof(TestViewModel)) {
+
+						flyoutViewControllers.Add(null);
+						continue;
+					}
 					flyoutViewControllers.Add(CreateMenuItemController(viewModelRequest));
 
 				}
 				_navigation.ViewControllers = flyoutViewControllers.ToArray();
-
-
 			}
 		}
 		private void CreateFlyoutView()
@@ -168,16 +177,38 @@ namespace AncestorCloud.Touch
 				//create the ViewModels
 				foreach (var viewModel in homeViewModel.MenuItems)
 				{
-					flyoutMenuElements.Add(new CustomStringElement(viewModel.Title,UIImage.FromBundle(viewModel.Image)));
+					if (viewModel.ViewModelType == typeof(TestViewModel)) {
+
+
+						UIImageView view = new UIImageView (new RectangleF (0f, 0f, 280, (float)this.View.Frame.Size.Height-277));
+						view.Image = UIImage.FromBundle ("grey51.jpg");
+						flyoutMenuElements.Add (new CustomViewElement("",view));
+						continue;
+					}
+
+					if (viewModel.ViewModelType == typeof(ProfilePicViewModel)) {
+
+						ProfileCellView profCell = new ProfileCellView(viewModel.Title,UIImage.FromBundle("noImage.png"));
+
+						flyoutMenuElements.Add (new CustomViewElement("",profCell.View));
+
+						continue;
+					}
+
+					CustomCellView cell = new CustomCellView(viewModel.Title,viewModel.Image);
+				
+					flyoutMenuElements.Add(new CustomViewElement("",cell.View));
 
 				}
 
+			
 				//add the menu elements
 								var rootElement = new RootElement("")
 								{
 									flyoutMenuElements
 								};
-
+			
+				//rootElement.
 				_navigation.NavigationRoot = rootElement;
 			}
 
