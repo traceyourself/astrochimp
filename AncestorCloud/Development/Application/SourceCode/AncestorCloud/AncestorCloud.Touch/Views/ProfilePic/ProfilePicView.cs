@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Plugins.Messenger;
+using AncestorCloud.Core;
 
 namespace AncestorCloud.Touch
 {
@@ -17,6 +18,8 @@ namespace AncestorCloud.Touch
 		UIImagePickerController imagePicker;
 		UIButton choosePhotoButton;
 		UIImageView imageView;
+		IMvxMessenger _messenger;
+		private MvxSubscriptionToken ImageUploadedToken;
 
 		public ProfilePicView () : base ("ProfilePicView", null)
 		{
@@ -297,6 +300,23 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewWillAppear (animated);
 			this.View.BackgroundColor = UIColor.FromRGB (0, 0, 0);
+		}
+
+
+		public void AddEvent()
+		{
+			ImageUploadedToken = _messenger.SubscribeOnMainThread<ProfilePicUploadedMessage>(Message => this.ImageUploadedHandler ());
+		}
+
+		public void RemoveEvent()
+		{
+			_messenger.Unsubscribe<ProfilePicUploadedMessage> (ImageUploadedToken);
+		}
+		public void ImageUploadedHandler()
+		{
+			//Utilities.CurrentUserimage = CurrentImage;
+
+			ViewModel.Close ();
 		}
 	
 

@@ -12,12 +12,38 @@ namespace AncestorCloud.Shared.ViewModels
 		private MvxSubscriptionToken navigationMenuToggleToken;
 		private MvxSubscriptionToken changeFlyoutToken;
 		private  bool IsFaceBookLogin{ get; set;}
+
+		private readonly IDatabaseService _databaseService;
+
+
 	
 		public void Init(DetailParameters parameter)
 		{
 			this.IsFaceBookLogin = parameter.IsFBLogin;
 			this.SetItemList (IsFaceBookLogin);
 		}
+
+		public FlyOutViewModel(IDatabaseService  service)
+		{
+			_databaseService = service;
+		}
+
+
+		#region get Userdata method
+		public LoginModel GetUserData()
+		{
+			LoginModel data = new LoginModel ();
+			try{
+				data = _databaseService.GetLoginDetails ();
+			}
+			catch
+			(Exception e)
+			{
+			}
+			return data;
+		}
+		#endregion
+
 		public FlyOutViewModel ()
 		{
 
@@ -123,8 +149,11 @@ namespace AncestorCloud.Shared.ViewModels
 					},
 					new MenuViewModel 
 					{
+						
+
+
 						Section = Section.Unknown,
-						Title = "Profile",
+						Title = GetUserData().UserEmail,
 						Image = "profile_img.png",
 						ViewModelType = typeof(ProfilePicViewModel),	
 					}
@@ -178,7 +207,7 @@ namespace AncestorCloud.Shared.ViewModels
 					new MenuViewModel 
 					{
 						Section = Section.Unknown,
-						Title = "Profile",
+						Title = GetUserData().UserEmail,
 						Image = "profile_img.png",
 						ViewModelType = typeof(ProfilePicViewModel),	
 					}

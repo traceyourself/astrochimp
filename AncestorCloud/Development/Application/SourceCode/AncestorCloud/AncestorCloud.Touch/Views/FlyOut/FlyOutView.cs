@@ -188,6 +188,8 @@ namespace AncestorCloud.Touch
 
 					if (viewModel.ViewModelType == typeof(ProfilePicViewModel)) {
 
+
+
 						ProfileCellView profCell = new ProfileCellView(viewModel.Title,UIImage.FromBundle("profile_img.png"));
 
 						flyoutMenuElements.Add (new CustomViewElement("",profCell.View));
@@ -198,6 +200,8 @@ namespace AncestorCloud.Touch
 					CustomCellView cell = new CustomCellView(viewModel.Title,viewModel.Image);
 				
 					flyoutMenuElements.Add(new CustomViewElement("",cell.View));
+
+
 
 				}
 
