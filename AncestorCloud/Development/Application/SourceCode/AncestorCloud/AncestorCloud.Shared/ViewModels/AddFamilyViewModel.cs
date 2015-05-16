@@ -152,7 +152,6 @@ namespace AncestorCloud.Shared.ViewModels
 				if (_reachabilityService.IsNetworkNotReachable ()) {
 					Mvx.Resolve<IAlert> ().ShowAlert ("Please check internet connection", "Network not available");
 				} else {
-
 					LoginModel lModal = _databaseService.GetLoginDetails ();
 			
 					People modal = new People ();

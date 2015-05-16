@@ -21,6 +21,7 @@ namespace AncestorCloud.Droid
 		ActionBar actionBar;
 		ListView friendsList;
 		RelativeLayout mePlus;
+		ImageView meImg;
 
 		public new FacebookFriendViewModel ViewModel
 		{
@@ -37,12 +38,17 @@ namespace AncestorCloud.Droid
 			configureActionBar ();
 			ApplyActions ();
 			setCelebListAdapter ();
+
+			if(Utilities.CurrentUserimage != null){
+				meImg.SetImageBitmap (Utilities.CurrentUserimage);
+			}
 		}
 
 		private void initUI()
 		{
 			friendsList = FindViewById<ListView> (Resource.Id.contacts_list);
 			mePlus = FindViewById<RelativeLayout> (Resource.Id.me_plus_box_right);
+			meImg = FindViewById<ImageView> (Resource.Id.me_user_img);
 		}
 
 		private void ApplyActions(){

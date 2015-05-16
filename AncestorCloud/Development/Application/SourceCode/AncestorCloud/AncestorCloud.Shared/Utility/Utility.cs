@@ -8,6 +8,8 @@ namespace AncestorCloud.Shared
 		{
 			System.Diagnostics.Debug.WriteLine (logValue);
 		}
+
+
 	}
 }
 

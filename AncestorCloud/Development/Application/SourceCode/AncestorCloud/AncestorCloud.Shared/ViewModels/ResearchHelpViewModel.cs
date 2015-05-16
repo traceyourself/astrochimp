@@ -8,6 +8,24 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class ResearchHelpViewModel : BaseViewModel
 	{
+		private readonly IDatabaseService _databaseService;
+
+		public ResearchHelpViewModel()
+		{
+			_databaseService = Mvx.Resolve<IDatabaseService> ();	
+		}
+
+		#region get Userdata method
+		public LoginModel GetUserData()
+		{
+			LoginModel data = new LoginModel ();
+			try{
+				data = _databaseService.GetLoginDetails ();
+			}catch(Exception e){
+			}
+			return data;
+		}
+		#endregion
 
 		#region ShowmyfamilyViewModel
 		public void ShowMyFamilyViewModel()

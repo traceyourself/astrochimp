@@ -4,10 +4,10 @@ namespace AncestorCloud.Core
 {
 	using Cirrious.MvvmCross.Plugins.Messenger;
 
-	public class MyFamilyReloadMessage : MvxMessage
+	public class ProfilePicUploadedMessage : MvxMessage
 	{
 
-		public MyFamilyReloadMessage(object sender)
+		public ProfilePicUploadedMessage(object sender)
 			: base(sender)
 		{
 			

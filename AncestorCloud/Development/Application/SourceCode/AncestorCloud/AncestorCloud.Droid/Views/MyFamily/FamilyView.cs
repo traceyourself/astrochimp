@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
+using AncestorCloud.Shared;
 
 namespace AncestorCloud.Droid
 {
@@ -23,6 +24,8 @@ namespace AncestorCloud.Droid
 		RelativeLayout menuLayout;
 		TextView addFamilyBtn;
 		ImageView helpIcon;
+		TextView userNameMenu;
+		ImageView userImageMenu;
 
 		public new FamilyViewModel ViewModel
 		{
@@ -39,7 +42,14 @@ namespace AncestorCloud.Droid
 			configureActionBar ();
 
 			ApplyActions ();
+		
+		}
 
+
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+			ApplyData ();
 		}
 
 		private void initUI()
@@ -49,8 +59,20 @@ namespace AncestorCloud.Droid
 			contentLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutContent);
 			addFamilyBtn = contentLayout.FindViewById<TextView> (Resource.Id.add_family_btn);
 			helpIcon = contentLayout.FindViewById<ImageView> (Resource.Id.help_icon);
+
+			userNameMenu = menuLayout.FindViewById<TextView> (Resource.Id.user_name_menu);
+			userImageMenu = menuLayout.FindViewById<ImageView> (Resource.Id.user_img_menu);
 		}
 
+		public void ApplyData(){
+			//userNameMenu;
+			if (Utilities.CurrentUserimage != null) {
+				userImageMenu.SetImageBitmap (Utilities.CurrentUserimage);	
+			}
+
+			LoginModel modal = ViewModel.GetUserData();
+			userNameMenu.Text = modal.UserEmail;
+		}
 
 		private void ApplyActions(){
 		

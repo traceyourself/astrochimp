@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
+using AncestorCloud.Shared;
 
 namespace AncestorCloud.Droid
 {
@@ -21,6 +22,8 @@ namespace AncestorCloud.Droid
 		LinearLayout contentLayout;
 		RelativeLayout menuLayout;
 		TextView research_help_txt;
+		TextView userNameMenu;
+		ImageView userImageMenu;
 
 		public new ResearchHelpViewModel ViewModel
 		{
@@ -38,12 +41,32 @@ namespace AncestorCloud.Droid
 			ApplyActions ();
 		}
 
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+			ApplyData ();
+		}
+
+
 		private void initUI()
 		{
 			menu = FindViewById<FlyOutContainer> (Resource.Id.flyOutContainerLay);
 			menuLayout = FindViewById<RelativeLayout> (Resource.Id.FlyOutMenu);
 			contentLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutContent);
 			research_help_txt = contentLayout.FindViewById<TextView> (Resource.Id.help_txt);
+
+			userNameMenu = menuLayout.FindViewById<TextView> (Resource.Id.user_name_menu);
+			userImageMenu = menuLayout.FindViewById<ImageView> (Resource.Id.user_img_menu);
+		}
+
+		public void ApplyData(){
+			//userNameMenu;
+			if (Utilities.CurrentUserimage != null) {
+				userImageMenu.SetImageBitmap (Utilities.CurrentUserimage);	
+			}
+
+			LoginModel modal = ViewModel.GetUserData();
+			userNameMenu.Text = modal.UserEmail;
 		}
 
 
