@@ -97,7 +97,8 @@ namespace AncestorCloud.Touch
 		void SetEditLabel()
 		{
 			//For debugging purpose
-			EditLabel.Text = FamilyMember.Name;
+
+			EditLabel.Text = FamilyMember.Name ?? FamilyMember.FirstName +" "+ FamilyMember.MiddleName + " " + FamilyMember.LastName;
 //			EditLabel.Text = FamilyMember.LastName;
 //			EditLabel.Text = FamilyMember.Relation;
 			//TODO: Uncomment this line when data is live
@@ -107,7 +108,11 @@ namespace AncestorCloud.Touch
 		void SetFirstName()
 		{
 			//For debugging purpose
-			FirstNameTextField.Text = FamilyMember.FirstName;
+
+			string text = FamilyMember.FirstName;
+
+
+			FirstNameTextField.Text =  (FamilyMember.FirstName == null) ? FamilyMember.Name  : (FamilyMember.FirstName.Equals("") ? FamilyMember.Name : FamilyMember.FirstName );
 			//TODO: Uncomment this line when data is live
 			//FirstNameTextField.Text = FamilyMember.FirstName;
 		}
