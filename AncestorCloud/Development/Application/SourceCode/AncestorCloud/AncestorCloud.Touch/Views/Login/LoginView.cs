@@ -56,6 +56,10 @@ namespace AncestorCloud.Touch
 			SetNavigationBar ();
 			BindViewModel ();
 
+			AppDelegate _delegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
+
+			_delegate.UIImageProfilePic = null;
+
 			base.OnKeyboardChanged += OnKeyboardChanged;
 
 

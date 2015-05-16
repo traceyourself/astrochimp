@@ -17,6 +17,8 @@ namespace AncestorCloud.Touch
 
 		public IGAITracker Tracker;
 
+		public UIImage UIImageProfilePic;
+
 		public override bool FinishedLaunching(UIApplication application , NSDictionary launchOptions)
 		{
 			_window = new UIWindow(UIScreen.MainScreen.Bounds);

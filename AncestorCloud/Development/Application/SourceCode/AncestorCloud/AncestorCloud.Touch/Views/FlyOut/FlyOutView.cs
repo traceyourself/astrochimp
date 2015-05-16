@@ -14,6 +14,7 @@ using Cirrious.MvvmCross.Plugins.Messenger;
 using AncestorCloud.Shared;
 using System.Drawing;
 using System.Linq;
+using AncestorCloud.Core;
 
 namespace AncestorCloud.Touch
 {
@@ -23,7 +24,9 @@ namespace AncestorCloud.Touch
 		private MvxSubscriptionToken navigationMenuToggleToken;
 		private MvxSubscriptionToken navigationBarHiddenToken;
 		private MvxSubscriptionToken changeFlyoutToken;
+		private MvxSubscriptionToken ImageUploadedToken;
 		IMvxMessenger _messenger;
+		ProfileCellView profCell;
 
 //		string[] Tasks = {
 //
@@ -187,8 +190,11 @@ namespace AncestorCloud.Touch
 					}
 
 					if (viewModel.ViewModelType == typeof(ProfilePicViewModel)) {
+						AppDelegate _delegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 
-						ProfileCellView profCell = new ProfileCellView(viewModel.Title,UIImage.FromBundle("profile_img.png"));
+						UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle ("profile_img.png");
+
+						profCell = new ProfileCellView(viewModel.Title,image);
 
 						flyoutMenuElements.Add (new CustomViewElement("",profCell.View));
 
@@ -198,6 +204,8 @@ namespace AncestorCloud.Touch
 					CustomCellView cell = new CustomCellView(viewModel.Title,viewModel.Image);
 				
 					flyoutMenuElements.Add(new CustomViewElement("",cell.View));
+
+
 
 				}
 
@@ -245,6 +253,7 @@ namespace AncestorCloud.Touch
 
 		void AddMessengers()
 		{
+			ImageUploadedToken = _messenger.SubscribeOnMainThread<ProfilePicUploadedMessage>(Message => this.SetProfilePic ());
 			changeFlyoutToken = _messenger.SubscribeOnMainThread<ReloadFlyOutViewMessage>(message => this.ReloadMenu());
 			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<ToggleFlyoutMenuMessage>(message => _navigation.ToggleMenu());
 			navigationBarHiddenToken = _messenger.SubscribeOnMainThread<NavigationBarHiddenMessage>(message => this.HideNavBar( message.NavigationBarHidden));
@@ -252,10 +261,22 @@ namespace AncestorCloud.Touch
 
 		void RemoveMessengers()
 		{
+			_messenger.Unsubscribe<ProfilePicUploadedMessage> (ImageUploadedToken);
 			_messenger.Unsubscribe<ReloadFlyOutViewMessage> (changeFlyoutToken);
 			_messenger.Unsubscribe<ToggleFlyoutMenuMessage> (navigationMenuToggleToken);
 			_messenger.Unsubscribe<NavigationBarHiddenMessage> (navigationBarHiddenToken);
 		
+		}
+
+
+		void SetProfilePic()
+		{
+			if(profCell != null)
+			{
+				AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
+
+				profCell.ProfileImage = appDelegate.UIImageProfilePic;
+			}
 		}
 
 		#endregion

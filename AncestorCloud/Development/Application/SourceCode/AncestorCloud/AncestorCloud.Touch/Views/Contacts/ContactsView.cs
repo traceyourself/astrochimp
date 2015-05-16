@@ -74,6 +74,26 @@ namespace AncestorCloud.Touch
 			base.ViewWillDisappear (animated);
 
 		}
+
+		partial void AddButtonTapped (NSObject sender)
+		{
+			System.Diagnostics.Debug.WriteLine("MeButtonTapped");
+
+			ViewModel.MePlusClicked();
+		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+
+			AppDelegate _delegate = (AppDelegate) UIApplication.SharedApplication.Delegate;
+
+			UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle ("noImage.png");
+
+			MeImage.SetBackgroundImage (image, UIControlState.Normal);
+		}
+
+
 	}
 }
 
