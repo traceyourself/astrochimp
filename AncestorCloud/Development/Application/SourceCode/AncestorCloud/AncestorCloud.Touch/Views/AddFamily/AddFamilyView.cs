@@ -134,7 +134,7 @@ namespace AncestorCloud.Touch
 		public void DataItem(object sender)
 		{
 			//UIButton button = (UIButton)sender;
-			ShowHidePicker(new RectangleF( 0f,(float)this.View.Frame.Height-(float)PickerContainer.Frame.Height,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
+			ShowHidePicker(new RectangleF( 0f,(float)UIScreen.MainScreen.ApplicationFrame.Size.Height - 44-(float)PickerContainer.Frame.Height,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
 
 
 		}
@@ -165,13 +165,13 @@ namespace AncestorCloud.Touch
 			picker.Frame = new RectangleF (0f,(float)toolbar.Frame.Height + 1f,(float) this.View.Frame.Size.Width,(float) picker.Frame.Height);
 
 
-			PickerContainer = new  UIView(new RectangleF( 0,(float)this.View.Frame.Height+1f,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
+			PickerContainer = new  UIView(new RectangleF( 0,(float)UIScreen.MainScreen.ApplicationFrame.Size.Height - 44,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
 
 
 			UIBarButtonItem doneButton = new UIBarButtonItem("Done",UIBarButtonItemStyle.Done, (s, e) =>
 				{
 
-					ShowHidePicker(new RectangleF( 0,(float)this.View.Frame.Height+1f,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
+					ShowHidePicker(new RectangleF( 0,(float)UIScreen.MainScreen.ApplicationFrame.Size.Height - 44,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
 
 
 				});
