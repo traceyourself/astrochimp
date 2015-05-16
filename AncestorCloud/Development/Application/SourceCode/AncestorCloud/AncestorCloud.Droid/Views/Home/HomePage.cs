@@ -15,8 +15,6 @@ using AncestorCloud.Shared.ViewModels;
 using Android.Content.PM;
 using Android.Support.V4.View;
 
-
-
 namespace AncestorCloud.Droid
 {
 	[Activity (Label = "HomeView", NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]			
@@ -24,7 +22,7 @@ namespace AncestorCloud.Droid
 	{
 		#region global variables
 		TextView loginBtn,SignupBtn;
-		Android.Support.V4.View.ViewPager viewPager;
+		ViewPager viewPager;
 		//public ImageView firstDot,secDot,thirdDot,fourthDot;
 		public ImageView[] dotImageViews;
 		#endregion

@@ -4,12 +4,12 @@ using AncestorCloud.Shared;
 using Android.App;
 using Android.OS;
 using Cirrious.CrossCore;
+using Android.Gms.Analytics;
 
 namespace AncestorCloud.Droid
 {
 	public class BaseActivity : MvxActivity
 	{
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			try{
@@ -18,8 +18,25 @@ namespace AncestorCloud.Droid
 			}catch(Exception e){
 				System.Diagnostics.Debug.WriteLine (e.InnerException);
 			}
+
+			try{
+				Tracker t = GetTracker ();
+				//t.SetScreenName (this.Title);
+			}catch(Exception e){
+				Mvx.Trace(e.StackTrace);
+			}
+		}
+
+		public Tracker GetTracker()
+		{	
+			try{
+				GoogleAnalytics analytics = GoogleAnalytics.GetInstance(this);
+				return analytics.NewTracker (Resource.Xml.global_tracker);
+			}catch(Exception e){
+				return null;
+				Mvx.Trace(e.StackTrace);
+			}
 		}
 
 	}
 }
-

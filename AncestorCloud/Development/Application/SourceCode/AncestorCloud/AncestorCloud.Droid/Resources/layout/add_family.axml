@@ -29,6 +29,10 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="8dp" />
+        <Spinner
+            android:id="@+id/year_selector_inlay"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
     </RelativeLayout>
     <ListView
         android:id="@+id/add_family_list"
