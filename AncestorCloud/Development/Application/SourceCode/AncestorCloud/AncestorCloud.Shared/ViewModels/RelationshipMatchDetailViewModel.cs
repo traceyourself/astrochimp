@@ -13,7 +13,7 @@ namespace AncestorCloud.Shared.ViewModels
 		public String SecondPersonURL{ get; set;}
 		public String FirstPersonNAME{ get; set;}
 		public String SecondPersonNAME{ get; set;}
-
+		   
 
 		public void Init(DetailParameter parameter)
 		{
@@ -88,14 +88,14 @@ namespace AncestorCloud.Shared.ViewModels
 		public void ShowPastMatches()
 		{
 			
-			//ShowViewModel<PastMatchesViewModel> ();
-			ShowViewModel<NoMatchesViewModel>();
+			ShowViewModel<PastMatchesViewModel> ();
+			//ShowViewModel<NoMatchesViewModel>();
 		}
 
 		#endregion
 
-		#region Parameter Class
 
+		#region Parameter Class
 		public class DetailParameter
 		{
 			public String MatchResult { get; set;}
@@ -105,8 +105,6 @@ namespace AncestorCloud.Shared.ViewModels
 			public String SecondPersonName{ get; set;}
 		}
 
-
-
 		private readonly IDatabaseService _databaseService;
 
 		public RelationshipMatchDetailViewModel(IDatabaseService  service)
@@ -114,13 +112,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = service;
 
 		}
-
 		#endregion
-
-
-
-
 
 	}
 }
-

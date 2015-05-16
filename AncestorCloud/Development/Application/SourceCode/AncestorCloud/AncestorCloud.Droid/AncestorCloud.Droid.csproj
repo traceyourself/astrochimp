@@ -88,10 +88,10 @@
     <Reference Include="Cirrious.MvvmCross.Plugins.Json">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Json.3.5.1\lib\MonoAndroid\Cirrious.MvvmCross.Plugins.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Android.Support.v4" />
     <Reference Include="UrlImageViewHelper">
       <HintPath>..\Components\urlimageviewhelper-1.0.4\lib\android\UrlImageViewHelper.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Android.Support.v4" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -113,7 +113,6 @@
     <Compile Include="Views\Login\MySSLSocketFactory.cs" />
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="DroidUtilities\Utilities.cs" />
-    <Compile Include="Views\FacebookFamily\FbFamilyView.cs" />
     <Compile Include="Interfaces\IsAndroidService.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="DroidUtilities\DroidAlerts.cs" />
@@ -135,6 +134,7 @@
     <Compile Include="PlatformSpecificService\DroidSMSService.cs" />
     <Compile Include="Views\ProfilePicUpload\ProfilePicView.cs" />
     <Compile Include="Interfaces\DroidReachabilityService.cs" />
+    <Compile Include="Views\FacebookFamily\FbFamilyView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -167,8 +167,6 @@
     <AndroidResource Include="Resources\layout\my_family.axml" />
     <AndroidResource Include="Resources\drawable\cross_btn.png" />
     <AndroidResource Include="Resources\layout\home_pager_item.axml" />
-    <AndroidResource Include="Resources\drawable\blue_dot.png" />
-    <AndroidResource Include="Resources\drawable\gray_dot.png" />
     <AndroidResource Include="Resources\layout\my_familiy_fly_out.axml" />
     <AndroidResource Include="Resources\layout\menu.axml" />
     <AndroidResource Include="Resources\drawable\action_menu.png" />
@@ -176,49 +174,39 @@
     <AndroidResource Include="Resources\layout\matcher.axml" />
     <AndroidResource Include="Resources\layout\add_family.axml" />
     <AndroidResource Include="Resources\layout\add_family_list_item.axml" />
-    <AndroidResource Include="Resources\drawable\plus_sign.png" />
     <AndroidResource Include="Resources\layout\my_family_facebook.axml" />
     <AndroidResource Include="Resources\drawable\fb_icon.jpeg" />
-    <AndroidResource Include="Resources\drawable\help_icon.png" />
     <AndroidResource Include="Resources\layout\fb_family_list_item.axml" />
     <AndroidResource Include="Resources\drawable\action_back_btn.png" />
     <AndroidResource Include="Resources\drawable\no_img.png" />
-    <AndroidResource Include="Resources\drawable\splash.png" />
     <AndroidResource Include="Resources\layout\login.axml" />
     <AndroidResource Include="Resources\layout\my_fb_familiy_fly_out.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\back.png" />
     <AndroidResource Include="Resources\drawable-hdpi\blue_smallbtn.png" />
     <AndroidResource Include="Resources\drawable-hdpi\fbook_btn.png" />
     <AndroidResource Include="Resources\drawable-hdpi\fbook_icon.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\help_icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\myfamily_title.png" />
     <AndroidResource Include="Resources\drawable-mdpi\back.png" />
     <AndroidResource Include="Resources\drawable-mdpi\blue_smallbtn.png" />
     <AndroidResource Include="Resources\drawable-mdpi\fbook_btn.png" />
     <AndroidResource Include="Resources\drawable-mdpi\fbook_icon.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\help_icon.png" />
     <AndroidResource Include="Resources\drawable-mdpi\myfamily_title.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\back.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\blue_smallbtn.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\fbook_btn.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\fbook_icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\help_icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\myfamily_title.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\back.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\blue_smallbtn.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\fbook_btn.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\fbook_icon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\help_icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\myfamily_title.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\back.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\blue_smallbtn.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\fbook_icon.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\help_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\myfamily_title.png" />
     <AndroidResource Include="Resources\drawable\fb_check_selector.axml" />
-    <AndroidResource Include="Resources\drawable\check.png" />
-    <AndroidResource Include="Resources\drawable\uncheck.png" />
     <AndroidResource Include="Resources\drawable\no_img_small.png" />
     <AndroidResource Include="Resources\layout\research_help_fly_out.axml" />
     <AndroidResource Include="Resources\layout\research_help.axml" />
@@ -239,23 +227,17 @@
     <AndroidResource Include="Resources\drawable\family_grey_icon.png" />
     <AndroidResource Include="Resources\drawable\female_check_icon.png" />
     <AndroidResource Include="Resources\drawable\male_check_icon.png" />
-    <AndroidResource Include="Resources\drawable\plus.png" />
     <AndroidResource Include="Resources\drawable\clock_icon.png" />
     <AndroidResource Include="Resources\drawable\close_icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\logout_icon.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\match_icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\search_icon.png" />
     <AndroidResource Include="Resources\drawable-mdpi\logout_icon.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\match_icon.png" />
     <AndroidResource Include="Resources\drawable-mdpi\search_icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\logout_icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\match_icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\search_icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\logout_icon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\match_icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\search_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\logout_icon.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\match_icon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\search_icon.png" />
     <AndroidResource Include="Resources\layout\add_friends_to_match.axml" />
     <AndroidResource Include="Resources\layout\celebrities_screen.axml" />
@@ -263,8 +245,6 @@
     <AndroidResource Include="Resources\drawable\search_box_back.axml" />
     <AndroidResource Include="Resources\layout\contacts_screen.axml" />
     <AndroidResource Include="Resources\layout\help_dialog.axml" />
-    <AndroidResource Include="Resources\drawable\help_icon_big.png" />
-    <AndroidResource Include="Resources\drawable\blue_plus.png" />
     <AndroidResource Include="Resources\drawable\thumb_down.png" />
     <AndroidResource Include="Resources\drawable\edit_pen.png" />
     <AndroidResource Include="Resources\drawable\contacts_grey.png" />
@@ -274,8 +254,6 @@
     <AndroidResource Include="Resources\drawable\star_grey.png" />
     <AndroidResource Include="Resources\drawable\star_white.png" />
     <AndroidResource Include="Resources\drawable\right_arrow_grey.png" />
-    <AndroidResource Include="Resources\drawable\empty_matcher_img.png" />
-    <AndroidResource Include="Resources\drawable\blue_cross.png" />
     <AndroidResource Include="Resources\drawable-hdpi\location_grey.png" />
     <AndroidResource Include="Resources\drawable-mdpi\location_grey.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\location_grey.png" />
@@ -288,8 +266,34 @@
     <AndroidResource Include="Resources\layout\terms_dialog.axml" />
     <AndroidResource Include="Resources\drawable\user_no_img_small.png" />
     <AndroidResource Include="Resources\drawable\image_cover_round_medium.png" />
+    <AndroidResource Include="Resources\drawable\image_cover_round_small_white.png" />
     <AndroidResource Include="Resources\drawable\image_cover_round_small.png" />
     <AndroidResource Include="Resources\drawable\image_cover_round.png" />
+    <AndroidResource Include="Resources\drawable\image_cover_round_small_menu.png" />
+    <AndroidResource Include="Resources\xml\global_tracker.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\help_icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\help_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\help_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\help_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\help_icon.png" />
+    <AndroidResource Include="Resources\drawable\help_icon.png" />
+    <AndroidResource Include="Resources\drawable\help_icon_big.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\plus.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\plus.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\plus.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\plus.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\plus.png" />
+    <AndroidResource Include="Resources\drawable\blue_plus.png" />
+    <AndroidResource Include="Resources\drawable\check.png" />
+    <AndroidResource Include="Resources\drawable\uncheck.png" />
+    <AndroidResource Include="Resources\drawable\empty_matcher_img.png" />
+    <AndroidResource Include="Resources\drawable\blue_cross.png" />
+    <AndroidResource Include="Resources\drawable\match_icon.png" />
+    <AndroidResource Include="Resources\drawable\splash.png" />
+    <AndroidResource Include="Resources\drawable\home_slider_img.png" />
+    <AndroidResource Include="Resources\drawable\user_plus_img.png" />
+    <AndroidResource Include="Resources\drawable\blue_dot.png" />
+    <AndroidResource Include="Resources\drawable\gray_dot.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -313,6 +317,7 @@
     <Folder Include="Views\FacebookFriends\" />
     <Folder Include="Views\HelpDialog\" />
     <Folder Include="Views\ProfilePicUpload\" />
+    <Folder Include="Resources\xml\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.social">

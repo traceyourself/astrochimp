@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@android:color/white">
+    android:background="@color/dialog_remaining_part_color">
     <AncestorCloud.Droid.ActionBar
         android:id="@+id/actionBar"
         android:layout_width="match_parent"

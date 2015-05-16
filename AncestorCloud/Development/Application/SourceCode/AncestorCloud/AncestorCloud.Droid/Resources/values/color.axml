@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  	<color name="action_bar_back_color">#BC2E72</color>
+  	<color name="action_bar_back_color">#389DA2</color>
+  	<color name="login_btn_color">#F5AB13</color>
+  	<color name="degree_circle_color">#ACD7DA</color>
+
   	<color name="fb_btn_color">#2E4586</color>
   	<color name="gray_login_color">#8C8C8C</color>
   	<color name="light_gray_color">#D9D9D9</color>
-  	<color name="login_btn_color">#378CD9</color>
   	<color name="menu_back_color">#2E3A49</color>
   	<color name="menu_div_color">#C6C8C8</color>
   	<color name="add_family_div_color">#BBBBBB</color>
-  	<color name="add_family_footer_txt_color">#D05991</color>
+  	<color name="add_family_footer_txt_color">#389DA2</color>
   	<color name="add_family_data_txt_color">#8E8E8E</color>
   	<color name="transparent_color">#00000000</color>
   	<color name="dialog_remaining_part_color">#EFEFEF</color>

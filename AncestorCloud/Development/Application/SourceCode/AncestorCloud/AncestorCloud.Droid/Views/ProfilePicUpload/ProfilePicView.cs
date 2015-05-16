@@ -61,6 +61,7 @@ namespace AncestorCloud.Droid
 		private void ApplyActions(){
 
 			skipTxt.Click += (object sender, EventArgs e) => {
+				ViewModel.ShowFamiyViewModel();
 				ViewModel.Close();
 			};
 			profileImg.Click += (object sender, EventArgs e) => {

@@ -114,10 +114,18 @@
         android:paddingBottom="20dp"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
-        <ImageView
+        <RelativeLayout
             android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/logout_icon" />
+            android:layout_height="60dp">
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/user_no_img_small" />
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/image_cover_round_small_menu" />
+        </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

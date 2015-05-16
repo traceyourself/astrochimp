@@ -29,7 +29,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/image_cover_round_small" />
+                android:background="@drawable/image_cover_round_small_white" />
         </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"

@@ -7,7 +7,7 @@
         android:id="@+id/list_header"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:background="@color/action_bar_back_color"
+        android:background="@color/login_btn_color"
         android:visibility="gone"
         android:layout_marginTop="5dp">
         <TextView
@@ -72,7 +72,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginLeft="8dp"
-            android:src="@drawable/plus_sign" />
+            android:src="@drawable/plus" />
         <TextView
             android:id="@+id/footer_txt"
             android:layout_width="wrap_content"

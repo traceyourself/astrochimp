@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/black">
     <AncestorCloud.Droid.ActionBar
         android:id="@+id/actionBar"
         android:layout_width="match_parent"
@@ -144,7 +144,7 @@
                         android:text="@string/term_condition"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/login_btn_color"
+                        android:textColor="@color/action_bar_back_color"
                         android:layout_marginTop="3dp"
                         android:textSize="13sp"
                         android:gravity="center" />
@@ -154,7 +154,7 @@
                         <View
                             android:layout_width="125dp"
                             android:layout_height="0.5dp"
-                            android:background="@color/login_btn_color"
+                            android:background="@color/action_bar_back_color"
                             android:layout_centerHorizontal="true" />
                     </RelativeLayout>
                     <View
