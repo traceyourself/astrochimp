@@ -299,7 +299,9 @@ namespace AncestorCloud.Shared.ViewModels
 
 			Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (FbFamilyResponseText);
 
-			List<People> list = DataParser.GetFbFamilyData (dict);
+			User fbUser = _databaseService.GetUser ();
+
+			List<People> list = DataParser.GetFbFamilyData (dict,fbUser);
 
 			foreach (People people in list) {
 
@@ -315,7 +317,9 @@ namespace AncestorCloud.Shared.ViewModels
 
 			Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (FbFriendResponseText);
 
-			List<People> list = DataParser.GetFbFriendsData (dict);
+			User fbUser = _databaseService.GetUser ();
+
+			List<People> list = DataParser.GetFbFriendsData (dict,fbUser);
 
 			foreach (People people in list) {
 
@@ -348,7 +352,7 @@ namespace AncestorCloud.Shared.ViewModels
 				ShowFbFamilyViewModel();
 				CloseCommand.Execute (null);
 			} else {
-				IsFbLogin = false;
+				IsFbLogin = true;
 				CallFlyoutCommand.Execute (null);
 				CloseCommand.Execute (null);
 			}

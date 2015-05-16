@@ -27,7 +27,8 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void GetPastMatchesData()
 		{
-			List<People> list = _databaseService.RelativeMatching ("");
+			LoginModel login = _databaseService.GetLoginDetails ();
+			List<People> list = _databaseService.RelativeMatching ("",login.UserEmail);
 			PastMatchesList = list;
 		}
 		#endregion

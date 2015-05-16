@@ -49,7 +49,7 @@ namespace AncestorCloud.Shared
 			return user;
 		}
 
-		public static List<People> GetFbFamilyData(Dictionary<string,object> dataDic)
+		public static List<People> GetFbFamilyData(Dictionary<string,object> dataDic, User loginFbUser)
 		{
 			if (ValidationClass.IsDataNull (dataDic)) {
 				Utility.Log ("In GetFbFamilyData() data dictionary is null");
@@ -77,13 +77,15 @@ namespace AncestorCloud.Shared
 
 				family.IsSelected = false;
 
+				family.LoginUserLinkID = loginFbUser.Email;
+
 				familyList.Add(family);
 
 			}
 			return familyList;
 		}
 
-		public static List<People> GetFbFriendsData(Dictionary<string,object> dataDic)
+		public static List<People> GetFbFriendsData(Dictionary<string,object> dataDic, User loginFbUser)
 		{
 			if (ValidationClass.IsDataNull (dataDic)) {
 				Utility.Log ("In GetFbFriendsData() data dictionary is null");
@@ -112,6 +114,8 @@ namespace AncestorCloud.Shared
 					friend.ProfilePicURL = GetPicUrl (AppConstant.PICTURE, data);
 
 				friend.IsSelected = false;
+
+				friend.LoginUserLinkID = loginFbUser.Email;
 
 				friendList.Add(friend);
 

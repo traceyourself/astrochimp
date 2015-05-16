@@ -106,7 +106,8 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void GetFbFamilyData()
 		{
-			List<People> list = _databaseService.GetFamily();
+			User fbUser = _databaseService.GetUser ();
+			List<People> list = _databaseService.GetFamily(fbUser);
 			FamilyList = list;
 		}
 		#endregion

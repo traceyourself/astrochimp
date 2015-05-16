@@ -11,6 +11,7 @@ namespace AncestorCloud.Shared
 	
 		public string MiddleName { get; set; }
 		public string Contact { get; set; }
+		public string LoginUserLinkID { get; set; }
 
 	}
 }
