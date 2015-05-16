@@ -9,6 +9,7 @@ using AncestorCloud.Shared;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using System.Linq;
 using System.Drawing;
+using CoreGraphics;
 
 namespace AncestorCloud.Touch
 {
@@ -40,6 +41,15 @@ namespace AncestorCloud.Touch
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+
+//			CGRect frame = this.View.Frame;
+//			frame.Width = UIScreen.MainScreen.ApplicationFrame.Width;
+//			this.View.Frame = frame;
+		}
 
 		public void SetTableView()
 		{

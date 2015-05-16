@@ -14,26 +14,36 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rtv-8E-x5U">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rtv-8E-x5U">
                         <rect key="frame" x="42" y="0.0" width="114" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="114" id="T43-BG-Fs1"/>
+                            <constraint firstAttribute="height" constant="45" id="XTU-kH-rWG"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="XBU-hU-cVY">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="noImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="XBU-hU-cVY">
                         <rect key="frame" x="8" y="8" width="26" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="26" id="jdd-Hv-ZBt"/>
+                            <constraint firstAttribute="height" constant="28" id="u4w-wN-LZv"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWE-a9-bIz">
-                        <rect key="frame" x="164" y="11" width="80" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="uncheck_pink.png" translatesAutoresizingMaskIntoConstraints="NO" id="GZh-oe-jgR">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="uncheck_pink.png" translatesAutoresizingMaskIntoConstraints="NO" id="GZh-oe-jgR">
                         <rect key="frame" x="322" y="10" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="Qc3-Oo-qoI"/>
+                            <constraint firstAttribute="height" constant="22" id="UBe-rP-Jl9"/>
+                        </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="check_pink.png" translatesAutoresizingMaskIntoConstraints="NO" id="93B-1o-Rno">
                         <rect key="frame" x="322" y="11" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="H5K-ye-DdK"/>
+                            <constraint firstAttribute="width" constant="22" id="kED-ua-AfY"/>
+                        </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KF7-kX-Pr3">
                         <rect key="frame" x="-24" y="0.0" width="480" height="1"/>
@@ -45,9 +55,24 @@
                         <color key="backgroundColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWE-a9-bIz">
+                        <rect key="frame" x="164" y="11" width="80" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="jfM-Yd-mxe"/>
+                            <constraint firstAttribute="height" constant="21" id="m6k-Cn-Pa0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="93B-1o-Rno" secondAttribute="trailing" constant="18" id="Fuu-wF-5dW"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="GZh-oe-jgR" secondAttribute="trailing" constant="18" id="EFa-3c-1De"/>
+                    <constraint firstItem="Rtv-8E-x5U" firstAttribute="leading" secondItem="XBU-hU-cVY" secondAttribute="trailing" constant="8" id="HX5-0T-rAL"/>
+                    <constraint firstItem="uWE-a9-bIz" firstAttribute="leading" secondItem="Rtv-8E-x5U" secondAttribute="trailing" constant="8" id="QSo-7B-8P0"/>
+                    <constraint firstItem="XBU-hU-cVY" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" id="fCR-Yr-DMI"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="93B-1o-Rno" secondAttribute="trailing" constant="18" id="fdq-dK-OqB"/>
+                    <constraint firstItem="Rtv-8E-x5U" firstAttribute="leading" secondItem="XBU-hU-cVY" secondAttribute="trailing" constant="8" id="s7Y-xM-IcJ"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
