@@ -23,10 +23,10 @@ namespace AncestorCloud.Shared.ViewModels
 			this.SetItemList (IsFaceBookLogin);
 		}
 
-		public FlyOutViewModel(IDatabaseService  service)
-		{
-			_databaseService = service;
-		}
+//		public FlyOutViewModel(IDatabaseService  service)
+//		{
+//			_databaseService = service;
+//		}
 
 
 		#region get Userdata method
@@ -44,7 +44,7 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
-		public FlyOutViewModel ()
+		public FlyOutViewModel (IDatabaseService  service)
 		{
 
 //			var _messenger = Mvx.Resolve<IMvxMessenger>();
@@ -55,6 +55,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 			var _messenger = Mvx.Resolve<IMvxMessenger>();
 			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<FlyOutCloseMessage>(message => this.CloseFlyoutMenu());
+			_databaseService = service;
 
 		}
 
