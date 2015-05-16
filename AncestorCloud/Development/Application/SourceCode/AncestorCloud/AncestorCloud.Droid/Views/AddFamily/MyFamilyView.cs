@@ -317,14 +317,11 @@ namespace AncestorCloud.Droid
 			};
 
 			//Set data Accordingly===
-
-
 			try{
 				try{
 
 					if(peopleData.Name != null){
 						first_name.Text = peopleData.Name;
-						nameTitle.Text = peopleData.Name+"("+peopleData.Relation+")";
 					}else{
 						first_name.Text = peopleData.FirstName;
 					}
@@ -332,7 +329,8 @@ namespace AncestorCloud.Droid
 					mid_name.Text = peopleData.MiddleName;
 					last_name.Text = peopleData.LastName;
 					birth_loc.Text = peopleData.BirthLocation;
-					nameTitle.Text = peopleData.FirstName+" "+peopleData.MiddleName+" "+peopleData.LastName+"("+peopleData.Relation+")";
+
+					nameTitle.Text = first_name.Text+" "+peopleData.MiddleName+" "+peopleData.LastName+"("+peopleData.Relation+")";
 
 					if (peopleData.Gender.Equals ("Male")) {
 						male.PerformClick ();
@@ -384,8 +382,6 @@ namespace AncestorCloud.Droid
 			return diff;
 		}
 		#endregion
-
-
 
 		public void ShowDatePicker()
 		{

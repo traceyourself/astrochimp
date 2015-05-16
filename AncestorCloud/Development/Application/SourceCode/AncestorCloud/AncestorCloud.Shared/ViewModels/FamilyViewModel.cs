@@ -1,10 +1,18 @@
 ﻿using System;
 using Cirrious.MvvmCross.ViewModels;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Shared.ViewModels
 {
 	public class FamilyViewModel : BaseViewModel
 	{
+		private readonly IDatabaseService _databaseService;
+
+
+		public FamilyViewModel()
+		{
+			_databaseService = Mvx.Resolve<IDatabaseService> ();	
+		}
 
 		#region Relationship View
 
@@ -27,6 +35,18 @@ namespace AncestorCloud.Shared.ViewModels
 		public void Close()
 		{
 			this.Close(this);
+		}
+		#endregion
+
+		#region get Userdata method
+		public LoginModel GetUserData()
+		{
+			LoginModel data = new LoginModel ();
+			try{
+				data = _databaseService.GetLoginDetails ();
+			}catch(Exception e){
+			}
+			return data;
 		}
 		#endregion
 

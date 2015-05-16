@@ -16,6 +16,7 @@ using Android.Webkit;
 using Android.Graphics.Drawables.Shapes;
 using Android.Graphics.Drawables;
 using Android.Graphics;
+using AncestorCloud.Shared;
 
 
 namespace AncestorCloud.Droid
@@ -32,7 +33,8 @@ namespace AncestorCloud.Droid
 		ImageView first_img_cover,sec_img_cover;
 		RelativeLayout firstCrossContainer,secCrossContainer;
 		ImageView firstCrossImg,secCrossImg;
-
+		TextView userNameMenu;
+		ImageView userImageMenu;
 		bool isFirstPersonSelected = false;
 		bool isSecondPersonSelected = false;
 		String firstPersonImage = "",secondPersonImage = "";
@@ -55,6 +57,7 @@ namespace AncestorCloud.Droid
 			ApplyActions ();
 		}
 
+
 		#region init ui
 		private void initUI()
 		{
@@ -70,9 +73,19 @@ namespace AncestorCloud.Droid
 			firstCrossImg = contentLayout.FindViewById<ImageView> (Resource.Id.first_cross_img);
 			secCrossImg = contentLayout.FindViewById<ImageView> (Resource.Id.sec_cross_img);
 
-
+			userNameMenu = menuLayout.FindViewById<TextView> (Resource.Id.user_name_menu);
+			userImageMenu = menuLayout.FindViewById<ImageView> (Resource.Id.user_img_menu);
 		}
 		#endregion
+
+		public void ApplyData(){
+			//userNameMenu;
+			if (Utilities.CurrentUserimage != null) {
+				userImageMenu.SetImageBitmap (Utilities.CurrentUserimage);	
+			}
+			LoginModel modal = ViewModel.GetUserData();
+			userNameMenu.Text = modal.UserEmail;
+		}
 
 		#region dynamic changing of width height of cross btn
 		public override void OnWindowFocusChanged (bool hasFocus)
@@ -250,6 +263,8 @@ namespace AncestorCloud.Droid
 		protected override void OnResume ()
 		{
 			base.OnResume ();
+
+			ApplyData ();
 
 			Utilities.CurrentActiveActivity = this;
 

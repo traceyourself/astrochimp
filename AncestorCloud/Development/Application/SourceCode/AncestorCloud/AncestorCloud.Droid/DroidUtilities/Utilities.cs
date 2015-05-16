@@ -50,6 +50,10 @@ namespace AncestorCloud.Droid
 		public static bool LoggedInUsingFb{ get; set;}
 		#endregion
 
+		#region Holder for currently selected Bitmap
+		public static Bitmap CurrentUserimage{ get; set;}
+		#endregion
+
 
 		#region Round image Methods
 
