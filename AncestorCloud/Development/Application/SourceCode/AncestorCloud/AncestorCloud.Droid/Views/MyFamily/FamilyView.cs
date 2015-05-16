@@ -50,6 +50,10 @@ namespace AncestorCloud.Droid
 		{
 			base.OnResume ();
 			ApplyData ();
+
+			if(Utilities.LoggedInUsingFb){
+				Utilities.LoggedInUsingFb = false;
+			}
 		}
 
 		private void initUI()
