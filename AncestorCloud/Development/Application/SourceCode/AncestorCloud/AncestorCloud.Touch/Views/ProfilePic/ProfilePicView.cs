@@ -42,10 +42,30 @@ namespace AncestorCloud.Touch
 
 			SetUpView ();
 
+
+
+
+			float constant = 0.88f;
+
+			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
+
+			if (width <= 320f)
+				constant = 1.0f;
+
+			if (width >= 375f)
+				constant = 0.80f;
+
+
+
+			this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Leading, 0, this.View, NSLayoutAttribute.Left, 1.0f, 0));
+
+			this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Trailing , 0, this.View, NSLayoutAttribute.Right, constant, 0));
+			// Perform any additional setup after loading the view, typically from a nib.
+
 			if (!ViewModel.IsFromSignup) {
 				SkipButton.Hidden = true;
 			}
-			// Perform any additional setup after loading the view, typically from a nib.
+
 		}
 
 		public void SetUpView()
