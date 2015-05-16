@@ -217,6 +217,9 @@ namespace AncestorCloud.Shared.ViewModels
 					FirstPersonOgfn = FirstPersonPeople.IndiOgfn;
 					FirstPersonImageUrl = FirstPersonPeople.ProfilePicURL;
 					FirstPersonImageName = FirstPersonPeople.FirstName;
+					if(FirstPersonImageName == null){
+						FirstPersonImageName = FirstPersonPeople.Email;
+					}
 				}
 
 
@@ -232,6 +235,9 @@ namespace AncestorCloud.Shared.ViewModels
 						SecondPersonOgfn = SecondPersonPeople.IndiOgfn;
 						SecondPersonImageUrl = SecondPersonPeople.ProfilePicURL;
 						SecondPersonImageName = SecondPersonPeople.FirstName;
+						if(SecondPersonImageName == null){
+							SecondPersonImageName = SecondPersonPeople.Email;
+						}
 					}
 				}
 			}else{

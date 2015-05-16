@@ -97,6 +97,7 @@ namespace AncestorCloud.Droid
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.logout_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
+				Utilities.CurrentUserimage = null;
 				ViewModel.Logout();
 			};
 
