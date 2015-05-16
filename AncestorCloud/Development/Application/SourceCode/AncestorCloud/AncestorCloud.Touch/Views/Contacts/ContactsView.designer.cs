@@ -17,17 +17,20 @@ namespace AncestorCloud.Touch
 
 		[Outlet]
 		UIKit.UIButton MeImage { get; set; }
+
+		[Action ("AddButtonTapped:")]
+		partial void AddButtonTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (MeImage != null) {
-				MeImage.Dispose ();
-				MeImage = null;
-			}
-
 			if (ContactsTableView != null) {
 				ContactsTableView.Dispose ();
 				ContactsTableView = null;
+			}
+
+			if (MeImage != null) {
+				MeImage.Dispose ();
+				MeImage = null;
 			}
 		}
 	}

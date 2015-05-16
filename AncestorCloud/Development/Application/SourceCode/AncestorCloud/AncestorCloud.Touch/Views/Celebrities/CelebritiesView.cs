@@ -46,6 +46,17 @@ namespace AncestorCloud.Touch
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+
+			AppDelegate _delegate = (AppDelegate) UIApplication.SharedApplication.Delegate;
+
+			UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle ("noImage.png");
+
+			MeImage.SetBackgroundImage (image, UIControlState.Normal);
+		}
+
 
 		public void SetTableView()
 		{

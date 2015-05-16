@@ -115,6 +115,7 @@ namespace AncestorCloud.Shared.ViewModels
 				if (Mvx.CanResolve<IAndroidService> ()){
 					_messenger.Publish(new ProfilePicUploadedMessage(this));
 				}else{
+					_messenger.Publish(new ProfilePicUploadedMessage(this));
 					ShowFamiyViewModel ();
 				}
 			} 
