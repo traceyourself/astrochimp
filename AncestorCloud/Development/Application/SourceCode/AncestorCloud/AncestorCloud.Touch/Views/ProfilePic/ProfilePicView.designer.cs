@@ -13,6 +13,9 @@ namespace AncestorCloud.Touch
 	partial class ProfilePicView
 	{
 		[Outlet]
+		UIKit.UIView ContentView { get; set; }
+
+		[Outlet]
 		UIKit.UIButton ProfilePic { get; set; }
 
 		[Outlet]
@@ -26,14 +29,19 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (SkipButton != null) {
-				SkipButton.Dispose ();
-				SkipButton = null;
+			if (ContentView != null) {
+				ContentView.Dispose ();
+				ContentView = null;
 			}
 
 			if (ProfilePic != null) {
 				ProfilePic.Dispose ();
 				ProfilePic = null;
+			}
+
+			if (SkipButton != null) {
+				SkipButton.Dispose ();
+				SkipButton = null;
 			}
 		}
 	}
