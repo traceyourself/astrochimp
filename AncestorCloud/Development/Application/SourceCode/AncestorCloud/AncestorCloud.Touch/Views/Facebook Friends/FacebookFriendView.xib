@@ -29,6 +29,9 @@
                     <state key="normal" backgroundImage="add.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="AddButtonTapped:" destination="-1" eventType="touchUpInside" id="Y0A-eF-Cab"/>
+                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="mpF-BZ-BKi">
                     <rect key="frame" x="0.0" y="58" width="480" height="1"/>

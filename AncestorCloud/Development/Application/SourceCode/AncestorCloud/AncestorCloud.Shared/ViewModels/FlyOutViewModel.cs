@@ -154,7 +154,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 						Section = Section.Unknown,
 						Title = GetUserData().UserEmail,
-						Image = "profile_img.png",
+						//Image = "profile_img.png",
 						ViewModelType = typeof(ProfilePicViewModel),	
 					}
 
@@ -208,7 +208,7 @@ namespace AncestorCloud.Shared.ViewModels
 					{
 						Section = Section.Unknown,
 						Title = GetUserData().UserEmail,
-						Image = "profile_img.png",
+						//Image = "profile_img.png",
 						ViewModelType = typeof(ProfilePicViewModel),	
 					}
 

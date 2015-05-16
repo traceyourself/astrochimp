@@ -23,6 +23,7 @@ namespace AncestorCloud.Touch
 
 		public ProfilePicView () : base ("ProfilePicView", null)
 		{
+			_messenger = Mvx.Resolve<IMvxMessenger>();
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -46,7 +47,7 @@ namespace AncestorCloud.Touch
 			SetUpView ();
 
 
-
+			AddEvent ();
 
 			float constant = 0.88f;
 
@@ -71,11 +72,20 @@ namespace AncestorCloud.Touch
 
 		}
 
+		public override void ViewDidUnload ()
+		{
+			RemoveEvent();
+			base.ViewDidUnload ();
+		}
+
 		public void SetUpView()
 		{
 			ProfilePic.TouchUpInside += ProfilePicSetUp;
 			ProfilePic.Layer.CornerRadius=90f;
 			ProfilePic.ClipsToBounds = true;
+
+			ImageUploadedHandler ();
+		
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
 			this.Title="Profile Picture";
@@ -265,6 +275,9 @@ namespace AncestorCloud.Touch
 //				}
 
 
+				AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
+				appDelegate.UIImageProfilePic = originalImage;
+
 				var documentsDirectory = Environment.GetFolderPath
 					(Environment.SpecialFolder.Personal);
 				string jpgFilename = System.IO.Path.Combine (documentsDirectory, "ProfilePic.jpg");
@@ -315,8 +328,10 @@ namespace AncestorCloud.Touch
 		public void ImageUploadedHandler()
 		{
 			//Utilities.CurrentUserimage = CurrentImage;
-
-			ViewModel.Close ();
+			AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
+			if (appDelegate.UIImageProfilePic != null)
+				ProfilePic.SetBackgroundImage (appDelegate.UIImageProfilePic, UIControlState.Normal);
+			//ViewModel.Close ();
 		}
 	
 
