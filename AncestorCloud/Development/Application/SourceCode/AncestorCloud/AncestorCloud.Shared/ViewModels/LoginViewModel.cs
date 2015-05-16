@@ -25,8 +25,11 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly IReachabilityService _reachabilityService;
 
+		private readonly IGroupCreateService _groupService;
 
-		public LoginViewModel(ILoginService service, IAlert alert, IReachabilityService reachabilty)
+		private readonly IFamilyCreateService _famService;
+
+		public LoginViewModel(ILoginService service, IAlert alert, IReachabilityService reachabilty, IGroupCreateService _service,IFamilyCreateService famService)
 		{
 			_loginService = service;
 			_databaseService = Mvx.Resolve<IDatabaseService>();
@@ -35,6 +38,8 @@ namespace AncestorCloud.Shared.ViewModels
 			Email = "mikeyamadeo@gmail.com";
 			Password = "password";
 			_reachabilityService = reachabilty;
+			_groupService = _service;
+			_famService = famService;
 
 		}
 
@@ -211,6 +216,66 @@ namespace AncestorCloud.Shared.ViewModels
 
 		#region Email Login
 
+//		public async void DoLogin()
+//		{
+//			// Validate Parameters
+//
+//			if (ValidateCredentials ()) {
+//
+//				if (_reachabilityService.IsNetworkNotReachable ()) {
+//					Alert.ShowAlert ("Please check internet connection", "Network not available");
+//				} else {
+//					ResponseModel<LoginModel> response = await _loginService.Login (Email, Password, AppConstant.DEVELOPERID, AppConstant.DEVELOPERPASSWORD);
+//
+//					if (response.Status == ResponseStatus.OK) {
+//
+//						_databaseService.InsertLoginDetails (response.Content as LoginModel);
+//
+//						LoginModel l = _databaseService.GetLoginDetails ();
+//
+//						if (l.GroupOGFN == null || l.GroupOGFN.Equals ("")) {
+//
+//							ResponseModel<LoginModel> loginResponse = await _groupService.CreateGroup (response.Content as LoginModel);
+//
+//							if (loginResponse.Status == ResponseStatus.OK) {
+//
+//								if (loginResponse.Status == ResponseStatus.OK) {
+//
+//									ResponseModel<LoginModel> famResponse = await _famService.CreateFamily (response.Content as LoginModel);
+//
+//									_databaseService.InsertLoginDetails (famResponse.Content as LoginModel);
+//
+//									//_databaseService.GetLoginDetails ();
+//
+//									if (Mvx.CanResolve<IAndroidService> ()) {
+//										ShowMyFamilyViewModel ();
+//										CloseCommand.Execute (null);
+//									} else {
+//										IsFbLogin = false;
+//										CallFlyoutCommand.Execute (null);
+//										CloseCommand.Execute (null);
+//									}
+//								} else {
+//
+//									Alert.ShowAlert ("Invalid user signon username or password.", "Login Error");
+//								}
+//							}
+//							else {
+//
+//								Alert.ShowAlert ("Invalid user signon username or password.", "Login Error");
+//							}
+//						}
+//					} else {
+//
+//						Alert.ShowAlert ("Invalid user signon username or password.", "Login Error");
+//					}
+//				}
+//			}
+//
+//		}
+
+
+
 		public async void DoLogin()
 		{
 			// Validate Parameters
@@ -244,6 +309,7 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 
 		}
+
 		#endregion
 
 

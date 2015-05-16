@@ -16,6 +16,8 @@ namespace AncestorCloud.Shared
 		public string OGFN { get; set; }
 		public string AvatarOGFN { get; set; }
 		public string AvatarURL { get; set; }
+		public string GroupOGFN { get; set; }
+		public string FamOGFN { get; set; }
 
 	}
 }
