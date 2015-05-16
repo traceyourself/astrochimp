@@ -22,6 +22,7 @@ namespace AncestorCloud.Shared
 			_connection.CreateTable<People>();
 			CreateLoginTabel ();
 			_connection.CreateTable<Celebrity> ();
+			_connection.CreateTable<LoginModel>();
 		}
 			
 		#region IDatabaseService implementation
@@ -183,20 +184,18 @@ namespace AncestorCloud.Shared
 		private void DropTables()
 		{
 			DroploginTable ();
-
+			_connection.DropTable<LoginModel> ();
 			_connection.DropTable<People>();
 			_connection.DropTable<Celebrity> ();
 		}
 
 		private void DroploginTable()
 		{
-			_connection.DropTable<LoginModel> ();
 			_connection.DropTable<User>();
 		}
 
 		private void CreateLoginTabel()
 		{
-			_connection.CreateTable<LoginModel>();
 			_connection.CreateTable<User>();
 		}
 
@@ -207,8 +206,19 @@ namespace AncestorCloud.Shared
 
 		private void UpdateLoginUser(LoginModel modal)
 		{
-			String query = "UPDATE LoginModel SET IndiOGFN='" + modal.IndiOGFN + "', OGFN='" + modal.OGFN + "', Value='" + modal.Value+"' WHERE UserEmail='"+modal.UserEmail+"'";
-			_connection.Query<LoginModel> (query);
+//			String query = "UPDATE LoginModel SET IndiOGFN='" + modal.IndiOGFN + "', OGFN='" + modal.OGFN + "', Value='" + modal.Value+"' WHERE UserEmail='"+modal.UserEmail+"'";
+//			_connection.Query<LoginModel> (query);
+			//_connection.Table<LoginModel>().Where(x => x.UserEmail.Contains(modal.UserEmail));
+
+			List<LoginModel> login = _connection.Table<LoginModel> ().Where (x => x.UserEmail.Contains (modal.UserEmail)).ToList ();
+
+			foreach (LoginModel l  in login) {
+				modal.GroupOGFN = l.GroupOGFN;
+				modal.FamOGFN = l.FamOGFN;
+				_connection.Delete (l);
+			}
+
+			_connection.Insert (modal);
 
 		}
 

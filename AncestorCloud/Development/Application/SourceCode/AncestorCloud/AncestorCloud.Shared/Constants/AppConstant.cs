@@ -69,6 +69,8 @@ namespace AncestorCloud.Shared
 		public const string RELATIONSHIP_MATCH_SERVICE = "Individual.svc/RelationshipFind";
 		public const string UPLOAD_MEDIA_SERVICE = "Individual.svc/MediaAdd";
 		public const string INDIVIDUAL_READ_SERVICE = "Individual.svc/Read";
+		public const string GROUP_CREATE_SERVICE = "Group.svc/Create";
+		public const string FAMILY_CREATE_SERVICE = "Family.svc/Create";
 
 		#endregion
 
