@@ -506,6 +506,7 @@
     <BundleResource Include="Resources\21%403x.png" />
     <BundleResource Include="Resources\big_img%402x.png" />
     <BundleResource Include="Resources\profile_img.png" />
+    <BundleResource Include="Resources\male.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />
