@@ -38,7 +38,10 @@ namespace AncestorCloud.Shared.ViewModels
 		public void GetContactsData()
 		{
 			List<People> list =  _contactService.GetDeviceContacts();
+			if(ContactsList != null)
+				ContactsList.Clear();
 			ContactsList = list;
+
 		}
 		#endregion
 

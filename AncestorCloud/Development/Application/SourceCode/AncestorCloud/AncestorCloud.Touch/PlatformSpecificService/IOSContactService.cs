@@ -25,6 +25,10 @@ namespace AncestorCloud.Touch
 
 		public List<People> GetDeviceContacts ()
 		{
+
+			if (contactList != null)
+				contactList.Clear ();
+			
 			NSError error = null;
 
 			addressBook =  ABAddressBook.Create(out error) ;
