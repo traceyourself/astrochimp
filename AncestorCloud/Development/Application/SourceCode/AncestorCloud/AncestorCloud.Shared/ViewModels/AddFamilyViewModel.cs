@@ -170,6 +170,7 @@ namespace AncestorCloud.Shared.ViewModels
 					ResponseModel<People> response = await _addService.AddFamilyMember (modal);
 
 					if (response.Status == ResponseStatus.OK) {
+						if(response.Content != null)
 						_databaseService.InsertRelative (response.Content as People);
 						Alert.ShowAlert ("Successfully Added", "Success");
 						Close ();
