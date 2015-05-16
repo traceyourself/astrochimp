@@ -21,7 +21,7 @@ namespace AncestorCloud.Shared
 		{
 			_connection.CreateTable<User>();
 			_connection.CreateTable<People>();
-			_connection.CreateTable<LoginModel>();
+			CreateLoginTabel ();
 			_connection.CreateTable<Celebrity> ();
 		}
 			
@@ -171,16 +171,29 @@ namespace AncestorCloud.Shared
 
 		public void DropAllTables()
 		{
-			DropTables ();
-			CreateTables ();
+//			DropTables ();
+//			CreateTables ();
+			//TODO : dropping Login table for now
+			DroploginTable();
+			CreateLoginTabel ();
 		}
 
 		private void DropTables()
 		{
-			_connection.DropTable<LoginModel> ();
+			DroploginTable ();
 			_connection.DropTable<User>();
 			_connection.DropTable<People>();
 			_connection.DropTable<Celebrity> ();
+		}
+
+		private void DroploginTable()
+		{
+			_connection.DropTable<LoginModel> ();
+		}
+
+		private void CreateLoginTabel()
+		{
+			_connection.CreateTable<LoginModel>();
 		}
 
 		#endregion
