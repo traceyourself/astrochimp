@@ -55,6 +55,7 @@ namespace AncestorCloud.Shared.ViewModels
 			People peopledata = new People ();
 			peopledata.ProfilePicURL = "";
 			peopledata.IndiOgfn = data.IndiOGFN;
+			peopledata.FirstName = data.UserEmail;
 			PeoplePlusClickHandler(peopledata);
 		}
 		#endregion

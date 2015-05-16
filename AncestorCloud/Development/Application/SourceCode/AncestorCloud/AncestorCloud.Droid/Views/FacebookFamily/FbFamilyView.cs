@@ -142,7 +142,6 @@ namespace AncestorCloud.Droid
 			LoginModel modal = ViewModel.GetUserData();
 			userNameMenu.Text = modal.UserEmail;
 		}
-
 	}
 
 	#region List Adapter

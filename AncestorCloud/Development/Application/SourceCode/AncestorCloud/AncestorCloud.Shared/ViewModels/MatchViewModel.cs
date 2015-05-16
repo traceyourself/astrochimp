@@ -207,7 +207,6 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			bool isValid = true;
 
-
 			if(FirstPersonCeleb != null || FirstPersonPeople != null){
 
 				if (FirstPersonCeleb != null) {

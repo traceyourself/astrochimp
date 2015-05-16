@@ -10,6 +10,7 @@ using AncestorCloud.Shared;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using System.Drawing;
 using CoreGraphics;
+using AncestorCloud.Core;
 
 namespace AncestorCloud.Touch
 {

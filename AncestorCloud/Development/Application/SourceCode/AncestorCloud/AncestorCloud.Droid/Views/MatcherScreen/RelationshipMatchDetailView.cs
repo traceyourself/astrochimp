@@ -113,7 +113,14 @@ namespace AncestorCloud.Droid
 				if (URLUtil.IsValidUrl(ViewModel.FirstPersonURL)) {
 					Koush.UrlImageViewHelper.SetUrlDrawable (firstPersonImage,ViewModel.FirstPersonURL,Resource.Drawable.user_no_img);
 				} else {
-					firstPersonImage.SetImageResource(Resource.Drawable.user_no_img);
+					/*if(ViewModel.FirstPersonNAME.Contains())
+					{
+						if(Utilities.CurrentUserimage != null){
+							firstPersonImage
+						}
+					}else{*/
+						firstPersonImage.SetImageResource(Resource.Drawable.user_no_img);
+					//}
 				}
 
 				if (URLUtil.IsValidUrl(ViewModel.SecondPersonURL)) {
