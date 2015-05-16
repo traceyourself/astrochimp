@@ -23,16 +23,6 @@
                         <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgh-K8-ido">
-                        <rect key="frame" x="329" y="16" width="30" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="30" id="Pb5-Vb-HhT"/>
-                            <constraint firstAttribute="height" constant="30" id="yFW-t8-zG4"/>
-                        </constraints>
-                        <state key="normal" backgroundImage="add.png">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nH6-jW-QkJ">
                         <rect key="frame" x="8" y="9" width="44" height="44"/>
                         <constraints>
@@ -43,11 +33,22 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgh-K8-ido">
+                        <rect key="frame" x="329" y="16" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="M3e-8s-sQa"/>
+                            <constraint firstAttribute="height" constant="30" id="PeB-nz-ESv"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="add.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Mcv-np-1Yx" firstAttribute="top" secondItem="yJM-E6-Tmj" secondAttribute="topMargin" constant="12" id="PBW-tr-uLr"/>
                     <constraint firstItem="Mcv-np-1Yx" firstAttribute="leading" secondItem="nH6-jW-QkJ" secondAttribute="trailing" constant="8" id="WFI-SZ-Xlu"/>
-                    <constraint firstItem="xgh-K8-ido" firstAttribute="trailing" secondItem="yJM-E6-Tmj" secondAttribute="trailingMargin" constant="8" id="yZq-cy-8ck"/>
+                    <constraint firstItem="xgh-K8-ido" firstAttribute="trailing" secondItem="yJM-E6-Tmj" secondAttribute="trailingMargin" constant="-8" id="gHf-gJ-D39"/>
+                    <constraint firstItem="xgh-K8-ido" firstAttribute="trailing" secondItem="yJM-E6-Tmj" secondAttribute="trailingMargin" constant="-8" id="iT9-lt-wNx"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
