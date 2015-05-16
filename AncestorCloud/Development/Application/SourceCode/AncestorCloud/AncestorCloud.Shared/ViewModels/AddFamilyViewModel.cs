@@ -166,6 +166,7 @@ namespace AncestorCloud.Shared.ViewModels
 					modal.SessionId = lModal.Value;
 					modal.Relation = this.AddType;
 					modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;
+					modal.LoginUserLinkID = lModal.UserEmail;
 					
 					ResponseModel<People> response = await _addService.AddFamilyMember (modal);
 

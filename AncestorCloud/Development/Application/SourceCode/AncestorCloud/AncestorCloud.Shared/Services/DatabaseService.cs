@@ -19,7 +19,6 @@ namespace AncestorCloud.Shared
 
 		public void CreateTables()
 		{
-			_connection.CreateTable<User>();
 			_connection.CreateTable<People>();
 			CreateLoginTabel ();
 			_connection.CreateTable<Celebrity> ();
@@ -58,7 +57,7 @@ namespace AncestorCloud.Shared
 			if (relative == null)
 				throw new ArgumentNullException ("relative");
 
-			if (Convert.ToBoolean(IsRelativeExist(relative.UserID)))
+			if (Convert.ToBoolean(IsRelativeExist(relative.UserID,relative.LoginUserLinkID)))
 				_connection.Update (relative);
 			else
 			 _connection.Insert(relative);
@@ -93,12 +92,15 @@ namespace AncestorCloud.Shared
 			return list;
 		}
 
-		public List<People> RelativeMatching(string relationFilter)
+		public List<People> RelativeMatching(string relationFilter, string userID)
 		{
 			if (relationFilter == null)
 				throw new ArgumentNullException ("relationFilter");
+
+			if (userID == null)
+				throw new ArgumentNullException ("userID");
 			
-			List<People> list = _connection.Table<People>().Where(x => x.Relation.Contains(relationFilter)).ToList();
+			List<People> list = _connection.Table<People>().Where(x => x.Relation.Contains(relationFilter) && x.LoginUserLinkID.Contains(userID)).ToList();
 			return list;
 		}
 
@@ -111,9 +113,9 @@ namespace AncestorCloud.Shared
 			_connection.InsertAll (relatives);
 		}
 
-		public List<People> GetFamily()
+		public List<People> GetFamily(User user)
 		{
-			List<People> list = _connection.Query<People> ("select * from People where Relation NOT LIKE '%friend%'");
+			List<People> list = _connection.Query<People> ("select * from People where Relation NOT LIKE '%friend%' AND LoginUserLinkID = '"+user.Email+"'");
 			return list;
 		}
 
@@ -181,7 +183,7 @@ namespace AncestorCloud.Shared
 		private void DropTables()
 		{
 			DroploginTable ();
-			_connection.DropTable<User>();
+
 			_connection.DropTable<People>();
 			_connection.DropTable<Celebrity> ();
 		}
@@ -189,11 +191,13 @@ namespace AncestorCloud.Shared
 		private void DroploginTable()
 		{
 			_connection.DropTable<LoginModel> ();
+			_connection.DropTable<User>();
 		}
 
 		private void CreateLoginTabel()
 		{
 			_connection.CreateTable<LoginModel>();
+			_connection.CreateTable<User>();
 		}
 
 		#endregion
@@ -226,9 +230,9 @@ namespace AncestorCloud.Shared
 			return count;
 		}
 
-		private int IsRelativeExist(string filter)
+		private int IsRelativeExist(string filter, string userId)
 		{
-			int count =  _connection.Table<People>().Where(x => x.UserID.Contains(filter)).ToList().Count();
+			int count =  _connection.Table<People>().Where(x => x.UserID.Contains(filter) && x.LoginUserLinkID.Contains(userId)).ToList().Count();
 			return count;
 		}
 

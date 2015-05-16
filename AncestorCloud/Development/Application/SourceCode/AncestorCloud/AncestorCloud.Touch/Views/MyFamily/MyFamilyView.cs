@@ -36,9 +36,9 @@ namespace AncestorCloud.Touch
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			CreateMyFamilyTable ();
+//			CreateMyFamilyTable ();
 			SetFamilyItem ();
-			AddEvents ();
+			//AddEvents ();
 
 			OnKeyboardChanged += (object sender, OnKeyboardChangedArgs e) => {
 
@@ -56,7 +56,7 @@ namespace AncestorCloud.Touch
 
 			}
 
-			//RemoveMessengers ();
+			RemoveMessengers ();
 			base.ViewWillDisappear (animated);
 		}
 
@@ -75,6 +75,7 @@ namespace AncestorCloud.Touch
 
 		private void ReloadView()
 		{
+			RemoveMessengers ();
 			ViewModel.GetFbFamilyData ();
 			CreateMyFamilyTable ();
 			AddEvents ();
@@ -118,16 +119,19 @@ namespace AncestorCloud.Touch
 		private void AddEvents ()
 		{
 			(myFamilyTable.Source as MyFamilyTableSource).FooterClickedDelegate += ShowAddParents;
-
-
 			navigationMenuToken = _messenger.SubscribeOnMainThread<MyTableCellTappedMessage>(message => this.ShowEditFamily(message.FamilyMember));
 			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.ReloadView());
 		}
 
 		void RemoveMessengers()
 		{
-			_messenger.Unsubscribe<MyTableCellTappedMessage> (navigationMenuToken);
-			_messenger.Unsubscribe<MyFamilyReloadMessage> (ReloadViewToken);
+			if(navigationMenuToken != null)
+				_messenger.Unsubscribe<MyTableCellTappedMessage> (navigationMenuToken);
+			if(ReloadViewToken != null)
+				_messenger.Unsubscribe<MyFamilyReloadMessage> (ReloadViewToken);
+
+			if(myFamilyTable.Source != null)
+				(myFamilyTable.Source as MyFamilyTableSource).FooterClickedDelegate -= ShowAddParents;
 //			_messenger.Unsubscribe<ToggleFlyoutMenuMessage> (navigationMenuToggleToken);
 //			_messenger.Unsubscribe<NavigationBarHiddenMessage> (navigationBarHiddenToken);
 

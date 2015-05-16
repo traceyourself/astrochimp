@@ -15,8 +15,8 @@ namespace AncestorCloud.Shared
 		void UpdateRelative(People relative);
 		void DeleteRelative(People relative);
 		void InsertRelatives(List<People> relatives);
-		List<People> RelativeMatching (string relationFilter);
-		List<People> GetFamily ();
+		List<People> RelativeMatching(string relationFilter, string userID);
+		List<People> GetFamily(User user);
 
 		void InsertLoginDetails (LoginModel login);
 		LoginModel GetLoginDetails ();
