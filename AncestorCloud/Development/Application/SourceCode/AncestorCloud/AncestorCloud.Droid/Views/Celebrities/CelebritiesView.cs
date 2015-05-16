@@ -23,6 +23,7 @@ namespace AncestorCloud.Droid
 		ListView celebList;
 		EditText searchEd;
 		RelativeLayout mePlus;
+		ImageView meImg;
 
 		public new CelebritiesViewModel ViewModel
 		{
@@ -39,6 +40,10 @@ namespace AncestorCloud.Droid
 			configureActionBar ();
 			ApplyActions ();
 			setCelebListAdapter ();
+
+			if(Utilities.CurrentUserimage != null){
+				meImg.SetImageBitmap (Utilities.CurrentUserimage);
+			}
 		}
 
 		private void initUI()
@@ -46,6 +51,7 @@ namespace AncestorCloud.Droid
 			celebList = FindViewById<ListView> (Resource.Id.celeb_list);
 			searchEd = FindViewById<EditText> (Resource.Id.search_ed);
 			mePlus = FindViewById<RelativeLayout> (Resource.Id.me_plus_box_right);
+			meImg = FindViewById<ImageView> (Resource.Id.me_user_img);
 		}
 
 		private void ApplyActions(){

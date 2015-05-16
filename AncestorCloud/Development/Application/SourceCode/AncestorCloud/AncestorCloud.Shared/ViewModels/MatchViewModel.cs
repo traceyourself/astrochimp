@@ -201,7 +201,6 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
-
 		#region Validation
 		public bool Validate()
 		{

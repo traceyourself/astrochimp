@@ -113,20 +113,34 @@ namespace AncestorCloud.Droid
 				if (URLUtil.IsValidUrl(ViewModel.FirstPersonURL)) {
 					Koush.UrlImageViewHelper.SetUrlDrawable (firstPersonImage,ViewModel.FirstPersonURL,Resource.Drawable.user_no_img);
 				} else {
-					/*if(ViewModel.FirstPersonNAME.Contains())
+					string userEmail = ViewModel.GetUserData().UserEmail;
+					if(ViewModel.FirstPersonNAME.Equals(userEmail))
 					{
 						if(Utilities.CurrentUserimage != null){
-							firstPersonImage
+							firstPersonImage.SetImageBitmap(Utilities.CurrentUserimage);
+						}else{
+							firstPersonImage.SetImageResource(Resource.Drawable.user_no_img);
 						}
-					}else{*/
+					}else{
 						firstPersonImage.SetImageResource(Resource.Drawable.user_no_img);
-					//}
+					}
 				}
 
 				if (URLUtil.IsValidUrl(ViewModel.SecondPersonURL)) {
 					Koush.UrlImageViewHelper.SetUrlDrawable (secondPersonImage,ViewModel.SecondPersonURL,Resource.Drawable.user_no_img);
 				} else {
-					secondPersonImage.SetImageResource(Resource.Drawable.user_no_img);
+					
+					string userEmail = ViewModel.GetUserData().UserEmail;
+					if(ViewModel.SecondPersonNAME.Equals(userEmail))
+					{
+						if(Utilities.CurrentUserimage != null){
+							secondPersonImage.SetImageBitmap(Utilities.CurrentUserimage);
+						}else{
+							secondPersonImage.SetImageResource(Resource.Drawable.user_no_img);
+						}
+					}else{
+						secondPersonImage.SetImageResource(Resource.Drawable.user_no_img);
+					}
 				}
 
 				degree.Text = ""+ViewModel.MatchResult.Degrees+"º";
