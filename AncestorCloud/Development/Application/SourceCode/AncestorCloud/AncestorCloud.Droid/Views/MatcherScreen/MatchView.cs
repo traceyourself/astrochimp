@@ -16,6 +16,7 @@ using Android.Webkit;
 using Android.Graphics.Drawables.Shapes;
 using Android.Graphics.Drawables;
 using Android.Graphics;
+using AncestorCloud.Shared;
 
 
 namespace AncestorCloud.Droid
@@ -32,7 +33,8 @@ namespace AncestorCloud.Droid
 		ImageView first_img_cover,sec_img_cover;
 		RelativeLayout firstCrossContainer,secCrossContainer;
 		ImageView firstCrossImg,secCrossImg;
-
+		TextView userNameMenu;
+		ImageView userImageMenu;
 		bool isFirstPersonSelected = false;
 		bool isSecondPersonSelected = false;
 		String firstPersonImage = "",secondPersonImage = "";
@@ -55,6 +57,7 @@ namespace AncestorCloud.Droid
 			ApplyActions ();
 		}
 
+
 		#region init ui
 		private void initUI()
 		{
@@ -70,9 +73,19 @@ namespace AncestorCloud.Droid
 			firstCrossImg = contentLayout.FindViewById<ImageView> (Resource.Id.first_cross_img);
 			secCrossImg = contentLayout.FindViewById<ImageView> (Resource.Id.sec_cross_img);
 
-
+			userNameMenu = menuLayout.FindViewById<TextView> (Resource.Id.user_name_menu);
+			userImageMenu = menuLayout.FindViewById<ImageView> (Resource.Id.user_img_menu);
 		}
 		#endregion
+
+		public void ApplyData(){
+			//userNameMenu;
+			if (Utilities.CurrentUserimage != null) {
+				userImageMenu.SetImageBitmap (Utilities.CurrentUserimage);	
+			}
+			LoginModel modal = ViewModel.GetUserData();
+			userNameMenu.Text = modal.UserEmail;
+		}
 
 		#region dynamic changing of width height of cross btn
 		public override void OnWindowFocusChanged (bool hasFocus)
@@ -233,14 +246,14 @@ namespace AncestorCloud.Droid
 				isFirstPersonSelected = false;
 				ViewModel.FirstPersonCeleb = null;
 				ViewModel.FirstPersonPeople = null;
-				HandleFirstPersonSelected();
+				HandleFirstPersonSelected(false);
 			};
 
 			secCrossContainer.Click += (object sender, EventArgs e) => {
 				isSecondPersonSelected = false;
 				ViewModel.SecondPersonCeleb = null;
 				ViewModel.SecondPersonPeople = null;
-				HandleSecondPersonSelected();
+				HandleSecondPersonSelected(false);
 			};
 
 		}
@@ -251,6 +264,8 @@ namespace AncestorCloud.Droid
 		{
 			base.OnResume ();
 
+			ApplyData ();
+
 			Utilities.CurrentActiveActivity = this;
 
 			if (ViewModel.WhichImageClicked == 1) {
@@ -260,14 +275,14 @@ namespace AncestorCloud.Droid
 
 					firstPersonImage = ViewModel.FirstPersonCeleb.Img;
 					isFirstPersonSelected = true;
-					HandleFirstPersonSelected ();
+					HandleFirstPersonSelected (true);
 
 				}else if(ViewModel.FirstPersonPeople != null){
 					ViewModel.WhichImageClicked = 0;
 
 					firstPersonImage = ViewModel.FirstPersonPeople.ProfilePicURL;
 					isFirstPersonSelected = true;
-					HandleFirstPersonSelected ();
+					HandleFirstPersonSelected (false);
 				}
 			} else if (ViewModel.WhichImageClicked == 2){
 				if (ViewModel.SecondPersonCeleb != null) {
@@ -276,7 +291,7 @@ namespace AncestorCloud.Droid
 
 					secondPersonImage = ViewModel.SecondPersonCeleb.Img;
 					isSecondPersonSelected = true;
-					HandleSecondPersonSelected ();
+					HandleSecondPersonSelected (true);
 
 				}else if(ViewModel.SecondPersonPeople != null){
 					ViewModel.WhichImageClicked = 0;
@@ -284,20 +299,35 @@ namespace AncestorCloud.Droid
 
 					secondPersonImage = ViewModel.SecondPersonPeople.ProfilePicURL;
 					isSecondPersonSelected = true;
-					HandleSecondPersonSelected ();
+					HandleSecondPersonSelected (false);
 				}
 			}
 		}
 
-		public void HandleFirstPersonSelected()
+		public void HandleFirstPersonSelected(bool isCeleb)
 		{
 			if (isFirstPersonSelected) {
 				if (URLUtil.IsValidUrl(firstPersonImage)) {
 					//first_img.SetImageBitmap(Utilities.GetRoundedimage(this,firstPersonImage,0,radius));
 					new FirstImageTask(this,firstPersonImage).Execute();
 				} else {
-					first_img.SetImageBitmap(Utilities.GetRoundedimage(this,"",Resource.Drawable.user_no_img,radius));
-					//first_img.SetImageResource(Resource.Drawable.no_img);
+
+					if (isCeleb) {
+						first_img.SetImageBitmap (Utilities.GetRoundedimage (this, "", Resource.Drawable.user_no_img, radius));
+					} else {
+						string userogfn = ViewModel.FirstPersonPeople.IndiOgfn;
+
+						if (userogfn.Equals (ViewModel.GetUserData ().IndiOGFN)) {
+							if (Utilities.CurrentUserimage != null) {
+								first_img.SetImageBitmap (Utilities.CurrentUserimage);
+							} else {
+								first_img.SetImageBitmap (Utilities.GetRoundedimage (this, "", Resource.Drawable.user_no_img, radius));
+							}
+						} else {
+							first_img.SetImageBitmap (Utilities.GetRoundedimage (this, "", Resource.Drawable.user_no_img, radius));
+						}
+					}
+
 				}
 				firstCrossContainer.Visibility = ViewStates.Visible;
 			} else {
@@ -306,7 +336,7 @@ namespace AncestorCloud.Droid
 			}
 		}
 
-		public void HandleSecondPersonSelected()
+		public void HandleSecondPersonSelected(bool isCeleb)
 		{
 			if (isSecondPersonSelected) {
 				if (URLUtil.IsValidUrl(secondPersonImage)) {
@@ -314,8 +344,21 @@ namespace AncestorCloud.Droid
 					//sec_img.SetImageBitmap(Utilities.GetRoundedimage(this,secondPersonImage,0,radius));
 					new SecondImageTask(this,secondPersonImage).Execute();
 				} else {
-					//sec_img.SetImageResource (Resource.Drawable.user_no_img);
-					sec_img.SetImageBitmap(Utilities.GetRoundedimage(this,"",Resource.Drawable.user_no_img,radius));
+					if (isCeleb) {
+						sec_img.SetImageBitmap (Utilities.GetRoundedimage (this, "", Resource.Drawable.user_no_img, radius));
+					} else {
+						string userogfn = ViewModel.FirstPersonPeople.IndiOgfn;
+
+						if (userogfn.Equals (ViewModel.GetUserData ().IndiOGFN)) {
+							if (Utilities.CurrentUserimage != null) {
+								sec_img.SetImageBitmap (Utilities.CurrentUserimage);
+							} else {
+								sec_img.SetImageBitmap(Utilities.GetRoundedimage(this,"",Resource.Drawable.user_no_img,radius));
+							}
+						} else {
+							sec_img.SetImageBitmap(Utilities.GetRoundedimage(this,"",Resource.Drawable.user_no_img,radius));
+						}
+					}
 				}
 				secCrossContainer.Visibility = ViewStates.Visible;
 			} else {

@@ -13,6 +13,7 @@ using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using Cirrious.MvvmCross.Binding.Droid.Views;
 using AncestorCloud.Shared.ViewModels;
+using AncestorCloud.Shared;
 
 namespace AncestorCloud.Droid
 {
@@ -27,6 +28,8 @@ namespace AncestorCloud.Droid
 		RelativeLayout menuLayout;
 		TextView nextBtn;
 		ImageView helpicon;
+		TextView userNameMenu;
+		ImageView userImageMenu;
 
 		public new FbFamilyViewModel ViewModel
 		{
@@ -43,9 +46,14 @@ namespace AncestorCloud.Droid
 			InitViews ();
 			ConfigureActionBar ();
 			ApplyActions ();
-
 		}
 
+
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+			ApplyData ();
+		}
 
 		#region customized methods
 		private void InitViews()
@@ -57,6 +65,10 @@ namespace AncestorCloud.Droid
 			listView = contentLayout.FindViewById<MvxListView> (Resource.Id.fb_family_list);
 			nextBtn = contentLayout.FindViewById<TextView> (Resource.Id.next_btn);
 			helpicon = contentLayout.FindViewById<ImageView> (Resource.Id.question_icon);
+
+			userNameMenu = menuLayout.FindViewById<TextView> (Resource.Id.user_name_menu);
+			userImageMenu = menuLayout.FindViewById<ImageView> (Resource.Id.user_img_menu);
+
 		}
 
 		private void ConfigureActionBar()
@@ -120,6 +132,16 @@ namespace AncestorCloud.Droid
 		}
 		#endregion
 
+
+		public void ApplyData(){
+			//userNameMenu;
+			if (Utilities.CurrentUserimage != null) {
+				userImageMenu.SetImageBitmap (Utilities.CurrentUserimage);	
+			}
+
+			LoginModel modal = ViewModel.GetUserData();
+			userNameMenu.Text = modal.UserEmail;
+		}
 	}
 
 	#region List Adapter

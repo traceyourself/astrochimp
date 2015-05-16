@@ -24,13 +24,13 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/match_btn"
             android:layout_below="@+id/upper_txt"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/center_plus"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="10dp">
                 <ImageView
                     android:id="@+id/first_img"
                     android:layout_width="wrap_content"
@@ -56,8 +56,8 @@
                         android:layout_centerInParent="true" />
                     <ImageView
                         android:id="@+id/first_cross_img"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@drawable/blue_cross"
                         android:layout_toRightOf="@+id/first_inner_view" />
                 </RelativeLayout>
@@ -65,11 +65,11 @@
             <RelativeLayout
                 android:id="@+id/center_plus"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_centerVertical="true">
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:background="@drawable/plus"
                     android:layout_centerInParent="true" />
             </RelativeLayout>
@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/center_plus"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp">
                 <ImageView
                     android:id="@+id/sec_img"
                     android:layout_width="wrap_content"
@@ -103,8 +103,8 @@
                         android:layout_centerInParent="true" />
                     <ImageView
                         android:id="@+id/sec_cross_img"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@drawable/blue_cross"
                         android:layout_toRightOf="@+id/sec_inner_view" />
                 </RelativeLayout>

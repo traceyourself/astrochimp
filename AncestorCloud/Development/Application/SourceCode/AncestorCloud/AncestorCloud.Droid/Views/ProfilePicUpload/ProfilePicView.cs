@@ -18,6 +18,8 @@ using Android.Provider;
 using AncestorCloud.Shared;
 using Java.IO;
 using System.IO;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using AncestorCloud.Core;
 
 namespace AncestorCloud.Droid
 {
@@ -34,6 +36,11 @@ namespace AncestorCloud.Droid
 		int PickImageCameraId = 20;
 		//===
 		string CurrentImagePath = "";
+		Bitmap CurrentImage;
+
+		IMvxMessenger _messenger;
+		private MvxSubscriptionToken ImageUploadedToken;
+
 
 		public new ProfilePicViewModel ViewModel
 		{
@@ -49,6 +56,27 @@ namespace AncestorCloud.Droid
 			initUI ();
 			configureActionBar ();
 			ApplyActions ();
+
+			if(Utilities.CurrentUserimage != null){
+				profileImg.SetImageBitmap (Utilities.CurrentUserimage);
+			}
+
+			_messenger = Mvx.Resolve<IMvxMessenger>();
+
+		}
+
+
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+			ImageUploadedToken = _messenger.SubscribeOnMainThread<ProfilePicUploadedMessage>(Message => this.ImageUploadedHandler ());
+		}
+
+
+		protected override void OnPause ()
+		{
+			base.OnPause ();
+			_messenger.Unsubscribe<ProfilePicUploadedMessage> (ImageUploadedToken);
 		}
 
 		private void initUI()
@@ -82,6 +110,16 @@ namespace AncestorCloud.Droid
 				skipTxt.Visibility = ViewStates.Gone;
 			}
 		}
+
+
+		#region Handler for image uploaded successfully
+		public void ImageUploadedHandler()
+		{
+			Utilities.CurrentUserimage = CurrentImage;
+			ViewModel.Close();
+		}
+		#endregion
+
 
 		#region Action Bar Configuration
 		private void configureActionBar(){
@@ -194,7 +232,8 @@ namespace AncestorCloud.Droid
 				//Bitmap bmp = Utilities.GetBitmapFromUri (this,uri);
 				string path = Utilities.GetPathToImageFromUri(this,uri);
 				Bitmap bmp = Utilities.LoadAndResizeBitmap (path,1024,1024);
-				profileImg.SetImageBitmap (Utilities.GetRoundedImageFromBitmap (this, bmp, 150));
+				CurrentImage = Utilities.GetRoundedImageFromBitmap (this, bmp, 150);
+				profileImg.SetImageBitmap (CurrentImage);
 				try{
 					Java.IO.File f = new Java.IO.File(CreateDirectoryForGalleryPictures (), System.String.Format("myPhoto_{0}.jpg", Guid.NewGuid()));
 					var stream = new FileStream(f.Path, FileMode.Create);
@@ -209,7 +248,8 @@ namespace AncestorCloud.Droid
 			{
 				CameraDataHolder.bitmap = Utilities.LoadAndResizeBitmap (CameraDataHolder._file.Path,1024,1024);
 				Bitmap bmp = Utilities.RotateImageIfRequired (this,CameraDataHolder.bitmap,CameraDataHolder._file.Path);
-				profileImg.SetImageBitmap (Utilities.GetRoundedImageFromBitmap (this, bmp, 150));
+				CurrentImage = Utilities.GetRoundedImageFromBitmap (this, bmp, 150);
+				profileImg.SetImageBitmap (CurrentImage);
 				//Save bitmap as a file======
 				try{
 					Java.IO.File f = CameraDataHolder._file;

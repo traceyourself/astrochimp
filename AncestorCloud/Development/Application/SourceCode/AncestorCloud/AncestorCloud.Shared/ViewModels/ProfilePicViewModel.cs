@@ -3,6 +3,7 @@ using System.IO;
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Plugins.Messenger;
+using AncestorCloud.Core;
 
 
 namespace AncestorCloud.Shared.ViewModels
@@ -14,6 +15,7 @@ namespace AncestorCloud.Shared.ViewModels
 		private readonly IDatabaseService _databaseService;
 
 		private MvxSubscriptionToken navigationMenuToggleToken;
+		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
 
 		public ProfilePicViewModel(IProfileService profileService,IDatabaseService databaseService)
 		{
@@ -110,7 +112,11 @@ namespace AncestorCloud.Shared.ViewModels
 
 			if (response.Status == ResponseStatus.OK) {
 				Mvx.Resolve<IAlert> ().ShowAlert ("Profile pic uploaded successfully","Success");
-				ShowFamiyViewModel ();
+				if (Mvx.CanResolve<IAndroidService> ()){
+					_messenger.Publish(new ProfilePicUploadedMessage(this));
+				}else{
+					ShowFamiyViewModel ();
+				}
 			} 
 			else 
 			{
@@ -119,9 +125,6 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 
 		#endregion
-
-
-
 
 	}
 }

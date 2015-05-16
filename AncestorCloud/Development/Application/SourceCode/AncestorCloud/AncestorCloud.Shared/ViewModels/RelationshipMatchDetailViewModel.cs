@@ -13,7 +13,7 @@ namespace AncestorCloud.Shared.ViewModels
 		public String SecondPersonURL{ get; set;}
 		public String FirstPersonNAME{ get; set;}
 		public String SecondPersonNAME{ get; set;}
-		   
+		private readonly IDatabaseService _databaseService;
 
 		public void Init(DetailParameter parameter)
 		{
@@ -30,6 +30,20 @@ namespace AncestorCloud.Shared.ViewModels
 			SecondPersonNAME = parameter.SecondPersonName;
 			SetCommonResult ();
 		}
+
+
+		#region get Userdata method
+		public LoginModel GetUserData()
+		{
+			LoginModel data = new LoginModel ();
+			try{
+				data = _databaseService.GetLoginDetails ();
+			}catch(Exception e){
+			}
+			return data;
+		}
+		#endregion
+
 
 		#region Properties
 
@@ -105,7 +119,6 @@ namespace AncestorCloud.Shared.ViewModels
 			public String SecondPersonName{ get; set;}
 		}
 
-		private readonly IDatabaseService _databaseService;
 
 		public RelationshipMatchDetailViewModel(IDatabaseService  service)
 		{

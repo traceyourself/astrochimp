@@ -113,6 +113,18 @@ namespace AncestorCloud.Shared.ViewModels
 		#endregion
 
 
+		#region get Userdata method
+		public LoginModel GetUserData()
+		{
+			LoginModel data = new LoginModel ();
+			try{
+				data = _databaseService.GetLoginDetails ();
+			}catch(Exception e){
+			}
+			return data;
+		}
+		#endregion
+
 		#region Commands
 
 		private ACCommand _nextButtonTapped;

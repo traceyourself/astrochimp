@@ -142,7 +142,6 @@
     <None Include="packages.config" />
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />
     <None Include="Properties\AndroidManifest.xml" />
-    <None Include="Resources\21%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />

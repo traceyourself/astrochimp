@@ -70,6 +70,7 @@ namespace AncestorCloud.Shared
 			People peopledata = new People ();
 			peopledata.ProfilePicURL = "";
 			peopledata.IndiOgfn = data.IndiOGFN;
+			peopledata.Email = data.UserEmail;
 			PeoplePlusClickHandler(peopledata);
 		}
 		#endregion
