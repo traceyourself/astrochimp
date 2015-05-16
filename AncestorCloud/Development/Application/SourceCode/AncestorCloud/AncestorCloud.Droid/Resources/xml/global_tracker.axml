@@ -5,6 +5,9 @@
 
     <integer name="ga_sessionTimeout">300</integer>
 
+    <!-- Enable automatic exception tracking -->
+    <bool name="ga_reportUncaughtExceptions">true</bool>    
+
     <!-- Enable automatic Activity measurement -->
     <bool name="ga_autoActivityTracking">true</bool>
 

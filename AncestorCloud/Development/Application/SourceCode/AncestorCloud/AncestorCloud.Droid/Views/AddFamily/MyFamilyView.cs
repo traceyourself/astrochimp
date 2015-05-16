@@ -34,6 +34,7 @@ namespace AncestorCloud.Droid
 		ImageView helpIcon;
 		IMvxMessenger _messenger;
 		private MvxSubscriptionToken ReloadViewToken;
+		Spinner yearSelector;
 
 		public new MyFamilyViewModel ViewModel
 		{
@@ -59,6 +60,7 @@ namespace AncestorCloud.Droid
 		protected override void OnResume ()
 		{
 			base.OnResume ();
+			Utilities.CurrentActiveActivity = this;
 			CreateListAdapter ();
 			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.CreateListAdapter ());
 		}
@@ -78,6 +80,7 @@ namespace AncestorCloud.Droid
 			actionBar = FindViewById<ActionBar> (Resource.Id.actionBar);
 			listView = FindViewById<ListView> (Resource.Id.add_family_list);
 			helpIcon = FindViewById<ImageView> (Resource.Id.question_icon);
+			//yearSelector = FindViewById<Spinner> (Resource.Id.year_selector_inlay);
 		}
 
 		private void ConfigureActionBar()
@@ -244,7 +247,7 @@ namespace AncestorCloud.Droid
 			EditText last_name = editDialog.FindViewById<EditText> (Resource.Id.last_name_field);
 			EditText birth_loc = editDialog.FindViewById<EditText> (Resource.Id.birth_loc_field);
 			TextView year_field = editDialog.FindViewById<TextView> (Resource.Id.birth_year_field);
-			Spinner yearSelector = editDialog.FindViewById<Spinner> (Resource.Id.year_selector);
+			yearSelector = editDialog.FindViewById<Spinner> (Resource.Id.year_selector);
 
 			male.Click += (object sender, EventArgs e) => {
 				male.SetBackgroundResource(Resource.Drawable.male_selected);	
@@ -307,8 +310,8 @@ namespace AncestorCloud.Droid
 				populateList.Add (""+i);
 			}
 
-			var adapter = new ArrayAdapter (this,Android.Resource.Layout.SimpleListItem1,populateList);
-
+			//var adapter = new ArrayAdapter (this,Android.Resource.Layout.SimpleListItem1,populateList);
+			var adapter = new ArrayAdapter (this,Resource.Layout.spinner_item,populateList);
 			//adapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			yearSelector.Adapter = adapter;
 
