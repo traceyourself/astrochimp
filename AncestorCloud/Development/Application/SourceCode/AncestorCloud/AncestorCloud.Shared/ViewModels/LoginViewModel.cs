@@ -236,6 +236,9 @@ namespace AncestorCloud.Shared.ViewModels
 							CallFlyoutCommand.Execute (null);
 							CloseCommand.Execute (null);
 						}
+					} else {
+
+						Alert.ShowAlert ("Invalid user signon username or password.", "Login Error");
 					}
 				}
 			}

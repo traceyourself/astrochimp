@@ -57,10 +57,19 @@ namespace AncestorCloud.Shared
 
 				Mvx.Trace("Parced Values : "+modal.Code+" : "+modal.Message+" : "+modal.Value);
 
-				var userReadResponse = await _userReadService.MakeUserReadService(modal);
-//				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
-//				responsemodal.loginModal = modal;
-				userReadResponse.Status = ResponseStatus.OK;
+				ResponseModel<LoginModel> userReadResponse = new ResponseModel<LoginModel>();
+
+				if(dict.ContainsKey(AppConstant.Message))
+				{
+					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
+					{
+						userReadResponse = await _userReadService.MakeUserReadService(modal);
+						userReadResponse.Status = ResponseStatus.OK;
+					}else
+					{
+						userReadResponse.Status = ResponseStatus.Fail;
+					}
+				}
 
 				return userReadResponse as ResponseModel<LoginModel>;
 			}
