@@ -134,7 +134,6 @@ namespace AncestorCloud.Droid
 		}
 		#endregion
 
-
 		public void ApplyData(){
 			//userNameMenu;
 			if (Utilities.CurrentUserimage != null) {
