@@ -394,9 +394,6 @@ namespace AncestorCloud.Shared.ViewModels
 
 				_databaseService.InsertFBFriend (people);
 			}
-			//			List<People> peopleList = _databaseService.RelativeMatching ("brother");
-			//
-			//			System.Diagnostics.Debug.WriteLine ("PEOPLE LIST :" + peopleList);
 		}
 		#endregion
 
