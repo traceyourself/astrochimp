@@ -18,6 +18,8 @@ namespace AncestorCloud.Shared
 		List<People> RelativeMatching(string relationFilter, string userID);
 		List<People> GetFamily(User user);
 
+		void InsertFBFriend (People relative);
+
 		void InsertLoginDetails (LoginModel login);
 		LoginModel GetLoginDetails ();
 

@@ -17,9 +17,17 @@ namespace AncestorCloud.Touch
 
 		[Outlet]
 		UIKit.UILabel NameLabel { get; set; }
+
+		[Outlet]
+		UIKit.UIImageView ProfilePic { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (ProfilePic != null) {
+				ProfilePic.Dispose ();
+				ProfilePic = null;
+			}
+
 			if (fbFriendImage != null) {
 				fbFriendImage.Dispose ();
 				fbFriendImage = null;

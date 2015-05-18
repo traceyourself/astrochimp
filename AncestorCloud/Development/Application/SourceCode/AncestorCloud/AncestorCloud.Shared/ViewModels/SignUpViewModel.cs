@@ -392,7 +392,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 			foreach (People people in list) {
 
-				_databaseService.InsertRelative (people);
+				_databaseService.InsertFBFriend (people);
 			}
 			//			List<People> peopleList = _databaseService.RelativeMatching ("brother");
 			//

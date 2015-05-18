@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mcv-np-1Yx">
-                        <rect key="frame" x="60" y="20" width="38" height="21"/>
+                        <rect key="frame" x="60" y="21" width="38" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="I1y-32-EFx"/>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="168" id="Tjc-QJ-6Rm"/>
@@ -23,44 +23,37 @@
                         <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nH6-jW-QkJ">
-                        <rect key="frame" x="8" y="9" width="44" height="44"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="noImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="hiN-Pi-ARH">
+                        <rect key="frame" x="8" y="10" width="44" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="44" id="LX2-qC-fpj"/>
-                            <constraint firstAttribute="height" constant="44" id="QOi-fQ-mXA"/>
+                            <constraint firstAttribute="height" constant="44" id="Pp9-Nv-tXv"/>
+                            <constraint firstAttribute="width" constant="44" id="icH-Ha-kDJ"/>
                         </constraints>
-                        <state key="normal" backgroundImage="noImage.png">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgh-K8-ido">
-                        <rect key="frame" x="329" y="16" width="30" height="30"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="plus_pink.png" translatesAutoresizingMaskIntoConstraints="NO" id="ymO-jj-egj">
+                        <rect key="frame" x="329" y="13" width="30" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="M3e-8s-sQa"/>
-                            <constraint firstAttribute="height" constant="30" id="PeB-nz-ESv"/>
+                            <constraint firstAttribute="width" constant="30" id="MR8-tg-YMc"/>
+                            <constraint firstAttribute="height" constant="30" id="Zxo-BI-sig"/>
                         </constraints>
-                        <state key="normal" backgroundImage="add.png">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Mcv-np-1Yx" firstAttribute="top" secondItem="yJM-E6-Tmj" secondAttribute="topMargin" constant="12" id="PBW-tr-uLr"/>
-                    <constraint firstItem="Mcv-np-1Yx" firstAttribute="leading" secondItem="nH6-jW-QkJ" secondAttribute="trailing" constant="8" id="WFI-SZ-Xlu"/>
-                    <constraint firstItem="xgh-K8-ido" firstAttribute="trailing" secondItem="yJM-E6-Tmj" secondAttribute="trailingMargin" constant="-8" id="gHf-gJ-D39"/>
-                    <constraint firstItem="xgh-K8-ido" firstAttribute="trailing" secondItem="yJM-E6-Tmj" secondAttribute="trailingMargin" constant="-8" id="iT9-lt-wNx"/>
+                    <constraint firstItem="Mcv-np-1Yx" firstAttribute="leading" secondItem="hiN-Pi-ARH" secondAttribute="trailing" constant="8" id="WVl-Uu-uEG"/>
+                    <constraint firstItem="ymO-jj-egj" firstAttribute="trailing" secondItem="yJM-E6-Tmj" secondAttribute="trailingMargin" id="tCc-YO-vPP"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="NameLabel" destination="Mcv-np-1Yx" id="hd7-NP-Kay"/>
-                <outlet property="fbFriendImage" destination="nH6-jW-QkJ" id="Z0v-Ma-aeP"/>
+                <outlet property="ProfilePic" destination="hiN-Pi-ARH" id="MF6-du-Ch5"/>
             </connections>
-            <point key="canvasLocation" x="287.5" y="216"/>
+            <point key="canvasLocation" x="287.5" y="210"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="add.png" width="20" height="20"/>
         <image name="noImage.png" width="265" height="265"/>
+        <image name="plus_pink.png" width="41" height="41"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
