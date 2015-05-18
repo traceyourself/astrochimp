@@ -69,6 +69,8 @@ namespace AncestorCloud.Touch
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
 
+			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
+
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (68, 172, 176);
 
 			//	this.NavigationItem.BackBarButtonItem.TintColor = UIColor.White;

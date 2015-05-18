@@ -52,7 +52,7 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="Q2b-Nh-85o" secondAttribute="bottom" constant="10" id="57Q-Pl-nAP"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Q2b-Nh-85o" secondAttribute="bottom" constant="8" id="57Q-Pl-nAP"/>
                     <constraint firstItem="dh6-St-d5q" firstAttribute="top" secondItem="qkj-p1-4r6" secondAttribute="topMargin" constant="7" id="5vr-3f-kEv"/>
                     <constraint firstAttribute="bottomMargin" secondItem="vcm-E0-9Cq" secondAttribute="bottom" constant="8" id="XSH-8W-pMe"/>
                     <constraint firstItem="QC4-yc-boI" firstAttribute="leading" secondItem="qkj-p1-4r6" secondAttribute="leadingMargin" id="dSD-11-J4Q"/>

@@ -44,6 +44,7 @@ namespace AncestorCloud.Touch
 		{
 
 			this.Title = "Facebook Friends";
+			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 			var source = new FacebookFriendTableSource (FacebookFriendTableView);
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
 			FacebookFriendTableView.Source = source;
