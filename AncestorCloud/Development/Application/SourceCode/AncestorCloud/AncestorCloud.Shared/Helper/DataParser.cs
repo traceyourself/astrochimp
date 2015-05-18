@@ -267,6 +267,9 @@ namespace AncestorCloud.Shared
 			if (IsKeyExist (AppConstant.INDIOGFN, dict))
 				model.AvatarOGFN = GetData (AppConstant.AVATARINDIOGFN, dict);
 
+			if (IsKeyExist (AppConstant.CHILDOGFNKEY, dict))
+				model.FamOGFN = GetData (AppConstant.CHILDOGFNKEY, dict);
+
 			return model;
 		}
 

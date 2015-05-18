@@ -99,6 +99,7 @@ namespace AncestorCloud.Shared
 		public const string IMAGETYPEKEY = "ImageType";
 		public const string IMAGESIZEKEY = "ImageSize";
 		public const string IMAGESIZE = "100%2c100";
+		public const string CHILDOGFNKEY = "ChildFamilyOgfn";
 
 
 		#endregion
