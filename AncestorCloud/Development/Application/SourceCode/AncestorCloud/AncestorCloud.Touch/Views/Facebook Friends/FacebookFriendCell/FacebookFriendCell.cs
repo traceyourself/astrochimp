@@ -12,15 +12,20 @@ namespace AncestorCloud.Touch
 		public static readonly UINib Nib = UINib.FromName ("FacebookFriendCell", NSBundle.MainBundle);
 		public static readonly NSString Key = new NSString ("FacebookFriendCell");
 
+		private readonly MvxImageViewLoader _imageViewLoader;
+
 		public FacebookFriendCell (IntPtr handle) : base (handle)
 		{
+			_imageViewLoader = new MvxImageViewLoader(() => this.ProfilePic);
+
 			this.DelayBind (() => {
 
 				var set = this.CreateBindingSet<FacebookFriendCell, People> ();
 				set.Bind (NameLabel).To (vm => vm.Name);
+				set.Bind(_imageViewLoader).To (vm => vm.ProfilePicURL);
 				set.Apply ();
-				fbFriendImage.Layer.CornerRadius=22f;
-				fbFriendImage.ClipsToBounds=true;
+				ProfilePic.Layer.CornerRadius=22f;
+				ProfilePic.ClipsToBounds=true;
 			});
 		}
 

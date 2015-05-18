@@ -53,6 +53,7 @@ namespace AncestorCloud.Touch
 			var set = this.CreateBindingSet<FacebookFriendView , FacebookFriendViewModel> ();
 			this.NavigationItem.TitleView = new MyFacebookFriendTitleView (this.Title,new RectangleF(0,0,150,20));
 			set.Bind (source).To (vm => vm.FacebookFriendList);
+			set.Bind(source).For(s => s.SelectionChangedCommand).To(vm => vm.CheckFacebookFriendCommand);
 			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
 			this.NavigationController.NavigationBarHidden = false;
