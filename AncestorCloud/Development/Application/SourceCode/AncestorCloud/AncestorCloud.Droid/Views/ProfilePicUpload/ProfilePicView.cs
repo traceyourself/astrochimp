@@ -232,8 +232,7 @@ namespace AncestorCloud.Droid
 				//Bitmap bmp = Utilities.GetBitmapFromUri (this,uri);
 				string path = Utilities.GetPathToImageFromUri(this,uri);
 				Bitmap bmp = Utilities.LoadAndResizeBitmap (path,1024,1024);
-				var currentImage = CurrentImage;
-				currentImage = Utilities.GetRoundedImageFromBitmap (this, bmp, 150);
+				CurrentImage = Utilities.GetRoundedImageFromBitmap (this, bmp, 150);
 				profileImg.SetImageBitmap (CurrentImage);
 				try{
 					Java.IO.File f = new Java.IO.File(CreateDirectoryForGalleryPictures (), System.String.Format("myPhoto_{0}.jpg", Guid.NewGuid()));

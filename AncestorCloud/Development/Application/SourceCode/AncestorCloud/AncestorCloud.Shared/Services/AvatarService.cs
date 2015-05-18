@@ -30,7 +30,7 @@ namespace AncestorCloud.Shared
 				param[AppConstant.SESSIONID] = login.Value;
 				param[AppConstant.AVATARINDIOGFNKEY] = login.AvatarOGFN;
 				param[AppConstant.IMAGETYPEKEY] =AppConstant.FILETYPE;
-				param[AppConstant.IMAGESIZEKEY] =AppConstant.IMAGESIZE;
+				param[AppConstant.IMAGESIZEKEY] =AppConstant.IMAGE_SIZE;
 	
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.INDIVIDUAL_READ_SERVICE,param);
 
