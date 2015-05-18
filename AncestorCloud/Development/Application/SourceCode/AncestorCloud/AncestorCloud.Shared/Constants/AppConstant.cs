@@ -15,6 +15,13 @@ namespace AncestorCloud.Shared
 		AuthorisationRequired
 	}
 
+	public enum AlertType
+	{
+		OK,
+		OKCancelPermit,
+		OKCancelSelect
+	}
+
 	static public class AppConstant
 	{
 		#region FB Constants

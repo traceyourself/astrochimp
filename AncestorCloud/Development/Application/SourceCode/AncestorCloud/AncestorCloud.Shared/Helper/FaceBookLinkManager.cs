@@ -14,6 +14,10 @@ namespace AncestorCloud.Shared
 
 		private readonly IUserReadService _userReadService;
 
+		private readonly IGroupCreateService _groupService;
+
+		private readonly IFamilyCreateService _famService;
+
 
 		public FaceBookLinkManager ()
 		{
@@ -21,6 +25,8 @@ namespace AncestorCloud.Shared
 			_userReadService = Mvx.Resolve<IUserReadService>();
 			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 			_fbSignInService = Mvx.Resolve<IFbSigninService>();
+			_groupService = Mvx.Resolve<IGroupCreateService>();
+			_famService = Mvx.Resolve<IFamilyCreateService>();
 		}
 
 		#region Exposed Methods
@@ -43,6 +49,16 @@ namespace AncestorCloud.Shared
 				return ResponseStatus.Fail;
 
 			loginData = await UserReadService (loginData);
+
+			if (loginData == null)
+				return ResponseStatus.Fail;
+
+			loginData = await CreateGroup (loginData);
+
+			if (loginData == null)
+				return ResponseStatus.Fail;
+
+			loginData = await CreateFamily (loginData);
 
 			if (loginData == null)
 				return ResponseStatus.Fail;
@@ -127,6 +143,31 @@ namespace AncestorCloud.Shared
 
 		}
 
+		#endregion
+
+
+		#region GroupCreate method
+
+		private async  Task<LoginModel> CreateGroup(LoginModel loginData)
+		{
+			ResponseModel<LoginModel> loginResponse = await _groupService.CreateGroup (loginData);
+
+			if (loginResponse.Status == ResponseStatus.Fail)
+				return null;
+
+			return loginResponse.Content;
+		}
+
+
+		private async  Task<LoginModel> CreateFamily(LoginModel loginData)
+		{
+			ResponseModel<LoginModel> loginResponse = await _famService.CreateFamily (loginData);
+
+			if (loginResponse.Status == ResponseStatus.Fail)
+				return null;
+
+			return loginResponse.Content;
+		}
 		#endregion
 
 		#region FbSigninLink method

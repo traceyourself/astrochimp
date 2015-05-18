@@ -20,9 +20,13 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly IReachabilityService _reachabilityService;
 
+		private readonly IGroupCreateService _groupService;
+
+		private readonly IFamilyCreateService _famService;
+
 		#region SignUpViewModel
 
-		public SignUpViewModel(ISignUpService service,IAlert alert, IReachabilityService reachabilty)//, IDatabaseService dService)
+		public SignUpViewModel(ISignUpService service,IAlert alert, IReachabilityService reachabilty, IGroupCreateService _service,IFamilyCreateService famService)//, IDatabaseService dService)
 
 		{
 			_ISignUpService = service;
@@ -30,6 +34,8 @@ namespace AncestorCloud.Shared.ViewModels
 			Alert = alert;
 			_facebookLinkManager = new FaceBookLinkManager ();
 			_reachabilityService = reachabilty;
+			_groupService = _service;
+			_famService = famService;
 		
 		}
 
@@ -263,25 +269,33 @@ namespace AncestorCloud.Shared.ViewModels
 
 				if (response.Status == ResponseStatus.OK) {
 					//tell View about data arriving
-					_databaseService.InsertLoginDetails(response.Content as LoginModel);
+					//_databaseService.InsertLoginDetails(response.Content as LoginModel);
 
-					//_databaseService.GetLoginDetails ();
+					ResponseModel<LoginModel> loginResponse = await _groupService.CreateGroup (response.Content as LoginModel);
 
-					if (Mvx.CanResolve<IAndroidService> ()) 
-					{
-						//ShowMyFamilyViewModel ();
-						ShowProfilePicViewModel();
-						this.Close (this);
-						CloseCommand.Execute (null);
-					}
-					else
-					{
-						IsFbLogin = false;
-						ShowProfilePicViewModel();
-						//this.Close (this);//XXXXXX
-//						CallFlyoutCommand.Execute(null);
-						CloseCommand.Execute (null);
-					}
+					if (loginResponse.Status == ResponseStatus.OK) {
+					
+						ResponseModel<LoginModel> famResponse = await _famService.CreateFamily (loginResponse.Content as LoginModel);
+					
+						if (famResponse.Status == ResponseStatus.OK) {
+								_databaseService.InsertLoginDetails (famResponse.Content as LoginModel);
+								//_databaseService.GetLoginDetails ();
+
+								if (Mvx.CanResolve<IAndroidService> ()) {
+								//ShowMyFamilyViewModel ();
+									ShowProfilePicViewModel ();
+									this.Close (this);
+									CloseCommand.Execute (null);
+								} else {
+									IsFbLogin = false;
+									ShowProfilePicViewModel ();
+									//this.Close (this);//XXXXXX
+//									CallFlyoutCommand.Execute(null);
+									CloseCommand.Execute (null);
+								}
+							}
+						}
+
 
 				}
 			}
@@ -392,11 +406,8 @@ namespace AncestorCloud.Shared.ViewModels
 
 			foreach (People people in list) {
 
-				_databaseService.InsertRelative (people);
+				_databaseService.InsertFBFriend (people);
 			}
-			//			List<People> peopleList = _databaseService.RelativeMatching ("brother");
-			//
-			//			System.Diagnostics.Debug.WriteLine ("PEOPLE LIST :" + peopleList);
 		}
 		#endregion
 
