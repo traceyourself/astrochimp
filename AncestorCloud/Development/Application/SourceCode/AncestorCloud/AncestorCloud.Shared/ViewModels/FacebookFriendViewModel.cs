@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Plugins.Messenger;
+using Cirrious.MvvmCross.ViewModels;
+using System.Windows.Input;
 
 namespace AncestorCloud.Shared.ViewModels
 {
@@ -19,10 +21,21 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly IDatabaseService _databaseService;
 
-		public FacebookFriendViewModel(IDatabaseService  service)
+		private readonly IFBFriendLinkService _friendLinkService;
+
+		private readonly IAlert _alert;
+
+		private MvxSubscriptionToken checkFbFreindToken;
+
+		IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
+
+		public FacebookFriendViewModel(IDatabaseService  service,IFBFriendLinkService fbService, IAlert alert)
 		{
 			_databaseService = service;
+			_friendLinkService = fbService;
+			_alert = alert;
 			GetFacebookFriendData ();
+			checkFbFreindToken = _mvxMessenger.SubscribeOnMainThread<CheckFbFriendMessage>(message => this.CheckFriend(message.IsPermited));
 		}
 
 
@@ -76,6 +89,67 @@ namespace AncestorCloud.Shared.ViewModels
 				RaisePropertyChanged(() => FacebookFriendList);
 			}
 		}
+
+		private People _fbFriend;
+
+		public People FbFriend
+		{
+			get { return _fbFriend; }
+			set
+			{
+				_fbFriend = value;
+				RaisePropertyChanged(() => FbFriend);
+			}
+		}
+			
+		#endregion
+
+		#region Commands
+
+		public ICommand CheckFacebookFriendCommand
+		{
+			get
+			{
+				return new MvxCommand<People>(item => this.GetUserPermission(item));
+			}
+		}
+
+		#endregion
+
+		#region Check Friend
+
+		private async void CheckFriend(bool isPermited)
+		{
+			if (!isPermited)
+				return;
+			
+			if(FbFriend.IndiOgfn ==  null)
+			{
+				ResponseModel<People> friendResponse = await _friendLinkService.FbFriendRead(FbFriend);
+
+				if(friendResponse.Status == ResponseStatus.OK)
+				{
+					_databaseService.InsertFBFriend (FbFriend);
+					_alert.ShowAlertWithOk("Friend added to Ancestor Cloud. Tap Ok to Select","Success",AlertType.OKCancelSelect);
+				}
+				else
+				{
+					_alert.ShowAlert("Unable to communicate with Ancestor Cloud","Error");
+				}
+			}
+		}
+
+
+		private void GetUserPermission(People friend)
+		{
+			return;
+			//TODO: remove when facebookfriend in linked
+
+			FbFriend = friend;
+
+			_alert.ShowAlertWithOk("Do you want to add your friend to Ancestor Cloud","Match",AlertType.OKCancelPermit);
+		}
+
 		#endregion
 
 	}

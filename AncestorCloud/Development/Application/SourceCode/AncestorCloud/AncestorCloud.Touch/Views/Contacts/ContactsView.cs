@@ -44,6 +44,7 @@ namespace AncestorCloud.Touch
 		{
 
 			this.Title = "Contacts";
+			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 			var source = new ContactsTableSource (ContactsTableView);
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
 			ContactsTableView.Source = source;

@@ -29,7 +29,10 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly IFamilyCreateService _famService;
 
-		public LoginViewModel(ILoginService service, IAlert alert, IReachabilityService reachabilty, IGroupCreateService _service,IFamilyCreateService famService)
+		private readonly IIndiDetailService _indiDetailService;
+
+
+		public LoginViewModel(ILoginService service, IAlert alert, IReachabilityService reachabilty, IGroupCreateService _service,IFamilyCreateService famService, IIndiDetailService _indiService)
 		{
 			_loginService = service;
 			_databaseService = Mvx.Resolve<IDatabaseService>();
@@ -40,6 +43,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_reachabilityService = reachabilty;
 			_groupService = _service;
 			_famService = famService;
+			_indiDetailService = _indiService;
 
 		}
 
@@ -289,19 +293,28 @@ namespace AncestorCloud.Shared.ViewModels
 
 					if (response.Status == ResponseStatus.OK) {
 
-						_databaseService.InsertLoginDetails (response.Content as LoginModel);
+						ResponseModel<LoginModel> loginresponse = await _indiDetailService.GetIndiDetails (response.Content as LoginModel);
 
-						//_databaseService.GetLoginDetails ();
+						if (loginresponse.Status == ResponseStatus.OK) {
 
-						if (Mvx.CanResolve<IAndroidService> ()) {
-							ShowMyFamilyViewModel ();
-							CloseCommand.Execute (null);
+							_databaseService.InsertLoginDetails (loginresponse.Content as LoginModel);
+							
+							//_databaseService.GetLoginDetails ();
+
+							if (Mvx.CanResolve<IAndroidService> ()) {
+								ShowMyFamilyViewModel ();
+								CloseCommand.Execute (null);
+							} else {
+								IsFbLogin = false;
+								CallFlyoutCommand.Execute (null);
+								CloseCommand.Execute (null);
+							}
 						} else {
-							IsFbLogin = false;
-							CallFlyoutCommand.Execute (null);
-							CloseCommand.Execute (null);
+
+							Alert.ShowAlert ("Invalid user signon username or password.", "Login Error");
 						}
-					} else {
+					}
+					else {
 
 						Alert.ShowAlert ("Invalid user signon username or password.", "Login Error");
 					}
@@ -389,7 +402,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 			foreach (People people in list) {
 
-				_databaseService.InsertRelative (people);
+				_databaseService.InsertFBFriend (people);
 			}
 			//			List<People> peopleList = _databaseService.RelativeMatching ("brother");
 			//

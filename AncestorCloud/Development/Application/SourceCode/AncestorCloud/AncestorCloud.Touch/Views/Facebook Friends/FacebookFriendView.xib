@@ -51,7 +51,7 @@
                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="jLJ-sg-dbT">
-                    <rect key="frame" x="5" y="82" width="320" height="603"/>
+                    <rect key="frame" x="5" y="82" width="320" height="390"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>

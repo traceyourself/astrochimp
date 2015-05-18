@@ -15,6 +15,13 @@ namespace AncestorCloud.Shared
 		AuthorisationRequired
 	}
 
+	public enum AlertType
+	{
+		OK,
+		OKCancelPermit,
+		OKCancelSelect
+	}
+
 	static public class AppConstant
 	{
 		#region FB Constants
@@ -97,12 +104,18 @@ namespace AncestorCloud.Shared
 		public const string AVATARINDIOGFNKEY = "avatarOgfn";
 		public const string IMAGETYPEKEY = "ImageType";
 		public const string IMAGESIZEKEY = "ImageSize";
+
 		public const string MEDIA_OGFN = "MediaOGFN";
 		public const string AVATAR_OGFN = "avatarOgfn";
 		public const string IMAGE_TYPE = "ImageType";
 		public const string IMAGE_SIZE = "ImageSize";
 		public const string IMAGE_WIDTH = "200";
 		public const string IMAGE_HEIGHT = "200";
+
+		public const string IMAGESIZE = "100%2c100";
+		public const string CHILDOGFNKEY = "ChildFamilyOgfn";
+
+
 
 		#endregion
 

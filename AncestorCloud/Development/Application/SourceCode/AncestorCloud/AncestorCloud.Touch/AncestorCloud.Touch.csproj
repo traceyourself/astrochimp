@@ -190,6 +190,9 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\180.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\120.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\114.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />

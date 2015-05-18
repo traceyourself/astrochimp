@@ -142,6 +142,9 @@ namespace AncestorCloud.Touch
 			set.Bind (source).To (vm => vm.MatchResultList);
 			set.Bind (FirstPersonName).To (vm => vm.FirstPersonNAME);
 			set.Bind (SecondPersonName).To (vm => vm.SecondPersonNAME);
+
+			//TODO: image not uploaded apply condition:=
+
 			set.Bind (_imageViewLoader).To (vm => vm.FirstPersonURL);
 			set.Bind (_secImageViewLoader).To (vm => vm.SecondPersonURL);
 			set.Bind (DegreeLabel).To (vm => vm.MatchResult.Degrees);//.WithConversion(new RelationshipTextConverter(),null);

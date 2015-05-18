@@ -1,17 +1,47 @@
 ﻿using System;
 using AncestorCloud.Shared;
 using UIKit;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Touch
 {
-	public class IOSAlert:UIAlertViewDelegate,IAlert
+	public class IOSAlert:IAlert
 	{
 		public void ShowAlert (string message, string title)
 		{
-			UIAlertView alert = new UIAlertView (title, message, this, "OK", null);
+			UIAlertView alert = new UIAlertView (title, message, null, "OK", null);
 			alert.Show ();
 		}
 		
+		public void ShowAlertWithOk (string message, string title,AlertType alertType)
+		{
+			UIAlertView alert = new UIAlertView (title, message, null, "OK", null);
+			alert.Delegate = new IOSAlertDelegate ();
+			alert.Tag = (int)alertType;
+			alert.Show ();
+		}
+	}
+
+	public class IOSAlertDelegate:UIAlertViewDelegate
+	{
+		readonly IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
+
+		public override void Clicked (UIAlertView alertview, nint buttonIndex)
+		{
+			switch (buttonIndex) 
+			{
+			case 1:
+				{
+					if((int)alertview.Tag == (int)AlertType.OKCancelPermit)
+						_mvxMessenger.Publish(new CheckFbFriendMessage(this,true));
+
+					if((int)alertview.Tag == (int)AlertType.OKCancelSelect)
+						_mvxMessenger.Publish(new CheckFbFriendMessage(this,true));
+				}
+				break;
+			}
+		}
 	}
 }
 
