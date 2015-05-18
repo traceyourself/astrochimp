@@ -13,9 +13,12 @@ namespace AncestorCloud.Shared
 
 		private ILoader _loader;
 
+		//private readonly IDeveloperLoginService _developerLoginService;
+
 		public SignUpService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+			//_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 		}
 
 		#region ISignUpService implementation
@@ -56,7 +59,19 @@ namespace AncestorCloud.Shared
 				modal.UserEmail = email;
 				//Mvx.Trace("Parced Values : "+modal.Code+" : "+modal.Message+" : "+modal.Value);
 
-				//== 
+				//============>
+
+//				ResponseModel<String> data = await _developerLoginService.DevelopeLogin ();
+//
+//				String sessionID = data.Content;
+//
+//				LoginModel modal = new LoginModel();
+//
+//				modal.UserEmail = email;
+//
+//				modal.Value = sessionID;
+
+				//===========>
 
 				//hit for sign up
 
