@@ -51,13 +51,21 @@ namespace AncestorCloud.Touch
 
 			float constant = 0.88f;
 
-			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
+			if (ViewModel.IsFromSignup) {
 
-			if (width <= 320f)
 				constant = 1.0f;
+			} else {
 
-			if (width >= 375f)
-				constant = 0.80f;
+
+				float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
+
+				if (width <= 320f)
+					constant = 1.0f;
+
+				if (width >= 375f)
+					constant = 0.80f;
+			}
+
 
 
 
