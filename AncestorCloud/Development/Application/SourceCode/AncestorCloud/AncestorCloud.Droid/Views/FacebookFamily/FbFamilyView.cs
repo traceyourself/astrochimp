@@ -48,7 +48,6 @@ namespace AncestorCloud.Droid
 			ApplyActions ();
 		}
 
-
 		protected override void OnResume ()
 		{
 			base.OnResume ();

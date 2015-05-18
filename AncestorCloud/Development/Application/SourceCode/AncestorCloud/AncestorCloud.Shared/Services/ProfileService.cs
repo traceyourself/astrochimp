@@ -40,6 +40,9 @@ namespace AncestorCloud.Shared
 				param[AppConstant.FILETYPEKEY] = AppConstant.FILETYPE;
 				param [AppConstant.MEDIATITLEKEY] = AppConstant.MEDIATITLE;
 			
+				//http://wsdev.onegreatfamily.com/v11.02/Individual.svc/MediaCreate?IndiOgfn=747567208
+				//&FileName=test.png&FileType=png&Title=test&MediaType=AVATAR&sessionId=sx10dccmtw5njgempffdcsey
+
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.UPLOAD_MEDIA_SERVICE,param);
 
 				Mvx.Trace(url);
