@@ -13,6 +13,8 @@ using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
 using Android.Telephony.Gsm;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Droid
 {
@@ -23,6 +25,9 @@ namespace AncestorCloud.Droid
 		ListView contactList;
 		RelativeLayout mePlus;
 		ImageView meImg;
+		private MvxSubscriptionToken inviteContactToken;
+		IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
+		public People SelectedContact;
 
 		public new ContactsViewModel ViewModel
 		{
@@ -43,6 +48,26 @@ namespace AncestorCloud.Droid
 			if(Utilities.CurrentUserimage != null){
 				meImg.SetImageBitmap (Utilities.CurrentUserimage);
 			}
+		}
+
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+			inviteContactToken = _mvxMessenger.Subscribe<InviteContactMessage>(message => this.SendMessage(SelectedContact));
+		}
+
+		protected override void OnPause ()
+		{
+			base.OnPause ();
+			_mvxMessenger.Unsubscribe<InviteContactMessage> (inviteContactToken);
+		}
+
+		public void SendMessage(People contact)
+		{
+			var smsUri = Android.Net.Uri.Parse("smsto:"+contact.Contact);
+			var smsIntent = new Intent (Intent.ActionSendto, smsUri);
+			smsIntent.PutExtra ("sms_body", "Come join Cousin App and see how we're related!");  
+			StartActivity (smsIntent);
 		}
 
 		private void initUI()
@@ -140,10 +165,12 @@ namespace AncestorCloud.Droid
 		}
 
 		public void PopulateMessage(People people){
-			var smsUri = Android.Net.Uri.Parse("smsto:"+people.Contact);
+			mycontObj.SelectedContact = people;
+			mycontObj.ViewModel.CheckContact (people);
+			/*var smsUri = Android.Net.Uri.Parse("smsto:"+people.Contact);
 			var smsIntent = new Intent (Intent.ActionSendto, smsUri);
 			smsIntent.PutExtra ("sms_body", "Come join Cousin App and see how we're related!");  
-			mycontObj.StartActivity (smsIntent);
+			mycontObj.StartActivity (smsIntent);*/
 		}
 	}
 

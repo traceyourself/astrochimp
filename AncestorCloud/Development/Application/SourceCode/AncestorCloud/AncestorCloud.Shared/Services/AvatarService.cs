@@ -15,7 +15,6 @@ namespace AncestorCloud.Shared
 		public AvatarService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
-
 		}
 
 		#region IAvatarService implementation
