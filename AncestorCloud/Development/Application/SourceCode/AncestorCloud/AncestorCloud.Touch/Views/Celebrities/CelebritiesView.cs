@@ -55,6 +55,8 @@ namespace AncestorCloud.Touch
 			UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle ("noImage.png");
 
 			MeImage.SetBackgroundImage (image, UIControlState.Normal);
+
+			this.NavigationController.NavigationBarHidden = false;
 		}
 
 
@@ -82,7 +84,7 @@ namespace AncestorCloud.Touch
 			set.Bind (SearchViewController).To (vm => vm.SearchKey).TwoWay();
 			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
-			this.NavigationController.NavigationBarHidden = false;
+
 
 			MeImage.Layer.CornerRadius = 22f;
 			MeImage.ClipsToBounds = true;
@@ -91,12 +93,17 @@ namespace AncestorCloud.Touch
 
 		public override void ViewWillDisappear (bool animated)
 		{
+			if (NavigationController == null) {
+				base.ViewWillDisappear (animated);
+				return;
+			}
 			if (!NavigationController.ViewControllers.Contains (this)) {
 				var messenger = Mvx.Resolve<IMvxMessenger> ();
 				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
 
 			}
 			base.ViewWillDisappear (animated);
+
 
 		}
 
@@ -118,14 +125,14 @@ namespace AncestorCloud.Touch
 
 		public void ShowAddEvent(Celebrity celebs)
 		{
-			System.Diagnostics.Debug.WriteLine ("ADD BUTTON TAPPED :"  + celebs);
+			
 
 			ViewModel.CelebrityPlusClickHandler(celebs);
 		}
 
 		partial void AddMeButtonTapped (NSObject sender)
 		{
-			System.Diagnostics.Debug.WriteLine("MeButtonTapped");
+			
 
 			ViewModel.MePlusClicked();
 		}

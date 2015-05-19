@@ -481,7 +481,6 @@
     <BundleResource Include="Resources\star_grey%402x.png" />
     <BundleResource Include="Resources\ellipsis.gif" />
     <BundleResource Include="Resources\chevron%402x.png" />
-    <BundleResource Include="Resources\CircleMatcher%402x.png" />
     <BundleResource Include="Resources\Bluebackground.png" />
     <BundleResource Include="Resources\facebook_white%402x.png" />
     <BundleResource Include="Resources\contact_white%402x.png" />
@@ -510,6 +509,7 @@
     <BundleResource Include="Resources\big_img%402x.png" />
     <BundleResource Include="Resources\profile_img.png" />
     <BundleResource Include="Resources\male.png" />
+    <BundleResource Include="Resources\CircleMatcherDot%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />

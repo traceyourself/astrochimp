@@ -124,7 +124,13 @@ namespace AncestorCloud.Shared
 				if(responsemodal.Code.Equals("0")){
 
 					model.IndiOgfn = responsemodal.value;
+
 					responseModel = await AddFamilyMemberRelation(model);
+
+					if(responseModel.Status == ResponseStatus.Fail)
+					{
+						responsemodal.Status = ResponseStatus.Fail;
+					}
 
 				}else{
 					responsemodal.Status = ResponseStatus.Fail;
@@ -136,10 +142,10 @@ namespace AncestorCloud.Shared
 			{
 				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
 				//return CommonConstants.FALSE;
-				ResponseModel<ResponseDataModel> responsemodal = new ResponseModel<ResponseDataModel>();
+				ResponseModel<People> responsemodal = new ResponseModel<People>();
 				responsemodal.Status = ResponseStatus.Fail;
 
-				return responseModel as ResponseModel<People> ;
+				return responsemodal as ResponseModel<People> ;
 			}
 			finally{
 			
@@ -186,14 +192,13 @@ namespace AncestorCloud.Shared
 				ResponseDataModel responsemodal = DataParser.GetAddMemberRelationDetails (dict);
 
 				if(responsemodal.Code.Equals("0")){
-					responseModel = new ResponseModel<People>();
-					responseModel.Content = model;
-					responsemodal.Status = ResponseStatus.OK;	
+					
+					responseModel.Status = ResponseStatus.OK;	
 				}else{
-					responsemodal.Status = ResponseStatus.Fail;
-					responseModel.Content = model;
+					responseModel.Status = ResponseStatus.Fail;
 				}
 
+				responseModel.Content = model;
 				return responseModel as ResponseModel<People> ;
 			}
 			catch(Exception ex)

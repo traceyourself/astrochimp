@@ -115,8 +115,7 @@ namespace AncestorCloud.Touch
 				new UIBarButtonItem(image
 					, UIBarButtonItemStyle.Plain
 					, (sender,args) => {
-						System.Diagnostics .Debug.WriteLine("PAST MATCHER");
-						ViewModel.ShowPastMatches();
+						ViewModel.ShowPastMatchesNoData();
 
 
 					})
@@ -147,8 +146,9 @@ namespace AncestorCloud.Touch
 
 			set.Bind (_imageViewLoader).To (vm => vm.FirstPersonURL);
 			set.Bind (_secImageViewLoader).To (vm => vm.SecondPersonURL);
-			set.Bind (DegreeLabel).To (vm => vm.MatchResult.Degrees);//.WithConversion(new RelationshipTextConverter(),null);
-			//System.Diagnostics.Debug.WriteLine (ViewModel.MatchResultList);
+			set.Bind (DegreeLabel).To (vm => vm.MatchResult.Degrees).WithConversion (new DegreeConverter (), null);
+
+
 			set.Apply ();
 
 			//TODO: Change this condition

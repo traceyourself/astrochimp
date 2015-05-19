@@ -50,9 +50,9 @@ namespace AncestorCloud.Touch
 			[Export ("initWithFrame:")]
 			public CollectionCell (CGRect frame) : base (frame)
 			{
-				BackgroundView = new UIView{BackgroundColor = UIColor.Black};
+				BackgroundView = new UIView{BackgroundColor = UIColor.FromRGB(242,242,242)};
 				Frame = new RectangleF (0f,0f ,240f, 240f);
-				SelectedBackgroundView = new UIView{BackgroundColor = UIColor.Black};
+				SelectedBackgroundView = new UIView{BackgroundColor = UIColor.FromRGB(242,242,242)};
 
 				imageView = new UIImageView (UIImage.FromBundle ("21.png"));
 				imageView.Frame = Frame;

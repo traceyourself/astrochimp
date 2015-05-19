@@ -125,9 +125,10 @@ namespace AncestorCloud.Touch
 
 		void PickerButtonTappedEvent (object sender, EventArgs e)
 		{
-			System.Diagnostics.Debug.WriteLine ("PickerButtonTapped");
 
 			DataItem (sender);
+
+			View.EndEditing (true);
 
 		}
 		#endregion
@@ -237,6 +238,7 @@ namespace AncestorCloud.Touch
 			} else {
 				current = BirthLocationTextField;
 			}
+
 
 			var point = this.View.ConvertRectToView (current.Frame, this.View.Superview);
 

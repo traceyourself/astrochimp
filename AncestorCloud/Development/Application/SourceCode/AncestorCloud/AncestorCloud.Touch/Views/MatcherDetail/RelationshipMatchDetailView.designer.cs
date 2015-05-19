@@ -22,6 +22,9 @@ namespace AncestorCloud.Touch
 		UIKit.UILabel DegreeLabel { get; set; }
 
 		[Outlet]
+		UIKit.UILabel FargeeLabel { get; set; }
+
+		[Outlet]
 		UIKit.UILabel FirstPersonName { get; set; }
 
 		[Outlet]
@@ -32,9 +35,9 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (DegreeLabel != null) {
-				DegreeLabel.Dispose ();
-				DegreeLabel = null;
+			if (FargeeLabel != null) {
+				FargeeLabel.Dispose ();
+				FargeeLabel = null;
 			}
 
 			if (_FirstMatchPic != null) {
@@ -45,6 +48,11 @@ namespace AncestorCloud.Touch
 			if (_SecondMatchPic != null) {
 				_SecondMatchPic.Dispose ();
 				_SecondMatchPic = null;
+			}
+
+			if (DegreeLabel != null) {
+				DegreeLabel.Dispose ();
+				DegreeLabel = null;
 			}
 
 			if (FirstPersonName != null) {
