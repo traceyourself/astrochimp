@@ -129,6 +129,9 @@
     <Compile Include="Services\Interface\IFBFriendLinkService.cs" />
     <Compile Include="Services\FBFriendLinkService.cs" />
     <Compile Include="Entities\CheckFbFriendMessage.cs" />
+    <Compile Include="Services\Interface\IContactLinkService.cs" />
+    <Compile Include="Services\ContactLinkService.cs" />
+    <Compile Include="Entities\SelectContactMessage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

@@ -27,6 +27,8 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private MvxSubscriptionToken checkFbFreindToken;
 
+		private MvxSubscriptionToken selectFbFreindToken;
+
 		IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
 
 		public FacebookFriendViewModel(IDatabaseService  service,IFBFriendLinkService fbService, IAlert alert)
@@ -36,6 +38,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_alert = alert;
 			GetFacebookFriendData ();
 			checkFbFreindToken = _mvxMessenger.SubscribeOnMainThread<CheckFbFriendMessage>(message => this.CheckFriend(message.IsPermited));
+			selectFbFreindToken = _mvxMessenger.SubscribeOnMainThread<SelectFbFriendMessage>(message => this.PeoplePlusClickHandler(FbFriend));
 		}
 
 

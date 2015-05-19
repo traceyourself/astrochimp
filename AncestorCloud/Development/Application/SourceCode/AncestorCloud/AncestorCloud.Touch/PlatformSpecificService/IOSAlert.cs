@@ -14,9 +14,9 @@ namespace AncestorCloud.Touch
 			alert.Show ();
 		}
 		
-		public void ShowAlertWithOk (string message, string title,AlertType alertType)
+		public void ShowAlertWithOk (string message,string title, AlertType alertType)
 		{
-			UIAlertView alert = new UIAlertView (title, message, null, "OK", null);
+			UIAlertView alert = new UIAlertView (title, message, new IOSAlertDelegate (), "Cancel", new string[]{ "OK" });
 			alert.Delegate = new IOSAlertDelegate ();
 			alert.Tag = (int)alertType;
 			alert.Show ();
@@ -37,7 +37,13 @@ namespace AncestorCloud.Touch
 						_mvxMessenger.Publish(new CheckFbFriendMessage(this,true));
 
 					if((int)alertview.Tag == (int)AlertType.OKCancelSelect)
-						_mvxMessenger.Publish(new CheckFbFriendMessage(this,true));
+						_mvxMessenger.Publish(new SelectFbFriendMessage(this));
+
+					if((int)alertview.Tag == (int)AlertType.OKCancelSelectInvite)
+						_mvxMessenger.Publish(new InviteContactMessage(this));
+
+					if((int)alertview.Tag == (int)AlertType.OKCancelSelectContact)
+						_mvxMessenger.Publish(new SelectContactMessage(this));
 				}
 				break;
 			}

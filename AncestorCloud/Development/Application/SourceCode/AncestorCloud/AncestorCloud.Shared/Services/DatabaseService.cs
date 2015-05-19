@@ -24,6 +24,40 @@ namespace AncestorCloud.Shared
 			_connection.CreateTable<Celebrity> ();
 			_connection.CreateTable<LoginModel>();
 		}
+		#region
+
+		public void InsertContact(People contact)
+		{
+			if (contact == null)
+				throw new ArgumentNullException ("contact");
+
+			if (Convert.ToBoolean(IsContactExists(contact.Contact,contact.UserID)))
+				_connection.Update (contact);
+			else
+				_connection.Insert(contact);
+		}
+
+	
+
+		private void UpdateContact(People contact)
+		{
+			if (contact == null)
+				throw new ArgumentNullException ("contact");
+
+			//String query = "UPDATE People SET IndiOgfn='" + contact.IndiOgfn + "', FirstName='" + contact.FirstName + "', LastName='" + contact.LastName+"', MiddleName='" + contact.MiddleName+"' , DateOfBirth='" + contact.DateOfBirth+"' , Email='" + contact.Email+"' , Relation='" + contact.Relation+"' , LoginUserLinkID='" + contact.LoginUserLinkID+"' WHERE Contact='"+contact.Contact+"'";			
+			String query = "UPDATE People SET IndiOgfn='" + contact.IndiOgfn + "' WHERE Contact='"+contact.Contact+"'";			
+			_connection.Query<People> (query);
+		}
+
+			
+		private int IsContactExists(string number, string userID)
+		{
+			int count =  _connection.Table<People>().Where(x => x.Contact.Contains(number) && x.LoginUserLinkID.Contains(userID)).ToList().Count();
+			return count;
+		}
+
+		#endregion
+
 			
 		#region IDatabaseService implementation
 

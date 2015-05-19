@@ -2,37 +2,39 @@
 using Cirrious.CrossCore;
 using System.Net.Http;
 using ModernHttpClient;
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace AncestorCloud.Shared
 {
-	public class IndiDetailService : IIndiDetailService
+	public class ContactLinkService : IContactLinkService
 	{
 		private readonly ILoader _loader;
 
 
-		public IndiDetailService()
+		public ContactLinkService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
 
 		}
 
-		#region IIndiDetailService implementation
+		#region IContactLinkService implementation
 
-		public async System.Threading.Tasks.Task<ResponseModel<LoginModel>> GetIndiDetails (LoginModel login)
+		public async System.Threading.Tasks.Task<ResponseModel<People>> ContactRead (People contact)
 		{
 			_loader.showLoader ();
+
 			try   
 			{
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
-				param[AppConstant.SESSIONID] = login.Value;
-				param[AppConstant.INDIOGFN] = login.IndiOGFN;
 
-				String url = WebServiceHelper.GetWebServiceURL(AppConstant.INDIVIDUAL_READ_SERVICE,param);
+				param[AppConstant.EMAIL] = contact.Email;
+				param[AppConstant.SESSIONID] = contact.SessionId;
+
+				String url = WebServiceHelper.GetWebServiceURL(AppConstant.USEREADSERVICE,param);
 
 				Mvx.Trace(url);
 
@@ -40,11 +42,11 @@ namespace AncestorCloud.Shared
 
 				String res = response.Content.ReadAsStringAsync().Result;
 
-				System.Diagnostics.Debug.WriteLine ("GetIndiDetails response : "+res);
+				System.Diagnostics.Debug.WriteLine ("ContactRead response : "+res);
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
-				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
+				ResponseModel<People> responsemodal = new ResponseModel<People>();
 
 				if(dict.ContainsKey(AppConstant.Message))
 				{
@@ -52,24 +54,25 @@ namespace AncestorCloud.Shared
 					{
 						responsemodal.Status = ResponseStatus.OK;
 
-						login= DataParser.GetIndiReadData(login,dict);
-
+						contact.IndiOgfn = dict[AppConstant.VALUE].ToString();
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
 					}
 				}
 
-				responsemodal.Content= login;
+				responsemodal.Content =  contact;
 
 				return responsemodal;
 			}
 			catch(Exception ex)
 			{
 				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
-				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
+
+				ResponseModel<People> responsemodal = new ResponseModel<People>();
+
 				responsemodal.Status = ResponseStatus.Fail;
-				responsemodal.Content= login;
+
 				return responsemodal;
 			}
 			finally{
