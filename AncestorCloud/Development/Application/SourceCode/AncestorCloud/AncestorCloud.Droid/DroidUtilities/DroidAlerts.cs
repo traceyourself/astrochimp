@@ -29,6 +29,11 @@ namespace AncestorCloud.Droid
 			});
 		}
 
+
+		public void ShowAlertWithOk (string message, string title, AlertType alert)
+		{
+			
+		}
 	}
 }
 

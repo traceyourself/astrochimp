@@ -11,6 +11,8 @@ using Android.Views;
 using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
+using Android.Webkit;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Droid
 {
@@ -21,9 +23,10 @@ namespace AncestorCloud.Droid
 		ActionBar actionBar;
 		LinearLayout contentLayout;
 		RelativeLayout menuLayout;
-		TextView research_help_txt;
+		WebView research_help_WebView;
 		TextView userNameMenu;
 		ImageView userImageMenu;
+		ProgressDialog pd;
 
 		public new ResearchHelpViewModel ViewModel
 		{
@@ -47,13 +50,12 @@ namespace AncestorCloud.Droid
 			ApplyData ();
 		}
 
-
 		private void initUI()
 		{
 			menu = FindViewById<FlyOutContainer> (Resource.Id.flyOutContainerLay);
 			menuLayout = FindViewById<RelativeLayout> (Resource.Id.FlyOutMenu);
 			contentLayout = FindViewById<LinearLayout> (Resource.Id.FlyOutContent);
-			research_help_txt = contentLayout.FindViewById<TextView> (Resource.Id.help_txt);
+			research_help_WebView = contentLayout.FindViewById<WebView> (Resource.Id.help_web_view);
 
 			userNameMenu = menuLayout.FindViewById<TextView> (Resource.Id.user_name_menu);
 			userImageMenu = menuLayout.FindViewById<ImageView> (Resource.Id.user_img_menu);
@@ -67,8 +69,14 @@ namespace AncestorCloud.Droid
 
 			LoginModel modal = ViewModel.GetUserData();
 			userNameMenu.Text = modal.UserEmail;
-		}
 
+			research_help_WebView.Settings.LoadWithOverviewMode = true;
+			research_help_WebView.Settings.UseWideViewPort = true;
+			research_help_WebView.Settings.JavaScriptEnabled = true;
+			research_help_WebView.SetWebViewClient (new  MyWebViewClient (this));
+			research_help_WebView.LoadUrl ("http://www.mocavo.com/");
+
+		}
 
 		private void ApplyActions(){
 
@@ -124,6 +132,43 @@ namespace AncestorCloud.Droid
 			};
 		}
 		#endregion
+
+
+		internal class MyWebViewClient : WebViewClient
+		{
+			ResearchHelpView myObj;
+
+			public MyWebViewClient(ResearchHelpView myObj){
+				this.myObj = myObj;
+			} 
+
+			public override void OnPageStarted (WebView view, string url, Android.Graphics.Bitmap favicon)
+			{
+				base.OnPageStarted (view, url, favicon);
+				try{
+					//myObj.pd = ProgressDialog.Show (myObj,"","Loading...");
+				}catch(Exception e){
+					Mvx.Trace (e.StackTrace);
+				}
+			}
+
+			public override bool ShouldOverrideUrlLoading (WebView view, string url)
+			{
+				view.LoadUrl (url);
+				return true;
+			}
+
+			public override void OnPageFinished (WebView view, string url)
+			{
+				base.OnPageFinished (view, url);
+				try{
+					//myObj.pd.Dismiss();
+				}catch(Exception e){
+					Mvx.Trace (e.StackTrace);
+				}
+			}
+
+		}
 
 	}
 }
