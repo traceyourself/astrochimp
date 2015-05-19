@@ -208,9 +208,10 @@ namespace AncestorCloud.Touch
 		 
 		 void PickerButtonTappedEvent (object sender, EventArgs e)
 		{
-			System.Diagnostics.Debug.WriteLine ("PickerButtonTapped");
 
 			DataItem (sender);
+
+			View.EndEditing (true);
 	
 		}
 		#endregion

@@ -109,7 +109,7 @@
                     <rect key="frame" x="0.0" y="193" width="375" height="476"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Xb-Zc-GQE">
-                            <rect key="frame" x="0.0" y="91" width="375" height="1"/>
+                            <rect key="frame" x="0.0" y="91" width="460" height="1"/>
                             <color key="backgroundColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="CDU-H1-tjI"/>

@@ -53,7 +53,7 @@
                                         <constraint firstAttribute="height" constant="180" id="QMF-y3-JHh"/>
                                         <constraint firstAttribute="width" constant="180" id="fBb-xf-MzX"/>
                                     </constraints>
-                                    <state key="normal" backgroundImage="CircleMatcher.png">
+                                    <state key="normal" backgroundImage="CircleMatcherDot.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -90,7 +90,7 @@
                                         <constraint firstAttribute="height" constant="180" id="KaL-Kp-b8y"/>
                                         <constraint firstAttribute="width" constant="180" id="ofK-Se-0qL"/>
                                     </constraints>
-                                    <state key="normal" backgroundImage="CircleMatcher.png">
+                                    <state key="normal" backgroundImage="CircleMatcherDot.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -179,10 +179,10 @@
         </view>
     </objects>
     <resources>
-        <image name="CircleMatcher.png" width="304" height="304"/>
+        <image name="CircleMatcherDot.png" width="304" height="304"/>
         <image name="blue_btn.png" width="229" height="56"/>
         <image name="blue_cross.png" width="51" height="51"/>
-        <image name="plus_pink.png" width="30" height="30"/>
+        <image name="plus_pink.png" width="41" height="41"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

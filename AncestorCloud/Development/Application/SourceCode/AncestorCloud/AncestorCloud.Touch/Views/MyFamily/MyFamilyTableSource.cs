@@ -126,12 +126,11 @@ namespace AncestorCloud.Touch
 			};
 
 			btn.SetTitle( "   + Add "+ListItems[(int)section].SectionFooter,UIControlState.Normal);
-			btn.SetTitleColor(UIColor.FromRGB(178,45,116),UIControlState.Normal);
+			btn.SetTitleColor(UIColor.FromRGB(40,141,152),UIControlState.Normal);
 			btn.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
 			btn.Font = UIFont.FromName ("Helvetica", 14f);
 
 			btn.TouchUpInside += (object sender, EventArgs e) => {
-				System.Diagnostics.Debug.WriteLine("Add Button Tapped");
 
 				if (FooterClickedDelegate != null) {
 					FooterClickedDelegate (ListItems[(int)section]);

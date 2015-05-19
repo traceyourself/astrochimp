@@ -130,7 +130,7 @@ namespace AncestorCloud.Touch
 					, UIBarButtonItemStyle.Plain
 					, (sender,args) => {
 						ViewModel.ShowPastMatches();
-						System.Diagnostics.Debug.WriteLine("PAST MATCHER");
+
 					})
 				, true);
 
@@ -240,7 +240,7 @@ namespace AncestorCloud.Touch
 				FirstImageView.ClipsToBounds = true;
 				FirstImageView.Hidden = false;
 			} else {
-				FirstImageButton.SetBackgroundImage(UIImage.FromBundle("CircleMatcher.png"),UIControlState.Normal);
+				FirstImageButton.SetBackgroundImage(UIImage.FromBundle("CircleMatcherDot.png"),UIControlState.Normal);
 				FirstImageButton.Layer.CornerRadius = 90f;
 				FirstImageButton.ClipsToBounds = true;
 				FirstCrossButton.Hidden = true;
@@ -265,7 +265,7 @@ namespace AncestorCloud.Touch
 				SecondImageView.ClipsToBounds = true;
 				SecondImageView.Hidden = false;
 			} else {
-				SecondImageButton.SetBackgroundImage(UIImage.FromBundle("CircleMatcher.png"),UIControlState.Normal);
+				SecondImageButton.SetBackgroundImage(UIImage.FromBundle("CircleMatcherDot.png"),UIControlState.Normal);
 				SecondImageButton.Layer.CornerRadius = 90f;
 				SecondImageButton.ClipsToBounds = true;
 				SecondCrossButton.Hidden = true;
@@ -276,7 +276,7 @@ namespace AncestorCloud.Touch
 
 		partial void firstCrossImg (UIKit.UIButton sender)
 		{
-			System.Diagnostics.Debug.WriteLine("CrossButtonTaped");
+			
 			isFirstPersonSelected = false;
 			ViewModel.FirstPersonCeleb = null;
 			ViewModel.FirstPersonPeople = null;
@@ -285,7 +285,7 @@ namespace AncestorCloud.Touch
 
 		partial void secCrossImg (UIKit.UIButton sender)
 		{
-			System.Diagnostics.Debug.WriteLine("CrossButtonTaped");
+			
 			isSecondPersonSelected = false;
 			ViewModel.SecondPersonCeleb = null;
 			ViewModel.SecondPersonPeople = null;

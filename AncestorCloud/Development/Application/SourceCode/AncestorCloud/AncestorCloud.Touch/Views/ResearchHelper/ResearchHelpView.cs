@@ -11,6 +11,9 @@ namespace AncestorCloud.Touch
 {
 	public partial class ResearchHelpView : BaseViewController
 	{
+		UIWebView webView;
+	
+
 		public ResearchHelpView () : base ("ResearchHelpView", null)
 		{
 		}
@@ -27,6 +30,8 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewDidLoad ();
 			SetNavigationbar ();
+
+			OpenWebView ();
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -71,6 +76,25 @@ namespace AncestorCloud.Touch
 				, true);
 
 		}
+
+		public void OpenWebView()
+		{
+			webView = new UIWebView(View.Bounds);			
+			View.AddSubview(webView);
+
+			string url = "https://www.mocavo.com/";
+			webView.LoadRequest (new NSUrlRequest (new NSUrl (url)));
+
+		
+
+
+		}
+
+
+
+
+
+
 	}
 }
 

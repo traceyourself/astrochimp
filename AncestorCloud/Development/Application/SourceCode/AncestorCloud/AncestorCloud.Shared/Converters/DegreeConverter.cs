@@ -3,11 +3,11 @@ using Cirrious.CrossCore.Converters;
 
 namespace AncestorCloud.Shared
 {
-	public class DegreeConverter : MvxValueConverter<String,String>
+	public class DegreeConverter : MvxValueConverter<int,String>
 	{
-		protected override String Convert(String value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		protected override String Convert(int value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
-			return value+"º";
+			return value.ToString()+"º";
 		}
 	}
 }

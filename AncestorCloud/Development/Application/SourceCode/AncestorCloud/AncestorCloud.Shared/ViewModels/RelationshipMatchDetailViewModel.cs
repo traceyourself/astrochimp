@@ -106,6 +106,11 @@ namespace AncestorCloud.Shared.ViewModels
 			//ShowViewModel<NoMatchesViewModel>();
 		}
 
+		public void ShowPastMatchesNoData()
+		{
+			ShowViewModel<NoMatchesViewModel>();
+		}
+
 		#endregion
 
 
