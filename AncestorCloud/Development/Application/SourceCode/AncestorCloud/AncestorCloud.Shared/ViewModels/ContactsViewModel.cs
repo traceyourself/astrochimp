@@ -141,14 +141,16 @@ namespace AncestorCloud.Shared.ViewModels
 
 		void SendMessage(People people)
 		{
-			_smsService.SendSMS (people);
+			if(!Mvx.CanResolve<IAndroidService>()){
+				_smsService.SendSMS (people);
+			}
 		}
 
 		#endregion
 
 		#region Check Contact
 
-		private async void CheckContact(People people)
+		public async void CheckContact(People people)
 		{
 			Contact = people;
 

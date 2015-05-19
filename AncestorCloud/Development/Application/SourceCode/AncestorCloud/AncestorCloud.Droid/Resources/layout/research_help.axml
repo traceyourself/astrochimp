@@ -8,13 +8,8 @@
         android:id="@+id/actionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/help_txt"
+    <WebView
+        android:id="@+id/help_web_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:gravity="center_horizontal"
-        android:padding="20dp" />
+        android:layout_height="match_parent" />
 </LinearLayout>

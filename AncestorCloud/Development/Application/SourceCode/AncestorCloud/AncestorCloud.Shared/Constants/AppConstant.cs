@@ -68,6 +68,11 @@ namespace AncestorCloud.Shared
 		public const string URL = "url";
 		public const string SESSIONID = "SessionId";
 		public const string SUCCESS = "Success";
+		public const string STACKTRACE = "stacktrace";
+		public const string TRUE = "true";
+		public const string FILE_TYPE = "FileType";
+		public const string PNG = "Png";
+
 		#endregion
 
 
@@ -82,11 +87,12 @@ namespace AncestorCloud.Shared
 		public const string ADD_PEOPLE_SERVICE = "Individual.svc/CreateUpdate";
 		public const string ADD_RELATION_SERVICE = "Individual.svc/AddIndiAsRelation";
 		public const string RELATIONSHIP_MATCH_SERVICE = "Individual.svc/RelationshipFind";
-		public const string UPLOAD_MEDIA_SERVICE = "Individual.svc/MediaAdd";
+		public const string UPLOAD_MEDIA_SERVICE = "Individual.svc/MediaCreate";
 		public const string INDIVIDUAL_READ_SERVICE = "Individual.svc/Read";
 		public const string GROUP_CREATE_SERVICE = "Group.svc/Create";
 		public const string FAMILY_CREATE_SERVICE = "Family.svc/Create";
-
+		public const string MEDIA_LISTREAD_SERVICE = "Individual.svc/MediaListRead";
+		public const string AVATAR_IMAGE_SERVICE = "Media.svc/AvatarRead";
 		#endregion
 
 		#region Login Constants
@@ -106,8 +112,17 @@ namespace AncestorCloud.Shared
 		public const string AVATARINDIOGFNKEY = "avatarOgfn";
 		public const string IMAGETYPEKEY = "ImageType";
 		public const string IMAGESIZEKEY = "ImageSize";
+
+		public const string MEDIA_OGFN = "MediaOGFN";
+		public const string AVATAR_OGFN = "avatarOgfn";
+		public const string IMAGE_TYPE = "ImageType";
+		public const string IMAGE_SIZE = "ImageSize";
+		public const string IMAGE_WIDTH = "200";
+		public const string IMAGE_HEIGHT = "200";
+
 		public const string IMAGESIZE = "100%2c100";
 		public const string CHILDOGFNKEY = "ChildFamilyOgfn";
+
 
 
 		#endregion
@@ -175,10 +190,12 @@ namespace AncestorCloud.Shared
 		public const string FILENAMEKEY= "FileName";
 		public const string FILENAME= "ProfilePic.jpg";
 		public const string FILETYPEKEY = "FileType";
+		public const string MEDIATYPEKEY = "MediaType";
+		public const string AVATAR = "AVATAR";
 		public const string FILETYPE = "jpg";
 		public const string MEDIATITLEKEY = "Title";
 		public const string MEDIATITLE = "ProfilePic";
-	
+
 		#endregion
 
 		#region

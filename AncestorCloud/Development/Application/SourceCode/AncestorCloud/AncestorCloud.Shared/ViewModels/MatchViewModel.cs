@@ -96,7 +96,6 @@ namespace AncestorCloud.Shared.ViewModels
 		#region friendList
 		public void ShowFriendList()
 		{
-			System.Diagnostics.Debug.WriteLine ("Tapped:");
 			ShowViewModel<AddFriendViewModel> ();
 		}
 		#endregion

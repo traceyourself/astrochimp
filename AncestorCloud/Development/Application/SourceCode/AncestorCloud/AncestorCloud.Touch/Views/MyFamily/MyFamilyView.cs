@@ -49,16 +49,32 @@ namespace AncestorCloud.Touch
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
+//		public override void ViewWillDisappear (bool animated)
+//		{
+//			if (!NavigationController.ViewControllers.Contains (this)) {
+//				var messenger = Mvx.Resolve<IMvxMessenger> ();
+//				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
+//
+//			}
+//
+//			RemoveMessengers ();
+//			base.ViewWillDisappear (animated);
+//		}
 		public override void ViewWillDisappear (bool animated)
 		{
+			if (NavigationController == null) {
+				base.ViewWillDisappear (animated);
+				return;
+			}
 			if (!NavigationController.ViewControllers.Contains (this)) {
 				var messenger = Mvx.Resolve<IMvxMessenger> ();
 				messenger.Publish (new NavigationBarHiddenMessage (this, true)); 
 
 			}
-
 			RemoveMessengers ();
 			base.ViewWillDisappear (animated);
+
+
 		}
 
 		public override void ViewWillUnload ()
@@ -70,8 +86,10 @@ namespace AncestorCloud.Touch
 
 		public override void ViewWillAppear (bool animated)
 		{
+			this.NavigationController.NavigationBarHidden = false;
 			base.ViewWillAppear (animated);
 			ReloadView ();
+
 		}
 
 		private void ReloadView()
@@ -114,7 +132,7 @@ namespace AncestorCloud.Touch
 			} else {
 				this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,130,20));
 			}
-			this.NavigationController.NavigationBarHidden = false;
+
 		}
 
 		private void AddEvents ()
@@ -181,7 +199,7 @@ namespace AncestorCloud.Touch
 				{
 					grandParentList.Add (item);
 				}
-				if (relation.Contains (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Contains (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Contains ("GreatGrandparent"))
+				if (relation.Contains (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Contains (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Contains ("Great Grandparent"))
 				{
 					greatGrandParentList.Add (item);
 				}
@@ -211,7 +229,7 @@ namespace AncestorCloud.Touch
 
 			TableItem greatGrandParentData= new TableItem ();
 			greatGrandParentData.SectionHeader = "Great Grandparents";
-			greatGrandParentData.SectionFooter = "GreatGrandparent";
+			greatGrandParentData.SectionFooter = "Great Grandparent";
 			greatGrandParentData.DataItems = greatGrandParentList;
 
 			resultList.Add (greatGrandParentData);

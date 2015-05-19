@@ -46,7 +46,7 @@ namespace AncestorCloud.Shared
 				Mvx.Trace("User read response : "+res);
 
 
-				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
+				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);                      
 
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 
@@ -56,12 +56,98 @@ namespace AncestorCloud.Shared
 					{
 						responsemodal.Status = ResponseStatus.OK;
 						model= DataParser.GetUserReadData(model,dict);
+
+						ResponseModel<LoginModel> avatarModel = await CheckIfAvatarAvailable(model);
+						model.AvatarOGFN = avatarModel.Content.AvatarOGFN;
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
 					}
 				}
 					
+				responsemodal.Content= model;
+
+				return responsemodal;
+			}
+			catch(Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
+				//return CommonConstants.FALSE;
+				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
+				responsemodal.Status = ResponseStatus.Fail;
+
+				return responsemodal;
+			}
+			finally{
+
+				_loader.hideLoader();
+			}
+
+		}
+
+		//Get User Avatar Info
+		public async Task<ResponseModel<LoginModel>> CheckIfAvatarAvailable(LoginModel model)
+		{
+			_loader.showLoader ();
+			try   
+			{
+				HttpClient client = new HttpClient(new NativeMessageHandler());
+				client.DefaultRequestHeaders.Add("Accept","application/json");
+
+				Dictionary <string,string> param = new Dictionary<string, string>();
+
+				param[AppConstant.SESSIONID]=model.Value;
+				param[AppConstant.INDIOGFN]=model.IndiOGFN;
+				param[AppConstant.MEDIATYPEKEY]=AppConstant.AVATAR;
+				param[AppConstant.STACKTRACE]=AppConstant.TRUE;
+
+				String url = WebServiceHelper.GetWebServiceURL(AppConstant.MEDIA_LISTREAD_SERVICE,param);
+
+				Mvx.Trace(url);
+
+				var response = await client.GetAsync(url);
+
+				String res = response.Content.ReadAsStringAsync().Result;
+
+				Mvx.Trace("Check media list response : "+res);
+
+				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
+
+				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
+
+				if(dict.ContainsKey(AppConstant.Message))
+				{
+					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
+					{
+						LoginModel avatarModel = DataParser.GetAvatarAvailabiltyData(dict);
+						if(avatarModel.AvatarOGFN != null)
+						{
+							model.AvatarOGFN = avatarModel.AvatarOGFN;
+
+							//http://wsdev.onegreatfamily.com/v11.02/Media.svc/AvatarRead?avatarOgfn=267861&ImageType=png&
+							//ImageSize=100%2c120&sessionId=duujwkoj2gfftdq2jdp4yd3e&stacktrace
+							/*
+							Dictionary <string,string> avatarParam = new Dictionary<string, string>();
+
+							avatarParam[AppConstant.SESSIONID]=model.Value;
+							avatarParam[AppConstant.AVATAR_OGFN]=avatarModel.AvatarOGFN;
+							avatarParam[AppConstant.IMAGE_TYPE]=AppConstant.PNG;
+							avatarParam[AppConstant.IMAGE_SIZE]="200"+"%2c"+"200";
+							avatarParam[AppConstant.STACKTRACE]=AppConstant.TRUE;
+
+							String AvatarUrl = WebServiceHelper.GetWebServiceURL(AppConstant.MEDIA_LISTREAD_SERVICE,param);
+							Mvx.Trace("Avatar URL : "+AvatarUrl);
+
+							model.AvatarURL = AvatarUrl;*/
+
+							responsemodal.Status = ResponseStatus.OK;
+						}
+					}else
+					{
+						responsemodal.Status = ResponseStatus.Fail;
+					}
+				}
+
 				responsemodal.Content= model;
 
 				return responsemodal;
@@ -82,6 +168,8 @@ namespace AncestorCloud.Shared
 			}
 
 		}
+		//Get Avatar Info ===============
+
 	}
 }
 

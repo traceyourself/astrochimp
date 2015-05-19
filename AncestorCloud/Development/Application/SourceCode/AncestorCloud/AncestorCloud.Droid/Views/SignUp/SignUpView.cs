@@ -86,10 +86,16 @@ namespace AncestorCloud.Droid
 			termsDialog.SetContentView (Resource.Layout.terms_dialog);
 
 			RelativeLayout crossbtn = termsDialog.FindViewById<RelativeLayout> (Resource.Id.cross_edit_btn);
+			TextView termsdesc = termsDialog.FindViewById<TextView> (Resource.Id.termsdesc_txt);
 
 			crossbtn.Click += (object sender, EventArgs e) => {
 				termsDialog.Dismiss();
 			};
+
+			termsdesc.Text = Resources.GetString (Resource.String.terms_first)+"\n"
+							+Resources.GetString (Resource.String.terms_sec)+"\n"
+							+Resources.GetString (Resource.String.terms_third)+"\n"
+							+Resources.GetString (Resource.String.terms_fourth);
 
 			termsDialog.Show ();
 		}
@@ -101,7 +107,6 @@ namespace AncestorCloud.Droid
 												ClientSecret = AppConstant.FBAPISECRETKEY,
 												Scope = AppConstant.FBSCOPE
 												};
-
 
 			var authIntent = facebook.GetAuthenticateUI (this, accounts => {
 

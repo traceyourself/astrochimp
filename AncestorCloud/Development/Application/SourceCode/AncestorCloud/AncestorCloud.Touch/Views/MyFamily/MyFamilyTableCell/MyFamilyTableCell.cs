@@ -51,7 +51,6 @@ namespace AncestorCloud.Touch
 
 		partial void EditButtonTapped(NSObject sender)
 		{
-			System.Diagnostics.Debug.WriteLine ("Button Tapped");
 
 //			if(EditButtonClicked!=null)
 //			{

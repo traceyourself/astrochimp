@@ -76,7 +76,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="centerX" secondItem="9bW-GB-Tbs" secondAttribute="centerX" constant="-5.5" id="8mU-ls-CO3"/>
                                 <constraint firstAttribute="height" constant="480" id="K1o-EK-VqX"/>
@@ -101,7 +101,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="aBw-y9-wcK" secondAttribute="bottom" id="Be6-hg-DcU"/>
                 <constraint firstItem="aBw-y9-wcK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SD9-mB-TCv"/>

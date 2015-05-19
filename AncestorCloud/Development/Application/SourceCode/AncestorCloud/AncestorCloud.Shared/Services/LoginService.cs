@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 
-
 namespace AncestorCloud.Shared
 {
 	public class LoginService : ILoginService
@@ -65,6 +64,8 @@ namespace AncestorCloud.Shared
 					{
 						userReadResponse = await _userReadService.MakeUserReadService(modal);
 						userReadResponse.Status = ResponseStatus.OK;
+
+
 					}else
 					{
 						userReadResponse.Status = ResponseStatus.Fail;
@@ -90,11 +91,9 @@ namespace AncestorCloud.Shared
 		}
 		#endregion
 
-
-
 		#region my region
-
-
+		//http://ws.corp.local/v11.02/Individual.svc/MediaListRead?IndiOgfn=747567208&MediaType=AVATAR
+		//&sessionId=gaaw1krq0mm350bioal0suv2&stacktrace=true
 		#endregion
 
 	}
