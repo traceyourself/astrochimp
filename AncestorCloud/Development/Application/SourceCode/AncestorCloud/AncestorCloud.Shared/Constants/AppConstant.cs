@@ -19,7 +19,9 @@ namespace AncestorCloud.Shared
 	{
 		OK,
 		OKCancelPermit,
-		OKCancelSelect
+		OKCancelSelect,
+		OKCancelSelectContact,
+		OKCancelSelectInvite
 	}
 
 	static public class AppConstant
@@ -29,6 +31,12 @@ namespace AncestorCloud.Shared
 		public const string FBAPISECRETKEY = "659bacca4a45654358bb632f5607eeb0";//141797ed935391946dd464c525495a0b//659bacca4a45654358bb632f5607eeb0
 		public const string FBSCOPE = "email,publish_actions,user_birthday,user_friends,user_relationships";
 		public const string FRIENDKEY = "friend";
+		#endregion
+
+		#region Contact Constants
+
+		public const string CONTACTKEY = "DeviceContact";
+
 		#endregion
 
 		#region Google Analytics Constants
@@ -145,6 +153,7 @@ namespace AncestorCloud.Shared
 	
 		#region ADD PERSON Relation
 		public const string ADD_RELATION_INDIOGFN = "RelatedIndiOgfn";
+		public const string FAMOGFNKEY = "FamilyOgfn";
 		public const string ADD_RELATION_TYPE = "RelationshipType";
 
 		public const string FATHER_RELATIONSHIP = "FATHER_RELATIONSHIP";

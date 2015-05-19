@@ -6,15 +6,16 @@ using System.Linq;
 using CoreFoundation;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Touch
 {
 	public class IOSContactService : IContactService
 	{
-		
 
 		public IOSContactService ()
 		{
+
 		}
 
 		private List<People> contactList = new List<People> ();
@@ -91,6 +92,7 @@ namespace AncestorCloud.Touch
 
 		private People GetContact(ABPerson person)
 		{
+
 			People contact = new People ();
 
 			contact.FirstName = person.FirstName;
@@ -99,6 +101,7 @@ namespace AncestorCloud.Touch
 			contact.DateOfBirth = (person.Birthday != null) ? person.Birthday.ToString() : String.Empty;
 			contact.Email = (person.GetEmails().Count > 0) ? person.GetEmails ().ElementAt (0).Value.ToString() : String.Empty;
 			contact.Contact = (person.GetPhones().Count > 0) ? person.GetPhones ().ElementAt (0).Value.ToString() : String.Empty;
+
 			return contact;
 		}
 		#endregion

@@ -20,6 +20,9 @@ namespace AncestorCloud.Shared
 
 		void InsertFBFriend (People relative);
 
+
+		void InsertContact(People contact);
+
 		void InsertLoginDetails (LoginModel login);
 		LoginModel GetLoginDetails ();
 
