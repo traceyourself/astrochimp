@@ -26,6 +26,11 @@ namespace AncestorCloud.Droid
 			return content;
 		}
 
+		public string GetDatabasePath (string DbName)
+		{
+			return null;
+		}
+
 		#endregion
 	}
 }
