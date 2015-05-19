@@ -30,6 +30,8 @@ namespace AncestorCloud.Shared
 
 					member.LoggedinUserINDIOFGN = loginData.IndiOGFN;
 
+					member.LoggedinUserFAMOFGN = loginData.FamOGFN;
+
 					ResponseModel<People> response=  await _addFamilyService.AddFamilyMember (member);
 
 					if (response.Status == ResponseStatus.OK) {

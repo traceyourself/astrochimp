@@ -13,9 +13,8 @@ namespace AncestorCloud.Shared
 		public string LoggedinUserOFGN{ get; set;}
 		[Ignore]
 		public string LoggedinUserINDIOFGN{ get; set;}
-
-
-
+		[Ignore]
+		public string LoggedinUserFAMOFGN{ get; set;}
 	}
 }
 

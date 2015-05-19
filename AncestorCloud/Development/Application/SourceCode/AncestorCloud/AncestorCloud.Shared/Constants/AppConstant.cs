@@ -130,6 +130,7 @@ namespace AncestorCloud.Shared
 	
 		#region ADD PERSON Relation
 		public const string ADD_RELATION_INDIOGFN = "RelatedIndiOgfn";
+		public const string FAMOGFNKEY = "FamilyOgfn";
 		public const string ADD_RELATION_TYPE = "RelationshipType";
 
 		public const string FATHER_RELATIONSHIP = "FATHER_RELATIONSHIP";
