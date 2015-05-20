@@ -46,6 +46,15 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewWillAppear (animated);
 
+			float width =  (float) UIScreen.MainScreen.ApplicationFrame.Width;
+
+			if (width > 320f) {
+				CGRect frame = NextButton.Frame;
+				frame.X = 97f;
+				NextButton.Frame = frame;
+
+			}
+
 //			CGRect frame = this.View.Frame;
 //			frame.Width = UIScreen.MainScreen.ApplicationFrame.Width;
 //			this.View.Frame = frame;
