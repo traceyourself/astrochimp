@@ -321,7 +321,7 @@ namespace AncestorCloud.Touch
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			this.View.BackgroundColor = UIColor.FromRGB (0, 0, 0);
+			this.View.BackgroundColor = UIColor.FromRGB (242,242,242);
 		}
 
 

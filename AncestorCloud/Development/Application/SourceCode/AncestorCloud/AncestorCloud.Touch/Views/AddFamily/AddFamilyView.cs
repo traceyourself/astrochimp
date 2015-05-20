@@ -88,7 +88,7 @@ namespace AncestorCloud.Touch
 			set.Bind (LastNameTextField).To (vm => vm.LastName);
 			set.Bind (BirthLocationTextField).To (vm => vm.BirthLocation);
 			//set.Bind (PickerButtonTapped).For( b => b.TitleLabel.Text).To(vm => vm.BirthDate);
-			set.Bind(PickerButtonTapped).For("Title").To(vm => vm.BirthDate);
+			set.Bind(PickerLabel).To(vm => vm.BirthDate).TwoWay();
 			//TODO: birth year
 			set.Bind (GenderSegmentControl).For(l => l.SelectedSegment).To (vm => vm.Gender).WithConversion(new GenderTextConverter(),null).TwoWay();
 			set.Bind (AddButton).To (vm => vm.AddPersonCommand);
@@ -216,7 +216,9 @@ namespace AncestorCloud.Touch
 
 		void SetBirthButtonText(string title)
 		{
-			PickerButtonTapped.SetTitle (title, UIControlState.Normal);
+//			pickerl.SetTitle (title, UIControlState.Normal);
+			PickerLabel.Text= title;
+			ViewModel.BirthDate = title;
 		}
 
 
