@@ -75,7 +75,12 @@ namespace AncestorCloud.Shared
 		public const string FILE_TYPE = "FileType";
 		public const string PNG = "Png";
 
+		public const string FAMILY_OGFN = "famogfn";
+		public const string CHILDREN_OGFN = "ChildrenOgfns";
+
 		#endregion
+
+
 
 
 		#region Webservice URL Constants
@@ -95,6 +100,9 @@ namespace AncestorCloud.Shared
 		public const string FAMILY_CREATE_SERVICE = "Family.svc/Create";
 		public const string MEDIA_LISTREAD_SERVICE = "Individual.svc/MediaListRead";
 		public const string AVATAR_IMAGE_SERVICE = "Media.svc/AvatarRead";
+
+		public const string FAMILY_READ_SERVICE = "Family.svc/Read";
+
 		#endregion
 
 		#region Login Constants
@@ -125,8 +133,14 @@ namespace AncestorCloud.Shared
 		public const string IMAGESIZE = "100%2c100";
 		public const string CHILDOGFNKEY = "ChildFamilyOgfn";
 
-
-
+		public const string BIRTH_DATE = "BirthDate";
+		public const string BIRTH_PLACE = "BirthPlace";
+		public const string INDI_GENDER = "Gender";
+		public const string INDI_NAME = "Name";
+		public const string INDI_GIVEN_NAME = "GivenName";
+		public const string INDI_MIDDLE_NAME = "MiddleNames";
+		public const string INDI_SURNAME = "Surname";
+		public const string INDI_NAME2 = "Name2";
 		#endregion
 
 

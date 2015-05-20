@@ -86,9 +86,9 @@ namespace AncestorCloud.Touch
 		{
 			string[] array = new string[4];
 			array [0] = "21.png";
-			array [1] = "noImage.png";
-			array [2] = "21.png";
-			array [3] = "noImage.png";
+			array [1] = "CollectionView1.png";
+			array [2] = "CollectionView2.png";
+			array [3] = "CollectionView3.png";
 
 			return array;
 		}

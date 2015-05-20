@@ -515,6 +515,9 @@
     <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\splash.png" />
+    <BundleResource Include="Resources\CollectionView1%402x.png" />
+    <BundleResource Include="Resources\CollectionView2%402x.png" />
+    <BundleResource Include="Resources\CollectionView3%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />
@@ -526,7 +529,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
+    <ITunesArtwork Include="iTunesArtwork" />
   </ItemGroup>
 </Project>
