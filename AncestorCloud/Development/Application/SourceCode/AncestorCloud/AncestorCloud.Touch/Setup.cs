@@ -5,6 +5,9 @@ using UIKit;
 using Cirrious.MvvmCross.Touch.Views.Presenters;
 using Cirrious.CrossCore;
 using AncestorCloud.Shared;
+using Cirrious.MvvmCross.Binding.Bindings.Target.Construction;
+using System;
+using Cirrious.MvvmCross.Binding.BindingContext;
 
 namespace AncestorCloud.Touch
 {
@@ -42,5 +45,24 @@ namespace AncestorCloud.Touch
 
 			base.InitializeFirstChance();
 		}
+
+		protected override void FillBindingNames(Cirrious.MvvmCross.Binding.BindingContext.IMvxBindingNameRegistry registry)
+		{
+			// use these to register default binding names
+			//registry.AddOrOverwrite<NicerBinaryEdit>(be => be.MyCount);
+
+			base.FillBindingNames(registry);
+		}
+
+		protected override void FillTargetFactories(Cirrious.MvvmCross.Binding.Bindings.Target.Construction.IMvxTargetBindingFactoryRegistry registry)
+		{
+			
+			registry.RegisterCustomBindingFactory<UIButton>("Title",button => new MvxUIButtonTitleTargetBinding(button));
+			//registry.RegisterFactory(new MvxSimplePropertyInfoTargetBindingFactory(typeof(String),typeof(UIButton),"Title"));
+
+			base.FillTargetFactories(registry);
+		}
+
+
 	}
 }

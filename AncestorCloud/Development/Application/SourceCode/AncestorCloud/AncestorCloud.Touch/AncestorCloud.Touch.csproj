@@ -397,6 +397,7 @@
     <Compile Include="Views\FlyOut\CustomView\ProfileCellView.designer.cs">
       <DependentUpon>ProfileCellView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomBinding\MvxUIButtonTitleTargetBinding.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -428,7 +429,7 @@
     <Folder Include="Views\Celebrities\" />
     <Folder Include="Views\Celebrities\CelebritiesCell\" />
  feature/Working_Flow
-  <Folder Include="Views\Help\" /><Folder Include="Views\Facebook Friends\" /><Folder Include="Views\Facebook Friends\FacebookFriendCell\" /><Folder Include="Views\Contacts\" /><Folder Include="Views\Contacts\ContactsCell\" /><Folder Include="Views\NoMatches\" /><Folder Include="Views\MatcherDetail\MatcherDetailCell\" /><Folder Include="Views\ProfilePic\" /><Folder Include="Views\T&amp;C\" /><Folder Include="Views\FlyOut\CustomView\" /></ItemGroup>
+  <Folder Include="Views\Help\" /><Folder Include="Views\Facebook Friends\" /><Folder Include="Views\Facebook Friends\FacebookFriendCell\" /><Folder Include="Views\Contacts\" /><Folder Include="Views\Contacts\ContactsCell\" /><Folder Include="Views\NoMatches\" /><Folder Include="Views\MatcherDetail\MatcherDetailCell\" /><Folder Include="Views\ProfilePic\" /><Folder Include="Views\T&amp;C\" /><Folder Include="Views\FlyOut\CustomView\" /><Folder Include="CustomBinding\" /></ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="flyoutnavigation">
       <Version>1.5.1</Version>
