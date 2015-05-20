@@ -171,7 +171,7 @@ namespace AncestorCloud.Shared
 
 		public List<People> GetFamily(User user)
 		{
-			List<People> list = _connection.Query<People> ("select * from People where Relation NOT LIKE '%friend%' AND LoginUserLinkID = '"+user.Email+"'");
+			List<People> list = _connection.Query<People> ("select * from People where Relation NOT LIKE '%friend%' AND Tag = '"+AppConstant.FBTAGKEY+"' AND LoginUserLinkID = '"+user.Email+"'");
 			return list;
 		}
 

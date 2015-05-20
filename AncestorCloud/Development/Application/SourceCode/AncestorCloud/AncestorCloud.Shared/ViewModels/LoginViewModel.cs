@@ -418,7 +418,7 @@ namespace AncestorCloud.Shared.ViewModels
 			ResponseStatus status = await _facebookLinkManager.LinkFaceBookLoginUser ();
 
 			if (status == ResponseStatus.Fail) {
-				Alert.ShowAlert ("Not able to link Facebook user to OGF. Please retry by log-in again", "ERROR");
+				Alert.ShowAlert ("Not able to link Facebook user to OGF. Please log-in again", "ERROR");
 			} else {
 				Login ();
 			}

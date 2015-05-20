@@ -77,6 +77,8 @@ namespace AncestorCloud.Shared
 
 				family.IsSelected = false;
 
+				family.Tag = AppConstant.FBTAGKEY;
+
 				family.LoginUserLinkID = loginFbUser.Email;
 
 				familyList.Add(family);
