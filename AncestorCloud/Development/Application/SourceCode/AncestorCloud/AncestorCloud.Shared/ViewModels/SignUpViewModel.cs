@@ -294,9 +294,16 @@ namespace AncestorCloud.Shared.ViewModels
 									CloseCommand.Execute (null);
 								}
 							}
+						else {
+
+							Alert.ShowAlert ("Error signup user.", "SignUp Error");
+						}
 						}
 
+					else {
 
+						Alert.ShowAlert ("Error signup user.", "SignUp Error");
+					}
 				}
 			}
 		}

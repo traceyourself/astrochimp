@@ -38,8 +38,8 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = Mvx.Resolve<IDatabaseService>();
 			Alert = alert;
 			_facebookLinkManager = new FaceBookLinkManager ();
-			Email = "mikeyamadeo@gmail.com";
-			Password = "password";
+			Email = "kumar.aditya@gmail.com";
+			Password = "pass";
 			_reachabilityService = reachabilty;
 			_groupService = _service;
 			_famService = famService;

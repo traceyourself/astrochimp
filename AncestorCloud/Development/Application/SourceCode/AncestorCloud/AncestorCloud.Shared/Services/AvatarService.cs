@@ -15,11 +15,10 @@ namespace AncestorCloud.Shared
 		public AvatarService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
-
 		}
 
 		#region IAvatarService implementation
-		public async System.Threading.Tasks.Task<ResponseModel<LoginModel>> GetIndiAvatar (LoginModel login)
+		public async System.Threading.Tasks.Task<ResponseModel<LoginModel>> GetIndiAvatar (LoginModel model)
 		{
 			try   
 			{
@@ -27,12 +26,14 @@ namespace AncestorCloud.Shared
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
-				param[AppConstant.SESSIONID] = login.Value;
-				param[AppConstant.AVATARINDIOGFNKEY] = login.AvatarOGFN;
-				param[AppConstant.IMAGETYPEKEY] =AppConstant.FILETYPE;
-				param[AppConstant.IMAGESIZEKEY] =AppConstant.IMAGESIZE;
-	
-				String url = WebServiceHelper.GetWebServiceURL(AppConstant.INDIVIDUAL_READ_SERVICE,param);
+
+				param[AppConstant.SESSIONID]=model.Value;
+				param[AppConstant.AVATAR_OGFN]=model.AvatarOGFN;
+				param[AppConstant.IMAGE_TYPE]=AppConstant.PNG;
+				param[AppConstant.IMAGE_SIZE]="200"+"%2c"+"200";
+				param[AppConstant.STACKTRACE]=AppConstant.TRUE;
+
+				String url = WebServiceHelper.GetWebServiceURL(AppConstant.AVATAR_IMAGE_SERVICE,param);
 
 				Mvx.Trace(url);
 
@@ -51,16 +52,14 @@ namespace AncestorCloud.Shared
 					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
 					{
 						responsemodal.Status = ResponseStatus.OK;
-
 						//login= DataParser.GetIndiReadData(login,dict);
-
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
 					}
 				}
 
-				responsemodal.Content= login;
+				responsemodal.Content= model;
 
 				return responsemodal;
 			}
@@ -69,14 +68,12 @@ namespace AncestorCloud.Shared
 				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 				responsemodal.Status = ResponseStatus.Fail;
-				responsemodal.Content= login;
+				responsemodal.Content= model;
 				return responsemodal;
 			}
 			finally{
-
 				_loader.hideLoader();
 			}
-		
 		}
 		#endregion
 	}

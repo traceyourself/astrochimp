@@ -38,6 +38,7 @@ namespace AncestorCloud.Shared
 				param[AppConstant.INDIOGFN] = login.IndiOGFN;
 				param[AppConstant.FILENAMEKEY] = AppConstant.FILENAME;
 				param[AppConstant.FILETYPEKEY] = AppConstant.FILETYPE;
+				param[AppConstant.MEDIATYPEKEY] = AppConstant.AVATAR;
 				param [AppConstant.MEDIATITLEKEY] = AppConstant.MEDIATITLE;
 			
 				//http://wsdev.onegreatfamily.com/v11.02/Individual.svc/MediaCreate?IndiOgfn=747567208

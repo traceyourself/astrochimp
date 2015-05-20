@@ -18,6 +18,8 @@ namespace AncestorCloud.Shared
 
 		private readonly IFamilyCreateService _famService;
 
+		private readonly IIndiDetailService _indiDetailService;
+
 
 		public FaceBookLinkManager ()
 		{
@@ -27,6 +29,7 @@ namespace AncestorCloud.Shared
 			_fbSignInService = Mvx.Resolve<IFbSigninService>();
 			_groupService = Mvx.Resolve<IGroupCreateService>();
 			_famService = Mvx.Resolve<IFamilyCreateService>();
+			_indiDetailService = Mvx.Resolve<IIndiDetailService>();
 		}
 
 		#region Exposed Methods
@@ -81,6 +84,11 @@ namespace AncestorCloud.Shared
 				return ResponseStatus.Fail;
 
 			loginData = await UserReadService (loginData);
+
+			if (loginData == null)
+				return ResponseStatus.Fail;
+
+			loginData = await GetIndiData (loginData);
 
 			if (loginData == null)
 				return ResponseStatus.Fail;
@@ -168,6 +176,20 @@ namespace AncestorCloud.Shared
 
 			return loginResponse.Content;
 		}
+		#endregion
+
+		#region Group Read method
+
+		private async Task<LoginModel> GetIndiData(LoginModel loginData)
+		{
+			ResponseModel<LoginModel> data = await _indiDetailService.GetIndiDetails (loginData);
+
+			if (data.Status ==ResponseStatus.Fail)
+				return null;
+
+			return data.Content;
+		}
+
 		#endregion
 
 		#region FbSigninLink method

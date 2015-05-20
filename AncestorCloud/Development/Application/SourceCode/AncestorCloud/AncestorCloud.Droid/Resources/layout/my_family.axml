@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@android:color/black">
+    android:background="@android:color/white">
     <AncestorCloud.Droid.ActionBar
         android:id="@+id/actionBar"
         android:layout_width="match_parent"
@@ -17,15 +17,15 @@
             <ImageView
                 android:id="@+id/top_img"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="230dp"
                 android:background="@drawable/img"
-                android:minHeight="260dp" />
+                android:minHeight="200dp" />
             <ImageView
                 android:id="@+id/family_icon"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/family_grey_icon"
                 android:layout_below="@+id/top_img" />
             <TextView
@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:textColor="@color/gray_login_color"
                 android:textSize="19sp"
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:gravity="center"

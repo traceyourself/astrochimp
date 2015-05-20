@@ -228,6 +228,60 @@ namespace AncestorCloud.Shared
 		#endregion
 
 
+		#region Avatar parser
+
+		public static LoginModel GetAvatarAvailabiltyData(Dictionary<string,object> dataDic)
+		{
+			if (ValidationClass.IsDataNull (dataDic)) {
+				Utility.Log ("In GetAvatarAvailabiltyData() data dictionary is null");
+				return null;
+			}
+
+			LoginModel model = new LoginModel ();
+
+			if (IsKeyExist (AppConstant.Message, dataDic)) 
+			{
+				if (! GetData (AppConstant.Message, dataDic).Equals (AppConstant.SUCCESS)) 
+				{
+					return model;
+				}
+			}
+
+			if (IsKeyExist (AppConstant.VALUE, dataDic)) 
+			{
+
+				JArray array = dataDic [AppConstant.VALUE] as JArray;
+
+				List<Dictionary<string, object>> dataArray = array.ToObject<List<Dictionary<string, object>>> ();
+
+				string mediaOgfn = "";
+
+				foreach(Dictionary<string,object> data in dataArray)
+				{
+					if (IsKeyExist (AppConstant.FILE_TYPE, data))
+					{
+						string filetype = GetData (AppConstant.FILE_TYPE, data);
+						if(filetype.Contains("Png") || filetype.Contains("png") || filetype.Contains("Jpeg") || filetype.Contains("jpeg")){
+							if(IsKeyExist (AppConstant.MEDIA_OGFN, data))
+							{
+								mediaOgfn = GetData (AppConstant.MEDIA_OGFN, data);
+								break;
+							}
+						}
+					}
+				}
+			
+				model.AvatarOGFN = mediaOgfn;
+
+				return model;
+			}
+
+			return model;
+		}
+
+
+		#endregion
+
 	
 		#region GetIndiData
 
@@ -264,11 +318,28 @@ namespace AncestorCloud.Shared
 
 			Dictionary<string,object> dict = obj.ToObject<Dictionary<string,object>> ();
 
-			if (IsKeyExist (AppConstant.INDIOGFN, dict))
+			if (IsKeyExist (AppConstant.AVATARINDIOGFN, dict))
 				model.AvatarOGFN = GetData (AppConstant.AVATARINDIOGFN, dict);
 
 			if (IsKeyExist (AppConstant.CHILDOGFNKEY, dict))
 				model.FamOGFN = GetData (AppConstant.CHILDOGFNKEY, dict);
+
+			return model;
+		}
+
+		public static People GetContactData(People model,string key , Dictionary<string,object> data)
+		{
+			if (ValidationClass.IsDataNull (data)) {
+				Utility.Log ("In GetIndiData() data dictionary is null");
+				return null;
+			}
+
+			JObject obj = data [key] as JObject;
+
+			Dictionary<string,object> dict = obj.ToObject<Dictionary<string,object>> ();
+
+			if (IsKeyExist (AppConstant.INDIOGFN, dict))
+				model.IndiOgfn = GetData (AppConstant.INDIOGFN, dict);
 
 			return model;
 		}
