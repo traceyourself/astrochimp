@@ -129,6 +129,18 @@ namespace AncestorCloud.Shared
 			_connection.Insert (relative);
 		}
 
+		public People GetFamilyMember (string indiogfn, string userId)
+		{
+			if (indiogfn == null)
+				throw new ArgumentNullException ("indiogfn");
+
+			if (userId == null)
+				throw new ArgumentNullException ("userId");
+
+			List<People> member =  (List<People>)_connection.Table<People> ().Where(x => x.IndiOgfn.Contains(indiogfn) && x.LoginUserLinkID.Contains(userId)).ToList();
+			return member.Count > 0 ? member[member.Count - 1] : new People();
+		}
+
 
 		public void UpdateRelative (People relative)
 		{

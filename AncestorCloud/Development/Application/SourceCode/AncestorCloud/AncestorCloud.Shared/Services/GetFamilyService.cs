@@ -64,14 +64,26 @@ namespace AncestorCloud.Shared
 				if(datamodal.Code.Equals("0")){
 					try{
 						if(datamodal.value.Length > 0){
+
 							string []OgfnArr = datamodal.value.Split(new char[]{','},100);
-							for(int i=0;i<OgfnArr.Length;i++){
+
+							for(int i=0;i<OgfnArr.Length;i++)
+							{
 								bool doesItExists = Convert.ToBoolean (_databaseService.IsMemberExists(OgfnArr[i],loginModel.UserEmail));
-								if(!doesItExists){
+
+								if(!doesItExists)
+								{
 									ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(OgfnArr[i],loginModel.Value);
+								
 									if(responseM.Status == ResponseStatus.OK){
-										FamilyMembers.Add(responseM.Content);
+										People p = responseM.Content;
+										p.LoginUserLinkID = loginModel.UserEmail;
+										_databaseService.InsertFamilyMember(p);
+										FamilyMembers.Add(p);
 									}
+								}else
+								{
+									FamilyMembers.Add(_databaseService.GetFamilyMember(OgfnArr[i],loginModel.UserEmail));
 								}
 							}
 						}

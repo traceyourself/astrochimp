@@ -20,6 +20,8 @@ namespace AncestorCloud.Touch
 
 		private MvxSubscriptionToken ReloadViewToken;
 
+		private MvxSubscriptionToken LoadViewToken;
+
 		EditFamilyView editFamily;
 		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
 
@@ -88,8 +90,8 @@ namespace AncestorCloud.Touch
 		{
 			this.NavigationController.NavigationBarHidden = false;
 			base.ViewWillAppear (animated);
+			//LoadView ();
 			ReloadView ();
-
 		}
 
 		private void ReloadView()
@@ -98,6 +100,16 @@ namespace AncestorCloud.Touch
 			ViewModel.GetFbFamilyData ();
 			CreateMyFamilyTable ();
 			AddEvents ();
+
+//			ViewModel.GetFamilyMembersFromServer ();
+//			AddEvents ();
+
+		}
+
+		public void LoadView()
+		{
+			CreateMyFamilyTable ();
+
 		}
 
 		#endregion
@@ -140,14 +152,19 @@ namespace AncestorCloud.Touch
 			(myFamilyTable.Source as MyFamilyTableSource).FooterClickedDelegate += ShowAddParents;
 			navigationMenuToken = _messenger.SubscribeOnMainThread<MyTableCellTappedMessage>(message => this.ShowEditFamily(message.FamilyMember));
 			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.ReloadView());
+			LoadViewToken = _messenger.SubscribeOnMainThread<MyFamilyLoadViewMessage>(Message => this.LoadView());
 		}
 
 		void RemoveMessengers()
 		{
 			if(navigationMenuToken != null)
 				_messenger.Unsubscribe<MyTableCellTappedMessage> (navigationMenuToken);
+			
 			if(ReloadViewToken != null)
 				_messenger.Unsubscribe<MyFamilyReloadMessage> (ReloadViewToken);
+
+			if(LoadViewToken != null)
+				_messenger.Unsubscribe<MyFamilyLoadViewMessage> (LoadViewToken);
 
 			if(myFamilyTable.Source != null)
 				(myFamilyTable.Source as MyFamilyTableSource).FooterClickedDelegate -= ShowAddParents;

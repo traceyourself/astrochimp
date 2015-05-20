@@ -22,6 +22,7 @@ namespace AncestorCloud.Shared
 
 		void InsertFamilyMember (People relative);
 		int IsMemberExists (string filter, string userId);
+		People GetFamilyMember (string indiogfn, string userId);
 
 		void InsertContact(People contact);
 
