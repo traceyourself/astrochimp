@@ -118,8 +118,9 @@ namespace AncestorCloud.Shared.ViewModels
 
 			if (listFromServer.Status == ResponseStatus.OK) {
 				List<People> listOfPeople = listFromServer.Content;
-				for(int i=0;i<listOfPeople.Count;i++){
-					_databaseService.InsertFamilyMember (listOfPeople[i]);	
+				foreach (People p in listOfPeople) {
+					p.LoginUserLinkID = login.UserEmail;
+					_databaseService.InsertFamilyMember (p);
 				}
 			} else {
 				

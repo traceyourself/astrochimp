@@ -447,7 +447,11 @@ namespace AncestorCloud.Shared
 					string famOgfns = "";
 					try{
 						for(int i=0;i<childOgfnArr.Count;i++){
-							famOgfns += childOgfnArr[i];
+							if(i==0){
+								famOgfns += childOgfnArr[i];
+							}else{
+								famOgfns += ","+childOgfnArr[i];
+							}
 						}
 					}catch(Exception e){
 						Mvx.Trace(e.StackTrace);

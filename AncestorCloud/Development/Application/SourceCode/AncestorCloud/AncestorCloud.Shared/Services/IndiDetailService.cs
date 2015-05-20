@@ -109,6 +109,7 @@ namespace AncestorCloud.Shared
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
 				ResponseModel<People> responsemodal = new ResponseModel<People>();
+
 				People returnPeopleData = new People();
 
 				if(dict.ContainsKey(AppConstant.Message))

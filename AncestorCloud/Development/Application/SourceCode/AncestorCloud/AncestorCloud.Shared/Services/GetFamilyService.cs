@@ -41,7 +41,7 @@ namespace AncestorCloud.Shared
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.SESSIONID] = model.SessionId;
+				param[AppConstant.SESSIONID] = model.Value ;
 				param[AppConstant.FAMILY_OGFN] = model.FamOGFN;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.FAMILY_READ_SERVICE,param);
@@ -56,7 +56,7 @@ namespace AncestorCloud.Shared
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
-				ResponseDataModel datamodal = DataParser.GetAddMemberDetails (dict);
+				ResponseDataModel datamodal = DataParser.GetFamilyMembers(dict);
 
 				LoginModel loginModel = _databaseService.GetLoginDetails();
 				List<People> FamilyMembers = new List<People>();
@@ -67,8 +67,8 @@ namespace AncestorCloud.Shared
 							string []OgfnArr = datamodal.value.Split(new char[]{','},100);
 							for(int i=0;i<OgfnArr.Length;i++){
 								bool doesItExists = Convert.ToBoolean (_databaseService.IsMemberExists(OgfnArr[i],loginModel.UserEmail));
-								if(doesItExists){
-									ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(OgfnArr[i],model.SessionId);
+								if(!doesItExists){
+									ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(OgfnArr[i],loginModel.Value);
 									if(responseM.Status == ResponseStatus.OK){
 										FamilyMembers.Add(responseM.Content);
 									}
