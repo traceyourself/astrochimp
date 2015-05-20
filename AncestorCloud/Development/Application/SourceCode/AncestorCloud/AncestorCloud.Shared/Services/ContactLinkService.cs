@@ -54,7 +54,8 @@ namespace AncestorCloud.Shared
 					{
 						responsemodal.Status = ResponseStatus.OK;
 
-						contact.IndiOgfn = dict[AppConstant.VALUE].ToString();
+						contact = DataParser.GetContactData(contact,AppConstant.VALUE,dict);
+
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;

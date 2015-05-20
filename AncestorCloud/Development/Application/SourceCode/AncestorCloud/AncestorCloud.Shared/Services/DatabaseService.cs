@@ -38,7 +38,7 @@ namespace AncestorCloud.Shared
 			if (contact == null)
 				throw new ArgumentNullException ("contact");
 
-			if (Convert.ToBoolean(IsContactExists(contact.Contact,contact.UserID)))
+			if (Convert.ToBoolean(IsContactExists(contact.Contact,contact.LoginUserLinkID)))
 				_connection.Update (contact);
 			else
 				_connection.Insert(contact);

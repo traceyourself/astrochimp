@@ -152,6 +152,9 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public async void CheckContact(People people)
 		{
+			LoginModel data = _databaseService.GetLoginDetails ();
+			people.SessionId = data.Value;
+
 			Contact = people;
 
 			if (Contact.IndiOgfn == null) {
@@ -161,7 +164,7 @@ namespace AncestorCloud.Shared.ViewModels
 					ResponseModel<People> friendResponse = await _contactLinkService.ContactRead (Contact);
 
 					if (friendResponse.Status == ResponseStatus.OK) {
-						_databaseService.InsertRelative (Contact);
+						_databaseService.InsertContact (Contact);
 						_alert.ShowAlertWithOk ("Contact added to Ancestor Cloud. Tap Ok to Select", "Success", AlertType.OKCancelSelectContact);
 					} else {
 						//_alert.ShowAlert ("Unable to communicate with Ancestor Cloud", "Error");
@@ -173,7 +176,7 @@ namespace AncestorCloud.Shared.ViewModels
 				}
 			}
 			else {
-
+				this.PeoplePlusClickHandler (Contact);
 			}
 		}
 
