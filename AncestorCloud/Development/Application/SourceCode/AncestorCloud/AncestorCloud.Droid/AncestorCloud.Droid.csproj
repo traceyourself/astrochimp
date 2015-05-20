@@ -13,7 +13,7 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidApplication>True</AndroidApplication>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-    <AssemblyName>AncestorCloud.Droid</AssemblyName>
+    <AssemblyName>Cousin</AssemblyName>
     <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
@@ -157,11 +157,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\Icon.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\Icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\layout\FirstView.axml" />
     <AndroidResource Include="Resources\layout\SplashScreen.axml" />
     <AndroidResource Include="Resources\values\MvxBindingAttributes.xml" />
@@ -231,7 +226,6 @@
     <AndroidResource Include="Resources\layout\matcher_history_list_item.axml" />
     <AndroidResource Include="Resources\layout\past_matches.axml" />
     <AndroidResource Include="Resources\drawable-xxhdpi\img.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\img.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\img.png" />
     <AndroidResource Include="Resources\drawable\family_grey_icon.png" />
     <AndroidResource Include="Resources\drawable\female_check_icon.png" />
@@ -298,13 +292,20 @@
     <AndroidResource Include="Resources\drawable\empty_matcher_img.png" />
     <AndroidResource Include="Resources\drawable\blue_cross.png" />
     <AndroidResource Include="Resources\drawable\match_icon.png" />
-    <AndroidResource Include="Resources\drawable\splash.png" />
     <AndroidResource Include="Resources\drawable\home_slider_img.png" />
     <AndroidResource Include="Resources\drawable\user_plus_img.png" />
     <AndroidResource Include="Resources\drawable\blue_dot.png" />
     <AndroidResource Include="Resources\drawable\gray_dot.png" />
     <AndroidResource Include="Resources\layout\spinner_item.axml" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\img.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable\get_connected.png" />
+    <AndroidResource Include="Resources\drawable\new_cousins.png" />
+    <AndroidResource Include="Resources\drawable\share_Invite.png" />
+    <AndroidResource Include="Resources\drawable\splash.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

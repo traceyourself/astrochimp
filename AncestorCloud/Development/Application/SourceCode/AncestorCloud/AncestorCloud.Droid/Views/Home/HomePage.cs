@@ -66,9 +66,9 @@ namespace AncestorCloud.Droid
 		{
 			int[] images = {
 				Resource.Drawable.home_slider_img,
-				Resource.Drawable.home_slider_img,
-				Resource.Drawable.home_slider_img,
-				Resource.Drawable.home_slider_img
+				Resource.Drawable.get_connected,
+				Resource.Drawable.share_Invite,
+				Resource.Drawable.new_cousins
 			}; 
 
 			ImagePagerAdapter adapter = new ImagePagerAdapter (this,images);
