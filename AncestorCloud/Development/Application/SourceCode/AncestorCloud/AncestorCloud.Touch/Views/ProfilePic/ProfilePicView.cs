@@ -286,13 +286,10 @@ namespace AncestorCloud.Touch
 				AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 				appDelegate.UIImageProfilePic = originalImage;
 
-//				var documentsDirectory = Environment.GetFolderPath
-//					(Environment.SpecialFolder.MyDocuments);
+				var documentsDirectory = Environment.GetFolderPath
+					(Environment.SpecialFolder.MyDocuments);
 
-				var documents = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.CachesDirectory, NSSearchPathDomain.User) [0];
-				string documentsDirectory = documents.ToString();
-
-				string jpgFilename = System.IO.Path.Combine (documentsDirectory, "ProfilePic.jpg");
+				string jpgFilename = System.IO.Path.Combine (documentsDirectory, "../Library/Caches/ProfilePic.jpg");
 				NSData imgData = originalImage.AsJPEG();
 				NSError err = null;
 				if (imgData.Save(jpgFilename, false, out err))
