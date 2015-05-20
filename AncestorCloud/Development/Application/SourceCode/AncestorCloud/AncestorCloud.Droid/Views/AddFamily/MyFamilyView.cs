@@ -61,18 +61,20 @@ namespace AncestorCloud.Droid
 		{
 			base.OnResume ();
 			Utilities.CurrentActiveActivity = this;
+			//For checking after adding a member
 			CreateListAdapter ();
-			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.CreateListAdapter ());
-		}
 
+			//For checking after editing a member
+			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.CreateListAdapter ());
+
+			ViewModel.GetFamilyMembersFromServer ();
+		}
 
 		protected override void OnPause ()
 		{
 			base.OnPause ();
 			_messenger.Unsubscribe<MyFamilyReloadMessage> (ReloadViewToken);
 		}
-
-
 
 		#region customized methods
 		private void InitViews()

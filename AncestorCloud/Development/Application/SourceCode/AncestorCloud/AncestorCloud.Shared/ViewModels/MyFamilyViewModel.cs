@@ -12,6 +12,7 @@ namespace AncestorCloud.Shared.ViewModels
 		private readonly IDatabaseService _databaseService;
 
 		private readonly IAddFamilyService _addService;
+		private readonly IGetFamilyService _getFamilyService;
 
 		private readonly IAlert Alert;
 
@@ -22,7 +23,8 @@ namespace AncestorCloud.Shared.ViewModels
 		public MyFamilyViewModel(IDatabaseService  service, IReachabilityService reachabilty)
 		{
 			_databaseService = service;
-			_addService = Mvx.Resolve<IAddFamilyService>();;
+			_addService = Mvx.Resolve<IAddFamilyService>();
+			_getFamilyService = Mvx.Resolve<IGetFamilyService>();
 			Alert = Mvx.Resolve<IAlert>();;
 			GetFbFamilyData ();
 			_reachabilityService = reachabilty;
@@ -106,6 +108,26 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 
 		#endregion
+
+
+		#region get FamilyMembers From server
+		public async void GetFamilyMembersFromServer()
+		{
+			LoginModel login = _databaseService.GetLoginDetails ();
+			ResponseModel<List<People>> listFromServer = await _getFamilyService.GetFamilyMembers (login);
+
+			if (listFromServer.Status == ResponseStatus.OK) {
+				List<People> listOfPeople = listFromServer.Content;
+				foreach (People p in listOfPeople) {
+					p.LoginUserLinkID = login.UserEmail;
+					_databaseService.InsertFamilyMember (p);
+				}
+			} else {
+				
+			}
+		}
+		#endregion
+
 
 		#region Close Method
 		public void Close()

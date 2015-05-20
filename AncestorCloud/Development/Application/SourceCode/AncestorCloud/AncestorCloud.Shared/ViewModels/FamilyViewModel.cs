@@ -45,6 +45,7 @@ namespace AncestorCloud.Shared.ViewModels
 			try{
 				data = _databaseService.GetLoginDetails ();
 			}catch(Exception e){
+				Mvx.Trace (e.StackTrace);
 			}
 			return data;
 		}

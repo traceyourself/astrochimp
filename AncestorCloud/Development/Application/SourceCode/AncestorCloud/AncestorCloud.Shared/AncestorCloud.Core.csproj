@@ -133,9 +133,14 @@
     <Compile Include="Services\ContactLinkService.cs" />
     <Compile Include="Entities\SelectContactMessage.cs" />
 
+    <Compile Include="Services\Interface\IGetFamilyService.cs" />
+    <Compile Include="Services\GetFamilyService.cs" />
+
+
     <Compile Include="Converters\CheckboxConverter.cs" />
 
     <Compile Include="Converters\SlashRemoveConverter.cs" />
+
 
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
