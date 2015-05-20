@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Shared
 {
@@ -321,6 +322,9 @@ namespace AncestorCloud.Shared
 			if (IsKeyExist (AppConstant.INDIOGFN, dict))
 				model.AvatarOGFN = GetData (AppConstant.AVATARINDIOGFN, dict);
 
+			if (IsKeyExist (AppConstant.INDI_NAME, dict))
+				model.Name = GetData (AppConstant.INDI_NAME, dict);
+
 			if (IsKeyExist (AppConstant.CHILDOGFNKEY, dict))
 				model.FamOGFN = GetData (AppConstant.CHILDOGFNKEY, dict);
 
@@ -328,9 +332,114 @@ namespace AncestorCloud.Shared
 		}
 
 
+		#endregion
+
+
+		#region family member Indi read
+
+		public static People GetIndiFamilyReadData(Dictionary<string,object> dataDic)
+		{
+			if (ValidationClass.IsDataNull (dataDic)) {
+				Utility.Log ("In GetIndiFamilyReadData() data dictionary is null");
+				return null;
+			}
+
+			People peopleModel = new People ();
+
+			if (IsKeyExist (AppConstant.Message, dataDic)) 
+			{
+				if (! GetData (AppConstant.Message, dataDic).Equals (AppConstant.SUCCESS)) 
+				{
+					return peopleModel;
+				}
+			}
+
+			if (IsKeyExist (AppConstant.VALUE, dataDic))
+				peopleModel = GetIndiFamilyData (peopleModel,AppConstant.VALUE,dataDic);
+
+			return peopleModel;
+		}
+
+		private static People GetIndiFamilyData(People model,string key , Dictionary<string,object> data)
+		{
+			if (ValidationClass.IsDataNull (data)) {
+				Utility.Log ("In GetIndiData() data dictionary is null");
+				return null;
+			}
+
+			JObject obj = data [key] as JObject;
+
+			Dictionary<string,object> dict = obj.ToObject<Dictionary<string,object>> ();
+
+			if (IsKeyExist (AppConstant.INDIOGFN, dict))
+				model.IndiOgfn = GetData (AppConstant.INDIOGFN, dict);
+
+			if (IsKeyExist (AppConstant.INDI_GENDER, dict))
+				model.Gender = GetData (AppConstant.INDI_GENDER, dict);
+
+			if (IsKeyExist (AppConstant.INDI_NAME, dict))
+				model.Name = GetData (AppConstant.INDI_NAME, dict);
+			
+
+			if (IsKeyExist (AppConstant.INDI_NAME2, dict)) {
+				JObject nameObj = dict [AppConstant.INDI_NAME2] as JObject;
+
+				Dictionary<string,object> nameDict = nameObj.ToObject<Dictionary<string,object>> ();
+
+				if (IsKeyExist (AppConstant.INDI_GIVEN_NAME, nameDict))
+					model.FirstName = GetData (AppConstant.INDI_GIVEN_NAME, nameDict);
+
+				if (IsKeyExist (AppConstant.INDI_MIDDLE_NAME, nameDict))
+					model.MiddleName = GetData (AppConstant.INDI_MIDDLE_NAME, nameDict);
+
+				if (IsKeyExist (AppConstant.INDI_SURNAME, nameDict))
+					model.LastName = GetData (AppConstant.INDI_SURNAME, nameDict);
+			}
+
+
+			return model;
+		}
 
 		#endregion
 
+
+		#region get Family member response
+		public static ResponseDataModel GetFamilyMembers(Dictionary<string,object> dataDic)
+		{
+			if (ValidationClass.IsDataNull (dataDic)) {
+				Utility.Log ("In GetFamilyMembers() data dictionary is null");
+				return null;
+			}
+			ResponseDataModel modal = new ResponseDataModel ();
+
+			if (IsKeyExist (AppConstant.CODE, dataDic))
+				modal.Code = GetData (AppConstant.CODE,dataDic);
+
+			if (IsKeyExist (AppConstant.Message, dataDic)) 
+				modal.Message = GetData (AppConstant.Message, dataDic);
+
+			if (IsKeyExist (AppConstant.VALUE, dataDic)) {
+				JObject injob = dataDic [AppConstant.VALUE] as JObject;
+				Dictionary<string, object> dataArray = injob.ToObject<Dictionary<string, object>> ();
+
+				if(IsKeyExist(AppConstant.CHILDREN_OGFN,dataArray)){
+					JArray inArr = dataArray [AppConstant.CHILDREN_OGFN] as JArray;
+					List<string> childOgfnArr = inArr.ToObject<List<string>> ();
+					string famOgfns = "";
+					try{
+						for(int i=0;i<childOgfnArr.Count;i++){
+							famOgfns += childOgfnArr[i];
+						}
+					}catch(Exception e){
+						Mvx.Trace(e.StackTrace);
+					}
+					modal.value = famOgfns;
+				}
+			}
+
+			return modal;
+		}
+		#endregion
 
 
 		#region helper Methods

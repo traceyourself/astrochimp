@@ -227,16 +227,9 @@ namespace AncestorCloud.Droid
 				holder = (MatchedViewHolder)convertView.GetTag (Resource.Id.add_family_list);
 			}
 
-			/*if (position == 5) {
-				holder.common_txt.Visibility = ViewStates.Visible;
-				holder.mainContainer.SetBackgroundColor (Color.ParseColor("#94C4EC"));
-			} else {
-				holder.common_txt.Visibility = ViewStates.Gone;
-				holder.mainContainer.SetBackgroundColor (Color.Transparent);
-			}*/
-
 			if(dataList[position].CommonResult != null){
-				holder.username.Text = dataList [position].CommonResult.Name;
+				string name = dataList [position].CommonResult.Name;
+				holder.username.Text = name.Replace ("/","");
 				holder.percent_right.Text = dataList [position].Degrees+"º";
 				holder.year.Text = "";
 

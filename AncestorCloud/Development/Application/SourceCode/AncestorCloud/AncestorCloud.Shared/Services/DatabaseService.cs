@@ -111,6 +111,18 @@ namespace AncestorCloud.Shared
 		}
 
 
+		public void InsertFamilyMember (People relative)
+		{
+			if (relative == null)
+				throw new ArgumentNullException ("relative");
+
+			if (Convert.ToBoolean (IsMemberExists (relative.IndiOgfn, relative.LoginUserLinkID)))
+				return;
+
+			_connection.Insert (relative);
+		}
+
+
 		public void UpdateRelative (People relative)
 		{
 			if (relative == null)
@@ -167,7 +179,6 @@ namespace AncestorCloud.Shared
 			List<People> list = _connection.Query<People> ("select * from People where Relation NOT LIKE '%friend%' AND LoginUserLinkID = '"+user.Email+"'");
 			return list;
 		}
-
 
 		public void InsertLoginDetails (LoginModel login)
 		{
@@ -307,11 +318,14 @@ namespace AncestorCloud.Shared
 			return Convert.ToBoolean( count);
 		}
 
+		public int IsMemberExists(string filter, string userId)
+		{
+			int count =  _connection.Table<People>().Where(x => x.IndiOgfn.Contains(filter) && x.LoginUserLinkID.Contains(userId)).ToList().Count();
+			return count;
+		}
+
 		#endregion
 
-
-
-		
 	}
 }
 
