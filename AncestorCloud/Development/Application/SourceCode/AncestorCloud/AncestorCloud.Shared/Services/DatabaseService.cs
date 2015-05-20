@@ -10,9 +10,16 @@ namespace AncestorCloud.Shared
 	{
 		private readonly ISQLiteConnection _connection;
 
-		public DatabaseService(ISQLiteConnectionFactory factory)
+		public DatabaseService(ISQLiteConnectionFactory factory,IFileService _file)
 		{
-			_connection = factory.Create("database.db");
+			string DbName = "database.db";
+
+			if (!Mvx.CanResolve<IAndroidService> ()) {
+				
+				DbName = _file.GetDatabasePath (DbName);
+			}
+
+			_connection = factory.Create(DbName);
 
 			CreateTables ();
 		}

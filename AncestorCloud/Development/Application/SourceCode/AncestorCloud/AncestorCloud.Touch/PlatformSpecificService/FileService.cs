@@ -22,8 +22,10 @@ namespace AncestorCloud.Touch
 
 		public string GetDatabasePath (string DbName)
 		{
-			var documents = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.CachesDirectory, NSSearchPathDomain.User) [0];
-			string documentsDirectory = documents.ToString();
+//			var documents = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.CachesDirectory, NSSearchPathDomain.User) [0];
+//			string documentsDirectory = documents.ToString();
+
+			const string documentsDirectory = "../Library/Caches";
 
 			string dbpath = System.IO.Path.Combine (documentsDirectory,DbName);
 
