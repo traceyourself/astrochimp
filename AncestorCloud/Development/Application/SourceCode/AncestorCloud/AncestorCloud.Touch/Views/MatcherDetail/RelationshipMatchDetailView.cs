@@ -71,6 +71,9 @@ namespace AncestorCloud.Touch
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 
 
+			CenterImage.Layer.CornerRadius = 50f;
+			CenterImage.ClipsToBounds = true;
+
 			_FirstMatchPic.Layer.CornerRadius = 40f;
 			_FirstMatchPic.ClipsToBounds = true;
 //			MvxImageViewLoader _imageViewLoader = new MvxImageViewLoader(() => this._FirstMatchPic);

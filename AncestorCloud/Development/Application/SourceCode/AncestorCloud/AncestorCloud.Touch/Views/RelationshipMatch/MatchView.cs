@@ -235,6 +235,8 @@ namespace AncestorCloud.Touch
 				FirstImageButton.ClipsToBounds = true;
 				FirstImageButton.SetBackgroundImage (UIImage.FromFile ("noImage.png"), UIControlState.Normal);
 				FirstCrossButton.Hidden = false;
+
+
 				_imageViewLoader.ImageUrl = firstPersonImage;
 				FirstImageView.Layer.CornerRadius = 90f;
 				FirstImageView.ClipsToBounds = true;

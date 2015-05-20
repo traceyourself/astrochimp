@@ -13,6 +13,7 @@
                 <outlet property="LastNameTextField" destination="xGt-6S-hzU" id="ilW-Gg-xct"/>
                 <outlet property="MiddleNameTextFeild" destination="bQD-3z-XOO" id="Tdk-SU-sI9"/>
                 <outlet property="PickerButtonTapped" destination="3q1-Ac-gMH" id="iTp-wk-qXK"/>
+                <outlet property="PickerLabel" destination="Mcq-mr-ktJ" id="i7Z-db-FmQ"/>
                 <outlet property="container" destination="iN0-l3-epB" id="Zyi-IP-wMt"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
@@ -103,6 +104,13 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mcq-mr-ktJ">
+                            <rect key="frame" x="40" y="241" width="56" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3q1-Ac-gMH">
                             <rect key="frame" x="27" y="238" width="69" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -138,7 +146,7 @@
             </subviews>
             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="206.5" y="216.5"/>
+            <point key="canvasLocation" x="206" y="216"/>
         </view>
     </objects>
     <resources>
