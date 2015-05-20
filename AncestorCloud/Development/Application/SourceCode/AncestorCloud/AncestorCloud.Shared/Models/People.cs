@@ -13,6 +13,8 @@ namespace AncestorCloud.Shared
 		public string Contact { get; set; }
 		public string LoginUserLinkID { get; set; }
 
+		public string Tag { get; set; }
+
 	}
 }
 
