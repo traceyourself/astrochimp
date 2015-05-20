@@ -13,21 +13,98 @@ namespace AncestorCloud.Shared
 
 		private ILoader _loader;
 
-		//private readonly IDeveloperLoginService _developerLoginService;
+		private readonly IDeveloperLoginService _developerLoginService;
 
 		public SignUpService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
-			//_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 		}
 
 		#region ISignUpService implementation
 		public async Task<ResponseModel<LoginModel>> SignUp (string FirstName,string LastName, string email, string password, string developerId, string developerPassword)
 		{
-			_loader.showLoader ();
+			//_loader.showLoader ();
 
 			try
 			{
+//				HttpClient client = new HttpClient(new NativeMessageHandler());
+//				client.DefaultRequestHeaders.Add("Accept","application/json");
+//
+//				//== hit for getting session id
+//				//email = "mikeyamadeo@gmail.com";
+//				//password = "password";
+//
+//				Dictionary <string,string> param = new Dictionary<string, string>();
+//				param[AppConstant.USERNAMEKEY]=AppConstant.DEVUSEREMAIL;
+//				param[AppConstant.PASSWORDKEY]=AppConstant.DEVUSERPASSWORD;
+//				param[AppConstant.DEVELOPERIDKEY]=developerId;
+//				param[AppConstant.DEVELOPERPASSWORDKEY]=developerPassword;
+//
+//				String url = WebServiceHelper.GetWebServiceURL(AppConstant.USERLOGINSERVICE,param);
+//
+//				//String url = "https://wsdev.onegreatfamily.com/v11.02/User.svc/Signin?username="+email+"&Password="+password+"&DeveloperId="+developerId+"&DeveloperPassword="+developerPassword;
+//				Mvx.Trace(url);
+//
+//				var response = await client.GetAsync(url);
+//
+//				string res = response.Content.ReadAsStringAsync().Result;
+//
+//				System.Diagnostics.Debug.WriteLine ("Login response : "+res);
+//
+//				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
+//
+//				LoginModel modal = DataParser.GetLoginDetails (dict);
+//
+//				modal.UserEmail = email;
+				//Mvx.Trace("Parced Values : "+modal.Code+" : "+modal.Message+" : "+modal.Value);
+
+				//============>
+
+				ResponseModel<String> data = await _developerLoginService.DevelopeLogin ();
+
+				String sessionID = data.Content;
+
+				LoginModel modal = new LoginModel();
+
+				modal.UserEmail = email;
+
+				modal.Value = sessionID;
+
+				//===========>
+
+				//hit for sign up
+
+				_loader.showLoader();
+
+				HttpClient signupClient = new HttpClient(new NativeMessageHandler());
+				signupClient.DefaultRequestHeaders.Add("Accept","application/json");
+
+				//url = "https://wsdev.onegreatfamily.com/v11.02/User.svc/Create?SessionId="+modal.Value+"&EmailAddress="+email+"&Password="+password+"&FirstName="+name+"&LastName="+name+"&ProductId="+"Pro_id";
+
+				Dictionary <string,string> paramDic = new Dictionary<string, string>();
+				paramDic[AppConstant.SESSIONID]=modal.Value;
+				paramDic[AppConstant.EMAILKEY]=email;
+				paramDic[AppConstant.FIRSTNAMEKEY]=FirstName;
+				paramDic[AppConstant.LASTNAMEKEY]=LastName;
+				paramDic[AppConstant.PASSWORDKEY]=password;
+				paramDic[AppConstant.PRODUCTIDKEY]=AppConstant.PRODUCTID;
+				paramDic[AppConstant.DEVELOPERIDKEY]=developerId;
+				paramDic[AppConstant.DEVELOPERPASSWORDKEY]=developerPassword;
+
+				string signUpUrl = WebServiceHelper.GetWebServiceURL(AppConstant.USERSIGNINSERVICE,paramDic);
+
+				var signupResponse = await signupClient.GetAsync (signUpUrl);
+
+				String signupRes = signupResponse.Content.ReadAsStringAsync().Result;
+
+				Mvx.Trace("sign up : "+signupRes );
+
+				Dictionary <string,object> signUpDict = JsonConvert.DeserializeObject<Dictionary<string,object>> (signupRes);
+
+				modal = DataParser.GetSignUpDetails(modal,signUpDict);
+
+				//===============================
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
@@ -36,8 +113,8 @@ namespace AncestorCloud.Shared
 				//password = "password";
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
-				param[AppConstant.USERNAMEKEY]=AppConstant.DEVUSEREMAIL;
-				param[AppConstant.PASSWORDKEY]=AppConstant.DEVUSERPASSWORD;
+				param[AppConstant.USERNAMEKEY]=email;
+				param[AppConstant.PASSWORDKEY]=password;
 				param[AppConstant.DEVELOPERIDKEY]=developerId;
 				param[AppConstant.DEVELOPERPASSWORDKEY]=developerPassword;
 
@@ -54,55 +131,22 @@ namespace AncestorCloud.Shared
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
-				LoginModel modal = DataParser.GetLoginDetails (dict);
-
-				modal.UserEmail = email;
-				//Mvx.Trace("Parced Values : "+modal.Code+" : "+modal.Message+" : "+modal.Value);
-
-				//============>
-
-//				ResponseModel<String> data = await _developerLoginService.DevelopeLogin ();
-//
-//				String sessionID = data.Content;
-//
-//				LoginModel modal = new LoginModel();
-//
-//				modal.UserEmail = email;
-//
-//				modal.Value = sessionID;
-
-				//===========>
-
-				//hit for sign up
-
-
-				HttpClient signupClient = new HttpClient(new NativeMessageHandler());
-				signupClient.DefaultRequestHeaders.Add("Accept","application/json");
-
-				//url = "https://wsdev.onegreatfamily.com/v11.02/User.svc/Create?SessionId="+modal.Value+"&EmailAddress="+email+"&Password="+password+"&FirstName="+name+"&LastName="+name+"&ProductId="+"Pro_id";
-
-				Dictionary <string,string> paramDic = new Dictionary<string, string>();
-				paramDic[AppConstant.SESSIONID]=modal.Value;
-				paramDic[AppConstant.EMAILKEY]=email;
-				paramDic[AppConstant.FIRSTNAMEKEY]=FirstName;
-				paramDic[AppConstant.LASTNAMEKEY]=LastName;
-				paramDic[AppConstant.PRODUCTIDKEY]=AppConstant.PRODUCTID;
-				paramDic[AppConstant.DEVELOPERIDKEY]=developerId;
-				paramDic[AppConstant.DEVELOPERPASSWORDKEY]=developerPassword;
-
-				string signUpUrl = WebServiceHelper.GetWebServiceURL(AppConstant.USERSIGNINSERVICE,paramDic);
-
-				var signupResponse = await client.GetAsync (signUpUrl);
-
-				String signupRes = signupResponse.Content.ReadAsStringAsync().Result;
-
-				Mvx.Trace("sign up : "+signupRes );
-				Dictionary <string,object> signUpDict = JsonConvert.DeserializeObject<Dictionary<string,object>> (signupRes);
-
-				modal = DataParser.GetSignUpDetails(modal,signUpDict);
-
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
-				responsemodal.Status = ResponseStatus.OK;
+
+				if(dict.ContainsKey(AppConstant.Message))
+				{
+					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
+					{
+						responsemodal.Status = ResponseStatus.OK;
+
+						modal.Value = dict[AppConstant.VALUE].ToString();
+
+					}else
+					{
+						responsemodal.Status = ResponseStatus.Fail;
+					}
+				}
+
 				responsemodal.Content= modal;
 				return responsemodal;
 			}

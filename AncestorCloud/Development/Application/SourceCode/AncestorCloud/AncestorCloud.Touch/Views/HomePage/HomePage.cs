@@ -82,13 +82,25 @@ namespace AncestorCloud.Touch
 //			this.NavigationItem.SetHidesBackButton (true, false);
 		}
 
+		public string[] Images()
+		{
+			string[] array = new string[4];
+			array [0] = "21.png";
+			array [1] = "noImage.png";
+			array [2] = "21.png";
+			array [3] = "noImage.png";
+
+			return array;
+		}
 
 		public List<ICollectionView> GetData ()
 		{
 			List<ICollectionView> collectionViewList = new List<ICollectionView> ();
 			for (int i = 0; i < 4; i++) {
-				collectionViewList.Add (new PictureLibrary ());
+				collectionViewList.Add (new PictureLibrary (Images()[i]));
 			}
+
+
 
 			return collectionViewList;
 		}

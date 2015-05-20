@@ -31,6 +31,8 @@ namespace AncestorCloud.Shared
 		public const string FBAPISECRETKEY = "659bacca4a45654358bb632f5607eeb0";//141797ed935391946dd464c525495a0b//659bacca4a45654358bb632f5607eeb0
 		public const string FBSCOPE = "email,publish_actions,user_birthday,user_friends,user_relationships";
 		public const string FRIENDKEY = "friend";
+
+		public const string FBTAGKEY = "facebook";
 		#endregion
 
 		#region Contact Constants
@@ -49,7 +51,7 @@ namespace AncestorCloud.Shared
 		#region Web service constants
 		public const string DEVELOPERID = "AncestorCloud";
 		public const string DEVELOPERPASSWORD = "492C4DD9-A129-4146-BAE9-D0D45FBC315C";
-		public const string PRODUCTID = "OGF_YEARLY_TRIAL7";
+		public const string PRODUCTID = "COUSIN_USER";//COUSIN_USER//OGF_YEARLY_TRIAL7
 		public const string DEVUSEREMAIL = "mikeyamadeo@gmail.com";
 		public const string DEVUSERPASSWORD = "password";
 
@@ -83,7 +85,7 @@ namespace AncestorCloud.Shared
 
 		#region Webservice URL Constants
 
-		public const string BASEURL = "https://wsdev.onegreatfamily.com/v11.02";
+		public const string BASEURL = "https://ws.onegreatfamily.com/v11.02";//ws.onegreatfamily.com/v11.02//wsdev.onegreatfamily.com/v11.02
 		public const string USEREADSERVICE = "User.svc/Read";
 		public const string USERSIGNINSERVICE = "User.svc/Create";
 		public const string USERLOGINSERVICE = "User.svc/Signin";

@@ -294,9 +294,16 @@ namespace AncestorCloud.Shared.ViewModels
 									CloseCommand.Execute (null);
 								}
 							}
+						else {
+
+							Alert.ShowAlert ("Error signup user.", "SignUp Error");
+						}
 						}
 
+					else {
 
+						Alert.ShowAlert ("Error signup user.", "SignUp Error");
+					}
 				}
 			}
 		}
@@ -419,7 +426,7 @@ namespace AncestorCloud.Shared.ViewModels
 			ResponseStatus status = await _facebookLinkManager.LinkFaceBookSignUpUser ();
 
 			if (status == ResponseStatus.Fail) {
-				Alert.ShowAlert ("Not able to link Facebook user to OGF. Please retry by Sign-in again", "ERROR");
+				Alert.ShowAlert ("User may already registered. Please try again", "ERROR");
 			} else {
 				SignUp ();
 			}

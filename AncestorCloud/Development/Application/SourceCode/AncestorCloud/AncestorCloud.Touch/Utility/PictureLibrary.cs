@@ -5,8 +5,10 @@ namespace AncestorCloud.Touch
 {
 	public class PictureLibrary :ICollectionView
 	{
-		public PictureLibrary ()
+		string ImageName { get; set;}
+		public PictureLibrary (string name)
 		{
+			ImageName = name;
 		}
 
 		public string Name{
@@ -16,7 +18,8 @@ namespace AncestorCloud.Touch
 		}
 		public UIImage Image{
 			get{
-				return UIImage.FromBundle("21.png");
+				return UIImage.FromBundle(ImageName);
+
 			}
 		}
 	}

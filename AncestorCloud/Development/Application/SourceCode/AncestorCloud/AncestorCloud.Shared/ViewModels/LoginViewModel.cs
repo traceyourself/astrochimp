@@ -38,8 +38,8 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = Mvx.Resolve<IDatabaseService>();
 			Alert = alert;
 			_facebookLinkManager = new FaceBookLinkManager ();
-			Email = "mikeyamadeo@gmail.com";
-			Password = "password";
+			Email = "kumar.aditya@gmail.com";
+			Password = "pass";
 			_reachabilityService = reachabilty;
 			_groupService = _service;
 			_famService = famService;
@@ -418,7 +418,7 @@ namespace AncestorCloud.Shared.ViewModels
 			ResponseStatus status = await _facebookLinkManager.LinkFaceBookLoginUser ();
 
 			if (status == ResponseStatus.Fail) {
-				Alert.ShowAlert ("Not able to link Facebook user to OGF. Please retry by log-in again", "ERROR");
+				Alert.ShowAlert ("Not able to link Facebook user to OGF. Please log-in again", "ERROR");
 			} else {
 				Login ();
 			}

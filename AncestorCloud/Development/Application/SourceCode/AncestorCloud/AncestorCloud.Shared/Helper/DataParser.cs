@@ -78,6 +78,8 @@ namespace AncestorCloud.Shared
 
 				family.IsSelected = false;
 
+				family.Tag = AppConstant.FBTAGKEY;
+
 				family.LoginUserLinkID = loginFbUser.Email;
 
 				familyList.Add(family);
@@ -319,7 +321,7 @@ namespace AncestorCloud.Shared
 
 			Dictionary<string,object> dict = obj.ToObject<Dictionary<string,object>> ();
 
-			if (IsKeyExist (AppConstant.INDIOGFN, dict))
+			if (IsKeyExist (AppConstant.AVATARINDIOGFN, dict))
 				model.AvatarOGFN = GetData (AppConstant.AVATARINDIOGFN, dict);
 
 			if (IsKeyExist (AppConstant.INDI_NAME, dict))
@@ -327,6 +329,23 @@ namespace AncestorCloud.Shared
 
 			if (IsKeyExist (AppConstant.CHILDOGFNKEY, dict))
 				model.FamOGFN = GetData (AppConstant.CHILDOGFNKEY, dict);
+
+			return model;
+		}
+
+		public static People GetContactData(People model,string key , Dictionary<string,object> data)
+		{
+			if (ValidationClass.IsDataNull (data)) {
+				Utility.Log ("In GetIndiData() data dictionary is null");
+				return null;
+			}
+
+			JObject obj = data [key] as JObject;
+
+			Dictionary<string,object> dict = obj.ToObject<Dictionary<string,object>> ();
+
+			if (IsKeyExist (AppConstant.INDIOGFN, dict))
+				model.IndiOgfn = GetData (AppConstant.INDIOGFN, dict);
 
 			return model;
 		}

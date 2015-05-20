@@ -22,7 +22,7 @@ namespace AncestorCloud.Touch
 
 				var set = this.CreateBindingSet<FbFamilyCell, People> ();
 				set.Bind (NameLabel).To (vm => vm.Name);
-				set.Bind(CheckedButtonTapped).For(c => c.Hidden).To(vm => vm.IsSelected );
+				set.Bind(CheckedButtonTapped).For(c => c.Hidden).To(vm => vm.IsSelected ).WithConversion(new CheckboxConverter(),null);
 				set.Bind(RelationLabel).To(vm => vm.Relation).WithConversion(new RelationshipTextConverter(),null);
 				set.Apply ();
 			});

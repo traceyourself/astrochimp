@@ -10,9 +10,16 @@ namespace AncestorCloud.Shared
 	{
 		private readonly ISQLiteConnection _connection;
 
-		public DatabaseService(ISQLiteConnectionFactory factory)
+		public DatabaseService(ISQLiteConnectionFactory factory,IFileService _file)
 		{
-			_connection = factory.Create("database.db");
+			string DbName = "database.db";
+
+			if (!Mvx.CanResolve<IAndroidService> ()) {
+				
+				DbName = _file.GetDatabasePath (DbName);
+			}
+
+			_connection = factory.Create(DbName);
 
 			CreateTables ();
 		}
@@ -31,7 +38,7 @@ namespace AncestorCloud.Shared
 			if (contact == null)
 				throw new ArgumentNullException ("contact");
 
-			if (Convert.ToBoolean(IsContactExists(contact.Contact,contact.UserID)))
+			if (Convert.ToBoolean(IsContactExists(contact.Contact,contact.LoginUserLinkID)))
 				_connection.Update (contact);
 			else
 				_connection.Insert(contact);
@@ -176,7 +183,7 @@ namespace AncestorCloud.Shared
 
 		public List<People> GetFamily(User user)
 		{
-			List<People> list = _connection.Query<People> ("select * from People where Relation NOT LIKE '%friend%' AND LoginUserLinkID = '"+user.Email+"'");
+			List<People> list = _connection.Query<People> ("select * from People where Relation NOT LIKE '%friend%' AND Tag = '"+AppConstant.FBTAGKEY+"' AND LoginUserLinkID = '"+user.Email+"'");
 			return list;
 		}
 

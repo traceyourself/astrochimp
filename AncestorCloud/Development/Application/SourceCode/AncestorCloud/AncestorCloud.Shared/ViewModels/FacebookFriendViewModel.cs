@@ -146,7 +146,7 @@ namespace AncestorCloud.Shared.ViewModels
 		private void GetUserPermission(People friend)
 		{
 			return;
-			//TODO: remove when facebookfriend in linked
+			//TODO: remove when facebookfriend is linked
 
 			FbFriend = friend;
 

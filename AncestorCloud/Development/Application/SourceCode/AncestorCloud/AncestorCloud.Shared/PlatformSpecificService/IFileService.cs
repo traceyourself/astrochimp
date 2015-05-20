@@ -6,6 +6,7 @@ namespace AncestorCloud.Shared
 	public interface IFileService
 	{
 		string GetCelebsDataString ();
+		string GetDatabasePath (string DbName);
 	}
 }
 

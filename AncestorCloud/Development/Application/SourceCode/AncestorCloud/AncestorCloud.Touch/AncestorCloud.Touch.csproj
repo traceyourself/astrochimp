@@ -22,11 +22,11 @@
     <MtouchArch>i386</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Distribution</CodesignKey>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n>
     </MtouchI18n>
-    <CodesignProvision>aba7ba1e-3246-4cbe-983b-8a28c09b217a</CodesignProvision>
+    <CodesignProvision>98eca884-fa05-4583-9af7-fcf32d894e12</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -102,8 +102,11 @@
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>Automatic:AppStore</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>98eca884-fa05-4583-9af7-fcf32d894e12</CodesignProvision>
+    <CodesignKey>iPhone Distribution: ANCESTOR CLOUD INC. (EHZ2Q662ZJ)</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -190,9 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\180.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\120.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\114.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -394,6 +395,7 @@
     <Compile Include="Views\FlyOut\CustomView\ProfileCellView.designer.cs">
       <DependentUpon>ProfileCellView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomBinding\MvxUIButtonTitleTargetBinding.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -425,7 +427,7 @@
     <Folder Include="Views\Celebrities\" />
     <Folder Include="Views\Celebrities\CelebritiesCell\" />
  feature/Working_Flow
-  <Folder Include="Views\Help\" /><Folder Include="Views\Facebook Friends\" /><Folder Include="Views\Facebook Friends\FacebookFriendCell\" /><Folder Include="Views\Contacts\" /><Folder Include="Views\Contacts\ContactsCell\" /><Folder Include="Views\NoMatches\" /><Folder Include="Views\MatcherDetail\MatcherDetailCell\" /><Folder Include="Views\ProfilePic\" /><Folder Include="Views\T&amp;C\" /><Folder Include="Views\FlyOut\CustomView\" /></ItemGroup>
+  <Folder Include="Views\Help\" /><Folder Include="Views\Facebook Friends\" /><Folder Include="Views\Facebook Friends\FacebookFriendCell\" /><Folder Include="Views\Contacts\" /><Folder Include="Views\Contacts\ContactsCell\" /><Folder Include="Views\NoMatches\" /><Folder Include="Views\MatcherDetail\MatcherDetailCell\" /><Folder Include="Views\ProfilePic\" /><Folder Include="Views\T&amp;C\" /><Folder Include="Views\FlyOut\CustomView\" /><Folder Include="CustomBinding\" /></ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="flyoutnavigation">
       <Version>1.5.1</Version>
@@ -445,7 +447,6 @@
     <BundleResource Include="Resources\noImage.png" />
     <BundleResource Include="Resources\action_menu.png" />
     <BundleResource Include="Resources\action_menu%402x.png" />
-    <BundleResource Include="Resources\splash.png" />
     <BundleResource Include="Resources\edit_pen.png" />
     <BundleResource Include="Resources\cross_white%402x.png" />
     <BundleResource Include="Resources\action_back_btn.png" />
@@ -510,6 +511,10 @@
     <BundleResource Include="Resources\profile_img.png" />
     <BundleResource Include="Resources\male.png" />
     <BundleResource Include="Resources\CircleMatcherDot%402x.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\splash.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />
@@ -519,5 +524,9 @@
       <Project>{ED8A9D7B-B591-4204-BE58-FAC4EE55E0E5}</Project>
       <Name>AncestorCloud.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
 </Project>

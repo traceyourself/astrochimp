@@ -121,6 +121,7 @@ namespace AncestorCloud.Touch
 
 			navigationMenuToken = _messenger.SubscribeOnMainThread<MyAddButtonTappedMessage>(message => this.ShowAddEvent(message.FamilyMember));
 
+
 		}
 
 		public void ShowAddEvent(Celebrity celebs)
@@ -133,7 +134,7 @@ namespace AncestorCloud.Touch
 		partial void AddMeButtonTapped (NSObject sender)
 		{
 			
-
+			Console.WriteLine("CHECK");
 			ViewModel.MePlusClicked();
 		}
 	}
