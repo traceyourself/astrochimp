@@ -193,9 +193,6 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\180.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\120.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\114.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon.png" />
   </ItemGroup>
   <ItemGroup>
