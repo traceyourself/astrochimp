@@ -115,16 +115,20 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			LoginModel login = _databaseService.GetLoginDetails ();
 			ResponseModel<List<People>> listFromServer = await _getFamilyService.GetFamilyMembers (login);
-
 			if (listFromServer.Status == ResponseStatus.OK) {
-				List<People> listOfPeople = listFromServer.Content;
-				foreach (People p in listOfPeople) {
-					p.LoginUserLinkID = login.UserEmail;
-					_databaseService.InsertFamilyMember (p);
-				}
-			} else {
-				
+				FamilyList = listFromServer.Content;
+				_messenger.Publish(new MyFamilyLoadViewMessage(this));
 			}
+
+//			if (listFromServer.Status == ResponseStatus.OK) {
+//				List<People> listOfPeople = listFromServer.Content;
+//				foreach (People p in listOfPeople) {
+//					p.LoginUserLinkID = login.UserEmail;
+//					_databaseService.InsertFamilyMember (p);
+//				}
+//			} else {
+//				
+//			}
 		}
 		#endregion
 
