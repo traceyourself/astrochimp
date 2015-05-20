@@ -196,6 +196,7 @@
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\180.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\120.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\114.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -449,7 +450,6 @@
     <BundleResource Include="Resources\noImage.png" />
     <BundleResource Include="Resources\action_menu.png" />
     <BundleResource Include="Resources\action_menu%402x.png" />
-    <BundleResource Include="Resources\splash.png" />
     <BundleResource Include="Resources\edit_pen.png" />
     <BundleResource Include="Resources\cross_white%402x.png" />
     <BundleResource Include="Resources\action_back_btn.png" />
@@ -514,6 +514,10 @@
     <BundleResource Include="Resources\profile_img.png" />
     <BundleResource Include="Resources\male.png" />
     <BundleResource Include="Resources\CircleMatcherDot%402x.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\splash.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />
@@ -523,5 +527,9 @@
       <Project>{ED8A9D7B-B591-4204-BE58-FAC4EE55E0E5}</Project>
       <Name>AncestorCloud.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
 </Project>

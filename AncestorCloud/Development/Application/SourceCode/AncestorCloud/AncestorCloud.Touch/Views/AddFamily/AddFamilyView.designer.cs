@@ -39,6 +39,9 @@ namespace AncestorCloud.Touch
 		[Outlet]
 		UIKit.UIButton PickerButtonTapped { get; set; }
 
+		[Outlet]
+		UIKit.UILabel PickerLabel { get; set; }
+
 		[Action ("AddButtonTapped:")]
 		partial void AddButtonTapped (Foundation.NSObject sender);
 
@@ -50,9 +53,9 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (container != null) {
-				container.Dispose ();
-				container = null;
+			if (PickerLabel != null) {
+				PickerLabel.Dispose ();
+				PickerLabel = null;
 			}
 
 			if (AddButton != null) {
@@ -68,6 +71,11 @@ namespace AncestorCloud.Touch
 			if (BirthYearButton != null) {
 				BirthYearButton.Dispose ();
 				BirthYearButton = null;
+			}
+
+			if (container != null) {
+				container.Dispose ();
+				container = null;
 			}
 
 			if (FirstNameTextField != null) {

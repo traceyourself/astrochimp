@@ -38,7 +38,7 @@
                                 </button>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Upload a profile image     to finish your profile" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9bW-GB-Tbs">
                                     <rect key="frame" x="66" y="210" width="199" height="61"/>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="199" id="Vfa-yZ-v8L"/>
                                         <constraint firstAttribute="height" constant="61" id="zuT-eD-Cx7"/>
