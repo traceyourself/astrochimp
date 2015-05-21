@@ -396,6 +396,7 @@
       <DependentUpon>ProfileCellView.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomBinding\MvxUIButtonTitleTargetBinding.cs" />
+    <Compile Include="Utility\MyProfilePicture.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

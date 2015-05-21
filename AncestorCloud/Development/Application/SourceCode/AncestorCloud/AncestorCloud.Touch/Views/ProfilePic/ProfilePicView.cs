@@ -100,8 +100,11 @@ namespace AncestorCloud.Touch
 			this.NavigationItem.HidesBackButton = true;
 			this.NavigationController.NavigationBarHidden = false;
 			this.NavigationController.NavigationBar.BarTintColor= UIColor.FromRGB (64,172,176);
+			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
 
-
+			if (width >= 375) {
+				this.NavigationItem.TitleView = new MyProfilePicture (this.Title, new RectangleF (0, 0, 200, 20));
+			} 
 
 			if (ViewModel.IsFromSignup)
 				return;
@@ -239,12 +242,12 @@ namespace AncestorCloud.Touch
 			switch(e.Info[UIImagePickerController.MediaType].ToString())
 			{
 			case "public.image":
-				Console.WriteLine("Image selected");
+//				Console.WriteLine("Image selected");
 				isImage = true;
 				break;
 
 			case "public.video":
-				Console.WriteLine("Video selected");
+//				Console.WriteLine("Video selected");
 				break;
 			}
 
@@ -281,6 +284,7 @@ namespace AncestorCloud.Touch
 //					// do something with the metadata
 //					Console.WriteLine ("got image metadata");
 //				}
+				originalImage = ResizeImage(originalImage);
 
 
 				AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
@@ -341,6 +345,20 @@ namespace AncestorCloud.Touch
 			if (appDelegate.UIImageProfilePic != null)
 				ProfilePic.SetBackgroundImage (appDelegate.UIImageProfilePic, UIControlState.Normal);
 			//ViewModel.Close ();
+		}
+
+		public UIImage ResizeImage(UIImage img )
+		{
+			
+			float mwidth = (float)img.Size.Width;
+			float mheight = (float)img.Size.Height;
+			float newWidth = 360f;
+			float newHeigth = mheight * newWidth / mwidth; // I always hope I get this scaling thing right. #crossedfingers
+			UIGraphics.BeginImageContextWithOptions(new SizeF(mwidth, mheight), false, 2.0f);
+			img.Draw (new RectangleF (0, 0, newWidth, newHeigth));
+			img = UIGraphics.GetImageFromCurrentImageContext();
+			UIGraphics.EndImageContext ();
+			return img;
 		}
 	
 

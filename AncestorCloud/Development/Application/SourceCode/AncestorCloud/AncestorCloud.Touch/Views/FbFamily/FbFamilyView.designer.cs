@@ -33,8 +33,6 @@ namespace AncestorCloud.Touch
 		[Action ("HelpButtonTapped:")]
 		partial void HelpButtonTapped (Foundation.NSObject sender);
 
-		[Action ("NextButtonTaped:")]
-		partial void NextButtonTaped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

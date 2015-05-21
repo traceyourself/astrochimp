@@ -319,12 +319,12 @@ namespace AncestorCloud.Shared.ViewModels
 			if (String.IsNullOrEmpty (this.FirstName)) 
 			{
 				ok = false;
-				Alert.ShowAlert("FirstName is required,please enter a value for the field","Name Missing");
+				Alert.ShowAlert("First Name is required,please enter a value for the field","Name Missing");
 			}
 			else if (String.IsNullOrEmpty (this.LastName)) 
 			{
 				ok = false;
-				Alert.ShowAlert("LastName is required,please enter a value for the field","Name Missing");
+				Alert.ShowAlert("Last Name is required,please enter a value for the field","Name Missing");
 			}
 
 			else if (String.IsNullOrEmpty (this.Email)) 
