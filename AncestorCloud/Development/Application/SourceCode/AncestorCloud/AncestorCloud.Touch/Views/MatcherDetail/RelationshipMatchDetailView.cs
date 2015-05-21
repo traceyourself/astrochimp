@@ -132,6 +132,8 @@ namespace AncestorCloud.Touch
 		void BindData()
 		{
 			var source = new RelationshipMatchTableSource (RelationshipMatchTable);
+
+			AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
 			RelationshipMatchTable.Source = source;
 
@@ -147,8 +149,17 @@ namespace AncestorCloud.Touch
 
 			//TODO: image not uploaded apply condition:=
 
-			set.Bind (_imageViewLoader).To (vm => vm.FirstPersonURL);
-			set.Bind (_secImageViewLoader).To (vm => vm.SecondPersonURL);
+			if ((ViewModel.FirstPersonTag != null) &&( ViewModel.FirstPersonTag.Equals (AppConstant.METAGKEY))) {
+				_FirstMatchPic.Image = appDelegate.UIImageProfilePic;
+			} else {
+				set.Bind (_imageViewLoader).To (vm => vm.FirstPersonURL);
+			}
+			if ((ViewModel.SecondPersonTag != null)  && (ViewModel.SecondPersonTag.Equals (AppConstant.METAGKEY))) {
+				_SecondMatchPic.Image = appDelegate.UIImageProfilePic;
+			} else {
+				set.Bind (_secImageViewLoader).To (vm => vm.SecondPersonURL);
+			}
+				
 			set.Bind (DegreeLabel).To (vm => vm.MatchResult.Degrees).WithConversion (new DegreeConverter (), null);
 
 

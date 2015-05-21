@@ -12,6 +12,7 @@ namespace AncestorCloud.Shared
 		public string LastName { get; set; }
 		public string Img { get; set; }
 		public string OGFN { get; set; }
+		public string Tag { get; set; }
 	}
 }
 

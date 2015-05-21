@@ -19,6 +19,7 @@ namespace AncestorCloud.Touch
 	{
 
 		String firstPersonImage = "",secondPersonImage = "";
+		String FirstPersonTag = "",SecPersonTag = "";
 		bool isFirstPersonSelected = false;
 		bool isSecondPersonSelected = false;
 
@@ -191,6 +192,7 @@ namespace AncestorCloud.Touch
 
 					firstPersonImage = ViewModel.FirstPersonCeleb.Img;
 					isFirstPersonSelected = true;
+					FirstPersonTag = "";
 					HandleFirstPersonSelected ();
 
 				}else if(ViewModel.FirstPersonPeople != null){
@@ -198,6 +200,7 @@ namespace AncestorCloud.Touch
 					//isSecondPersonSelected = true;
 
 					firstPersonImage = ViewModel.FirstPersonPeople.ProfilePicURL;
+					FirstPersonTag = ViewModel.FirstPersonPeople.Tag;
 					isFirstPersonSelected = true;
 					HandleFirstPersonSelected ();
 				}
@@ -207,6 +210,7 @@ namespace AncestorCloud.Touch
 					Mvx.Trace("celeb name in match view for sec image: "+ViewModel.SecondPersonCeleb.GivenNames);
 
 					secondPersonImage = ViewModel.SecondPersonCeleb.Img;
+					SecPersonTag = "";
 					isSecondPersonSelected = true;
 					HandleSecondPersonSelected ();
 
@@ -215,6 +219,7 @@ namespace AncestorCloud.Touch
 					Mvx.Trace("People name in match view for Sec image: "+ViewModel.SecondPersonPeople.Name);
 
 					secondPersonImage = ViewModel.SecondPersonPeople.ProfilePicURL;
+					SecPersonTag = ViewModel.SecondPersonPeople.Tag;
 					isSecondPersonSelected = true;
 					HandleSecondPersonSelected ();
 				}
@@ -227,21 +232,28 @@ namespace AncestorCloud.Touch
 
 		public void HandleFirstPersonSelected()
 		{
-
+			AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 			if (isFirstPersonSelected) {
-				MvxImageViewLoader _imageViewLoader = new MvxImageViewLoader(() => this.FirstImageView);
+				
 				//FirstImageButton.SetBackgroundImage(UIImage.FromBundle("noImage.png"),UIControlState.Normal);
 				FirstImageButton.Layer.CornerRadius = 90f;
 				FirstImageButton.ClipsToBounds = true;
 				FirstImageButton.SetBackgroundImage (UIImage.FromFile ("noImage.png"), UIControlState.Normal);
 				FirstCrossButton.Hidden = false;
 
+				if (FirstPersonTag.Equals (AppConstant.METAGKEY)) {
+					UIImage img = appDelegate.UIImageProfilePic;
+					FirstImageView.Image = img;
+				} else {
+					MvxImageViewLoader _imageViewLoader = new MvxImageViewLoader(() => this.FirstImageView);
+					_imageViewLoader.ImageUrl = firstPersonImage;
+				}
 
-				_imageViewLoader.ImageUrl = firstPersonImage;
 				FirstImageView.Layer.CornerRadius = 90f;
 				FirstImageView.ClipsToBounds = true;
 				FirstImageView.Hidden = false;
 			} else {
+				
 				FirstImageButton.SetBackgroundImage(UIImage.FromBundle("CircleMatcherDot.png"),UIControlState.Normal);
 				FirstImageButton.Layer.CornerRadius = 90f;
 				FirstImageButton.ClipsToBounds = true;
@@ -254,15 +266,23 @@ namespace AncestorCloud.Touch
 
 		public void HandleSecondPersonSelected()
 		{
-
+			AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 			if (isSecondPersonSelected)
 			{
-				MvxImageViewLoader _imageViewLoader = new MvxImageViewLoader(() => this.SecondImageView);
+				
 				SecondImageButton.SetBackgroundImage(UIImage.FromBundle("noImage.png"),UIControlState.Normal);
 				SecondImageButton.Layer.CornerRadius = 90f;
 				SecondImageButton.ClipsToBounds = true;
 				SecondCrossButton.Hidden = false;
-				_imageViewLoader.ImageUrl = secondPersonImage;
+				if (SecPersonTag.Equals (AppConstant.METAGKEY)) {
+					UIImage img = appDelegate.UIImageProfilePic;
+					SecondImageView.Image = img;
+				} else {
+					MvxImageViewLoader _imageViewLoader = new MvxImageViewLoader(() => this.SecondImageView);
+					_imageViewLoader.ImageUrl = secondPersonImage;
+				}
+
+
 				SecondImageView.Layer.CornerRadius = 90f;
 				SecondImageView.ClipsToBounds = true;
 				SecondImageView.Hidden = false;

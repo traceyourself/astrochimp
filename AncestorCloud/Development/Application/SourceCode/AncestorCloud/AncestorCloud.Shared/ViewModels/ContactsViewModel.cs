@@ -76,6 +76,7 @@ namespace AncestorCloud.Shared.ViewModels
 		public void PeoplePlusClickHandler(People people)
 		{
 			ResponseModel<People> modeltosend = new ResponseModel<People> ();
+			//people.Tag = "";
 			modeltosend.Content = people;
 			var matchString = Mvx.Resolve<IMvxJsonConverter>().SerializeObject(modeltosend);
 			var _matcherMessenger = Mvx.Resolve<IMvxMessenger>();
@@ -91,6 +92,7 @@ namespace AncestorCloud.Shared.ViewModels
 			peopledata.ProfilePicURL = "";
 			peopledata.IndiOgfn = data.IndiOGFN;
 			peopledata.FirstName = data.UserEmail;
+			peopledata.Tag = AppConstant.METAGKEY;
 			PeoplePlusClickHandler(peopledata);
 
 		}
