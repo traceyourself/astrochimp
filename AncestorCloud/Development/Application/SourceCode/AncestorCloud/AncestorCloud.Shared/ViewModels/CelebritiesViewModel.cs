@@ -56,6 +56,7 @@ namespace AncestorCloud.Shared
 		public void PeoplePlusClickHandler(People people)
 		{
 			ResponseModel<People> modeltosend = new ResponseModel<People> ();
+			//people.Tag = "";
 			modeltosend.Content = people;
 			var matchString = Mvx.Resolve<IMvxJsonConverter>().SerializeObject(modeltosend);
 			var _matcherMessenger = Mvx.Resolve<IMvxMessenger>();
@@ -66,11 +67,11 @@ namespace AncestorCloud.Shared
 		public void MePlusClicked()
 		{
 			LoginModel data = _databaseService.GetLoginDetails ();
-
 			People peopledata = new People ();
 			peopledata.ProfilePicURL = "";
 			peopledata.IndiOgfn = data.IndiOGFN;
 			peopledata.Email = data.UserEmail;
+			peopledata.Tag = AppConstant.METAGKEY;
 			PeoplePlusClickHandler(peopledata);
 		}
 		#endregion

@@ -15,10 +15,11 @@ using AncestorCloud.Shared.ViewModels;
 using Java.Util;
 using Java.Text;
 using AncestorCloud.Shared;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "AddFamilyView")]			
+	[Activity (Label = "AddFamilyView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class AddFamilyView : BaseActivity
 	{
 		LinearLayout malecheck,femalecheck;

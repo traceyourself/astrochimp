@@ -12,10 +12,11 @@ using Android.Views;
 using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "FacebookFriendView")]			
+	[Activity (Label = "FacebookFriendView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class FacebookFriendView : BaseActivity
 	{
 		ActionBar actionBar;

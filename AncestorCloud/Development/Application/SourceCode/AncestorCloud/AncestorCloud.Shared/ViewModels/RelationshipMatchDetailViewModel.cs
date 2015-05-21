@@ -13,6 +13,32 @@ namespace AncestorCloud.Shared.ViewModels
 		public String SecondPersonURL{ get; set;}
 		public String FirstPersonNAME{ get; set;}
 		public String SecondPersonNAME{ get; set;}
+
+
+		private string _firstPersonTag = String.Empty;
+		public string FirstPersonTag
+		{
+			get { return _firstPersonTag; }
+			set
+			{
+				_firstPersonTag = value;
+				RaisePropertyChanged(() => FirstPersonTag);
+
+			}
+		}
+		private string _secPersonTag = String.Empty;
+		public string SecondPersonTag
+		{
+			get { return _secPersonTag; }
+			set
+			{
+				_secPersonTag = value;
+				RaisePropertyChanged(() => SecondPersonTag);
+
+			}
+		}
+
+
 		private readonly IDatabaseService _databaseService;
 
 		public void Init(DetailParameter parameter)
@@ -28,6 +54,8 @@ namespace AncestorCloud.Shared.ViewModels
 			SecondPersonURL = parameter.SecondPersonUrl;
 			FirstPersonNAME = parameter.FirstPersonName;
 			SecondPersonNAME = parameter.SecondPersonName;
+			FirstPersonTag = parameter.FirstPersonTag;
+			SecondPersonTag = parameter.SecondPersonTag;
 			SetCommonResult ();
 		}
 
@@ -122,6 +150,8 @@ namespace AncestorCloud.Shared.ViewModels
 			public String SecondPersonUrl{ get; set;}
 			public String FirstPersonName{ get; set;}
 			public String SecondPersonName{ get; set;}
+			public String FirstPersonTag{ get; set;}
+			public String SecondPersonTag{ get; set;}
 		}
 
 

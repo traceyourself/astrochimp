@@ -17,10 +17,11 @@ using AncestorCloud.Shared;
 using Android.Webkit;
 using Xamarin.Social.Services;
 using Xamarin.Social;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "RelationshipMatchDetailView")]			
+	[Activity (Label = "RelationshipMatchDetailView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class RelationshipMatchDetailView : BaseActivity
 	{
 		
