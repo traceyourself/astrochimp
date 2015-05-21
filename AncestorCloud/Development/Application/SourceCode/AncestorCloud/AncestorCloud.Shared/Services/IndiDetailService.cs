@@ -120,6 +120,8 @@ namespace AncestorCloud.Shared
 
 						returnPeopleData = DataParser.GetIndiFamilyReadData(dict);
 
+						returnPeopleData.IndiOgfn = ogfn; 
+
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;

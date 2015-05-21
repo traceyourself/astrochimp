@@ -13,5 +13,15 @@ namespace AncestorCloud.Core
 			
 		}
 	}
+
+	public class MyFamilyLoadViewMessage : MvxMessage
+	{
+
+		public MyFamilyLoadViewMessage(object sender)
+			: base(sender)
+		{
+
+		}
+	}
 }
 
