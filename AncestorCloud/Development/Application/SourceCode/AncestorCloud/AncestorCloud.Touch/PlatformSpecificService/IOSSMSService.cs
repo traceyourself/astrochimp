@@ -42,9 +42,9 @@ namespace AncestorCloud.Touch
 
 				smsView.Finished += (object s, MFMessageComposeResultEventArgs args) => args.Controller.DismissViewController (true, null);
 		
-				UIWindow window = UIApplication.SharedApplication.KeyWindow;
+				AppDelegate _delegate = (AppDelegate) UIApplication.SharedApplication.Delegate;
 
-				UIViewController rootViewController = window.RootViewController;
+				UIViewController rootViewController = _delegate.currentController;
 
 				rootViewController.PresentViewController (smsView, true,null);
 			}

@@ -19,6 +19,8 @@ namespace AncestorCloud.Touch
 
 		public UIImage UIImageProfilePic;
 
+		public UIViewController currentController;
+
 		public override bool FinishedLaunching(UIApplication application , NSDictionary launchOptions)
 		{
 			_window = new UIWindow(UIScreen.MainScreen.Bounds);
