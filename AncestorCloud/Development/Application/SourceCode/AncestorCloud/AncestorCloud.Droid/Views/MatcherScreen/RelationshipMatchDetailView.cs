@@ -155,8 +155,8 @@ namespace AncestorCloud.Droid
 		{
 
 			TwitterService mTwitter=  new TwitterService {
-				ConsumerKey = "AUhsvThNimDhDYM6lNhaE3uZ1", 
-				ConsumerSecret = "gHXfS0c91rYwT4BQG0gcOAd3KVFgES6ruOaN4ryl8HozLFzAyj",
+				ConsumerKey = "SD9KnCinDrqxJZ7eRTl6BbD77", 
+				ConsumerSecret = "unJjpf51B5Ad3Lxt5I1qPfQj8u1SYE4cdXzk2vTkFJOkaszfQQ",
 				CallbackUrl = new Uri ("callback://twitter")
 			};
 

@@ -5,7 +5,7 @@ using Cirrious.MvvmCross.Droid.Views;
 namespace AncestorCloud.Droid
 {
     [Activity(
-		Label = "AncestorCloud.Droid"
+		Label = "Cousin"
 		, MainLauncher = true
 		, Icon = "@drawable/icon"
 		, Theme = "@style/Theme.Splash"

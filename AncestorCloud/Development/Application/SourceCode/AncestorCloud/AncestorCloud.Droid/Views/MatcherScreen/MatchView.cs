@@ -58,7 +58,6 @@ namespace AncestorCloud.Droid
 			ApplyActions ();
 		}
 
-
 		#region init ui
 		private void initUI()
 		{

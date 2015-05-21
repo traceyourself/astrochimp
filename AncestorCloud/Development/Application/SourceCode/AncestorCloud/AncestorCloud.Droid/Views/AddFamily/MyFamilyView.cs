@@ -31,7 +31,7 @@ namespace AncestorCloud.Droid
 		TextView FbBtn,loginBtn;
 		public TextView birthDateDialogTxt;
 		List<ListDataStructure> dataList;
-		Dialog editDialog;
+		public Dialog editDialog;
 		ImageView helpIcon;
 		IMvxMessenger _messenger;
 		private MvxSubscriptionToken ReloadViewToken;
@@ -68,7 +68,7 @@ namespace AncestorCloud.Droid
 			//For checking after editing a member
 			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.CreateListAdapter ());
 
-			ViewModel.GetFamilyMembersFromServer ();
+			//ViewModel.GetFamilyMembersFromServer ();
 		}
 
 		protected override void OnPause ()
@@ -270,7 +270,12 @@ namespace AncestorCloud.Droid
 			};
 
 			crossbtn.Click += (object sender, EventArgs e) => {
-				editDialog.Dismiss();
+				try{
+					editDialog.Dismiss();
+					//editDialog = null;
+				}catch(Exception ex){
+					Mvx.Trace(ex.StackTrace);
+				}
 			};
 
 			saveBtn.Click += (object sender, EventArgs e) => {
@@ -355,6 +360,17 @@ namespace AncestorCloud.Droid
 				Mvx.Trace (e.StackTrace);
 			}
 			//=====
+
+			editDialog.Window.SetSoftInputMode(SoftInput.StateAlwaysHidden);
+
+			editDialog.DismissEvent += (object sender, EventArgs e) => {
+				try{
+					//editDialog.Dismiss();
+					editDialog = null;
+				}catch(Exception ex){
+					Mvx.Trace(ex.StackTrace);
+				}
+			};
 
 			editDialog.Show ();
 		}

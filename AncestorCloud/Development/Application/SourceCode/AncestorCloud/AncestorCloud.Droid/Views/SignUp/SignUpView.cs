@@ -21,7 +21,8 @@ namespace AncestorCloud.Droid
 	public class SignUpView : BaseActivity
 	{
 		ActionBar actionBar;
-		TextView fbBtn,signUpBtn,termsText;
+		TextView fbBtn,signUpBtn;
+		RelativeLayout termsText;
 		Dialog termsDialog;
 
 		public new SignUpViewModel ViewModel
@@ -48,7 +49,7 @@ namespace AncestorCloud.Droid
 			actionBar = FindViewById<ActionBar> (Resource.Id.actionBar);
 			fbBtn = FindViewById<TextView> (Resource.Id.fb_btn_reg);
 			signUpBtn = FindViewById<TextView> (Resource.Id.sign_up_btn);
-			termsText = FindViewById<TextView> (Resource.Id.terms_txt);
+			termsText = FindViewById<RelativeLayout> (Resource.Id.terms_txt);
 		}
 
 		private void ConfigureActionBar()
