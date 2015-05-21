@@ -17,11 +17,12 @@ using Android.Graphics.Drawables.Shapes;
 using Android.Graphics.Drawables;
 using Android.Graphics;
 using AncestorCloud.Shared;
+using Android.Content.PM;
 
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "MatcherView")]			
+	[Activity (Label = "MatcherView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class MatchView : BaseActivity
 	{
 		FlyOutContainer menu;

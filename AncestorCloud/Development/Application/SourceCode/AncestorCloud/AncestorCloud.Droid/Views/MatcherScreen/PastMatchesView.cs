@@ -13,10 +13,11 @@ using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using Cirrious.CrossCore;
 using Android.Graphics;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "PastMatchesView")]			
+	[Activity (Label = "PastMatchesView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class PastMatchesView : BaseActivity
 	{
 		

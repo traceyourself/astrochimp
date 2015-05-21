@@ -14,10 +14,11 @@ using AncestorCloud.Shared.ViewModels;
 using Cirrious.MvvmCross.Binding.Droid.Views;
 using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "FbFamilyView")]
+	[Activity (Label = "FbFamilyView", ScreenOrientation = ScreenOrientation.Portrait)]
 	public class FbFamilyView : BaseActivity
 	{
 		MvxListView listView;

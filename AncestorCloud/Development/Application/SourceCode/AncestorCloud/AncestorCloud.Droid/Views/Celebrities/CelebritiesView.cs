@@ -13,10 +13,11 @@ using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
 using Cirrious.CrossCore;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "CelebritiesView")]			
+	[Activity (Label = "CelebritiesView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class CelebritiesView : BaseActivity
 	{
 		ActionBar actionBar;

@@ -13,10 +13,11 @@ using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
 using Android.Webkit;
 using Cirrious.CrossCore;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "ResearchHelpView")]			
+	[Activity (Label = "ResearchHelpView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class ResearchHelpView : BaseActivity
 	{
 		FlyOutContainer menu;

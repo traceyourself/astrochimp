@@ -15,10 +15,11 @@ using AncestorCloud.Shared;
 using Android.Telephony.Gsm;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using Cirrious.CrossCore;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "ContactsView")]			
+	[Activity (Label = "ContactsView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class ContactsView : BaseActivity
 	{
 		ActionBar actionBar;

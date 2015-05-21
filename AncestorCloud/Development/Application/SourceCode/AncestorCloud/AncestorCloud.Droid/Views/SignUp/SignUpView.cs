@@ -13,10 +13,11 @@ using Xamarin.Social.Services;
 using Xamarin.Auth;
 using AncestorCloud.Shared;
 using Cirrious.CrossCore;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "SignUpView")]			
+	[Activity (Label = "SignUpView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class SignUpView : BaseActivity
 	{
 		ActionBar actionBar;

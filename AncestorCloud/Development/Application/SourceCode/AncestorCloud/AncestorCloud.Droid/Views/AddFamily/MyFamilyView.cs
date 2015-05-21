@@ -18,10 +18,11 @@ using Java.Util;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using AncestorCloud.Core;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "MyFamilyView")]			
+	[Activity (Label = "MyFamilyView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class MyFamilyView : BaseActivity
 	{
 

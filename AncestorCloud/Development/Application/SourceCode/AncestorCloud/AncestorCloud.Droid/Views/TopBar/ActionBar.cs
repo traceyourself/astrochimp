@@ -10,10 +10,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Util;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "ActionBar")]			
+	[Activity (Label = "ActionBar", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class ActionBar : RelativeLayout
 	{
 		#region global variables

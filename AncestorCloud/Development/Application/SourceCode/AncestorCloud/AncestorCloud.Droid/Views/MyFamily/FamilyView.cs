@@ -12,10 +12,11 @@ using Android.Views;
 using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "MyFamilyView")]			
+	[Activity (Label = "MyFamilyView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class FamilyView : BaseActivity
 	{
 		FlyOutContainer menu;

@@ -4,10 +4,11 @@ using Android.App;
 using Android.OS;
 using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "AddFriendView")]			
+	[Activity (Label = "AddFriendView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class AddFriendView : BaseActivity
 	{
 		ActionBar actionBar;

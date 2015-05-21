@@ -18,10 +18,11 @@ using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System.Net;
 using System.IO;
+using Android.Content.PM;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "MySSLSocketFactory")]			
+	[Activity (Label = "MySSLSocketFactory", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class MySSLSocketFactory 
 	{
 		

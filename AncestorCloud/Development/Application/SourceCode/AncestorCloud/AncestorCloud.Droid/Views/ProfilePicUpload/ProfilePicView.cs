@@ -23,7 +23,7 @@ using AncestorCloud.Core;
 
 namespace AncestorCloud.Droid
 {
-	[Activity (Label = "ProfilePicView")]			
+	[Activity (Label = "ProfilePicView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class ProfilePicView : BaseActivity
 	{
 		ActionBar actionBar;
