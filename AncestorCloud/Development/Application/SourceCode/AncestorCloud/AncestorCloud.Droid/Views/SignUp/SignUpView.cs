@@ -113,7 +113,7 @@ namespace AncestorCloud.Droid
 
 				Account account = accounts;
 
-				System.Diagnostics.Debug.WriteLine ("accounts :" + account);
+				//System.Diagnostics.Debug.WriteLine ("accounts :" + account);
 
 				if(account != null){
 					var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me"),account );//friends ///me/invitable_friends ///me/taggable_friends
@@ -128,7 +128,7 @@ namespace AncestorCloud.Droid
 
 						ViewModel.SaveFbData();
 
-						Mvx.Trace("saved result of me ");
+						//Mvx.Trace("saved result of me ");
 
 						var familyRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/family"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
 						familyRequest.GetResponseAsync ().ContinueWith (famResponse => {
@@ -138,7 +138,7 @@ namespace AncestorCloud.Droid
 
 							ViewModel.SaveFbFamilyData();
 
-							Mvx.Trace("saved result of family ");
+							//Mvx.Trace("saved result of family ");
 
 							var friendRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/taggable_friends"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
 							friendRequest.GetResponseAsync().ContinueWith(friendResponse => {
@@ -146,7 +146,7 @@ namespace AncestorCloud.Droid
 								ViewModel.FbFriendResponseText = friendResponse.Result.GetResponseText();
 								ViewModel.SaveFbFriendsData();  	
 
-								Mvx.Trace("saved result of taggable friends ");
+								//Mvx.Trace("saved result of taggable friends ");
 
 								HideLoader();
 

@@ -92,7 +92,7 @@ namespace AncestorCloud.Touch
 			ProfilePic.Layer.CornerRadius=90f;
 			ProfilePic.ClipsToBounds = true;
 
-			ImageUploadedHandler ();
+			SetProfilePic ();
 		
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
@@ -265,7 +265,7 @@ namespace AncestorCloud.Touch
 				UIImage originalImage = e.Info[UIImagePickerController.OriginalImage] as UIImage;
 				if(originalImage != null) {
 					// do something with the image
-					Console.WriteLine ("got the original image");
+					//Console.WriteLine ("got the original image");
 					//imageView.Image = originalImage;
 					ProfilePic.SetBackgroundImage (originalImage, UIControlState.Normal);
 				}
@@ -274,7 +274,7 @@ namespace AncestorCloud.Touch
 				UIImage editedImage = e.Info[UIImagePickerController.EditedImage] as UIImage;
 				if(editedImage != null) {
 					// do something with the image
-					Console.WriteLine ("got the edited image");
+					//Console.WriteLine ("got the edited image");
 					//imageView.Image = editedImage;
 				}
 
@@ -298,12 +298,12 @@ namespace AncestorCloud.Touch
 				NSError err = null;
 				if (imgData.Save(jpgFilename, false, out err))
 				{
-					Console.WriteLine("saved at " + jpgFilename);
+					//Console.WriteLine("saved at " + jpgFilename);
 					Stream stream = File.OpenRead (jpgFilename);
 					ViewModel.ProfilePicStream = stream;
 					
 				} else {
-					Console.WriteLine("NOT saved as" + jpgFilename + " because" + err.LocalizedDescription);
+					//Console.WriteLine("NOT saved as" + jpgFilename + " because" + err.LocalizedDescription);
 				}
 
 			}
@@ -341,10 +341,19 @@ namespace AncestorCloud.Touch
 		public void ImageUploadedHandler()
 		{
 			//Utilities.CurrentUserimage = CurrentImage;
+
+			SetProfilePic ();
+
+			if(ViewModel.IsFromSignup)
+				this.NavigationController.PopViewController (false);
+			//ViewModel.Close ();
+		}
+
+		private void SetProfilePic()
+		{
 			AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 			if (appDelegate.UIImageProfilePic != null)
 				ProfilePic.SetBackgroundImage (appDelegate.UIImageProfilePic, UIControlState.Normal);
-			//ViewModel.Close ();
 		}
 
 		public UIImage ResizeImage(UIImage img )

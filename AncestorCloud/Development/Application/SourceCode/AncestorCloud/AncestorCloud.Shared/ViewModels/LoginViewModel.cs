@@ -336,7 +336,7 @@ namespace AncestorCloud.Shared.ViewModels
 			if (String.IsNullOrEmpty (this.Email)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Email is required,please enter a value for the field","Email Missing");
+				Alert.ShowAlert("Email is required, please enter a value for the field","Email Missing");
 			}
 			else if (!DataValidator.EmailIsValid (this.Email)) 
 			{
@@ -347,7 +347,7 @@ namespace AncestorCloud.Shared.ViewModels
 			else if (String.IsNullOrEmpty (this.Password)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Password is required,please enter a value for the field","Password Missing");
+				Alert.ShowAlert("Password is required, please enter a value for the field","Password Missing");
 			}
 
 			return ok;

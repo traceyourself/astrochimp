@@ -36,7 +36,7 @@ namespace AncestorCloud.Touch
 			}
 
 			pageObject.CurrentPage = (int) page;
-			System.Diagnostics.Debug.WriteLine(""+page);
+
 				
 //					if (page >= Float(numpages)) {
 //						page = Float(numpages) - 1;

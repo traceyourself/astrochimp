@@ -319,18 +319,18 @@ namespace AncestorCloud.Shared.ViewModels
 			if (String.IsNullOrEmpty (this.FirstName)) 
 			{
 				ok = false;
-				Alert.ShowAlert("First Name is required,please enter a value for the field","Name Missing");
+				Alert.ShowAlert("First Name is required, please enter a value for the field","Name Missing");
 			}
 			else if (String.IsNullOrEmpty (this.LastName)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Last Name is required,please enter a value for the field","Name Missing");
+				Alert.ShowAlert("Last Name is required, please enter a value for the field","Name Missing");
 			}
 
 			else if (String.IsNullOrEmpty (this.Email)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Email is required,please enter a value for the field","Email Missing");
+				Alert.ShowAlert("Email is required, please enter a value for the field","Email Missing");
 			}
 			else if (!DataValidator.EmailIsValid (this.Email)) 
 			{
@@ -341,7 +341,7 @@ namespace AncestorCloud.Shared.ViewModels
 			else if (String.IsNullOrEmpty (this.Password)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Password is required,please enter a value for the field","Password Missing");
+				Alert.ShowAlert("Password is required, please enter a value for the field","Password Missing");
 			}
 
 			return ok;

@@ -54,6 +54,12 @@ namespace AncestorCloud.Touch
 
 		string GetPhoneNumber(People people)
 		{
+
+			if (people == null)
+				return String.Empty;
+			if (people.Contact == null)
+				return  String.Empty;
+			
 			string contact = people.Contact;
 			string[] tokens = contact.Split(new string[] { ")" }, StringSplitOptions.None);
 			if(tokens.Length > 1)

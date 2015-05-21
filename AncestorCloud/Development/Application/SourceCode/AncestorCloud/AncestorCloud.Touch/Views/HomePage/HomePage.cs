@@ -109,6 +109,9 @@ namespace AncestorCloud.Touch
 		public override void ViewWillAppear (bool animated)
 		{
 			this.NavigationController.NavigationBarHidden = true;
+
+			AppDelegate _delagate = (AppDelegate) UIApplication.SharedApplication.Delegate;
+			_delagate.UIImageProfilePic = null;
 		}
 
 

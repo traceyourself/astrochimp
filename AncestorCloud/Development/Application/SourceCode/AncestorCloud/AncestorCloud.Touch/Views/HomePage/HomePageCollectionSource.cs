@@ -71,7 +71,7 @@ namespace AncestorCloud.Touch
 			void Custom()
 			{
 				// Put all your custom menu behavior code here
-				Console.WriteLine ("custom in the cell");
+				//Console.WriteLine ("custom in the cell");
 			}
 
 			public override bool CanPerform (Selector action, NSObject withSender)

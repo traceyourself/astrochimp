@@ -122,7 +122,7 @@ namespace AncestorCloud.Touch
 		partial  void HelpButtonTaped (NSObject sender)
 		{
 
-			Console.WriteLine("Button Tapped");
+			//Console.WriteLine("Button Tapped");
 			ViewModel.ShowHelpViewModel();
 			ViewModel.Close();
 
