@@ -134,7 +134,7 @@ namespace AncestorCloud.Touch
 		partial void AddMeButtonTapped (NSObject sender)
 		{
 			
-			Console.WriteLine("CHECK");
+			//Console.WriteLine("CHECK");
 			ViewModel.MePlusClicked();
 		}
 	}

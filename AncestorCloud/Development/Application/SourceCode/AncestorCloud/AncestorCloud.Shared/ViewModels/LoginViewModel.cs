@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Cirrious.MvvmCross.ViewModels;
 using System.Windows.Input;
 using System.Threading.Tasks;
@@ -38,8 +38,10 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = Mvx.Resolve<IDatabaseService>();
 			Alert = alert;
 			_facebookLinkManager = new FaceBookLinkManager ();
+
 			//Email = "kumar.aditya@gmail.com";
 			//Password = "pass";
+
 			_reachabilityService = reachabilty;
 			_groupService = _service;
 			_famService = famService;
@@ -336,7 +338,7 @@ namespace AncestorCloud.Shared.ViewModels
 			if (String.IsNullOrEmpty (this.Email)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Email is required,please enter a value for the field","Email Missing");
+				Alert.ShowAlert("Email is required, please enter a value for the field","Email Missing");
 			}
 			else if (!DataValidator.EmailIsValid (this.Email)) 
 			{
@@ -347,7 +349,7 @@ namespace AncestorCloud.Shared.ViewModels
 			else if (String.IsNullOrEmpty (this.Password)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Password is required,please enter a value for the field","Password Missing");
+				Alert.ShowAlert("Password is required, please enter a value for the field","Password Missing");
 			}
 
 			return ok;

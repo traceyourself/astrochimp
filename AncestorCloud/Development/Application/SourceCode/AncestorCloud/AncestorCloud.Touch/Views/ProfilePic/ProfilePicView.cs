@@ -92,7 +92,7 @@ namespace AncestorCloud.Touch
 			ProfilePic.Layer.CornerRadius=90f;
 			ProfilePic.ClipsToBounds = true;
 
-			ImageUploadedHandler ();
+			SetProfilePic ();
 		
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
@@ -100,8 +100,11 @@ namespace AncestorCloud.Touch
 			this.NavigationItem.HidesBackButton = true;
 			this.NavigationController.NavigationBarHidden = false;
 			this.NavigationController.NavigationBar.BarTintColor= UIColor.FromRGB (64,172,176);
+			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
 
-
+			if (width >= 375) {
+				this.NavigationItem.TitleView = new MyProfilePicture (this.Title, new RectangleF (0, 0, 200, 20));
+			} 
 
 			if (ViewModel.IsFromSignup)
 				return;
@@ -239,12 +242,12 @@ namespace AncestorCloud.Touch
 			switch(e.Info[UIImagePickerController.MediaType].ToString())
 			{
 			case "public.image":
-				Console.WriteLine("Image selected");
+//				Console.WriteLine("Image selected");
 				isImage = true;
 				break;
 
 			case "public.video":
-				Console.WriteLine("Video selected");
+//				Console.WriteLine("Video selected");
 				break;
 			}
 
@@ -262,7 +265,7 @@ namespace AncestorCloud.Touch
 				UIImage originalImage = e.Info[UIImagePickerController.OriginalImage] as UIImage;
 				if(originalImage != null) {
 					// do something with the image
-					Console.WriteLine ("got the original image");
+					//Console.WriteLine ("got the original image");
 					//imageView.Image = originalImage;
 					ProfilePic.SetBackgroundImage (originalImage, UIControlState.Normal);
 				}
@@ -271,7 +274,7 @@ namespace AncestorCloud.Touch
 				UIImage editedImage = e.Info[UIImagePickerController.EditedImage] as UIImage;
 				if(editedImage != null) {
 					// do something with the image
-					Console.WriteLine ("got the edited image");
+					//Console.WriteLine ("got the edited image");
 					//imageView.Image = editedImage;
 				}
 
@@ -281,6 +284,7 @@ namespace AncestorCloud.Touch
 //					// do something with the metadata
 //					Console.WriteLine ("got image metadata");
 //				}
+				originalImage = ResizeImage(originalImage);
 
 
 				AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
@@ -294,12 +298,12 @@ namespace AncestorCloud.Touch
 				NSError err = null;
 				if (imgData.Save(jpgFilename, false, out err))
 				{
-					Console.WriteLine("saved at " + jpgFilename);
+					//Console.WriteLine("saved at " + jpgFilename);
 					Stream stream = File.OpenRead (jpgFilename);
 					ViewModel.ProfilePicStream = stream;
 					
 				} else {
-					Console.WriteLine("NOT saved as" + jpgFilename + " because" + err.LocalizedDescription);
+					//Console.WriteLine("NOT saved as" + jpgFilename + " because" + err.LocalizedDescription);
 				}
 
 			}
@@ -337,10 +341,33 @@ namespace AncestorCloud.Touch
 		public void ImageUploadedHandler()
 		{
 			//Utilities.CurrentUserimage = CurrentImage;
+
+			SetProfilePic ();
+
+			if(ViewModel.IsFromSignup)
+				this.NavigationController.PopViewController (false);
+			//ViewModel.Close ();
+		}
+
+		private void SetProfilePic()
+		{
 			AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 			if (appDelegate.UIImageProfilePic != null)
 				ProfilePic.SetBackgroundImage (appDelegate.UIImageProfilePic, UIControlState.Normal);
-			//ViewModel.Close ();
+		}
+
+		public UIImage ResizeImage(UIImage img )
+		{
+			
+			float mwidth = (float)img.Size.Width;
+			float mheight = (float)img.Size.Height;
+			float newWidth = 360f;
+			float newHeigth = mheight * newWidth / mwidth; // I always hope I get this scaling thing right. #crossedfingers
+			UIGraphics.BeginImageContextWithOptions(new SizeF(mwidth, mheight), false, 2.0f);
+			img.Draw (new RectangleF (0, 0, newWidth, newHeigth));
+			img = UIGraphics.GetImageFromCurrentImageContext();
+			UIGraphics.EndImageContext ();
+			return img;
 		}
 	
 

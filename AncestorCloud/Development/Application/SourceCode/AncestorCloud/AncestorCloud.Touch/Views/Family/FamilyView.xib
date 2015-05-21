@@ -53,7 +53,7 @@
                                         <constraint firstAttribute="width" constant="312" id="qRB-8m-1SS"/>
                                         <constraint firstAttribute="height" constant="136" id="vSl-F7-bgq"/>
                                     </constraints>
-                                    <string key="text">Whether you're first cousins or eigth cousins it's nice to know we are all related to one way or another.To begin finding out how you're related to someone else we need you to tell us little bit about your family.The more you add the eaiser it is to find your cousins.</string>
+                                    <string key="text">Whether you're first cousins or eighth cousins it's nice to know we are all related  one way or another.To begin finding out how you're related to someone else we need you to tell us a little bit about your family.The more you add the easier it is to find your cousins.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>

@@ -65,6 +65,8 @@ namespace AncestorCloud.Touch
 
 		}
 
+	
+
 		public override void ViewWillDisappear (bool animated)
 		{
 			if (NavigationController == null) {
@@ -98,6 +100,8 @@ namespace AncestorCloud.Touch
 			MeImage.SetBackgroundImage (image, UIControlState.Normal);
 
 			this.NavigationController.NavigationBarHidden = false;
+
+			_delegate.currentController = this;
 		}
 
 

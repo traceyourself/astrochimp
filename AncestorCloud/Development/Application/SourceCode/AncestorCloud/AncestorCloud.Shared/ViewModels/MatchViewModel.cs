@@ -157,6 +157,8 @@ namespace AncestorCloud.Shared.ViewModels
 		public int WhichImageClicked{ get; set;}
 		public String FirstPersonImageUrl{ get; set;}
 		public String SecondPersonImageUrl{ get; set;}
+		public String FirstPersonTag{ get; set;}
+		public String SecondPersonTag{ get; set;}
 		public String FirstPersonImageName{ get; set;}
 		public String SecondPersonImageName{ get; set;}
 		#endregion
@@ -189,7 +191,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 						var matchString = Mvx.Resolve<IMvxJsonConverter> ().SerializeObject (result.Content);
 
-						ShowViewModel<RelationshipMatchDetailViewModel> (new RelationshipMatchDetailViewModel.DetailParameter { MatchResult = matchString ,FirstPersonUrl = FirstPersonImageUrl,SecondPersonUrl = SecondPersonImageUrl,FirstPersonName= FirstPersonImageName,SecondPersonName= SecondPersonImageName});
+						ShowViewModel<RelationshipMatchDetailViewModel> (new RelationshipMatchDetailViewModel.DetailParameter { MatchResult = matchString ,FirstPersonUrl = FirstPersonImageUrl,SecondPersonUrl = SecondPersonImageUrl,FirstPersonName= FirstPersonImageName,SecondPersonName= SecondPersonImageName,FirstPersonTag = FirstPersonTag, SecondPersonTag=SecondPersonTag});
 					} else 
 					{
 						//TODO: Show No Match Screen
@@ -211,10 +213,12 @@ namespace AncestorCloud.Shared.ViewModels
 					FirstPersonOgfn = FirstPersonCeleb.OGFN;
 					FirstPersonImageUrl = FirstPersonCeleb.Img;
 					FirstPersonImageName = FirstPersonCeleb.GivenNames;
+					FirstPersonTag = FirstPersonCeleb.Tag;
 
 				} else if (FirstPersonPeople != null) {
 					FirstPersonOgfn = FirstPersonPeople.IndiOgfn;
 					FirstPersonImageUrl = FirstPersonPeople.ProfilePicURL;
+					FirstPersonTag = FirstPersonPeople.Tag;
 					FirstPersonImageName = FirstPersonPeople.FirstName;
 					if(FirstPersonImageName == null){
 						FirstPersonImageName = FirstPersonPeople.Email;
@@ -229,10 +233,12 @@ namespace AncestorCloud.Shared.ViewModels
 					if(SecondPersonCeleb != null){
 						SecondPersonOgfn = SecondPersonCeleb.OGFN;
 						SecondPersonImageUrl = SecondPersonCeleb.Img;
+						SecondPersonTag = SecondPersonCeleb.Tag;
 						SecondPersonImageName = SecondPersonCeleb.GivenNames;
 					}else if(SecondPersonPeople != null){
 						SecondPersonOgfn = SecondPersonPeople.IndiOgfn;
 						SecondPersonImageUrl = SecondPersonPeople.ProfilePicURL;
+						SecondPersonTag = SecondPersonPeople.Tag;
 						SecondPersonImageName = SecondPersonPeople.FirstName;
 						if(SecondPersonImageName == null){
 							SecondPersonImageName = SecondPersonPeople.Email;

@@ -194,6 +194,15 @@
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-29.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-58.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-80.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-87.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-114.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-120.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-180.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-512.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-1024.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -396,6 +405,7 @@
       <DependentUpon>ProfileCellView.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomBinding\MvxUIButtonTitleTargetBinding.cs" />
+    <Compile Include="Utility\MyProfilePicture.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -529,7 +539,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ITunesArtwork Include="iTunesArtwork%402x" />
     <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
 </Project>
