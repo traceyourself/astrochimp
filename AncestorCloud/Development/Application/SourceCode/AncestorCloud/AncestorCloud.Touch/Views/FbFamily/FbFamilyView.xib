@@ -6,7 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FbFamilyView">
             <connections>
+                <outlet property="FamilyText" destination="FBG-8a-rbz" id="g4P-LC-qTu"/>
+                <outlet property="FbIcon" destination="O2w-n5-KBn" id="VJR-o5-A8x"/>
+                <outlet property="HelpButton" destination="d73-Bj-apH" id="ppd-78-thn"/>
                 <outlet property="NextButton" destination="C2X-Po-RW2" id="OHV-jo-V48"/>
+                <outlet property="RelationText" destination="Vx4-bz-0x8" id="r68-MO-aoK"/>
                 <outlet property="fbFamilyTableView" destination="86f-U7-XZG" id="ptq-qH-exk"/>
                 <outlet property="view" destination="ckm-hD-tr1" id="VUA-R9-h10"/>
             </connections>

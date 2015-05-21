@@ -54,6 +54,61 @@ namespace AncestorCloud.Touch
 				NextButton.Frame = frame;
 
 			}
+			if (width > 320f) {
+				CGRect frame = FbIcon.Frame;
+				frame.X = 170f;
+				FbIcon.Frame = frame;
+
+			}
+			if (width > 320f) {
+				CGRect frame = FamilyText.Frame;
+				frame.X = 60f;
+				FamilyText.Frame = frame;
+
+			}
+			if (width > 320f) {
+				CGRect frame = RelationText.Frame;
+				frame.X = 80f;
+				RelationText.Frame = frame;
+
+			}
+			if (width > 320f) {
+				CGRect frame = HelpButton.Frame;
+				frame.X = 320f;
+				HelpButton.Frame = frame;
+
+			}
+
+			if (width > 375f) {
+				CGRect frame = NextButton.Frame;
+				frame.X = 136f;
+				NextButton.Frame = frame;
+
+			}
+			if (width > 375f) {
+				CGRect frame = FbIcon.Frame;
+				frame.X = 209f;
+				FbIcon.Frame = frame;
+
+			}
+			if (width > 375f) {
+				CGRect frame = FamilyText.Frame;
+				frame.X = 99f;
+				FamilyText.Frame = frame;
+
+			}
+			if (width > 375f) {
+				CGRect frame = RelationText.Frame;
+				frame.X = 119f;
+				RelationText.Frame = frame;
+
+			}
+			if (width > 375) {
+				CGRect frame = HelpButton.Frame;
+				frame.X = 359f;
+				HelpButton.Frame = frame;
+
+			}
 
 //			CGRect frame = this.View.Frame;
 //			frame.Width = UIScreen.MainScreen.ApplicationFrame.Width;
