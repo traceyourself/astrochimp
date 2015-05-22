@@ -87,7 +87,6 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 		}
 
-
 		private string _fbResponseText;
 
 		public string FbResponseText

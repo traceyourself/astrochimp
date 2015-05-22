@@ -8,6 +8,7 @@ using Android.Gms.Analytics;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Content;
+using Android.Content.PM;
 
 
 namespace AncestorCloud.Droid
@@ -33,9 +34,8 @@ namespace AncestorCloud.Droid
 			Window.SetSoftInputMode(SoftInput.StateAlwaysHidden);
 
 			//Window.SetSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-			
-		}
 
+		}
 
 		public override bool OnTouchEvent (MotionEvent e)
 		{
@@ -43,13 +43,10 @@ namespace AncestorCloud.Droid
 			return false;
 		}
 
-
 		public static void HideKeyboard(Activity act) {
 			InputMethodManager inputMethodManager = act.GetSystemService(Context.InputMethodService) as InputMethodManager;
 			inputMethodManager.HideSoftInputFromWindow(act.CurrentFocus.WindowToken, HideSoftInputFlags.None);
 		}
-
-
 
 		public Tracker GetTracker()
 		{	
