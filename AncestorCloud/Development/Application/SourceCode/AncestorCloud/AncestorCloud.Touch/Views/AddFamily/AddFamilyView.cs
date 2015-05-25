@@ -48,16 +48,12 @@ namespace AncestorCloud.Touch
 
 			GenderSegmentControlChanged (null);
 
-			//SetBirthYear ();
-
 			PickerButtonTapped.TouchUpInside += PickerButtonTappedEvent;
 
 			base.OnKeyboardChanged += OnKeyboardChanged;
 
-
-		
-			// Perform any additional setup after loading the view, typically from a nib.
 		}
+
 
 		#endregion
 
@@ -93,8 +89,6 @@ namespace AncestorCloud.Touch
 			set.Bind (GenderSegmentControl).For(l => l.SelectedSegment).To (vm => vm.Gender).WithConversion(new GenderTextConverter(),null).TwoWay();
 			set.Bind (AddButton).To (vm => vm.AddPersonCommand);
 			set.Apply ();
-
-
 
 		}
 
@@ -137,7 +131,6 @@ namespace AncestorCloud.Touch
 		{
 			//UIButton button = (UIButton)sender;
 			ShowHidePicker(new RectangleF( 0f,(float)UIScreen.MainScreen.ApplicationFrame.Size.Height - 44-(float)PickerContainer.Frame.Height,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
-
 
 		}
 
@@ -192,9 +185,6 @@ namespace AncestorCloud.Touch
 		}
 
 
-
-
-
 		#region PickerDelegate Methdos
 
 		void PickerValueChanged(object sender, PickerChangedEventArgs e)
@@ -220,7 +210,6 @@ namespace AncestorCloud.Touch
 			PickerLabel.Text= title;
 			ViewModel.BirthDate = title;
 		}
-
 
 		public virtual bool HandlesKeyboardNotifications
 		{
@@ -256,8 +245,6 @@ namespace AncestorCloud.Touch
 
 			container.Frame = frame;
 		}
-
-
 
 	}
 }

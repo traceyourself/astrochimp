@@ -14,6 +14,9 @@ using Cirrious.MvvmCross.Plugins.Messenger;
 using AncestorCloud.Shared;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.IO;
+using System.Text;
 using AncestorCloud.Core;
 
 namespace AncestorCloud.Touch
@@ -27,6 +30,8 @@ namespace AncestorCloud.Touch
 		private MvxSubscriptionToken ImageUploadedToken;
 		IMvxMessenger _messenger;
 		ProfileCellView profCell;
+
+
 
 //		string[] Tasks = {
 //
@@ -48,6 +53,7 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 			Flyout ();
 			AddMessengers ();
+			DownloadImage ();
 
 		}
 
@@ -280,6 +286,26 @@ namespace AncestorCloud.Touch
 		}
 
 		#endregion
+
+		public void DownloadImage()
+		{
+
+			var webClient = new WebClient();
+
+			webClient.DownloadDataCompleted += (s, e) => {
+				var bytes = e.Result; // get the downloaded data
+				string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+				string localFilename = "downloaded.png";
+				string localPath = Path.Combine (documentsPath, localFilename);
+				File.WriteAllBytes (localPath, bytes); // writes to local storage 
+
+			};
+			var url = new Uri("http://xamarin.com/resources/design/home/devices.png");
+
+			webClient.DownloadDataAsync(url);
+
+			Console.WriteLine ("ImagePath:-" + url);
+		}
 
 	}
 

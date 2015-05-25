@@ -191,7 +191,7 @@ namespace AncestorCloud.Shared.ViewModels
 			if (String.IsNullOrEmpty (this.FirstName)) 
 			{
 				isValid = false;
-				Alert.ShowAlert("First Name is required,please enter a value for the field.","FirstName Missing");
+				Alert.ShowAlert("First Name is required, please enter a value for the field.","First Name Missing");
 			}
 
 			/*else if (String.IsNullOrEmpty (this.BirthDate)) 
@@ -203,7 +203,7 @@ namespace AncestorCloud.Shared.ViewModels
 			else if (String.IsNullOrEmpty (this.Gender))
 			{
 				isValid = false;
-				Alert.ShowAlert("Gender is required,please select a value.","Gender Missing");
+				Alert.ShowAlert("Gender is required, please select a value.","Gender Missing");
 			}
 
 			return isValid;
