@@ -10,16 +10,37 @@
         android:orientation="vertical"
         android:background="@color/dialog_remaining_part_color">
         <RelativeLayout
-            android:id="@+id/cross_edit_btn"
-            android:layout_width="45dp"
-            android:layout_height="40dp">
-            <ImageView
-                android:id="@+id/close_img"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:scaleType="centerInside"
-                android:background="@drawable/close_icon"
-                android:layout_centerInParent="true" />
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/action_bar_back_color"
+            android:layout_centerInParent="true">
+            <RelativeLayout
+                android:id="@+id/cross_edit_btn"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="2dp"
+                android:layout_centerVertical="true">
+                <ImageView
+                    android:id="@+id/close_img"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:scaleType="centerInside"
+                    android:background="@drawable/close_icon"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:text="@string/terms"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@+id/action_center_img" />
+            <View
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentRight="true" />
         </RelativeLayout>
         <ScrollView
             android:layout_width="match_parent"
@@ -30,8 +51,8 @@
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp">
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -40,6 +61,7 @@
                     android:layout_marginTop="8dp"
                     android:textSize="17sp"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     android:text="@string/terms" />
                 <TextView
                     android:id="@+id/termsdesc_txt"

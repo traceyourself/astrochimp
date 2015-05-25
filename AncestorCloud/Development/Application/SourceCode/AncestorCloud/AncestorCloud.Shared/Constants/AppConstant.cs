@@ -154,9 +154,7 @@ namespace AncestorCloud.Shared
 		public const string LASTNAMEKEY = "LastName";
 		public const string EMAILKEY = "EmailAddress";
 		public const string PRODUCTIDKEY = "ProductId";
-
 		#endregion
-
 	
 
 		#region ADD PERSON CONSTS
