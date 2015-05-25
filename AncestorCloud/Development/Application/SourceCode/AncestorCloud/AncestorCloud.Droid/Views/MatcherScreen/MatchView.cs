@@ -58,7 +58,6 @@ namespace AncestorCloud.Droid
 			ApplyActions ();
 		}
 
-
 		#region init ui
 		private void initUI()
 		{
@@ -122,8 +121,8 @@ namespace AncestorCloud.Droid
 			firstCrossContainer.Invalidate ();
 
 			layParams = firstCrossImg.LayoutParameters;
-			layParams.Height = ((containerDimenFirst/2)-25);
-			layParams.Width = ((containerDimenFirst/2)-25);
+			layParams.Height = ((containerDimenFirst/2)-5);
+			layParams.Width = ((containerDimenFirst/2)-5);
 			firstCrossImg.LayoutParameters = layParams;
 			firstCrossImg.Invalidate ();
 
@@ -135,8 +134,8 @@ namespace AncestorCloud.Droid
 			secCrossContainer.Invalidate ();
 
 			layParams1 = secCrossImg.LayoutParameters;
-			layParams1.Height = ((containerDimenSec/2)-25);
-			layParams1.Width = ((containerDimenSec/2)-25);
+			layParams1.Height = ((containerDimenSec/2)-5);
+			layParams1.Width = ((containerDimenSec/2)-5);
 			secCrossImg.LayoutParameters = layParams1;
 			secCrossImg.Invalidate ();
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Cirrious.MvvmCross.ViewModels;
 using System.Windows.Input;
 using System.Threading.Tasks;
@@ -38,8 +38,10 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = Mvx.Resolve<IDatabaseService>();
 			Alert = alert;
 			_facebookLinkManager = new FaceBookLinkManager ();
-			Email = "kumar.aditya@gmail.com";
-			Password = "pass";
+
+			//Email = "kumar.aditya@gmail.com";
+			//Password = "pass";
+
 			_reachabilityService = reachabilty;
 			_groupService = _service;
 			_famService = famService;
@@ -84,7 +86,6 @@ namespace AncestorCloud.Shared.ViewModels
 				RaisePropertyChanged(() => IsFbLogin);
 			}
 		}
-
 
 		private string _fbResponseText;
 
@@ -154,7 +155,6 @@ namespace AncestorCloud.Shared.ViewModels
 
 
 		#region Flyout View
-
 		public void ShowFlyOutViewModel()
 		{
 			ShowViewModel<FlyOutViewModel> (new FlyOutViewModel.DetailParameters { IsFBLogin = IsFbLogin });
@@ -297,7 +297,12 @@ namespace AncestorCloud.Shared.ViewModels
 
 						if (loginresponse.Status == ResponseStatus.OK) {
 
-							_databaseService.InsertLoginDetails (loginresponse.Content as LoginModel);
+							LoginModel model = loginresponse.Content;
+
+							model.AvatarOGFN = response.Content.AvatarOGFN;
+							model.AvatarURL = response.Content.AvatarURL;
+
+							_databaseService.InsertLoginDetails (model as LoginModel);
 							
 							//_databaseService.GetLoginDetails ();
 
@@ -310,12 +315,10 @@ namespace AncestorCloud.Shared.ViewModels
 								CloseCommand.Execute (null);
 							}
 						} else {
-
 							Alert.ShowAlert ("Invalid user signon username or password.", "Login Error");
 						}
 					}
 					else {
-
 						Alert.ShowAlert ("Invalid user signon username or password.", "Login Error");
 					}
 				}

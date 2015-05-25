@@ -139,22 +139,24 @@
                         android:layout_marginTop="15dp"
                         android:textSize="13sp"
                         android:gravity="center" />
-                    <TextView
-                        android:id="@+id/terms_txt"
-                        android:text="@string/term_condition"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/action_bar_back_color"
-                        android:layout_marginTop="3dp"
-                        android:textSize="13sp"
-                        android:gravity="center" />
                     <RelativeLayout
+                        android:id="@+id/terms_txt"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="35dp">
+                        <TextView
+                            android:id="@+id/in_txt_id"
+                            android:text="@string/term_condition"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/action_bar_back_color"
+                            android:layout_marginTop="3dp"
+                            android:textSize="13sp"
+                            android:gravity="center" />
                         <View
                             android:layout_width="125dp"
                             android:layout_height="0.5dp"
                             android:background="@color/action_bar_back_color"
+                            android:layout_below="@+id/in_txt_id"
                             android:layout_centerHorizontal="true" />
                     </RelativeLayout>
                     <View

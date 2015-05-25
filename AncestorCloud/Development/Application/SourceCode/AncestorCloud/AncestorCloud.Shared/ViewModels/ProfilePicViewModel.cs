@@ -50,8 +50,11 @@ namespace AncestorCloud.Shared.ViewModels
 		public void ShowFamiyViewModel()
 		{
 			//ShowViewModel<M> ();
-
-			ShowViewModel<FlyOutViewModel> (new FlyOutViewModel.DetailParameters { IsFBLogin = false });
+			if (Mvx.CanResolve<IAndroidService> ()) {
+				ShowViewModel<FamilyViewModel> ();
+			} else {
+				ShowViewModel<FlyOutViewModel> (new FlyOutViewModel.DetailParameters { IsFBLogin = false });
+			}
 
 			this.Close (this);//XXXXX
 		}

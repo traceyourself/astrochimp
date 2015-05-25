@@ -105,14 +105,14 @@
 
 	<!---help_dialog strings -->
 	<string name="how_it_works">How it works</string>
-	<string name="matching_confidence">29% Matching Confidence</string>
+	<string name="matching_confidence">Percent Matching Confidence</string>
 	<string name="first_desc_help">Relationship matching is a complex process with no guarentees. 
 								   To increase the chance of our software finding a common relationship between you or stranger
 								   we need as much information from you as possible. The more information you can put in about your 
 								   ancestors the higher the matching confidence.</string>
 	<string name="sec_desc_help">The matching confidence is determined by set of computer rules that predict the chance of you 
-								 getting matches. As you put in more information about your relatives we can better connect you a match!
-								 with this, the more the better.</string>
+								 getting matches. As you put in more information about your relatives we can better connect you into our global family tree and find you a match!
+								 With this, the more the better.</string>
 	<!---help_dialog strings ends -->
 
 
@@ -132,7 +132,9 @@
 	<!---Terms and Conditions -->
 	<string name="terms">Terms and Conditions</string>
 
-	<string name="terms_first">Welcome to the Mocavo website (the "Site") operated by Mocavo.com, Inc. ("Mocavo," "we," "our," or "us"). Please read the following terms and conditions of service ("Terms") carefully as they contain the legal terms and conditions that you agree to when you access the Site or use the Mocavo services provided to you by Mocavo through the Site ("Services").
+	<string name="terms_first">Introduction
+	\n\n
+	Welcome to the Mocavo website (the "Site") operated by Mocavo.com, Inc. ("Mocavo," "we," "our," or "us"). Please read the following terms and conditions of service ("Terms") carefully as they contain the legal terms and conditions that you agree to when you access the Site or use the Mocavo services provided to you by Mocavo through the Site ("Services").
 	\n\n
 	For the purposes of these Terms, "you" means you, the person using the Site, and, if applicable, the person that agrees to the Terms in Sections B and C when registering for an account. You and any persons that you authorize to use your account may be referred to in these Terms as the "User."
 	\n\n

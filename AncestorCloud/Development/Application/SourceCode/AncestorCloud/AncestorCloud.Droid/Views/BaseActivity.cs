@@ -5,6 +5,11 @@ using Android.App;
 using Android.OS;
 using Cirrious.CrossCore;
 using Android.Gms.Analytics;
+using Android.Views;
+using Android.Views.InputMethods;
+using Android.Content;
+using Android.Content.PM;
+
 
 namespace AncestorCloud.Droid
 {
@@ -25,6 +30,22 @@ namespace AncestorCloud.Droid
 			}catch(Exception e){
 				Mvx.Trace(e.StackTrace);
 			}
+
+			Window.SetSoftInputMode(SoftInput.StateAlwaysHidden);
+
+			//Window.SetSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+		}
+
+		public override bool OnTouchEvent (MotionEvent e)
+		{
+			HideKeyboard (this);
+			return false;
+		}
+
+		public static void HideKeyboard(Activity act) {
+			InputMethodManager inputMethodManager = act.GetSystemService(Context.InputMethodService) as InputMethodManager;
+			inputMethodManager.HideSoftInputFromWindow(act.CurrentFocus.WindowToken, HideSoftInputFlags.None);
 		}
 
 		public Tracker GetTracker()

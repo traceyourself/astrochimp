@@ -13,6 +13,7 @@ using Android.Widget;
 using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
 using Android.Content.PM;
+using Android.Graphics;
 
 namespace AncestorCloud.Droid
 {
@@ -44,6 +45,14 @@ namespace AncestorCloud.Droid
 
 			ApplyActions ();
 		
+			LoginModel modal = ViewModel.GetUserData();
+			userNameMenu.Text = modal.UserEmail;
+
+			string avatarUrl = ""+modal.AvatarURL;
+			if(avatarUrl.Length > 0){
+				new AvatarImageTask (this,avatarUrl).Execute();
+			}
+
 		}
 
 
@@ -75,8 +84,7 @@ namespace AncestorCloud.Droid
 				userImageMenu.SetImageBitmap (Utilities.CurrentUserimage);	
 			}
 
-			LoginModel modal = ViewModel.GetUserData();
-			userNameMenu.Text = modal.UserEmail;
+
 		}
 
 		private void ApplyActions(){
@@ -132,6 +140,39 @@ namespace AncestorCloud.Droid
 			};
 		}
 		#endregion
+
+
+		#region first image downloader
+		public class AvatarImageTask : AsyncTask
+		{
+			Bitmap resultBMP = null;
+			FamilyView myObj;
+			string url;
+
+			public AvatarImageTask(FamilyView myObj,string url)
+			{
+				this.myObj = myObj;
+				this.url = url;
+			}
+
+			protected override void OnPreExecute()
+			{
+			}
+
+			protected override Java.Lang.Object DoInBackground(params Java.Lang.Object[] @params)
+			{
+				resultBMP = Utilities.GetRoundedimage(myObj,url,0,200);
+				return "";
+			}
+
+			protected override void OnPostExecute(Java.Lang.Object result)
+			{
+				Utilities.CurrentUserimage = resultBMP;
+				myObj.userImageMenu.SetImageBitmap (Utilities.CurrentUserimage);	
+			}
+		}
+		#endregion
+
 
 	}
 }

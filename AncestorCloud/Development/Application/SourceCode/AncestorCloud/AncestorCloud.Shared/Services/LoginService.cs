@@ -45,7 +45,7 @@ namespace AncestorCloud.Shared
 				var response = await client.GetAsync(url);
 
 				string res = response.Content.ReadAsStringAsync().Result;
-
+				 
 				System.Diagnostics.Debug.WriteLine ("Login response : "+res);
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
