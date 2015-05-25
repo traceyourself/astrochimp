@@ -23,7 +23,6 @@ namespace AncestorCloud.Shared
 			//https://wsdev.onegreatfamily.com/v11.02/User.svc/Read?SessionId=s4zxi523e3hlgnhbgjh3hlm4
 			try   
 			{
-
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
@@ -59,6 +58,7 @@ namespace AncestorCloud.Shared
 
 						ResponseModel<LoginModel> avatarModel = await CheckIfAvatarAvailable(model);
 						model.AvatarOGFN = avatarModel.Content.AvatarOGFN;
+						model.AvatarURL = avatarModel.Content.AvatarURL;
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
@@ -126,7 +126,7 @@ namespace AncestorCloud.Shared
 
 							//http://wsdev.onegreatfamily.com/v11.02/Media.svc/AvatarRead?avatarOgfn=267861&ImageType=png&
 							//ImageSize=100%2c120&sessionId=duujwkoj2gfftdq2jdp4yd3e&stacktrace
-							/*
+
 							Dictionary <string,string> avatarParam = new Dictionary<string, string>();
 
 							avatarParam[AppConstant.SESSIONID]=model.Value;
@@ -135,10 +135,10 @@ namespace AncestorCloud.Shared
 							avatarParam[AppConstant.IMAGE_SIZE]="200"+"%2c"+"200";
 							avatarParam[AppConstant.STACKTRACE]=AppConstant.TRUE;
 
-							String AvatarUrl = WebServiceHelper.GetWebServiceURL(AppConstant.MEDIA_LISTREAD_SERVICE,param);
+							String AvatarUrl = WebServiceHelper.GetWebServiceURL(AppConstant.AVATAR_IMAGE_SERVICE,avatarParam);
 							Mvx.Trace("Avatar URL : "+AvatarUrl);
 
-							model.AvatarURL = AvatarUrl;*/
+							model.AvatarURL = AvatarUrl;
 
 							responsemodal.Status = ResponseStatus.OK;
 						}

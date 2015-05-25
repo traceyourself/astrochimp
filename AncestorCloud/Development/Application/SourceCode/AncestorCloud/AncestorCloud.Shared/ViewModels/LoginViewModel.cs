@@ -155,7 +155,6 @@ namespace AncestorCloud.Shared.ViewModels
 
 
 		#region Flyout View
-
 		public void ShowFlyOutViewModel()
 		{
 			ShowViewModel<FlyOutViewModel> (new FlyOutViewModel.DetailParameters { IsFBLogin = IsFbLogin });
@@ -298,7 +297,12 @@ namespace AncestorCloud.Shared.ViewModels
 
 						if (loginresponse.Status == ResponseStatus.OK) {
 
-							_databaseService.InsertLoginDetails (loginresponse.Content as LoginModel);
+							LoginModel model = loginresponse.Content;
+
+							model.AvatarOGFN = response.Content.AvatarOGFN;
+							model.AvatarURL = response.Content.AvatarURL;
+
+							_databaseService.InsertLoginDetails (model as LoginModel);
 							
 							//_databaseService.GetLoginDetails ();
 
@@ -311,12 +315,10 @@ namespace AncestorCloud.Shared.ViewModels
 								CloseCommand.Execute (null);
 							}
 						} else {
-
 							Alert.ShowAlert ("Invalid user signon username or password.", "Login Error");
 						}
 					}
 					else {
-
 						Alert.ShowAlert ("Invalid user signon username or password.", "Login Error");
 					}
 				}

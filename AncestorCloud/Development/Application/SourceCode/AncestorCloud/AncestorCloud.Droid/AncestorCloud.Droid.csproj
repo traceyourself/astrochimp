@@ -36,7 +36,6 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <ConsolePause>false</ConsolePause>
-    <AndroidKeyStore>True</AndroidKeyStore>
     <AndroidSigningKeyStore>/Users/amandeeps/Desktop/my-release-key.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>cousin</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>alias_name</AndroidSigningKeyAlias>
