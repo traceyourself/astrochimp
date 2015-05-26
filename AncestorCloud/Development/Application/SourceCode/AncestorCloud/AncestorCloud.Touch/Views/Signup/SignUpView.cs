@@ -69,13 +69,13 @@ namespace AncestorCloud.Touch
 		public void  SetNavigationBar()
 		{
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
-				{ TextColor = UIColor.FromRGB (255,255,255) });
+				{ TextColor = Themes.TitleTextColor() });
 
-			this.Title="Sign Up";
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("SignUpText", "");
+			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor ();
 			var navController = base.NavigationController;
 
-			UIImage image = UIImage.FromFile ("cross_white.png");
+			UIImage image = UIImage.FromFile (StringConstants.WHITECROSS);
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
    		

@@ -191,11 +191,11 @@ namespace AncestorCloud.Touch
 			{
 
 			case 0:
-				gender = "Male";
+				gender = Utility.LocalisedBundle ().LocalizedString ("MaleText","");
 				break;
 
 			case 1:
-				gender = "Female";
+				gender = Utility.LocalisedBundle ().LocalizedString ("FemaleText","");
 				break;
 			}
 

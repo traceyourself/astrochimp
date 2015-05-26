@@ -67,8 +67,8 @@ namespace AncestorCloud.Touch
 
 		private void SetRelationShipDetailView()
 		{
-			this.Title = "Cousin Match";
-			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("MatchText","");
+			this.NavigationController.NavigationBar.TintColor=Themes.TitleTextColor();
 
 
 			CenterImage.Layer.CornerRadius = 50f;
@@ -110,7 +110,7 @@ namespace AncestorCloud.Touch
 
 			this.NavigationController.NavigationBarHidden = false;
 
-			UIImage image = UIImage.FromFile ("clock_icon.png");
+			UIImage image = UIImage.FromFile (StringConstants.MATCHICON);
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 
@@ -168,7 +168,7 @@ namespace AncestorCloud.Touch
 			//TODO: Change this condition
 
 			if (ViewModel.MatchResultList[0].CommonResult != null) {
-				RelationshipMatchTable.BackgroundColor = UIColor.FromRGB (239,239,239);
+				RelationshipMatchTable.BackgroundColor = Themes.MatchTableView();
 				
 			}
 

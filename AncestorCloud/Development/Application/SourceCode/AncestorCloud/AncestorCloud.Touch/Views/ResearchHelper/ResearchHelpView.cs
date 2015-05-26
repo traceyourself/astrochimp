@@ -39,10 +39,10 @@ namespace AncestorCloud.Touch
 		public void SetNavigationbar()
 		{
 
-			this.Title = "Research Help";
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("ResearchHelpText", "");
 
-			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
+			this.NavigationController.NavigationBar.TintColor=Themes.TitleTextColor();
+			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
 
@@ -57,7 +57,7 @@ namespace AncestorCloud.Touch
 			}
 				
 
-			UIImage image = UIImage.FromFile ("action_menu.png");
+			UIImage image = UIImage.FromFile (StringConstants.FLYOUTICON);
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 

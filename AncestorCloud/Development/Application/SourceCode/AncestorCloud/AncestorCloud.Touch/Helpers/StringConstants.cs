@@ -1,4 +1,5 @@
 ﻿using System;
+using UIKit;
 
 namespace AncestorCloud.Touch
 {
@@ -24,6 +25,23 @@ namespace AncestorCloud.Touch
 		public const string GRANDPARENTS_FOOTER = "Add Grandparents";
 		public const string GREATGRANDPARENTS_HEADER = "Great Grandparents";
 		public const string GREATGRANDPARENTS_FOOTER = "Add Great Grandparents";
+
+		#endregion
+
+		#region IMAGES
+
+		public const string HOMEPAGEFIRSTIMAGE="21.png";
+		public const string HOMEPAGESECIMAGE="CollectionView1.png";
+		public const string HOMEPAGETHIRDTIMAGE="CollectionView3.png";
+		public const string HOMEPAGEFOURTHIMAGE="CollectionView2.png";
+		public const string WHITECROSS="cross_white.png";
+		public const string NOIMAGE="noImage.png";
+		public const string FLYOUTICON="action_menu.png";
+		public const string GREYPATCH="grey51.png";
+		public const string PROFILEIMAGE="profile_img.png";
+		public const string MATCHICON="clock_icon.png";
+		public const string MATCHCIRCLE="CircleMatcherDot.png";
+	
 
 		#endregion
 	}

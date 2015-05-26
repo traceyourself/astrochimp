@@ -68,7 +68,7 @@ namespace AncestorCloud.Touch
 
 		public void SetNavigationTitle()
 		{
-			this.Title="Add Family";
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("AddFamilyText", "");
 
 		}
 
@@ -103,11 +103,11 @@ namespace AncestorCloud.Touch
 			{
 
 			case 0:
-				ViewModel.Gender = "Male";
+				ViewModel.Gender = Utility.LocalisedBundle().LocalizedString("MaleText","");
 				break;
 					
 			case 1:
-				ViewModel.Gender = "Female";
+				ViewModel.Gender = Utility.LocalisedBundle().LocalizedString("FemaleText","");
 				break;
 			}
 		}

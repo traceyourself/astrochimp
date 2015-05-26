@@ -95,11 +95,11 @@ namespace AncestorCloud.Touch
 			SetProfilePic ();
 		
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
-				{ TextColor = UIColor.FromRGB (255,255,255) });
-			this.Title="Profile Picture";
+				{ TextColor = Themes.TitleTextColor() });
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("ProfilePictureTitle", "");
 			this.NavigationItem.HidesBackButton = true;
 			this.NavigationController.NavigationBarHidden = false;
-			this.NavigationController.NavigationBar.BarTintColor= UIColor.FromRGB (64,172,176);
+			this.NavigationController.NavigationBar.BarTintColor= Themes.NavBarTintColor();
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
 
 			if (width >= 375) {
@@ -109,7 +109,7 @@ namespace AncestorCloud.Touch
 			if (ViewModel.IsFromSignup)
 				return;
 			
-			UIImage image = UIImage.FromFile ("action_menu.png");
+			UIImage image = UIImage.FromFile (StringConstants.FLYOUTICON);
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 
@@ -142,10 +142,10 @@ namespace AncestorCloud.Touch
 
 		 void ProfilePicSetUp(object sender, EventArgs e)
 		{
-			actionSheet = new UIActionSheet ("Open Camera/Gallery");
-			actionSheet.AddButton ("Cancel");
-			actionSheet.AddButton ("Camera");
-			actionSheet.AddButton ("Gallery");
+			actionSheet = new UIActionSheet (Utility.LocalisedBundle().LocalizedString("Camera/GalleryText",""));
+			actionSheet.AddButton (Utility.LocalisedBundle().LocalizedString("CancelText",""));
+			actionSheet.AddButton (Utility.LocalisedBundle().LocalizedString("CameraText",""));
+			actionSheet.AddButton (Utility.LocalisedBundle().LocalizedString("GalleryText",""));
 			actionSheet.DestructiveButtonIndex = 0;
 			actionSheet.Clicked += delegate(object a, UIButtonEventArgs b) {
 				
@@ -174,7 +174,7 @@ namespace AncestorCloud.Touch
 
 		public void Gallery()
 		{
-			View.BackgroundColor = UIColor.FromRGB(239,239,239);
+			View.BackgroundColor =Themes.MatchTableView();
 
 			imageView = new UIImageView(new RectangleF(10, 80, 300, 300));
 			Add (imageView);
@@ -205,7 +205,7 @@ namespace AncestorCloud.Touch
 		}
 		public void Camera()
 		{
-			View.BackgroundColor = UIColor.FromRGB(239,239,239);
+			View.BackgroundColor = Themes.MatchTableView();
 
 			imageView = new UIImageView(new RectangleF(10, 80, 300, 300));
 			Add (imageView);
@@ -230,7 +230,6 @@ namespace AncestorCloud.Touch
 
 		void Handle_Canceled (object sender, EventArgs e) 
 		{
-			Console.WriteLine ("picker cancelled");
 			imagePicker.DismissViewControllerAsync(true);
 		}
 
@@ -325,7 +324,7 @@ namespace AncestorCloud.Touch
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			this.View.BackgroundColor = UIColor.FromRGB (242,242,242);
+			this.View.BackgroundColor = Themes.MatchTableView();
 		}
 
 

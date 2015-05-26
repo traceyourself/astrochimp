@@ -43,7 +43,7 @@ namespace AncestorCloud.Touch
 		public void SetTableView()
 		{
 
-			this.Title = "Facebook Friends";
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("FbFriendText","");
 			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
 			var source = new FacebookFriendTableSource (FacebookFriendTableView);
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
@@ -92,7 +92,7 @@ namespace AncestorCloud.Touch
 
 			AppDelegate _delegate = (AppDelegate) UIApplication.SharedApplication.Delegate;
 
-			UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle ("noImage.png");
+			UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle (StringConstants.NOIMAGE);
 
 			MeImage.SetBackgroundImage (image, UIControlState.Normal);
 

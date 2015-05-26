@@ -406,6 +406,8 @@
     </Compile>
     <Compile Include="CustomBinding\MvxUIButtonTitleTargetBinding.cs" />
     <Compile Include="Utility\MyProfilePicture.cs" />
+    <Compile Include="Utility\Utility.cs" />
+    <Compile Include="Helpers\Themes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -528,6 +530,7 @@
     <BundleResource Include="Resources\CollectionView1%402x.png" />
     <BundleResource Include="Resources\CollectionView2%402x.png" />
     <BundleResource Include="Resources\CollectionView3%402x.png" />
+    <BundleResource Include="en.lproj\Localizable.strings" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />

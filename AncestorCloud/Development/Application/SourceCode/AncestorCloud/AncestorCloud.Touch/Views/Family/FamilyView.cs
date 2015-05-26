@@ -63,10 +63,10 @@ namespace AncestorCloud.Touch
 		public void SetFamilyItem()
 		{
 			
-			this.Title = "My Family";
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("MyFamilyText", "");
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
-				{ TextColor = UIColor.FromRGB (255,255,255) });
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
+				{ TextColor = Themes.TitleTextColor()});
+			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 			this.NavigationItem.SetHidesBackButton (true, false);
 			//this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,150,20));
 
@@ -87,7 +87,7 @@ namespace AncestorCloud.Touch
 			//view.Center = new CoreGraphics.CGPoint (this.View.Center.X, view.Center.Y);
 	
 
-			UIImage image = UIImage.FromFile ("action_menu.png");
+			UIImage image = UIImage.FromFile (StringConstants.FLYOUTICON);
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 

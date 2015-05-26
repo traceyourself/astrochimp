@@ -118,7 +118,7 @@ namespace AncestorCloud.Touch
 		public void SetTableView()
 		{
 
-			this.Title= "My Family";
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("MyFamilyText","");
 			var source = new FbFamilyTableViewSource (fbFamilyTableView);
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
 			fbFamilyTableView.Source = source;
@@ -130,11 +130,11 @@ namespace AncestorCloud.Touch
 
 			set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (178, 45, 116);
+			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 			this.NavigationItem.SetHidesBackButton (true, false);
 			this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,150,20));
 
-			UIImage image = UIImage.FromFile ("action_menu.png");
+			UIImage image = UIImage.FromFile (StringConstants.FLYOUTICON);
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 

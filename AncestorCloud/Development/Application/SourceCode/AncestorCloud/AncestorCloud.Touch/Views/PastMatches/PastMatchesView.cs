@@ -39,7 +39,7 @@ namespace AncestorCloud.Touch
 		public void SetTableView()
 		{
 
-			this.Title = "Past Matches";
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("PastMatchText","");
 			var source = new PastMatchesTableSoure (PastMatchesTableVIew);
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
 			PastMatchesTableVIew.Source = source;

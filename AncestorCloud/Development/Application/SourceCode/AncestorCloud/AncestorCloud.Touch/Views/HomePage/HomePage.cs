@@ -85,10 +85,10 @@ namespace AncestorCloud.Touch
 		public string[] Images()
 		{
 			string[] array = new string[4];
-			array [0] = "21.png";
-			array [1] = "CollectionView1.png";
-			array [2] = "CollectionView3.png";
-			array [3] = "CollectionView2.png";
+			array [0] = StringConstants.HOMEPAGEFIRSTIMAGE;
+			array [1] = StringConstants.HOMEPAGESECIMAGE;
+			array [2] = StringConstants.HOMEPAGETHIRDTIMAGE;
+			array [3] = StringConstants.HOMEPAGEFOURTHIMAGE;
 
 			return array;
 		}

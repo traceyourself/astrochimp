@@ -38,14 +38,14 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 
 			this.NavigationController.NavigationBarHidden = false;
-			this.Title="Select Someone to Match";
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("AddFriendText", "");
 
-			UIImage image = UIImage.FromFile ("cross_white.png");
+			UIImage image = UIImage.FromFile (StringConstants.WHITECROSS);
 
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (68, 172, 176);
+			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor ();
 
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
-				{ TextColor = UIColor.FromRGB (255,255,255) });
+				{ TextColor = Themes.TitleTextColor()});
 
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);

@@ -131,12 +131,12 @@ namespace AncestorCloud.Touch
 
 		public void SetFamilyItem()
 		{
-			this.Title= "My Family";
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("MyFamilyText", "");
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
-				{ TextColor = UIColor.FromRGB (255,255,255) });
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
+				{ TextColor =Themes.TitleTextColor() });
+			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 			//this.NavigationItem.SetHidesBackButton (true, false);
-			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
+			this.NavigationController.NavigationBar.TintColor=Themes.TitleTextColor();
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
 			if (width <= 320f) {
 				this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,100,20));
@@ -224,29 +224,29 @@ namespace AncestorCloud.Touch
 
 
 			TableItem siblingData = new TableItem ();
-			siblingData.SectionHeader = "Siblings";
-			siblingData.SectionFooter = "Sibling";
+			siblingData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("SiblingSectionHeader","");
+			siblingData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("SiblingSectionFooter","");
 			siblingData.DataItems = siblingList;
 
 			resultList.Add (siblingData);
 
 			TableItem parentsData= new TableItem ();
-			parentsData.SectionHeader = "Parents";
-			parentsData.SectionFooter = "Parent";
+			parentsData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("ParentSectionHeader","");
+			parentsData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("ParentSectionFooter","");
 			parentsData.DataItems = parentList;
 
 			resultList.Add (parentsData);
 
 			TableItem grandParentData= new TableItem ();
-			grandParentData.SectionHeader = "Grandparents";
-			grandParentData.SectionFooter = "Grandparent";
+			grandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionHeader","");
+			grandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionFooter","");
 			grandParentData.DataItems = grandParentList;
 
 			resultList.Add (grandParentData);
 
 			TableItem greatGrandParentData= new TableItem ();
-			greatGrandParentData.SectionHeader = "Great Grandparents";
-			greatGrandParentData.SectionFooter = "Great Grandparent";
+			greatGrandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
+			greatGrandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
 			greatGrandParentData.DataItems = greatGrandParentList;
 
 			resultList.Add (greatGrandParentData);

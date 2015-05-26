@@ -54,7 +54,7 @@ namespace AncestorCloud.Touch
 				Frame = new RectangleF (0f,0f ,240f, 240f);
 				SelectedBackgroundView = new UIView{BackgroundColor = UIColor.FromRGB(237,237,237)};
 
-				imageView = new UIImageView (UIImage.FromBundle ("21.png"));
+				imageView = new UIImageView (UIImage.FromBundle(StringConstants.HOMEPAGEFIRSTIMAGE));
 				imageView.Frame = Frame;
 				imageView.Center = ContentView.Center;
 				imageView.ContentMode= UIViewContentMode.ScaleAspectFit;

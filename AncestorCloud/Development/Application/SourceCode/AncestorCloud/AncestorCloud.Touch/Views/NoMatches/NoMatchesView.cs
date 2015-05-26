@@ -30,9 +30,9 @@ namespace AncestorCloud.Touch
 
 		public void SetNavigation()
 		{
-			this.Title="Past Matches";
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("PastMatchText", "");
 			this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,150,20));
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
+			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 
 
 		}

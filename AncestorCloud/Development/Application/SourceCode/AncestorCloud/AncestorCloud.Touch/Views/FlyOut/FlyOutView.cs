@@ -97,13 +97,13 @@ namespace AncestorCloud.Touch
 			this.AddChildViewController (_navigation);
 
 			//this.NavigationItem.TitleView = new MyTitleView (this.Title);
-			_navigation.NavigationTableView.BackgroundColor = UIColor.FromRGB (46, 58, 73);
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
+			_navigation.NavigationTableView.BackgroundColor = Themes.NavBarTableView();
+			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 
 			this.NavigationItem.SetHidesBackButton (true, false);
 
 		
-			UIImage image = UIImage.FromFile ("action_menu.png");
+			UIImage image = UIImage.FromFile (StringConstants.FLYOUTICON);
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 
@@ -201,7 +201,7 @@ namespace AncestorCloud.Touch
 
 
 						UIImageView view = new UIImageView (new RectangleF (0f, 0f, 280, (float)this.View.Frame.Size.Height-277));
-						view.Image = UIImage.FromBundle ("grey51.jpg");
+						view.Image = UIImage.FromBundle (StringConstants.GREYPATCH);
 						flyoutMenuElements.Add (new CustomViewElement("",view));
 						continue;
 					}
@@ -209,7 +209,7 @@ namespace AncestorCloud.Touch
 					if (viewModel.ViewModelType == typeof(ProfilePicViewModel)) {
 						AppDelegate _delegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 
-						UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle ("profile_img.png");
+						UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle (StringConstants.PROFILEIMAGE);
 
 						profCell = new ProfileCellView(viewModel.Title,image);
 

@@ -52,7 +52,7 @@ namespace AncestorCloud.Touch
 
 			AppDelegate _delegate = (AppDelegate) UIApplication.SharedApplication.Delegate;
 
-			UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle ("noImage.png");
+			UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle (StringConstants.NOIMAGE);
 
 			MeImage.SetBackgroundImage (image, UIControlState.Normal);
 
@@ -63,17 +63,17 @@ namespace AncestorCloud.Touch
 		public void SetTableView()
 		{
 
-			this.Title="Celebrities";
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("CelebrityText", "");
 			var source = new CelebritiesTableSource (CelebritiesTableVIew);
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
 			CelebritiesTableVIew.Source = source;
 
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
-				{ TextColor = UIColor.FromRGB (255,255,255) });
+				{ TextColor = Themes.TitleTextColor() });
 
-			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
+			this.NavigationController.NavigationBar.TintColor=Themes.TitleTextColor();
 
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (68, 172, 176);
+			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 
 			//	this.NavigationItem.BackBarButtonItem.TintColor = UIColor.White;
 			

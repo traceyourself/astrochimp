@@ -46,7 +46,7 @@ namespace AncestorCloud.Touch
 			UIViewController rootViewController = window.RootViewController;
 
 			Item item = new Item {
-				Text = "I'm sharing great things using AncestorCloud!",
+				Text = Utility.LocalisedBundle().LocalizedString("AncestorCloudText",""),
 //				Links = new List<Uri> {
 //					new Uri ("http://xamarin.com"),
 //				},

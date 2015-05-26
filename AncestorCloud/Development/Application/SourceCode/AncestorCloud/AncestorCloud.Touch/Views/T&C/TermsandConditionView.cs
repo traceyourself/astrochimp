@@ -31,11 +31,11 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 			setTerms_Condition ();
 
-			this.Title="Terms & Conditions";
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("T&CText", "");
 			this.NavigationController.NavigationBar.Hidden = false;
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
+			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 
-			UIImage image = UIImage.FromFile ("cross_white.png");
+			UIImage image = UIImage.FromFile (StringConstants.WHITECROSS);
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 

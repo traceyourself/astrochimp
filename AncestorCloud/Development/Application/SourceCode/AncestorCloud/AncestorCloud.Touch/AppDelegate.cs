@@ -21,6 +21,11 @@ namespace AncestorCloud.Touch
 
 		public UIViewController currentController;
 
+
+
+	
+
+
 		public override bool FinishedLaunching(UIApplication application , NSDictionary launchOptions)
 		{
 			_window = new UIWindow(UIScreen.MainScreen.Bounds);
@@ -38,6 +43,8 @@ namespace AncestorCloud.Touch
 			System.Diagnostics.Debug.WriteLine("app dir: "+ mydocumentpath);
 
 			RegisterGoogleAnalytics ();
+
+
 
 			_window.MakeKeyAndVisible();
 

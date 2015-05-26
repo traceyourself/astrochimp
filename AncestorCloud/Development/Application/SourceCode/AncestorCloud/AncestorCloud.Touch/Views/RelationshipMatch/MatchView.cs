@@ -78,14 +78,14 @@ namespace AncestorCloud.Touch
 		{
 
 
-			UIImage image = UIImage.FromFile ("action_menu.png");
+			UIImage image = UIImage.FromFile (StringConstants.FLYOUTICON);
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 
-			this.Title = "Cousin Match";
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("MatchText", "");
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
-				{ TextColor = UIColor.FromRGB (255,255,255) });
-			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
+				{ TextColor = Themes.TitleTextColor() });
+			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 			this.NavigationItem.SetHidesBackButton (true, false);
 
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
@@ -122,7 +122,7 @@ namespace AncestorCloud.Touch
 
 			#region RightSide Button
 
-			UIImage rightImage = UIImage.FromFile ("clock_icon.png");
+			UIImage rightImage = UIImage.FromFile (StringConstants.MATCHICON);
 
 			rightImage = rightImage.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 
@@ -238,7 +238,7 @@ namespace AncestorCloud.Touch
 				//FirstImageButton.SetBackgroundImage(UIImage.FromBundle("noImage.png"),UIControlState.Normal);
 				FirstImageButton.Layer.CornerRadius = 90f;
 				FirstImageButton.ClipsToBounds = true;
-				FirstImageButton.SetBackgroundImage (UIImage.FromFile ("noImage.png"), UIControlState.Normal);
+				FirstImageButton.SetBackgroundImage (UIImage.FromFile (StringConstants.NOIMAGE), UIControlState.Normal);
 				FirstCrossButton.Hidden = false;
 
 				if (FirstPersonTag.Equals (AppConstant.METAGKEY)) {
@@ -254,7 +254,7 @@ namespace AncestorCloud.Touch
 				FirstImageView.Hidden = false;
 			} else {
 				
-				FirstImageButton.SetBackgroundImage(UIImage.FromBundle("CircleMatcherDot.png"),UIControlState.Normal);
+				FirstImageButton.SetBackgroundImage(UIImage.FromBundle(StringConstants.MATCHCIRCLE),UIControlState.Normal);
 				FirstImageButton.Layer.CornerRadius = 90f;
 				FirstImageButton.ClipsToBounds = true;
 				FirstCrossButton.Hidden = true;
@@ -270,7 +270,7 @@ namespace AncestorCloud.Touch
 			if (isSecondPersonSelected)
 			{
 				
-				SecondImageButton.SetBackgroundImage(UIImage.FromBundle("noImage.png"),UIControlState.Normal);
+				SecondImageButton.SetBackgroundImage(UIImage.FromBundle(StringConstants.NOIMAGE),UIControlState.Normal);
 				SecondImageButton.Layer.CornerRadius = 90f;
 				SecondImageButton.ClipsToBounds = true;
 				SecondCrossButton.Hidden = false;
@@ -287,7 +287,7 @@ namespace AncestorCloud.Touch
 				SecondImageView.ClipsToBounds = true;
 				SecondImageView.Hidden = false;
 			} else {
-				SecondImageButton.SetBackgroundImage(UIImage.FromBundle("CircleMatcherDot.png"),UIControlState.Normal);
+				SecondImageButton.SetBackgroundImage(UIImage.FromBundle(StringConstants.MATCHCIRCLE),UIControlState.Normal);
 				SecondImageButton.Layer.CornerRadius = 90f;
 				SecondImageButton.ClipsToBounds = true;
 				SecondCrossButton.Hidden = true;

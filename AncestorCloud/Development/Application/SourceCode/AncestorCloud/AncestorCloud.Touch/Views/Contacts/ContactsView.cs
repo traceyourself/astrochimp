@@ -43,8 +43,8 @@ namespace AncestorCloud.Touch
 		public void SetTableView()
 		{
 
-			this.Title = "Contacts";
-			this.NavigationController.NavigationBar.TintColor=UIColor.FromRGB(255,255,255);
+			this.Title = Utility.LocalisedBundle ().LocalizedString ("ContactText", "");
+			this.NavigationController.NavigationBar.TintColor = Themes.TitleTextColor ();
 			var source = new ContactsTableSource (ContactsTableView);
 			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
 			ContactsTableView.Source = source;
@@ -95,7 +95,7 @@ namespace AncestorCloud.Touch
 
 			AppDelegate _delegate = (AppDelegate) UIApplication.SharedApplication.Delegate;
 
-			UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle ("noImage.png");
+			UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle (StringConstants.NOIMAGE);
 
 			MeImage.SetBackgroundImage (image, UIControlState.Normal);
 
