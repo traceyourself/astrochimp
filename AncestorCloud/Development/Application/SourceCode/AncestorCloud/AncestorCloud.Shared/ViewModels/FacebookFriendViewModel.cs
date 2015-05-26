@@ -37,7 +37,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_friendLinkService = fbService;
 			_alert = alert;
 			GetFacebookFriendData ();
-			checkFbFreindToken = _mvxMessenger.SubscribeOnMainThread<CheckFbFriendMessage>(message => this.CheckFriend(message.IsPermited));
+			//checkFbFreindToken = _mvxMessenger.SubscribeOnMainThread<CheckFbFriendMessage>(message => this.CheckFriend(message.IsPermited));
 			selectFbFreindToken = _mvxMessenger.SubscribeOnMainThread<SelectFbFriendMessage>(message => this.PeoplePlusClickHandler(FbFriend));
 		}
 
@@ -115,7 +115,7 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			get
 			{
-				return new MvxCommand<People>(item => this.GetUserPermission(item));
+				return new MvxCommand<People>(item => this.CheckFriend(item));
 			}
 		}
 
@@ -123,10 +123,12 @@ namespace AncestorCloud.Shared.ViewModels
 
 		#region Check Friend
 
-		private async void CheckFriend(bool isPermited)
+		private async void CheckFriend(People friend)
 		{
-			if (!isPermited)
-				return;
+			LoginModel data = _databaseService.GetLoginDetails ();
+			friend.SessionId = data.Value;
+
+			FbFriend = friend;
 			
 			if(FbFriend.IndiOgfn ==  null)
 			{
@@ -145,15 +147,15 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 
 
-		private void GetUserPermission(People friend)
-		{
-			return;
-			//TODO: remove when facebookfriend is linked
-
-			FbFriend = friend;
-
-			_alert.ShowAlertWithOk("Do you want to add your friend to Ancestor Cloud","Match",AlertType.OKCancelPermit);
-		}
+//		private void GetUserPermission(People friend)
+//		{
+////			return;
+////			//TODO: remove when facebookfriend is linked
+//
+//			FbFriend = friend;
+//
+//			_alert.ShowAlertWithOk("Do you want to add your friend to Ancestor Cloud","Match",AlertType.OKCancelPermit);
+//		}
 
 		#endregion
 

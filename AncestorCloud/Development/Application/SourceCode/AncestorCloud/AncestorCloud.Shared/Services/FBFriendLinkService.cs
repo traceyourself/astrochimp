@@ -31,7 +31,7 @@ namespace AncestorCloud.Shared
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
 				param[AppConstant.LINKIDKEY] = friend.UserID;
-				param[AppConstant.LINKTYPEKEY] = AppConstant.LINKTYPE;
+				param[AppConstant.LINKTYPEKEY] = AppConstant.KIN2_LINKTYPE;
 				param[AppConstant.SESSIONID] = friend.SessionId;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.INDIVIDUAL_READ_SERVICE,param);
