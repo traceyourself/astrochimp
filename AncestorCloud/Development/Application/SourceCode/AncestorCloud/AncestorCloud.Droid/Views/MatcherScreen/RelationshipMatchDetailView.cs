@@ -175,7 +175,6 @@ namespace AncestorCloud.Droid
 
 			StartActivity (intent);
 		}
-
 	}
 
 	#region List Adapter
@@ -238,10 +237,8 @@ namespace AncestorCloud.Droid
 				holder.common_txt.Visibility = ViewStates.Gone;
 				holder.mainContainer.SetBackgroundColor (Color.Transparent);	
 			}
-
 			return convertView;
 		}
-
 	}
 
 	public class MatchedViewHolder : Java.Lang.Object{

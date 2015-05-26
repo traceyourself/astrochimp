@@ -83,6 +83,16 @@ namespace AncestorCloud.Droid
 		#endregion
 
 
+		#region onresume
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+			ViewModel.GetPastMatchesData ();
+
+		}
+		#endregion
+
+
 		public void NoMatchesFound(){
 			matchlist.Visibility = ViewStates.Gone;
 			noMatchLay.Visibility = ViewStates.Visible;

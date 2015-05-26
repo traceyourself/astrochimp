@@ -556,6 +556,98 @@ namespace AncestorCloud.Shared
 			return modal;
 		}
 		#endregion
+
+
+		#region Match History
+		public static List<RelationshipFindResult> ReadDataHistory(Dictionary<string,object> dataDic)
+		{
+			if (ValidationClass.IsDataNull (dataDic)) {
+				Utility.Log ("In GetUserReadData() data dictionary is null");
+				return null;
+			}
+
+			List<RelationshipFindResult> resultModel = new List<RelationshipFindResult> ();
+
+			if (IsKeyExist (AppConstant.Message, dataDic)) 
+			{
+				if (! GetData (AppConstant.Message, dataDic).Equals (AppConstant.SUCCESS)) 
+				{
+					return resultModel;
+				}
+			}
+
+			if (IsKeyExist (AppConstant.VALUE, dataDic))
+				resultModel = GetHistoryData (resultModel,AppConstant.VALUE,dataDic);
+
+			return resultModel;
+		}
+
+		private static List<RelationshipFindResult> GetHistoryData(List<RelationshipFindResult> model,string key , Dictionary<string,object> data)
+		{
+			if (ValidationClass.IsDataNull (data)) {
+				Utility.Log ("In GetHistoryData() data dictionary is null");
+				return null;
+			}
+
+			JArray jar = data [key] as JArray;
+
+			for(int i=0;i<jar.Count;i++){
+			
+				JObject obj = jar [i] as JObject;
+
+				Dictionary<string,object> dict = obj.ToObject<Dictionary<string,object>> ();
+
+				RelationshipFindResult inModel = new RelationshipFindResult ();
+
+				if (IsKeyExist (AppConstant.HISTORY_DEGREES, dict))
+					inModel.Degrees = int.Parse(GetData (AppConstant.HISTORY_DEGREES, dict));
+
+				if (IsKeyExist (AppConstant.HISTORY_INDI_1_OGFN, dict))
+					inModel.Indi1Ogfn = int.Parse(GetData (AppConstant.HISTORY_INDI_1_OGFN, dict));
+
+				if (IsKeyExist (AppConstant.HISTORY_INDI_2_OGFN, dict))
+					inModel.Indi2Ogfn = int.Parse(GetData (AppConstant.HISTORY_INDI_2_OGFN, dict));
+
+				if (IsKeyExist (AppConstant.HISTORY_COMMON_INDI_OGFN, dict))
+					inModel.CommonIndiOgfn = int.Parse(GetData (AppConstant.HISTORY_COMMON_INDI_OGFN, dict));
+
+				if (IsKeyExist (AppConstant.HISTORY_FIRST_FIND_DATE, dict))
+					inModel.FirstFindDate = GetData (AppConstant.HISTORY_FIRST_FIND_DATE, dict);
+
+				if (IsKeyExist (AppConstant.HISTORY_LAST_FIND_DATE, dict))
+					inModel.LastFindDate = GetData (AppConstant.HISTORY_LAST_FIND_DATE, dict);
+
+				if (IsKeyExist (AppConstant.HISTORY_FOUND, dict))
+					inModel.Found = bool.Parse(GetData (AppConstant.HISTORY_FOUND, dict));
+
+				if (IsKeyExist (AppConstant.HISTORY_GROUP_OGFN, dict))
+					inModel.GroupOgfn = int.Parse(GetData (AppConstant.HISTORY_GROUP_OGFN, dict));
+
+				if (IsKeyExist (AppConstant.HISTORY_USEROGFN, dict))
+					inModel.UserOgfn = int.Parse(GetData (AppConstant.HISTORY_USEROGFN, dict));
+
+				if (IsKeyExist (AppConstant.History_DESC, dict))
+					inModel.Description = GetData (AppConstant.History_DESC, dict);
+
+				/*if (IsKeyExist (AppConstant.HISTORY_INDI_LIST1, dict))
+					inModel.IndiList1 = GetData (AppConstant.HISTORY_INDI_LIST1, dict);
+
+				if (IsKeyExist (AppConstant.HISTORY_INDI_LIST2, dict))
+					inModel.IndiList2 = GetData (AppConstant.HISTORY_INDI_LIST2, dict);
+				*/
+				if (IsKeyExist (AppConstant.HISTORY_NOTFOUND_REASON, dict))
+					inModel.NotFoundReason = GetData (AppConstant.HISTORY_NOTFOUND_REASON, dict);
+
+				if (IsKeyExist (AppConstant.HISTORY_TYPE, dict))
+					inModel.Type = GetData (AppConstant.HISTORY_TYPE, dict);
+
+				model.Add (inModel);
+			}
+
+			return model;
+		}
+		#endregion
+
 	}
 }
 

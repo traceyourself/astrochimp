@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Shared.ViewModels
 {
 	public class PastMatchesViewModel:BaseViewModel
 	{
+		private readonly IMatchHistoryService _historyService;
 
 		#region Close Method
 		public void Close()
@@ -19,17 +21,17 @@ namespace AncestorCloud.Shared.ViewModels
 		public PastMatchesViewModel(IDatabaseService  service)
 		{
 			_databaseService = service;
-			GetPastMatchesData ();
+			_historyService = Mvx.Resolve<IMatchHistoryService>();
+			//GetPastMatchesData ();
 		}
 
-
 		#region Sqlite Methods
-
-		public void GetPastMatchesData()
+		public async void GetPastMatchesData()
 		{
 			LoginModel login = _databaseService.GetLoginDetails ();
-			List<People> list = _databaseService.RelativeMatching ("",login.UserEmail);
-			PastMatchesList = list;
+			ResponseModel<List<RelationshipFindResult>> matchList = await _historyService.HistoryReadService (login);
+			//List<People> list = _databaseService.RelativeMatching ("",login.UserEmail);
+			//PastMatchesList = list;
 		}
 		#endregion
 

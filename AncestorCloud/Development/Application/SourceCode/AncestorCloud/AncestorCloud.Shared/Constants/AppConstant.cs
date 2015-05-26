@@ -103,6 +103,7 @@ namespace AncestorCloud.Shared
 		public const string AVATAR_IMAGE_SERVICE = "Media.svc/AvatarRead";
 
 		public const string FAMILY_READ_SERVICE = "Family.svc/Read";
+		public const string MATCHER_HISTORY_SERVICE = "Individual.svc/RelationshipFindHistoryGet";
 
 		#endregion
 
@@ -213,13 +214,30 @@ namespace AncestorCloud.Shared
 
 		#endregion
 
-		#region
+		#region celeb const
 
 		public const string CELEBBASEURL = "https://www.kin2.me/img/color/";
 		public const string CELEBIMAGEEXTENSION = ".jpg";
-
 		#endregion
 
+
+		#region Match history const
+		public const string HISTORY_COMMON_INDI_OGFN = "CommonIndiOgfn";
+		public const string HISTORY_DEGREES = "Degrees";
+		public const string History_DESC = "Description";
+		public const string HISTORY_FIRST_FIND_DATE = "FirstFindDate";
+		public const string HISTORY_FOUND = "Found";
+		public const string HISTORY_GROUP_OGFN = "GroupOgfn";
+		public const string HISTORY_INDI_1_OGFN = "Indi1Ogfn";
+		public const string HISTORY_INDI_2_OGFN = "Indi2Ogfn";
+		public const string HISTORY_INDI_LIST1 = "IndiList1";
+		public const string HISTORY_INDI_LIST2 = "IndiList2";
+		public const string HISTORY_LAST_FIND_DATE = "LastFindDate";
+		public const string HISTORY_NOTFOUND_REASON = "NotFoundReason";
+		public const string HISTORY_TYPE = "Type";
+		public const string HISTORY_USEROGFN = "UserOgfn";
+
+		#endregion
 	}
 
 }
