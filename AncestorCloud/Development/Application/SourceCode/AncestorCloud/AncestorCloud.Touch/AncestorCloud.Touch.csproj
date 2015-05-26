@@ -536,13 +536,13 @@
     <Content Include="Celebs.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\AncestorCloud.Shared\AncestorCloud.Core.csproj">
       <Project>{ED8A9D7B-B591-4204-BE58-FAC4EE55E0E5}</Project>
       <Name>AncestorCloud.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ITunesArtwork Include="iTunesArtwork" />
-    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
 </Project>
