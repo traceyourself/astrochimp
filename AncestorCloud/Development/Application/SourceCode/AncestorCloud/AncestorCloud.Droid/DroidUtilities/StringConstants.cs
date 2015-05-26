@@ -52,6 +52,28 @@ namespace AncestorCloud.Droid
 		public static readonly string DIRECTORY_NAME = "Ancestor Cloud";
 		#endregion
 
+
+		#region Family Consts
+		public static readonly string MALE = "Male";
+		public static readonly string FEMALE = "Female";
+		#endregion
+
+
+		#region sending message to contacts Constants
+		public static readonly string SMS_TO = "smsto:";
+		public static readonly string SMS_BODY = "sms_body";
+		public static readonly string SMS_CONTENT = "Come join Cousin App and see how we're related!";
+		#endregion
+
+
+		#region FB constants
+		public static readonly string GET_METHOD_TYPE = "GET";
+		public static readonly string FB_GRAPH_ME_URL = "https://graph.facebook.com/me";
+		public static readonly string FB_GRAPH_FAMILY_URL = "https://graph.facebook.com/me/family";
+		public static readonly string FB_GRAPH_TAGGABLE_FRIENDS_URL = "https://graph.facebook.com/me/taggable_friends";
+		#endregion
+
+
 	}
 }
 

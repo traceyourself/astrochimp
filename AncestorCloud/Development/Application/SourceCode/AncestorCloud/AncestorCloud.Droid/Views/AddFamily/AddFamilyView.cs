@@ -63,7 +63,7 @@ namespace AncestorCloud.Droid
 
 		private void ConfigureActionBar()
 		{
-			actionBar.SetCenterText ("Add "+Utilities.AddPersonType);
+			actionBar.SetCenterText (Resources.GetString(Resource.String.Add)+Utilities.AddPersonType);
 			actionBar.SetLeftCornerImage (Resource.Drawable.back);
 			var backButton = actionBar.FindViewById <RelativeLayout> (Resource.Id.action_bar_left_btn);
 
@@ -100,13 +100,13 @@ namespace AncestorCloud.Droid
 
 			malecheck.Click += (object sender, EventArgs e) => {
 				malecheck.SetBackgroundResource(Resource.Drawable.male_selected);	
-				femalecheck.SetBackgroundColor(Color.ParseColor("#00000000"));
+				femalecheck.SetBackgroundColor(Color.Transparent);
 				maleSelected = true;
 				femaleSelected = false;
 			};
 
 			femalecheck.Click += (object sender, EventArgs e) => {
-				malecheck.SetBackgroundColor(Color.ParseColor("#00000000"));	
+				malecheck.SetBackgroundColor(Color.Transparent);	
 				femalecheck.SetBackgroundResource(Resource.Drawable.female_selected);
 				maleSelected = false;
 				femaleSelected = true;
@@ -117,10 +117,10 @@ namespace AncestorCloud.Droid
 
 				if(maleSelected)
 				{
-					ViewModel.Gender = "Male";	
+					ViewModel.Gender = StringConstants.MALE;	
 				}else if(femaleSelected)
 				{
-					ViewModel.Gender = "Female";
+					ViewModel.Gender = StringConstants.FEMALE;
 				}else{
 					ViewModel.Gender = "";
 				}
