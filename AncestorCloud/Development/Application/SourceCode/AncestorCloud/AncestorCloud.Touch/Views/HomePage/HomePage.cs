@@ -110,8 +110,8 @@ namespace AncestorCloud.Touch
 		{
 			this.NavigationController.NavigationBarHidden = true;
 
-			AppDelegate _delagate = (AppDelegate) UIApplication.SharedApplication.Delegate;
-			_delagate.UIImageProfilePic = null;
+//			AppDelegate _delagate = (AppDelegate) UIApplication.SharedApplication.Delegate;
+//			_delagate.UIImageProfilePic = null;
 		}
 
 

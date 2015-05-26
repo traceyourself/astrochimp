@@ -259,6 +259,14 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public async void DoSignUp()
 		{
+//			IsFbLogin = false;
+//			ShowProfilePicViewModel ();
+//			//this.Close (this);//XXXXXX
+//			//									CallFlyoutCommand.Execute(null);
+//			CloseCommand.Execute (null);
+//			return;
+
+
 			if (ValidateCredentials ()) {
 
 				if (_reachabilityService.IsNetworkNotReachable ()) {

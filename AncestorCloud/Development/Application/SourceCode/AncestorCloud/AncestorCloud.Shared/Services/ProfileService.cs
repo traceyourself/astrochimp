@@ -27,7 +27,6 @@ namespace AncestorCloud.Shared
 
 			try   
 			{
-
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 				client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type","text/raw");
@@ -46,7 +45,7 @@ namespace AncestorCloud.Shared
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.UPLOAD_MEDIA_SERVICE,param);
 
-				Mvx.Trace(url);
+				Mvx.Trace("Upload Service URL:- "+url);
 
 				var response = await client.PostAsync(url, new StreamContent(stream));
 

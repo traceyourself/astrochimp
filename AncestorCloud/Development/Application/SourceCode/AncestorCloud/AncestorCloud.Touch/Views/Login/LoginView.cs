@@ -75,7 +75,7 @@ namespace AncestorCloud.Touch
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = UIColor.FromRGB (255,255,255) });
 			
-			this.Title="Log In";
+			this.Title = "Log In"
 			this.NavigationController.NavigationBar.BarTintColor = UIColor.FromRGB (64,172,176);
 			var navController = base.NavigationController;
 

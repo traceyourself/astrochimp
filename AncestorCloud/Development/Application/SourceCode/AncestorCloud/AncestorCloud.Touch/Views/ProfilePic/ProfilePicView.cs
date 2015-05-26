@@ -284,7 +284,7 @@ namespace AncestorCloud.Touch
 //					// do something with the metadata
 //					Console.WriteLine ("got image metadata");
 //				}
-				originalImage = ResizeImage(originalImage);
+				//originalImage = ResizeImage(originalImage);
 
 
 				AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
@@ -344,8 +344,10 @@ namespace AncestorCloud.Touch
 
 			SetProfilePic ();
 
-			if(ViewModel.IsFromSignup)
-				this.NavigationController.PopViewController (false);
+			if (ViewModel.IsFromSignup) {
+				if(this.NavigationController != null)
+					this.NavigationController.PopViewController (false);
+			}
 			//ViewModel.Close ();
 		}
 

@@ -15,6 +15,7 @@ namespace AncestorCloud.Shared.ViewModels
 		private readonly IDatabaseService _databaseService;
 
 		private MvxSubscriptionToken navigationMenuToggleToken;
+
 		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
 
 		public ProfilePicViewModel(IProfileService profileService,IDatabaseService databaseService)
@@ -53,7 +54,8 @@ namespace AncestorCloud.Shared.ViewModels
 			if (Mvx.CanResolve<IAndroidService> ()) {
 				ShowViewModel<FamilyViewModel> ();
 			} else {
-				ShowViewModel<FlyOutViewModel> (new FlyOutViewModel.DetailParameters { IsFBLogin = false });
+				if(IsFromSignup)	
+				ShowViewModel	<FlyOutViewModel> (new FlyOutViewModel.DetailParameters { IsFBLogin = false });
 			}
 
 			this.Close (this);//XXXXX

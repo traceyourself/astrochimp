@@ -131,7 +131,7 @@ namespace AncestorCloud.Shared
 		public const string IMAGE_WIDTH = "200";
 		public const string IMAGE_HEIGHT = "200";
 
-		public const string IMAGESIZE = "100%2c100";
+		public const string IMAGESIZE = "300%2c300";
 		public const string CHILDOGFNKEY = "ChildFamilyOgfn";
 
 		public const string BIRTH_DATE = "BirthDate";

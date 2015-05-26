@@ -30,6 +30,9 @@ namespace AncestorCloud.Touch
 		private MvxSubscriptionToken ImageUploadedToken;
 		IMvxMessenger _messenger;
 		ProfileCellView profCell;
+		UITextView userNameMenu;
+		string documentsPath,localFilename,localPath;
+
 
 
 
@@ -47,6 +50,12 @@ namespace AncestorCloud.Touch
 			_messenger = Mvx.Resolve<IMvxMessenger>();
 		}
 
+		public new FlyOutViewModel ViewModel
+		{
+			get { return base.ViewModel as FlyOutViewModel; }
+			set { base.ViewModel = value; }
+		}
+
 
 		public override void ViewDidLoad ()
 		{
@@ -54,6 +63,7 @@ namespace AncestorCloud.Touch
 			Flyout ();
 			AddMessengers ();
 			DownloadImage ();
+			//SetProfilePic ();
 
 		}
 
@@ -69,6 +79,7 @@ namespace AncestorCloud.Touch
 			base.ViewWillAppear (animated);
 
 			CreateFlyoutView ();
+			SetProfilePic ();
 		}
 
 		#endregion
@@ -121,11 +132,11 @@ namespace AncestorCloud.Touch
 
 			var flyoutViewControllers = new List<UIViewController>();
 
-			var homeViewModel = ViewModel as FlyOutViewModel;
-			if (homeViewModel != null)
+			//var homeViewModel = ViewModel as FlyOutViewModel;
+			if (ViewModel != null)
 			{
 				//create the ViewModels
-				foreach (var viewModel in homeViewModel.MenuItems)
+				foreach (var viewModel in ViewModel.MenuItems)
 				{
 					var viewModelRequest = new MvxViewModelRequest
 					{
@@ -152,11 +163,11 @@ namespace AncestorCloud.Touch
 
 			var flyoutViewControllers = new List<UIViewController>();
 
-			var homeViewModel = ViewModel as FlyOutViewModel;
-			if (homeViewModel != null)
+			//var homeViewModel = ViewModel as FlyOutViewModel;
+			if (ViewModel != null)
 			{
 				//create the ViewModels
-				foreach (var viewModel in homeViewModel.MenuItems)
+				foreach (var viewModel in ViewModel.MenuItems)
 				{
 					var viewModelRequest = new MvxViewModelRequest
 					{
@@ -180,11 +191,11 @@ namespace AncestorCloud.Touch
 
 			var flyoutMenuElements = new Section();
 
-			var homeViewModel = ViewModel as FlyOutViewModel;
-			if (homeViewModel != null)
+			//var homeViewModel = ViewModel as FlyOutViewModel;
+			if (ViewModel != null)
 			{
 				//create the ViewModels
-				foreach (var viewModel in homeViewModel.MenuItems)
+				foreach (var viewModel in ViewModel.MenuItems)
 				{
 					if (viewModel.ViewModelType == typeof(TestViewModel)) {
 
@@ -277,12 +288,12 @@ namespace AncestorCloud.Touch
 
 		void SetProfilePic()
 		{
-			if(profCell != null)
-			{
+			if (profCell != null) {
 				AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 
 				profCell.ProfileImage = appDelegate.UIImageProfilePic;
-			}
+			} 
+
 		}
 
 		#endregion
@@ -290,19 +301,47 @@ namespace AncestorCloud.Touch
 		public void DownloadImage()
 		{
 
+			LoginModel model= ViewModel.GetUserData ();
+			//userNameMenu.Text = model.UserEmail;
+
+
+
 			var webClient = new WebClient();
 
 			webClient.DownloadDataCompleted += (s, e) => {
-				var bytes = e.Result; // get the downloaded data
-				string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-				string localFilename = "downloaded.png";
-				string localPath = Path.Combine (documentsPath, localFilename);
-				File.WriteAllBytes (localPath, bytes); // writes to local storage 
+
+				try
+				{
+				
+					var bytes = e.Result; // get the downloaded data
+					documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+					localFilename = "downloaded.png";
+					localPath = Path.Combine (documentsPath, localFilename);
+					File.WriteAllBytes (localPath, bytes); // writes to local storage 
+
+					AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
+
+					appDelegate.UIImageProfilePic=  UIImage.FromFile (localPath);
+
+					SetProfilePic ();
+				}
+				catch(Exception ex )
+				{
+					System.Diagnostics.Debug.WriteLine (ex.InnerException);
+				}
+
 
 			};
-			var url = new Uri("http://xamarin.com/resources/design/home/devices.png");
+			if(model.AvatarURL == null || model.AvatarURL=="")
+				return ;
+			
+			var url = new Uri ("" + model.AvatarURL);
+			
 
 			webClient.DownloadDataAsync(url);
+
+//			model.AvatarURL = localPath;
+
 
 			Console.WriteLine ("ImagePath:-" + url);
 		}
