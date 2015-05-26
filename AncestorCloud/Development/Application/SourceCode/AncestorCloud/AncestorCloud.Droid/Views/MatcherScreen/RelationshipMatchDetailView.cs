@@ -144,7 +144,7 @@ namespace AncestorCloud.Droid
 					}
 				}
 
-				degree.Text = ""+ViewModel.MatchResult.Degrees+"º";
+				degree.Text = ""+ViewModel.MatchResult.Degrees+StringConstants.DEGREE_SYMBOL;
 			}catch(Exception e){
 				Mvx.Trace (e.StackTrace);
 			}
@@ -155,9 +155,9 @@ namespace AncestorCloud.Droid
 		{
 
 			TwitterService mTwitter=  new TwitterService {
-				ConsumerKey = "SD9KnCinDrqxJZ7eRTl6BbD77", 
-				ConsumerSecret = "unJjpf51B5Ad3Lxt5I1qPfQj8u1SYE4cdXzk2vTkFJOkaszfQQ",
-				CallbackUrl = new Uri ("callback://twitter")
+				ConsumerKey = StringConstants.TWITTER_KEY,//"SD9KnCinDrqxJZ7eRTl6BbD77", 
+				ConsumerSecret = StringConstants.TWITTER_SECRET,//"unJjpf51B5Ad3Lxt5I1qPfQj8u1SYE4cdXzk2vTkFJOkaszfQQ",
+				CallbackUrl = new Uri (StringConstants.TWITTER_CALLBACK_URL)
 			};
 
 			Item item = new Item {
@@ -174,8 +174,6 @@ namespace AncestorCloud.Droid
 			});
 
 			StartActivity (intent);
-
-			
 		}
 
 	}
@@ -231,11 +229,11 @@ namespace AncestorCloud.Droid
 			if(dataList[position].CommonResult != null){
 				string name = dataList [position].CommonResult.Name;
 				holder.username.Text = name.Replace ("/","");
-				holder.percent_right.Text = dataList [position].Degrees+"º";
+				holder.percent_right.Text = dataList [position].Degrees + StringConstants.DEGREE_SYMBOL;
 				holder.year.Text = "";
 
 				holder.common_txt.Visibility = ViewStates.Visible;
-				holder.mainContainer.SetBackgroundColor (Color.ParseColor("#ACD7DA"));
+				holder.mainContainer.SetBackgroundColor (myObj.Resources.GetColor(Resource.Color.degree_circle_color));//Color.ParseColor("#ACD7DA"));
 			}else{
 				holder.common_txt.Visibility = ViewStates.Gone;
 				holder.mainContainer.SetBackgroundColor (Color.Transparent);	

@@ -98,7 +98,7 @@ namespace AncestorCloud.Droid
 
 			uploadBtn.Click += (object sender, EventArgs e) => {
 				if(CurrentImagePath.Length == 0){
-					Toast.MakeText(this,"Please select an image to upload",ToastLength.Short).Show();
+					Toast.MakeText(this,Resources.GetString(Resource.String.select_to_upload_notification),ToastLength.Short).Show();
 				}else{
 					var stream = System.IO.File.OpenRead(CurrentImagePath);
 					ViewModel.ProfilePicStream = stream;
@@ -169,7 +169,8 @@ namespace AncestorCloud.Droid
 					{
 						CreateDirectoryForPictures();
 						Intent intent = new Intent(MediaStore.ActionImageCapture);
-						CameraDataHolder._file = new Java.IO.File(CameraDataHolder._dir, System.String.Format("myPhoto_{0}.jpg", Guid.NewGuid()));
+						string name = StringConstants.PHOTO_NAME+Guid.NewGuid()+StringConstants.PHOTO_EXTENSION;
+						CameraDataHolder._file = new Java.IO.File(CameraDataHolder._dir,name);
 						intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(CameraDataHolder._file));
 						StartActivityForResult(intent, PickImageCameraId);
 						optionDialog.Dismiss ();
@@ -235,7 +236,8 @@ namespace AncestorCloud.Droid
 				CurrentImage = Utilities.GetRoundedImageFromBitmap (this, bmp, 150);
 				profileImg.SetImageBitmap (CurrentImage);
 				try{
-					Java.IO.File f = new Java.IO.File(CreateDirectoryForGalleryPictures (), System.String.Format("myPhoto_{0}.jpg", Guid.NewGuid()));
+					string name = StringConstants.PHOTO_NAME+Guid.NewGuid()+StringConstants.PHOTO_EXTENSION;
+					Java.IO.File f = new Java.IO.File(CreateDirectoryForGalleryPictures (),name);
 					var stream = new FileStream(f.Path, FileMode.Create);
 					bmp.Compress(Bitmap.CompressFormat.Png, 80, stream);
 					stream.Close();
