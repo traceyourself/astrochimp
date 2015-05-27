@@ -23,6 +23,7 @@ namespace AncestorCloud.Touch
 {
 	public partial class FlyOutView : BaseViewController
 	{
+		#region Globals
 		FlyoutNavigationController _navigation;
 		private MvxSubscriptionToken navigationMenuToggleToken;
 		private MvxSubscriptionToken navigationBarHiddenToken;
@@ -30,19 +31,9 @@ namespace AncestorCloud.Touch
 		private MvxSubscriptionToken ImageUploadedToken;
 		IMvxMessenger _messenger;
 		ProfileCellView profCell;
-		UITextView userNameMenu;
+		//UITextView userNameMenu;
 		string documentsPath,localFilename,localPath;
-
-
-
-
-//		string[] Tasks = {
-//
-//			"My Family",
-//			"Matcher",
-//			"Research Help",
-//			"Log Out",
-//		};
+		#endregion
 
 		#region LifeCycle Methods
 		public FlyOutView () : base ("FlyOutView", null)
@@ -157,34 +148,7 @@ namespace AncestorCloud.Touch
 
 			}
 		}
-
-		private void ReloadFlyoutNavigation()
-		{
-
-			var flyoutViewControllers = new List<UIViewController>();
-
-			//var homeViewModel = ViewModel as FlyOutViewModel;
-			if (ViewModel != null)
-			{
-				//create the ViewModels
-				foreach (var viewModel in ViewModel.MenuItems)
-				{
-					var viewModelRequest = new MvxViewModelRequest
-					{
-						ViewModelType = viewModel.ViewModelType
-					};
-
-					if (viewModel.ViewModelType == typeof(TestViewModel)) {
-
-						flyoutViewControllers.Add(null);
-						continue;
-					}
-					flyoutViewControllers.Add(CreateMenuItemController(viewModelRequest));
-
-				}
-				_navigation.ViewControllers = flyoutViewControllers.ToArray();
-			}
-		}
+			
 		private void CreateFlyoutView()
 		{
 			//var flyoutViewControllers = new List<UIViewController>();
@@ -225,8 +189,7 @@ namespace AncestorCloud.Touch
 
 
 				}
-
-			
+					
 				//add the menu elements
 								var rootElement = new RootElement("")
 								{
@@ -242,7 +205,7 @@ namespace AncestorCloud.Touch
 		private void ReloadMenu()
 		{
 			
-			ReloadFlyoutNavigation ();
+			CreateFlyoutNavigation ();
 			CreateFlyoutView ();
 
 			//this.NavigationController.NavigationBarHidden = true;
@@ -300,11 +263,8 @@ namespace AncestorCloud.Touch
 
 		public void DownloadImage()
 		{
-
 			LoginModel model= ViewModel.GetUserData ();
 			//userNameMenu.Text = model.UserEmail;
-
-
 
 			var webClient = new WebClient();
 
@@ -336,14 +296,9 @@ namespace AncestorCloud.Touch
 				return ;
 			
 			var url = new Uri ("" + model.AvatarURL);
-			
 
 			webClient.DownloadDataAsync(url);
 
-//			model.AvatarURL = localPath;
-
-
-			Console.WriteLine ("ImagePath:-" + url);
 		}
 
 	}
