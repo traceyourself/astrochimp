@@ -16,6 +16,17 @@ namespace AncestorCloud.Droid
 	
 	public class StringConstants
 	{
+
+		#region Twitter Constants
+		public static readonly string TWITTER_KEY = "SD9KnCinDrqxJZ7eRTl6BbD77";
+		public static readonly string TWITTER_SECRET = "unJjpf51B5Ad3Lxt5I1qPfQj8u1SYE4cdXzk2vTkFJOkaszfQQ";
+		public static readonly string TWITTER_CALLBACK_URL = "callback://twitter";
+		#endregion
+
+		#region research help url
+		public static readonly string RESEARCH_HELP_URL = "http://www.mocavo.com/";
+		#endregion
+
 		#region relation consts
 		public static readonly string Brother_comparison = "brother";
 		public static readonly string Sister_comparison = "sister";
@@ -50,6 +61,33 @@ namespace AncestorCloud.Droid
 
 		#region Uploads Pic Const
 		public static readonly string DIRECTORY_NAME = "Ancestor Cloud";
+		#endregion
+
+
+		#region Family Consts
+		public static readonly string MALE = "Male";
+		public static readonly string FEMALE = "Female";
+		#endregion
+
+
+		#region sending message to contacts Constants
+		public static readonly string SMS_TO = "smsto:";
+		public static readonly string SMS_BODY = "sms_body";
+		public static readonly string SMS_CONTENT = "Come join Cousin App and see how we're related!";
+		#endregion
+
+		#region FB constants
+		public static readonly string GET_METHOD_TYPE = "GET";
+		public static readonly string FB_GRAPH_ME_URL = "https://graph.facebook.com/me";
+		public static readonly string FB_GRAPH_FAMILY_URL = "https://graph.facebook.com/me/family";
+		public static readonly string FB_GRAPH_TAGGABLE_FRIENDS_URL = "https://graph.facebook.com/me/friends";
+		#endregion
+
+		public static readonly string DEGREE_SYMBOL = "º";
+
+		#region picture const
+		public static readonly string PHOTO_NAME = "myPhoto_";
+		public static readonly string PHOTO_EXTENSION = ".jpg";
 		#endregion
 
 	}

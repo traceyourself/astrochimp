@@ -48,9 +48,11 @@ namespace AncestorCloud.Droid
 			LoginModel modal = ViewModel.GetUserData();
 			userNameMenu.Text = modal.UserEmail;
 
-			string avatarUrl = ""+modal.AvatarURL;
-			if(avatarUrl.Length > 0){
-				new AvatarImageTask (this,avatarUrl).Execute();
+			if(Utilities.CurrentUserimage == null){
+				string avatarUrl = ""+modal.AvatarURL;
+				if(avatarUrl.Length > 0){
+					new AvatarImageTask (this,avatarUrl).Execute();
+				}
 			}
 
 		}

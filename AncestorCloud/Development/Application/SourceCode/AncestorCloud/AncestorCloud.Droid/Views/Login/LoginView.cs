@@ -98,7 +98,7 @@ namespace AncestorCloud.Droid
 				//System.Diagnostics.Debug.WriteLine ("accounts :" + account);
 
 				if(account != null){
-					var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me"),account );//friends ///me/invitable_friends ///me/taggable_friends
+					var request = facebook.CreateRequest (StringConstants.GET_METHOD_TYPE, new Uri (StringConstants.FB_GRAPH_ME_URL),account );//friends ///me/invitable_friends ///me/taggable_friends
 
 					ShowLoader();
 
@@ -112,7 +112,7 @@ namespace AncestorCloud.Droid
 
 						//Mvx.Trace("saved result of me ");
 
-						var familyRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/family"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
+						var familyRequest = facebook.CreateRequest (StringConstants.GET_METHOD_TYPE, new Uri (StringConstants.FB_GRAPH_FAMILY_URL),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
 						familyRequest.GetResponseAsync ().ContinueWith (famResponse => {
 
 							//System.Diagnostics.Debug.WriteLine (famResponse.Result.GetResponseText());
@@ -122,7 +122,9 @@ namespace AncestorCloud.Droid
 
 							//Mvx.Trace("saved result of family ");
 
-							var friendRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/friends"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
+
+							var friendRequest = facebook.CreateRequest (StringConstants.GET_METHOD_TYPE, new Uri (StringConstants.FB_GRAPH_TAGGABLE_FRIENDS_URL),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
+
 							friendRequest.GetResponseAsync().ContinueWith(friendResponse => {
 								//System.Diagnostics.Debug.WriteLine ("friendresponse :"+friendResponse.Result.GetResponseText());
 								ViewModel.FbFriendResponseText = friendResponse.Result.GetResponseText();
@@ -166,7 +168,7 @@ namespace AncestorCloud.Droid
 					pd.Dismiss ();
 				}
 			}
-			pd = ProgressDialog.Show (this,"","Loading...");
+			pd = ProgressDialog.Show (this,"",Resources.GetString(Resource.String.loading));
 		}
 
 		private void HideLoader()

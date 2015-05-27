@@ -212,6 +212,8 @@ namespace AncestorCloud.Touch
 			ViewModel.BirthDate = title;
 		}
 
+		#region KeyBoard Handler
+
 		public virtual bool HandlesKeyboardNotifications
 		{
 			get { return true; }
@@ -246,6 +248,7 @@ namespace AncestorCloud.Touch
 
 			container.Frame = frame;
 		}
+		#endregion
 
 	}
 }

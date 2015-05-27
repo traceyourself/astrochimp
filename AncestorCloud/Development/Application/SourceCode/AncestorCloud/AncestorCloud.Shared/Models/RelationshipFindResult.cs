@@ -20,6 +20,8 @@ namespace AncestorCloud.Shared
 		public string Type { get; set;}
 		public int UserOgfn { get; set;}
 		public CommonMember CommonResult { get; set;}
+		public People FirstPerson{ get; set;}
+		public People SecondPerson{ get; set;}
 	}
 
 	public class CommonMember

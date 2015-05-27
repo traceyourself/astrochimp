@@ -103,6 +103,7 @@ namespace AncestorCloud.Shared
 		public const string AVATAR_IMAGE_SERVICE = "Media.svc/AvatarRead";
 
 		public const string FAMILY_READ_SERVICE = "Family.svc/Read";
+		public const string MATCHER_HISTORY_SERVICE = "Individual.svc/RelationshipFindHistoryGet";
 
 		#endregion
 
@@ -115,7 +116,7 @@ namespace AncestorCloud.Shared
 		#region User Read Data
 		public const string INDIOGFN = "IndiOgfn";
 		public const string OGFN = "Ogfn";
-
+		public const string CONTACT_INFO = "ContactInfo";
 		#endregion
 
 		#region Indi Read Data
@@ -214,12 +215,12 @@ namespace AncestorCloud.Shared
 
 		#endregion
 
-		#region
+		#region celeb const
 
 		public const string CELEBBASEURL = "https://www.kin2.me/img/color/";
 		public const string CELEBIMAGEEXTENSION = ".jpg";
-
 		#endregion
+
 
 
 		#region FlyoutConstant
@@ -232,13 +233,24 @@ namespace AncestorCloud.Shared
 		public const string RESEARCH_HELP_ICON="search_icon.png";
 		public const string LOGOUT_TITLE="Log Out";
 		public const string LOGOUT_ICON="logout_icon.png";
-
-    	
-
 		#endregion
 
-
-	
+		#region Match history const
+		public const string HISTORY_COMMON_INDI_OGFN = "CommonIndiOgfn";
+		public const string HISTORY_DEGREES = "Degrees";
+		public const string History_DESC = "Description";
+		public const string HISTORY_FIRST_FIND_DATE = "FirstFindDate";
+		public const string HISTORY_FOUND = "Found";
+		public const string HISTORY_GROUP_OGFN = "GroupOgfn";
+		public const string HISTORY_INDI_1_OGFN = "Indi1Ogfn";
+		public const string HISTORY_INDI_2_OGFN = "Indi2Ogfn";
+		public const string HISTORY_INDI_LIST1 = "IndiList1";
+		public const string HISTORY_INDI_LIST2 = "IndiList2";
+		public const string HISTORY_LAST_FIND_DATE = "LastFindDate";
+		public const string HISTORY_NOTFOUND_REASON = "NotFoundReason";
+		public const string HISTORY_TYPE = "Type";
+		public const string HISTORY_USEROGFN = "UserOgfn";
+		#endregion
 
 	}
 

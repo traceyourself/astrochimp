@@ -17,7 +17,6 @@ namespace AncestorCloud.Shared
 
 		private ILoader _loader;
 
-
 		public AddFamilyService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
