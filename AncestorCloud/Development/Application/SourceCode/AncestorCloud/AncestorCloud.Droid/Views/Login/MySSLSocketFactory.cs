@@ -49,7 +49,7 @@ namespace AncestorCloud.Droid
 			ServicePointManager.ServerCertificateValidationCallback = Validator;
 			string url = "https://kreditkarten-banking.lbb.de/";
 			var request = (HttpWebRequest) WebRequest.Create(url);
-			request.Method = "GET";
+			request.Method = StringConstants.GET_METHOD_TYPE;
 			var response = (HttpWebResponse) request.GetResponse ();
 			int len = 0;
 			using (var _r = new StreamReader (response.GetResponseStream ())) {
@@ -67,9 +67,9 @@ namespace AncestorCloud.Droid
 		static bool Validator (object sender, X509Certificate certificate,
 			X509Chain chain, SslPolicyErrors sslPolicyErrors)
 		{
-			System.Console.WriteLine ("Validator!");
-			System.Console.WriteLine ("certificate: {0}", certificate);
-			System.Console.WriteLine ("chain[0]: {0}", chain.ChainElements[0].Certificate);
+			//System.Console.WriteLine ("Validator!");
+			//System.Console.WriteLine ("certificate: {0}", certificate);
+			//System.Console.WriteLine ("chain[0]: {0}", chain.ChainElements[0].Certificate);
 			string a = certificate.ToString ();
 			string b = chain.ChainElements [0].Certificate.ToString ();
 			if (a == b)

@@ -254,14 +254,14 @@ namespace AncestorCloud.Droid
 
 			male.Click += (object sender, EventArgs e) => {
 				male.SetBackgroundResource(Resource.Drawable.male_selected);	
-				female.SetBackgroundColor(Color.ParseColor("#00000000"));
-				gender = "Male";
+				female.SetBackgroundColor(Color.Transparent);
+				gender = Resources.GetString(Resource.String.Male);
 			};
 
 			female.Click += (object sender, EventArgs e) => {
-				male.SetBackgroundColor(Color.ParseColor("#00000000"));	
+				male.SetBackgroundColor(Color.Transparent);	
 				female.SetBackgroundResource(Resource.Drawable.female_selected);
-				gender = "Female";
+				gender = Resources.GetString(Resource.String.Female);
 			};
 
 			birthDateDialogTxt.Click += (object sender, EventArgs e) => {
@@ -285,10 +285,10 @@ namespace AncestorCloud.Droid
 				if(String.IsNullOrEmpty(first_name.Text))
 				{
 					isValid = false;
-					Toast.MakeText(this,"Please enter First Name",ToastLength.Short).Show();
+					Toast.MakeText(this,Resources.GetString(Resource.String.enter_f_name),ToastLength.Short).Show();
 				}else if(String.IsNullOrEmpty(gender)){
 					isValid = false;
-					Toast.MakeText(this,"Please select Gender",ToastLength.Short).Show();
+					Toast.MakeText(this,Resources.GetString(Resource.String.select_gender),ToastLength.Short).Show();
 				}
 
 				if(isValid)
@@ -343,7 +343,7 @@ namespace AncestorCloud.Droid
 
 					nameTitle.Text = first_name.Text+" "+peopleData.MiddleName+" "+peopleData.LastName+"("+peopleData.Relation+")";
 
-					if (peopleData.Gender.Equals ("Male")) {
+					if (peopleData.Gender.Equals (StringConstants.MALE)) {
 						male.PerformClick ();
 					} else {
 						female.PerformClick ();
@@ -528,24 +528,6 @@ namespace AncestorCloud.Droid
 					myFamilyObj.ViewModel.ShowAddFamilyViewModel();
 				};
 			}
-
-			/*var view = convertView ?? inflater.Inflate (Resource.Layout.add_family_list_item, parent, false);
-
-			var contactName = view.FindViewById<TextView> (Resource.Id.ContactName);
-			var contactImage = view.FindViewById<ImageView> (Resource.Id.ContactImage);
-
-			contactName.Text = _contactList [position].DisplayName;
-
-			if (_contactList [position].PhotoId == null) {
-				contactImage = view.FindViewById<ImageView> (Resource.Id.ContactImage);
-				contactImage.SetImageResource (Resource.Drawable.contactImage);
-			}  else {
-				var contactUri = ContentUris.WithAppendedId (
-					ContactsContract.Contacts.ContentUri, _contactList [position].Id);
-				var contactPhotoUri = Android.Net.Uri.WithAppendedPath (contactUri,
-					Contacts.Photos.ContentDirectory);
-				contactImage.SetImageURI (contactPhotoUri);
-			}*/
 
 			return convertView;
 		}

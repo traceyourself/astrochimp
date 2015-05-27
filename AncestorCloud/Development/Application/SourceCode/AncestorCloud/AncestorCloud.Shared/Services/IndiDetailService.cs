@@ -52,7 +52,7 @@ namespace AncestorCloud.Shared
 					{
 						responsemodal.Status = ResponseStatus.OK;
 
-						login= DataParser.GetIndiReadData(login,dict);
+						login = DataParser.GetIndiReadData(login,dict);
 
 					}else
 					{

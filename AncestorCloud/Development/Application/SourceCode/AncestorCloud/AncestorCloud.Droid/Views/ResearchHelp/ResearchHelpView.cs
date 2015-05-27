@@ -75,8 +75,7 @@ namespace AncestorCloud.Droid
 			research_help_WebView.Settings.UseWideViewPort = true;
 			research_help_WebView.Settings.JavaScriptEnabled = true;
 			research_help_WebView.SetWebViewClient (new  MyWebViewClient (this));
-			research_help_WebView.LoadUrl ("http://www.mocavo.com/");
-
+			research_help_WebView.LoadUrl (StringConstants.RESEARCH_HELP_URL);
 		}
 
 		private void ApplyActions(){

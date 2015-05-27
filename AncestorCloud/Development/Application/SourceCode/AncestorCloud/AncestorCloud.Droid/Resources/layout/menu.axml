@@ -132,7 +132,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="UserName"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:layout_marginLeft="10dp"
