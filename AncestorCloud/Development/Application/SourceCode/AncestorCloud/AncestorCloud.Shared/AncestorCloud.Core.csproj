@@ -136,6 +136,7 @@
     <Compile Include="Services\GetFamilyService.cs" />
     <Compile Include="Converters\CheckboxConverter.cs" />
     <Compile Include="Converters\SlashRemoveConverter.cs" />
+    <Compile Include="Constants\AlertConstant.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

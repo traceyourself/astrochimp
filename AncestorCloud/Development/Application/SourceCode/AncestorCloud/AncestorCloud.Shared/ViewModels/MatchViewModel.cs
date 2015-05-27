@@ -175,7 +175,7 @@ namespace AncestorCloud.Shared.ViewModels
 			if (Validate ()) {
 
 				if (_reachabilityService.IsNetworkNotReachable ()) {
-					Mvx.Resolve<IAlert>().ShowAlert ("Please check internet connection", "Network not available");
+					Mvx.Resolve<IAlert>().ShowAlert (AlertConstant.INTERNET_ERROR_MESSAGE, AlertConstant.INTERNET_ERROR);
 				}
 
 				LoginModel data = _databaseService.GetLoginDetails ();
@@ -195,7 +195,7 @@ namespace AncestorCloud.Shared.ViewModels
 					} else 
 					{
 						//TODO: Show No Match Screen
-						_alert.ShowAlert("Oops!! No match found. Try again", "Matcher");
+						_alert.ShowAlert(AlertConstant.MATCH_ERROR_MESSAGE, AlertConstant.MATCH_ERROR);
 					}
 				}
 			} 
@@ -227,7 +227,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 
 				if (SecondPersonCeleb == null && SecondPersonPeople == null) {
-					_alert.ShowAlert("Please Select Second Person to match","Person not selected");
+					_alert.ShowAlert(AlertConstant.MATCH_SEC_PERSON_ERROR_MESSAGE,AlertConstant.MATCH_SEC_PERSON_ERROR);
 					isValid = false;
 				} else {
 					if(SecondPersonCeleb != null){
@@ -246,7 +246,7 @@ namespace AncestorCloud.Shared.ViewModels
 					}
 				}
 			}else{
-				_alert.ShowAlert("Please Select First Person to match","Person not selected");
+				_alert.ShowAlert(AlertConstant.MATCH_FIRST_PERSON_MESSAGE,AlertConstant.MATCH_FIRST_PERSON_ERROR);
 				isValid = false;
 			}
 			return isValid;

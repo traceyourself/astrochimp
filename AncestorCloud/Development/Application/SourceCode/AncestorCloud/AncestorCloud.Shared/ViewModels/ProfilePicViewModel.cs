@@ -116,7 +116,7 @@ namespace AncestorCloud.Shared.ViewModels
 			ResponseModel<ResponseDataModel> response = await _profileService.PostProfileData (model,_profilePicStream);
 
 			if (response.Status == ResponseStatus.OK) {
-				Mvx.Resolve<IAlert> ().ShowAlert ("Profile pic uploaded successfully","Success");
+				Mvx.Resolve<IAlert> ().ShowAlert (AlertConstant.PROFILE_PIC_SUCCESS_MESSAGE,AlertConstant.PROFILE_PIC_SUCCESS);
 				if (Mvx.CanResolve<IAndroidService> ()){
 					_messenger.Publish(new ProfilePicUploadedMessage(this));
 				}else{
@@ -126,7 +126,7 @@ namespace AncestorCloud.Shared.ViewModels
 			} 
 			else 
 			{
-				Mvx.Resolve<IAlert> ().ShowAlert ("Profile pic upload unsuccessfull","Upload Error");
+				Mvx.Resolve<IAlert> ().ShowAlert (AlertConstant.PROFILE_PIC_ERROR_MESSAGE,AlertConstant.PROFILE_PIC_ERROR);
 			}
 		}
 

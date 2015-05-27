@@ -166,7 +166,7 @@ namespace AncestorCloud.Shared.ViewModels
 			FamilyMember.IndiOgfn = lModal.IndiOGFN;
 
 			if (_reachabilityService.IsNetworkNotReachable ()) {
-				Mvx.Resolve<IAlert> ().ShowAlert ("Please check internet connection", "Network not available");
+				Mvx.Resolve<IAlert> ().ShowAlert (AlertConstant.INTERNET_ERROR_MESSAGE,AlertConstant.INTERNET_ERROR);
 			} else {
 
 				ResponseModel<People> response = await _addService.EditFamilyMember (FamilyMember);
@@ -174,9 +174,9 @@ namespace AncestorCloud.Shared.ViewModels
 				if (response.Status == ResponseStatus.OK) {
 					_databaseService.UpdateRelative (response.Content as People);
 					_messenger.Publish(new MyFamilyReloadMessage(this));
-					Alert.ShowAlert ("Successfully Edited", "Success");
+					Alert.ShowAlert (AlertConstant.EDIT_SUCCESS_MESSAGE,AlertConstant.EDIT_SUCCESS);
 				} else {
-					Alert.ShowAlert ("Failed to edit, Please try Again...", "Error");
+					Alert.ShowAlert (AlertConstant.EDIT_ERROR_MESSAGE,AlertConstant.EDIT_ERROR);
 				}
 			}
 			return ;

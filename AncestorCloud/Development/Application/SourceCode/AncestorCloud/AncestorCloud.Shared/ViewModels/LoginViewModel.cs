@@ -130,7 +130,7 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			this.Close(this);
 			if (_reachabilityService.IsNetworkNotReachable ()) {
-				Alert.ShowAlert ("Please check internet connection", "Network not available");
+				Alert.ShowAlert (AlertConstant.INTERNET_ERROR_MESSAGE, AlertConstant.INTERNET_ERROR);
 			}
 		}
 		#endregion
@@ -287,7 +287,7 @@ namespace AncestorCloud.Shared.ViewModels
 			if (ValidateCredentials ()) {
 
 				if (_reachabilityService.IsNetworkNotReachable ()) {
-					Alert.ShowAlert ("Please check internet connection", "Network not available");
+					Alert.ShowAlert (AlertConstant.INTERNET_ERROR_MESSAGE, AlertConstant.INTERNET_ERROR);
 				} else {
 					ResponseModel<LoginModel> response = await _loginService.Login (Email, Password, AppConstant.DEVELOPERID, AppConstant.DEVELOPERPASSWORD);
 
@@ -315,11 +315,11 @@ namespace AncestorCloud.Shared.ViewModels
 								CloseCommand.Execute (null);
 							}
 						} else {
-							Alert.ShowAlert ("Invalid user signon username or password.", "Login Error");
+							Alert.ShowAlert (AlertConstant.LOGIN_ERROR_MESSAGE, AlertConstant.LOGIN_ERROR);
 						}
 					}
 					else {
-						Alert.ShowAlert ("Invalid user signon username or password.", "Login Error");
+						Alert.ShowAlert (AlertConstant.LOGIN_ERROR_MESSAGE, AlertConstant.LOGIN_ERROR);
 					}
 				}
 			}
@@ -339,18 +339,18 @@ namespace AncestorCloud.Shared.ViewModels
 			if (String.IsNullOrEmpty (this.Email)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Email is required, please enter a value for the field","Email Missing");
+				Alert.ShowAlert(AlertConstant.LOGIN_EMAIL_MESSAGE,AlertConstant.LOGIN_EMAIL_ERROR);
 			}
 			else if (!DataValidator.EmailIsValid (this.Email)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Email you entered is not valid","Email Invalid");
+				Alert.ShowAlert(AlertConstant.LOGIN_EMAIL_INVALID_MESSAGE,AlertConstant.LOGIN_EMAIL_INVALID);
 			}
 
 			else if (String.IsNullOrEmpty (this.Password)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Password is required, please enter a value for the field","Password Missing");
+				Alert.ShowAlert(AlertConstant.LOGIN_PASSWORD_ERROR_MESSAGE,AlertConstant.LOGIN_PASSWORD_ERROR);
 			}
 
 			return ok;
@@ -421,7 +421,7 @@ namespace AncestorCloud.Shared.ViewModels
 			ResponseStatus status = await _facebookLinkManager.LinkFaceBookLoginUser ();
 
 			if (status == ResponseStatus.Fail) {
-				Alert.ShowAlert ("Not able to link Facebook user to OGF. Please log-in again", "ERROR");
+				Alert.ShowAlert (AlertConstant.LOGIN_RESPONSE_ERROR_MESSAGE, AlertConstant.LOGIN_RESPONSE_ERROR);
 			} else {
 				Login ();
 			}

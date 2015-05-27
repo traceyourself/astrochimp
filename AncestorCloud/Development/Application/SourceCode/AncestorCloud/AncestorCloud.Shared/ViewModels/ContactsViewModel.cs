@@ -167,14 +167,14 @@ namespace AncestorCloud.Shared.ViewModels
 
 					if (friendResponse.Status == ResponseStatus.OK) {
 						_databaseService.InsertContact (Contact);
-						_alert.ShowAlertWithOk ("Contact added to Ancestor Cloud. Tap Ok to Select", "Success", AlertType.OKCancelSelectContact);
+						_alert.ShowAlertWithOk (AlertConstant.CONTACT_SUCCESS_MESSAGE, AlertConstant.CONTACT_SUCCESS, AlertType.OKCancelSelectContact);
 					} else {
 						//_alert.ShowAlert ("Unable to communicate with Ancestor Cloud", "Error");
-						_alert.ShowAlertWithOk ("No relation found with Ancestor Cloud. Do you want to invite him?", "Match", AlertType.OKCancelSelectInvite);
+						_alert.ShowAlertWithOk (AlertConstant.CONTACT_MATCH_SUCCESS, AlertConstant.CONTACT_MATCH, AlertType.OKCancelSelectInvite);
 					}
 				} else 
 				{
-					_alert.ShowAlertWithOk ("No relation found with Ancestor Cloud. Do you want to invite him?", "Match", AlertType.OKCancelSelectInvite);
+					_alert.ShowAlertWithOk (AlertConstant.CONTACT_MATCH_SUCCESS, AlertConstant.CONTACT_MATCH, AlertType.OKCancelSelectInvite);
 				}
 			}
 			else {

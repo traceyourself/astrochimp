@@ -135,11 +135,11 @@ namespace AncestorCloud.Shared.ViewModels
 				if(friendResponse.Status == ResponseStatus.OK)
 				{
 					_databaseService.InsertFBFriend (FbFriend);
-					_alert.ShowAlertWithOk("Friend added to Ancestor Cloud. Tap Ok to Select","Success",AlertType.OKCancelSelect);
+					_alert.ShowAlertWithOk(AlertConstant.FB_SUCCESS_MESSAGE,AlertConstant.FB_SUCCESS,AlertType.OKCancelSelect);
 				}
 				else
 				{
-					_alert.ShowAlert("Unable to communicate with Ancestor Cloud","Error");
+					_alert.ShowAlert(AlertConstant.FB_ERROR_MESSAGE,AlertConstant.FB_ERROR);
 				}
 			}
 		}
@@ -152,7 +152,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 			FbFriend = friend;
 
-			_alert.ShowAlertWithOk("Do you want to add your friend to Ancestor Cloud","Match",AlertType.OKCancelPermit);
+			_alert.ShowAlertWithOk(AlertConstant.FB_MATCH_MESSAGE,AlertConstant.FB_MATCH,AlertType.OKCancelPermit);
 		}
 
 		#endregion

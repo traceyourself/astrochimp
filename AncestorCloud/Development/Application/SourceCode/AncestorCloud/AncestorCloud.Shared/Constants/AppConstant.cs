@@ -220,6 +220,25 @@ namespace AncestorCloud.Shared
 
 		#endregion
 
+
+		#region FlyoutConstant
+
+		public const string MYFAMILY_TITLE="My Family";
+		public const string MYFAMILY_ICON = "myfamily_icon.png";
+		public const string COUSIN_TITLE="Cousin Match";
+		public const string COUSIN_ICON="c.png";
+		public const string RESEARCH_HELP_TITLE="Research Help";
+		public const string RESEARCH_HELP_ICON="search_icon.png";
+		public const string LOGOUT_TITLE="Log Out";
+		public const string LOGOUT_ICON="logout_icon.png";
+
+    	
+
+		#endregion
+
+
+	
+
 	}
 
 }

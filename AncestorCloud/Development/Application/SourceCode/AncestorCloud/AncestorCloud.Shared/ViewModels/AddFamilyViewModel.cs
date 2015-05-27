@@ -150,7 +150,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 			if (Validate ()) {
 				if (_reachabilityService.IsNetworkNotReachable ()) {
-					Mvx.Resolve<IAlert> ().ShowAlert ("Please check internet connection", "Network not available");
+					Mvx.Resolve<IAlert> ().ShowAlert (AlertConstant.INTERNET_ERROR_MESSAGE, AlertConstant.INTERNET_ERROR);
 				} else {
 					LoginModel lModal = _databaseService.GetLoginDetails ();
 			
@@ -173,10 +173,10 @@ namespace AncestorCloud.Shared.ViewModels
 					if (response.Status == ResponseStatus.OK) {
 						if(response.Content != null)
 						_databaseService.InsertRelative (response.Content as People);
-						Alert.ShowAlert ("Successfully Added", "Success");
+						Alert.ShowAlert (AlertConstant.SUCCESS_RESPONSE_ALERT, AlertConstant.SUCCESS_ALERT);
 						Close ();
 					} else {
-						Alert.ShowAlert ("Failed to add, Please try Again...", "Error");
+						Alert.ShowAlert (AlertConstant.SUCCESS_ERROR_MESSAGE, AlertConstant.SUCCESS_ERROR);
 					}
 				}
 			}
@@ -191,7 +191,7 @@ namespace AncestorCloud.Shared.ViewModels
 			if (String.IsNullOrEmpty (this.FirstName)) 
 			{
 				isValid = false;
-				Alert.ShowAlert("First Name is required, please enter a value for the field.","First Name Missing");
+				Alert.ShowAlert(AlertConstant.NAME_ALERT_MESSAGE,AlertConstant.NAME_ALERT);
 			}
 
 			/*else if (String.IsNullOrEmpty (this.BirthDate)) 
@@ -203,7 +203,7 @@ namespace AncestorCloud.Shared.ViewModels
 			else if (String.IsNullOrEmpty (this.Gender))
 			{
 				isValid = false;
-				Alert.ShowAlert("Gender is required, please select a value.","Gender Missing");
+				Alert.ShowAlert(AlertConstant.GENDER_ALERT_MESSAGE,AlertConstant.GENDER_ALERT);
 			}
 
 			return isValid;

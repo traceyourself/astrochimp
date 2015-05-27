@@ -315,9 +315,6 @@ namespace AncestorCloud.Touch
 		}
 
 
-
-	
-
 	}
 }
 

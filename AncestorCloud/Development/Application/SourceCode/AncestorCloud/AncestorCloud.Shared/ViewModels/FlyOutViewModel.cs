@@ -113,29 +113,29 @@ namespace AncestorCloud.Shared.ViewModels
 					new MenuViewModel
 					{
 						Section = Section.MyFamily,
-						Title = "My Family",
-						Image = "myfamily_icon.png",
+						Title = AppConstant.MYFAMILY_TITLE,
+						Image = AppConstant.MYFAMILY_ICON,
 						ViewModelType = typeof(FbFamilyViewModel),
 					},
 					new MenuViewModel
 					{
 						Section = Section.Matcher,
-						Title = "Cousin Match",
-						Image = "c.png",
+						Title = AppConstant.COUSIN_TITLE,
+						Image = AppConstant.COUSIN_ICON,
 						ViewModelType = typeof(MatchViewModel)
 					},   
 					new MenuViewModel
 					{
 						Section = Section.MyFamily,
-						Title = "Research Help",
-						Image = "search_icon.png",
+						Title = AppConstant.RESEARCH_HELP_TITLE,
+						Image = AppConstant.RESEARCH_HELP_ICON,
 						ViewModelType = typeof(ResearchHelpViewModel)
 					},
 					new MenuViewModel
 					{
 						Section = Section.Matcher,
-						Title = "Log Out",
-						Image = "logout_icon.png",
+						Title = AppConstant.LOGOUT_TITLE,
+						Image = AppConstant.LOGOUT_ICON,
 						ViewModelType = typeof(HomePageViewModel),
 
 					},
@@ -168,30 +168,30 @@ namespace AncestorCloud.Shared.ViewModels
 					new MenuViewModel
 					{
 						Section = Section.MyFamily,
-						Title = "My Family",
-						Image = "myfamily_icon.png",
+						Title = AppConstant.MYFAMILY_TITLE,
+						Image = AppConstant.MYFAMILY_ICON,
 						ViewModelType = typeof(FamilyViewModel),
 					},
 					new MenuViewModel
 					{
 						Section = Section.Matcher,
-						Title = "Cousin Match",
-						Image = "c.png",
+						Title = AppConstant.COUSIN_TITLE,
+						Image = AppConstant.COUSIN_ICON,
 						ViewModelType = typeof(MatchViewModel)
 					},   
 					new MenuViewModel
 					{
 						Section = Section.MyFamily,
-						Title = "Research Help",
-						Image = "search_icon.png",
+						Title = AppConstant.RESEARCH_HELP_TITLE,
+						Image = AppConstant.RESEARCH_HELP_ICON,
 						ViewModelType = typeof(ResearchHelpViewModel)
 					},
 					new MenuViewModel
 					{
 
 						Section = Section.Matcher,
-						Title = "Log Out",
-						Image = "logout_icon.png",
+						Title = AppConstant.LOGOUT_TITLE,
+						Image = AppConstant.LOGOUT_ICON,
 						ViewModelType = typeof(HomePageViewModel),
 
 

@@ -270,7 +270,7 @@ namespace AncestorCloud.Shared.ViewModels
 			if (ValidateCredentials ()) {
 
 				if (_reachabilityService.IsNetworkNotReachable ()) {
-					Alert.ShowAlert ("Please check internet connection", "Network not available");
+					Alert.ShowAlert (AlertConstant.INTERNET_ERROR_MESSAGE, AlertConstant.INTERNET_ERROR);
 				}
 				// Validate Parameters
 				ResponseModel<LoginModel> response = await _ISignUpService.SignUp (FirstName,LastName, Email, Password, AppConstant.DEVELOPERID, AppConstant.DEVELOPERPASSWORD);
@@ -304,13 +304,13 @@ namespace AncestorCloud.Shared.ViewModels
 							}
 						else {
 
-							Alert.ShowAlert ("Error signup user.", "SignUp Error");
+							Alert.ShowAlert (AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
 						}
 						}
 
 					else {
 
-						Alert.ShowAlert ("Error signup user.", "SignUp Error");
+						Alert.ShowAlert (AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
 					}
 				}
 			}
@@ -327,29 +327,29 @@ namespace AncestorCloud.Shared.ViewModels
 			if (String.IsNullOrEmpty (this.FirstName)) 
 			{
 				ok = false;
-				Alert.ShowAlert("First Name is required, please enter a value for the field","Name Missing");
+				Alert.ShowAlert(AlertConstant.SIGNUP_FIRSTNAME_ERROR_MESSAGE,AlertConstant.SIGNUP_FIRSTNAME_ERROR);
 			}
 			else if (String.IsNullOrEmpty (this.LastName)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Last Name is required, please enter a value for the field","Name Missing");
+				Alert.ShowAlert(AlertConstant.SIGNUP_SECNAME_ERROR_MESSAGE,AlertConstant.SIGNUP_SECNAME_ERROR);
 			}
 
 			else if (String.IsNullOrEmpty (this.Email)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Email is required, please enter a value for the field","Email Missing");
+				Alert.ShowAlert(AlertConstant.SIGNUP_EMAIL_MESSAGE,AlertConstant.SIGNUP_EMAIL_ERROR);
 			}
 			else if (!DataValidator.EmailIsValid (this.Email)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Email you entered is not valid","Email Invalid");
+				Alert.ShowAlert(AlertConstant.SIGNUP_EMAIL_INVALID_MESSAGE,AlertConstant.SIGNUP_EMAIL_INVALID);
 			}
 
 			else if (String.IsNullOrEmpty (this.Password)) 
 			{
 				ok = false;
-				Alert.ShowAlert("Password is required, please enter a value for the field","Password Missing");
+				Alert.ShowAlert(AlertConstant.SIGNUP_PASSWORD_ERROR_MESSAGE,AlertConstant.SIGNUP_PASSWORD_ERROR);
 			}
 
 			return ok;
@@ -434,7 +434,7 @@ namespace AncestorCloud.Shared.ViewModels
 			ResponseStatus status = await _facebookLinkManager.LinkFaceBookSignUpUser ();
 
 			if (status == ResponseStatus.Fail) {
-				Alert.ShowAlert ("User may already registered. Please try again", "ERROR");
+				Alert.ShowAlert (AlertConstant.SIGNUP_RESPONSE_ERROR_MESSAGE, AlertConstant.SIGNUP_RESPONSE_ERROR);
 			} else {
 				SignUp ();
 			}
