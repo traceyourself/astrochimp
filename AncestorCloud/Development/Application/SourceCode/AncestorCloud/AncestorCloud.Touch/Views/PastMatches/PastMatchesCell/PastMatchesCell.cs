@@ -20,9 +20,12 @@ namespace AncestorCloud.Touch
 			
 			this.DelayBind (() => {
 
-				var set = this.CreateBindingSet<PastMatchesCell, People> ();
-				set.Bind (MyNameLabel).To (vm => vm.Name);
-				set.Bind(OtherNameLabel).To(vm => vm.Relation).WithConversion(new RelationshipTextConverter(),null);
+				var set = this.CreateBindingSet<PastMatchesCell, RelationshipFindResult> ();
+				set.Bind (MyNameLabel).To (vm => vm.FirstPerson.Name);//WithConversion(new RelationshipTextConverter(),null);
+				set.Bind(OtherNameLabel).To(vm => vm.SecondPerson.Name);//WithConversion(new RelationshipTextConverter(),null);
+				set.Bind(FirstImage).To (vm => vm.FirstPerson.ProfilePicURL);
+				set.Bind(SecondImage).To (vm=> vm.SecondPerson.ProfilePicURL);
+				set.Bind(DegreeLabel).To (vm =>vm.Degrees);
 				set.Apply ();
 				SetImages();
 

@@ -62,12 +62,7 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
-		#region Close Method
-		public void Close()
-		{
-			this.Close(this);
-		}
-		#endregion
+	
 	
 	}
 }

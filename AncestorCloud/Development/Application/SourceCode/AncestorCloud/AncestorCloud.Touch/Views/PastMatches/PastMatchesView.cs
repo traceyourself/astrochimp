@@ -5,11 +5,19 @@ using AncestorCloud.Shared;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using AncestorCloud.Shared.ViewModels;
 using System.Drawing;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using Cirrious.CrossCore;
+using AncestorCloud.Core;
 
 namespace AncestorCloud.Touch
 {
 	public partial class PastMatchesView : BaseViewController
 	{
+
+		private MvxSubscriptionToken PastMatchToken;
+
+		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
+
 		public PastMatchesView () : base ("PastMatchesView", null)
 		{
 		}
@@ -32,6 +40,8 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewDidLoad ();
 			SetTableView ();
+			ViewModel.GetPastMatchesData ();
+			LoadView ();
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -54,15 +64,45 @@ namespace AncestorCloud.Touch
 			} else {
 				this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title, new RectangleF (0, 0, 180, 20));
 			}
-				
+	
+
+		}
+
+		private void AddEvent()
+		{
+			PastMatchToken = _messenger.SubscribeOnMainThread<PastMatchesLoadedMessage>(Message => this.LoadView());
+		}
+
+		void RemoveMessengers()
+		{
+			if(PastMatchToken != null)
+				_messenger.Unsubscribe<PastMatchesLoadedMessage> (PastMatchToken);
+		}
+
+		private void LoadView()
+		{
+			RemoveMessengers ();
+
+			CreateMyPastMatchTable ();
+			AddEvent ();
+
+
+		}
+
+		#region Binding
+
+		private void CreateMyPastMatchTable()
+		{
+			var source = new PastMatchesTableSoure (PastMatchesTableVIew);
+			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
+			PastMatchesTableVIew.Source = source;
 
 			var set = this.CreateBindingSet<PastMatchesView , PastMatchesViewModel> ();
 			set.Bind (source).To (vm => vm.PastMatchesList);
-			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
-			//this.NavigationController.NavigationBarHidden = true;
-
 		}
+
+		#endregion
 	}
 }
 
