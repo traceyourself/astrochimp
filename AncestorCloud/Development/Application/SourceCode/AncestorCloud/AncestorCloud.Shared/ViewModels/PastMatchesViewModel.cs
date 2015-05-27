@@ -1,38 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using AncestorCloud.Core;
 
 namespace AncestorCloud.Shared.ViewModels
 {
 	public class PastMatchesViewModel:BaseViewModel
 	{
+
 		#region Globals
+
+		private readonly IMatchHistoryService _historyService;
+		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
+		#endregion
+
 
 		private readonly IDatabaseService _databaseService;
 
 		public PastMatchesViewModel(IDatabaseService  service)
 		{
 			_databaseService = service;
-			GetPastMatchesData ();
+			_historyService = Mvx.Resolve<IMatchHistoryService>();
+			//GetPastMatchesData ();
 		}
 
-		#endregion
+
 
 		#region Sqlite Methods
-
-		public void GetPastMatchesData()
+		public async void GetPastMatchesData()
 		{
 			LoginModel login = _databaseService.GetLoginDetails ();
-			List<People> list = _databaseService.RelativeMatching ("",login.UserEmail);
-			PastMatchesList = list;
+			ResponseModel<List<RelationshipFindResult>> matchList = await _historyService.HistoryReadService (login);
+			//List<People> list = _databaseService.RelativeMatching ("",login.UserEmail);
+			PastMatchesList = matchList.Content;
+			_messenger.Publish(new PastMatchesLoadedMessage(this));
 		}
 		#endregion
 
 		#region Properties
 
-		private List<People> pastMatchesList;
+		private List<RelationshipFindResult> pastMatchesList;
 
-		public List<People> PastMatchesList
+		public List<RelationshipFindResult> PastMatchesList
 		{
 			get { return pastMatchesList; }
 			set

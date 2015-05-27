@@ -36,7 +36,6 @@
                 android:paddingRight="3dp"
                 android:textColor="@color/gray_login_color"
                 android:textSize="12sp"
-                android:text="Me"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
         <LinearLayout
@@ -51,7 +50,6 @@
                 android:layout_height="60dp"
                 android:background="@drawable/circle_back"
                 android:textColor="@android:color/white"
-                android:text="16º"
                 android:gravity="center"
                 android:textSize="22sp" />
         </LinearLayout>
@@ -84,7 +82,6 @@
                 android:paddingRight="3dp"
                 android:textColor="@color/gray_login_color"
                 android:textSize="12sp"
-                android:text="Aj Jacobs"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
     </RelativeLayout>
