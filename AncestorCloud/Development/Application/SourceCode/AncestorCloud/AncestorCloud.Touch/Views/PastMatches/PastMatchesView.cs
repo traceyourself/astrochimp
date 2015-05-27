@@ -57,6 +57,7 @@ namespace AncestorCloud.Touch
 
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
 
+
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = Themes.TitleTextColor() });
 

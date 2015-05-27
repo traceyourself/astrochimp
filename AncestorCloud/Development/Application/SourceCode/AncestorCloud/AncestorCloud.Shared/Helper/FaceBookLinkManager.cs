@@ -6,6 +6,8 @@ namespace AncestorCloud.Shared
 {
 	public class FaceBookLinkManager
 	{
+
+		#region Globals
 		private readonly IDatabaseService _databaseService;
 
 		private readonly IDeveloperLoginService _developerLoginService;
@@ -20,6 +22,7 @@ namespace AncestorCloud.Shared
 
 		private readonly IIndiDetailService _indiDetailService;
 
+		#endregion
 
 		public FaceBookLinkManager ()
 		{
