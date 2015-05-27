@@ -303,9 +303,7 @@ namespace AncestorCloud.Touch
 		{
 			PickerButtonTapped.SetTitle (title, UIControlState.Normal);
 		}
-
-
-
+			
 
 		public  void OnKeyboardChanged (object sender,AncestorCloud.Touch.BaseViewController.OnKeyboardChangedArgs args)
 		{

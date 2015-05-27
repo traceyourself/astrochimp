@@ -78,11 +78,9 @@ namespace AncestorCloud.Touch
 
 
 		}
-
-
+			
 		partial void AddButtonTapped (NSObject sender)
 		{
-
 			ViewModel.MePlusClicked();
 		}
 

@@ -46,7 +46,6 @@ namespace AncestorCloud.Touch
 
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
 
-
 			if (width <= 320f) {
 				this.NavigationItem.TitleView = new MyResearchTitleView (this.Title,new RectangleF(0,0,140,20));
 
@@ -85,15 +84,7 @@ namespace AncestorCloud.Touch
 			string url = "https://www.mocavo.com/";
 			webView.LoadRequest (new NSUrlRequest (new NSUrl (url)));
 
-		
-
-
 		}
-
-
-
-
-
 
 	}
 }

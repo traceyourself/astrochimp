@@ -46,7 +46,6 @@ namespace AncestorCloud.Touch
 
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
 
-
 			if (width <= 320f) {
 				this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,130,20));
 			} else if (width >= 321f && width <=375) {
