@@ -6,13 +6,7 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class PastMatchesViewModel:BaseViewModel
 	{
-
-		#region Close Method
-		public void Close()
-		{
-			this.Close(this);
-		}
-		#endregion
+		#region Globals
 
 		private readonly IDatabaseService _databaseService;
 
@@ -22,6 +16,7 @@ namespace AncestorCloud.Shared.ViewModels
 			GetPastMatchesData ();
 		}
 
+		#endregion
 
 		#region Sqlite Methods
 
@@ -45,6 +40,13 @@ namespace AncestorCloud.Shared.ViewModels
 				pastMatchesList = value;
 				RaisePropertyChanged(() => PastMatchesList);
 			}
+		}
+		#endregion
+
+		#region Close Method
+		public void Close()
+		{
+			this.Close(this);
 		}
 		#endregion
 	

@@ -14,6 +14,7 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class LoginViewModel: BaseViewModel
 	{
+		#region Globals
 
 		private ILoginService _loginService;
 
@@ -25,13 +26,13 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly IReachabilityService _reachabilityService;
 
-		private readonly IGroupCreateService _groupService;
+		//private readonly IGroupCreateService _groupService;
 
-		private readonly IFamilyCreateService _famService;
+		//private readonly IFamilyCreateService _famService;
 
 		private readonly IIndiDetailService _indiDetailService;
 
-
+		#endregion
 		public LoginViewModel(ILoginService service, IAlert alert, IReachabilityService reachabilty, IGroupCreateService _service,IFamilyCreateService famService, IIndiDetailService _indiService)
 		{
 			_loginService = service;
@@ -43,8 +44,8 @@ namespace AncestorCloud.Shared.ViewModels
 			Password = "pass";
 
 			_reachabilityService = reachabilty;
-			_groupService = _service;
-			_famService = famService;
+			//_groupService = _service;
+			//_famService = famService;
 			_indiDetailService = _indiService;
 
 		}
@@ -298,13 +299,10 @@ namespace AncestorCloud.Shared.ViewModels
 						if (loginresponse.Status == ResponseStatus.OK) {
 
 							LoginModel model = loginresponse.Content;
-
 							model.AvatarOGFN = response.Content.AvatarOGFN;
 							model.AvatarURL = response.Content.AvatarURL;
 
 							_databaseService.InsertLoginDetails (model as LoginModel);
-							
-							//_databaseService.GetLoginDetails ();
 
 							if (Mvx.CanResolve<IAndroidService> ()) {
 								ShowMyFamilyViewModel ();
@@ -369,11 +367,6 @@ namespace AncestorCloud.Shared.ViewModels
 
 			_databaseService.InsertUser (user);
 
-//			List<User> list= _databaseService.GetUsers ("1404007466586095");
-//
-//			System.Diagnostics.Debug.WriteLine ("LIST:"+list);
-//
-//			User newuser = _databaseService.GetUser (2);
 		}
 
 		public void SaveFbFamilyData()
@@ -389,9 +382,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 				_databaseService.InsertRelative (people);
 			}
-//			List<People> peopleList = _databaseService.RelativeMatching ("brother");
-//
-//			System.Diagnostics.Debug.WriteLine ("PEOPLE LIST :" + peopleList);
+
 		}
 
 		public void SaveFbFriendsData()
@@ -407,9 +398,6 @@ namespace AncestorCloud.Shared.ViewModels
 
 				_databaseService.InsertFBFriend (people);
 			}
-			//			List<People> peopleList = _databaseService.RelativeMatching ("brother");
-			//
-			//			System.Diagnostics.Debug.WriteLine ("PEOPLE LIST :" + peopleList);
 		}
 		#endregion
 

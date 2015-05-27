@@ -9,6 +9,7 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class RelationshipMatchDetailViewModel :BaseViewModel
 	{
+		#region Proerties
 		public String FirstPersonURL{ get; set;}
 		public String SecondPersonURL{ get; set;}
 		public String FirstPersonNAME{ get; set;}
@@ -38,6 +39,9 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 		}
 
+		#endregion
+
+		#region Globals
 
 		private readonly IDatabaseService _databaseService;
 
@@ -59,6 +63,7 @@ namespace AncestorCloud.Shared.ViewModels
 			SetCommonResult ();
 		}
 
+		#endregion
 
 		#region get Userdata method
 		public LoginModel GetUserData()

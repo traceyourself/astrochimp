@@ -8,6 +8,7 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class MatchViewModel:BaseViewModel
 	{
+		#region	Globals
 		private readonly IMatchService _matchService;
 		private readonly IAlert _alert;
 		private readonly IDatabaseService _databaseService;
@@ -16,24 +17,22 @@ namespace AncestorCloud.Shared.ViewModels
 		public Celebrity FirstPersonCeleb,SecondPersonCeleb;
 		public People FirstPersonPeople,SecondPersonPeople;
 		private readonly IReachabilityService _reachabilityService;
+		#endregion
 
-
+		#region Initialization
 		public MatchViewModel(IReachabilityService reachabilty)
 		{
-			
 			_matchService = Mvx.Resolve<IMatchService> ();	
 			_databaseService = Mvx.Resolve<IDatabaseService> ();
-
 			_alert = Mvx.Resolve<IAlert> ();
-
-
 			_matcherMessenger = Mvx.Resolve<IMvxMessenger>();
 			matcherChosenToken = _matcherMessenger.Subscribe<MatchGetPersonMeassage>(message => {
 				HandleSelectedPerson(message);
 			});
-
 			_reachabilityService = reachabilty;
 		}
+
+		#endregion
 
 		public void HandleSelectedPerson(MatchGetPersonMeassage message)
 		{

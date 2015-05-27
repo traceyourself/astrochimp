@@ -20,12 +20,9 @@ namespace AncestorCloud.Shared
 
 		public Type ViewModelType;
 
-
 		public void Close()
 		{
 			//this.Close (this);
-
-
 		}
 	}
 }

@@ -10,6 +10,7 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class SignUpViewModel : BaseViewModel
 	{
+		#region Globals
 		public ISignUpService _ISignUpService; 
 
 		private IDatabaseService _databaseService;
@@ -23,6 +24,7 @@ namespace AncestorCloud.Shared.ViewModels
 		private readonly IGroupCreateService _groupService;
 
 		private readonly IFamilyCreateService _famService;
+		#endregion
 
 		#region SignUpViewModel
 
@@ -361,18 +363,18 @@ namespace AncestorCloud.Shared.ViewModels
 		#region Facebook Data
 
 
-		public void GetFbData()
-		{
-
-			Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (FbResponseText);
-
-			User user = DataParser.GetUserDetails (dict);
-
-			foreach (var keyValuePair in dict) {
-
-				Utility.Log (" :" + keyValuePair.Key+ keyValuePair.Value);
-			}
-		}
+//		public void GetFbData()
+//		{
+//
+//			Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (FbResponseText);
+//
+//			User user = DataParser.GetUserDetails (dict);
+//
+//			foreach (var keyValuePair in dict) {
+//
+//				Utility.Log (" :" + keyValuePair.Key+ keyValuePair.Value);
+//			}
+//		}
 
 
 
@@ -389,9 +391,6 @@ namespace AncestorCloud.Shared.ViewModels
 
 			_databaseService.InsertUser (user);
 
-//			List<User> list= _databaseService.GetUsers ("1404007466586095");
-//
-//			User newuser = _databaseService.GetUser (2);
 		}
 
 		public void SaveFbFamilyData()
@@ -407,7 +406,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 				_databaseService.InsertRelative (people);
 			}
-//			List<People> peopleList = _databaseService.RelativeMatching ("brother");
+
 		}
 
 		public void SaveFbFriendsData()
