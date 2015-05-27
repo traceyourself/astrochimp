@@ -31,6 +31,6 @@
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.cousinapp.cousin</string>
+	<string>com.smartdata.astrochimp</string>
 </dict>
 </plist>
