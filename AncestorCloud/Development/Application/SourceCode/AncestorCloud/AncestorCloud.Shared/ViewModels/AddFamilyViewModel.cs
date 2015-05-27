@@ -6,16 +6,20 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class AddFamilyViewModel:BaseViewModel
 	{
+
+		#region Globals
 		private IAddFamilyService _addService;
 
 		private IDatabaseService _databaseService;
 
-		private IAlert Alert;
-
-		public String AddType { get; set;}
+		private readonly IAlert Alert;
 
 		private readonly IReachabilityService _reachabilityService;
 
+		public String AddType { get; set;}
+		#endregion
+
+		#region Initialization
 		public AddFamilyViewModel(IAddFamilyService service, IAlert alert,IReachabilityService reachabilty)
 		{
 			_addService = service;
@@ -28,8 +32,9 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			this.AddType = param.AddPersonType;
 		}
+		#endregion
 
-		#region fields
+		#region Prtoperties
 		private string _firstName;
 
 		public string FirstName
@@ -99,8 +104,6 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 		}
 
-		#endregion
-
 		private People _familyMember;
 
 		public People FamilyMember 
@@ -111,10 +114,13 @@ namespace AncestorCloud.Shared.ViewModels
 				_familyMember = value;
 				RaisePropertyChanged(() => FamilyMember);
 			}
-		
+
 		}
 
 
+		#endregion
+
+	
 		#region Commands
 
 		private ACCommand _addPersonCommand;
@@ -126,26 +132,24 @@ namespace AncestorCloud.Shared.ViewModels
 				return this._addPersonCommand ?? (this._addPersonCommand = new ACCommand (this.AddPerson));
 			}
 		}
-
-
+			
 		#endregion
 
-		#region close call
+		#region Helper Methods
+
 		public void Close()
 		{
 			this.Close (this);
 		}
-		#endregion
-
 
 		public void ShowMyFamily()
 		{
 			ShowViewModel<MyFamilyViewModel> ();
 		}
 
-	
+		#endregion
 
-		#region addPerson
+		#region AddPerson
 		public async void AddPerson(){
 
 			if (Validate ()) {
@@ -211,10 +215,15 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
+
+		#region Parameter Inner Class
+
 		public class DetailParameter
 		{
 			public String AddPersonType{ get; set;}
 		}
+
+		#endregion
 
 	}
 
