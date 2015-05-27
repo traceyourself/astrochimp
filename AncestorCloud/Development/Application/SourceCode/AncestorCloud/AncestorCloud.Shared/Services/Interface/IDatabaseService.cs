@@ -36,6 +36,7 @@ namespace AncestorCloud.Shared
 
 		void DropAllTables ();
 		//int Count { get; }
+		List<People> GetMember(string filter, string userId);
 	}
 }
 

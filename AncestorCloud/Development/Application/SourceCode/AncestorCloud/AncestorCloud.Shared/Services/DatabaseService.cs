@@ -276,12 +276,10 @@ namespace AncestorCloud.Shared
 		{
 			_connection.CreateTable<User>();
 		}
-
 		#endregion
 
+
 		#region Helper Methods
-
-
 		private void UpdateLoginUser(LoginModel modal)
 		{
 //			String query = "UPDATE LoginModel SET IndiOGFN='" + modal.IndiOGFN + "', OGFN='" + modal.OGFN + "', Value='" + modal.Value+"' WHERE UserEmail='"+modal.UserEmail+"'";
@@ -343,8 +341,12 @@ namespace AncestorCloud.Shared
 			return count;
 		}
 
+		public List<People> GetMember(string filter, string userId)
+		{
+			List<People> result =  _connection.Table<People>().Where(x => x.IndiOgfn.Contains(filter) && x.LoginUserLinkID.Contains(userId)).ToList();
+			return result;
+		}
 		#endregion
-
 	}
 }
 

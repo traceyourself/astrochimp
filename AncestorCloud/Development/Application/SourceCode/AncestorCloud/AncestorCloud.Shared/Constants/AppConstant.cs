@@ -116,7 +116,7 @@ namespace AncestorCloud.Shared
 		#region User Read Data
 		public const string INDIOGFN = "IndiOgfn";
 		public const string OGFN = "Ogfn";
-
+		public const string CONTACT_INFO = "ContactInfo";
 		#endregion
 
 		#region Indi Read Data
@@ -236,7 +236,6 @@ namespace AncestorCloud.Shared
 		public const string HISTORY_NOTFOUND_REASON = "NotFoundReason";
 		public const string HISTORY_TYPE = "Type";
 		public const string HISTORY_USEROGFN = "UserOgfn";
-
 		#endregion
 	}
 

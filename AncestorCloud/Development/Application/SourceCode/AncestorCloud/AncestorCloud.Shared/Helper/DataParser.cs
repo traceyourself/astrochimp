@@ -224,6 +224,20 @@ namespace AncestorCloud.Shared
 			if (IsKeyExist (AppConstant.OGFN, dict))
 				model.OGFN = GetData (AppConstant.OGFN, dict);
 
+			if(IsKeyExist (AppConstant.CONTACT_INFO, dict)){
+				JObject contactObj = dict [AppConstant.CONTACT_INFO] as JObject;
+				Dictionary<string,object> contactdict = contactObj.ToObject<Dictionary<string,object>> ();
+
+				if (IsKeyExist (AppConstant.FIRSTNAMEKEY, contactdict))
+					model.Name = GetData (AppConstant.FIRSTNAMEKEY, contactdict);
+
+				if (IsKeyExist (AppConstant.LASTNAMEKEY, contactdict)) {
+					String nn = model.Name;
+					nn = nn+" "+GetData (AppConstant.LASTNAMEKEY, contactdict);
+					model.Name = nn;
+				}
+			}
+
 			return model;
 		}
 
@@ -325,10 +339,11 @@ namespace AncestorCloud.Shared
 				model.AvatarOGFN = GetData (AppConstant.AVATARINDIOGFN, dict);
 
 			if (IsKeyExist (AppConstant.INDI_NAME, dict))
-				model.Name = GetData (AppConstant.INDI_NAME, dict);
+				model.Name = GetData (AppConstant.INDI_NAME, dict).Replace("/","");
 
 			if (IsKeyExist (AppConstant.CHILDOGFNKEY, dict))
 				model.FamOGFN = GetData (AppConstant.CHILDOGFNKEY, dict);
+			
 
 			return model;
 		}

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using AncestorCloud.Core;
 
 namespace AncestorCloud.Shared.ViewModels
 {
 	public class PastMatchesViewModel:BaseViewModel
 	{
 		private readonly IMatchHistoryService _historyService;
+		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
 
 		#region Close Method
 		public void Close()
@@ -31,15 +34,16 @@ namespace AncestorCloud.Shared.ViewModels
 			LoginModel login = _databaseService.GetLoginDetails ();
 			ResponseModel<List<RelationshipFindResult>> matchList = await _historyService.HistoryReadService (login);
 			//List<People> list = _databaseService.RelativeMatching ("",login.UserEmail);
-			//PastMatchesList = list;
+			PastMatchesList = matchList.Content;
+			_messenger.Publish(new PastMatchesLoadedMessage(this));
 		}
 		#endregion
 
 		#region Properties
 
-		private List<People> pastMatchesList;
+		private List<RelationshipFindResult> pastMatchesList;
 
-		public List<People> PastMatchesList
+		public List<RelationshipFindResult> PastMatchesList
 		{
 			get { return pastMatchesList; }
 			set
