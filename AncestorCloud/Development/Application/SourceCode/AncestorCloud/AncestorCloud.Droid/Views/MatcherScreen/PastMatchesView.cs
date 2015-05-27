@@ -75,7 +75,7 @@ namespace AncestorCloud.Droid
 		#region Create List Adapter
 		private void CreateListAdapter ()
 		{
-			if(ViewModel.PastMatchesList.Count > 0){
+			if(ViewModel.PastMatchesList != null){
 				PastMatchedListAdapter adapter = new PastMatchedListAdapter (this,ViewModel.PastMatchesList);
 				matchlist.Adapter = adapter;
 				matchlist.Invalidate ();	

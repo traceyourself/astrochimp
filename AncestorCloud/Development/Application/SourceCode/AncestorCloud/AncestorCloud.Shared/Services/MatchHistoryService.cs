@@ -133,7 +133,7 @@ namespace AncestorCloud.Shared
 				//=======
 
 
-				//Secon person Validation===
+				//Second person Validation===
 				if(_databaseService.IsMemberExists(""+relationModel.Indi2Ogfn,useremail) > 0){
 					People people = _databaseService.GetMember (""+relationModel.Indi2Ogfn,useremail)[0];
 
@@ -172,8 +172,8 @@ namespace AncestorCloud.Shared
 				//==========
 
 				/*if(i == 5){
-					Mvx.Trace ("First at "+i+" : "+relationModel.FirstPerson.ProfilePicURL);
-					Mvx.Trace ("Second at "+i+" : "+relationModel.SecondPerson.ProfilePicURL);
+					Mvx.Trace ("first at "+i+" : "+relationModel.Indi1Ogfn);
+					Mvx.Trace ("second at "+i+" : "+relationModel.Indi2Ogfn);
 				}*/
 				returnList.Add (relationModel);
 			}
