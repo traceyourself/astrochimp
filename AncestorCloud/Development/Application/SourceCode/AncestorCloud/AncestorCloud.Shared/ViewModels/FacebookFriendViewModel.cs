@@ -10,15 +10,7 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class FacebookFriendViewModel:BaseViewModel
 	{
-	
-
-		#region Close Method
-		public void Close()
-		{
-			this.Close(this);
-		}
-		#endregion
-
+		#region Globals
 		private readonly IDatabaseService _databaseService;
 
 		private readonly IFBFriendLinkService _friendLinkService;
@@ -30,6 +22,7 @@ namespace AncestorCloud.Shared.ViewModels
 		private MvxSubscriptionToken selectFbFreindToken;
 
 		IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
+		#endregion
 
 		public FacebookFriendViewModel(IDatabaseService  service,IFBFriendLinkService fbService, IAlert alert)
 		{
@@ -157,6 +150,13 @@ namespace AncestorCloud.Shared.ViewModels
 //			_alert.ShowAlertWithOk("Do you want to add your friend to Ancestor Cloud","Match",AlertType.OKCancelPermit);
 //		}
 
+		#endregion
+
+		#region Close Method
+		public void Close()
+		{
+			this.Close(this);
+		}
 		#endregion
 
 	}
