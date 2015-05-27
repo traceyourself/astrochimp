@@ -9,6 +9,20 @@ namespace AncestorCloud.Shared.ViewModels
 	public class FbFamilyViewModel : BaseViewModel
 	{
 
+		#region Globals
+		private readonly IDatabaseService _databaseService;
+
+		private readonly FbFamilyDataManager _fbManager;
+
+		public FbFamilyViewModel(IDatabaseService  service)
+		{
+			_databaseService = service;
+			GetFbFamilyData ();
+			_fbManager = new FbFamilyDataManager ();
+		}
+
+		#endregion
+
 		#region ShowSignViewModel
 		public void ShowMyFamilyViewModel()
 		{
@@ -52,17 +66,6 @@ namespace AncestorCloud.Shared.ViewModels
 			ShowViewModel<MatchViewModel> ();
 		}
 		#endregion
-
-		private readonly IDatabaseService _databaseService;
-
-		private readonly FbFamilyDataManager _fbManager;
-
-		public FbFamilyViewModel(IDatabaseService  service)
-		{
-			_databaseService = service;
-			GetFbFamilyData ();
-			_fbManager = new FbFamilyDataManager ();
-		}
 
 
 		public void NextButtonTapped()

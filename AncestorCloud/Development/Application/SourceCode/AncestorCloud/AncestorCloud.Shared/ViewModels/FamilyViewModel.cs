@@ -6,13 +6,16 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class FamilyViewModel : BaseViewModel
 	{
+		#region Globals
 		private readonly IDatabaseService _databaseService;
+		#endregion
 
-
+		#region Init
 		public FamilyViewModel()
 		{
 			_databaseService = Mvx.Resolve<IDatabaseService> ();	
 		}
+		#endregion
 
 		#region Relationship View
 
