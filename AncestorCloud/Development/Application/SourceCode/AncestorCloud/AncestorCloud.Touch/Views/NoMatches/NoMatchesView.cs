@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace AncestorCloud.Touch
 {
-	public partial class NoMatchesView : BaseViewController
+	public partial class NoMatchesView : UIViewController
 	{
 		public NoMatchesView () : base ("NoMatchesView", null)
 		{
@@ -30,21 +30,21 @@ namespace AncestorCloud.Touch
 
 		public void SetNavigation()
 		{
-			this.Title = Utility.LocalisedBundle ().LocalizedString ("PastMatchText", "");
-			this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,150,20));
-			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
+//			this.Title = Utility.LocalisedBundle ().LocalizedString ("PastMatchText", "");
+//			this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,150,20));
+//			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 
 
 		}
 
 		public override void ViewWillAppear (bool animated)
 		{
-			this.NavigationController.NavigationBarHidden = false;
+			//this.NavigationController.NavigationBarHidden = false;
 		}
 
 		public override void ViewWillDisappear (bool animated)
 		{
-			this.NavigationController.NavigationBarHidden = true;
+			//this.NavigationController.NavigationBarHidden = true;
 		}
 	}
 }

@@ -16,18 +16,40 @@ namespace AncestorCloud.Touch
 
 		public PastMatchesCell (IntPtr handle) : base (handle)
 		{
+			
+			
 			this.DelayBind (() => {
 
-				var set = this.CreateBindingSet<PastMatchesCell, People> ();
-				set.Bind (MyNameLabel).To (vm => vm.Name);
-				set.Bind(OtherNameLabel).To(vm => vm.Relation).WithConversion(new RelationshipTextConverter(),null);
+				MvxImageViewLoader _imageViewLoader = new MvxImageViewLoader(() => this.FirstImage);
+				MvxImageViewLoader _secImageViewLoader = new MvxImageViewLoader(() => this.SecondImage);
+
+				var set = this.CreateBindingSet<PastMatchesCell, RelationshipFindResult> ();
+				set.Bind (MyNameLabel).To (vm => vm.FirstPerson.Name);//WithConversion(new RelationshipTextConverter(),null);
+				set.Bind(OtherNameLabel).To(vm => vm.SecondPerson.Name);//WithConversion(new RelationshipTextConverter(),null);
+				set.Bind(_imageViewLoader).To (vm => vm.FirstPerson.ProfilePicURL);
+				set.Bind(_secImageViewLoader).To (vm=> vm.SecondPerson.ProfilePicURL);
+				set.Bind(DegreeLabel).To (vm =>vm.Degrees).WithConversion(new DegreeConverter(),null);
 				set.Apply ();
+				SetImages();
+
+		
 			});
 		}
 
 		public static PastMatchesCell Create ()
 		{
 			return (PastMatchesCell)Nib.Instantiate (null, null) [0];
+		}
+
+		public void SetImages()
+		{
+			FirstImage.Layer.CornerRadius = 30f;
+			FirstImage.ClipsToBounds = true;
+			SecondImage.Layer.CornerRadius = 30f;
+			SecondImage.ClipsToBounds = true;
+			OtherImageView.Layer.CornerRadius = 30f;
+			OtherImageView.ClipsToBounds = true;
+			OtherImageView.BackgroundColor=UIColor.FromRGB(174,219,222);
 		}
 	}
 }

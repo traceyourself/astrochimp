@@ -13,21 +13,53 @@ namespace AncestorCloud.Touch
 	partial class PastMatchesCell
 	{
 		[Outlet]
+		UIKit.UILabel DegreeLabel { get; set; }
+
+		[Outlet]
+		UIKit.UIImageView FirstImage { get; set; }
+
+		[Outlet]
 		UIKit.UILabel MyNameLabel { get; set; }
 
 		[Outlet]
+		UIKit.UIImageView OtherImageView { get; set; }
+
+		[Outlet]
 		UIKit.UILabel OtherNameLabel { get; set; }
+
+		[Outlet]
+		UIKit.UIImageView SecondImage { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (OtherNameLabel != null) {
-				OtherNameLabel.Dispose ();
-				OtherNameLabel = null;
+			if (FirstImage != null) {
+				FirstImage.Dispose ();
+				FirstImage = null;
+			}
+
+			if (SecondImage != null) {
+				SecondImage.Dispose ();
+				SecondImage = null;
+			}
+
+			if (OtherImageView != null) {
+				OtherImageView.Dispose ();
+				OtherImageView = null;
+			}
+
+			if (DegreeLabel != null) {
+				DegreeLabel.Dispose ();
+				DegreeLabel = null;
 			}
 
 			if (MyNameLabel != null) {
 				MyNameLabel.Dispose ();
 				MyNameLabel = null;
+			}
+
+			if (OtherNameLabel != null) {
+				OtherNameLabel.Dispose ();
+				OtherNameLabel = null;
 			}
 		}
 	}
