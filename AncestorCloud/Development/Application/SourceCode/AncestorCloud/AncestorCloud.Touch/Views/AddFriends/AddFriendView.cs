@@ -88,6 +88,7 @@ namespace AncestorCloud.Touch
 		#endregion
 
 		#region Button Tap handler
+
 		partial void CelebritiesButtonTapped (NSObject sender)
 		{
 			ViewModel.ShowCelebrities();

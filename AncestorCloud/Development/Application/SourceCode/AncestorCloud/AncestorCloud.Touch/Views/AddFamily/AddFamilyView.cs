@@ -136,10 +136,11 @@ namespace AncestorCloud.Touch
 
 		void CreatePicker()
 		{
+			int currentYear = DateTime.Now.Year;
 
 			List<Object> state_list = new List<Object> ();
 
-			for (int i = 1900; i < 2016; i++) {
+			for (int i = 1900; i <= currentYear; i++) {
 
 				state_list.Add (i);
 			}

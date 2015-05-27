@@ -100,9 +100,6 @@ namespace AncestorCloud.Shared.ViewModels
 			case Section.ResearchHelp:
 				this.ShowViewModel<ResearchHelpViewModel>();
 				break;
-			
-
-
 			}
 		}
 

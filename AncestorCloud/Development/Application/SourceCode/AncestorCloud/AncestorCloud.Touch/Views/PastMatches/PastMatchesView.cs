@@ -5,11 +5,19 @@ using AncestorCloud.Shared;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using AncestorCloud.Shared.ViewModels;
 using System.Drawing;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using Cirrious.CrossCore;
+using AncestorCloud.Core;
 
 namespace AncestorCloud.Touch
 {
 	public partial class PastMatchesView : BaseViewController
 	{
+
+		private MvxSubscriptionToken PastMatchToken;
+
+		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
+
 		public PastMatchesView () : base ("PastMatchesView", null)
 		{
 		}
@@ -32,6 +40,9 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewDidLoad ();
 			SetTableView ();
+			ViewModel.GetPastMatchesData ();
+			AddEvent ();
+			//LoadView ();
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -47,6 +58,14 @@ namespace AncestorCloud.Touch
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
 
 
+			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
+				{ TextColor = Themes.TitleTextColor() });
+
+			this.NavigationController.NavigationBar.TintColor=Themes.TitleTextColor();
+
+			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
+
+
 			if (width <= 320f) {
 				this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,130,20));
 			} else if (width >= 321f && width <=375) {
@@ -54,14 +73,62 @@ namespace AncestorCloud.Touch
 			} else {
 				this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title, new RectangleF (0, 0, 180, 20));
 			}
-				
+	
+
+		}
+
+		private void AddEvent()
+		{
+			PastMatchToken = _messenger.SubscribeOnMainThread<PastMatchesLoadedMessage>(Message => this.LoadView());
+		}
+
+		void RemoveMessengers()
+		{
+			if(PastMatchToken != null)
+				_messenger.Unsubscribe<PastMatchesLoadedMessage> (PastMatchToken);
+		}
+
+		private void LoadView()
+		{
+			
+			if (ViewModel.PastMatchesList != null) {
+				CreateMyPastMatchTable ();
+			} else {
+				NoMatchesView _NoMatchesView = new  NoMatchesView ();
+				this.View.AddSubview (_NoMatchesView.View);
+			}
+
+
+
+		}
+
+		#region Binding
+
+		private void CreateMyPastMatchTable()
+		{
+			var source = new PastMatchesTableSoure (PastMatchesTableVIew);
+			//var source = new MvxSimpleTableViewSource(fbFamilyTableView, FbFamilyCell.Key, FbFamilyCell.Key);
+			PastMatchesTableVIew.Source = source;
 
 			var set = this.CreateBindingSet<PastMatchesView , PastMatchesViewModel> ();
 			set.Bind (source).To (vm => vm.PastMatchesList);
-			//set.Bind (NextButton).To (vm => vm.NextButtonCommand);
 			set.Apply ();
-			//this.NavigationController.NavigationBarHidden = true;
+		}
 
+		#endregion
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			this.NavigationController.NavigationBarHidden = false;
+
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+			this.NavigationController.NavigationBarHidden = true;
+			RemoveMessengers ();
 		}
 	}
 }
