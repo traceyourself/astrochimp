@@ -151,6 +151,11 @@ namespace AncestorCloud.Shared.ViewModels
 			ShowViewModel<PastMatchesViewModel> ();
 		}
 
+		public void ShowPastMatchesNoData()
+		{
+			ShowViewModel<NoMatchesViewModel> ();
+		}
+
 
 		#region property holding the clicked image 
 		public int WhichImageClicked{ get; set;}

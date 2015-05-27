@@ -121,7 +121,6 @@ namespace AncestorCloud.Touch
 
 						ViewModel.ShowPastMatchesNoData();
 
-
 					})
 				, true);
 			//Add (table);

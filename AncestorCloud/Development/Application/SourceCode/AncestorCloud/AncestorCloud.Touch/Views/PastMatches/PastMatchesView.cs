@@ -41,7 +41,8 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 			SetTableView ();
 			ViewModel.GetPastMatchesData ();
-			LoadView ();
+			AddEvent ();
+			//LoadView ();
 			
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
@@ -55,6 +56,13 @@ namespace AncestorCloud.Touch
 			PastMatchesTableVIew.Source = source;
 
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
+
+			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
+				{ TextColor = Themes.TitleTextColor() });
+
+			this.NavigationController.NavigationBar.TintColor=Themes.TitleTextColor();
+
+			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 
 
 			if (width <= 320f) {
@@ -81,10 +89,14 @@ namespace AncestorCloud.Touch
 
 		private void LoadView()
 		{
-			RemoveMessengers ();
+			
+			if (ViewModel.PastMatchesList != null) {
+				CreateMyPastMatchTable ();
+			} else {
+				NoMatchesView _NoMatchesView = new  NoMatchesView ();
+				this.View.AddSubview (_NoMatchesView.View);
+			}
 
-			CreateMyPastMatchTable ();
-			AddEvent ();
 
 
 		}
@@ -103,6 +115,20 @@ namespace AncestorCloud.Touch
 		}
 
 		#endregion
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+			this.NavigationController.NavigationBarHidden = false;
+
+		}
+
+		public override void ViewWillDisappear (bool animated)
+		{
+			base.ViewWillDisappear (animated);
+			this.NavigationController.NavigationBarHidden = true;
+			RemoveMessengers ();
+		}
 	}
 }
 

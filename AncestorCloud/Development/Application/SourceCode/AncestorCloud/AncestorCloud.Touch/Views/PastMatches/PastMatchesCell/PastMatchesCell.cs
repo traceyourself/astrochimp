@@ -20,12 +20,15 @@ namespace AncestorCloud.Touch
 			
 			this.DelayBind (() => {
 
+				MvxImageViewLoader _imageViewLoader = new MvxImageViewLoader(() => this.FirstImage);
+				MvxImageViewLoader _secImageViewLoader = new MvxImageViewLoader(() => this.SecondImage);
+
 				var set = this.CreateBindingSet<PastMatchesCell, RelationshipFindResult> ();
 				set.Bind (MyNameLabel).To (vm => vm.FirstPerson.Name);//WithConversion(new RelationshipTextConverter(),null);
 				set.Bind(OtherNameLabel).To(vm => vm.SecondPerson.Name);//WithConversion(new RelationshipTextConverter(),null);
-				set.Bind(FirstImage).To (vm => vm.FirstPerson.ProfilePicURL);
-				set.Bind(SecondImage).To (vm=> vm.SecondPerson.ProfilePicURL);
-				set.Bind(DegreeLabel).To (vm =>vm.Degrees);
+				set.Bind(_imageViewLoader).To (vm => vm.FirstPerson.ProfilePicURL);
+				set.Bind(_secImageViewLoader).To (vm=> vm.SecondPerson.ProfilePicURL);
+				set.Bind(DegreeLabel).To (vm =>vm.Degrees).WithConversion(new DegreeConverter(),null);
 				set.Apply ();
 				SetImages();
 
