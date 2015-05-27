@@ -56,6 +56,8 @@ namespace AncestorCloud.Touch
 
 		}
 
+		#endregion
+
 		#region Navigation Bar Methods
 
 		private void SetNavBar()
