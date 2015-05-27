@@ -98,7 +98,7 @@ namespace AncestorCloud.Droid
 		protected override void OnPause ()
 		{
 			base.OnPause ();
-				_messenger.Unsubscribe<PastMatchesLoadedMessage> (ReloadViewToken);
+			_messenger.Unsubscribe<PastMatchesLoadedMessage> (ReloadViewToken);
 		}
 
 
