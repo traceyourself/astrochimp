@@ -190,7 +190,7 @@ namespace AncestorCloud.Touch
 					ViewModel.FbFamilyResponseText = famResponse.Result.GetResponseText();
 					ViewModel.SaveFbFamilyData();
 
-					var friendRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/taggable_friends"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
+					var friendRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/friends"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
 					var friendResponse = friendRequest.GetResponseAsync();
 					//System.Diagnostics.Debug.WriteLine ("friendresponse :"+friendResponse.Result.GetResponseText());
 					ViewModel.FbFriendResponseText = friendResponse.Result.GetResponseText();

@@ -11,13 +11,8 @@ namespace AncestorCloud.Shared.ViewModels
 	public class ContactsViewModel:BaseViewModel
 	{
 
-		#region Close Method
-		public void Close()
-		{
-			this.Close(this);
-		}
-		#endregion
 
+		#region Globals
 		private readonly IDatabaseService _databaseService;
 
 		private readonly IContactService _contactService;
@@ -34,6 +29,9 @@ namespace AncestorCloud.Shared.ViewModels
 
 		IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
 
+		#endregion
+
+		#region Initialization
 		public ContactsViewModel(IDatabaseService  service, IContactService contact, ISMSService smsService, IContactLinkService contactService,IAlert alert)
 		{
 			_databaseService = service;
@@ -42,11 +40,22 @@ namespace AncestorCloud.Shared.ViewModels
 			_contactLinkService = contactService;
 			_alert = alert;
 			GetContactsData ();
+			AddMessenger ();
+		}
 
+		private void AddMessenger()
+		{
 			inviteContactToken = _mvxMessenger.SubscribeOnMainThread<InviteContactMessage>(message => this.SendMessage(Contact));
 			selectContactToken = _mvxMessenger.SubscribeOnMainThread<SelectContactMessage>(message => this.PeoplePlusClickHandler(Contact));
 		}
 
+		private void RemoveMessenger()
+		{
+			_mvxMessenger.Unsubscribe<InviteContactMessage> (inviteContactToken);
+			_mvxMessenger.Unsubscribe<SelectContactMessage> (selectContactToken);
+		}
+
+		#endregion
 
 		#region Sqlite Methods
 
@@ -182,6 +191,13 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 		}
 
+		#endregion
+
+		#region Close Method
+		public void Close()
+		{
+			this.Close(this);
+		}
 		#endregion
 	}
 }

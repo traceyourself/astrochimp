@@ -9,20 +9,48 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class FlyOutViewModel:BaseViewModel
 	{
+		#region Globals
+		//TODO:Move into Constant class
+		public enum Section
+		{
+			Unknown,
+			MyFamily,
+			Matcher,
+			ResearchHelp,
+		}
+
 		private MvxSubscriptionToken navigationMenuToggleToken;
 		private MvxSubscriptionToken changeFlyoutToken;
 		private  bool IsFaceBookLogin{ get; set;}
-
 		private readonly IDatabaseService _databaseService;
-
-
 	
+		#endregion
+
+		#region Init
 		public void Init(DetailParameters parameter)
 		{
 			this.IsFaceBookLogin = parameter.IsFBLogin;
 			this.SetItemList (IsFaceBookLogin);
 		}
-			
+
+		public FlyOutViewModel (IDatabaseService  service)
+		{
+
+			//			var _messenger = Mvx.Resolve<IMvxMessenger>();
+			//			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<Message>(message => this.Close(this));
+
+			_databaseService = service;
+
+			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
+			changeFlyoutToken = _flyoutMessenger.SubscribeOnMainThread<ChangeFlyoutFlowMessage>(message => this.ReloadMenuList(message.ChangeFlyoutFlow));
+
+			var _messenger = Mvx.Resolve<IMvxMessenger>();
+			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<FlyOutCloseMessage>(message => this.CloseFlyoutMenu());
+			_databaseService = service;
+
+		}
+
+		#endregion
 
 		#region get Userdata method
 		public LoginModel GetUserData()
@@ -38,34 +66,6 @@ namespace AncestorCloud.Shared.ViewModels
 			return data;
 		}
 		#endregion
-
-
-		public FlyOutViewModel (IDatabaseService  service)
-		{
-
-//			var _messenger = Mvx.Resolve<IMvxMessenger>();
-//			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<Message>(message => this.Close(this));
-
-			_databaseService = service;
-
-			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
-			changeFlyoutToken = _flyoutMessenger.SubscribeOnMainThread<ChangeFlyoutFlowMessage>(message => this.ReloadMenuList(message.ChangeFlyoutFlow));
-
-			var _messenger = Mvx.Resolve<IMvxMessenger>();
-			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<FlyOutCloseMessage>(message => this.CloseFlyoutMenu());
-			_databaseService = service;
-
-		}
-
-		public enum Section
-		{
-			Unknown,
-			MyFamily,
-			Matcher,
-			ResearchHelp,
-		}
-
-		//Move into Constant class
 
 		private List<MenuViewModel> menuItems;
 		public List<MenuViewModel> MenuItems
@@ -88,16 +88,23 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			//navigate if we have to, pass the id so we can grab from cache... or not
 			switch (item.Section)
-			{
 
+			{
 			case Section.MyFamily:
 				this.ShowViewModel<FamilyViewModel>();
 				break;
 			case Section.Matcher:
-				this.ShowViewModel<FamilyViewModel>();
-				break;                
-			}
+				this.ShowViewModel<MyFamilyViewModel>();
+				break;
 
+			case Section.ResearchHelp:
+				this.ShowViewModel<ResearchHelpViewModel>();
+				break;
+			case Section.Unknown:
+				this.ShowViewModel<LogOutViewModel>();
+				break;
+
+			}
 		}
 
 		#region Helper Method
@@ -109,7 +116,6 @@ namespace AncestorCloud.Shared.ViewModels
 			if (boolValue) {
 				this.MenuItems = new List<MenuViewModel>
 				{  
-
 					new MenuViewModel
 					{
 						Section = Section.MyFamily,
@@ -149,14 +155,11 @@ namespace AncestorCloud.Shared.ViewModels
 					new MenuViewModel 
 					{
 						
-
-
 						Section = Section.Unknown,
 						Title = GetUserData().UserEmail,
 						//Image = "profile_img.png",
 						ViewModelType = typeof(ProfilePicViewModel),	
 					}
-
 
 				};
 			} 
@@ -193,7 +196,6 @@ namespace AncestorCloud.Shared.ViewModels
 						Title = AppConstant.LOGOUT_TITLE,
 						Image = AppConstant.LOGOUT_ICON,
 						ViewModelType = typeof(HomePageViewModel),
-
 
 					},
 					new MenuViewModel 
@@ -234,11 +236,15 @@ namespace AncestorCloud.Shared.ViewModels
 			this.ClearDatabase ();
 			this.Close (this);
 		}
+			
+		#region Parameter Class
 
 		public class DetailParameters
 		{
 			public bool IsFBLogin { get; set; }
 		}
+
+		#endregion
 	}
 }
 

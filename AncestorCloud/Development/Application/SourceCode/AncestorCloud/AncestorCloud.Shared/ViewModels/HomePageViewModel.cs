@@ -7,10 +7,13 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class HomePageViewModel :BaseViewModel
 	{
-		#region ShowLoginViewModel
+		#region Globals
+
 		private readonly IFileService _fileService;
 
 		private readonly IStoreCelebService _storeCelebService;
+
+		#endregion
 
 		public HomePageViewModel()
 		{
@@ -27,6 +30,7 @@ namespace AncestorCloud.Shared.ViewModels
 			StoreCelebsData ();
 		}
 
+		#region ShowLoginViewModel
 		public void ShowLoginViewModel()
 		{
 			ShowViewModel <LoginViewModel> ();

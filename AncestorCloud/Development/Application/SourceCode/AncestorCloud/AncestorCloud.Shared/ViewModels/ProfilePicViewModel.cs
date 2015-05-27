@@ -10,6 +10,7 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class ProfilePicViewModel : BaseViewModel
 	{
+		#region Globals
 		private readonly IProfileService _profileService;
 
 		private readonly IDatabaseService _databaseService;
@@ -18,6 +19,8 @@ namespace AncestorCloud.Shared.ViewModels
 
 		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
 
+		#endregion
+		#region Initialization
 		public ProfilePicViewModel(IProfileService profileService,IDatabaseService databaseService)
 		{
 			_profileService = profileService;
@@ -35,6 +38,8 @@ namespace AncestorCloud.Shared.ViewModels
 			if (parameter == null) return;
 			IsFromSignup = parameter.FromSignUp;
 		}
+
+		#endregion
 
 		#region from sign up
 		public bool IsFromSignup{ get; set;}
@@ -60,13 +65,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 			this.Close (this);//XXXXX
 		}
-
-		#region IDisposable implementation
-
-
 			
-		#endregion
-
 		#region Close Method
 		public void Close()
 		{

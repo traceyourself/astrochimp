@@ -198,6 +198,7 @@ namespace AncestorCloud.Shared
 		public const string LINKIDKEY= "linkId";
 		public const string LINKTYPEKEY= "linkType";
 		public const string LINKTYPE = "FACEBOOK_OGF";
+		public const string KIN2_LINKTYPE = "FACEBOOK_KIN2";
 		#endregion
 
 		#region Media Upload 

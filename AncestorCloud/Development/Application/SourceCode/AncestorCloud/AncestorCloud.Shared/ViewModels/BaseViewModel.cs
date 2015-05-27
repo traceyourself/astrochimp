@@ -8,13 +8,21 @@ namespace AncestorCloud.Shared
 {
 	public class BaseViewModel : MvxViewModel
 	{
-		IDatabaseService _databaseService;
+		#region Globals
+		readonly IDatabaseService _databaseService;
+		#endregion
+
+		#region Initialization
 
 		public BaseViewModel()
 		{
 			_databaseService = Mvx.Resolve<IDatabaseService> ();
 			Mvx.RegisterType<IMvxJsonConverter, MvxJsonConverter>();
 		}
+
+		#endregion
+
+		#region Properties
 		private string title = string.Empty;
     	/// <summary>
 		/// Gets or sets the name of the menu
@@ -25,9 +33,7 @@ namespace AncestorCloud.Shared
 			set { this.title = value; this.RaisePropertyChanged(() => this.Title); }
 		
 		}
-
-
-
+			
 		private string image = string.Empty;
 
 		public string Image
@@ -36,14 +42,17 @@ namespace AncestorCloud.Shared
 			set { this.image = value; this.RaisePropertyChanged(() => this.Image); }
 
 		}
+			
+		#endregion
 
-
-
+		#region Common Methods
 
 		public void ClearDatabase()
 		{
 			_databaseService.DropAllTables ();
 		}
+
+		#endregion
 	}
 }
 

@@ -9,13 +9,8 @@ namespace AncestorCloud.Shared
 {
 	public class CelebritiesViewModel:BaseViewModel
 	{
-	    #region Close Method
-	    public void Close()
-		{
-			this.Close(this);
-		}
-		#endregion
-
+	   
+		#region Globals
 		private readonly IDatabaseService _databaseService;
 
 		public CelebritiesViewModel(IDatabaseService  service)
@@ -24,6 +19,7 @@ namespace AncestorCloud.Shared
 		    GetCelebritiesData ();
 
 		}
+		#endregion
 
 		#region Sqlite Methods
 		public void GetCelebritiesData()
@@ -102,6 +98,13 @@ namespace AncestorCloud.Shared
 				RaisePropertyChanged(() => SearchKey);
 				GetCelebritiesDataSearched ();
 			}
+		}
+		#endregion
+
+		#region Close Method
+		public void Close()
+		{
+			this.Close(this);
 		}
 		#endregion
 

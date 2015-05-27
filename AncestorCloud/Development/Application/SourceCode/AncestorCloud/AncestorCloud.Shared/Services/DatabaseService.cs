@@ -111,7 +111,7 @@ namespace AncestorCloud.Shared
 			if (relative == null)
 				throw new ArgumentNullException ("relative");
 
-			if (Convert.ToBoolean(IsFbFriendExist(relative.ProfilePicURL,relative.LoginUserLinkID)))
+			if (Convert.ToBoolean(IsFbFriendExist(relative.UserID,relative.LoginUserLinkID)))
 				_connection.Update (relative);
 			else
 				_connection.Insert(relative);
@@ -327,7 +327,7 @@ namespace AncestorCloud.Shared
 
 		private int IsFbFriendExist(string filter, string userId)
 		{
-			int count =  _connection.Table<People>().Where(x => x.ProfilePicURL.Contains(filter) && x.LoginUserLinkID.Contains(userId)).ToList().Count();
+			int count =  _connection.Table<People>().Where(x => x.UserID.Contains(filter) && x.LoginUserLinkID.Contains(userId)).ToList().Count();
 			return count;
 		}
 
