@@ -111,17 +111,24 @@ namespace AncestorCloud.Shared
 
 						relationModel.FirstPerson = people;
 					}
-
 				}else {
-					People people = new People ();
-					loginDetail.IndiOGFN = ""+relationModel.Indi1Ogfn;
-					ResponseModel<LoginModel> res = await _indiDetailService.GetIndiDetails(loginDetail);
+					if(_databaseService.IsCelebExists(""+relationModel.Indi1Ogfn) > 0){
+						Celebrity celeb = _databaseService.GetCelebrity (""+relationModel.Indi1Ogfn);
+						People people = new People ();
+						people.Name = celeb.GivenNames+" "+celeb.LastName;
+						people.ProfilePicURL = celeb.Img;
+						relationModel.FirstPerson = people;
+					}else{
+						People people = new People ();
+						loginDetail.IndiOGFN = ""+relationModel.Indi1Ogfn;
+						ResponseModel<LoginModel> res = await _indiDetailService.GetIndiDetails(loginDetail);
 
-					LoginModel result = res.Content;
-					people.Name = result.Name;
-					people.ProfilePicURL = GetAvatarUrl (result);
+						LoginModel result = res.Content;
+						people.Name = result.Name;
+						people.ProfilePicURL = GetAvatarUrl (result);
 
-					relationModel.FirstPerson = people;
+						relationModel.FirstPerson = people;
+					}
 				}
 				//=======
 
@@ -144,17 +151,30 @@ namespace AncestorCloud.Shared
 					}
 
 				}else {
-					People people = new People ();
-					loginDetail.IndiOGFN = ""+relationModel.Indi2Ogfn;
-					ResponseModel<LoginModel> res = await _indiDetailService.GetIndiDetails(loginDetail);
+					if (_databaseService.IsCelebExists ("" + relationModel.Indi2Ogfn) > 0) {
+						Celebrity celeb = _databaseService.GetCelebrity ("" + relationModel.Indi2Ogfn);
+						People people = new People ();
+						people.Name = celeb.GivenNames + " " + celeb.LastName;
+						people.ProfilePicURL = celeb.Img;
+						relationModel.SecondPerson = people;
+					} else {
+						People people = new People ();
+						loginDetail.IndiOGFN = "" + relationModel.Indi2Ogfn;
+						ResponseModel<LoginModel> res = await _indiDetailService.GetIndiDetails (loginDetail);
 
-					LoginModel result = res.Content;
-					people.Name = result.Name;
-					people.ProfilePicURL = GetAvatarUrl (result);
+						LoginModel result = res.Content;
+						people.Name = result.Name;
+						people.ProfilePicURL = GetAvatarUrl (result);
 
-					relationModel.SecondPerson = people;
+						relationModel.SecondPerson = people;
+					}
 				}
 				//==========
+
+				/*if(i == 5){
+					Mvx.Trace ("First at "+i+" : "+relationModel.FirstPerson.ProfilePicURL);
+					Mvx.Trace ("Second at "+i+" : "+relationModel.SecondPerson.ProfilePicURL);
+				}*/
 				returnList.Add (relationModel);
 			}
 

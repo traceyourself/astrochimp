@@ -335,6 +335,23 @@ namespace AncestorCloud.Shared
 			return Convert.ToBoolean( count);
 		}
 
+		public int IsCelebExists(string filter)
+		{
+			int count =  _connection.Table<Celebrity>().Where(x => x.OGFN.Contains(filter)).ToList().Count();
+			return count;
+		}
+
+		public Celebrity GetCelebrity(string filter)
+		{
+			List<Celebrity> celeb =  _connection.Table<Celebrity>().Where(x => x.OGFN.Contains(filter)).ToList();
+			if(celeb.Count > 0)
+			{
+				return celeb[0];	
+			}else{
+				return new Celebrity ();
+			}
+		}
+
 		public int IsMemberExists(string filter, string userId)
 		{
 			int count =  _connection.Table<People>().Where(x => x.IndiOgfn.Contains(filter) && x.LoginUserLinkID.Contains(userId)).ToList().Count();
