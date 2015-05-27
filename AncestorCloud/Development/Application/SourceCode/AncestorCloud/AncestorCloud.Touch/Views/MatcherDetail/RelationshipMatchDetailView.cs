@@ -118,6 +118,7 @@ namespace AncestorCloud.Touch
 				new UIBarButtonItem(image
 					, UIBarButtonItemStyle.Plain
 					, (sender,args) => {
+
 						ViewModel.ShowPastMatchesNoData();
 
 

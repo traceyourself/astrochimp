@@ -141,7 +141,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowPastMatchesNoData()
 		{
-			ShowViewModel<NoMatchesViewModel>();
+			ShowViewModel<PastMatchesViewModel>();
 		}
 
 		#endregion

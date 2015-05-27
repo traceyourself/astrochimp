@@ -100,9 +100,9 @@ namespace AncestorCloud.Shared.ViewModels
 			case Section.ResearchHelp:
 				this.ShowViewModel<ResearchHelpViewModel>();
 				break;
-			case Section.Unknown:
-				this.ShowViewModel<LogOutViewModel>();
-				break;
+//			case Section.Unknown:
+////				this.ShowViewModel<LogOutViewModel>();
+//				break;
 
 			}
 		}

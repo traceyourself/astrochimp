@@ -148,7 +148,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowPastMatches()
 		{
-			ShowViewModel<NoMatchesViewModel> ();
+			ShowViewModel<PastMatchesViewModel> ();
 		}
 
 

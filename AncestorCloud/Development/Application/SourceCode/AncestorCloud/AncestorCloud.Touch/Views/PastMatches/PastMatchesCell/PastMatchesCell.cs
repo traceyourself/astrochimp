@@ -16,18 +16,34 @@ namespace AncestorCloud.Touch
 
 		public PastMatchesCell (IntPtr handle) : base (handle)
 		{
+			
+			
 			this.DelayBind (() => {
 
 				var set = this.CreateBindingSet<PastMatchesCell, People> ();
 				set.Bind (MyNameLabel).To (vm => vm.Name);
 				set.Bind(OtherNameLabel).To(vm => vm.Relation).WithConversion(new RelationshipTextConverter(),null);
 				set.Apply ();
+				SetImages();
+
+		
 			});
 		}
 
 		public static PastMatchesCell Create ()
 		{
 			return (PastMatchesCell)Nib.Instantiate (null, null) [0];
+		}
+
+		public void SetImages()
+		{
+			FirstImage.Layer.CornerRadius = 30f;
+			FirstImage.ClipsToBounds = true;
+			SecondImage.Layer.CornerRadius = 30f;
+			SecondImage.ClipsToBounds = true;
+			OtherImageView.Layer.CornerRadius = 30f;
+			OtherImageView.ClipsToBounds = true;
+			OtherImageView.BackgroundColor=UIColor.FromRGB(174,219,222);
 		}
 	}
 }
