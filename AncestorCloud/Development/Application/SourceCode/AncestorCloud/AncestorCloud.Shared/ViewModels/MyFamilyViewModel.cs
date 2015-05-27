@@ -9,6 +9,7 @@ namespace AncestorCloud.Shared.ViewModels
 {
 	public class MyFamilyViewModel:BaseViewModel
 	{
+		#region Globals
 		private readonly IDatabaseService _databaseService;
 
 		private readonly IAddFamilyService _addService;
@@ -19,6 +20,7 @@ namespace AncestorCloud.Shared.ViewModels
 		private readonly IReachabilityService _reachabilityService;
 
 		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
+		#endregion
 
 		public MyFamilyViewModel(IDatabaseService  service, IReachabilityService reachabilty)
 		{
