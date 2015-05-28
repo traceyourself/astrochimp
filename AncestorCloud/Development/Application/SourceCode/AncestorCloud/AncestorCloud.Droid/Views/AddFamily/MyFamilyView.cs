@@ -68,7 +68,7 @@ namespace AncestorCloud.Droid
 			//For checking after editing a member
 			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.CreateListAdapter ());
 
-			//ViewModel.GetFamilyMembersFromServer ();
+			ViewModel.GetFamilyMembersFromServer ();
 		}
 
 		protected override void OnPause ()

@@ -31,7 +31,7 @@ namespace AncestorCloud.Shared
 
 			//Hit service using HTTP Client
 			try   
-			{
+			{																		
 				
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
@@ -65,7 +65,6 @@ namespace AncestorCloud.Shared
 						userReadResponse = await _userReadService.MakeUserReadService(modal);
 						userReadResponse.Status = ResponseStatus.OK;
 
-
 					}else
 					{
 						userReadResponse.Status = ResponseStatus.Fail;
@@ -84,7 +83,6 @@ namespace AncestorCloud.Shared
 				return responsemodal;
 			}
 			finally{
-			
 				_loader.hideLoader();
 			}
 

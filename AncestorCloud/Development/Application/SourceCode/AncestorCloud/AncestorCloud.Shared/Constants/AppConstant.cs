@@ -79,9 +79,9 @@ namespace AncestorCloud.Shared
 		public const string FAMILY_OGFN = "famogfn";
 		public const string CHILDREN_OGFN = "ChildrenOgfns";
 
+		public const string HUSBAND_OGFN = "HusbandOgfn";
+		public const string WIFE_OGFN = "WifeOgfn";
 		#endregion
-
-
 
 
 		#region Webservice URL Constants

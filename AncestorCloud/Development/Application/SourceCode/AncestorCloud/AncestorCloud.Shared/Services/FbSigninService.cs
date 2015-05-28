@@ -31,7 +31,7 @@ namespace AncestorCloud.Shared
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
 				param[AppConstant.LINKIDKEY] = user.UserID;
-				param[AppConstant.LINKTYPEKEY] = AppConstant.LINKTYPE;
+				param[AppConstant.LINKTYPEKEY] = AppConstant.KIN2_LINKTYPE;
 				param[AppConstant.SESSIONID] = sessionID;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.USERLOGINSERVICE,param);
@@ -102,7 +102,7 @@ namespace AncestorCloud.Shared
 				param[AppConstant.LASTNAME] = user.LastName;
 				param[AppConstant.PRODUCTIDKEY] = AppConstant.PRODUCTID;
 				param[AppConstant.LINKIDKEY] = user.UserID;
-				param[AppConstant.LINKTYPEKEY] = AppConstant.LINKTYPE;
+				param[AppConstant.LINKTYPEKEY] = AppConstant.KIN2_LINKTYPE;
 				param[AppConstant.SESSIONID] = sessionID;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.USERSIGNINSERVICE,param);
