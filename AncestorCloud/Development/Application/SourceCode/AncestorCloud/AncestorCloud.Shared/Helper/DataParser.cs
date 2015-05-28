@@ -473,8 +473,26 @@ namespace AncestorCloud.Shared
 					}
 					modal.value = famOgfns;
 				}
-			}
 
+				if (IsKeyExist (AppConstant.HUSBAND_OGFN, dataArray)) {
+					String husbOgfn = GetData (AppConstant.HUSBAND_OGFN, dataDic);
+					if (modal.value.Length == 0) {
+						modal.value = husbOgfn;
+					} else {
+						modal.value = modal.value + "," + husbOgfn;
+					}
+				}
+
+				if (IsKeyExist (AppConstant.WIFE_OGFN, dataArray)) {
+					String wifeOgfn = GetData (AppConstant.WIFE_OGFN, dataDic);
+					if (modal.value.Length == 0) {
+						modal.value = wifeOgfn;
+					} else {
+						modal.value = modal.value + "," + wifeOgfn;
+					}
+				}
+
+			}
 			return modal;
 		}
 		#endregion
