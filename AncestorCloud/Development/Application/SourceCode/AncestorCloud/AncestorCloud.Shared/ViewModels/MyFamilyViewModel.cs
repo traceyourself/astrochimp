@@ -10,16 +10,26 @@ namespace AncestorCloud.Shared.ViewModels
 	public class MyFamilyViewModel:BaseViewModel
 	{
 		#region Globals
+		LoginModel model;
+
 		private readonly IDatabaseService _databaseService;
 
 		private readonly IAddFamilyService _addService;
 		private readonly IGetFamilyService _getFamilyService;
 
+		private readonly IPercentageService _percentageService;
+
 		private readonly IAlert Alert;
 
 		private readonly IReachabilityService _reachabilityService;
 
+		private readonly IIndiDetailService _indiDetailService;
+
+		public String _PercentageComplete{ get; set;}
+
 		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
+
+
 		#endregion
 
 		public MyFamilyViewModel(IDatabaseService  service, IReachabilityService reachabilty)
@@ -27,6 +37,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = service;
 			_addService = Mvx.Resolve<IAddFamilyService>();
 			_getFamilyService = Mvx.Resolve<IGetFamilyService>();
+			_percentageService = Mvx.Resolve<IPercentageService> ();
 			Alert = Mvx.Resolve<IAlert>();;
 			GetFbFamilyData ();
 			_reachabilityService = reachabilty;
@@ -121,16 +132,7 @@ namespace AncestorCloud.Shared.ViewModels
 				FamilyList = listFromServer.Content;
 				_messenger.Publish(new MyFamilyLoadViewMessage(this));
 			}
-
-//			if (listFromServer.Status == ResponseStatus.OK) {
-//				List<People> listOfPeople = listFromServer.Content;
-//				foreach (People p in listOfPeople) {
-//					p.LoginUserLinkID = login.UserEmail;
-//					_databaseService.InsertFamilyMember (p);
-//				}
-//			} else {
-//				
-//			}
+				
 		}
 		#endregion
 
@@ -183,6 +185,31 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 			return ;
 		} 
+		#endregion
+
+		#region PercentageModel
+
+		public async void  FetchPercentageComplete()
+		{
+			LoginModel model = _databaseService.GetLoginDetails ();
+
+			ResponseModel<LoginModel> loginresponse = await _percentageService.GetPercentComplete(model);
+
+			if (loginresponse.Status == ResponseStatus.OK) {
+
+				 model = loginresponse.Content;
+			
+				_PercentageComplete = model.PercentageComplete;
+
+				Mvx.Trace ("PERCENTAGE:- " + model.PercentageComplete);
+
+				_databaseService.InsertLoginDetails (model as LoginModel);
+
+				_messenger.Publish(new PercentageMessage(this));
+
+			}
+		}
+
 		#endregion
 	}
 }

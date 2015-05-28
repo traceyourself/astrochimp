@@ -88,6 +88,7 @@ namespace AncestorCloud.Touch
 			//TODO: birth year
 			set.Bind (GenderSegmentControl).For(l => l.SelectedSegment).To (vm => vm.Gender).WithConversion(new GenderTextConverter(),null).TwoWay();
 			set.Bind (AddButton).To (vm => vm.AddPersonCommand);
+
 			set.Apply ();
 
 		}

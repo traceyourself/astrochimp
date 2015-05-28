@@ -15,11 +15,19 @@ namespace AncestorCloud.Touch
 		[Outlet]
 		UIKit.UITableView myFamilyTable { get; set; }
 
+		[Outlet]
+		UIKit.UILabel PercentageLabel { get; set; }
+
 		[Action ("CrossButtonTaped:")]
 		partial void CrossButtonTaped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (PercentageLabel != null) {
+				PercentageLabel.Dispose ();
+				PercentageLabel = null;
+			}
+
 			if (myFamilyTable != null) {
 				myFamilyTable.Dispose ();
 				myFamilyTable = null;

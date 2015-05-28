@@ -19,6 +19,8 @@ namespace AncestorCloud.Shared
 		public string GroupOGFN { get; set; }
 		public string FamOGFN { get; set; }
 		public string Name { get; set; }
+		public string PercentageComplete { get; set;}
+
 
 	}
 }

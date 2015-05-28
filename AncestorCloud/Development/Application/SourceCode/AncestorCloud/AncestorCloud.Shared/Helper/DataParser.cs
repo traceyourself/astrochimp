@@ -663,6 +663,39 @@ namespace AncestorCloud.Shared
 		}
 		#endregion
 
+		#region PercentageComplete
+
+		public static LoginModel ReadPercentage(LoginModel model,Dictionary<string,object> dataDic)
+		{
+			
+			JObject obj = dataDic [AppConstant.VALUE] as JObject;
+			Dictionary<string,object> dict = obj.ToObject<Dictionary<string,object>> ();
+
+//			LoginModel _loginModel = new LoginModel ();
+
+			if (IsKeyExist (AppConstant.Message, dataDic)) 
+			{
+				if (! GetData (AppConstant.Message, dataDic).Equals (AppConstant.SUCCESS)) 
+				{
+					return model;
+				}
+			}
+
+			if (IsKeyExist (AppConstant.VALUE, dataDic)) 
+			{
+				JObject objt = dataDic [AppConstant.VALUE] as JObject;
+				Dictionary<string,object>  subDict =  objt.ToObject<Dictionary<string,object>> ();
+			
+				if (IsKeyExist (AppConstant.PERCENTAGE_COMPLETE, subDict))
+					model.PercentageComplete = GetData (AppConstant.PERCENTAGE_COMPLETE, subDict);
+				
+			}
+		
+			return model;
+		}
+
+		#endregion
+
 	}
 }
 

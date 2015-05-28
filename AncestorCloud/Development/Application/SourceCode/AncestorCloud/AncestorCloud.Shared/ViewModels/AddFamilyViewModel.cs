@@ -16,6 +16,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly IReachabilityService _reachabilityService;
 
+
 		public String AddType { get; set;}
 		#endregion
 
@@ -26,6 +27,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = Mvx.Resolve<IDatabaseService>();
 			Alert = alert;
 			_reachabilityService = reachabilty;
+
 		}
 
 		public void Init(DetailParameter param)
@@ -171,6 +173,8 @@ namespace AncestorCloud.Shared.ViewModels
 					modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;
 					modal.LoginUserLinkID = lModal.UserEmail;
 					modal.LoggedinUserFAMOFGN = lModal.FamOGFN;
+
+
 					
 					ResponseModel<People> response = await _addService.AddFamilyMember (modal);
 

@@ -105,6 +105,8 @@ namespace AncestorCloud.Shared
 		public const string FAMILY_READ_SERVICE = "Family.svc/Read";
 		public const string MATCHER_HISTORY_SERVICE = "Individual.svc/RelationshipFindHistoryGet";
 
+		public const string PERCENTAGE_COMPLETE_SERVICE = "User.svc/ProfileRead";
+
 		#endregion
 
 		#region Login Constants
@@ -250,6 +252,12 @@ namespace AncestorCloud.Shared
 		public const string HISTORY_NOTFOUND_REASON = "NotFoundReason";
 		public const string HISTORY_TYPE = "Type";
 		public const string HISTORY_USEROGFN = "UserOgfn";
+		#endregion
+
+		#region ProfilePercentage
+
+		public const string PERCENTAGE_COMPLETE="PercentComplete";
+
 		#endregion
 
 	}

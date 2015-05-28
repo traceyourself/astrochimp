@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyFamilyView">
             <connections>
+                <outlet property="PercentageLabel" destination="gFK-1w-IJk" id="vT7-zJ-cWi"/>
                 <outlet property="myFamilyTable" destination="8bg-mt-ygp" id="Dzh-Ch-kn5"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>

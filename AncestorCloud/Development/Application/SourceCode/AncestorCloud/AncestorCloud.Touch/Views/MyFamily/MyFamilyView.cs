@@ -22,6 +22,8 @@ namespace AncestorCloud.Touch
 
 		private MvxSubscriptionToken LoadViewToken;
 
+		private MvxSubscriptionToken PercentageToken;
+
 		EditFamilyView editFamily;
 		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
 
@@ -41,7 +43,9 @@ namespace AncestorCloud.Touch
 			base.ViewDidLoad ();
 //			CreateMyFamilyTable ();
 			SetFamilyItem ();
-			//AddEvents ();
+
+
+			ViewModel.FetchPercentageComplete ();
 
 			OnKeyboardChanged += (object sender, OnKeyboardChangedArgs e) => {
 
@@ -90,7 +94,7 @@ namespace AncestorCloud.Touch
 		{
 			this.NavigationController.NavigationBarHidden = false;
 			base.ViewWillAppear (animated);
-			//LoadView ();
+
 			ReloadView ();
 		}
 
@@ -100,9 +104,6 @@ namespace AncestorCloud.Touch
 			ViewModel.GetFbFamilyData ();
 			CreateMyFamilyTable ();
 			AddEvents ();
-
-//			ViewModel.GetFamilyMembersFromServer ();
-//			AddEvents ();
 
 		}
 
@@ -124,6 +125,7 @@ namespace AncestorCloud.Touch
 			myFamilyTable.Source = source;
 			var set = this.CreateBindingSet<MyFamilyView , MyFamilyViewModel> ();
 			set.Bind (source).To (vm => vm.TableDataList).TwoWay();
+			//set.Bind (PercentageLabel).To (vm => vm._PercentageComplete);
 			set.Apply ();
 		}
 
@@ -149,10 +151,12 @@ namespace AncestorCloud.Touch
 
 		private void AddEvents ()
 		{
+			
 			(myFamilyTable.Source as MyFamilyTableSource).FooterClickedDelegate += ShowAddParents;
 			navigationMenuToken = _messenger.SubscribeOnMainThread<MyTableCellTappedMessage>(message => this.ShowEditFamily(message.FamilyMember));
 			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.ReloadView());
 			LoadViewToken = _messenger.SubscribeOnMainThread<MyFamilyLoadViewMessage>(Message => this.LoadView());
+			PercentageToken = _messenger.SubscribeOnMainThread<PercentageMessage>(Message => this.LoadPercent());
 		}
 
 		void RemoveMessengers()
@@ -170,6 +174,8 @@ namespace AncestorCloud.Touch
 				(myFamilyTable.Source as MyFamilyTableSource).FooterClickedDelegate -= ShowAddParents;
 //			_messenger.Unsubscribe<ToggleFlyoutMenuMessage> (navigationMenuToggleToken);
 //			_messenger.Unsubscribe<NavigationBarHiddenMessage> (navigationBarHiddenToken);
+			if(PercentageToken != null)
+			_messenger.Unsubscribe<PercentageMessage> (PercentageToken);
 
 
 		}
@@ -286,6 +292,13 @@ namespace AncestorCloud.Touch
 		}
 	
 		#endregion
+
+		public void LoadPercent()
+		{
+			PercentageLabel.Text = ViewModel._PercentageComplete+ Utility.LocalisedBundle ().LocalizedString("MatchingText","");;
+		}
+
+
 
 	}
 }
