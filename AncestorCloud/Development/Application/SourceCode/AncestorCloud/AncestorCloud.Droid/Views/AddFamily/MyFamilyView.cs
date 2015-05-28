@@ -34,7 +34,7 @@ namespace AncestorCloud.Droid
 		public Dialog editDialog;
 		ImageView helpIcon;
 		IMvxMessenger _messenger;
-		private MvxSubscriptionToken ReloadViewToken;
+		private MvxSubscriptionToken ReloadViewToken,percentToken;
 		Spinner yearSelector;
 
 		public new MyFamilyViewModel ViewModel
