@@ -67,7 +67,7 @@ namespace AncestorCloud.Droid
 
 			//For checking after editing a member
 			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.CreateListAdapter ());
-
+			//percentToken = _messenger.SubscribeOnMainThread<PercentageMessage>(Message => this. ());
 			ViewModel.GetFamilyMembersFromServer ();
 		}
 
