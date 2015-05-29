@@ -98,18 +98,21 @@ namespace AncestorCloud.Shared
 				// First Person validation
 				if(_databaseService.IsMemberExists(""+relationModel.Indi1Ogfn,useremail) > 0){
 					People people = _databaseService.GetMember (""+relationModel.Indi1Ogfn,useremail)[0];
+					if(people != null){
+						if(people.ProfilePicURL != null){
+							if (people.ProfilePicURL.Length > 0) {
+								relationModel.FirstPerson = people;
+							}
+						}else {
+							loginDetail.IndiOGFN = ""+relationModel.Indi1Ogfn;
+							ResponseModel<LoginModel> res = await _indiDetailService.GetIndiDetails(loginDetail);
 
-					if (people.ProfilePicURL.Length > 0) {
-						relationModel.FirstPerson = people;
-					} else {
-						loginDetail.IndiOGFN = ""+relationModel.Indi1Ogfn;
-						ResponseModel<LoginModel> res = await _indiDetailService.GetIndiDetails(loginDetail);
+							LoginModel result = res.Content;
+							people.Name = result.Name;
+							people.ProfilePicURL = GetAvatarUrl (result);
 
-						LoginModel result = res.Content;
-						people.Name = result.Name;
-						people.ProfilePicURL = GetAvatarUrl (result);
-
-						relationModel.FirstPerson = people;
+							relationModel.FirstPerson = people;
+						}
 					}
 				}else {
 					if(_databaseService.IsCelebExists(""+relationModel.Indi1Ogfn) > 0){
@@ -136,20 +139,22 @@ namespace AncestorCloud.Shared
 				//Second person Validation===
 				if(_databaseService.IsMemberExists(""+relationModel.Indi2Ogfn,useremail) > 0){
 					People people = _databaseService.GetMember (""+relationModel.Indi2Ogfn,useremail)[0];
+					if(people != null){
+						if(people.ProfilePicURL != null){
+							if (people.ProfilePicURL.Length > 0) {
+								relationModel.SecondPerson = people;
+							} 
+						} else {
+							loginDetail.IndiOGFN = ""+relationModel.Indi2Ogfn;
+							ResponseModel<LoginModel> res = await _indiDetailService.GetIndiDetails(loginDetail);
 
-					if (people.ProfilePicURL.Length > 0) {
-						relationModel.SecondPerson = people;
-					} else {
-						loginDetail.IndiOGFN = ""+relationModel.Indi2Ogfn;
-						ResponseModel<LoginModel> res = await _indiDetailService.GetIndiDetails(loginDetail);
+							LoginModel result = res.Content;
+							people.Name = result.Name;
+							people.ProfilePicURL = GetAvatarUrl (result);
 
-						LoginModel result = res.Content;
-						people.Name = result.Name;
-						people.ProfilePicURL = GetAvatarUrl (result);
-
-						relationModel.SecondPerson = people;
+							relationModel.SecondPerson = people;
+						}
 					}
-
 				}else {
 					if (_databaseService.IsCelebExists ("" + relationModel.Indi2Ogfn) > 0) {
 						Celebrity celeb = _databaseService.GetCelebrity ("" + relationModel.Indi2Ogfn);

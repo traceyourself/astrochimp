@@ -66,7 +66,7 @@ namespace AncestorCloud.Droid
 			//CreateListAdapter ();
 
 			//For checking after editing a member
-			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyLoadViewMessage>(Message => this.CreateListAdapter ());
+			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.CreateListAdapter ());
 			percentToken = _messenger.SubscribeOnMainThread<PercentageMessage>(Message => this.SetPercentage());
 			//ViewModel.FetchPercentageComplete ();
 			ViewModel.GetFamilyMembersFromServer ();
@@ -75,7 +75,7 @@ namespace AncestorCloud.Droid
 		protected override void OnPause ()
 		{
 			base.OnPause ();
-			_messenger.Unsubscribe<MyFamilyLoadViewMessage> (ReloadViewToken);
+			_messenger.Unsubscribe<MyFamilyReloadMessage> (ReloadViewToken);
 			_messenger.Unsubscribe<PercentageMessage> (percentToken);
 		}
 
@@ -104,6 +104,7 @@ namespace AncestorCloud.Droid
 			};
 
 			helpIcon.Click += (object sender, EventArgs e) => {
+				
 				new HelpDialog(this).ShowHelpDialog();
 			};
 		}
@@ -515,16 +516,28 @@ namespace AncestorCloud.Droid
 				holder.listHeader.Visibility = ViewStates.Gone;
 				holder.listFooter.Visibility = ViewStates.Gone;
 				holder.listData.Visibility = ViewStates.Visible;
+				holder.editBtn.Tag = ""+position;
 
 				holder.editBtn.Click += (object sender, EventArgs e) => {
 					//System.Diagnostics.Debug.WriteLine("edit clicked at : "+position);
-					if(myFamilyObj.editDialog != null){
-						if(!myFamilyObj.editDialog.IsShowing){
-							myFamilyObj.ShowEditDialog(position);
+					try{
+						RelativeLayout btn = (RelativeLayout)sender;
+						Mvx.Trace(""+btn.Tag);
+
+						if(myFamilyObj.editDialog != null){
+							if(!myFamilyObj.editDialog.IsShowing){
+								int pos = int.Parse(""+btn.Tag);
+								myFamilyObj.ShowEditDialog(pos);
+							}
+						}else{
+							int pos = int.Parse(""+btn.Tag);
+							myFamilyObj.ShowEditDialog(pos);
 						}
-					}else{
-						myFamilyObj.ShowEditDialog(position);
+					}catch(Exception e1)
+					{
+						Mvx.Trace(e1.StackTrace);
 					}
+
 				};
 			}
 			else if(structure.isFooter)
