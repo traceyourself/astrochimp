@@ -66,7 +66,7 @@ namespace AncestorCloud.Droid
 			//CreateListAdapter ();
 
 			//For checking after editing a member
-			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyLoadViewMessage>(Message => this.CreateListAdapter ());
+			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.CreateListAdapter ());
 			percentToken = _messenger.SubscribeOnMainThread<PercentageMessage>(Message => this.SetPercentage());
 			//ViewModel.FetchPercentageComplete ();
 			ViewModel.GetFamilyMembersFromServer ();
@@ -75,7 +75,7 @@ namespace AncestorCloud.Droid
 		protected override void OnPause ()
 		{
 			base.OnPause ();
-			_messenger.Unsubscribe<MyFamilyLoadViewMessage> (ReloadViewToken);
+			_messenger.Unsubscribe<MyFamilyReloadMessage> (ReloadViewToken);
 			_messenger.Unsubscribe<PercentageMessage> (percentToken);
 		}
 
