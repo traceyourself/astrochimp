@@ -104,6 +104,7 @@ namespace AncestorCloud.Droid
 			};
 
 			helpIcon.Click += (object sender, EventArgs e) => {
+				
 				new HelpDialog(this).ShowHelpDialog();
 			};
 		}
@@ -519,14 +520,24 @@ namespace AncestorCloud.Droid
 
 				holder.editBtn.Click += (object sender, EventArgs e) => {
 					//System.Diagnostics.Debug.WriteLine("edit clicked at : "+position);
+					try{
+						RelativeLayout btn = (RelativeLayout)sender;
+						Mvx.Trace(""+btn.Tag);
 
-					if(myFamilyObj.editDialog != null){
-						if(!myFamilyObj.editDialog.IsShowing){
-							myFamilyObj.ShowEditDialog(position);
+						if(myFamilyObj.editDialog != null){
+							if(!myFamilyObj.editDialog.IsShowing){
+								int pos = int.Parse(""+btn.Tag);
+								myFamilyObj.ShowEditDialog(pos);
+							}
+						}else{
+							int pos = int.Parse(""+btn.Tag);
+							myFamilyObj.ShowEditDialog(pos);
 						}
-					}else{
-						myFamilyObj.ShowEditDialog(position);
+					}catch(Exception e1)
+					{
+						Mvx.Trace(e1.StackTrace);
 					}
+
 				};
 			}
 			else if(structure.isFooter)
@@ -546,9 +557,6 @@ namespace AncestorCloud.Droid
 
 			return convertView;
 		}
-
-
-
 	}
 
 	public class ViewHolder : Java.Lang.Object{
