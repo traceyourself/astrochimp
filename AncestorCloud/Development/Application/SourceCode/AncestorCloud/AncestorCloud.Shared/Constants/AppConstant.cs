@@ -185,6 +185,11 @@ namespace AncestorCloud.Shared
 		public const string SISTER_RELATIONSHIP = "SISTER_RELATIONSHIP";
 		public const string BROTHER_RELATIONSHIP = "BROTHER_RELATIONSHIP";
 		public const string UNKNOWN_RELATIONSHIP = "UNKNOWN_RELATIONSHIP";
+
+		public const string Sibling_comparison = "Sibling";
+		public const string Parent_comparison = "Parent";
+		public const string Father_comparison = "father";
+		public const string Mother_comparison = "mother";
 		#endregion
 
 		#region Match Service

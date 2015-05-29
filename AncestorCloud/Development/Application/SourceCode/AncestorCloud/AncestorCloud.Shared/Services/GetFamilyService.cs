@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 
-
 namespace AncestorCloud.Shared
 {
 	public class GetFamilyService : IGetFamilyService
@@ -63,9 +62,9 @@ namespace AncestorCloud.Shared
 
 				if(datamodal.Code.Equals("0")){
 					try{
-						if(datamodal.value.Length > 0){
+						if(datamodal.CHILD_OFGNS.Length > 0){
 
-							string []OgfnArr = datamodal.value.Split(new char[]{','},100);
+							string []OgfnArr = datamodal.CHILD_OFGNS.Split(new char[]{','},200);
 
 							for(int i=0;i<OgfnArr.Length;i++)
 							{
@@ -77,15 +76,74 @@ namespace AncestorCloud.Shared
 								
 									if(responseM.Status == ResponseStatus.OK){
 										People p = responseM.Content;
+
 										p.LoginUserLinkID = loginModel.UserEmail;
+										p.Relation = AppConstant.Sibling_comparison;
 										_databaseService.InsertFamilyMember(p);
 										FamilyMembers.Add(p);
 									}
 								}else
 								{
-									FamilyMembers.Add(_databaseService.GetFamilyMember(OgfnArr[i],loginModel.UserEmail));
+									People p = _databaseService.GetFamilyMember(OgfnArr[i],loginModel.UserEmail);
+									p.Relation = AppConstant.Sibling_comparison;
+									FamilyMembers.Add(p);
 								}
 							}
+
+
+							if(datamodal.FATHER_OFGN != null)
+							{
+								if(datamodal.FATHER_OFGN.Length > 0)
+								{
+									int count = _databaseService.IsMemberExists(datamodal.FATHER_OFGN,loginModel.UserEmail);
+
+									if(count == 0)
+									{
+										ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.FATHER_OFGN,loginModel.Value);
+
+										if(responseM.Status == ResponseStatus.OK){
+											People p = responseM.Content;
+											p.LoginUserLinkID = loginModel.UserEmail;
+											p.Relation = AppConstant.Father_comparison;
+											_databaseService.InsertFamilyMember(p);
+											FamilyMembers.Add(p);
+										}
+									}else
+									{
+										People p = _databaseService.GetFamilyMember(datamodal.FATHER_OFGN,loginModel.UserEmail);
+										p.Relation = AppConstant.Father_comparison;
+										FamilyMembers.Add(p);
+									}		
+								}
+							}
+
+							if(datamodal.MOTHER_OFGN != null)
+							{
+								if(datamodal.MOTHER_OFGN.Length > 0)
+								{
+									int count = _databaseService.IsMemberExists(datamodal.MOTHER_OFGN,loginModel.UserEmail);
+
+									if(count == 0)
+									{
+										ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.MOTHER_OFGN,loginModel.Value);
+
+										if(responseM.Status == ResponseStatus.OK){
+											People p = responseM.Content;
+											p.LoginUserLinkID = loginModel.UserEmail;
+											p.Relation = AppConstant.Mother_comparison;
+											_databaseService.InsertFamilyMember(p);
+											FamilyMembers.Add(p);
+										}
+									}else
+									{
+										People p = _databaseService.GetFamilyMember(datamodal.MOTHER_OFGN,loginModel.UserEmail);
+										p.Relation = AppConstant.Mother_comparison;
+										FamilyMembers.Add(p);
+									}		
+								}
+							}
+
+
 						}
 					}catch(Exception e){
 						Mvx.Trace(e.StackTrace);
@@ -98,6 +156,9 @@ namespace AncestorCloud.Shared
 				}
 
 				responseModel.Content = FamilyMembers;
+
+
+
 
 				return responseModel;
 			}
@@ -115,8 +176,8 @@ namespace AncestorCloud.Shared
 				_loader.hideLoader();
 			}
 		}
+
 		#endregion
 
 	}
 }
-

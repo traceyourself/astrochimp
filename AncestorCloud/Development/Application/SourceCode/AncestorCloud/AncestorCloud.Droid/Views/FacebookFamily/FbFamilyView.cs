@@ -116,8 +116,10 @@ namespace AncestorCloud.Droid
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.profile_menu_btn).Click += (object sender, EventArgs e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.ShowProfilePicModel();
+				if(menu.AnimatedOpened){
+					menu.AnimatedOpened = !menu.AnimatedOpened;
+					ViewModel.ShowProfilePicModel();
+				}
 			};
 
 			nextBtn.Click += (object sender, EventArgs e) => {

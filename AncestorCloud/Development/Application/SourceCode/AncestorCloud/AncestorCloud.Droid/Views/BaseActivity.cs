@@ -44,8 +44,12 @@ namespace AncestorCloud.Droid
 		}
 
 		public static void HideKeyboard(Activity act) {
-			InputMethodManager inputMethodManager = act.GetSystemService(Context.InputMethodService) as InputMethodManager;
-			inputMethodManager.HideSoftInputFromWindow(act.CurrentFocus.WindowToken, HideSoftInputFlags.None);
+			try{
+				InputMethodManager inputMethodManager = act.GetSystemService(Context.InputMethodService) as InputMethodManager;
+				inputMethodManager.HideSoftInputFromWindow(act.CurrentFocus.WindowToken, HideSoftInputFlags.None);
+			}catch(Exception e){
+				Mvx.Trace (e.StackTrace);
+			}
 		}
 
 		public Tracker GetTracker()

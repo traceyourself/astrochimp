@@ -412,7 +412,7 @@ namespace AncestorCloud.Shared
 				model.Gender = GetData (AppConstant.INDI_GENDER, dict);
 
 			if (IsKeyExist (AppConstant.INDI_NAME, dict))
-				model.Name = GetData (AppConstant.INDI_NAME, dict);
+				model.Name = GetData (AppConstant.INDI_NAME, dict).Replace("/","");
 			
 
 			if (IsKeyExist (AppConstant.INDI_NAME2, dict)) {
@@ -421,13 +421,13 @@ namespace AncestorCloud.Shared
 				Dictionary<string,object> nameDict = nameObj.ToObject<Dictionary<string,object>> ();
 
 				if (IsKeyExist (AppConstant.INDI_GIVEN_NAME, nameDict))
-					model.FirstName = GetData (AppConstant.INDI_GIVEN_NAME, nameDict);
+					model.FirstName = GetData (AppConstant.INDI_GIVEN_NAME, nameDict).Replace("/","");
 
 				if (IsKeyExist (AppConstant.INDI_MIDDLE_NAME, nameDict))
-					model.MiddleName = GetData (AppConstant.INDI_MIDDLE_NAME, nameDict);
+					model.MiddleName = GetData (AppConstant.INDI_MIDDLE_NAME, nameDict).Replace("/","");
 
 				if (IsKeyExist (AppConstant.INDI_SURNAME, nameDict))
-					model.LastName = GetData (AppConstant.INDI_SURNAME, nameDict);
+					model.LastName = GetData (AppConstant.INDI_SURNAME, nameDict).Replace("/","");
 			}
 
 
@@ -471,28 +471,21 @@ namespace AncestorCloud.Shared
 					}catch(Exception e){
 						Mvx.Trace(e.StackTrace);
 					}
-					modal.value = famOgfns;
+					modal.CHILD_OFGNS = famOgfns;
 				}
 
 				if (IsKeyExist (AppConstant.HUSBAND_OGFN, dataArray)) {
-					String husbOgfn = GetData (AppConstant.HUSBAND_OGFN, dataDic);
-					if (modal.value.Length == 0) {
-						modal.value = husbOgfn;
-					} else {
-						modal.value = modal.value + "," + husbOgfn;
-					}
+					String husbOgfn = GetData (AppConstant.HUSBAND_OGFN, dataArray);
+					modal.FATHER_OFGN = husbOgfn;
 				}
 
 				if (IsKeyExist (AppConstant.WIFE_OGFN, dataArray)) {
-					String wifeOgfn = GetData (AppConstant.WIFE_OGFN, dataDic);
-					if (modal.value.Length == 0) {
-						modal.value = wifeOgfn;
-					} else {
-						modal.value = modal.value + "," + wifeOgfn;
-					}
+					String wifeOgfn = GetData (AppConstant.WIFE_OGFN, dataArray);
+					modal.MOTHER_OFGN = wifeOgfn;
 				}
 
 			}
+
 			return modal;
 		}
 		#endregion
