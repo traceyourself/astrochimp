@@ -96,29 +96,38 @@ namespace AncestorCloud.Droid
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.my_family_menu_btn).Click += (object sender, EventArgs e) => {
+				
 				menu.AnimatedOpened = !menu.AnimatedOpened;
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.matcher_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.CallMatcher();
+				if(menu.AnimatedOpened){
+					ViewModel.CallMatcher();
+				}
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.research_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.ShowResearchHelpViewModel();
-				ViewModel.Close();
+				if(menu.AnimatedOpened){
+					ViewModel.ShowResearchHelpViewModel();
+					ViewModel.Close();
+				}
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.logout_menu_btn).Click += (object sender, EventArgs e) => {
 				//menu.AnimatedOpened = !menu.AnimatedOpened;
-				Utilities.CurrentUserimage = null;
-				ViewModel.Logout();
+				if(menu.AnimatedOpened){
+					Utilities.CurrentUserimage = null;
+					ViewModel.Logout();
+				}
 			};
 
 			menuLayout.FindViewById<LinearLayout> (Resource.Id.profile_menu_btn).Click += (object sender, EventArgs e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
-				ViewModel.ShowProfilePicModel();
+				if(menu.AnimatedOpened){
+					menu.AnimatedOpened = !menu.AnimatedOpened;
+					ViewModel.ShowProfilePicModel();
+				}
 			};
 
 			helpIcon.Click += (object sender, EventArgs e) => {

@@ -9,6 +9,9 @@ namespace AncestorCloud.Shared
 		public String Code {get; set;}
 		public String Message { get; set;}
 		public String value{ get; set;}
+
+
+
 	}
 }
 

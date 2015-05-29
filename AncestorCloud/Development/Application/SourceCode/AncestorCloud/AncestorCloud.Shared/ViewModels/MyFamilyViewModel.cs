@@ -118,9 +118,7 @@ namespace AncestorCloud.Shared.ViewModels
 			List<People> list = _databaseService.RelativeMatching ("",login.UserEmail);
 			FamilyList = list;
 		}
-
 		#endregion
-
 
 		#region get FamilyMembers From server
 		public async void GetFamilyMembersFromServer()
@@ -131,10 +129,9 @@ namespace AncestorCloud.Shared.ViewModels
 				FamilyList = listFromServer.Content;
 				_messenger.Publish(new MyFamilyLoadViewMessage(this));
 			}
-				
+			FetchPercentageComplete ();
 		}
 		#endregion
-
 
 		#region Close Method
 		public void Close()

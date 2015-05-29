@@ -28,13 +28,13 @@ namespace AncestorCloud.Droid
 
 		ListView listView;
 		ActionBar actionBar;
-		TextView FbBtn,loginBtn;
+		TextView FbBtn,loginBtn,percentText;
 		public TextView birthDateDialogTxt;
 		List<ListDataStructure> dataList;
 		public Dialog editDialog;
 		ImageView helpIcon;
 		IMvxMessenger _messenger;
-		private MvxSubscriptionToken ReloadViewToken;
+		private MvxSubscriptionToken ReloadViewToken,percentToken;
 		Spinner yearSelector;
 
 		public new MyFamilyViewModel ViewModel
@@ -63,18 +63,20 @@ namespace AncestorCloud.Droid
 			base.OnResume ();
 			Utilities.CurrentActiveActivity = this;
 			//For checking after adding a member
-			CreateListAdapter ();
+			//CreateListAdapter ();
 
 			//For checking after editing a member
-			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.CreateListAdapter ());
-
+			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyLoadViewMessage>(Message => this.CreateListAdapter ());
+			percentToken = _messenger.SubscribeOnMainThread<PercentageMessage>(Message => this.SetPercentage());
+			//ViewModel.FetchPercentageComplete ();
 			ViewModel.GetFamilyMembersFromServer ();
 		}
 
 		protected override void OnPause ()
 		{
 			base.OnPause ();
-			_messenger.Unsubscribe<MyFamilyReloadMessage> (ReloadViewToken);
+			_messenger.Unsubscribe<MyFamilyLoadViewMessage> (ReloadViewToken);
+			_messenger.Unsubscribe<PercentageMessage> (percentToken);
 		}
 
 		#region customized methods
@@ -83,6 +85,7 @@ namespace AncestorCloud.Droid
 			actionBar = FindViewById<ActionBar> (Resource.Id.actionBar);
 			listView = FindViewById<ListView> (Resource.Id.add_family_list);
 			helpIcon = FindViewById<ImageView> (Resource.Id.question_icon);
+			percentText = FindViewById<TextView> (Resource.Id.percent_txt);
 			//yearSelector = FindViewById<Spinner> (Resource.Id.year_selector_inlay);
 		}
 
@@ -103,7 +106,6 @@ namespace AncestorCloud.Droid
 			helpIcon.Click += (object sender, EventArgs e) => {
 				new HelpDialog(this).ShowHelpDialog();
 			};
-
 		}
 
 		private void ApplyActions()
@@ -119,13 +121,12 @@ namespace AncestorCloud.Droid
 				ViewModel.ShowFamilyViewModel();
 			}
 			ViewModel.Close();
-
 		}
 
 		#region Create List Adapter
 		private void CreateListAdapter ()
 		{
-			ViewModel.GetFbFamilyData ();
+			//ViewModel.GetFbFamilyData ();
 			dataList = FilterDataList (ViewModel.FamilyList);
 
 			MyFamilyListAdapter adapter = new MyFamilyListAdapter (this,dataList);
@@ -135,10 +136,14 @@ namespace AncestorCloud.Droid
 		}
 		#endregion
 
+		public void SetPercentage()
+		{
+			percentText.Text = ViewModel._PercentageComplete+Resources.GetString(Resource.String.percent_matching_confidence);
+		}
+
 		#region list filteration
 		public List<ListDataStructure> FilterDataList(List<People> mainList)
 		{
-
 			List<ListDataStructure> resultList = new List<ListDataStructure> ();
 
 			List<ListDataStructure> siblingList = new List<ListDataStructure> ();
@@ -148,35 +153,36 @@ namespace AncestorCloud.Droid
 
 			ListDataStructure listStruct;
 
-			for(int i=0;i<mainList.Count;i++){
-				People item = mainList[i];
-				string relation = item.Relation;
+			if(mainList != null){
+				for(int i=0;i<mainList.Count;i++){
+					People item = mainList[i];
+					string relation = item.Relation;
 
-				if (relation.Contains (StringConstants.Brother_comparison) || relation.Contains (StringConstants.Sister_comparison) || relation.Contains (StringConstants.Sibling_comparison)) 
-				{
-					listStruct = new ListDataStructure(false,false,true,"","",item);
-					siblingList.Add (listStruct);
-				}
+					if (relation.Contains (StringConstants.Brother_comparison) || relation.Contains (StringConstants.Sister_comparison) || relation.Contains (StringConstants.Sibling_comparison)) 
+					{
+						listStruct = new ListDataStructure(false,false,true,"","",item);
+						siblingList.Add (listStruct);
+					}
 
-				else if(relation.Contains (StringConstants.Father_comparison) || relation.Contains (StringConstants.Mother_comparison) || relation.Contains (StringConstants.Parent_comparison))
-				{
-					listStruct = new ListDataStructure(false,false,true,"","",item);
-					parentList.Add (listStruct);
-				}
+					else if(relation.Contains (StringConstants.Father_comparison) || relation.Contains (StringConstants.Mother_comparison) || relation.Contains (StringConstants.Parent_comparison))
+					{
+						listStruct = new ListDataStructure(false,false,true,"","",item);
+						parentList.Add (listStruct);
+					}
 
-				else if(relation.Contains (StringConstants.GrandFather_comparison) || relation.Contains (StringConstants.GrandMother_comparison) || relation.Contains (StringConstants.GrandParent_comparison))
-				{
-					listStruct = new ListDataStructure(false,false,true,"","",item);
-					grandParentList.Add (listStruct);
-				}
+					else if(relation.Contains (StringConstants.GrandFather_comparison) || relation.Contains (StringConstants.GrandMother_comparison) || relation.Contains (StringConstants.GrandParent_comparison))
+					{
+						listStruct = new ListDataStructure(false,false,true,"","",item);
+						grandParentList.Add (listStruct);
+					}
 
-				else if(relation.Contains (StringConstants.GreatGrandFather_comparison) || relation.Contains (StringConstants.GreatGrandMother_comparison) || relation.Contains (StringConstants.GreatGrandParent_comparison))
-				{
-					listStruct = new ListDataStructure(false,false,true,"","",item);
-					greatGrandParentList.Add (listStruct);
+					else if(relation.Contains (StringConstants.GreatGrandFather_comparison) || relation.Contains (StringConstants.GreatGrandMother_comparison) || relation.Contains (StringConstants.GreatGrandParent_comparison))
+					{
+						listStruct = new ListDataStructure(false,false,true,"","",item);
+						greatGrandParentList.Add (listStruct);
+					}
 				}
 			}
-
 			//Siblings==
 			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.Sibling_header),"",null);
 			resultList.Add (listStruct);
@@ -373,6 +379,7 @@ namespace AncestorCloud.Droid
 			};
 
 			editDialog.Show ();
+
 		}
 		#endregion
 
@@ -511,7 +518,13 @@ namespace AncestorCloud.Droid
 
 				holder.editBtn.Click += (object sender, EventArgs e) => {
 					//System.Diagnostics.Debug.WriteLine("edit clicked at : "+position);
-					myFamilyObj.ShowEditDialog(position);
+					if(myFamilyObj.editDialog != null){
+						if(!myFamilyObj.editDialog.IsShowing){
+							myFamilyObj.ShowEditDialog(position);
+						}
+					}else{
+						myFamilyObj.ShowEditDialog(position);
+					}
 				};
 			}
 			else if(structure.isFooter)

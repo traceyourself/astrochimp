@@ -57,6 +57,7 @@
 	<!--- My Family Screen Strings -->
 
 	<string name="zero_matching_confidence">0% Matching Confidence</string>
+	<string name="percent_matching_confidence">% Matching Confidence</string>
 	<string name="Brother_comparison">brother</string>
 	<string name="Sister_comparison">sister</string>
 	<string name="Father_comparison">father</string>

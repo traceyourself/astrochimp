@@ -15,6 +15,15 @@ namespace AncestorCloud.Shared
 		public string LoggedinUserINDIOFGN{ get; set;}
 		[Ignore]
 		public string LoggedinUserFAMOFGN{ get; set;}
+
+		//For Get Family Service
+		[Ignore]
+		public string CHILD_OFGNS{ get; set;}
+		[Ignore]
+		public string FATHER_OFGN{ get; set;}
+		[Ignore]
+		public string MOTHER_OFGN{ get; set;}
+		//======
 	}
 }
 
