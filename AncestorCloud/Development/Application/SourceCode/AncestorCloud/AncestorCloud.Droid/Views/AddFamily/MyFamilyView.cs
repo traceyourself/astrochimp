@@ -515,9 +515,11 @@ namespace AncestorCloud.Droid
 				holder.listHeader.Visibility = ViewStates.Gone;
 				holder.listFooter.Visibility = ViewStates.Gone;
 				holder.listData.Visibility = ViewStates.Visible;
+				holder.editBtn.Tag = ""+position;
 
 				holder.editBtn.Click += (object sender, EventArgs e) => {
 					//System.Diagnostics.Debug.WriteLine("edit clicked at : "+position);
+
 					if(myFamilyObj.editDialog != null){
 						if(!myFamilyObj.editDialog.IsShowing){
 							myFamilyObj.ShowEditDialog(position);
@@ -544,6 +546,9 @@ namespace AncestorCloud.Droid
 
 			return convertView;
 		}
+
+
+
 	}
 
 	public class ViewHolder : Java.Lang.Object{
