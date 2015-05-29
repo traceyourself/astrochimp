@@ -338,7 +338,7 @@ namespace AncestorCloud.Droid
 			try{
 				try{
 
-					if(peopleData.Name != null){
+					if(peopleData.FirstName == null){
 						first_name.Text = peopleData.Name;
 					}else{
 						first_name.Text = peopleData.FirstName;
@@ -506,7 +506,7 @@ namespace AncestorCloud.Droid
 			}
 			else if(structure.isData)
 			{
-				if (structure.PersonData.Name == null) {
+				if (structure.PersonData.FirstName != null) {
 					holder.nameTxt.Text = structure.PersonData.FirstName+" "+structure.PersonData.MiddleName+" "+structure.PersonData.LastName;
 				} else {
 					holder.nameTxt.Text = structure.PersonData.Name;
