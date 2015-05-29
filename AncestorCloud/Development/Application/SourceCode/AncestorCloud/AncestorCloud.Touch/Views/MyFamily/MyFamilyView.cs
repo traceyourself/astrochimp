@@ -45,7 +45,8 @@ namespace AncestorCloud.Touch
 			SetFamilyItem ();
 
 
-			ViewModel.FetchPercentageComplete ();
+			//ViewModel.FetchPercentageComplete ();
+			ViewModel.GetFamilyMembersFromServer();
 
 			OnKeyboardChanged += (object sender, OnKeyboardChangedArgs e) => {
 

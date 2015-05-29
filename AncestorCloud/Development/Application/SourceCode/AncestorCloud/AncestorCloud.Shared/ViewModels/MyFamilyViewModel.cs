@@ -66,7 +66,6 @@ namespace AncestorCloud.Shared.ViewModels
 
 		#endregion
 
-
 		#region __IOS__ Only
 
 		private People familyMember;
@@ -201,7 +200,7 @@ namespace AncestorCloud.Shared.ViewModels
 			
 				_PercentageComplete = model.PercentageComplete;
 
-				Mvx.Trace ("PERCENTAGE:- " + model.PercentageComplete);
+				Mvx.Trace ("PERCENTAGE:-" + model.PercentageComplete);
 
 				_databaseService.InsertLoginDetails (model as LoginModel);
 
