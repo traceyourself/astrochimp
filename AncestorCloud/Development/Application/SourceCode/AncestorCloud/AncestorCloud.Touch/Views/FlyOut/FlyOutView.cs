@@ -283,7 +283,10 @@ namespace AncestorCloud.Touch
 
 					appDelegate.UIImageProfilePic=  UIImage.FromFile (localPath);
 
-					SetProfilePic ();
+					InvokeOnMainThread (delegate {  
+						SetProfilePic ();
+					});
+
 				}
 				catch(Exception ex )
 				{

@@ -7,7 +7,7 @@ using GoogleAnalytics.iOS;
 using AncestorCloud.Shared;
 
 namespace AncestorCloud.Touch
-{
+{ 
 	[Register("AppDelegate")]
 	public partial class AppDelegate : MvxApplicationDelegate
 	{
