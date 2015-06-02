@@ -12,7 +12,6 @@ namespace AncestorCloud.Shared
                 .RegisterAsLazySingleton();
 				
 			RegisterAppStart<ViewModels.HomePageViewModel>();
-
         }
     }
 }
