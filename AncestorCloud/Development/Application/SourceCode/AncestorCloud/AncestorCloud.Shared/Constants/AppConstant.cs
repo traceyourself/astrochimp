@@ -29,7 +29,8 @@ namespace AncestorCloud.Shared
 		#region FB Constants
 		public const string FBAPIKEY = "1427298800906536";//1428257997477283//591314537670509//1427298800906536
 		public const string FBAPISECRETKEY = "bb85e6307b0ac87085e8cd8f250977e4";//141797ed935391946dd464c525495a0b//659bacca4a45654358bb632f5607eeb0//bb85e6307b0ac87085e8cd8f250977e4
-		public const string FBSCOPE = "email,publish_actions,user_birthday,user_friends,user_relationships";
+		public const string FBSCOPE = "email,publish_actions,user_friends,user_relationships";
+//		public const string FBSCOPE = "email,publish_actions,user_friends";
 		public const string FRIENDKEY = "friend";
 
 		public const string FBTAGKEY = "facebook";

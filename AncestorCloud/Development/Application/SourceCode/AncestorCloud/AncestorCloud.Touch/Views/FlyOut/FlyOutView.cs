@@ -274,6 +274,11 @@ namespace AncestorCloud.Touch
 				{
 				
 					var bytes = e.Result; // get the downloaded data
+
+					if(bytes == null)
+					{
+						return;
+					}
 					documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 					localFilename = "downloaded.png";
 					localPath = Path.Combine (documentsPath, localFilename);

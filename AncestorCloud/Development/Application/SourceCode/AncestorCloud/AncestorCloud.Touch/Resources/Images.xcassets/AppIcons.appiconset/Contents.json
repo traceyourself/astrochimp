@@ -1,55 +1,55 @@
 {
   "images": [
     {
-      "filename": "Icon-29.png",
+      "filename": "29.png",
       "size": "29x29",
       "scale": "1x",
       "idiom": "iphone"
     },
     {
-      "filename": "icon-58.png",
+      "filename": "58.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "icon-87.png",
+      "filename": "87.png",
       "size": "29x29",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "icon-80.png",
+      "filename": "80.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "icon-120.png",
+      "filename": "120.png",
       "size": "40x40",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "icon.png",
+      "filename": "57.png",
       "size": "57x57",
       "scale": "1x",
       "idiom": "iphone"
     },
     {
-      "filename": "icon-114.png",
+      "filename": "114.png",
       "size": "57x57",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "icon-120.png",
+      "filename": "120.png",
       "size": "60x60",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "icon-180.png",
+      "filename": "180.png",
       "size": "60x60",
       "scale": "3x",
       "idiom": "iphone"
@@ -126,7 +126,7 @@
     },
     {
       "role": "companionSettings",
-      "size": "29x29",
+      "size": "29.3x29.3",
       "scale": "3x",
       "idiom": "watch"
     },
@@ -138,7 +138,7 @@
       "idiom": "watch"
     },
     {
-      "role": "longLook",
+      "role": "appLauncher",
       "size": "44x44",
       "subtype": "42mm",
       "scale": "2x",

@@ -42,6 +42,15 @@ namespace AncestorCloud.Touch
 		[Outlet]
 		UIKit.UILabel PickerLabel { get; set; }
 
+		[Outlet]
+		UIKit.UILabel RefernceLabel { get; set; }
+
+		[Outlet]
+		UIKit.UISegmentedControl RefernceSegmentControl { get; set; }
+
+		[Action ("_RefenceSegmentControl:")]
+		partial void _RefenceSegmentControl (Foundation.NSObject sender);
+
 		[Action ("AddButtonTapped:")]
 		partial void AddButtonTapped (Foundation.NSObject sender);
 
@@ -53,9 +62,14 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (PickerLabel != null) {
-				PickerLabel.Dispose ();
-				PickerLabel = null;
+			if (RefernceLabel != null) {
+				RefernceLabel.Dispose ();
+				RefernceLabel = null;
+			}
+
+			if (RefernceSegmentControl != null) {
+				RefernceSegmentControl.Dispose ();
+				RefernceSegmentControl = null;
 			}
 
 			if (AddButton != null) {
@@ -101,6 +115,11 @@ namespace AncestorCloud.Touch
 			if (PickerButtonTapped != null) {
 				PickerButtonTapped.Dispose ();
 				PickerButtonTapped = null;
+			}
+
+			if (PickerLabel != null) {
+				PickerLabel.Dispose ();
+				PickerLabel = null;
 			}
 		}
 	}

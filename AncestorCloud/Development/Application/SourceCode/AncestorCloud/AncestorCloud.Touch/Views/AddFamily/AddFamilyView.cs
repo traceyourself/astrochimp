@@ -70,6 +70,13 @@ namespace AncestorCloud.Touch
 		{
 			this.Title = Utility.LocalisedBundle ().LocalizedString ("AddFamilyText", "");
 
+			if ((ViewModel.AddType == Utility.LocalisedBundle().LocalizedString("ParentSectionFooter","")) || 
+				(ViewModel.AddType == Utility.LocalisedBundle().LocalizedString("SiblingSectionFooter",""))) 
+			{
+				RefernceLabel.Hidden = true;
+				RefernceSegmentControl.Hidden = true;
+			}
+
 		}
 
 		#endregion
@@ -112,6 +119,22 @@ namespace AncestorCloud.Touch
 				break;
 			}
 		}
+
+		partial void _RefenceSegmentControl (NSObject sender)
+		{
+			switch(RefernceSegmentControl.SelectedSegment)
+			{
+
+			case 0:
+//				ViewModel.Gender = Utility.LocalisedBundle().LocalizedString("MaleText","");
+				break;
+
+			case 1:
+//				ViewModel.Gender = Utility.LocalisedBundle().LocalizedString("FemaleText","");
+				break;
+			}
+		}
+
 
 		partial void AddButtonTapped (NSObject sender)
 		{

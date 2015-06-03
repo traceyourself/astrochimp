@@ -79,6 +79,15 @@ namespace AncestorCloud.Touch
 			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 			var navController = base.NavigationController;
 
+			#region TESTING
+
+
+//			EmailTextFeild.Frame = new CGRect(20,260,285,60);
+//			PasswordTextFeild.Frame = new CGRect(20,330,285,60);
+
+			#endregion
+
+
 			UIImage image = UIImage.FromFile (StringConstants.WHITECROSS);
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
@@ -212,7 +221,7 @@ namespace AncestorCloud.Touch
 					//System.Diagnostics.Debug.WriteLine ("famresponse :"+famResponse.Result.GetResponseText());
 					ViewModel.FbFamilyResponseText = famResponse.Result.GetResponseText();
 					ViewModel.SaveFbFamilyData();
-
+//
 					var friendRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/friends"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
 					var friendResponse = friendRequest.GetResponseAsync();
 					//System.Diagnostics.Debug.WriteLine ("friendresponse :"+friendResponse.Result.GetResponseText());
