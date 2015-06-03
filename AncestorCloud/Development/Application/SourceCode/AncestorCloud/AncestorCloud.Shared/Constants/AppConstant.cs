@@ -188,8 +188,14 @@ namespace AncestorCloud.Shared
 
 		public const string Sibling_comparison = "Sibling";
 		public const string Parent_comparison = "Parent";
+		public static readonly string GrandParent_comparison = "Grandparent";
+		public static readonly string GreatGrandParent_comparison = "GreatGrandparent";
 		public const string Father_comparison = "father";
 		public const string Mother_comparison = "mother";
+
+		public const string Mother_Reference = "mother_ref";
+		public const string Father_Reference = "father_ref";
+
 		#endregion
 
 		#region Match Service

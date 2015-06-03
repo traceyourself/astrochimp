@@ -22,12 +22,15 @@ namespace AncestorCloud.Droid
 	[Activity (Label = "AddFamilyView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class AddFamilyView : BaseActivity
 	{
-		LinearLayout malecheck,femalecheck;
+		LinearLayout malecheck,femalecheck,fathercheck,mothercheck;
 		public TextView addBtn,dateText;
 		bool maleSelected = false,femaleSelected=false;
+		bool fatherSelected = false,motherSelected=false;
 		ActionBar actionBar;
 		EditText first_name,middle_name,last_name,birthLoc;
 		Spinner yearSelector;
+		RelativeLayout RefLay;
+		String refType = "";
 
 		public new AddFamilyViewModel ViewModel
 		{
@@ -44,6 +47,10 @@ namespace AncestorCloud.Droid
 			InitUI ();
 			ApplyActions ();
 			ConfigureActionBar ();
+
+			if(Utilities.AddPersonType.Equals("Sibling") || Utilities.AddPersonType.Equals("Parent")){
+				RefLay.Visibility = ViewStates.Gone;	
+			}
 		}
 
 		protected void InitUI()
@@ -59,6 +66,10 @@ namespace AncestorCloud.Droid
 			last_name = FindViewById<EditText> (Resource.Id.last_name_field);
 			birthLoc = FindViewById<EditText> (Resource.Id.birth_loc_field);
 			yearSelector = FindViewById<Spinner> (Resource.Id.yearSpin);
+
+			RefLay = FindViewById<RelativeLayout> (Resource.Id.ref_lay);
+			fathercheck = FindViewById<LinearLayout> (Resource.Id.father_container);
+			mothercheck = FindViewById<LinearLayout> (Resource.Id.mother_container);
 		}
 
 		private void ConfigureActionBar()
@@ -112,6 +123,23 @@ namespace AncestorCloud.Droid
 				femaleSelected = true;
 			};
 
+			fathercheck.Click += (object sender, EventArgs e) => {
+				fathercheck.SetBackgroundResource(Resource.Drawable.male_selected);	
+				mothercheck.SetBackgroundColor(Color.Transparent);
+				fatherSelected = true;
+				motherSelected = false;
+				refType = AppConstant.Father_Reference;
+			};
+
+			mothercheck.Click += (object sender, EventArgs e) => {
+				fathercheck.SetBackgroundColor(Color.Transparent);	
+				mothercheck.SetBackgroundResource(Resource.Drawable.female_selected);
+				fatherSelected = false;
+				motherSelected = true;
+				refType = AppConstant.Mother_Reference;
+			};
+
+
 			addBtn.Click += (object sender, EventArgs e) => {
 				Utilities.RegisterCertificateForApiHit();
 
@@ -126,7 +154,7 @@ namespace AncestorCloud.Droid
 				}
 
 				ViewModel.AddType = Utilities.AddPersonType;
-
+				ViewModel.ReferenceType = refType;
 				ViewModel.AddPerson();
 			};
 

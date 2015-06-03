@@ -99,6 +99,9 @@
 	<string name="Add">Add </string>
 	<string name="Male">Male</string>
 	<string name="Female">Female</string>
+	<string name="Reference">Reference</string>
+	<string name="Father">Father</string>
+	<string name="Mother">Mother</string>
 	<!--- My Family add dialog Strings Ends -->
 
 	<!--- Matcher Strings -->

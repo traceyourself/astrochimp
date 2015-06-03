@@ -187,7 +187,6 @@
     <AndroidResource Include="Resources\layout\fb_family_list_item.axml" />
     <AndroidResource Include="Resources\drawable\action_back_btn.png" />
     <AndroidResource Include="Resources\drawable\no_img.png" />
-    <AndroidResource Include="Resources\layout\login.axml" />
     <AndroidResource Include="Resources\layout\my_fb_familiy_fly_out.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\back.png" />
     <AndroidResource Include="Resources\drawable-hdpi\blue_smallbtn.png" />
@@ -309,6 +308,7 @@
     <AndroidResource Include="Resources\drawable\new_cousins.png" />
     <AndroidResource Include="Resources\drawable\share_Invite.png" />
     <AndroidResource Include="Resources\drawable\splash.png" />
+    <AndroidResource Include="Resources\layout\login.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
