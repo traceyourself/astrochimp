@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -44,15 +44,16 @@
                                         <constraint firstAttribute="height" constant="61" id="zuT-eD-Cx7"/>
                                     </constraints>
                                     <color key="textColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paS-0r-O1e">
-                                    <rect key="frame" x="97" y="313" width="139" height="44"/>
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paS-0r-O1e">
+                                    <rect key="frame" x="66" y="313" width="200" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="139" id="QqR-HZ-8d1"/>
                                         <constraint firstAttribute="height" constant="44" id="mc3-2n-6xw"/>
                                     </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                     <state key="normal" title="Upload" backgroundImage="blue_btn.png">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -61,12 +62,13 @@
                                         <action selector="UploadButtonTapped:" destination="-1" eventType="touchUpInside" id="mTq-kY-UnW"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6e-pL-LCg">
-                                    <rect key="frame" x="126" y="371" width="80" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6e-pL-LCg">
+                                    <rect key="frame" x="126" y="371" width="80" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="9PA-tk-GVy"/>
                                         <constraint firstAttribute="height" constant="30" id="qNX-Ti-59b"/>
                                     </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                     <state key="normal" title="Skip">
                                         <color key="titleColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

@@ -53,7 +53,7 @@
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Ashish Tripathi (4NSA4VAGWB)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <IpaPackageName>
     </IpaPackageName>
@@ -65,6 +65,7 @@
     <BuildIpa>true</BuildIpa>
     <MtouchI18n>
     </MtouchI18n>
+    <CodesignProvision>9099f3a4-161b-4960-a1af-4c246507feaa</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -88,13 +89,13 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <IpaIncludeArtwork>true</IpaIncludeArtwork>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <CodesignProvision>aba7ba1e-3246-4cbe-983b-8a28c09b217a</CodesignProvision>
     <BuildIpa>true</BuildIpa>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
     </MtouchI18n>
+    <CodesignProvision>aba7ba1e-3246-4cbe-983b-8a28c09b217a</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>full</DebugType>
@@ -196,16 +197,14 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-29.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-58.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-80.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-87.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-114.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-120.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-180.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-512.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-1024.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\180.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\120.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\114.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\57.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\80.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\87.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\58.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\29.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -534,13 +533,15 @@
     <BundleResource Include="Resources\CollectionView2%402x.png" />
     <BundleResource Include="Resources\CollectionView3%402x.png" />
     <BundleResource Include="en.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\.DS_Store" />
+    <BundleResource Include="Resources\txt_fld%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
+    <ITunesArtwork Include="iTunesArtwork" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AncestorCloud.Shared\AncestorCloud.Core.csproj">

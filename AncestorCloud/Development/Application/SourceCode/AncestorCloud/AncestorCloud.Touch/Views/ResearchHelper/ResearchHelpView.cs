@@ -81,7 +81,7 @@ namespace AncestorCloud.Touch
 			webView = new UIWebView(View.Bounds);			
 			View.AddSubview(webView);
 
-			string url = "https://www.mocavo.com/";
+			string url = "http://learn.mocavo.com";
 			webView.LoadRequest (new NSUrlRequest (new NSUrl (url)));
 
 		}

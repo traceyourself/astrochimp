@@ -186,6 +186,8 @@ namespace AncestorCloud.Touch
 			TableItem item = obj as TableItem;
 
 			ViewModel.ShowAddParents (item.SectionFooter);
+
+
 		}
 			
 		partial void CrossButtonTaped (NSObject sender)
@@ -235,6 +237,7 @@ namespace AncestorCloud.Touch
 			siblingData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("SiblingSectionFooter","");
 			siblingData.DataItems = siblingList;
 
+
 			resultList.Add (siblingData);
 
 			TableItem parentsData= new TableItem ();
@@ -242,12 +245,14 @@ namespace AncestorCloud.Touch
 			parentsData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("ParentSectionFooter","");
 			parentsData.DataItems = parentList;
 
+
 			resultList.Add (parentsData);
 
 			TableItem grandParentData= new TableItem ();
 			grandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionHeader","");
 			grandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionFooter","");
 			grandParentData.DataItems = grandParentList;
+
 
 			resultList.Add (grandParentData);
 

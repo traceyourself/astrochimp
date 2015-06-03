@@ -31,6 +31,6 @@
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.smartdata.astrochimp</string>
+	<string>com.nzt.astrochimp</string>
 </dict>
 </plist>
