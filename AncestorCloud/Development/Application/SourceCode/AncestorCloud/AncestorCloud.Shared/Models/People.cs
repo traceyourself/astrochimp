@@ -6,6 +6,7 @@ namespace AncestorCloud.Shared
 	public class People : User
 	{
 		public string Relation { get; set; }
+		public string RelationType { get; set; }
 		public bool IsSelected { get; set; }
 		public string IndiOgfn { get; set; }
 	
@@ -14,6 +15,8 @@ namespace AncestorCloud.Shared
 		public string LoginUserLinkID { get; set; }
 
 		public string Tag { get; set; }
+
+		public string FamOGFN { get; set; }
 
 	}
 }

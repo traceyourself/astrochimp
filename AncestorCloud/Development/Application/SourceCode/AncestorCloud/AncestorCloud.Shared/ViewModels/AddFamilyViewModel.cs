@@ -17,6 +17,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly IReachabilityService _reachabilityService;
 
+		FamilyDataManager _familyDataManager;
 
 		public String AddType { get; set;}
 		public String ReferenceType { get; set;}
@@ -29,7 +30,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = Mvx.Resolve<IDatabaseService>();
 			Alert = alert;
 			_reachabilityService = reachabilty;
-
+			_familyDataManager = new FamilyDataManager ();
 		}
 
 		public void Init(DetailParameter param)
@@ -176,15 +177,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 					if (AddType.Equals ("Grandparent")) {
 						
-						List<People> listP = _databaseService.RelativeMatching (AppConstant.Parent_comparison,lModal.UserEmail);
-
-						if (listP != null) {
-							if (listP.Count == 0) {
-								listP = _databaseService.RelativeMatching (AppConstant.Father_comparison, lModal.UserEmail);
-							}
-						} else {
-							listP = _databaseService.RelativeMatching (AppConstant.Father_comparison, lModal.UserEmail);
-						}
+						List<People> listP = _familyDataManager.GetParents();
 
 						if (listP.Count > 0) {
 							if (ReferenceType.Equals (AppConstant.Father_Reference)) {
@@ -213,7 +206,8 @@ namespace AncestorCloud.Shared.ViewModels
 								modal.LoggedinUserINDIOFGN = listP [0].IndiOgfn;
 							}
 
-							modal.Relation = AppConstant.Parent_comparison;
+							modal.Relation = AppConstant.GrandParent_comparison;
+							modal.RelationType = AppConstant.Parent_comparison;
 
 						} else {
 							isValid = false;
@@ -221,7 +215,7 @@ namespace AncestorCloud.Shared.ViewModels
 						}
 					} else if (AddType.Equals ("Great Grandparent")) {
 
-						List<People> listP = _databaseService.RelativeMatching (AppConstant.GrandParent_comparison,lModal.UserEmail);
+						List<People> listP = _familyDataManager.GetGrandParents();
 
 						if (listP.Count > 0) {
 							if (ReferenceType.Equals (AppConstant.Father_Reference)) {
@@ -250,7 +244,8 @@ namespace AncestorCloud.Shared.ViewModels
 								modal.LoggedinUserINDIOFGN = listP [0].IndiOgfn;
 							}
 
-							modal.Relation = AppConstant.Parent_comparison;
+							modal.Relation = AppConstant.GreatGrandParent_comparison;
+							modal.RelationType = AppConstant.Parent_comparison;
 
 						} else {
 							isValid = false;
@@ -261,8 +256,10 @@ namespace AncestorCloud.Shared.ViewModels
 					} else {
 						modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;
 						modal.Relation = this.AddType;
+						modal.RelationType = this.AddType;
 					}
 
+			
 					if(isValid){
 						ResponseModel<People> response = await _addService.AddFamilyMember (modal);
 
