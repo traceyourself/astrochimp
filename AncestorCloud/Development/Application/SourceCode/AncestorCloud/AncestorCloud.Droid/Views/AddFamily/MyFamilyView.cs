@@ -175,13 +175,13 @@ namespace AncestorCloud.Droid
 						parentList.Add (listStruct);
 					}
 
-					else if(relation.Contains (StringConstants.GrandFather_comparison) || relation.Contains (StringConstants.GrandMother_comparison) || relation.Contains (StringConstants.GrandParent_comparison))
+					else if(relation.Equals (StringConstants.GrandFather_comparison) || relation.Equals (StringConstants.GrandMother_comparison) || relation.Equals (StringConstants.GrandParent_comparison))
 					{
 						listStruct = new ListDataStructure(false,false,true,"","",item);
 						grandParentList.Add (listStruct);
 					}
 
-					else if(relation.Contains (StringConstants.GreatGrandFather_comparison) || relation.Contains (StringConstants.GreatGrandMother_comparison) || relation.Contains (StringConstants.GreatGrandParent_comparison))
+					else if(relation.Equals (StringConstants.GreatGrandFather_comparison) || relation.Equals (StringConstants.GreatGrandMother_comparison) || relation.Equals (AppConstant.GreatGrandParent_comparison))
 					{
 						listStruct = new ListDataStructure(false,false,true,"","",item);
 						greatGrandParentList.Add (listStruct);

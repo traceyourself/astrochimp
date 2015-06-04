@@ -82,6 +82,10 @@ namespace AncestorCloud.Shared
 
 		public const string HUSBAND_OGFN = "HusbandOgfn";
 		public const string WIFE_OGFN = "WifeOgfn";
+
+		public const string MALE = "Male";
+		public const string FEMALE = "Female";
+
 		#endregion
 
 

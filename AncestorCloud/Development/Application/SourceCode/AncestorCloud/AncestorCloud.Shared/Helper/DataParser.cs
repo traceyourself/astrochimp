@@ -413,6 +413,9 @@ namespace AncestorCloud.Shared
 
 			if (IsKeyExist (AppConstant.INDI_NAME, dict))
 				model.Name = GetData (AppConstant.INDI_NAME, dict).Replace("/","");
+
+			if (IsKeyExist (AppConstant.CHILDOGFNKEY, dict))
+				model.FamOGFN = GetData (AppConstant.CHILDOGFNKEY, dict);
 			
 
 			if (IsKeyExist (AppConstant.INDI_NAME2, dict)) {
@@ -454,7 +457,11 @@ namespace AncestorCloud.Shared
 
 			if (IsKeyExist (AppConstant.VALUE, dataDic)) {
 				JObject injob = dataDic [AppConstant.VALUE] as JObject;
-				Dictionary<string, object> dataArray = injob.ToObject<Dictionary<string, object>> ();
+
+				if (injob == null)
+					return modal;
+
+			Dictionary<string, object> dataArray = injob.ToObject<Dictionary<string, object>> ();
 
 				if(IsKeyExist(AppConstant.CHILDREN_OGFN,dataArray)){
 					JArray inArr = dataArray [AppConstant.CHILDREN_OGFN] as JArray;

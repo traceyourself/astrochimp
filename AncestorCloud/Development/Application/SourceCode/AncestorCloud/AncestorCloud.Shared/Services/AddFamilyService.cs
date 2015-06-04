@@ -166,7 +166,7 @@ namespace AncestorCloud.Shared
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
-				string relationType = GetTypeDetail(model.Gender,model.Relation);
+				string relationType = GetTypeDetail(model.Gender,model.RelationType);
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 

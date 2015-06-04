@@ -14,6 +14,7 @@ using Android.Graphics;
 using System.Net;
 using Android.Graphics.Drawables;
 using Android.Media;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Droid
 {
@@ -84,10 +85,14 @@ namespace AncestorCloud.Droid
 			if(!(url=="null"))
 				using (var webClient = new WebClient())
 				{
-					var imageBytes = webClient.DownloadData(url);
-					if (imageBytes != null && imageBytes.Length > 0)
-					{
-						imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+					try{
+						var imageBytes = webClient.DownloadData(url);
+						if (imageBytes != null && imageBytes.Length > 0)
+						{
+							imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+						}
+					}catch(Exception e1){
+						Mvx.Trace (e1.StackTrace);
 					}
 				}
 
