@@ -28,7 +28,7 @@ namespace AncestorCloud.Shared.ViewModels
 		public String _PercentageComplete{ get; set;}
 
 		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
-
+		FamilyDataManager _familyDataManager;
 
 		#endregion
 
@@ -38,7 +38,9 @@ namespace AncestorCloud.Shared.ViewModels
 			_addService = Mvx.Resolve<IAddFamilyService>();
 			_getFamilyService = Mvx.Resolve<IGetFamilyService>();
 			_percentageService = Mvx.Resolve<IPercentageService> ();
-			Alert = Mvx.Resolve<IAlert>();;
+			Alert = Mvx.Resolve<IAlert>();
+			_familyDataManager = new FamilyDataManager ();
+
 			GetFbFamilyData ();
 			_reachabilityService = reachabilty;
 		}
@@ -207,5 +209,59 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 
 		#endregion
+
+
+		#region check validity for family Adiition
+		public void CheckIfCanAddPerson(string relation)
+		{
+			string typeToAdd = relation;
+			LoginModel model = _databaseService.GetLoginDetails ();
+			//Sibling_comparison
+			if(typeToAdd.Contains("Sibling") || typeToAdd.Equals("Parent")){
+				ShowAddFamilyViewModel();
+			}else{
+				if(typeToAdd.Equals("Grandparent")){
+
+					List<People> listP = _familyDataManager.GetParents();//_databaseService.RelativeMatching (AppConstant.Parent_comparison,model.UserEmail);
+					if (listP != null && listP.Count > 0) 
+					{
+						if (Mvx.CanResolve<IAndroidService> ()) 
+						{
+							ShowAddFamilyViewModel ();
+						}
+						else 
+						{
+							ShowAddParents (relation);
+						}
+					}
+					else 
+					{
+						Alert.ShowAlert ("Please add parents first to add grand parents","");
+					}
+
+				}else if(typeToAdd.Equals("Great Grandparent")){
+					List<People> listP = _familyDataManager.GetGrandParents();//_databaseService.RelativeMatching (AppConstant.GrandParent_comparison,model.UserEmail);
+					if (listP != null && listP.Count > 0) {
+						if (Mvx.CanResolve<IAndroidService> ()) 
+						{
+							ShowAddFamilyViewModel ();
+						}else 
+						{
+							ShowAddParents (relation);
+						}
+					} else {
+						Alert.ShowAlert ("Please add grand parents first to add great grand parents","");
+					}
+				}
+			}
+
+
+			/*****
+			ViewModel.ShowAddFamilyViewModel();
+			******/
+		}
+		#endregion
+
+
 	}
 }
