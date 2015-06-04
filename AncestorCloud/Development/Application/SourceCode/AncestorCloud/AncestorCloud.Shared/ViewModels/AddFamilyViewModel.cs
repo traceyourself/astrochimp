@@ -31,11 +31,12 @@ namespace AncestorCloud.Shared.ViewModels
 			Alert = alert;
 			_reachabilityService = reachabilty;
 			_familyDataManager = new FamilyDataManager ();
+
 		}
 
 		public void Init(DetailParameter param)
 		{
-			this.AddType = param.AddPersonType;
+			this.AddType = param.AddPersonType ?? String.Empty;
 		}
 		#endregion
 
@@ -186,6 +187,7 @@ namespace AncestorCloud.Shared.ViewModels
 									if (p.Gender != null) {
 										if (p.Gender.Equals ("Male")) {
 											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
+											//modal.LoggedinUserFAMOFGN = p.FamOGFN;
 										}
 									}
 								}
@@ -196,6 +198,7 @@ namespace AncestorCloud.Shared.ViewModels
 									if (p.Gender != null) {
 										if (p.Gender.Equals ("Female")) {
 											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
+											//modal.LoggedinUserFAMOFGN = p.FamOGFN;
 										}
 									}
 								}
@@ -204,6 +207,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 							if(modal.LoggedinUserINDIOFGN == null){
 								modal.LoggedinUserINDIOFGN = listP [0].IndiOgfn;
+								//modal.LoggedinUserFAMOFGN = listP [0].FamOGFN;
 							}
 
 							modal.Relation = AppConstant.GrandParent_comparison;
@@ -224,6 +228,8 @@ namespace AncestorCloud.Shared.ViewModels
 									if (p.Gender != null) {
 										if (p.Gender.Equals ("Male")) {
 											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
+											//modal.LoggedinUserFAMOFGN = p.FamOGFN;
+
 										}
 									}
 								}
@@ -234,6 +240,7 @@ namespace AncestorCloud.Shared.ViewModels
 									if (p.Gender != null) {
 										if (p.Gender.Equals ("Female")) {
 											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
+											//modal.LoggedinUserFAMOFGN = p.FamOGFN;
 										}
 									}
 								}
@@ -242,6 +249,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 							if(modal.LoggedinUserINDIOFGN == null){
 								modal.LoggedinUserINDIOFGN = listP [0].IndiOgfn;
+								//modal.LoggedinUserFAMOFGN = listP [0].FamOGFN;
 							}
 
 							modal.Relation = AppConstant.GreatGrandParent_comparison;
@@ -257,6 +265,7 @@ namespace AncestorCloud.Shared.ViewModels
 						modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;
 						modal.Relation = this.AddType;
 						modal.RelationType = this.AddType;
+						//modal.LoggedinUserFAMOFGN = lModal.FamOGFN;
 					}
 
 			
@@ -295,7 +304,7 @@ namespace AncestorCloud.Shared.ViewModels
 				Alert.ShowAlert(AlertConstant.GENDER_ALERT_MESSAGE,AlertConstant.GENDER_ALERT);
 			}
 
-			else if(AddType.Contains("Grandparent") || AddType.Contains("Great Grandparent")){
+			else if((AddType != null) && ( AddType.Contains("Grandparent") || AddType.Contains("Great Grandparent"))){
 				if (String.IsNullOrEmpty (this.ReferenceType)) 
 				{
 					isValid = false;
