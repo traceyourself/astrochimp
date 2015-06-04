@@ -126,11 +126,11 @@ namespace AncestorCloud.Touch
 			{
 
 			case 0:
-//				ViewModel.Gender = Utility.LocalisedBundle().LocalizedString("MaleText","");
+				ViewModel.ReferenceType=AppConstant.Father_Reference;;
 				break;
 
 			case 1:
-//				ViewModel.Gender = Utility.LocalisedBundle().LocalizedString("FemaleText","");
+				ViewModel.ReferenceType=AppConstant.Mother_Reference;;
 				break;
 			}
 		}
