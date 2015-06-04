@@ -606,7 +606,7 @@ namespace AncestorCloud.Droid
 					}
 					Utilities.AddPersonType = type;
 
-					myFamilyObj.CheckIfCanAddPerson();
+					myFamilyObj.ViewModel.CheckIfCanAddPerson(type);
 				};
 			}
 
