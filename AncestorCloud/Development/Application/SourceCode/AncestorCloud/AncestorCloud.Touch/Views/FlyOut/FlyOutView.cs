@@ -272,7 +272,6 @@ namespace AncestorCloud.Touch
 
 				try
 				{
-				
 					var bytes = e.Result; // get the downloaded data
 
 					if(bytes == null)

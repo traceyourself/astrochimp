@@ -163,7 +163,7 @@ namespace AncestorCloud.Shared.ViewModels
 			FamilyMember.SessionId = lModal.Value;
 
 			//TODO : Remove this line when data is live
-			FamilyMember.IndiOgfn = lModal.IndiOGFN;
+			//FamilyMember.IndiOgfn = lModal.IndiOGFN;
 
 			if (_reachabilityService.IsNetworkNotReachable ()) {
 				Mvx.Resolve<IAlert> ().ShowAlert (AlertConstant.INTERNET_ERROR_MESSAGE,AlertConstant.INTERNET_ERROR);

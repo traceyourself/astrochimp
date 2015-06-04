@@ -301,7 +301,7 @@ namespace AncestorCloud.Shared.ViewModels
 				if (String.IsNullOrEmpty (this.ReferenceType)) 
 				{
 					isValid = false;
-					Alert.ShowAlert("Reference is required,please select a value.","Reference Missing");
+					Alert.ShowAlert("Relation is required,please select a value.","Relation Missing");
 				}
 			}
 
