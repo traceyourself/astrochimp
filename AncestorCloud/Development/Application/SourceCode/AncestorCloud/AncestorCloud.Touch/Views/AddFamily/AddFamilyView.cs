@@ -70,9 +70,11 @@ namespace AncestorCloud.Touch
 		{
 			this.Title = Utility.LocalisedBundle ().LocalizedString ("AddFamilyText", "");
 
-			if ((ViewModel.AddType == Utility.LocalisedBundle().LocalizedString("ParentSectionFooter","")) || 
-				(ViewModel.AddType == Utility.LocalisedBundle().LocalizedString("SiblingSectionFooter",""))) 
-			{
+			if ((ViewModel.AddType == Utility.LocalisedBundle ().LocalizedString ("GrandparentSectionFooter", "")) ||
+				(ViewModel.AddType == Utility.LocalisedBundle ().LocalizedString ("GreatGrandparentSectionFooter", ""))) {
+				RefernceLabel.Hidden = false;
+				RefernceSegmentControl.Hidden = false;
+			} else {
 				RefernceLabel.Hidden = true;
 				RefernceSegmentControl.Hidden = true;
 			}

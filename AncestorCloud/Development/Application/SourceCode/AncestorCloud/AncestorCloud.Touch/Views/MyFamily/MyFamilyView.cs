@@ -185,7 +185,8 @@ namespace AncestorCloud.Touch
 		{
 			TableItem item = obj as TableItem;
 
-			ViewModel.ShowAddParents (item.SectionFooter);
+			//ViewModel.ShowAddParents (item.SectionFooter);
+			ViewModel.CheckIfCanAddPerson(item.SectionFooter);
 
 
 		}
