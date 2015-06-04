@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using AncestorCloud.Shared;
 using Android.Net;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Droid
 {
@@ -35,11 +36,15 @@ namespace AncestorCloud.Droid
 
 			//if not connected then check for wifi
 			if(!IsNotConnected){
-				var mobileState = connectivityManager.GetNetworkInfo(ConnectivityType.Mobile).GetState();
-				if (mobileState == NetworkInfo.State.Connected)
-				{
-					// We are connected via WiFi
-					IsNotConnected = false;
+				try{
+					var mobileState = connectivityManager.GetNetworkInfo(ConnectivityType.Mobile).GetState();
+					if (mobileState == NetworkInfo.State.Connected)
+					{
+						// We are connected via WiFi
+						IsNotConnected = false;
+					}
+				}catch(Exception e){
+					Mvx.Trace (e.StackTrace);
 				}
 			}
 

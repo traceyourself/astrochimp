@@ -1,6 +1,7 @@
 ﻿using System;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.CrossCore;
+using System.Collections.Generic;
 
 namespace AncestorCloud.Shared.ViewModels
 {
@@ -18,6 +19,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 
 		public String AddType { get; set;}
+		public String ReferenceType { get; set;}
 		#endregion
 
 		#region Initialization
@@ -118,10 +120,7 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 
 		}
-
-
 		#endregion
-
 	
 		#region Commands
 
@@ -158,8 +157,11 @@ namespace AncestorCloud.Shared.ViewModels
 				if (_reachabilityService.IsNetworkNotReachable ()) {
 					Mvx.Resolve<IAlert> ().ShowAlert (AlertConstant.INTERNET_ERROR_MESSAGE, AlertConstant.INTERNET_ERROR);
 				} else {
+
+					bool isValid = true;
+
 					LoginModel lModal = _databaseService.GetLoginDetails ();
-			
+
 					People modal = new People ();
 
 					modal.FirstName = this.FirstName;
@@ -169,27 +171,114 @@ namespace AncestorCloud.Shared.ViewModels
 					modal.BirthLocation = this.BirthLocation;
 					modal.Gender = this.Gender;
 					modal.SessionId = lModal.Value;
-					modal.Relation = this.AddType;
-					modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;
 					modal.LoginUserLinkID = lModal.UserEmail;
 					modal.LoggedinUserFAMOFGN = lModal.FamOGFN;
 
+					if (AddType.Equals ("Grandparent")) {
+						List<People> listP = _databaseService.RelativeMatching (AppConstant.Parent_comparison,lModal.UserEmail);
 
-					
-					ResponseModel<People> response = await _addService.AddFamilyMember (modal);
 
-					if (response.Status == ResponseStatus.OK) {
-						if(response.Content != null)
-						_databaseService.InsertRelative (response.Content as People);
-						Alert.ShowAlert (AlertConstant.SUCCESS_RESPONSE_ALERT, AlertConstant.SUCCESS_ALERT);
-						Close ();
+						if (listP != null) {
+							if (listP.Count == 0) {
+								listP = _databaseService.RelativeMatching (AppConstant.Father_comparison, lModal.UserEmail);
+							}
+						} else {
+							listP = _databaseService.RelativeMatching (AppConstant.Father_comparison, lModal.UserEmail);
+						}
+
+						if (listP.Count > 0) {
+							if (ReferenceType.Equals (AppConstant.Father_Reference)) {
+
+								foreach (People p in listP) {
+									if (p.Gender != null) {
+										if (p.Gender.Equals ("Male")) {
+											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
+										}
+									}
+								}
+
+							} else if (ReferenceType.Equals (AppConstant.Mother_Reference)) {
+
+								foreach (People p in listP) {
+									if (p.Gender != null) {
+										if (p.Gender.Equals ("Female")) {
+											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
+										}
+									}
+								}
+
+							}
+
+							if(modal.LoggedinUserINDIOFGN == null){
+								modal.LoggedinUserINDIOFGN = listP [0].IndiOgfn;
+							}
+
+							modal.Relation = AppConstant.Parent_comparison;
+
+						} else {
+							isValid = false;
+							Alert.ShowAlert ("Please add parents first to add grand parents","");
+						}
+					} else if (AddType.Equals ("Great Grandparent")) {
+
+						List<People> listP = _databaseService.RelativeMatching (AppConstant.GrandParent_comparison,lModal.UserEmail);
+						if (listP.Count > 0) {
+							if (ReferenceType.Equals (AppConstant.Father_Reference)) {
+
+								foreach (People p in listP) {
+									if (p.Gender != null) {
+										if (p.Gender.Equals ("Male")) {
+											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
+										}
+									}
+								}
+
+							} else if (ReferenceType.Equals (AppConstant.Mother_Reference)) {
+
+								foreach (People p in listP) {
+									if (p.Gender != null) {
+										if (p.Gender.Equals ("Female")) {
+											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
+										}
+									}
+								}
+
+							}
+
+							if(modal.LoggedinUserINDIOFGN == null){
+								modal.LoggedinUserINDIOFGN = listP [0].IndiOgfn;
+							}
+
+							modal.Relation = AppConstant.Parent_comparison;
+
+						} else {
+							isValid = false;
+							Alert.ShowAlert ("Please add grand parents first to add great grand parents","");
+						}
+
+
 					} else {
-						Alert.ShowAlert (AlertConstant.SUCCESS_ERROR_MESSAGE, AlertConstant.SUCCESS_ERROR);
+						modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;
+						modal.Relation = this.AddType;
+					}
+
+					if(isValid){
+						ResponseModel<People> response = await _addService.AddFamilyMember (modal);
+
+						if (response.Status == ResponseStatus.OK) {
+							if(response.Content != null)
+							_databaseService.InsertRelative (response.Content as People);
+							Alert.ShowAlert (AlertConstant.SUCCESS_RESPONSE_ALERT, AlertConstant.SUCCESS_ALERT);
+							Close ();
+						} else {
+							Alert.ShowAlert (AlertConstant.SUCCESS_ERROR_MESSAGE, AlertConstant.SUCCESS_ERROR);
+						}
 					}
 				}
 			}
 		}
 		#endregion
+
 
 		#region validations
 		public bool Validate()
@@ -202,16 +291,18 @@ namespace AncestorCloud.Shared.ViewModels
 				Alert.ShowAlert(AlertConstant.NAME_ALERT_MESSAGE,AlertConstant.NAME_ALERT);
 			}
 
-			/*else if (String.IsNullOrEmpty (this.BirthDate)) 
-			{
-				isValid = false;
-				Alert.ShowAlert("Birth Year is required,please enter a value for the field.","Birth Year Missing");
-			}*/
-
 			else if (String.IsNullOrEmpty (this.Gender))
 			{
 				isValid = false;
 				Alert.ShowAlert(AlertConstant.GENDER_ALERT_MESSAGE,AlertConstant.GENDER_ALERT);
+			}
+
+			else if(AddType.Contains("Grandparent") || AddType.Contains("Great Grandparent")){
+				if (String.IsNullOrEmpty (this.ReferenceType)) 
+				{
+					isValid = false;
+					Alert.ShowAlert("Reference is required,please select a value.","Reference Missing");
+				}
 			}
 
 			return isValid;

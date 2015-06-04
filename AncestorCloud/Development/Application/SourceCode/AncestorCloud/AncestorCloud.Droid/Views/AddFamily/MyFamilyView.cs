@@ -36,6 +36,8 @@ namespace AncestorCloud.Droid
 		IMvxMessenger _messenger;
 		private MvxSubscriptionToken ReloadViewToken,percentToken;
 		Spinner yearSelector;
+		IDatabaseService _databaseService;
+		IAlert Alert;
 
 		public new MyFamilyViewModel ViewModel
 		{
@@ -48,13 +50,15 @@ namespace AncestorCloud.Droid
 		{
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.add_family);
+
 			// Create your application here
+			_messenger = Mvx.Resolve<IMvxMessenger>();
+			_databaseService = Mvx.Resolve<IDatabaseService>();
+			Alert = Mvx.Resolve<IAlert>();
 
 			InitViews ();
 			ConfigureActionBar ();
 			ApplyActions ();
-			_messenger = Mvx.Resolve<IMvxMessenger>();
-
 		}
 		#endregion
 
@@ -385,6 +389,47 @@ namespace AncestorCloud.Droid
 		#endregion
 
 
+		#region check validity for family Adiition
+		public void CheckIfCanAddPerson()
+		{
+			string typeToAdd = Utilities.AddPersonType;
+			LoginModel model = _databaseService.GetLoginDetails ();
+			//Sibling_comparison
+			if(typeToAdd.Contains("Sibling") || typeToAdd.Equals("Parent")){
+				ViewModel.ShowAddFamilyViewModel();
+			}else{
+				if(typeToAdd.Equals("Grandparent")){
+
+					List<People> listP = _databaseService.RelativeMatching (StringConstants.Parent_comparison,model.UserEmail);
+					if (listP != null && listP.Count > 0) {
+						ViewModel.ShowAddFamilyViewModel ();
+					} else {
+						listP = _databaseService.RelativeMatching (StringConstants.Father_comparison,model.UserEmail);
+						if (listP != null && listP.Count > 0) {
+							ViewModel.ShowAddFamilyViewModel ();
+						}else{
+							Alert.ShowAlert ("Please add parents first to add grand parents","");
+						}
+					}
+
+				}else if(typeToAdd.Equals("Great Grandparent")){
+					List<People> listP = _databaseService.RelativeMatching (StringConstants.GrandParent_comparison,model.UserEmail);
+					if (listP != null && listP.Count > 0) {
+						ViewModel.ShowAddFamilyViewModel ();
+					} else {
+						Alert.ShowAlert ("Please add grand parents first to add great grand parents","");
+					}
+				}
+			}
+
+
+			/*****
+			ViewModel.ShowAddFamilyViewModel();
+			******/
+		}
+		#endregion
+
+
 		#region getYear for spinner
 		public int GetYearPosition(int start,string date)
 		{
@@ -550,13 +595,24 @@ namespace AncestorCloud.Droid
 				holder.listFooter.Click += (object sender, EventArgs e) => {
 					//System.Diagnostics.Debug.WriteLine("footer clicked at : "+position);
 					string []arr = structure.FooterTitle.Split(new char[]{' '},5);
-					Utilities.AddPersonType = arr[1];
-					myFamilyObj.ViewModel.ShowAddFamilyViewModel();
+
+					string type = arr[1];
+					try{
+						if(arr.Length > 1){
+							type += " "+arr[2];
+						}
+					}catch(Exception e1){
+						Mvx.Trace(e1.StackTrace);
+					}
+					Utilities.AddPersonType = type;
+
+					myFamilyObj.CheckIfCanAddPerson();
 				};
 			}
 
 			return convertView;
 		}
+
 	}
 
 	public class ViewHolder : Java.Lang.Object{

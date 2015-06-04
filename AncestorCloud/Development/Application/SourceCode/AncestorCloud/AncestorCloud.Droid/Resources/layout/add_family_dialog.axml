@@ -165,6 +165,69 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     local:MvxBind="Text BirthLocation" />
+                <RelativeLayout
+                    android:id="@+id/ref_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        style="@style/GrayBigText"
+                        android:text="@string/Reference"
+                        android:gravity="center_vertical|left"
+                        android:layout_alignParentLeft="true"
+                        android:layout_toLeftOf="@+id/ref_container"
+                        android:layout_centerVertical="true" />
+                    <RelativeLayout
+                        android:layout_width="160dp"
+                        android:layout_height="42dp"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/ref_container">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/edit_text_back" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="100">
+                            <LinearLayout
+                                android:id="@+id/father_container"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_weight="50">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColorHint="@color/light_gray_color"
+                                    android:textColor="@color/gray_login_color"
+                                    android:layout_marginLeft="2dp"
+                                    android:text="@string/Father"
+                                    android:textSize="13sp" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/mother_container"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_weight="50">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColorHint="@color/light_gray_color"
+                                    android:textColor="@color/gray_login_color"
+                                    android:layout_marginLeft="2dp"
+                                    android:text="@string/Mother"
+                                    android:textSize="13sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/gray_login_color"
+                            android:layout_centerInParent="true" />
+                    </RelativeLayout>
+                </RelativeLayout>
                 <TextView
                     android:id="@+id/add_person_btn"
                     android:layout_width="match_parent"

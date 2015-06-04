@@ -24,7 +24,7 @@ namespace AncestorCloud.Droid
 		#endregion
 
 		#region research help url
-		public static readonly string RESEARCH_HELP_URL = "http://www.mocavo.com/";
+		public static readonly string RESEARCH_HELP_URL = "http://learn.mocavo.com/";
 		#endregion
 
 		#region relation consts
@@ -68,7 +68,6 @@ namespace AncestorCloud.Droid
 		public static readonly string MALE = "Male";
 		public static readonly string FEMALE = "Female";
 		#endregion
-
 
 		#region sending message to contacts Constants
 		public static readonly string SMS_TO = "smsto:";

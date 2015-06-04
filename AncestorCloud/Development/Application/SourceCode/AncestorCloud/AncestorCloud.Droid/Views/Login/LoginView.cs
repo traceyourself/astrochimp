@@ -52,7 +52,6 @@ namespace AncestorCloud.Droid
 			ApplyActions ();
 		}
 
-
 		private void InitViews()
 		{
 			actionBar = FindViewById<ActionBar> (Resource.Id.actionBar);
