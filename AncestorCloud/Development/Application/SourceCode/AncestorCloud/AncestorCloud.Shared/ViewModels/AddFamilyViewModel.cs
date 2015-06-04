@@ -175,8 +175,8 @@ namespace AncestorCloud.Shared.ViewModels
 					modal.LoggedinUserFAMOFGN = lModal.FamOGFN;
 
 					if (AddType.Equals ("Grandparent")) {
+						
 						List<People> listP = _databaseService.RelativeMatching (AppConstant.Parent_comparison,lModal.UserEmail);
-
 
 						if (listP != null) {
 							if (listP.Count == 0) {
@@ -222,6 +222,7 @@ namespace AncestorCloud.Shared.ViewModels
 					} else if (AddType.Equals ("Great Grandparent")) {
 
 						List<People> listP = _databaseService.RelativeMatching (AppConstant.GrandParent_comparison,lModal.UserEmail);
+
 						if (listP.Count > 0) {
 							if (ReferenceType.Equals (AppConstant.Father_Reference)) {
 
