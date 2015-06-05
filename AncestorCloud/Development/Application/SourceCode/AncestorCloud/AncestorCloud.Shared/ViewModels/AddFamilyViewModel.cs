@@ -174,7 +174,8 @@ namespace AncestorCloud.Shared.ViewModels
 					modal.Gender = this.Gender;
 					modal.SessionId = lModal.Value;
 					modal.LoginUserLinkID = lModal.UserEmail;
-					modal.LoggedinUserFAMOFGN = lModal.FamOGFN;
+					//modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;
+					//modal.LoggedinUserFAMOFGN = lModal.FamOGFN;
 
 					if (AddType.Equals ("Grandparent")) {
 						
@@ -187,7 +188,7 @@ namespace AncestorCloud.Shared.ViewModels
 									if (p.Gender != null) {
 										if (p.Gender.Equals ("Male")) {
 											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
-											//modal.LoggedinUserFAMOFGN = p.FamOGFN;
+											modal.LoggedinUserFAMOFGN = p.FamOGFN;
 										}
 									}
 								}
@@ -198,7 +199,7 @@ namespace AncestorCloud.Shared.ViewModels
 									if (p.Gender != null) {
 										if (p.Gender.Equals ("Female")) {
 											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
-											//modal.LoggedinUserFAMOFGN = p.FamOGFN;
+											modal.LoggedinUserFAMOFGN = p.FamOGFN;
 										}
 									}
 								}
@@ -207,7 +208,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 							if(modal.LoggedinUserINDIOFGN == null){
 								modal.LoggedinUserINDIOFGN = listP [0].IndiOgfn;
-								//modal.LoggedinUserFAMOFGN = listP [0].FamOGFN;
+								modal.LoggedinUserFAMOFGN = listP [0].FamOGFN;
 							}
 
 							modal.Relation = AppConstant.GrandParent_comparison;
@@ -228,8 +229,7 @@ namespace AncestorCloud.Shared.ViewModels
 									if (p.Gender != null) {
 										if (p.Gender.Equals ("Male")) {
 											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
-											//modal.LoggedinUserFAMOFGN = p.FamOGFN;
-
+											modal.LoggedinUserFAMOFGN = p.FamOGFN;
 										}
 									}
 								}
@@ -240,7 +240,7 @@ namespace AncestorCloud.Shared.ViewModels
 									if (p.Gender != null) {
 										if (p.Gender.Equals ("Female")) {
 											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
-											//modal.LoggedinUserFAMOFGN = p.FamOGFN;
+											modal.LoggedinUserFAMOFGN = p.FamOGFN;
 										}
 									}
 								}
@@ -249,7 +249,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 							if(modal.LoggedinUserINDIOFGN == null){
 								modal.LoggedinUserINDIOFGN = listP [0].IndiOgfn;
-								//modal.LoggedinUserFAMOFGN = listP [0].FamOGFN;
+								modal.LoggedinUserFAMOFGN = listP [0].FamOGFN;
 							}
 
 							modal.Relation = AppConstant.GreatGrandParent_comparison;
@@ -265,7 +265,7 @@ namespace AncestorCloud.Shared.ViewModels
 						modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;
 						modal.Relation = this.AddType;
 						modal.RelationType = this.AddType;
-						//modal.LoggedinUserFAMOFGN = lModal.FamOGFN;
+						modal.LoggedinUserFAMOFGN = lModal.FamOGFN;
 					}
 
 			

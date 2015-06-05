@@ -77,13 +77,10 @@ namespace AncestorCloud.Shared
 				_loader.hideLoader();
 			}
 		}
-
 		#endregion
 
 
-
 		#region family implementation
-
 		public async System.Threading.Tasks.Task<ResponseModel<People>> GetIndiFamilyDetails (string ogfn,string sessionid)
 		{
 			_loader.showLoader ();
@@ -121,6 +118,10 @@ namespace AncestorCloud.Shared
 						returnPeopleData = DataParser.GetIndiFamilyReadData(dict);
 
 						returnPeopleData.IndiOgfn = ogfn; 
+
+
+						Mvx.Trace(returnPeopleData.Name+" : "+returnPeopleData.Relation+" : "+returnPeopleData.FamOGFN);
+
 
 					}else
 					{

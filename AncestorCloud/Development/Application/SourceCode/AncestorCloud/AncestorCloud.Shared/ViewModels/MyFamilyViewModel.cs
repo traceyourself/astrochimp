@@ -186,7 +186,6 @@ namespace AncestorCloud.Shared.ViewModels
 		#endregion
 
 		#region PercentageModel
-
 		public async void  FetchPercentageComplete()
 		{
 			LoginModel model = _databaseService.GetLoginDetails ();
@@ -207,7 +206,6 @@ namespace AncestorCloud.Shared.ViewModels
 
 			}
 		}
-
 		#endregion
 
 

@@ -101,6 +101,7 @@ namespace AncestorCloud.Droid
 		}
 
 		public static Bitmap getRoundedShape(Bitmap scaleBitmapImage,int radius) {
+
 			int targetWidth = radius+radius;
 			int targetHeight = radius+radius;
 			Bitmap targetBitmap = Bitmap.CreateBitmap(targetWidth, 
