@@ -185,7 +185,8 @@ namespace AncestorCloud.Touch
 		{
 			TableItem item = obj as TableItem;
 
-			ViewModel.ShowAddParents (item.SectionFooter);
+			//ViewModel.ShowAddParents (item.SectionFooter);
+			ViewModel.CheckIfCanAddPerson(item.SectionFooter);
 
 
 		}
@@ -212,20 +213,20 @@ namespace AncestorCloud.Touch
 				People item = mainList[i];
 				string relation = item.Relation;
 
-				if (relation.Contains (StringConstants.BROTHER_COMPARISON) || relation.Contains (StringConstants.SISTER_COMPARISON) || relation.Contains ("Sibling"))
+				if (relation.Equals (StringConstants.BROTHER_COMPARISON) || relation.Equals (StringConstants.SISTER_COMPARISON) || relation.Equals ("Sibling"))
 				{
 					siblingList.Add (item);
 				}
 
-				if (relation.Contains (StringConstants.FATHER_COMPARISON) || relation.Contains (StringConstants.MOTHER_COMPARISON) || relation.Contains ("Parent") )
+				if (relation.Equals (StringConstants.FATHER_COMPARISON) || relation.Equals (StringConstants.MOTHER_COMPARISON) || relation.Equals ("Parent") )
 				{
 					parentList.Add (item);
 				}
-				if (relation.Contains (StringConstants.GRANDFATHER_COMPARISON) || relation.Contains (StringConstants.GRANDMOTHER_COMPARISON) || relation.Contains ("Grandparent"))
+				if (relation.Equals (StringConstants.GRANDFATHER_COMPARISON) || relation.Equals  (StringConstants.GRANDMOTHER_COMPARISON) || relation.Equals ("Grandparent")|| relation.Equals (AppConstant.GrandParent_comparison))
 				{
 					grandParentList.Add (item);
 				}
-				if (relation.Contains (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Contains (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Contains ("Great Grandparent"))
+				if (relation.Equals (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Equals (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Equals ("Great Grandparent") || relation.Equals (AppConstant.GreatGrandParent_comparison))
 				{
 					greatGrandParentList.Add (item);
 				}

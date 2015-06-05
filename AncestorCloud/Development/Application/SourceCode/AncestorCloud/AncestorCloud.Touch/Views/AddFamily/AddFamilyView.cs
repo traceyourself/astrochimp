@@ -70,9 +70,11 @@ namespace AncestorCloud.Touch
 		{
 			this.Title = Utility.LocalisedBundle ().LocalizedString ("AddFamilyText", "");
 
-			if ((ViewModel.AddType == Utility.LocalisedBundle().LocalizedString("ParentSectionFooter","")) || 
-				(ViewModel.AddType == Utility.LocalisedBundle().LocalizedString("SiblingSectionFooter",""))) 
-			{
+			if ((ViewModel.AddType == Utility.LocalisedBundle ().LocalizedString ("GrandparentSectionFooter", "")) ||
+				(ViewModel.AddType == Utility.LocalisedBundle ().LocalizedString ("GreatGrandparentSectionFooter", ""))) {
+				RefernceLabel.Hidden = false;
+				RefernceSegmentControl.Hidden = false;
+			} else {
 				RefernceLabel.Hidden = true;
 				RefernceSegmentControl.Hidden = true;
 			}
@@ -126,11 +128,11 @@ namespace AncestorCloud.Touch
 			{
 
 			case 0:
-//				ViewModel.Gender = Utility.LocalisedBundle().LocalizedString("MaleText","");
+				ViewModel.ReferenceType=AppConstant.Father_Reference;;
 				break;
 
 			case 1:
-//				ViewModel.Gender = Utility.LocalisedBundle().LocalizedString("FemaleText","");
+				ViewModel.ReferenceType=AppConstant.Mother_Reference;;
 				break;
 			}
 		}

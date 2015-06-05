@@ -218,7 +218,12 @@ namespace AncestorCloud.Shared.ViewModels
 			LoginModel model = _databaseService.GetLoginDetails ();
 			//Sibling_comparison
 			if(typeToAdd.Contains("Sibling") || typeToAdd.Equals("Parent")){
-				ShowAddFamilyViewModel();
+				if (Mvx.CanResolve<IAndroidService> ()) {
+					ShowAddFamilyViewModel ();
+				} else {
+					ShowAddParents (relation);
+				}
+
 			}else{
 				if(typeToAdd.Equals("Grandparent")){
 
