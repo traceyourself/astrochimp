@@ -163,13 +163,13 @@ namespace AncestorCloud.Droid
 					People item = mainList[i];
 					string relation = item.Relation;
 
-					if (relation.Contains (StringConstants.Brother_comparison) || relation.Contains (StringConstants.Sister_comparison) || relation.Contains (StringConstants.Sibling_comparison)) 
+					if (relation.Equals (StringConstants.Brother_comparison) || relation.Equals (StringConstants.Sister_comparison) || relation.Equals (StringConstants.Sibling_comparison)) 
 					{
 						listStruct = new ListDataStructure(false,false,true,"","",item);
 						siblingList.Add (listStruct);
 					}
 
-					else if(relation.Contains (StringConstants.Father_comparison) || relation.Contains (StringConstants.Mother_comparison) || relation.Contains (StringConstants.Parent_comparison))
+					else if(relation.Equals (StringConstants.Father_comparison) || relation.Equals (StringConstants.Mother_comparison) || relation.Equals (StringConstants.Parent_comparison))
 					{
 						listStruct = new ListDataStructure(false,false,true,"","",item);
 						parentList.Add (listStruct);
