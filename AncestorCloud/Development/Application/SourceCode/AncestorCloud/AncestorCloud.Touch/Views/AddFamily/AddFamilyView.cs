@@ -48,6 +48,8 @@ namespace AncestorCloud.Touch
 
 			GenderSegmentControlChanged (null);
 
+			_RefenceSegmentControl (null);
+
 			PickerButtonTapped.TouchUpInside += PickerButtonTappedEvent;
 
 			base.OnKeyboardChanged += OnKeyboardChanged;
