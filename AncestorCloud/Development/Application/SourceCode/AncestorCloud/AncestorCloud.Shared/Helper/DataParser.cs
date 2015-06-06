@@ -76,6 +76,9 @@ namespace AncestorCloud.Shared
 				if (IsKeyExist (AppConstant.RELATIONSHIP, data))
 					family.Relation = GetData (AppConstant.RELATIONSHIP, data);
 
+				if (IsKeyExist (AppConstant.RELATIONSHIP, data))
+					family.RelationType = GetData (AppConstant.RELATIONSHIP, data);
+
 				family.IsSelected = false;
 
 				family.Tag = AppConstant.FBTAGKEY;

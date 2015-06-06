@@ -78,6 +78,7 @@ namespace AncestorCloud.Touch
 				RefernceLabel.Hidden = false;
 				RefernceSegmentControl.Hidden = true;
 				AnotherRefernceSegmentControl.Hidden = false;
+
 			} else if ((ViewModel.AddType == Utility.LocalisedBundle ().LocalizedString ("GrandparentSectionFooter", ""))){
 				RefernceLabel.Hidden = false;
 				RefernceSegmentControl.Hidden = false;
@@ -86,6 +87,8 @@ namespace AncestorCloud.Touch
 				RefernceLabel.Hidden = true ;
 				RefernceSegmentControl.Hidden = true;
 				AnotherRefernceSegmentControl.Hidden = true;
+				AddButton.Frame = new CGRect (AddButton.Frame.X,AddButton.Frame.Y-40f,AddButton.Frame.Width,AddButton.Frame.Height);
+
 				}
 
 		}
