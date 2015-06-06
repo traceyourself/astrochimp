@@ -55,6 +55,11 @@ namespace AncestorCloud.Droid
 			ApplyData ();
 		}
 
+		public override void OnBackPressed ()
+		{
+			//base.OnBackPressed ();
+		}
+
 		#region customized methods
 		private void InitViews()
 		{

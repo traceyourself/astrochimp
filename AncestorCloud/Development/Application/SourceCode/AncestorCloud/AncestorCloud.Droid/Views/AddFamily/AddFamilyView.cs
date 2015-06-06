@@ -117,6 +117,7 @@ namespace AncestorCloud.Droid
 
 			yearSelector.ItemSelected += (object sender, AdapterView.ItemSelectedEventArgs e) => {
 				dateText.Text = yearSelector.SelectedItem.ToString();
+				ViewModel.BirthDate = dateText.Text;
 			};
 
 			dateText.Click+= (object sender, EventArgs e) => {
@@ -202,19 +203,19 @@ namespace AncestorCloud.Droid
 			{
 			case 0:
 				gFatherFCheck.SetBackgroundResource(Resource.Drawable.male_selected);
-				refType = AppConstant.Grand_Father_Father_Reference;
+				refType = AppConstant.Father_Reference;
 				break;
 			case 1:
 				gFatherMCheck.SetBackgroundColor(Resources.GetColor(Resource.Color.action_bar_back_color));
-				refType = AppConstant.Grand_Father_Mother_Reference;
+				refType = AppConstant.Mother_Reference;
 				break;
 			case 2:
 				gMotherFCheck.SetBackgroundColor(Resources.GetColor(Resource.Color.action_bar_back_color));
-				refType = AppConstant.Grand_Mother_Father_Reference;
+				refType = AppConstant.Father_Reference;
 				break;
 			case 3:
 				gMotherMCheck.SetBackgroundResource(Resource.Drawable.female_selected);
-				refType = AppConstant.Grand_Mother_Mother_Reference;
+				refType = AppConstant.Mother_Reference;
 				break;
 			}
 

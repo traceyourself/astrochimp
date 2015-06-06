@@ -129,8 +129,8 @@ namespace AncestorCloud.Shared.ViewModels
 			ResponseModel<List<People>> listFromServer = await _getFamilyService.GetFamilyMembers (login);
 			if (listFromServer.Status == ResponseStatus.OK) {
 				FamilyList = listFromServer.Content;
-				_messenger.Publish(new MyFamilyReloadMessage(this));
 			}
+			_messenger.Publish(new MyFamilyReloadMessage(this));
 			FetchPercentageComplete ();
 		}
 		#endregion

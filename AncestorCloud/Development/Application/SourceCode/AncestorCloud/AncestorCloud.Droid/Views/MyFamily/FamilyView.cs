@@ -69,6 +69,11 @@ namespace AncestorCloud.Droid
 			}
 		}
 
+		public override void OnBackPressed ()
+		{
+			//base.OnBackPressed ();
+		}
+
 		private void initUI()
 		{
 			menu = FindViewById<FlyOutContainer> (Resource.Id.flyOutContainerLay);

@@ -146,7 +146,7 @@ namespace AncestorCloud.Droid
 		#region backpressed
 		public override void OnBackPressed ()
 		{
-			ViewModel.Close ();
+			//ViewModel.Close ();
 		}
 		#endregion
 
