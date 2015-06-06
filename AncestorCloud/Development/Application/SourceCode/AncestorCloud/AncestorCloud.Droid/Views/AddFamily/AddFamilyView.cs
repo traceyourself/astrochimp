@@ -22,14 +22,14 @@ namespace AncestorCloud.Droid
 	[Activity (Label = "AddFamilyView", ScreenOrientation = ScreenOrientation.Portrait)]			
 	public class AddFamilyView : BaseActivity
 	{
-		LinearLayout malecheck,femalecheck,fathercheck,mothercheck;
+		LinearLayout malecheck,femalecheck,fathercheck,mothercheck,gFatherFCheck,gFatherMCheck,gMotherFCheck,gMotherMCheck;
 		public TextView addBtn,dateText;
 		bool maleSelected = false,femaleSelected=false;
 		bool fatherSelected = false,motherSelected=false;
 		ActionBar actionBar;
 		EditText first_name,middle_name,last_name,birthLoc;
 		Spinner yearSelector;
-		RelativeLayout RefLay;
+		RelativeLayout RefLay,greatRefLay;
 		String refType = "";
 
 		public new AddFamilyViewModel ViewModel
@@ -48,7 +48,13 @@ namespace AncestorCloud.Droid
 			ApplyActions ();
 			ConfigureActionBar ();
 
-			if(Utilities.AddPersonType.Equals("Sibling") || Utilities.AddPersonType.Equals("Parent")){
+			if (Utilities.AddPersonType.Equals ("Sibling") || Utilities.AddPersonType.Equals ("Parent")) {
+				RefLay.Visibility = ViewStates.Gone;	
+				greatRefLay.Visibility = ViewStates.Gone;
+			} else if (Utilities.AddPersonType.Equals ("Grandparent")) {
+				//RefLay.Visibility = ViewStates.Gone;	
+				greatRefLay.Visibility = ViewStates.Gone;
+			} else {
 				RefLay.Visibility = ViewStates.Gone;	
 			}
 		}
@@ -68,8 +74,16 @@ namespace AncestorCloud.Droid
 			yearSelector = FindViewById<Spinner> (Resource.Id.yearSpin);
 
 			RefLay = FindViewById<RelativeLayout> (Resource.Id.ref_lay);
+			greatRefLay = FindViewById<RelativeLayout> (Resource.Id.great_ref_lay);
+
 			fathercheck = FindViewById<LinearLayout> (Resource.Id.father_container);
 			mothercheck = FindViewById<LinearLayout> (Resource.Id.mother_container);
+
+			gFatherFCheck = FindViewById<LinearLayout> (Resource.Id.grand_father_f_container);
+			gFatherMCheck = FindViewById<LinearLayout> (Resource.Id.grand_father_m_container);
+			gMotherFCheck = FindViewById<LinearLayout> (Resource.Id.grand_mother_f_container);
+			gMotherMCheck = FindViewById<LinearLayout> (Resource.Id.grand_mother_m_container);
+
 		}
 
 		private void ConfigureActionBar()
@@ -139,6 +153,19 @@ namespace AncestorCloud.Droid
 				refType = AppConstant.Mother_Reference;
 			};
 
+			gFatherFCheck.Click += (object sender, EventArgs e) => {
+				handleGrandCheckClick(0);
+			};
+			gFatherMCheck.Click += (object sender, EventArgs e) => {
+				handleGrandCheckClick(1);
+			};
+			gMotherFCheck.Click += (object sender, EventArgs e) => {
+				handleGrandCheckClick(2);
+			};
+			gMotherMCheck.Click += (object sender, EventArgs e) => {
+				handleGrandCheckClick(3);
+			};
+
 
 			addBtn.Click += (object sender, EventArgs e) => {
 				Utilities.RegisterCertificateForApiHit();
@@ -162,6 +189,37 @@ namespace AncestorCloud.Droid
 				ShowDatePicker();
 			};*/
 		}
+
+		#region check for grand parents click event
+		public void handleGrandCheckClick(int which)
+		{
+			gFatherFCheck.SetBackgroundColor(Color.Transparent);	
+			gFatherMCheck.SetBackgroundColor(Color.Transparent);	
+			gMotherFCheck.SetBackgroundColor(Color.Transparent);	
+			gMotherMCheck.SetBackgroundColor(Color.Transparent);	
+
+			switch(which)
+			{
+			case 0:
+				gFatherFCheck.SetBackgroundResource(Resource.Drawable.male_selected);
+				refType = AppConstant.Grand_Father_Father_Reference;
+				break;
+			case 1:
+				gFatherMCheck.SetBackgroundColor(Resources.GetColor(Resource.Color.action_bar_back_color));
+				refType = AppConstant.Grand_Father_Mother_Reference;
+				break;
+			case 2:
+				gMotherFCheck.SetBackgroundColor(Resources.GetColor(Resource.Color.action_bar_back_color));
+				refType = AppConstant.Grand_Mother_Father_Reference;
+				break;
+			case 3:
+				gMotherMCheck.SetBackgroundResource(Resource.Drawable.female_selected);
+				refType = AppConstant.Grand_Mother_Mother_Reference;
+				break;
+			}
+
+		}
+		#endregion
 
 		public void ShowDatePicker()
 		{
