@@ -53,7 +53,9 @@ namespace AncestorCloud.Touch
 
 			base.OnKeyboardChanged += OnKeyboardChanged;
 
+			AppDelegate _delegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 
+			_delegate.UIImageProfilePic = null;
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 

@@ -200,6 +200,10 @@ namespace AncestorCloud.Shared
 
 		public const string Mother_Reference = "mother_ref";
 		public const string Father_Reference = "father_ref";
+		public const string Grand_Mother_Mother_Reference = "grand_mother_mother_ref";
+		public const string Grand_Father_Mother_Reference = "grand_father_mother_ref";
+		public const string Grand_Mother_Father_Reference = "grand_mother_father_ref";
+		public const string Grand_Father_Father_Reference = "grand_father_father_ref";
 
 		#endregion
 
@@ -208,7 +212,7 @@ namespace AncestorCloud.Shared
 		public const string INDIOGFN1KEY= "IndiOgfn1";
 		public const string INDIOGFN2KEY= "IndiOgfn2";
 		public const string TYPEKEY= "Type";
-		public const string MATCHTYPE = "DLA";
+		public const string MATCHTYPE = "ANY";
 
 		#endregion
 

@@ -203,6 +203,10 @@ namespace AncestorCloud.Touch
 		{
 			List<TableItem> resultList = new List<TableItem> ();
 
+			foreach(People p in mainList){
+				Mvx.Trace (p.Name+" :: "+p.Relation);
+			}
+
 			List<People> siblingList = new List<People> ();
 			List<People> parentList = new List<People> ();
 			List<People> grandParentList = new List<People> ();
@@ -230,6 +234,8 @@ namespace AncestorCloud.Touch
 				{
 					greatGrandParentList.Add (item);
 				}
+
+
 			}
 
 

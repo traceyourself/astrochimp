@@ -50,6 +50,8 @@ namespace AncestorCloud.Touch
 
 			_RefenceSegmentControl (null);
 
+			AnotherReferenceSegmentControl (null);
+
 			PickerButtonTapped.TouchUpInside += PickerButtonTappedEvent;
 
 			base.OnKeyboardChanged += OnKeyboardChanged;
@@ -72,14 +74,19 @@ namespace AncestorCloud.Touch
 		{
 			this.Title = Utility.LocalisedBundle ().LocalizedString ("AddFamilyText", "");
 
-			if ((ViewModel.AddType == Utility.LocalisedBundle ().LocalizedString ("GrandparentSectionFooter", "")) ||
-				(ViewModel.AddType == Utility.LocalisedBundle ().LocalizedString ("GreatGrandparentSectionFooter", ""))) {
+			if ((ViewModel.AddType == Utility.LocalisedBundle ().LocalizedString ("GreatGrandparentSectionFooter", ""))) {
+				RefernceLabel.Hidden = false;
+				RefernceSegmentControl.Hidden = true;
+				AnotherRefernceSegmentControl.Hidden = false;
+			} else if ((ViewModel.AddType == Utility.LocalisedBundle ().LocalizedString ("GrandparentSectionFooter", ""))){
 				RefernceLabel.Hidden = false;
 				RefernceSegmentControl.Hidden = false;
-			} else {
-				RefernceLabel.Hidden = true;
+				AnotherRefernceSegmentControl.Hidden = true;
+			}else{
+				RefernceLabel.Hidden = true ;
 				RefernceSegmentControl.Hidden = true;
-			}
+				AnotherRefernceSegmentControl.Hidden = true;
+				}
 
 		}
 
@@ -138,6 +145,29 @@ namespace AncestorCloud.Touch
 				break;
 			}
 		}
+
+		partial void AnotherReferenceSegmentControl (NSObject sender)
+		{
+			switch(RefernceSegmentControl.SelectedSegment)
+			{
+
+			case 0:
+				ViewModel.ReferenceType=AppConstant.Father_Reference;;
+				break;
+
+			case 1:
+				ViewModel.ReferenceType=AppConstant.Father_Reference;;
+				break;
+
+			case 2 :
+				ViewModel.ReferenceType=AppConstant.Mother_Reference;;
+				break;
+			case 3 :
+				ViewModel.ReferenceType=AppConstant.Mother_Reference;;
+				break;
+			}
+		}
+
 
 
 		partial void AddButtonTapped (NSObject sender)

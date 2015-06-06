@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddFamilyView">
             <connections>
                 <outlet property="AddButton" destination="HkY-tN-lcD" id="0qa-3S-iRc"/>
+                <outlet property="AnotherRefernceSegmentControl" destination="eDV-o2-9Lw" id="sF0-3n-1UC"/>
                 <outlet property="BirthLocationTextField" destination="MCb-nl-Qzu" id="AhH-ZA-lW7"/>
                 <outlet property="FirstNameTextField" destination="nmI-OK-KNh" id="Mj8-sW-i2c"/>
                 <outlet property="GenderSegmentControl" destination="nYL-CQ-MHX" id="nOY-RF-pdW"/>
@@ -40,7 +41,7 @@
                             <rect key="frame" x="19" y="92" width="286" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Middle Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KZu-Vp-v3k">
                             <rect key="frame" x="19" y="69" width="108" height="21"/>
@@ -60,7 +61,7 @@
                             <rect key="frame" x="19" y="154" width="286" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birth Year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VQU-Kr-muX">
                             <rect key="frame" x="19" y="192" width="108" height="21"/>
@@ -80,13 +81,13 @@
                             <rect key="frame" x="19" y="284" width="286" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="nmI-OK-KNh">
                             <rect key="frame" x="19" y="31" width="286" height="30"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                         </textField>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="nYL-CQ-MHX">
                             <rect key="frame" x="159" y="222" width="150" height="29"/>
@@ -130,7 +131,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HkY-tN-lcD">
-                            <rect key="frame" x="62" y="357" width="200" height="50"/>
+                            <rect key="frame" x="62" y="392" width="200" height="50"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -150,7 +151,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="wdg-PH-I16">
-                            <rect key="frame" x="159" y="321" width="150" height="29"/>
+                            <rect key="frame" x="155" y="321" width="150" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                             <segments>
                                 <segment title="Father"/>
@@ -160,6 +161,20 @@
                             <connections>
                                 <action selector="GenderSegmentControlChanged:" destination="-1" eventType="valueChanged" id="f4c-rL-faY"/>
                                 <action selector="_RefenceSegmentControl:" destination="-1" eventType="valueChanged" id="jtH-7b-XIm"/>
+                            </connections>
+                        </segmentedControl>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="eDV-o2-9Lw">
+                            <rect key="frame" x="16" y="357" width="292" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="GFather-F"/>
+                                <segment title="GMother-F"/>
+                                <segment title="GFather-M"/>
+                                <segment title="GMother-M"/>
+                            </segments>
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="AnotherReferenceSegmentControl:" destination="-1" eventType="valueChanged" id="Gyx-6k-RF1"/>
                             </connections>
                         </segmentedControl>
                     </subviews>
