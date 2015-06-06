@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Plugins.Messenger;
 
 namespace AncestorCloud.Shared
 {
@@ -42,6 +43,9 @@ namespace AncestorCloud.Shared
 					}
 				}
 			}
+
+			var messenger = Mvx.Resolve<IMvxMessenger> ();
+			messenger.Publish (new ShowMyFamilyViewMessage (this));
 
 			//List <People> tList = _databaseService.GetFamily ();
 		}

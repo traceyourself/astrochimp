@@ -130,7 +130,7 @@ namespace AncestorCloud.Droid
 			nextBtn.Click += (object sender, EventArgs e) => {
 				Utilities.LoggedInUsingFb = true;
 				ViewModel.NextButtonCommand.Execute(null);
-				ViewModel.Close();
+				//ViewModel.Close();
 				//ViewModel.CheckValues();
 			};
 

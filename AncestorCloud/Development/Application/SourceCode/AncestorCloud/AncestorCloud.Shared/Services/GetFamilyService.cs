@@ -131,10 +131,23 @@ namespace AncestorCloud.Shared
 									if(responseM.Status == ResponseStatus.OK){
 										People p = responseM.Content;
 
-										p.LoginUserLinkID = loginModel.UserEmail;
-										p.Relation = AppConstant.Sibling_comparison;
-										_databaseService.InsertFamilyMember(p);
-										FamilyMembers.Add(p);
+										try{
+											p.FirstName = p.FirstName ?? string.Empty;
+											p.MiddleName = p.MiddleName ?? string.Empty;
+											p.LastName = p.LastName ?? string.Empty;
+											p.Name = p.Name ?? string.Empty;
+
+											if(p.FirstName.Length > 0 || p.MiddleName.Length > 0 || p.LastName.Length > 0 || p.Name.Length > 0){
+												p.LoginUserLinkID = loginModel.UserEmail;
+												p.Relation = AppConstant.Sibling_comparison;
+												
+												_databaseService.InsertFamilyMember(p);
+												FamilyMembers.Add(p);
+											}
+										}catch(Exception e)
+										{
+											Mvx.Trace(e.StackTrace);
+										}
 									}
 								}else
 								{

@@ -13,12 +13,18 @@ namespace AncestorCloud.Shared.ViewModels
 		private readonly IDatabaseService _databaseService;
 
 		private readonly FbFamilyDataManager _fbManager;
+		IMvxMessenger messenger = Mvx.Resolve<IMvxMessenger> ();
+
+		private MvxSubscriptionToken showMyFamilyViewToken;
+
 
 		public FbFamilyViewModel(IDatabaseService  service)
 		{
 			_databaseService = service;
 			GetFbFamilyData ();
 			_fbManager = new FbFamilyDataManager ();
+			showMyFamilyViewToken = messenger.SubscribeOnMainThread<ShowMyFamilyViewMessage>(message => this.ShowMyFamilyViewModel());
+
 		}
 
 		#endregion
@@ -27,6 +33,9 @@ namespace AncestorCloud.Shared.ViewModels
 		public void ShowMyFamilyViewModel()
 		{
 			ShowViewModel <MyFamilyViewModel> ();
+			if (Mvx.CanResolve<IAndroidService> ()) {
+				Close ();
+			}
 		}
 
 		#endregion
@@ -76,7 +85,7 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 			AddSelectedFamily ();
 
-			ShowMyFamilyViewModel ();
+			//ShowMyFamilyViewModel ();
 		}
 
 		#region Properties
