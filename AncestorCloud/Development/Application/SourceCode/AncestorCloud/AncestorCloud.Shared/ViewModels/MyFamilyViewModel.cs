@@ -119,6 +119,7 @@ namespace AncestorCloud.Shared.ViewModels
 			LoginModel login = _databaseService.GetLoginDetails ();
 			List<People> list = _databaseService.RelativeMatching ("",login.UserEmail);
 			FamilyList = list;
+			FetchPercentageComplete ();
 		}
 		#endregion
 
@@ -259,8 +260,7 @@ namespace AncestorCloud.Shared.ViewModels
 					}
 				}
 			}
-
-
+				
 			/*****
 			ViewModel.ShowAddFamilyViewModel();
 			******/
