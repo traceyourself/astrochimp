@@ -260,8 +260,7 @@ namespace AncestorCloud.Shared.ViewModels
 					}
 				}
 			}
-
-
+				
 			/*****
 			ViewModel.ShowAddFamilyViewModel();
 			******/
