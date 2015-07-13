@@ -56,7 +56,7 @@ namespace AncestorCloud.Shared
 		public const string LOGIN_PASSWORD_ERROR="Password Missing";
 		public const string LOGIN_PASSWORD_ERROR_MESSAGE="Password is required, please enter a value for the field.";
 		public const string LOGIN_RESPONSE_ERROR="ERROR";
-		public const string LOGIN_RESPONSE_ERROR_MESSAGE="Not able to link Facebook user to OGF. Please log-in again.";
+		public const string LOGIN_RESPONSE_ERROR_MESSAGE="An error has occurred. Please try again.";
 
 
 		#endregion
@@ -105,7 +105,7 @@ namespace AncestorCloud.Shared
 		public const string SIGNUP_PASSWORD_ERROR="Password Missing";
 		public const string SIGNUP_PASSWORD_ERROR_MESSAGE="Password is required, please enter a value for the field.";
 		public const string SIGNUP_RESPONSE_ERROR="ERROR";
-		public const string SIGNUP_RESPONSE_ERROR_MESSAGE="User may already registered. Please try again";
+		public const string SIGNUP_RESPONSE_ERROR_MESSAGE="An error has occurred. Please try again.";
 
 		#endregion
 
