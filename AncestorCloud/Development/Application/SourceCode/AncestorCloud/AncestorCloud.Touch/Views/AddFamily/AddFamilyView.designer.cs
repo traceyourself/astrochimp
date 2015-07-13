@@ -16,6 +16,9 @@ namespace AncestorCloud.Touch
 		UIKit.UIButton AddButton { get; set; }
 
 		[Outlet]
+		UIKit.UISegmentedControl AnotherRefernceSegmentControl { get; set; }
+
+		[Outlet]
 		UIKit.UITextField BirthLocationTextField { get; set; }
 
 		[Outlet]
@@ -54,22 +57,23 @@ namespace AncestorCloud.Touch
 		[Action ("AddButtonTapped:")]
 		partial void AddButtonTapped (Foundation.NSObject sender);
 
+		[Action ("AnotherReferenceSegmentControl:")]
+		partial void AnotherReferenceSegmentControl (Foundation.NSObject sender);
+
 		[Action ("Birthlabel:")]
 		partial void Birthlabel (Foundation.NSObject sender);
 
 		[Action ("GenderSegmentControlChanged:")]
 		partial void GenderSegmentControlChanged (Foundation.NSObject sender);
+
+		[Action ("RelationPicerButtonTapped:")]
+		partial void RelationPicerButtonTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (RefernceLabel != null) {
-				RefernceLabel.Dispose ();
-				RefernceLabel = null;
-			}
-
-			if (RefernceSegmentControl != null) {
-				RefernceSegmentControl.Dispose ();
-				RefernceSegmentControl = null;
+			if (AnotherRefernceSegmentControl != null) {
+				AnotherRefernceSegmentControl.Dispose ();
+				AnotherRefernceSegmentControl = null;
 			}
 
 			if (AddButton != null) {
@@ -120,6 +124,16 @@ namespace AncestorCloud.Touch
 			if (PickerLabel != null) {
 				PickerLabel.Dispose ();
 				PickerLabel = null;
+			}
+
+			if (RefernceLabel != null) {
+				RefernceLabel.Dispose ();
+				RefernceLabel = null;
+			}
+
+			if (RefernceSegmentControl != null) {
+				RefernceSegmentControl.Dispose ();
+				RefernceSegmentControl = null;
 			}
 		}
 	}
