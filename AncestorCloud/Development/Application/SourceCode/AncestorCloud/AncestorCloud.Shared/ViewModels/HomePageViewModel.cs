@@ -59,5 +59,11 @@ namespace AncestorCloud.Shared.ViewModels
 			_storeCelebService.StoreCelebData (celebsDataString);
 		}
 		#endregion
+
+
+		/*public void BackButtonPressed()
+		{
+
+		}*/
 	}
 }

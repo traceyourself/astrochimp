@@ -126,12 +126,12 @@ namespace AncestorCloud.Shared.ViewModels
 			} 
 			else 
 			{
-				/*if (response.ResponseCode.Equals (AppConstant.DEVELOPER_NOT_LOGIN_CODE)) {
+				if (response.ResponseCode.Equals (AppConstant.DEVELOPER_NOT_LOGIN_CODE)) {
 					Mvx.Resolve<IAlert> ().ShowLogoutAlert (AlertConstant.AUTO_LOGIN_RESPONSE_ERROR_MESSAGE, AlertConstant.SUCCESS_ERROR);
 				} else {
-				*/
+				
 					Mvx.Resolve<IAlert> ().ShowAlert (AlertConstant.PROFILE_PIC_ERROR_MESSAGE, AlertConstant.PROFILE_PIC_ERROR);
-				//}
+				}
 			}
 		}
 

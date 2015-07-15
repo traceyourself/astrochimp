@@ -52,8 +52,13 @@ namespace AncestorCloud.Shared
 
 				ResponseModel<RelationshipFindResult> responsemodal = new ResponseModel<RelationshipFindResult>();
 				responsemodal.Status = ResponseStatus.OK;
+				if(result == null)
+				{
+					responsemodal.Status = ResponseStatus.Fail;
+				}
+				string code = dict[AppConstant.CODE].ToString();
+				responsemodal.ResponseCode = code;
 				responsemodal.Content = result;
-				responsemodal.ResponseCode = (string)dict[AppConstant.CODE];
 
 				return responsemodal;
 			}

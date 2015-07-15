@@ -28,7 +28,7 @@ namespace AncestorCloud.Shared
 		}
 		#endregion
 
-
+		#region Auto Logout methods
 		private void AddMessenger()
 		{
 			logoutToken = _mvxMessenger.SubscribeOnMainThread<LogoutMessage>(message => this.Logout());
@@ -41,10 +41,19 @@ namespace AncestorCloud.Shared
 
 		public void Logout()
 		{
-			ClearDatabase ();
-			ShowViewModel<HomePageViewModel>();
-			this.Close(this);
+			if (Mvx.CanResolve<IAndroidService> ()) {
+				ClearDatabase ();
+				this.Close (this);
+				if(!App.IsHomePageShown){
+					ShowViewModel<HomePageViewModel> ();
+					App.IsHomePageShown = true;
+				}
+			} else {
+				//IOS part
+			}
 		}
+		#endregion
+
 
 		#region Properties
 		private string title = string.Empty;
