@@ -53,13 +53,13 @@ namespace AncestorCloud.Shared
 				ResponseModel<RelationshipFindResult> responsemodal = new ResponseModel<RelationshipFindResult>();
 				responsemodal.Status = ResponseStatus.OK;
 				responsemodal.Content = result;
-				//responsemodal.ResponseCode = dict[AppConstant.CODE];
+				responsemodal.ResponseCode = (string)dict[AppConstant.CODE];
 
 				return responsemodal;
 			}
 			catch(Exception ex)
 			{
-				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
+				System.Diagnostics.Debug.WriteLine (ex.InnerException);
 				//return CommonConstants.FALSE;
 				ResponseModel<RelationshipFindResult> responsemodal = new ResponseModel<RelationshipFindResult>();
 				responsemodal.Status = ResponseStatus.Fail;

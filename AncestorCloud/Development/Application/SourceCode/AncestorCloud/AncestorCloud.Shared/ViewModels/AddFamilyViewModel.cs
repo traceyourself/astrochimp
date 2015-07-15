@@ -279,9 +279,9 @@ namespace AncestorCloud.Shared.ViewModels
 							Alert.ShowAlert (AlertConstant.SUCCESS_RESPONSE_ALERT, AlertConstant.SUCCESS_ALERT);
 							Close ();
 						}
-						/*else if (response.ResponseCode.Equals (AppConstant.DEVELOPER_NOT_LOGIN_CODE)) {
+						else if (response.ResponseCode.Equals (AppConstant.DEVELOPER_NOT_LOGIN_CODE)) {
 							Alert.ShowLogoutAlert (AlertConstant.AUTO_LOGIN_RESPONSE_ERROR_MESSAGE, AlertConstant.SUCCESS_ERROR);
-						} */
+						}
 						else {
 							Alert.ShowAlert (AlertConstant.SUCCESS_ERROR_MESSAGE, AlertConstant.SUCCESS_ERROR);
 						}

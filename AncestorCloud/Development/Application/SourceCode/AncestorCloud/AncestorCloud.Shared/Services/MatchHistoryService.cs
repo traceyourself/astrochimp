@@ -63,7 +63,7 @@ namespace AncestorCloud.Shared
 					{
 						responsemodal.Status = ResponseStatus.Fail;
 						responsemodal.Content = new List<RelationshipFindResult>();
-						//responsemodal.ResponseCode = dict[AppConstant.CODE];
+						responsemodal.ResponseCode = (string)dict[AppConstant.CODE];
 					}
 				}
 

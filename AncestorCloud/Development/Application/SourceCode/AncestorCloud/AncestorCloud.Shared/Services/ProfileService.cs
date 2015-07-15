@@ -68,7 +68,7 @@ namespace AncestorCloud.Shared
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
-						//responsemodal.ResponseCode = dict[AppConstant.CODE];
+						responsemodal.ResponseCode = (string)dict[AppConstant.CODE];
 					}
 				}
 				return responsemodal;

@@ -186,7 +186,7 @@ namespace AncestorCloud.Shared.ViewModels
 				LoginModel data = _databaseService.GetLoginDetails ();
 
 				//TODO : Remove this Fake Session Id after Testing.
-				ResponseModel<RelationshipFindResult> result = await _matchService.Match (data.Value ,FirstPersonOgfn,SecondPersonOgfn);//"747510545", "747227929");
+				ResponseModel<RelationshipFindResult> result = await _matchService.Match (/*data.Value*/ "Fake Id" ,FirstPersonOgfn,SecondPersonOgfn);//"747510545", "747227929");
 
 				if (result.Status == ResponseStatus.OK) {
 					if (result.Content.Found) {
