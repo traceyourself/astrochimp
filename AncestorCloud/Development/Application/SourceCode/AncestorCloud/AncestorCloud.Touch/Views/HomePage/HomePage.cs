@@ -114,6 +114,13 @@ namespace AncestorCloud.Touch
 			var messenge = Mvx.Resolve<IMvxMessenger>();
 			messenge.Publish(new FlyOutCloseMessage(this));
 
+
+			if (View.Frame.Width <= 320) {
+				CGRect lblFrame = collectionViewObj.Frame;
+				lblFrame.X -= 26;
+				collectionViewObj.Frame = lblFrame; 
+			}
+
 			if(App.IsAutoLogin)
 				AdjustViews ();
 
@@ -123,29 +130,33 @@ namespace AncestorCloud.Touch
 
 		void AdjustViews()
 		{
+			float xOffset = 20;
 
-		
+			if(View.Frame.Width <=320){
+				xOffset = 0;
+			}
+
 			collectionViewObj.Center = new CGPoint(View.Frame.Width/2,collectionViewObj.Center.Y); 
 			//collectionViewObj.BackgroundColor = UIColor.Green;
 
 			CGRect lblFrame = swipeToLearnLabel.Frame;
 			lblFrame.Y = collectionViewObj.Frame.Y + collectionViewObj.Frame.Height;
-			lblFrame.X -= 20;
+			lblFrame.X -= xOffset;
 			swipeToLearnLabel.Frame = lblFrame; 
 
 			CGRect pageRect = pageObj.Frame;
 			pageRect.Y = swipeToLearnLabel.Frame.Y + swipeToLearnLabel.Frame.Height + 3;
-			pageRect.X -= 30;
+			pageRect.X -= xOffset+10;
 			pageObj.Frame = pageRect; 
 
 			CGRect signUpRect = signUpButton.Frame;
 			signUpRect.Y = pageObj.Frame.Y + pageObj.Frame.Height + 40;
-			signUpRect.X -= 20;
+			signUpRect.X -= xOffset;
 			signUpButton.Frame = signUpRect;
 
 			CGRect loginRect = loginButton.Frame;
 			loginRect.Y = signUpButton.Frame.Y + signUpButton.Frame.Height + 5;
-			loginRect.X -= 20;
+			loginRect.X -= xOffset;
 			loginButton.Frame = loginRect;
 
 		}
