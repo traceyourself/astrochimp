@@ -46,6 +46,12 @@ namespace AncestorCloud.Droid
 
 			ApplyActions ();
 		
+		}
+
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+
 			LoginModel modal = ViewModel.GetUserData();
 			userNameMenu.Text = modal.UserEmail;
 
@@ -55,12 +61,6 @@ namespace AncestorCloud.Droid
 					new AvatarImageTask (this,avatarUrl).Execute();
 				}
 			}
-
-		}
-
-		protected override void OnResume ()
-		{
-			base.OnResume ();
 
 			ApplyData ();
 

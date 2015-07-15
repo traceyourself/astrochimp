@@ -24,7 +24,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 
 //			if(!App.IsAutoLogin)
-//				base.ClearDatabase ();
+				//base.ClearDatabase ();
 		}
 
 		public void Init(ParameterClass _params)

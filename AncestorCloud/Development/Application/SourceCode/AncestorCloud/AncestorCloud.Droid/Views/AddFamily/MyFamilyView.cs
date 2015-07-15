@@ -243,10 +243,6 @@ namespace AncestorCloud.Droid
 			resultList.Add (listStruct);
 			//=========
 
-
-
-
-
 			return resultList;
 		}
 		#endregion
@@ -256,8 +252,9 @@ namespace AncestorCloud.Droid
 		{
 			People peopleData = dataList[position].PersonData;
 			String gender = "";
+			//Android.Resource.Style.ThemeTranslucentNoTitleBar
+			editDialog = new Dialog (this,Resource.Style.TransparentDialog);
 
-			editDialog = new Dialog (this,Android.Resource.Style.ThemeTranslucentNoTitleBar);
 			editDialog.SetContentView (Resource.Layout.edit_family_dialog);
 
 			TextView nameTitle = editDialog.FindViewById<TextView> (Resource.Id.name_title);
@@ -333,7 +330,7 @@ namespace AncestorCloud.Droid
 			List<string> populateList = new List<string> ();
 
 			Calendar cal = Calendar.GetInstance (Java.Util.Locale.Us);
-			int start = 1900;
+			int start = 1850;
 			int upto = cal.Get (Calendar.Year);
 
 			for(int i=start;i<=upto;i++){

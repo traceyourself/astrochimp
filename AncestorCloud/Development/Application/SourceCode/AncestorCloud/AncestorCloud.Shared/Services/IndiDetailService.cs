@@ -76,7 +76,6 @@ namespace AncestorCloud.Shared
 				return responsemodal;
 			}
 			finally{
-
 				_loader.hideLoader();
 			}
 		}

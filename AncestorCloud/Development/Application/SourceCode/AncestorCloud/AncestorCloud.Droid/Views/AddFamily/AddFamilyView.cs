@@ -103,7 +103,7 @@ namespace AncestorCloud.Droid
 			List<string> populateList = new List<string> ();
 
 			Calendar cal = Calendar.GetInstance (Java.Util.Locale.Us);
-			int start = 1900;
+			int start = 1850;
 			int upto = cal.Get (Calendar.Year);
 
 			for(int i=start;i<=upto;i++){

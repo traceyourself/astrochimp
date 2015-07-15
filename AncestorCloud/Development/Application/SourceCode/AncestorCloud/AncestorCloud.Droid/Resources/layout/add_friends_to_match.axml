@@ -34,7 +34,7 @@
                 android:layout_toRightOf="@+id/left_fb_img"
                 android:layout_toLeftOf="@+id/right_arr_img"
                 android:textColor="@color/gray_login_color"
-                android:layout_marginLeft="7dp"
+                android:layout_marginLeft="9dp"
                 android:layout_marginTop="5dp" />
             <TextView
                 android:id="@+id/first_desc_txt"
@@ -45,7 +45,7 @@
                 android:textColor="@color/gray_login_color"
                 android:layout_toRightOf="@+id/left_fb_img"
                 android:layout_toLeftOf="@+id/right_arr_img"
-                android:layout_marginLeft="7dp"
+                android:layout_marginLeft="9dp"
                 android:layout_below="@+id/first_title_txt"
                 android:layout_marginTop="1dp" />
             <ImageView
@@ -68,8 +68,8 @@
             android:padding="7dp">
             <ImageView
                 android:id="@+id/left_fb_img"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
                 android:src="@drawable/contacts_grey"
                 android:layout_centerVertical="true" />
             <TextView
@@ -115,8 +115,8 @@
             android:padding="7dp">
             <ImageView
                 android:id="@+id/left_fb_img"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
                 android:src="@drawable/star_grey"
                 android:layout_centerVertical="true" />
             <TextView

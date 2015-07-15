@@ -29,10 +29,12 @@ namespace AncestorCloud.Shared.ViewModels
 
 				LinkFbUserData.Execute (null);
 			}
+
+			App.IsHomePageShown = false;
 		}
 
 		#region Globals
-		private readonly IDatabaseService _databaseService;
+		private IDatabaseService _databaseService;
 		#endregion
 
 		#region Init
@@ -70,6 +72,7 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			LoginModel data = new LoginModel ();
 			try{
+				_databaseService = Mvx.Resolve<IDatabaseService> ();
 				data = _databaseService.GetLoginDetails ();
 			}catch(Exception e){
 				Mvx.Trace (e.StackTrace);

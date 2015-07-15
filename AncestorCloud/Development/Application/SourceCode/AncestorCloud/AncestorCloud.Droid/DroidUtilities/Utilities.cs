@@ -101,27 +101,32 @@ namespace AncestorCloud.Droid
 		}
 
 		public static Bitmap getRoundedShape(Bitmap scaleBitmapImage,int radius) {
+			if (scaleBitmapImage != null) {
+				
+				int targetWidth = radius + radius;
+				int targetHeight = radius + radius;
+				Bitmap targetBitmap = Bitmap.CreateBitmap (targetWidth, 
+					                      targetHeight, Bitmap.Config.Argb8888);
 
-			int targetWidth = radius+radius;
-			int targetHeight = radius+radius;
-			Bitmap targetBitmap = Bitmap.CreateBitmap(targetWidth, 
-				targetHeight,Bitmap.Config.Argb8888);
+				Canvas canvas = new Canvas (targetBitmap);
+				Android.Graphics.Path path = new Android.Graphics.Path ();
+				path.AddCircle (((float)targetWidth - 1) / 2,
+					((float)targetHeight - 1) / 2,
+					(Math.Min (((float)targetWidth), 
+						((float)targetHeight)) / 2),
+					Android.Graphics.Path.Direction.Ccw);
 
-			Canvas canvas = new Canvas(targetBitmap);
-			Android.Graphics.Path path = new Android.Graphics.Path();
-			path.AddCircle(((float) targetWidth - 1) / 2,
-				((float) targetHeight - 1) / 2,
-				(Math.Min(((float) targetWidth), 
-					((float) targetHeight)) / 2),
-				Android.Graphics.Path.Direction.Ccw);
+				canvas.ClipPath (path);
+				Bitmap sourceBitmap = scaleBitmapImage;
+				canvas.DrawBitmap (sourceBitmap, 
+					new Rect (0, 0, sourceBitmap.Width,
+						sourceBitmap.Height), 
+					new Rect (0, 0, targetWidth, targetHeight), null);
+				return targetBitmap;
+			} else {
+				return scaleBitmapImage;
+			}
 
-			canvas.ClipPath(path);
-			Bitmap sourceBitmap = scaleBitmapImage;
-			canvas.DrawBitmap(sourceBitmap, 
-				new Rect(0, 0, sourceBitmap.Width,
-					sourceBitmap.Height), 
-				new Rect(0, 0, targetWidth, targetHeight), null);
-			return targetBitmap;
 		}  
 		#endregion
 

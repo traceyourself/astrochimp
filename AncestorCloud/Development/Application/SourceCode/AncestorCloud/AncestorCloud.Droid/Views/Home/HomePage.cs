@@ -96,6 +96,12 @@ namespace AncestorCloud.Droid
 		}
 		#endregion
 
+
+		public override void OnBackPressed ()
+		{
+			//base.OnBackPressed ();
+		}
+
 	}
 
 	#region Page change listener

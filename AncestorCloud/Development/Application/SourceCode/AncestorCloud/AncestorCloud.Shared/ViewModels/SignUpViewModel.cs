@@ -276,17 +276,20 @@ namespace AncestorCloud.Shared.ViewModels
 				ResponseModel<LoginModel> response = await _ISignUpService.SignUp (FirstName,LastName, Email, Password, AppConstant.DEVELOPERID, AppConstant.DEVELOPERPASSWORD);
 
 				if (response.Status == ResponseStatus.OK) {
+
+					_databaseService.InsertLoginDetails (response.Content as LoginModel);
+
 					//tell View about data arriving
 					//_databaseService.InsertLoginDetails(response.Content as LoginModel);
 
-					ResponseModel<LoginModel> loginResponse = await _groupService.CreateGroup (response.Content as LoginModel);
+					/*ResponseModel<LoginModel> loginResponse = await _groupService.CreateGroup (response.Content as LoginModel);
 
-					if (loginResponse.Status == ResponseStatus.OK) {
+					if (loginResponse.Status == ResponseStatus.OK) {*/
 					
-						ResponseModel<LoginModel> famResponse = await _famService.CreateFamily (loginResponse.Content as LoginModel);
+						/*ResponseModel<LoginModel> famResponse = await _famService.CreateFamily (loginResponse.Content as LoginModel);
 					
 						if (famResponse.Status == ResponseStatus.OK) {
-							_databaseService.InsertLoginDetails (famResponse.Content as LoginModel);
+							_databaseService.InsertLoginDetails (famResponse.Content as LoginModel);*/
 							//_databaseService.GetLoginDetails ();
 
 							if (Mvx.CanResolve<IAndroidService> ()) {
@@ -301,7 +304,7 @@ namespace AncestorCloud.Shared.ViewModels
 //									CallFlyoutCommand.Execute(null);
 								CloseCommand.Execute (null);
 							}
-						}
+						/*}
 						else {
 							Alert.ShowAlert (AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
 						}
@@ -309,7 +312,7 @@ namespace AncestorCloud.Shared.ViewModels
 					else
 					{
 						Alert.ShowAlert (AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
-					}
+					}*/
 				}
 			}
 		}

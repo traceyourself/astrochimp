@@ -17,5 +17,7 @@
   	<color name="dark_div_color">#858585</color>
   	<color name="light_blue_color">#94C4EC</color>
 
+  	<color name="blur_color">#80000000</color>
+
 </resources>
 
