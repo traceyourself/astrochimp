@@ -133,13 +133,13 @@ namespace AncestorCloud.Shared.ViewModels
 					_alert.ShowAlertWithOk(AlertConstant.FB_SUCCESS_MESSAGE,AlertConstant.FB_SUCCESS,AlertType.OKCancelSelect);
 				}
 				else
-				{ 	/*if(friendResponse.ResponseCode.Equals(AppConstant.DEVELOPER_NOT_LOGIN_CODE))
+				{ 	if(friendResponse.ResponseCode.Equals(AppConstant.DEVELOPER_NOT_LOGIN_CODE))
 					{
 						_alert.ShowLogoutAlert (AlertConstant.AUTO_LOGIN_RESPONSE_ERROR_MESSAGE,AlertConstant.SUCCESS_ERROR);
 					}
-					else{*/
+					else{
 						_alert.ShowAlert(AlertConstant.FB_ERROR_MESSAGE,AlertConstant.FB_ERROR);
-					//}
+					}
 				}
 			}
 		}

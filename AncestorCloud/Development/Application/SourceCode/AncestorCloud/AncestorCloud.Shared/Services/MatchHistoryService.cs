@@ -32,7 +32,7 @@ namespace AncestorCloud.Shared
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.SESSIONID]=model.Value;
+				param[AppConstant.SESSIONID] = model.Value;
 
 				//https://ws.onegreatfamily.com/v11.02/Individual.svc/RelationshipFindHistoryGet?sessionId=bvbushd0mlei3hcvuvcahba1
 
@@ -63,7 +63,7 @@ namespace AncestorCloud.Shared
 					{
 						responsemodal.Status = ResponseStatus.Fail;
 						responsemodal.Content = new List<RelationshipFindResult>();
-						//responsemodal.ResponseCode = dict[AppConstant.CODE];
+						responsemodal.ResponseCode = dict[AppConstant.CODE].ToString();
 					}
 				}
 
