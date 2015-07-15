@@ -38,9 +38,10 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = Mvx.Resolve<IDatabaseService>();
 			Alert = alert;
 			_facebookLinkManager = new FaceBookLinkManager ();
+	
+			//Email = "kumar.aditya@gmail.com";
+			//Password = "pass";
 
-//			Email = "kumar.aditya@gmail.com";
-//			Password = "pass";
 
 			_reachabilityService = reachabilty;
 			//_groupService = _service;
@@ -382,6 +383,7 @@ namespace AncestorCloud.Shared.ViewModels
 				_databaseService.InsertRelative (people);
 			}
 
+			//List<People> listf = _databaseService.GetFamily(fbUser);
 		}
 
 		public void SaveFbFriendsData()
@@ -400,9 +402,7 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
-
 		#region Facebook User Link Service
-
 		public async void DoFacebookLoginUserLink()
 		{
 			ResponseStatus status = await _facebookLinkManager.LinkFaceBookLoginUser ();
@@ -426,10 +426,6 @@ namespace AncestorCloud.Shared.ViewModels
 				CloseCommand.Execute (null);
 			}
 		}
-
 		#endregion
-
 	}
-
 }
-

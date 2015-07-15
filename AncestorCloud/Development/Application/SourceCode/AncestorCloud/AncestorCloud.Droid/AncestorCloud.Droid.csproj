@@ -309,6 +309,7 @@
     <AndroidResource Include="Resources\drawable\share_Invite.png" />
     <AndroidResource Include="Resources\drawable\splash.png" />
     <AndroidResource Include="Resources\layout\login.axml" />
+    <AndroidResource Include="Resources\drawable\ref_back.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

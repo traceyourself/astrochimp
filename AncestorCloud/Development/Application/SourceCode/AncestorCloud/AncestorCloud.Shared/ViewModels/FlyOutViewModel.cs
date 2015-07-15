@@ -220,7 +220,6 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
-
 		private void DoUpdate()
 		{
 			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();

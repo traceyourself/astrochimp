@@ -57,6 +57,7 @@ namespace AncestorCloud.Shared
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
+						//responsemodal.ResponseCode = dict[AppConstant.CODE];
 					}
 				}
 
@@ -70,6 +71,7 @@ namespace AncestorCloud.Shared
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 				responsemodal.Status = ResponseStatus.Fail;
 				responsemodal.Content= login;
+				responsemodal.ResponseCode = "0";
 				return responsemodal;
 			}
 			finally{
@@ -77,13 +79,10 @@ namespace AncestorCloud.Shared
 				_loader.hideLoader();
 			}
 		}
-
 		#endregion
 
 
-
 		#region family implementation
-
 		public async System.Threading.Tasks.Task<ResponseModel<People>> GetIndiFamilyDetails (string ogfn,string sessionid)
 		{
 			_loader.showLoader ();
@@ -122,9 +121,14 @@ namespace AncestorCloud.Shared
 
 						returnPeopleData.IndiOgfn = ogfn; 
 
+
+						Mvx.Trace(returnPeopleData.Name+" : "+returnPeopleData.Relation+" : "+returnPeopleData.FamOGFN);
+
+
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
+						//responsemodal.ResponseCode = dict[AppConstant.CODE];
 					}
 				}
 
@@ -138,10 +142,10 @@ namespace AncestorCloud.Shared
 				ResponseModel<People> responsemodal = new ResponseModel<People>();
 				responsemodal.Status = ResponseStatus.Fail;
 				responsemodal.Content= new People();
+				responsemodal.ResponseCode = "0";
 				return responsemodal;
 			}
 			finally{
-
 				_loader.hideLoader();
 			}
 		}

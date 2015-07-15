@@ -22,7 +22,8 @@ namespace AncestorCloud.Shared.ViewModels
 			var messenge = Mvx.Resolve<IMvxMessenger>();
 			messenge.Publish(new FlyOutCloseMessage(this));
 
-			base.ClearDatabase ();
+			if(!App.IsAutoLogin)
+				base.ClearDatabase ();
 		}
 
 		public void Init()
@@ -35,17 +36,15 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			ShowViewModel <LoginViewModel> ();
 		}
-
 		#endregion
 
 		#region ShowSignViewModel
-
 		public void ShowSignViewModel()
 		{
 			ShowViewModel <SignUpViewModel> ();
 		}
-        
 		#endregion
+
 		#region Close Method
 		public void Close()
 		{
@@ -53,18 +52,12 @@ namespace AncestorCloud.Shared.ViewModels
 		}
 		#endregion
 
-
 		#region
-
 		private void StoreCelebsData()
 		{
 			string celebsDataString = _fileService.GetCelebsDataString ();
-
 			_storeCelebService.StoreCelebData (celebsDataString);
 		}
-
 		#endregion
 	}
 }
-
-

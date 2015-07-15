@@ -16,6 +16,7 @@ namespace AncestorCloud.Shared
 		void DeleteRelative(People relative);
 		void InsertRelatives(List<People> relatives);
 		List<People> RelativeMatching(string relationFilter, string userID);
+		List<People> RelativeMatchingExact (string relationFilter, string userID);
 		List<People> GetFamily(User user);
 
 		void InsertFBFriend (People relative);

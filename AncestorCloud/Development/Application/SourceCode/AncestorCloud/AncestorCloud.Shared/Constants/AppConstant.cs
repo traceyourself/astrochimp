@@ -26,6 +26,10 @@ namespace AncestorCloud.Shared
 
 	static public class AppConstant
 	{
+
+		public const string DEVELOPER_NOT_LOGIN_CODE = "27011";
+
+
 		#region FB Constants
 		public const string FBAPIKEY = "1427298800906536";//1428257997477283//591314537670509//1427298800906536
 		public const string FBAPISECRETKEY = "bb85e6307b0ac87085e8cd8f250977e4";//141797ed935391946dd464c525495a0b//659bacca4a45654358bb632f5607eeb0//bb85e6307b0ac87085e8cd8f250977e4

@@ -85,6 +85,7 @@ namespace AncestorCloud.Shared.ViewModels
 		#region logout
 		public void Logout()
 		{
+			base.ClearDatabase ();
 			ShowViewModel<HomePageViewModel> ();
 			this.Close (this);
 		}
@@ -125,7 +126,12 @@ namespace AncestorCloud.Shared.ViewModels
 			} 
 			else 
 			{
-				Mvx.Resolve<IAlert> ().ShowAlert (AlertConstant.PROFILE_PIC_ERROR_MESSAGE,AlertConstant.PROFILE_PIC_ERROR);
+				/*if (response.ResponseCode.Equals (AppConstant.DEVELOPER_NOT_LOGIN_CODE)) {
+					Mvx.Resolve<IAlert> ().ShowLogoutAlert (AlertConstant.AUTO_LOGIN_RESPONSE_ERROR_MESSAGE, AlertConstant.SUCCESS_ERROR);
+				} else {
+				*/
+					Mvx.Resolve<IAlert> ().ShowAlert (AlertConstant.PROFILE_PIC_ERROR_MESSAGE, AlertConstant.PROFILE_PIC_ERROR);
+				//}
 			}
 		}
 

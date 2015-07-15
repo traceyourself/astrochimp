@@ -116,7 +116,12 @@ namespace AncestorCloud.Droid
 		public void ImageUploadedHandler()
 		{
 			Utilities.CurrentUserimage = CurrentImage;
-			ViewModel.Close();
+			if (ViewModel.IsFromSignup) {
+				ViewModel.ShowFamiyViewModel ();
+				ViewModel.Close();
+			} else {
+				ViewModel.Close();
+			}
 		}
 		#endregion
 
@@ -137,6 +142,11 @@ namespace AncestorCloud.Droid
 		}
 		#endregion
 
+
+		public override void OnBackPressed ()
+		{
+			//base.OnBackPressed ();
+		}
 
 		public void CreateImageOptionDialog()
 		{

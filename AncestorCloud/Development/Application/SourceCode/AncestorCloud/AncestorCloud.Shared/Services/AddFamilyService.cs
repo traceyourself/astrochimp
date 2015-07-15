@@ -68,6 +68,8 @@ namespace AncestorCloud.Shared
 					responseModel.Status = ResponseStatus.Fail;
 				}
 
+				responseModel.ResponseCode = responsemodal.Code;
+
 				return responseModel as ResponseModel<People> ;
 			}
 			catch(Exception ex)
@@ -76,6 +78,7 @@ namespace AncestorCloud.Shared
 				//return CommonConstants.FALSE;
 				ResponseModel<ResponseDataModel> responsemodal = new ResponseModel<ResponseDataModel>();
 				responsemodal.Status = ResponseStatus.Fail;
+				responsemodal.ResponseCode = "0";
 
 				return responseModel as ResponseModel<People> ;
 			}
@@ -86,8 +89,8 @@ namespace AncestorCloud.Shared
 		}
 		#endregion
 
-		#region  implementation
 
+		#region  implementation
 		public async Task<ResponseModel<People>> AddFamilyMember(People model)
 		{
 			_loader.showLoader ();
@@ -131,9 +134,13 @@ namespace AncestorCloud.Shared
 						responsemodal.Status = ResponseStatus.Fail;
 					}
 
-				}else{
+				}else {
 					responsemodal.Status = ResponseStatus.Fail;
+					responseModel.Status = ResponseStatus.Fail;
+					responseModel.ResponseCode = responsemodal.Code;
 				}
+
+
 
 				return responseModel as ResponseModel<People> ;
 			}
@@ -143,6 +150,7 @@ namespace AncestorCloud.Shared
 				//return CommonConstants.FALSE;
 				ResponseModel<People> responsemodal = new ResponseModel<People>();
 				responsemodal.Status = ResponseStatus.Fail;
+				responsemodal.ResponseCode = "0";
 
 				return responsemodal as ResponseModel<People> ;
 			}
@@ -155,7 +163,6 @@ namespace AncestorCloud.Shared
 
 
 		#region Add Relationship
-
 		public async Task<ResponseModel<People>> AddFamilyMemberRelation(People model)
 		{
 			_loader.showLoader ();
@@ -191,13 +198,13 @@ namespace AncestorCloud.Shared
 				ResponseDataModel responsemodal = DataParser.GetAddMemberRelationDetails (dict);
 
 				if(responsemodal.Code.Equals("0")){
-					
 					responseModel.Status = ResponseStatus.OK;	
 				}else{
 					responseModel.Status = ResponseStatus.Fail;
 				}
 
 				responseModel.Content = model;
+				responseModel.ResponseCode = responsemodal.Code;
 				return responseModel as ResponseModel<People> ;
 			}
 			catch(Exception ex)
@@ -206,11 +213,10 @@ namespace AncestorCloud.Shared
 				//return CommonConstants.FALSE;
 				ResponseModel<ResponseDataModel> responsemodal = new ResponseModel<ResponseDataModel>();
 				responsemodal.Status = ResponseStatus.Fail;
-
+				responsemodal.ResponseCode = "0";
 				return responseModel as ResponseModel<People> ;
 			}
 			finally{
-
 				_loader.hideLoader();
 			}
 		}
@@ -261,22 +267,17 @@ namespace AncestorCloud.Shared
 				else {
 					type = AppConstant.UNKNOWN_RELATIONSHIP;
 				}
-
-
-
 			}
 			return type;
 		}
 
 		#region Helper Methods
-
 		string GetName(People member)
 		{
 			//return String.Format ("{0} \"{1}\" /{2}/", member.FirstName, member.MiddleName, member.LastName);
 
 			return String.Format ("{0} {1} {2}", member.FirstName, member.MiddleName, member.LastName);
 		}
-
 		#endregion
 	}
 }

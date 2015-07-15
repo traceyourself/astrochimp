@@ -18,6 +18,7 @@ namespace AncestorCloud.Shared
 		{
 			_databaseService = Mvx.Resolve<IDatabaseService> ();
 			Mvx.RegisterType<IMvxJsonConverter, MvxJsonConverter>();
+
 		}
 
 		#endregion

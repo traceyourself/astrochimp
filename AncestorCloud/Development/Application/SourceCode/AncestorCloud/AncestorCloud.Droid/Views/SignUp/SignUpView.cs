@@ -127,6 +127,8 @@ namespace AncestorCloud.Droid
 
 						ViewModel.FbResponseText = response.Result.GetResponseText();
 
+						Mvx.Trace("FB response : "+ViewModel.FbResponseText);
+
 						ViewModel.SaveFbData();
 
 						//Mvx.Trace("saved result of me ");
@@ -136,18 +138,17 @@ namespace AncestorCloud.Droid
 
 							//System.Diagnostics.Debug.WriteLine (famResponse.Result.GetResponseText());
 							ViewModel.FbFamilyResponseText = famResponse.Result.GetResponseText();
-
+							Mvx.Trace("FB family res : "+ViewModel.FbFamilyResponseText);
 							ViewModel.SaveFbFamilyData();
-
 							//Mvx.Trace("saved result of family ");
-
 
 							var friendRequest = facebook.CreateRequest (StringConstants.GET_METHOD_TYPE, new Uri (StringConstants.FB_GRAPH_TAGGABLE_FRIENDS_URL),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
 
 							friendRequest.GetResponseAsync().ContinueWith(friendResponse => {
 								//System.Diagnostics.Debug.WriteLine ("friendresponse :"+friendResponse.Result.GetResponseText());
 								ViewModel.FbFriendResponseText = friendResponse.Result.GetResponseText();
-								ViewModel.SaveFbFriendsData();  	
+								ViewModel.SaveFbFriendsData();  
+								Mvx.Trace("FB friends res : "+ViewModel.FbFriendResponseText);
 
 								//Mvx.Trace("saved result of taggable friends ");
 

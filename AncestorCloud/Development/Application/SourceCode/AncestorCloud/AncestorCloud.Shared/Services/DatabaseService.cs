@@ -184,6 +184,27 @@ namespace AncestorCloud.Shared
 			return list;
 		}
 
+		public List<People> RelativeMatchingExact(string relationFilter, string userID)
+		{
+			if (relationFilter == null)
+				throw new ArgumentNullException ("relationFilter");
+
+			if (userID == null)
+				throw new ArgumentNullException ("userID");
+
+			List<People> list = _connection.Table<People>().Where(x => x.Relation.Contains(relationFilter) && x.LoginUserLinkID.Contains(userID)).ToList();
+
+			List<People> returnList = new List<People>();
+			foreach(People p in list)
+			{
+				if(p.Relation.Equals(relationFilter)){
+					returnList.Add (p);
+				}
+			}
+
+			return returnList;
+		}
+
 
 		public void InsertRelatives(List<People> relatives)
 		{

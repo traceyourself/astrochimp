@@ -33,7 +33,6 @@ namespace AncestorCloud.Shared
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.RELATIONSHIP_MATCH_SERVICE,param);
 
-				//String url = "https://wsdev.onegreatfamily.com/v11.02/User.svc/Signin?username="+email+"&Password="+password+"&DeveloperId="+developerId+"&DeveloperPassword="+developerPassword;
 				Mvx.Trace(url);
 
 				var response = await client.GetAsync(url);
@@ -53,7 +52,9 @@ namespace AncestorCloud.Shared
 
 				ResponseModel<RelationshipFindResult> responsemodal = new ResponseModel<RelationshipFindResult>();
 				responsemodal.Status = ResponseStatus.OK;
-				responsemodal.Content= result;
+				responsemodal.Content = result;
+				//responsemodal.ResponseCode = dict[AppConstant.CODE];
+
 				return responsemodal;
 			}
 			catch(Exception ex)
@@ -62,6 +63,7 @@ namespace AncestorCloud.Shared
 				//return CommonConstants.FALSE;
 				ResponseModel<RelationshipFindResult> responsemodal = new ResponseModel<RelationshipFindResult>();
 				responsemodal.Status = ResponseStatus.Fail;
+				responsemodal.ResponseCode = "0";
 				return responsemodal;
 			}
 			finally{

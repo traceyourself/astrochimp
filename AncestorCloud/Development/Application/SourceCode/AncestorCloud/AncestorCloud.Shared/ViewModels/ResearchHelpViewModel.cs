@@ -69,6 +69,7 @@ namespace AncestorCloud.Shared.ViewModels
 		#region logout
 		public void Logout()
 		{
+			base.ClearDatabase ();
 			ShowViewModel<HomePageViewModel>();
 			this.Close(this);
 		}
@@ -80,7 +81,5 @@ namespace AncestorCloud.Shared.ViewModels
 			ShowViewModel<ProfilePicViewModel> (new ProfilePicViewModel.DetailParameter { FromSignUp = false });
 		}
 		#endregion
-
 	}
 }
-

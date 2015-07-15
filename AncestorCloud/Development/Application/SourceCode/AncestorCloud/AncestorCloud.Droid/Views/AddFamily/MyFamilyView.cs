@@ -70,7 +70,7 @@ namespace AncestorCloud.Droid
 			//CreateListAdapter ();
 
 			//For checking after editing a member
-			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.CreateListAdapter ());
+			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.CreateListAdapter (true));
 			percentToken = _messenger.SubscribeOnMainThread<PercentageMessage>(Message => this.SetPercentage());
 			//ViewModel.FetchPercentageComplete ();
 			ViewModel.GetFamilyMembersFromServer ();
@@ -129,9 +129,11 @@ namespace AncestorCloud.Droid
 		}
 
 		#region Create List Adapter
-		private void CreateListAdapter ()
+		private void CreateListAdapter (bool reload)
 		{
-			//ViewModel.GetFbFamilyData ();
+			if(reload){
+				ViewModel.GetFbFamilyData ();
+			}
 			dataList = FilterDataList (ViewModel.FamilyList);
 
 			MyFamilyListAdapter adapter = new MyFamilyListAdapter (this,dataList);
@@ -141,6 +143,7 @@ namespace AncestorCloud.Droid
 		}
 		#endregion
 
+
 		public void SetPercentage()
 		{
 			percentText.Text = ViewModel._PercentageComplete+Resources.GetString(Resource.String.percent_matching_confidence);
@@ -149,6 +152,10 @@ namespace AncestorCloud.Droid
 		#region list filteration
 		public List<ListDataStructure> FilterDataList(List<People> mainList)
 		{
+			foreach(People p in mainList){
+				Mvx.Trace (p.FirstName +":"+ p.Relation );
+			}
+
 			List<ListDataStructure> resultList = new List<ListDataStructure> ();
 
 			List<ListDataStructure> siblingList = new List<ListDataStructure> ();
@@ -235,6 +242,10 @@ namespace AncestorCloud.Droid
 			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.GreatGrandparent_Footer),null);
 			resultList.Add (listStruct);
 			//=========
+
+
+
+
 
 			return resultList;
 		}

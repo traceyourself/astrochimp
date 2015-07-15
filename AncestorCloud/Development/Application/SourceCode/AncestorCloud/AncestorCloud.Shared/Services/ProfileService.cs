@@ -68,6 +68,7 @@ namespace AncestorCloud.Shared
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
+						//responsemodal.ResponseCode = dict[AppConstant.CODE];
 					}
 				}
 				return responsemodal;
@@ -77,16 +78,14 @@ namespace AncestorCloud.Shared
 				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
 				ResponseModel<ResponseDataModel> responsemodal = new ResponseModel<ResponseDataModel>();
 				responsemodal.Status = ResponseStatus.Fail;
+				responsemodal.ResponseCode = "0";
 
 				return responsemodal;
 			}
 			finally{
-
 				_loader.hideLoader();
 			}
-
 		}
-
 		#endregion
 	}
 }

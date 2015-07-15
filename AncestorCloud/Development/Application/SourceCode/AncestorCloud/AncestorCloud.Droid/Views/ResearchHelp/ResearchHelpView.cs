@@ -74,6 +74,9 @@ namespace AncestorCloud.Droid
 			research_help_WebView.Settings.LoadWithOverviewMode = true;
 			research_help_WebView.Settings.UseWideViewPort = true;
 			research_help_WebView.Settings.JavaScriptEnabled = true;
+			research_help_WebView.Settings.SetSupportZoom(true);
+			research_help_WebView.Settings.BuiltInZoomControls = true;
+			//research_help_WebView.Settings.DisplayZoomControls = true;
 			research_help_WebView.SetWebViewClient (new  MyWebViewClient (this));
 			research_help_WebView.LoadUrl (StringConstants.RESEARCH_HELP_URL);
 		}
@@ -116,6 +119,11 @@ namespace AncestorCloud.Droid
 					ViewModel.ShowProfilePicModel();
 				}
 			};
+		}
+
+		public override void OnBackPressed ()
+		{
+			//base.OnBackPressed ();
 		}
 
 		#region Action Bar Configuration

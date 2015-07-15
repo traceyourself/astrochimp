@@ -1,9 +1,16 @@
 using Cirrious.CrossCore.IoC;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Shared
 {
     public class App : Cirrious.MvvmCross.ViewModels.MvxApplication
     {
+
+		IDatabaseService _databaseService;
+
+		public static bool IsAutoLogin { set; get;}
+
+
         public override void Initialize()
         {
             CreatableTypes()
@@ -11,7 +18,28 @@ namespace AncestorCloud.Shared
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 				
-			RegisterAppStart<ViewModels.HomePageViewModel>();
+
+			_databaseService = Mvx.Resolve<IDatabaseService> ();
+
+			User user = _databaseService.GetUser ();
+
+			if (user.UserID == null)
+			{
+				RegisterAppStart<ViewModels.HomePageViewModel> ();
+			}
+			else 
+			{
+				IsAutoLogin = true;
+
+				if(Mvx.CanResolve<IAndroidService>())
+				{
+					RegisterAppStart<ViewModels.FamilyViewModel> ();
+				}
+				else
+				{
+					RegisterAppStart<ViewModels.FlyOutViewModel> ();  // IOS
+				}
+			}
         }
     }
 }

@@ -42,7 +42,7 @@ namespace AncestorCloud.Shared
 
 				String res = response.Content.ReadAsStringAsync().Result;
 
-				System.Diagnostics.Debug.WriteLine ("LinkFacebookUser response : "+res);
+				System.Diagnostics.Debug.WriteLine ("--LinkFacebookUser response : "+res);
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
@@ -56,6 +56,7 @@ namespace AncestorCloud.Shared
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
+						//responsemodal.ResponseCode = dict[AppConstant.CODE];
 					}
 				}
 
@@ -71,6 +72,7 @@ namespace AncestorCloud.Shared
 				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 				responsemodal.Status = ResponseStatus.Fail;
+				responsemodal.ResponseCode = "0";
 
 				return responsemodal;
 			}
@@ -113,7 +115,7 @@ namespace AncestorCloud.Shared
 
 				String res = response.Content.ReadAsStringAsync().Result;
 
-				System.Diagnostics.Debug.WriteLine ("LinkFacebookUserSignup response : "+res);
+				System.Diagnostics.Debug.WriteLine ("--LinkFacebookUserSignup response : "+res);
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 

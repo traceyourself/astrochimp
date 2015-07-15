@@ -22,10 +22,6 @@ namespace AncestorCloud.Touch
 		public UIViewController currentController;
 
 
-
-	
-
-
 		public override bool FinishedLaunching(UIApplication application , NSDictionary launchOptions)
 		{
 			_window = new UIWindow(UIScreen.MainScreen.Bounds);
@@ -44,13 +40,10 @@ namespace AncestorCloud.Touch
 
 			RegisterGoogleAnalytics ();
 
-
-
 			_window.MakeKeyAndVisible();
 
 			return true;
 		}
-
 		#region RegisterGoogleAnalytics
 
 		void RegisterGoogleAnalytics()
@@ -66,7 +59,6 @@ namespace AncestorCloud.Touch
 		}
 		#endregion
 
-
 		public void  ShowActivityLoader()
 		{
 			if (_loaderView == null) {
@@ -78,7 +70,6 @@ namespace AncestorCloud.Touch
 			}
 
 			_loaderView.View.Hidden = false;
-
 		}
 
 		public void HideActivityLoader()

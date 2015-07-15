@@ -73,13 +73,13 @@ namespace AncestorCloud.Shared
 				{
 					List<People> FamilyMembers = await GetFamily(datamodal,loginModel);
 
-					List<People> grandParents = await GetGrandParents(FamilyMembers,loginModel);
+					/*List<People> grandParents = await GetGrandParents(FamilyMembers,loginModel);
 
 					FamilyMembers.AddRange(grandParents);
 
 					List<People> greatGrandParents = await GetGreatGrandParents(FamilyMembers,loginModel);
 
-					FamilyMembers.AddRange(greatGrandParents);
+					FamilyMembers.AddRange(greatGrandParents);*/
 
 					responseModel.Status = ResponseStatus.OK;
 
@@ -87,6 +87,7 @@ namespace AncestorCloud.Shared
 
 				}else{
 					responseModel.Status = ResponseStatus.Fail;
+					responseModel.ResponseCode = datamodal.Code;
 				}
 
 				return responseModel;
@@ -97,7 +98,7 @@ namespace AncestorCloud.Shared
 				//return CommonConstants.FALSE;
 				ResponseModel<List<People>> responsemodel = new ResponseModel<List<People>>();
 				responsemodel.Status = ResponseStatus.Fail;
-
+				responsemodel.ResponseCode = "0";
 				return responseModel;
 			}
 			finally{
@@ -131,23 +132,23 @@ namespace AncestorCloud.Shared
 									if(responseM.Status == ResponseStatus.OK){
 										People p = responseM.Content;
 
-									try{
-										p.FirstName = p.FirstName ?? string.Empty;
-										p.MiddleName = p.MiddleName ?? string.Empty;
-										p.LastName = p.LastName ?? string.Empty;
-										p.Name = p.Name ?? string.Empty;
+										try{
+											p.FirstName = p.FirstName ?? string.Empty;
+											p.MiddleName = p.MiddleName ?? string.Empty;
+											p.LastName = p.LastName ?? string.Empty;
+											p.Name = p.Name ?? string.Empty;
 
-										if(p.FirstName.Length > 0 || p.MiddleName.Length > 0 || p.LastName.Length > 0 || p.Name.Length > 0){
-											p.LoginUserLinkID = loginModel.UserEmail;
-											p.Relation = AppConstant.Sibling_comparison;
-
-											_databaseService.InsertFamilyMember(p);
-											FamilyMembers.Add(p);
+											if(p.FirstName.Length > 0 || p.MiddleName.Length > 0 || p.LastName.Length > 0 || p.Name.Length > 0){
+												p.LoginUserLinkID = loginModel.UserEmail;
+												p.Relation = AppConstant.Sibling_comparison;
+												
+												_databaseService.InsertFamilyMember(p);
+												FamilyMembers.Add(p);
+											}
+										}catch(Exception e)
+										{
+											Mvx.Trace(e.StackTrace);
 										}
-									}catch(Exception e)
-									{
-										Mvx.Trace(e.StackTrace);
-									}
 									}
 								}else
 								{
@@ -175,6 +176,8 @@ namespace AncestorCloud.Shared
 										p.Gender = AppConstant.MALE;
 										_databaseService.InsertFamilyMember(p);
 										FamilyMembers.Add(p);
+
+										//Mvx.Trace("Father : "+p.FirstName+" : "+p.Relation+" : "+p.FamOGFN);
 									}
 								}else
 								{
@@ -182,8 +185,10 @@ namespace AncestorCloud.Shared
 									p.Relation = AppConstant.Father_comparison;
 									p.Gender = AppConstant.MALE;
 									FamilyMembers.Add(p);
+									//Mvx.Trace("Father : "+p.FirstName+" : "+p.Relation+" : "+p.FamOGFN);
 								}		
 							}
+
 						}
 
 						if(datamodal.MOTHER_OFGN != null)
@@ -203,6 +208,7 @@ namespace AncestorCloud.Shared
 										p.Gender = AppConstant.FEMALE;
 										_databaseService.InsertFamilyMember(p);
 										FamilyMembers.Add(p);
+										//Mvx.Trace("Mother : "+p.FirstName+" : "+p.Relation+" : "+p.FamOGFN);
 									}
 								}else
 								{
@@ -210,6 +216,7 @@ namespace AncestorCloud.Shared
 									p.Relation = AppConstant.Mother_comparison;
 									p.Gender = AppConstant.FEMALE;
 									FamilyMembers.Add(p);
+									//Mvx.Trace("Mother : "+p.FirstName+" : "+p.Relation+" : "+p.FamOGFN);
 								}		
 							}
 						}
@@ -222,13 +229,11 @@ namespace AncestorCloud.Shared
 			}
 
 			return FamilyMembers;
-
 		}
 		#endregion
 
 
 		#region get GrandParents
-
 		public async Task<List<People>> GetGrandParents(List<People> FamilyMembers, LoginModel model)
 		{
 
@@ -254,7 +259,17 @@ namespace AncestorCloud.Shared
 						 parents = await FetchGrandParents(datamodal,model,AppConstant.GrandParent_comparison);
 					}
 				}
+				else if(p.Relation.Equals(AppConstant.Parent_comparison))
+				{
+					ResponseDataModel datamodal = await MakeServiceCall(model.Value, p.FamOGFN);
+
+					if(datamodal.Code.Equals("0"))
+					{
+						parents = await FetchGrandParents(datamodal,model,AppConstant.GrandParent_comparison);
+					}
+				}
 			}
+
 			return parents;
 		}
 
@@ -269,7 +284,7 @@ namespace AncestorCloud.Shared
 
 			if(datamodal.FATHER_OFGN != null)
 			{
-				if(datamodal.FATHER_OFGN.Length > 0)
+				if(datamodal.FATHER_OFGN.Length > 0 && !datamodal.FATHER_OFGN.Equals("0"))
 				{
 					int count = _databaseService.IsMemberExists(datamodal.FATHER_OFGN,loginModel.UserEmail);
 
@@ -297,7 +312,7 @@ namespace AncestorCloud.Shared
 
 			if(datamodal.MOTHER_OFGN != null)
 			{
-				if(datamodal.MOTHER_OFGN.Length > 0)
+				if(datamodal.MOTHER_OFGN.Length > 0 && !datamodal.MOTHER_OFGN.Equals("0"))
 				{
 					int count = _databaseService.IsMemberExists(datamodal.MOTHER_OFGN,loginModel.UserEmail);
 

@@ -55,6 +55,11 @@ namespace AncestorCloud.Droid
 			ApplyData ();
 		}
 
+		public override void OnBackPressed ()
+		{
+			//base.OnBackPressed ();
+		}
+
 		#region customized methods
 		private void InitViews()
 		{
@@ -125,7 +130,7 @@ namespace AncestorCloud.Droid
 			nextBtn.Click += (object sender, EventArgs e) => {
 				Utilities.LoggedInUsingFb = true;
 				ViewModel.NextButtonCommand.Execute(null);
-				ViewModel.Close();
+				//ViewModel.Close();
 				//ViewModel.CheckValues();
 			};
 

@@ -14,6 +14,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly IMatchHistoryService _historyService;
 		IMvxMessenger _messenger = Mvx.Resolve<IMvxMessenger>();
+		IAlert Alert;
 		#endregion
 
 
@@ -23,6 +24,7 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			_databaseService = service;
 			_historyService = Mvx.Resolve<IMatchHistoryService>();
+			Alert = Mvx.Resolve < IAlert>();
 			//GetPastMatchesData ();
 		}
 
@@ -34,8 +36,14 @@ namespace AncestorCloud.Shared.ViewModels
 			LoginModel login = _databaseService.GetLoginDetails ();
 			ResponseModel<List<RelationshipFindResult>> matchList = await _historyService.HistoryReadService (login);
 			//List<People> list = _databaseService.RelativeMatching ("",login.UserEmail);
-			PastMatchesList = matchList.Content;
-			_messenger.Publish(new PastMatchesLoadedMessage(this));
+
+			/*if (matchList.ResponseCode.Equals (AppConstant.DEVELOPER_NOT_LOGIN_CODE)) {
+				Alert.ShowLogoutAlert (AlertConstant.AUTO_LOGIN_RESPONSE_ERROR_MESSAGE, AlertConstant.SUCCESS_ERROR);
+			} else {*/
+				PastMatchesList = matchList.Content;
+				_messenger.Publish(new PastMatchesLoadedMessage(this));
+			//}
+
 		}
 		#endregion
 

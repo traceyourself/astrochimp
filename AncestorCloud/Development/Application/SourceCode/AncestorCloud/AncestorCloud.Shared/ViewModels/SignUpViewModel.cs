@@ -57,8 +57,6 @@ namespace AncestorCloud.Shared.ViewModels
 				//UpdateLoginStatus();
 			}
 		}
-
-
 		private string _email;
 
 		public string Email
@@ -288,30 +286,28 @@ namespace AncestorCloud.Shared.ViewModels
 						ResponseModel<LoginModel> famResponse = await _famService.CreateFamily (loginResponse.Content as LoginModel);
 					
 						if (famResponse.Status == ResponseStatus.OK) {
-								_databaseService.InsertLoginDetails (famResponse.Content as LoginModel);
-								//_databaseService.GetLoginDetails ();
+							_databaseService.InsertLoginDetails (famResponse.Content as LoginModel);
+							//_databaseService.GetLoginDetails ();
 
-								if (Mvx.CanResolve<IAndroidService> ()) {
-								//ShowMyFamilyViewModel ();
-									ShowProfilePicViewModel ();
-									this.Close (this);
-									CloseCommand.Execute (null);
-								} else {
-									IsFbLogin = false;
-									ShowProfilePicViewModel ();
-									//this.Close (this);//XXXXXX
+							if (Mvx.CanResolve<IAndroidService> ()) {
+							//ShowMyFamilyViewModel ();
+								ShowProfilePicViewModel ();
+								this.Close (this);
+								CloseCommand.Execute (null);
+							} else {
+								IsFbLogin = false;
+								ShowProfilePicViewModel ();
+								//this.Close (this);//XXXXXX
 //									CallFlyoutCommand.Execute(null);
-									CloseCommand.Execute (null);
-								}
+								CloseCommand.Execute (null);
 							}
+						}
 						else {
-
 							Alert.ShowAlert (AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
 						}
-						}
-
-					else {
-
+					}
+					else
+					{
 						Alert.ShowAlert (AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
 					}
 				}

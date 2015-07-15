@@ -7,6 +7,9 @@ namespace AncestorCloud.Shared
 		void ShowAlert (string message, string title);
 
 		void ShowAlertWithOk (string message, string title, AlertType alert);
+
+		void ShowLogoutAlert (string message, string title);
+
 	}
 }
 

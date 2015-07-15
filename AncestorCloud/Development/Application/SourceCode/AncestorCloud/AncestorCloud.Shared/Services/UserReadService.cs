@@ -42,7 +42,7 @@ namespace AncestorCloud.Shared
 
 				//System.Diagnostics.Debug.WriteLine ("Login response : "+res);
 
-				Mvx.Trace("User read response : "+res);
+				Mvx.Trace("--User read response : "+res);
 
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);                      
@@ -62,6 +62,7 @@ namespace AncestorCloud.Shared
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
+						//responsemodal.ResponseCode = dict[AppConstant.CODE];
 					}
 				}
 					
@@ -75,6 +76,7 @@ namespace AncestorCloud.Shared
 				//return CommonConstants.FALSE;
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 				responsemodal.Status = ResponseStatus.Fail;
+				responsemodal.ResponseCode = "0";
 
 				return responsemodal;
 			}
@@ -145,6 +147,7 @@ namespace AncestorCloud.Shared
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
+						//responsemodal.ResponseCode = dict[AppConstant.CODE];
 					}
 				}
 
@@ -159,7 +162,7 @@ namespace AncestorCloud.Shared
 				//return CommonConstants.FALSE;
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 				responsemodal.Status = ResponseStatus.Fail;
-
+				responsemodal.ResponseCode = "0";
 				return responsemodal;
 			}
 			finally{

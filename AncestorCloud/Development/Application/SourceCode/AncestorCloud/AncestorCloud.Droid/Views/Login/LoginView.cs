@@ -121,7 +121,6 @@ namespace AncestorCloud.Droid
 
 							//Mvx.Trace("saved result of family ");
 
-
 							var friendRequest = facebook.CreateRequest (StringConstants.GET_METHOD_TYPE, new Uri (StringConstants.FB_GRAPH_TAGGABLE_FRIENDS_URL),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
 
 							friendRequest.GetResponseAsync().ContinueWith(friendResponse => {

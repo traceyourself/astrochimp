@@ -18,9 +18,7 @@ namespace AncestorCloud.Shared
 
 			string requestString = String.Empty;
 
-
 //			int index = requestParameters.Count;
-
 
 			string and = "";
 
@@ -33,7 +31,6 @@ namespace AncestorCloud.Shared
 
 				if(and.Equals(""))
 					and = "&";
-
 			}
 
 			url += "?" + requestString;

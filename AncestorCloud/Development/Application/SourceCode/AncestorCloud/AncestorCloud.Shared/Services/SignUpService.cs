@@ -97,8 +97,8 @@ namespace AncestorCloud.Shared
 				var signupResponse = await signupClient.GetAsync (signUpUrl);
 
 				String signupRes = signupResponse.Content.ReadAsStringAsync().Result;
-
-				Mvx.Trace("sign up : "+signupRes );
+				Mvx.Trace("2.) Sign up Url : "+signUpUrl);
+				Mvx.Trace(" Sign up Response : "+signupRes );
 
 				Dictionary <string,object> signUpDict = JsonConvert.DeserializeObject<Dictionary<string,object>> (signupRes);
 
@@ -127,7 +127,8 @@ namespace AncestorCloud.Shared
 
 				string res = response.Content.ReadAsStringAsync().Result;
 
-				System.Diagnostics.Debug.WriteLine ("Login response : "+res);
+				Mvx.Trace("3.) Login Url : "+url);
+				Mvx.Trace(" Login response : "+res);
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 

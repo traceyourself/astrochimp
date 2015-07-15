@@ -57,7 +57,7 @@ namespace AncestorCloud.Shared
 		public const string LOGIN_PASSWORD_ERROR_MESSAGE="Password is required, please enter a value for the field.";
 		public const string LOGIN_RESPONSE_ERROR="ERROR";
 		public const string LOGIN_RESPONSE_ERROR_MESSAGE="An error has occurred. Please try again.";
-
+		public const string AUTO_LOGIN_RESPONSE_ERROR_MESSAGE="An error has occurred. Please login again.";
 
 		#endregion
 

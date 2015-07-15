@@ -53,8 +53,26 @@ namespace AncestorCloud.Droid
 
 			ad = builder.Create ();
 			ad.Show ();
-
 		}
+
+		public void ShowLogoutAlert (string message, string title)
+		{
+			IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
+
+			AlertDialog.Builder builder = new AlertDialog.Builder (Utilities.CurrentActiveActivity);
+			builder.SetTitle (title);
+			builder.SetMessage (message);
+
+			builder.SetNeutralButton ("Ok",(object sender, DialogClickEventArgs e) => {
+				_mvxMessenger.Publish(new LogoutMessage(this));
+				ad.Dismiss();
+			});
+
+			builder.SetCancelable (false);
+
+			ad = builder.Create ();
+			ad.Show ();
+		}
+
 	}
 }
-

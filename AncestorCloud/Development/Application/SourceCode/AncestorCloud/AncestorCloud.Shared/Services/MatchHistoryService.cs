@@ -59,11 +59,11 @@ namespace AncestorCloud.Shared
 							responsemodal.Content = await CheckPeopleData(dataList);
 						}
 						responsemodal.Status = ResponseStatus.OK;
-
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
 						responsemodal.Content = new List<RelationshipFindResult>();
+						//responsemodal.ResponseCode = dict[AppConstant.CODE];
 					}
 				}
 
@@ -75,13 +75,12 @@ namespace AncestorCloud.Shared
 				//return CommonConstants.FALSE;
 				ResponseModel<List<RelationshipFindResult>> responsemodal = new ResponseModel<List<RelationshipFindResult>>();
 				responsemodal.Status = ResponseStatus.Fail;
-
+				responsemodal.ResponseCode = "0";
 				return responsemodal;
 			}
 			finally{
 				_loader.hideLoader();
 			}
-
 		}
 
 		#region check people data

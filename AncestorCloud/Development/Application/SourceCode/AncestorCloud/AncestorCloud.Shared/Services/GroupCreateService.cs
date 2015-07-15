@@ -13,11 +13,9 @@ namespace AncestorCloud.Shared
 	{
 		private readonly ILoader _loader;
 
-
 		public GroupCreateService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
-
 		}
 		public async Task<ResponseModel<LoginModel>> CreateGroup(LoginModel model)
 		{
@@ -36,11 +34,10 @@ namespace AncestorCloud.Shared
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.GROUP_CREATE_SERVICE,param);
 
-				Mvx.Trace(url);
-
 				string content = "<Group xmlns=\"http://schemas.datacontract.org/2004/07/OGF.WS.Data\">\n\t<Name>" + model.IndiOGFN +"</Name>\n\t<Password>"+model.IndiOGFN+"</Password>\n</Group>";
 
-				//System.IO.MemoryStream mStream = new System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(content));
+				//Mvx.Trace("Create Group Url : "+url);
+				//Mvx.Trace("Create Group Content : "+content);
 			
 				var response = await client.PostAsync(url, new StringContent(
 					content,
@@ -48,8 +45,7 @@ namespace AncestorCloud.Shared
 					"application/xml"));
 
 				String res = response.Content.ReadAsStringAsync().Result;
-
-				System.Diagnostics.Debug.WriteLine ("PostProfileData response : "+res+ "response.EnsureSuccessStatusCode(); " +response.EnsureSuccessStatusCode());
+				//System.Diagnostics.Debug.WriteLine (" Create Group response : "+res+ "response.EnsureSuccessStatusCode(); " +response.EnsureSuccessStatusCode());
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
@@ -65,6 +61,7 @@ namespace AncestorCloud.Shared
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
+						//responsemodal.ResponseCode = dict[AppConstant.CODE];
 					}
 				}
 				return responsemodal;
@@ -74,6 +71,7 @@ namespace AncestorCloud.Shared
 				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 				responsemodal.Status = ResponseStatus.Fail;
+				responsemodal.ResponseCode = "0";
 
 				return responsemodal;
 			}

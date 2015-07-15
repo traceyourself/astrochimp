@@ -21,6 +21,15 @@ namespace AncestorCloud.Touch
 			alert.Tag = (int)alertType;
 			alert.Show ();
 		}
+
+		public void ShowLogoutAlert (string message, string title)
+		{
+			UIAlertView alert = new UIAlertView (title, message, new IOSAlertDelegate (), "Cancel", new string[]{ "OK" });
+			alert.Delegate = new IOSAlertDelegate ();
+			//alert.Tag = (int)alertType;
+
+			alert.Show ();
+		}
 	}
 
 	public class IOSAlertDelegate:UIAlertViewDelegate

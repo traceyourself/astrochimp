@@ -24,7 +24,6 @@ namespace AncestorCloud.Shared
 
 			try   
 			{
-
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 				client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type","application/xml");
@@ -47,8 +46,9 @@ namespace AncestorCloud.Shared
 					"application/xml"));
 
 				String res = response.Content.ReadAsStringAsync().Result;
-
-				System.Diagnostics.Debug.WriteLine ("CreateFamily response : "+res+ "response.EnsureSuccessStatusCode(); " +response.EnsureSuccessStatusCode());
+				//System.Diagnostics.Debug.WriteLine ("4.) CreateFamily url : "+url);
+				//System.Diagnostics.Debug.WriteLine ("4.) CreateFamily content : "+content);
+				//System.Diagnostics.Debug.WriteLine (" CreateFamily response : "+res+ "response.EnsureSuccessStatusCode(); " +response.EnsureSuccessStatusCode());
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
@@ -64,6 +64,7 @@ namespace AncestorCloud.Shared
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;
+						//responsemodal.ResponseCode = dict[AppConstant.CODE];
 					}
 				}
 				return responsemodal;
@@ -73,11 +74,11 @@ namespace AncestorCloud.Shared
 				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 				responsemodal.Status = ResponseStatus.Fail;
+				responsemodal.ResponseCode = "0";
 
 				return responsemodal;
 			}
 			finally{
-
 				_loader.hideLoader();
 			}
 		}

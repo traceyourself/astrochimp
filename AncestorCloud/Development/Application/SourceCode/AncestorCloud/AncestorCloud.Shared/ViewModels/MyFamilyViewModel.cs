@@ -130,8 +130,8 @@ namespace AncestorCloud.Shared.ViewModels
 			ResponseModel<List<People>> listFromServer = await _getFamilyService.GetFamilyMembers (login);
 			if (listFromServer.Status == ResponseStatus.OK) {
 				FamilyList = listFromServer.Content;
-				_messenger.Publish(new MyFamilyReloadMessage(this));
 			}
+			_messenger.Publish(new MyFamilyReloadMessage(this));
 			FetchPercentageComplete ();
 		}
 		#endregion
@@ -179,7 +179,11 @@ namespace AncestorCloud.Shared.ViewModels
 					_messenger.Publish(new MyFamilyReloadMessage(this));
 					Alert.ShowAlert (AlertConstant.EDIT_SUCCESS_MESSAGE,AlertConstant.EDIT_SUCCESS);
 				} else {
-					Alert.ShowAlert (AlertConstant.EDIT_ERROR_MESSAGE,AlertConstant.EDIT_ERROR);
+					/*if (response.ResponseCode.Equals (AppConstant.DEVELOPER_NOT_LOGIN_CODE)) {
+						Alert.ShowLogoutAlert (AlertConstant.AUTO_LOGIN_RESPONSE_ERROR_MESSAGE,AlertConstant.SUCCESS_ERROR);
+					} else {*/
+						Alert.ShowAlert (AlertConstant.EDIT_ERROR_MESSAGE, AlertConstant.EDIT_ERROR);
+					//}
 				}
 			}
 			return ;
@@ -187,7 +191,6 @@ namespace AncestorCloud.Shared.ViewModels
 		#endregion
 
 		#region PercentageModel
-
 		public async void  FetchPercentageComplete()
 		{
 			LoginModel model = _databaseService.GetLoginDetails ();
@@ -208,7 +211,6 @@ namespace AncestorCloud.Shared.ViewModels
 
 			}
 		}
-
 		#endregion
 
 

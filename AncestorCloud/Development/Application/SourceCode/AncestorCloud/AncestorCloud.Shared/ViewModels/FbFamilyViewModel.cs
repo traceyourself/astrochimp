@@ -23,7 +23,8 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = service;
 			GetFbFamilyData ();
 			_fbManager = new FbFamilyDataManager ();
-			showMyFamilyViewToken = messenger.SubscribeOnMainThread<ShowMyFamilyViewMessage>(message => this.ShowMyFamilyViewModel()); 
+			showMyFamilyViewToken = messenger.SubscribeOnMainThread<ShowMyFamilyViewMessage>(message => this.ShowMyFamilyViewModel());
+
 		}
 
 		#endregion
@@ -32,6 +33,9 @@ namespace AncestorCloud.Shared.ViewModels
 		public void ShowMyFamilyViewModel()
 		{
 			ShowViewModel <MyFamilyViewModel> ();
+			if (Mvx.CanResolve<IAndroidService> ()) {
+				Close ();
+			}
 		}
 
 		#endregion
@@ -163,6 +167,7 @@ namespace AncestorCloud.Shared.ViewModels
 		#region logout
 		public void Logout()
 		{
+			base.ClearDatabase ();
 			ShowViewModel<HomePageViewModel>();
 			this.Close(this);
 		}

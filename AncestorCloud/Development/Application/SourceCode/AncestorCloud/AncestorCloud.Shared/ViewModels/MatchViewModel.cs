@@ -141,6 +141,7 @@ namespace AncestorCloud.Shared.ViewModels
 		#region logout
 		public void Logout()
 		{
+			base.ClearDatabase ();
 			ShowViewModel<HomePageViewModel>();
 			this.Close(this);
 		}
@@ -184,7 +185,8 @@ namespace AncestorCloud.Shared.ViewModels
 
 				LoginModel data = _databaseService.GetLoginDetails ();
 
-				ResponseModel<RelationshipFindResult> result = await _matchService.Match (data.Value,FirstPersonOgfn,SecondPersonOgfn);//"747510545", "747227929");
+				//TODO : Remove this Fake Session Id after Testing.
+				ResponseModel<RelationshipFindResult> result = await _matchService.Match (data.Value ,FirstPersonOgfn,SecondPersonOgfn);//"747510545", "747227929");
 
 				if (result.Status == ResponseStatus.OK) {
 					if (result.Content.Found) {
@@ -192,15 +194,25 @@ namespace AncestorCloud.Shared.ViewModels
 //						{
 //							Close();
 //						}
-
 						var matchString = Mvx.Resolve<IMvxJsonConverter> ().SerializeObject (result.Content);
 
-						ShowViewModel<RelationshipMatchDetailViewModel> (new RelationshipMatchDetailViewModel.DetailParameter { MatchResult = matchString ,FirstPersonUrl = FirstPersonImageUrl,SecondPersonUrl = SecondPersonImageUrl,FirstPersonName= FirstPersonImageName,SecondPersonName= SecondPersonImageName,FirstPersonTag = FirstPersonTag, SecondPersonTag=SecondPersonTag});
-					} else 
-					{
+						ShowViewModel<RelationshipMatchDetailViewModel> (new RelationshipMatchDetailViewModel.DetailParameter {
+							MatchResult = matchString ,
+							FirstPersonUrl = FirstPersonImageUrl,
+							SecondPersonUrl = SecondPersonImageUrl,
+							FirstPersonName = FirstPersonImageName,
+							SecondPersonName = SecondPersonImageName,
+							FirstPersonTag = FirstPersonTag,
+							SecondPersonTag = SecondPersonTag
+						});
+					} else {
 						//TODO: Show No Match Screen
-						_alert.ShowAlert(AlertConstant.MATCH_ERROR_MESSAGE, AlertConstant.MATCH_ERROR);
+						_alert.ShowAlert (AlertConstant.MATCH_ERROR_MESSAGE, AlertConstant.MATCH_ERROR);
 					}
+				}
+				else if(result.ResponseCode.Equals(AppConstant.DEVELOPER_NOT_LOGIN_CODE))
+				{
+					_alert.ShowAlert (AlertConstant.AUTO_LOGIN_RESPONSE_ERROR_MESSAGE, AlertConstant.SUCCESS_ERROR);
 				}
 			} 
 		}
@@ -261,6 +273,7 @@ namespace AncestorCloud.Shared.ViewModels
 		public void ShowProfilePicModel()
 		{
 			ShowViewModel<ProfilePicViewModel> (new ProfilePicViewModel.DetailParameter { FromSignUp = false });
+
 		}
 		#endregion
 

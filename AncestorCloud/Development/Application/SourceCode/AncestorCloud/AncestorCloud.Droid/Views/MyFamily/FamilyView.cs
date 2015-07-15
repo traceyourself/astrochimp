@@ -14,6 +14,7 @@ using AncestorCloud.Shared.ViewModels;
 using AncestorCloud.Shared;
 using Android.Content.PM;
 using Android.Graphics;
+using Cirrious.CrossCore;
 
 namespace AncestorCloud.Droid
 {
@@ -57,15 +58,27 @@ namespace AncestorCloud.Droid
 
 		}
 
-
 		protected override void OnResume ()
 		{
 			base.OnResume ();
+
 			ApplyData ();
 
 			if(Utilities.LoggedInUsingFb){
 				Utilities.LoggedInUsingFb = false;
 			}
+		}
+
+		public override void OnBackPressed ()
+		{
+			//base.OnBackPressed ();
+		}
+
+		protected override void OnDestroy ()
+		{
+			base.OnDestroy ();
+
+			ViewModel.RemoveMessenger ();
 		}
 
 		private void initUI()
@@ -85,8 +98,6 @@ namespace AncestorCloud.Droid
 			if (Utilities.CurrentUserimage != null) {
 				userImageMenu.SetImageBitmap (Utilities.CurrentUserimage);	
 			}
-
-
 		}
 
 		private void ApplyActions(){
@@ -172,14 +183,22 @@ namespace AncestorCloud.Droid
 
 			protected override Java.Lang.Object DoInBackground(params Java.Lang.Object[] @params)
 			{
-				resultBMP = Utilities.GetRoundedimage(myObj,url,0,200);
+				try{
+					if(url != null){
+						resultBMP = Utilities.GetRoundedimage(myObj,url,0,200);
+					}
+				}catch(Exception e){
+					Mvx.Trace (e.StackTrace);
+				}
 				return "";
 			}
 
 			protected override void OnPostExecute(Java.Lang.Object result)
 			{
-				Utilities.CurrentUserimage = resultBMP;
-				myObj.userImageMenu.SetImageBitmap (Utilities.CurrentUserimage);	
+				if(resultBMP != null){
+					Utilities.CurrentUserimage = resultBMP;
+					myObj.userImageMenu.SetImageBitmap (Utilities.CurrentUserimage);	
+				}
 			}
 		}
 		#endregion

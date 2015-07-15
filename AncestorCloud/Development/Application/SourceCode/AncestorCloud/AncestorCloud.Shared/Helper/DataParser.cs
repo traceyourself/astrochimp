@@ -45,8 +45,6 @@ namespace AncestorCloud.Shared
 			if (IsKeyExist (AppConstant.UPDATEDTIME, dataDic))
 				user.UpdatedTime = GetData (AppConstant.UPDATEDTIME, dataDic);
 
-
-
 			return user;
 		}
 
@@ -128,8 +126,8 @@ namespace AncestorCloud.Shared
 			}
 			return friendList;
 		}
-
 		#endregion
+
 		#region get login details
 		public static LoginModel GetLoginDetails(Dictionary<string,object> dataDic)
 		{
