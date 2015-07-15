@@ -96,18 +96,26 @@ namespace AncestorCloud.Touch
 		
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = Themes.TitleTextColor() });
-			this.Title = Utility.LocalisedBundle ().LocalizedString ("ProfilePictureTitle", "");
+			var Title = Utility.LocalisedBundle ().LocalizedString ("ProfilePictureTitle", "");
 			this.NavigationItem.HidesBackButton = true;
 			this.NavigationController.NavigationBarHidden = false;
 			this.NavigationController.NavigationBar.BarTintColor= Themes.NavBarTintColor();
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
 
 			if (width >= 375) {
-				this.NavigationItem.TitleView = new MyProfilePicture (this.Title, new RectangleF (0, 0, 200, 20));
-			} 
+				this.NavigationItem.TitleView = new MyProfilePicture (Title, new RectangleF (0, 0, 200, 20));
+			} else {
+				this.NavigationItem.TitleView = new ProfilePictureNavView (Title, new RectangleF (30, 0, 200, 20));
+			}
 
-			if (ViewModel.IsFromSignup)
+			if (ViewModel.IsFromSignup) {
+				if (width >= 375) {
+					this.NavigationItem.TitleView = new ProfilePictureNavView (Title, new RectangleF (40, 0, 200, 20));
+				} else {
+					this.NavigationItem.TitleView = new ProfilePictureNavView (Title, new RectangleF (60, 0, 200, 20));
+				}
 				return;
+			}
 			
 			UIImage image = UIImage.FromFile (StringConstants.FLYOUTICON);
 
