@@ -146,7 +146,7 @@ namespace AncestorCloud.Touch
 
 			CGRect pageRect = pageObj.Frame;
 			pageRect.Y = swipeToLearnLabel.Frame.Y + swipeToLearnLabel.Frame.Height + 3;
-			pageRect.X -= xOffset+10;
+			pageRect.X -= xOffset+ xOffset/2;
 			pageObj.Frame = pageRect; 
 
 			CGRect signUpRect = signUpButton.Frame;
