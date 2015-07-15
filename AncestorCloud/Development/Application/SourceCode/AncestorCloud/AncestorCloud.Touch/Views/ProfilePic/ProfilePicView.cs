@@ -91,23 +91,32 @@ namespace AncestorCloud.Touch
 			ProfilePic.TouchUpInside += ProfilePicSetUp;
 			ProfilePic.Layer.CornerRadius=90f;
 			ProfilePic.ClipsToBounds = true;
+			ProfilePic.ImageView.ContentMode = UIViewContentMode.ScaleAspectFill;
 
 			SetProfilePic ();
 		
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes ()
 				{ TextColor = Themes.TitleTextColor() });
-			this.Title = Utility.LocalisedBundle ().LocalizedString ("ProfilePictureTitle", "");
+			var Title = Utility.LocalisedBundle ().LocalizedString ("ProfilePictureTitle", "");
 			this.NavigationItem.HidesBackButton = true;
 			this.NavigationController.NavigationBarHidden = false;
 			this.NavigationController.NavigationBar.BarTintColor= Themes.NavBarTintColor();
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
 
 			if (width >= 375) {
-				this.NavigationItem.TitleView = new MyProfilePicture (this.Title, new RectangleF (0, 0, 200, 20));
-			} 
+				this.NavigationItem.TitleView = new MyProfilePicture (Title, new RectangleF (0, 0, 200, 20));
+			} else {
+				this.NavigationItem.TitleView = new ProfilePictureNavView (Title, new RectangleF (30, 0, 200, 20));
+			}
 
-			if (ViewModel.IsFromSignup)
+			if (ViewModel.IsFromSignup) {
+				if (width >= 375) {
+					this.NavigationItem.TitleView = new ProfilePictureNavView (Title, new RectangleF (40, 0, 200, 20));
+				} else {
+					this.NavigationItem.TitleView = new ProfilePictureNavView (Title, new RectangleF (60, 0, 200, 20));
+				}
 				return;
+			}
 			
 			UIImage image = UIImage.FromFile (StringConstants.FLYOUTICON);
 
@@ -354,8 +363,10 @@ namespace AncestorCloud.Touch
 		private void SetProfilePic()
 		{
 			AppDelegate appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
-			if (appDelegate.UIImageProfilePic != null)
-				ProfilePic.SetBackgroundImage (appDelegate.UIImageProfilePic, UIControlState.Normal);
+			if (appDelegate.UIImageProfilePic != null) {
+				UIImage image = MaxResizeImage(appDelegate.UIImageProfilePic,180,180);
+				ProfilePic.SetBackgroundImage (image, UIControlState.Normal);
+			}
 		}
 
 		public UIImage ResizeImage(UIImage img )
@@ -365,11 +376,41 @@ namespace AncestorCloud.Touch
 			float mheight = (float)img.Size.Height;
 			float newWidth = 360f;
 			float newHeigth = mheight * newWidth / mwidth; // I always hope I get this scaling thing right. #crossedfingers
-			UIGraphics.BeginImageContextWithOptions(new SizeF(mwidth, mheight), false, 2.0f);
+			UIGraphics.BeginImageContextWithOptions(new SizeF(mwidth, mheight), false, 1.0f);
 			img.Draw (new RectangleF (0, 0, newWidth, newHeigth));
 			img = UIGraphics.GetImageFromCurrentImageContext();
 			UIGraphics.EndImageContext ();
 			return img;
+		}
+
+		public UIImage MaxResizeImage(UIImage sourceImage, float maxWidth, float maxHeight)
+		{
+			var sourceSize = sourceImage.Size;
+			var maxResizeFactor = Math.Max(maxWidth / sourceSize.Width, maxHeight / sourceSize.Height);
+			if (maxResizeFactor > 1) return sourceImage;
+			var width = maxResizeFactor * sourceSize.Width;
+			var height = maxResizeFactor * sourceSize.Height;
+			//UIGraphics.BeginImageContext(new SizeF((float)width, (float)height));
+			UIGraphics.BeginImageContextWithOptions(new SizeF((float)width, (float)height), false, 2.0f);
+			sourceImage.Draw(new RectangleF(0, 0, (float)width, (float)height));
+			var resultImage = UIGraphics.GetImageFromCurrentImageContext();
+			UIGraphics.EndImageContext();
+
+			return CropImage(resultImage,0,0,(int)maxWidth,(int)maxHeight);
+		}
+
+		private UIImage CropImage(UIImage sourceImage, int crop_x, int crop_y, int width, int height)
+		{
+			var imgSize = sourceImage.Size;
+			UIGraphics.BeginImageContext(new SizeF(width, height));
+			var context = UIGraphics.GetCurrentContext();
+			var clippedRect = new RectangleF(0, 0, width, height);
+			context.ClipToRect(clippedRect);
+			var drawRect = new RectangleF(-crop_x, -crop_y,(float) imgSize.Width, (float)imgSize.Height);
+			sourceImage.Draw(drawRect);
+			var modifiedImage = UIGraphics.GetImageFromCurrentImageContext();
+			UIGraphics.EndImageContext();
+			return modifiedImage;
 		}
 	
 

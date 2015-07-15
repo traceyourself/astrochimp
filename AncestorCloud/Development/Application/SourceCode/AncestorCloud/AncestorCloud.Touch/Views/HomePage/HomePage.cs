@@ -121,6 +121,12 @@ namespace AncestorCloud.Touch
 				collectionViewObj.Frame = lblFrame; 
 			}
 
+			if (View.Frame.Width > 375) {
+				CGRect lblFrame = collectionViewObj.Frame;
+				lblFrame.X += 20;
+				collectionViewObj.Frame = lblFrame; 
+			}
+
 			if(App.IsAutoLogin)
 				AdjustViews ();
 
