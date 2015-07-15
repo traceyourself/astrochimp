@@ -10,6 +10,7 @@ using Cirrious.MvvmCross.Plugins.Messenger;
 using AncestorCloud.Shared;
 using Cirrious.CrossCore;
 using System.Linq;
+using CoreGraphics;
 
 namespace AncestorCloud.Touch
 {
@@ -110,8 +111,43 @@ namespace AncestorCloud.Touch
 		{
 			this.NavigationController.NavigationBarHidden = true;
 
+			var messenge = Mvx.Resolve<IMvxMessenger>();
+			messenge.Publish(new FlyOutCloseMessage(this));
+
+			if(App.IsAutoLogin)
+				AdjustViews ();
+
 //			AppDelegate _delagate = (AppDelegate) UIApplication.SharedApplication.Delegate;
 //			_delagate.UIImageProfilePic = null;
+		}
+
+		void AdjustViews()
+		{
+
+		
+			collectionViewObj.Center = new CGPoint(View.Frame.Width/2,collectionViewObj.Center.Y); 
+			//collectionViewObj.BackgroundColor = UIColor.Green;
+
+			CGRect lblFrame = swipeToLearnLabel.Frame;
+			lblFrame.Y = collectionViewObj.Frame.Y + collectionViewObj.Frame.Height;
+			lblFrame.X -= 20;
+			swipeToLearnLabel.Frame = lblFrame; 
+
+			CGRect pageRect = pageObj.Frame;
+			pageRect.Y = swipeToLearnLabel.Frame.Y + swipeToLearnLabel.Frame.Height + 3;
+			pageRect.X -= 30;
+			pageObj.Frame = pageRect; 
+
+			CGRect signUpRect = signUpButton.Frame;
+			signUpRect.Y = pageObj.Frame.Y + pageObj.Frame.Height + 40;
+			signUpRect.X -= 20;
+			signUpButton.Frame = signUpRect;
+
+			CGRect loginRect = loginButton.Frame;
+			loginRect.Y = signUpButton.Frame.Y + signUpButton.Frame.Height + 5;
+			loginRect.X -= 20;
+			loginButton.Frame = loginRect;
+
 		}
 
 

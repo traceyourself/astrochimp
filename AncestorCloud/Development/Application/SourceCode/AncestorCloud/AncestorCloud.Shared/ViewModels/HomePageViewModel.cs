@@ -13,21 +13,24 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private readonly IStoreCelebService _storeCelebService;
 
+		public bool IsSimpleLogin { get; set;}
+
 		#endregion
 
 		public HomePageViewModel()
 		{
 			_fileService = Mvx.Resolve<IFileService> ();
 			_storeCelebService = Mvx.Resolve<IStoreCelebService> ();
-			var messenge = Mvx.Resolve<IMvxMessenger>();
-			messenge.Publish(new FlyOutCloseMessage(this));
 
-			if(!App.IsAutoLogin)
-				base.ClearDatabase ();
+
+//			if(!App.IsAutoLogin)
+//				base.ClearDatabase ();
 		}
 
-		public void Init()
+		public void Init(ParameterClass _params)
 		{
+			IsSimpleLogin = _params.IsSimpleLogin;
+
 			StoreCelebsData ();
 		}
 
@@ -59,5 +62,12 @@ namespace AncestorCloud.Shared.ViewModels
 			_storeCelebService.StoreCelebData (celebsDataString);
 		}
 		#endregion
+
+		public class ParameterClass
+		{
+			public bool IsSimpleLogin { get; set;}
+		}
 	}
+
+
 }
