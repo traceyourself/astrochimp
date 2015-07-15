@@ -212,7 +212,7 @@ namespace AncestorCloud.Shared.ViewModels
 				}
 				else if(result.ResponseCode.Equals(AppConstant.DEVELOPER_NOT_LOGIN_CODE))
 				{
-					_alert.ShowAlert (AlertConstant.AUTO_LOGIN_RESPONSE_ERROR_MESSAGE, AlertConstant.SUCCESS_ERROR);
+					_alert.ShowLogoutAlert (AlertConstant.AUTO_LOGIN_RESPONSE_ERROR_MESSAGE, AlertConstant.SUCCESS_ERROR);
 				}
 			} 
 		}

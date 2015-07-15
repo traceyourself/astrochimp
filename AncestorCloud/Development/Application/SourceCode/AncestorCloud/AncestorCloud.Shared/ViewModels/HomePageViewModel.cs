@@ -67,6 +67,7 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			public bool IsSimpleLogin { get; set;}
 		}
+
 	}
 
 

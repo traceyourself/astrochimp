@@ -1,5 +1,6 @@
 using Cirrious.CrossCore.IoC;
 using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Plugins.Messenger;
 
 namespace AncestorCloud.Shared
 {
@@ -9,7 +10,7 @@ namespace AncestorCloud.Shared
 		IDatabaseService _databaseService;
 
 		public static bool IsAutoLogin { set; get;}
-
+		public static bool IsHomePageShown = false;
 
         public override void Initialize()
         {
@@ -39,6 +40,7 @@ namespace AncestorCloud.Shared
 					RegisterAppStart<ViewModels.FlyOutViewModel> ();  // IOS
 				}
 			}
-        }
+		}
+
     }
 }

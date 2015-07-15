@@ -133,19 +133,19 @@ namespace AncestorCloud.Shared.ViewModels
 			ResponseStatus status = await _facebookLinkManager.LinkFaceBookLoginUser ();
 
 			if (status == ResponseStatus.Fail) {
-				//Alert.ShowLogoutAlert (AlertConstant.AUTO_LOGIN_RESPONSE_ERROR_MESSAGE, AlertConstant.LOGIN_RESPONSE_ERROR);
+				Alert.ShowLogoutAlert (AlertConstant.AUTO_LOGIN_RESPONSE_ERROR_MESSAGE, AlertConstant.LOGIN_RESPONSE_ERROR);
 			} 
 		}
 		#endregion
 
 		private void AddMessenger()
 		{
-			logoutToken = _mvxMessenger.SubscribeOnMainThread<LogoutMessage>(message => this.Logout());
+			//logoutToken = _mvxMessenger.SubscribeOnMainThread<LogoutMessage>(message => this.Logout());
 		}
 
 		public void RemoveMessenger()
 		{
-			_mvxMessenger.Unsubscribe<LogoutMessage> (logoutToken);
+			//_mvxMessenger.Unsubscribe<LogoutMessage> (logoutToken);
 		}
 
 	}

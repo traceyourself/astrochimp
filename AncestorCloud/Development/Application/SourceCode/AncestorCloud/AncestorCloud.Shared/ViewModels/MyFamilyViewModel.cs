@@ -179,11 +179,11 @@ namespace AncestorCloud.Shared.ViewModels
 					_messenger.Publish(new MyFamilyReloadMessage(this));
 					Alert.ShowAlert (AlertConstant.EDIT_SUCCESS_MESSAGE,AlertConstant.EDIT_SUCCESS);
 				} else {
-					/*if (response.ResponseCode.Equals (AppConstant.DEVELOPER_NOT_LOGIN_CODE)) {
+					if (response.ResponseCode.Equals (AppConstant.DEVELOPER_NOT_LOGIN_CODE)) {
 						Alert.ShowLogoutAlert (AlertConstant.AUTO_LOGIN_RESPONSE_ERROR_MESSAGE,AlertConstant.SUCCESS_ERROR);
-					} else {*/
+					} else {
 						Alert.ShowAlert (AlertConstant.EDIT_ERROR_MESSAGE, AlertConstant.EDIT_ERROR);
-					//}
+					}
 				}
 			}
 			return ;
