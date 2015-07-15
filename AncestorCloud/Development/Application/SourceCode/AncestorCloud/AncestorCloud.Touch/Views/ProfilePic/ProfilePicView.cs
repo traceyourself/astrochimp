@@ -325,6 +325,7 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewWillAppear (animated);
 			this.View.BackgroundColor = Themes.MatchTableView();
+			SetProfilePic ();
 		}
 
 

@@ -22,7 +22,11 @@ namespace AncestorCloud.Shared.ViewModels
 			AddMessenger ();
 			if(App.IsAutoLogin)
 			{
-				App.IsAutoLogin = false;
+				if(Mvx.CanResolve<IAndroidService>())
+				{
+					App.IsAutoLogin = false;
+				}
+
 				LinkFbUserData.Execute (null);
 			}
 		}

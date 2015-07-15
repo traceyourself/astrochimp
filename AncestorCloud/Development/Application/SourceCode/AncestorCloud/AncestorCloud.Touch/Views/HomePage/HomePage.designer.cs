@@ -16,7 +16,16 @@ namespace AncestorCloud.Touch
 		UIKit.UICollectionView collectionViewObj { get; set; }
 
 		[Outlet]
+		UIKit.UIButton loginButton { get; set; }
+
+		[Outlet]
 		UIKit.UIPageControl pageObj { get; set; }
+
+		[Outlet]
+		UIKit.UIButton signUpButton { get; set; }
+
+		[Outlet]
+		UIKit.UILabel swipeToLearnLabel { get; set; }
 
 		[Action ("loginClicked:")]
 		partial void loginClicked (Foundation.NSObject sender);
@@ -26,6 +35,21 @@ namespace AncestorCloud.Touch
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (swipeToLearnLabel != null) {
+				swipeToLearnLabel.Dispose ();
+				swipeToLearnLabel = null;
+			}
+
+			if (signUpButton != null) {
+				signUpButton.Dispose ();
+				signUpButton = null;
+			}
+
+			if (loginButton != null) {
+				loginButton.Dispose ();
+				loginButton = null;
+			}
+
 			if (collectionViewObj != null) {
 				collectionViewObj.Dispose ();
 				collectionViewObj = null;
