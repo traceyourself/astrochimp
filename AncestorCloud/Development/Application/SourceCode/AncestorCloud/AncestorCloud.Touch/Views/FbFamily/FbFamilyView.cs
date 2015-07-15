@@ -46,6 +46,8 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewWillAppear (animated);
 
+			App.controllerTypeRef = ControllerType.Primary;
+
 			float width =  (float) UIScreen.MainScreen.ApplicationFrame.Width;
 
 			if (width > 320f) {

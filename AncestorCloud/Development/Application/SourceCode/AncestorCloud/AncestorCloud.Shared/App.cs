@@ -10,6 +10,9 @@ namespace AncestorCloud.Shared
 		IDatabaseService _databaseService;
 
 		public static bool IsAutoLogin { set; get;}
+
+		public static ControllerType controllerTypeRef { set; get;}
+
 		public static bool IsHomePageShown = false;
 
         public override void Initialize()

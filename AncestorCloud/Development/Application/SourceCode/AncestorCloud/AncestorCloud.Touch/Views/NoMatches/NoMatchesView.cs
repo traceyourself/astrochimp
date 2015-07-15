@@ -4,6 +4,7 @@ using System;
 using Foundation;
 using UIKit;
 using System.Drawing;
+using AncestorCloud.Shared;
 
 namespace AncestorCloud.Touch
 {
@@ -40,6 +41,8 @@ namespace AncestorCloud.Touch
 		public override void ViewWillAppear (bool animated)
 		{
 			//this.NavigationController.NavigationBarHidden = false;
+
+			App.controllerTypeRef = ControllerType.Secondary;
 		}
 
 		public override void ViewWillDisappear (bool animated)

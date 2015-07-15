@@ -21,6 +21,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private MvxSubscriptionToken navigationMenuToggleToken;
 		private MvxSubscriptionToken changeFlyoutToken;
+		private MvxSubscriptionToken logoutToken;
 		private  bool IsFaceBookLogin{ get; set;}
 		private readonly IDatabaseService _databaseService;
 	
@@ -46,6 +47,9 @@ namespace AncestorCloud.Shared.ViewModels
 
 			var _messenger = Mvx.Resolve<IMvxMessenger>();
 			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<FlyOutCloseMessage>(message => this.CloseFlyoutMenu());
+
+			var _logoutMessenger = Mvx.Resolve<IMvxMessenger>();
+			logoutToken = _logoutMessenger.SubscribeOnMainThread<LogoutMessage>(message => this.DoLogout());
 			_databaseService = service;
 
 		}
@@ -230,6 +234,20 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			this.ClearDatabase ();
 			this.Close (this);
+		}
+
+		private void DoLogout()
+		{
+			if (!Mvx.CanResolve<IAndroidService> ()) {
+				//IOS part
+
+				ClearDatabase ();
+				this.Close (this);
+				App.IsAutoLogin = false;
+
+				if(App.controllerTypeRef != ControllerType.Primary)
+					ShowViewModel<HomePageViewModel> ();
+			}
 		}
 			
 		#region Parameter Class

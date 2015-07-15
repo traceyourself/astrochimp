@@ -333,6 +333,9 @@ namespace AncestorCloud.Touch
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
+
+			App.controllerTypeRef = ControllerType.Primary;
+
 			this.View.BackgroundColor = Themes.MatchTableView();
 			SetProfilePic ();
 		}

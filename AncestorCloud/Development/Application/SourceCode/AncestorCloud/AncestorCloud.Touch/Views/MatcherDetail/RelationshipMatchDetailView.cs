@@ -60,6 +60,8 @@ namespace AncestorCloud.Touch
 		public override void ViewWillAppear (bool animated)
 		{
 			this.NavigationController.NavigationBarHidden = false;
+
+			App.controllerTypeRef = ControllerType.Secondary;
 		}
 
 

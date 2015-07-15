@@ -36,6 +36,13 @@ namespace AncestorCloud.Touch
 			// Release any cached data, images, etc that aren't in use.
 		}
 
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+
+			App.controllerTypeRef = ControllerType.Primary;
+		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

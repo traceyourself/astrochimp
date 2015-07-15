@@ -88,6 +88,8 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewWillAppear (animated);
 
+			App.controllerTypeRef = ControllerType.Secondary;
+
 			AppDelegate _delegate = (AppDelegate) UIApplication.SharedApplication.Delegate;
 
 			UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle (StringConstants.NOIMAGE);
