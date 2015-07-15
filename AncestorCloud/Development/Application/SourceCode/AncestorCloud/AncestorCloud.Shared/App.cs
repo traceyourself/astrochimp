@@ -17,7 +17,6 @@ namespace AncestorCloud.Shared
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
-				
 
 			_databaseService = Mvx.Resolve<IDatabaseService> ();
 
