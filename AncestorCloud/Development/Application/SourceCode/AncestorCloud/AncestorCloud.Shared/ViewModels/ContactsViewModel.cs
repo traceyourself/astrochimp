@@ -28,6 +28,7 @@ namespace AncestorCloud.Shared.ViewModels
 		private MvxSubscriptionToken selectContactToken;
 
 		IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
+		private readonly ILoader _loader;
 
 		#endregion
 
@@ -39,6 +40,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_smsService = smsService;
 			_contactLinkService = contactService;
 			_alert = alert;
+			_loader = Mvx.Resolve<ILoader> ();
 			GetContactsData ();
 			AddMessenger ();
 		}
@@ -59,22 +61,32 @@ namespace AncestorCloud.Shared.ViewModels
 
 		#region Sqlite Methods
 
-		public void GetContactsData()
+		public async void GetContactsData()
 		{
-			LoginModel login = _databaseService.GetLoginDetails ();
+			_loader.showLoader ();
+			try{
+				LoginModel login = await _databaseService.GetLoginDetails ();
 
-			List<People> list =  _contactService.GetDeviceContacts();
+				List<People> list = await _contactService.GetDeviceContacts();
 
-			foreach (People con in list) {
-				con.Relation = AppConstant.CONTACTKEY;
-				con.LoginUserLinkID = login.UserEmail;
-				_databaseService.InsertContact (con);
+				foreach (People con in list) {
+					con.Relation = AppConstant.CONTACTKEY;
+					con.LoginUserLinkID = login.UserEmail;
+					_databaseService.InsertContact (con);
+				}
+				
+				if(ContactsList != null)
+					ContactsList.Clear();
+				
+				ContactsList = _databaseService.RelativeMatching(AppConstant.CONTACTKEY,login.UserEmail);
 			}
-			
-			if(ContactsList != null)
-				ContactsList.Clear();
-			
-			ContactsList = _databaseService.RelativeMatching(AppConstant.CONTACTKEY,login.UserEmail);
+			catch(Exception e)
+			{
+				Mvx.Trace (e.StackTrace);
+			}
+			finally{
+				_loader.hideLoader ();
+			}
 
 		}
 		#endregion

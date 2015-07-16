@@ -44,8 +44,6 @@ namespace AncestorCloud.Shared
 				_connection.Insert(contact);
 		}
 
-	
-
 		private void UpdateContact(People contact)
 		{
 			if (contact == null)
@@ -62,7 +60,6 @@ namespace AncestorCloud.Shared
 			int count =  _connection.Table<People>().Where(x => x.Contact.Contains(number) && x.LoginUserLinkID.Contains(userID)).ToList().Count();
 			return count;
 		}
-
 		#endregion
 
 			
