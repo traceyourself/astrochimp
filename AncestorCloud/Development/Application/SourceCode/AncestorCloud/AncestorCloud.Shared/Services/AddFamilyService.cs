@@ -181,7 +181,7 @@ namespace AncestorCloud.Shared
 				param[AppConstant.ADD_PERSON_INDIOGFN] = model.LoggedinUserINDIOFGN;
 				param[AppConstant.ADD_RELATION_INDIOGFN] = model.IndiOgfn;
 				param[AppConstant.ADD_RELATION_TYPE] = relationType;
-				param[AppConstant.FAMOGFNKEY] = model.LoggedinUserFAMOFGN;
+				//param[AppConstant.FAMOGFNKEY] = model.LoggedinUserFAMOFGN;
 
 				string url = WebServiceHelper.GetWebServiceURL(AppConstant.ADD_RELATION_SERVICE,param);
 
@@ -198,7 +198,11 @@ namespace AncestorCloud.Shared
 				ResponseDataModel responsemodal = DataParser.GetAddMemberRelationDetails (dict);
 
 				if(responsemodal.Code.Equals("0")){
-					responseModel.Status = ResponseStatus.OK;	
+
+					//model.FamOGFN =  responsemodal.value;/* Do I need this?*/
+
+					responseModel.Status = ResponseStatus.OK;
+
 				}else{
 					responseModel.Status = ResponseStatus.Fail;
 				}

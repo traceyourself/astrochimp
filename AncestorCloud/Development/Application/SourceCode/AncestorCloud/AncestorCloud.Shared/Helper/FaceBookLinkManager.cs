@@ -22,6 +22,8 @@ namespace AncestorCloud.Shared
 
 		private readonly IIndiDetailService _indiDetailService;
 
+		private readonly ISignUpService _signupService;
+
 		#endregion
 
 		public FaceBookLinkManager ()
@@ -59,13 +61,18 @@ namespace AncestorCloud.Shared
 			if (loginData == null)
 				return ResponseStatus.Fail;
 
-			loginData = await CreateGroup (loginData);
+//			loginData = await CreateGroup (loginData);
+//
+//			if (loginData == null)
+//				return ResponseStatus.Fail;
+//
+//			loginData = await CreateFamily (loginData);
+//
+//			if (loginData == null)
+//				return ResponseStatus.Fail;
 
-			if (loginData == null)
-				return ResponseStatus.Fail;
-
-			loginData = await CreateFamily (loginData);
-
+			loginData = await CreateAnchor (loginData);
+			
 			if (loginData == null)
 				return ResponseStatus.Fail;
 
@@ -179,6 +186,25 @@ namespace AncestorCloud.Shared
 
 			return loginResponse.Content;
 		}
+		#endregion
+
+		#region
+
+		private async  Task<LoginModel> CreateAnchor(LoginModel loginData)
+		{
+			ResponseDataModel anchor = await _signupService.GetAnchor (loginData, loginData.Name);
+
+			if (anchor == null)
+				return loginData;
+			else {
+				loginData.IndiOGFN = anchor.value;
+			}
+
+			return loginData;
+		}
+
+
+
 		#endregion
 
 		#region Group Read method

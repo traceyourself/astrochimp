@@ -277,39 +277,41 @@ namespace AncestorCloud.Shared.ViewModels
 
 				if (response.Status == ResponseStatus.OK) {
 					//tell View about data arriving
-					//_databaseService.InsertLoginDetails(response.Content as LoginModel);
+					_databaseService.InsertLoginDetails (response.Content as LoginModel);
 
-					ResponseModel<LoginModel> loginResponse = await _groupService.CreateGroup (response.Content as LoginModel);
+//					ResponseModel<LoginModel> loginResponse = await _groupService.CreateGroup (response.Content as LoginModel);
+//
+//					if (loginResponse.Status == ResponseStatus.OK) {
+//					
+//						ResponseModel<LoginModel> famResponse = await _famService.CreateFamily (loginResponse.Content as LoginModel);
+//					
+//						if (famResponse.Status == ResponseStatus.OK) {
+//							_databaseService.InsertLoginDetails (famResponse.Content as LoginModel);
+					//_databaseService.GetLoginDetails ();
 
-					if (loginResponse.Status == ResponseStatus.OK) {
-					
-						ResponseModel<LoginModel> famResponse = await _famService.CreateFamily (loginResponse.Content as LoginModel);
-					
-						if (famResponse.Status == ResponseStatus.OK) {
-							_databaseService.InsertLoginDetails (famResponse.Content as LoginModel);
-							//_databaseService.GetLoginDetails ();
-
-							if (Mvx.CanResolve<IAndroidService> ()) {
-							//ShowMyFamilyViewModel ();
-								ShowProfilePicViewModel ();
-								this.Close (this);
-								CloseCommand.Execute (null);
-							} else {
-								IsFbLogin = false;
-								ShowProfilePicViewModel ();
-								//this.Close (this);//XXXXXX
+					if (Mvx.CanResolve<IAndroidService> ()) {
+						//ShowMyFamilyViewModel ();
+						ShowProfilePicViewModel ();
+						this.Close (this);
+						CloseCommand.Execute (null);
+					} else {
+						IsFbLogin = false;
+						ShowProfilePicViewModel ();
+						//this.Close (this);//XXXXXX
 //									CallFlyoutCommand.Execute(null);
-								CloseCommand.Execute (null);
-							}
-						}
-						else {
-							Alert.ShowAlert (AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
-						}
+						CloseCommand.Execute (null);
 					}
-					else
-					{
-						Alert.ShowAlert (AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
-					}
+					//}
+//						else {
+//							Alert.ShowAlert (AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
+//						}
+//					}
+//					else
+//					{
+//						Alert.ShowAlert (AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
+//					}
+				} else {
+					Alert.ShowAlert (AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
 				}
 			}
 		}
