@@ -71,10 +71,10 @@ namespace AncestorCloud.Shared
 //			if (loginData == null)
 //				return ResponseStatus.Fail;
 
-			loginData = await CreateAnchor (loginData);
-			
-			if (loginData == null)
-				return ResponseStatus.Fail;
+//			loginData = await CreateAnchor (loginData);
+//			
+//			if (loginData == null)
+//				return ResponseStatus.Fail;
 
 			SaveLoginDetailInDB (loginData);
 

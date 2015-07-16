@@ -311,7 +311,10 @@ namespace AncestorCloud.Shared
 
 			foreach (LoginModel l  in login) {
 				modal.GroupOGFN = l.GroupOGFN;
-				modal.FamOGFN = l.FamOGFN;
+
+				if(l.FamOGFN != null)
+					modal.FamOGFN = l.FamOGFN;
+				
 				_connection.Delete (l);
 			}
 

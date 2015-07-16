@@ -15,10 +15,13 @@ namespace AncestorCloud.Shared
 
 		private readonly IDeveloperLoginService _developerLoginService;
 
+		private readonly IUserReadService _userReadService;
+
 		public SignUpService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
 			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
+			_userReadService = Mvx.Resolve<IUserReadService> ();
 		}
 
 		#region ISignUpService implementation
@@ -142,21 +145,32 @@ namespace AncestorCloud.Shared
 				{
 					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
 					{
-
 						modal.Value = dict[AppConstant.VALUE].ToString();
 
-						ResponseDataModel _anchorResponse = await GetAnchor(modal,String.Format("{0} {1}",FirstName,LastName));
+						ResponseModel<LoginModel> userdata = await _userReadService.MakeUserReadService (modal);
 
-						if(_anchorResponse == null)
+						if (userdata.Status == ResponseStatus.Fail)
 						{
 							responsemodal.Status = ResponseStatus.Fail;
-
-
-						}else
+						}
+						else
 						{
-							modal.IndiOGFN = _anchorResponse.value;
+							modal = userdata.Content;
+
 							responsemodal.Status = ResponseStatus.OK;
 						}
+						//ResponseDataModel _anchorResponse = await GetAnchor(modal,String.Format("{0} {1}",FirstName,LastName));
+
+//						if(_anchorResponse == null)
+//						{
+//							responsemodal.Status = ResponseStatus.Fail;
+
+
+//						}else
+//						{
+//							modal.IndiOGFN = _anchorResponse.value;
+//							responsemodal.Status = ResponseStatus.OK;
+//						}
 
 
 					}else
@@ -166,6 +180,7 @@ namespace AncestorCloud.Shared
 				}
 
 				responsemodal.Content= modal;
+
 				return responsemodal;
 			}
 			catch(Exception ex)
