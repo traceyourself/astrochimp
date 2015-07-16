@@ -121,6 +121,7 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewWillAppear (animated);
 			this.NavigationController.NavigationBarHidden = false;
+			App.controllerTypeRef = ControllerType.Secondary;
 
 		}
 

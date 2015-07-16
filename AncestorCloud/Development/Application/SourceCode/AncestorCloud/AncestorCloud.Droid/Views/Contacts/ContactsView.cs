@@ -26,7 +26,7 @@ namespace AncestorCloud.Droid
 		ListView contactList;
 		RelativeLayout mePlus;
 		ImageView meImg;
-		private MvxSubscriptionToken inviteContactToken;
+		private MvxSubscriptionToken inviteContactToken,conatctFetchedToken;
 		IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
 		public People SelectedContact;
 
@@ -41,27 +41,44 @@ namespace AncestorCloud.Droid
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.contacts_screen);
 
+			inviteContactToken = _mvxMessenger.Subscribe<InviteContactMessage>(message => this.SendMessage(SelectedContact));
+			conatctFetchedToken = _mvxMessenger.SubscribeOnMainThread<ContactFetchedMessageAndroid>(message => setContactListAdapter());
+
 			initUI ();
 			configureActionBar ();
 			ApplyActions ();
-			setContactListAdapter ();
+			//setContactListAdapter ();
 
 			if(Utilities.CurrentUserimage != null){
 				meImg.SetImageBitmap (Utilities.CurrentUserimage);
 			}
+
+
 		}
 
 		protected override void OnResume ()
 		{
 			base.OnResume ();
-			inviteContactToken = _mvxMessenger.Subscribe<InviteContactMessage>(message => this.SendMessage(SelectedContact));
+			/*inviteContactToken = _mvxMessenger.Subscribe<InviteContactMessage>(message => this.SendMessage(SelectedContact));
+			conatctFetchedToken = _mvxMessenger.SubscribeOnMainThread<ContactFetchedMessageAndroid>(message => setContactListAdapter());
+			*/
+			setContactListAdapter ();
 		}
 
-		protected override void OnPause ()
+		/*protected override void OnPause ()
 		{
 			base.OnPause ();
 			_mvxMessenger.Unsubscribe<InviteContactMessage> (inviteContactToken);
+			_mvxMessenger.Unsubscribe<ContactFetchedMessageAndroid> (conatctFetchedToken);
+		}*/
+
+		protected override void OnDestroy ()
+		{
+			base.OnDestroy ();
+			_mvxMessenger.Unsubscribe<InviteContactMessage> (inviteContactToken);
+			_mvxMessenger.Unsubscribe<ContactFetchedMessageAndroid> (conatctFetchedToken);
 		}
+
 
 		public void SendMessage(People contact)
 		{
@@ -87,9 +104,11 @@ namespace AncestorCloud.Droid
 		#region List Adapter
 		private void setContactListAdapter()
 		{
-			ContactsListAdapter adapter = new ContactsListAdapter (this,ViewModel.ContactsList);
-			contactList.Adapter = adapter;
-			contactList.Invalidate ();
+			if(ViewModel.ContactsList != null){
+				ContactsListAdapter adapter = new ContactsListAdapter (this,ViewModel.ContactsList);
+				contactList.Adapter = adapter;
+				contactList.Invalidate ();
+			}
 		}
 		#endregion
 

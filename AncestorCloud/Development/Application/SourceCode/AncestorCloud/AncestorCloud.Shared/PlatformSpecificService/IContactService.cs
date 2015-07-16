@@ -7,6 +7,7 @@ namespace AncestorCloud.Shared
 	public interface IContactService
 	{
 		List<People> GetDeviceContacts();
+		Task<List<People>> ReadPhoneContacts ();
 	}
 }
 

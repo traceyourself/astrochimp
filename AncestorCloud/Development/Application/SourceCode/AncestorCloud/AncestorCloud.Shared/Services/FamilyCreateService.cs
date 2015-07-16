@@ -48,7 +48,7 @@ namespace AncestorCloud.Shared
 				String res = response.Content.ReadAsStringAsync().Result;
 				//System.Diagnostics.Debug.WriteLine ("4.) CreateFamily url : "+url);
 				//System.Diagnostics.Debug.WriteLine ("4.) CreateFamily content : "+content);
-				//System.Diagnostics.Debug.WriteLine (" CreateFamily response : "+res+ "response.EnsureSuccessStatusCode(); " +response.EnsureSuccessStatusCode());
+				System.Diagnostics.Debug.WriteLine (" CreateFamily response : "+res+ "response.EnsureSuccessStatusCode(); " +response.EnsureSuccessStatusCode());
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 

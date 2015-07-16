@@ -12,5 +12,14 @@ namespace AncestorCloud.Shared
 		}
 	}
 
+	public class IOSLogoutMessage: MvxMessage
+	{
+		public IOSLogoutMessage(object sender)
+			: base(sender)
+		{
+
+		}
+	}
+
 }
 

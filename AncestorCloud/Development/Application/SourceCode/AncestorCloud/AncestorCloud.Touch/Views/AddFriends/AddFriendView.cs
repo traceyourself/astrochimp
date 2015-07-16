@@ -56,6 +56,13 @@ namespace AncestorCloud.Touch
 
 		}
 
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+
+			App.controllerTypeRef = ControllerType.Secondary;
+		}
+
 		#endregion
 
 		#region Navigation Bar Methods

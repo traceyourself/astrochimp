@@ -6,6 +6,7 @@ using UIKit;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using System.Drawing;
+using AncestorCloud.Shared;
 
 namespace AncestorCloud.Touch
 {
@@ -34,6 +35,13 @@ namespace AncestorCloud.Touch
 			OpenWebView ();
 			
 			// Perform any additional setup after loading the view, typically from a nib.
+		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+
+			App.controllerTypeRef = ControllerType.Secondary;
 		}
 
 		public void SetNavigationbar()

@@ -79,6 +79,13 @@ namespace AncestorCloud.Touch
 			base.ViewWillDisappear (animated);
 
 		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+
+			App.controllerTypeRef = ControllerType.Primary;
+		}
 	}
 }
 

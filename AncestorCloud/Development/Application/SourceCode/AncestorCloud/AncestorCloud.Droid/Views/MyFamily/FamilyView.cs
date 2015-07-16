@@ -53,7 +53,7 @@ namespace AncestorCloud.Droid
 			base.OnResume ();
 
 			LoginModel modal = ViewModel.GetUserData();
-			userNameMenu.Text = modal.UserEmail;
+			userNameMenu.Text = GetUserName(modal.Name);
 
 			if(Utilities.CurrentUserimage == null){
 				string avatarUrl = ""+modal.AvatarURL;
@@ -68,6 +68,17 @@ namespace AncestorCloud.Droid
 				Utilities.LoggedInUsingFb = false;
 			}
 		}
+
+		string GetUserName(string name)
+		{
+			if (name == null)
+				return "";
+
+			string[] nameArray = name.Split (' ');
+
+			return nameArray [0];
+		}
+
 
 		public override void OnBackPressed ()
 		{

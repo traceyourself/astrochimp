@@ -35,6 +35,7 @@ namespace AncestorCloud.Touch
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+
 			SetTableView ();
 
 			// Perform any additional setup after loading the view, typically from a nib.
@@ -92,6 +93,8 @@ namespace AncestorCloud.Touch
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
+
+			App.controllerTypeRef = ControllerType.Secondary;
 
 			AppDelegate _delegate = (AppDelegate) UIApplication.SharedApplication.Delegate;
 

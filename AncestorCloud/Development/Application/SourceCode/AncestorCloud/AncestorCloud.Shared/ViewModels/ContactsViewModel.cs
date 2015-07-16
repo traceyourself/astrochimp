@@ -27,6 +27,8 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private MvxSubscriptionToken selectContactToken;
 
+		private MvxSubscriptionToken conatctFetchedToken;
+
 		IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
 		private readonly ILoader _loader;
 
@@ -41,7 +43,14 @@ namespace AncestorCloud.Shared.ViewModels
 			_contactLinkService = contactService;
 			_alert = alert;
 			_loader = Mvx.Resolve<ILoader> ();
-			GetContactsData ();
+
+			if(Mvx.CanResolve<IAndroidService>())
+			{
+				GetPhoneContacts ();
+			}else{
+				GetContactsData ();
+			}
+
 			AddMessenger ();
 		}
 
@@ -49,6 +58,7 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			inviteContactToken = _mvxMessenger.SubscribeOnMainThread<InviteContactMessage>(message => this.SendMessage(Contact));
 			selectContactToken = _mvxMessenger.SubscribeOnMainThread<SelectContactMessage>(message => this.PeoplePlusClickHandler(Contact));
+			conatctFetchedToken = _mvxMessenger.SubscribeOnMainThread<ContactFetchedMessage>(message => this.CreateContactList(message.ContactsList));
 		}
 
 		private void RemoveMessenger()
@@ -63,29 +73,48 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public async void GetContactsData()
 		{
-			_loader.showLoader ();
+
+			List<People> list =  _contactService.GetDeviceContacts();
+
+			CreateContactList (list);
+		}
+
+		public async void GetPhoneContacts()
+		{
 			try{
-				LoginModel login = await _databaseService.GetLoginDetails ();
+				_loader.showLoader();
 
-				List<People> list = await _contactService.GetDeviceContacts();
+				List<People> list =  await _contactService.ReadPhoneContacts();
+				CreateContactList (list);
 
-				foreach (People con in list) {
-					con.Relation = AppConstant.CONTACTKEY;
-					con.LoginUserLinkID = login.UserEmail;
-					_databaseService.InsertContact (con);
-				}
-				
-				if(ContactsList != null)
-					ContactsList.Clear();
-				
-				ContactsList = _databaseService.RelativeMatching(AppConstant.CONTACTKEY,login.UserEmail);
+				_loader.hideLoader();
 			}
 			catch(Exception e)
 			{
 				Mvx.Trace (e.StackTrace);
 			}
-			finally{
-				_loader.hideLoader ();
+		}
+
+		public void CreateContactList(List<People> list)
+		{
+			LoginModel login = _databaseService.GetLoginDetails ();
+
+			foreach (People con in list) {
+				con.Relation = AppConstant.CONTACTKEY;
+				con.LoginUserLinkID = login.UserEmail;
+				_databaseService.InsertContact (con);
+			}
+
+			if(ContactsList != null)
+				ContactsList.Clear();
+
+			ContactsList = _databaseService.RelativeMatching(AppConstant.CONTACTKEY,login.UserEmail);
+
+
+			if(Mvx.CanResolve<IAndroidService>())
+			{
+				IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
+				_mvxMessenger.Publish(new ContactFetchedMessageAndroid(this));
 			}
 
 		}

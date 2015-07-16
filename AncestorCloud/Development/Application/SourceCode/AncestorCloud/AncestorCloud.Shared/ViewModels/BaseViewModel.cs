@@ -50,6 +50,7 @@ namespace AncestorCloud.Shared
 				}
 			} else {
 				//IOS part
+				this.Close (this);
 			}
 		}
 		#endregion

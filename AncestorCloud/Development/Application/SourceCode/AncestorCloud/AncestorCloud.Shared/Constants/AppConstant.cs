@@ -21,7 +21,15 @@ namespace AncestorCloud.Shared
 		OKCancelPermit,
 		OKCancelSelect,
 		OKCancelSelectContact,
-		OKCancelSelectInvite
+		OKCancelSelectInvite,
+		Logout
+	}
+
+	public enum ControllerType
+	{
+		None,
+		Primary,
+		Secondary
 	}
 
 	static public class AppConstant

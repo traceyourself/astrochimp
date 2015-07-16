@@ -177,6 +177,8 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewWillAppear (animated);
 
+			App.controllerTypeRef = ControllerType.Primary;
+
 			GetData ();
 		}
 

@@ -19,6 +19,7 @@ using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Plugins.Messenger;
 using AncestorCloud.Core;
 using Android.Content.PM;
+using Android.Graphics.Drawables;
 
 namespace AncestorCloud.Droid
 {
@@ -252,7 +253,6 @@ namespace AncestorCloud.Droid
 		{
 			People peopleData = dataList[position].PersonData;
 			String gender = "";
-			//Android.Resource.Style.ThemeTranslucentNoTitleBar
 			editDialog = new Dialog (this,Resource.Style.TransparentDialog);
 
 			editDialog.SetContentView (Resource.Layout.edit_family_dialog);
@@ -390,6 +390,8 @@ namespace AncestorCloud.Droid
 					Mvx.Trace(ex.StackTrace);
 				}
 			};
+
+
 
 			editDialog.Show ();
 
@@ -658,5 +660,4 @@ namespace AncestorCloud.Droid
 
 	}
 	#endregion
-
 }

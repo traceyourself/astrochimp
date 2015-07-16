@@ -96,6 +96,8 @@ namespace AncestorCloud.Touch
 			this.NavigationController.NavigationBarHidden = false;
 			base.ViewWillAppear (animated);
 
+			App.controllerTypeRef = ControllerType.Secondary;
+
 			ReloadView ();
 		}
 

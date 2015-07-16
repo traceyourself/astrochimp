@@ -24,9 +24,9 @@ namespace AncestorCloud.Touch
 
 		public void ShowLogoutAlert (string message, string title)
 		{
-			UIAlertView alert = new UIAlertView (title, message, new IOSAlertDelegate (), "Cancel", new string[]{ "OK" });
+			UIAlertView alert = new UIAlertView (title, message, new IOSAlertDelegate (), "OK");
 			alert.Delegate = new IOSAlertDelegate ();
-			//alert.Tag = (int)alertType;
+			alert.Tag = (int)AlertType.Logout;
 
 			alert.Show ();
 		}
@@ -40,6 +40,11 @@ namespace AncestorCloud.Touch
 		{
 			switch (buttonIndex) 
 			{
+			case 0:
+				if((int)alertview.Tag == (int)AlertType.Logout)
+					_mvxMessenger.Publish(new LogoutMessage(this));
+				break;
+
 			case 1:
 				{
 					if((int)alertview.Tag == (int)AlertType.OKCancelPermit)
