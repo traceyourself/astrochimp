@@ -15,10 +15,13 @@ namespace AncestorCloud.Shared
 
 		private readonly IDeveloperLoginService _developerLoginService;
 
+		private readonly IUserReadService _userReadService;
+
 		public SignUpService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
 			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
+			_userReadService = Mvx.Resolve<IUserReadService> ();
 		}
 
 		#region ISignUpService implementation
@@ -134,15 +137,41 @@ namespace AncestorCloud.Shared
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
+
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
+
 
 				if(dict.ContainsKey(AppConstant.Message))
 				{
 					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
 					{
-						responsemodal.Status = ResponseStatus.OK;
-
 						modal.Value = dict[AppConstant.VALUE].ToString();
+
+						ResponseModel<LoginModel> userdata = await _userReadService.MakeUserReadService (modal);
+
+						if (userdata.Status == ResponseStatus.Fail)
+						{
+							responsemodal.Status = ResponseStatus.Fail;
+						}
+						else
+						{
+							modal = userdata.Content;
+
+							responsemodal.Status = ResponseStatus.OK;
+						}
+						//ResponseDataModel _anchorResponse = await GetAnchor(modal,String.Format("{0} {1}",FirstName,LastName));
+
+//						if(_anchorResponse == null)
+//						{
+//							responsemodal.Status = ResponseStatus.Fail;
+
+
+//						}else
+//						{
+//							modal.IndiOGFN = _anchorResponse.value;
+//							responsemodal.Status = ResponseStatus.OK;
+//						}
+
 
 					}else
 					{
@@ -151,6 +180,7 @@ namespace AncestorCloud.Shared
 				}
 
 				responsemodal.Content= modal;
+
 				return responsemodal;
 			}
 			catch(Exception ex)
@@ -166,6 +196,42 @@ namespace AncestorCloud.Shared
 			}
 
 		}
+
+		public async Task<ResponseDataModel> GetAnchor(LoginModel modal, string Name)
+		{
+			HttpClient anchorclient = new HttpClient(new NativeMessageHandler());
+
+			anchorclient.DefaultRequestHeaders.Add("Accept","application/json");
+
+			Dictionary <string,string> anchorparam = new Dictionary<string, string>();
+
+			anchorparam[AppConstant.ADD_PERSON_SESSION_ID] = modal.Value;
+			anchorparam [AppConstant.ADD_PERSON_NAME] = Name;
+
+			String _url = WebServiceHelper.GetWebServiceURL(AppConstant.ADD_PEOPLE_SERVICE,anchorparam);
+
+			Mvx.Trace(_url);
+
+			var _response = await anchorclient.GetAsync(_url);
+
+			String _res = _response.Content.ReadAsStringAsync().Result;
+
+			System.Diagnostics.Debug.WriteLine ("add anchor response : "+_res);
+
+			Dictionary <string,object> _dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (_res);
+
+
+			ResponseDataModel _responsemodal = null;
+
+			if (_dict.ContainsKey (AppConstant.Message)) {
+				if (_dict [AppConstant.Message].Equals ((AppConstant.SUCCESS))) {
+					_responsemodal = DataParser.GetAddMemberDetails (_dict);
+				}
+			}
+
+			return _responsemodal;
+		}
+
 		#endregion
 
 

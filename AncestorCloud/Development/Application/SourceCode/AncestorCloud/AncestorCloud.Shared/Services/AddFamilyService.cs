@@ -198,7 +198,11 @@ namespace AncestorCloud.Shared
 				ResponseDataModel responsemodal = DataParser.GetAddMemberRelationDetails (dict);
 
 				if(responsemodal.Code.Equals("0")){
-					responseModel.Status = ResponseStatus.OK;	
+
+					//model.FamOGFN =  responsemodal.value;/* Do I need this?*/
+
+					responseModel.Status = ResponseStatus.OK;
+
 				}else{
 					responseModel.Status = ResponseStatus.Fail;
 				}

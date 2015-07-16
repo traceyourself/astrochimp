@@ -587,6 +587,9 @@ namespace AncestorCloud.Shared
 			if (IsKeyExist (AppConstant.Message, dataDic))
 				modal.Message = GetData (AppConstant.Message, dataDic);
 
+			if (IsKeyExist (AppConstant.VALUE, dataDic))
+				modal.value = GetData (AppConstant.VALUE, dataDic);
+
 			return modal;
 		}
 		#endregion
