@@ -83,6 +83,13 @@ namespace AncestorCloud.Shared.ViewModels
 				ContactsList.Clear();
 
 			ContactsList = _databaseService.RelativeMatching(AppConstant.CONTACTKEY,login.UserEmail);
+
+			if(Mvx.CanResolve<IAndroidService>())
+			{
+				IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
+				_mvxMessenger.Publish(new ContactFetchedMessage(this,ContactsList));
+			}
+
 		}
 		#endregion
 

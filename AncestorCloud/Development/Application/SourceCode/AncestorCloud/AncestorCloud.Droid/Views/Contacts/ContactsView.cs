@@ -26,7 +26,7 @@ namespace AncestorCloud.Droid
 		ListView contactList;
 		RelativeLayout mePlus;
 		ImageView meImg;
-		private MvxSubscriptionToken inviteContactToken;
+		private MvxSubscriptionToken inviteContactToken,conatctFetchedToken;
 		IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
 		public People SelectedContact;
 
@@ -44,7 +44,7 @@ namespace AncestorCloud.Droid
 			initUI ();
 			configureActionBar ();
 			ApplyActions ();
-			setContactListAdapter ();
+			//setContactListAdapter ();
 
 			if(Utilities.CurrentUserimage != null){
 				meImg.SetImageBitmap (Utilities.CurrentUserimage);
@@ -55,12 +55,14 @@ namespace AncestorCloud.Droid
 		{
 			base.OnResume ();
 			inviteContactToken = _mvxMessenger.Subscribe<InviteContactMessage>(message => this.SendMessage(SelectedContact));
+			conatctFetchedToken = _mvxMessenger.SubscribeOnMainThread<ContactFetchedMessage>(message => setContactListAdapter());
 		}
 
 		protected override void OnPause ()
 		{
 			base.OnPause ();
 			_mvxMessenger.Unsubscribe<InviteContactMessage> (inviteContactToken);
+			_mvxMessenger.Unsubscribe<ContactFetchedMessage> (conatctFetchedToken);
 		}
 
 		public void SendMessage(People contact)

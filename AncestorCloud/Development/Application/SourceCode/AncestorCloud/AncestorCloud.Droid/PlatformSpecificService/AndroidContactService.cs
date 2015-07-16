@@ -11,8 +11,12 @@ namespace AncestorCloud.Droid
 {
 	public class AndroidContactService : IContactService
 	{
+
+		private ILoader _loader;
+
 		public AndroidContactService ()
 		{
+			_loader = Mvx.Resolve<ILoader> ();
 		}
 
 		public List<People> GetDeviceContacts ()
@@ -25,7 +29,8 @@ namespace AncestorCloud.Droid
 
 		private List<People> ReadContacts()
 		{
-			
+			_loader.showLoader ();
+
 			List<People> contactList = new List<People> ();
 
 			ContentResolver contentResolver = Utilities.CurrentActiveActivity.ContentResolver;
@@ -69,6 +74,9 @@ namespace AncestorCloud.Droid
 					cursor.Close();
 				}
 			}
+
+
+			_loader.hideLoader();
 
 			return contactList;
 		}
