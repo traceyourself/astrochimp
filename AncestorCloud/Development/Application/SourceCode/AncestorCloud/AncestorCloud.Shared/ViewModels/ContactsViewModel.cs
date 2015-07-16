@@ -27,6 +27,8 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private MvxSubscriptionToken selectContactToken;
 
+		private MvxSubscriptionToken conatctFetchedToken;
+
 		IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
 
 		#endregion
@@ -47,6 +49,7 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			inviteContactToken = _mvxMessenger.SubscribeOnMainThread<InviteContactMessage>(message => this.SendMessage(Contact));
 			selectContactToken = _mvxMessenger.SubscribeOnMainThread<SelectContactMessage>(message => this.PeoplePlusClickHandler(Contact));
+			conatctFetchedToken = _mvxMessenger.SubscribeOnMainThread<ContactFetchedMessage>(message => this.CreateContactList(message.ContactsList));
 		}
 
 		private void RemoveMessenger()
@@ -61,21 +64,25 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void GetContactsData()
 		{
-			LoginModel login = _databaseService.GetLoginDetails ();
-
 			List<People> list =  _contactService.GetDeviceContacts();
+
+			CreateContactList (list);
+		}
+
+		public void CreateContactList(List<People> list)
+		{
+			LoginModel login = _databaseService.GetLoginDetails ();
 
 			foreach (People con in list) {
 				con.Relation = AppConstant.CONTACTKEY;
 				con.LoginUserLinkID = login.UserEmail;
 				_databaseService.InsertContact (con);
 			}
-			
+
 			if(ContactsList != null)
 				ContactsList.Clear();
-			
-			ContactsList = _databaseService.RelativeMatching(AppConstant.CONTACTKEY,login.UserEmail);
 
+			ContactsList = _databaseService.RelativeMatching(AppConstant.CONTACTKEY,login.UserEmail);
 		}
 		#endregion
 

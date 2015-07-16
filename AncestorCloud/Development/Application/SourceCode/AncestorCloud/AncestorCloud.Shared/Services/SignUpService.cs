@@ -71,6 +71,8 @@ namespace AncestorCloud.Shared
 
 				modal.Value = sessionID;
 
+				modal.Name = string.Format("{0} {1}",FirstName,LastName);
+
 				//===========>
 
 				//hit for sign up

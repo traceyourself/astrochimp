@@ -156,7 +156,7 @@ namespace AncestorCloud.Shared.ViewModels
 					{
 						
 						Section = Section.Unknown,
-						Title = GetUserData().UserEmail,
+						Title = GetUserName( GetUserData().Name),
 						//Image = "profile_img.png",
 						ViewModelType = typeof(ProfilePicViewModel),	
 					}
@@ -208,7 +208,7 @@ namespace AncestorCloud.Shared.ViewModels
 					new MenuViewModel 
 					{
 						Section = Section.Unknown,
-						Title = GetUserData().UserEmail,
+						Title = GetUserName( GetUserData().Name),
 						//Image = "profile_img.png",
 						ViewModelType = typeof(ProfilePicViewModel),	
 					}
@@ -222,6 +222,21 @@ namespace AncestorCloud.Shared.ViewModels
 			this.SetItemList (boolValue);
 			DoUpdate ();
 		}
+		#endregion
+
+
+		#region
+
+		string GetUserName(string name)
+		{
+			if (name == null)
+				return "";
+			
+			string[] nameArray = name.Split (' ');
+
+			return nameArray [0];
+		}
+
 		#endregion
 
 		private void DoUpdate()

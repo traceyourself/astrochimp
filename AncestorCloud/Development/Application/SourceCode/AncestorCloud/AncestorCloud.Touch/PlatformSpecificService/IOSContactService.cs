@@ -7,15 +7,17 @@ using CoreFoundation;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cirrious.CrossCore;
+using Cirrious.MvvmCross.Plugins.Messenger;
 
 namespace AncestorCloud.Touch
 {
 	public class IOSContactService : IContactService
 	{
+		private readonly ILoader _loader;
 
 		public IOSContactService ()
 		{
-
+			_loader = Mvx.Resolve<ILoader> ();
 		}
 
 		private List<People> contactList = new List<People> ();
@@ -26,6 +28,7 @@ namespace AncestorCloud.Touch
 
 		public List<People> GetDeviceContacts ()
 		{
+			_loader.showLoader ();
 
 			if (contactList != null)
 				contactList.Clear ();
@@ -83,6 +86,11 @@ namespace AncestorCloud.Touch
 			{
 				contactList.Add(GetContact(p));
 			}
+
+			IMvxMessenger _mvxMessenger = Mvx.Resolve<IMvxMessenger>();
+			_mvxMessenger.Publish(new ContactFetchedMessage(this,contactList));
+
+			_loader.hideLoader ();
 		}
 
 
