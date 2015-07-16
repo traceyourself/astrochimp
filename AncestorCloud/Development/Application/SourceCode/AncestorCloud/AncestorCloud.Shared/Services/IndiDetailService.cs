@@ -34,7 +34,7 @@ namespace AncestorCloud.Shared
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.INDIVIDUAL_READ_SERVICE,param);
 
-				Mvx.Trace(url);
+				Mvx.Trace("Indi detail url : "+url);
 
 				var response = await client.GetAsync(url);
 

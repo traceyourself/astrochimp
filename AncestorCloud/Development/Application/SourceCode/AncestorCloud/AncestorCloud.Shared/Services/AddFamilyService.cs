@@ -111,13 +111,13 @@ namespace AncestorCloud.Shared
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.ADD_PEOPLE_SERVICE,param);
 
-				Mvx.Trace(url);
+				Mvx.Trace("ADD Person Url : "+url);
 
 				var response = await client.GetAsync(url);
 
 				String res = response.Content.ReadAsStringAsync().Result;
 
-				System.Diagnostics.Debug.WriteLine ("add family response : "+res);
+				System.Diagnostics.Debug.WriteLine ("add Person response : "+res);
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
@@ -185,13 +185,13 @@ namespace AncestorCloud.Shared
 
 				string url = WebServiceHelper.GetWebServiceURL(AppConstant.ADD_RELATION_SERVICE,param);
 
-				Mvx.Trace(url);
+				Mvx.Trace("Add relation url : "+url);
 
 				var response = await client.GetAsync(url);
 
 				String responserelation = response.Content.ReadAsStringAsync().Result;
 
-				Mvx.Trace("relation response : "+ responserelation);
+				Mvx.Trace("Add relation response : "+ responserelation);
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (responserelation);
 

@@ -35,7 +35,7 @@ namespace AncestorCloud.Shared
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.DEVELOPERLOGINSERVICE,param);
 
-				Mvx.Trace(url);
+				Mvx.Trace("1.) Develope Login url : "+url);
 
 				var response = await client.GetAsync(url);
 

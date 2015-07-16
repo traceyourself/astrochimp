@@ -34,7 +34,7 @@ namespace AncestorCloud.Shared
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.USEREADSERVICE,param);
 
-				Mvx.Trace(url);
+				Mvx.Trace("user read url : "+url);
 
 				var response = await client.GetAsync(url);
 
@@ -42,7 +42,7 @@ namespace AncestorCloud.Shared
 
 				//System.Diagnostics.Debug.WriteLine ("Login response : "+res);
 
-				Mvx.Trace("--User read response : "+res);
+				Mvx.Trace("User read response : "+res);
 
 
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);                      

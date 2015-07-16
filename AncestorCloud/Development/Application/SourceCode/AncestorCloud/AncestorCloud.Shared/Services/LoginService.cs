@@ -40,7 +40,7 @@ namespace AncestorCloud.Shared
 				password = "password";*/
 
 				String url = "https://ws.onegreatfamily.com/v11.02/User.svc/Signin?username="+email+"&Password="+password+"&DeveloperId="+developerId+"&DeveloperPassword="+developerPassword;
-				Mvx.Trace(url);
+				Mvx.Trace("Login Url : "+url);
 
 				var response = await client.GetAsync(url);
 

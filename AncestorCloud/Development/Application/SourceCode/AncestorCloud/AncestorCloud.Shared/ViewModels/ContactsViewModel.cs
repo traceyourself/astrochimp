@@ -11,7 +11,6 @@ namespace AncestorCloud.Shared.ViewModels
 	public class ContactsViewModel:BaseViewModel
 	{
 
-
 		#region Globals
 		private readonly IDatabaseService _databaseService;
 
@@ -215,5 +214,3 @@ namespace AncestorCloud.Shared.ViewModels
 		#endregion
 	}
 }
-
-

@@ -195,7 +195,7 @@ namespace AncestorCloud.Shared
 
 			String _url = WebServiceHelper.GetWebServiceURL(AppConstant.ADD_PEOPLE_SERVICE,anchorparam);
 
-			Mvx.Trace(_url);
+			Mvx.Trace("4.) Create anchor"+_url);
 
 			var _response = await anchorclient.GetAsync(_url);
 
