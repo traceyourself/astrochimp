@@ -186,9 +186,11 @@ namespace AncestorCloud.Shared.ViewModels
 
 								foreach (People p in listP) {
 									if (p.Gender != null) {
-										if (p.Gender.Equals ("Male")) {
-											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
-											modal.LoggedinUserFAMOFGN = p.FamOGFN;
+										if (p.Relation.Equals ("Parent")) {
+											if (p.Gender.Equals ("Male")) {
+												modal.LoggedinUserINDIOFGN = p.IndiOgfn;
+												//modal.LoggedinUserFAMOFGN = p.FamOGFN;
+											}
 										}
 									}
 								}
@@ -197,9 +199,11 @@ namespace AncestorCloud.Shared.ViewModels
 
 								foreach (People p in listP) {
 									if (p.Gender != null) {
-										if (p.Gender.Equals ("Female")) {
-											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
-											modal.LoggedinUserFAMOFGN = p.FamOGFN;
+										if (p.Relation.Equals ("Parent")) {
+											if (p.Gender.Equals ("Female")) {
+												modal.LoggedinUserINDIOFGN = p.IndiOgfn;
+												//modal.LoggedinUserFAMOFGN = p.FamOGFN;
+											}
 										}
 									}
 								}
@@ -208,7 +212,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 							if(modal.LoggedinUserINDIOFGN == null){
 								modal.LoggedinUserINDIOFGN = listP [0].IndiOgfn;
-								modal.LoggedinUserFAMOFGN = listP [0].FamOGFN;
+								//modal.LoggedinUserFAMOFGN = listP [0].FamOGFN;
 							}
 
 							modal.Relation = AppConstant.GrandParent_comparison;
@@ -227,9 +231,12 @@ namespace AncestorCloud.Shared.ViewModels
 
 								foreach (People p in listP) {
 									if (p.Gender != null) {
-										if (p.Gender.Equals ("Male")) {
-											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
-											modal.LoggedinUserFAMOFGN = p.FamOGFN;
+										if (p.Relation.Equals ("Grandparent"))
+										{
+											if (p.Gender.Equals ("Male")) {
+												modal.LoggedinUserINDIOFGN = p.IndiOgfn;
+												modal.LoggedinUserFAMOFGN = p.FamOGFN;
+											}
 										}
 									}
 								}
@@ -238,9 +245,11 @@ namespace AncestorCloud.Shared.ViewModels
 
 								foreach (People p in listP) {
 									if (p.Gender != null) {
-										if (p.Gender.Equals ("Female")) {
-											modal.LoggedinUserINDIOFGN = p.IndiOgfn;
-											modal.LoggedinUserFAMOFGN = p.FamOGFN;
+										if (p.Relation.Equals ("Grandparent")) {
+											if (p.Gender.Equals ("Female")) {
+												modal.LoggedinUserINDIOFGN = p.IndiOgfn;
+												modal.LoggedinUserFAMOFGN = p.FamOGFN;
+											}
 										}
 									}
 								}
@@ -265,7 +274,7 @@ namespace AncestorCloud.Shared.ViewModels
 						modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;
 						modal.Relation = this.AddType;
 						modal.RelationType = this.AddType;
-						modal.LoggedinUserFAMOFGN = lModal.FamOGFN;
+						//modal.LoggedinUserFAMOFGN = lModal.FamOGFN;
 					}
 
 			
