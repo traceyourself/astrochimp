@@ -21,13 +21,16 @@ namespace AncestorCloud.Shared
 
 			List<People> listP = _databaseService.RelativeMatching (AppConstant.Parent_comparison,lModal.UserEmail);
 
-			if (listP != null) {
-				if (listP.Count == 0) {
-					listP = _databaseService.RelativeMatching (AppConstant.Father_comparison, lModal.UserEmail);
-				}
-			} else {
-				listP = _databaseService.RelativeMatching (AppConstant.Father_comparison, lModal.UserEmail);
-			}
+			List<People> listFather = _databaseService.RelativeMatching (AppConstant.Father_comparison, lModal.UserEmail);
+
+			if(listFather != null)
+				listP.AddRange (listFather);
+
+			List<People> listMOther = _databaseService.RelativeMatching (AppConstant.Mother_comparison, lModal.UserEmail);
+
+			if(listMOther != null)
+				listP.AddRange (listMOther);
+
 
 			return listP;
 		}
