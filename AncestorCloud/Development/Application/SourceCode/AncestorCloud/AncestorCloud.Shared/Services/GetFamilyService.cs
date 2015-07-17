@@ -170,7 +170,7 @@ namespace AncestorCloud.Shared
 
 								if(count == 0)
 								{
-									ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.FATHER_OFGN,loginModel.Value);
+									/*ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.FATHER_OFGN,loginModel.Value);
 
 									if(responseM.Status == ResponseStatus.OK){
 										People p = responseM.Content;
@@ -181,13 +181,32 @@ namespace AncestorCloud.Shared
 										FamilyMembers.Add(p);
 
 										//Mvx.Trace("Father : "+p.FirstName+" : "+p.Relation+" : "+p.FamOGFN);
-									}
+									}*/
+
+									People p = await FetchFather(datamodal,loginModel,false);
+									if(p != null)
+										FamilyMembers.Add(p);
+
 								}else
 								{
+
 									People p = _databaseService.GetFamilyMember(datamodal.FATHER_OFGN,loginModel.UserEmail);
+									if(p.FamOGFN == null)
+									{
+										People peop  = await FetchFather(datamodal,loginModel,true);
+										if(peop != null)
+											p = peop;
+									}else{
+										p.Relation = AppConstant.Father_comparison;
+										p.Gender = AppConstant.MALE;
+									}
+
+									FamilyMembers.Add(p);
+
+									/*People p = _databaseService.GetFamilyMember(datamodal.FATHER_OFGN,loginModel.UserEmail);
 									p.Relation = AppConstant.Father_comparison;
 									p.Gender = AppConstant.MALE;
-									FamilyMembers.Add(p);
+									FamilyMembers.Add(p);*/
 									//Mvx.Trace("Father : "+p.FirstName+" : "+p.Relation+" : "+p.FamOGFN);
 								}		
 							}
@@ -200,9 +219,9 @@ namespace AncestorCloud.Shared
 							{
 								int count = _databaseService.IsMemberExists(datamodal.MOTHER_OFGN,loginModel.UserEmail);
 
-								if(count == 0)
+								if(count == 0 )
 								{
-									ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.MOTHER_OFGN,loginModel.Value);
+									/*ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.MOTHER_OFGN,loginModel.Value);
 
 									if(responseM.Status == ResponseStatus.OK){
 										People p = responseM.Content;
@@ -212,14 +231,27 @@ namespace AncestorCloud.Shared
 										_databaseService.InsertFamilyMember(p);
 										FamilyMembers.Add(p);
 										//Mvx.Trace("Mother : "+p.FirstName+" : "+p.Relation+" : "+p.FamOGFN);
-									}
+									}*/
+
+									People p = await FetchMother(datamodal,loginModel,false);
+									if(p != null)
+										FamilyMembers.Add(p);
+
 								}else
 								{
 									People p = _databaseService.GetFamilyMember(datamodal.MOTHER_OFGN,loginModel.UserEmail);
-									p.Relation = AppConstant.Mother_comparison;
-									p.Gender = AppConstant.FEMALE;
-									FamilyMembers.Add(p);
-									//Mvx.Trace("Mother : "+p.FirstName+" : "+p.Relation+" : "+p.FamOGFN);
+									if(p.FamOGFN == null)
+									{
+										People peop  = await FetchMother(datamodal,loginModel,true);
+										if(peop != null)
+											p = peop;
+									}else{
+										p.Relation = AppConstant.Mother_comparison;
+										p.Gender = AppConstant.FEMALE;
+									}
+
+									//if(p != null)
+										FamilyMembers.Add(p);
 								}		
 							}
 						}
@@ -234,6 +266,57 @@ namespace AncestorCloud.Shared
 			return FamilyMembers;
 		}
 		#endregion
+
+		#region fetch mother
+		public async Task<People> FetchMother(ResponseDataModel datamodal,LoginModel loginModel,bool isExist)
+		{
+			ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.MOTHER_OFGN,loginModel.Value);
+
+			if (responseM.Status == ResponseStatus.OK) {
+				People p = responseM.Content;
+				p.LoginUserLinkID = loginModel.UserEmail;
+				p.Relation = AppConstant.Mother_comparison;
+				p.Gender = AppConstant.FEMALE;
+				if (isExist) {
+					_databaseService.UpdateRelative (p);
+				} else {
+					_databaseService.InsertFamilyMember (p);
+				}
+
+				return p;
+				//Mvx.Trace("Mother : "+p.FirstName+" : "+p.Relation+" : "+p.FamOGFN);
+			} else {
+				return null;
+			}
+		}
+		#endregion
+
+		#region fetch father
+		public async Task<People> FetchFather(ResponseDataModel datamodal,LoginModel loginModel,bool isExist)
+		{
+			ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.FATHER_OFGN,loginModel.Value);
+
+			if (responseM.Status == ResponseStatus.OK) {
+			
+				People p = responseM.Content;
+				p.LoginUserLinkID = loginModel.UserEmail;
+				p.Relation = AppConstant.Father_comparison;
+				p.Gender = AppConstant.MALE;
+
+				if (isExist) {
+					_databaseService.UpdateRelative (p);
+				} else {
+					_databaseService.InsertFamilyMember (p);
+				}
+
+				return p;
+
+			} else {
+				return null;
+			}
+		}
+		#endregion
+
 
 
 		#region get GrandParents
