@@ -191,7 +191,7 @@ namespace AncestorCloud.Shared
 								{
 
 									People p = _databaseService.GetFamilyMember(datamodal.FATHER_OFGN,loginModel.UserEmail);
-									if(p.FamOGFN == null)
+									if(p.FamOGFN == null || p.FamOGFN.Equals("0"))
 									{
 										People peop  = await FetchFather(datamodal,loginModel,true);
 										if(peop != null)
@@ -240,7 +240,7 @@ namespace AncestorCloud.Shared
 								}else
 								{
 									People p = _databaseService.GetFamilyMember(datamodal.MOTHER_OFGN,loginModel.UserEmail);
-									if(p.FamOGFN == null)
+									if(p.FamOGFN == null || p.FamOGFN.Equals("0"))
 									{
 										People peop  = await FetchMother(datamodal,loginModel,true);
 										if(peop != null)
