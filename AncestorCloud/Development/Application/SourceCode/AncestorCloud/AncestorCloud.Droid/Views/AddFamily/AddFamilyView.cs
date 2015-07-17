@@ -103,11 +103,16 @@ namespace AncestorCloud.Droid
 			List<string> populateList = new List<string> ();
 
 			Calendar cal = Calendar.GetInstance (Java.Util.Locale.Us);
-			int start = 1850;
+			int start = 1849;
 			int upto = cal.Get (Calendar.Year);
 
 			for(int i=start;i<=upto;i++){
-				populateList.Add (""+i);
+				if(i == start){
+					populateList.Add ("");
+				}else
+				{
+					populateList.Add (""+i);
+				}
 			}
 
 			var adapter = new ArrayAdapter (this,Android.Resource.Layout.SimpleListItem1,populateList);
@@ -116,8 +121,12 @@ namespace AncestorCloud.Droid
 			yearSelector.Adapter = adapter;
 
 			yearSelector.ItemSelected += (object sender, AdapterView.ItemSelectedEventArgs e) => {
-				dateText.Text = yearSelector.SelectedItem.ToString();
-				ViewModel.BirthDate = dateText.Text;
+				if(yearSelector.SelectedItemPosition != 0){
+					dateText.Text = yearSelector.SelectedItem.ToString();
+					ViewModel.BirthDate = dateText.Text;
+				}else{
+					ViewModel.BirthDate = "";
+				}
 			};
 
 			dateText.Click+= (object sender, EventArgs e) => {

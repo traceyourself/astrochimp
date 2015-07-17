@@ -330,11 +330,15 @@ namespace AncestorCloud.Droid
 			List<string> populateList = new List<string> ();
 
 			Calendar cal = Calendar.GetInstance (Java.Util.Locale.Us);
-			int start = 1850;
+			int start = 1849;
 			int upto = cal.Get (Calendar.Year);
 
 			for(int i=start;i<=upto;i++){
-				populateList.Add (""+i);
+				if(i == start){
+					populateList.Add ("");
+				}else{
+					populateList.Add (""+i);
+				}
 			}
 
 			//var adapter = new ArrayAdapter (this,Android.Resource.Layout.SimpleListItem1,populateList);
