@@ -220,7 +220,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 						} else {
 							isValid = false;
-							Alert.ShowAlert ("Please add parents first to add grand parents","");
+							Alert.ShowAlert ("Please add parents first to add Grand Parents","");
 						}
 					} else if (AddType.Equals ("Great Grandparent")) {
 
@@ -266,7 +266,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 						} else {
 							isValid = false;
-							Alert.ShowAlert ("Please add grand parents first to add great grand parents","");
+							Alert.ShowAlert ("Please add Grand parents first to add Great Grand Parents","");
 						}
 
 
@@ -322,7 +322,7 @@ namespace AncestorCloud.Shared.ViewModels
 				if (String.IsNullOrEmpty (this.ReferenceType)) 
 				{
 					isValid = false;
-					Alert.ShowAlert("Relation is required,please select a value.","Relation Missing");
+					Alert.ShowAlert("Relationship is required, please select a value.","Relation Missing");
 				}
 			}
 
