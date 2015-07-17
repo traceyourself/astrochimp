@@ -25,6 +25,10 @@ namespace AncestorCloud.Touch
 		ABAddressBook addressBook;
 
 		#region IContactService implementation
+		public Task<List<People>> ReadPhoneContacts ()
+		{
+			return null;	
+		}
 
 		public List<People> GetDeviceContacts ()
 		{

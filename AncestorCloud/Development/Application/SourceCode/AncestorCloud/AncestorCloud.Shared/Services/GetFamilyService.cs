@@ -73,9 +73,12 @@ namespace AncestorCloud.Shared
 				{
 					List<People> FamilyMembers = await GetFamily(datamodal,loginModel);
 
-					List<People> grandParents = await GetGrandParents(FamilyMembers,loginModel);
+					if(FamilyMembers != null)
+					{
+						List<People> grandParents = await GetGrandParents(FamilyMembers,loginModel);
 
-					FamilyMembers.AddRange(grandParents);
+						FamilyMembers.AddRange(grandParents);
+					}
 
 					/*List<People> greatGrandParents = await GetGreatGrandParents(FamilyMembers,loginModel);
 
