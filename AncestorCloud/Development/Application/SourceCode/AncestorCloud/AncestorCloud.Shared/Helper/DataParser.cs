@@ -417,6 +417,12 @@ namespace AncestorCloud.Shared
 
 			if (IsKeyExist (AppConstant.CHILDOGFNKEY, dict))
 				model.FamOGFN = GetData (AppConstant.CHILDOGFNKEY, dict);
+
+			if (IsKeyExist (AppConstant.BIRTH_DATE, dict))
+				model.DateOfBirth = GetData (AppConstant.BIRTH_DATE, dict);
+
+			if (IsKeyExist (AppConstant.BIRTH_PLACE, dict))
+				model.BirthLocation = GetData (AppConstant.BIRTH_PLACE, dict);
 			
 
 			if (IsKeyExist (AppConstant.INDI_NAME2, dict)) {

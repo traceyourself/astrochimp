@@ -162,6 +162,8 @@ namespace AncestorCloud.Shared
 		public const string INDI_MIDDLE_NAME = "MiddleNames";
 		public const string INDI_SURNAME = "Surname";
 		public const string INDI_NAME2 = "Name2";
+
+	
 		#endregion
 
 
