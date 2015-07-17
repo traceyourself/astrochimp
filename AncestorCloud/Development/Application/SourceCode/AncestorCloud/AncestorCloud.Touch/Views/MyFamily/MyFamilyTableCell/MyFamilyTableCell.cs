@@ -31,7 +31,7 @@ namespace AncestorCloud.Touch
 			this.DelayBind (() => {
 
 				var set = this.CreateBindingSet<MyFamilyTableCell, People> ();
-				//set.Bind (NameLabel).To (vm => vm.Name);
+				set.Bind (BirthLabel).To (vm => vm.DateOfBirth);
 				set.Bind(RelationLabel).To(vm => vm.Relation).WithConversion(new RelationshipTextConverter(),null);
 				set.Apply ();
 			});

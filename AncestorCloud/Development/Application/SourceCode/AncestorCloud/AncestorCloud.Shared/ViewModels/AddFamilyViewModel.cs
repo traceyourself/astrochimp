@@ -186,7 +186,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 								foreach (People p in listP) {
 									if (p.Gender != null) {
-										if (p.Relation.Equals ("Parent")) {
+										if (p.Relation.Equals ("Parent") || p.Relation.Equals ("father")) {
 											if (p.Gender.Equals ("Male")) {
 												modal.LoggedinUserINDIOFGN = p.IndiOgfn;
 												//modal.LoggedinUserFAMOFGN = p.FamOGFN;
@@ -199,7 +199,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 								foreach (People p in listP) {
 									if (p.Gender != null) {
-										if (p.Relation.Equals ("Parent")) {
+										if (p.Relation.Equals ("Parent") || p.Relation.Equals ("mother")) {
 											if (p.Gender.Equals ("Female")) {
 												modal.LoggedinUserINDIOFGN = p.IndiOgfn;
 												//modal.LoggedinUserFAMOFGN = p.FamOGFN;
