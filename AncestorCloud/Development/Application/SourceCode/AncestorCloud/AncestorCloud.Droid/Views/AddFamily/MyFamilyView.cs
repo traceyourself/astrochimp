@@ -142,28 +142,52 @@ namespace AncestorCloud.Droid
 
 		private void ApplyActions()
 		{
-			//parentsBottomDiv,gParentsBottomDiv,ggParentsBottomDiv;
 
 			parentsBtn.Click += (object sender, EventArgs e) => {
-				parentsTxt.SetTextColor(Resources.GetColor(Resource.Color.tab_text_div_color));
-				gParentsTxt.SetTextColor(Color.White);
-				ggParentsTxt.SetTextColor(Color.White);
-
-
-
+				HandleTabClicks(0);
 			};
 
 			gParentsBtn.Click += (object sender, EventArgs e) => {
-
+				HandleTabClicks(1);
 			};
 
 			ggParentsBtn.Click += (object sender, EventArgs e) => {
-
+				HandleTabClicks(2);
 			};
+		}
 
-			//parentSiblingList,gParentList,ggParentList;
+		public void HandleTabClicks(int which)
+		{
 
+			parentsTxt.SetTextColor(Color.White);
+			gParentsTxt.SetTextColor(Color.White);
+			ggParentsTxt.SetTextColor(Color.White);
 
+			parentsBottomDiv.Visibility = ViewStates.Gone;
+			gParentsBottomDiv.Visibility = ViewStates.Gone;
+			ggParentsBottomDiv.Visibility = ViewStates.Gone;
+
+			parentSiblingList.Visibility = ViewStates.Gone;
+			gParentList.Visibility = ViewStates.Gone;
+			ggParentList.Visibility = ViewStates.Gone;
+
+			if (which == 0) {
+				parentsTxt.SetTextColor (Resources.GetColor (Resource.Color.tab_text_div_color));
+				parentsBottomDiv.Visibility = ViewStates.Visible;
+				parentSiblingList.Visibility = ViewStates.Visible;
+			}
+			else if(which == 1)
+			{
+				gParentsTxt.SetTextColor (Resources.GetColor (Resource.Color.tab_text_div_color));
+				gParentsBottomDiv.Visibility = ViewStates.Visible;
+				gParentList.Visibility = ViewStates.Visible;
+			}
+			else if(which == 2)
+			{
+				ggParentsTxt.SetTextColor (Resources.GetColor (Resource.Color.tab_text_div_color));
+				ggParentsBottomDiv.Visibility = ViewStates.Visible;
+				ggParentList.Visibility = ViewStates.Visible;
+			}
 		}
 		#endregion
 
