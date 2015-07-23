@@ -404,7 +404,7 @@ namespace AncestorCloud.Shared
 					else
 					{
 						People p = _databaseService.GetFamilyMember(datamodal.FATHER_OFGN,loginModel.UserEmail);
-						if (!p.Relation.Equals(AppConstant.GreatGrandParent_comparison) && (p.FamOGFN == null || p.FamOGFN.Equals ("0"))) {
+						if (!relation.Equals(AppConstant.GreatGrandParent_comparison) && (p.FamOGFN == null || p.FamOGFN.Equals ("0"))) {
 							
 							People _p = await FetchGrandFather(datamodal,loginModel,relation,relationShipRef,true);
 							if(_p != null)
@@ -434,7 +434,7 @@ namespace AncestorCloud.Shared
 					}else
 					{
 						People p = _databaseService.GetFamilyMember(datamodal.MOTHER_OFGN,loginModel.UserEmail);
-						if (!p.Relation.Equals(AppConstant.GreatGrandParent_comparison) && (p.FamOGFN == null || p.FamOGFN.Equals ("0"))) {
+						if (!relation.Equals(AppConstant.GreatGrandParent_comparison) && (p.FamOGFN == null || p.FamOGFN.Equals ("0"))) {
 
 							People _p = await FetchGrandMother (datamodal,loginModel,relation,relationShipRef,true);
 							if (_p != null)
