@@ -55,6 +55,9 @@
 
 
 	<!--- My Family Screen Strings -->
+	<string name="parent_tab_txt">PARENTS</string>
+	<string name="g_parent_tab_txt">G. PARENTS</string>
+	<string name="g_g_parent_tab_txt">G.G. PARENTS</string>
 
 	<string name="zero_matching_confidence">0% Matching Confidence</string>
 	<string name="percent_matching_confidence">% Matching Confidence</string>

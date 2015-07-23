@@ -40,6 +40,14 @@ namespace AncestorCloud.Droid
 		IDatabaseService _databaseService;
 		IAlert Alert;
 
+		#region tab var region
+		TextView parentsTxt,gParentsTxt,ggParentsTxt;
+		View parentsBottomDiv,gParentsBottomDiv,ggParentsBottomDiv;
+		LinearLayout parentsBtn,gParentsBtn,ggParentsBtn;
+		ListView parentSiblingList,gParentList,ggParentList;
+		#endregion
+
+
 		public new MyFamilyViewModel ViewModel
 		{
 			get { return base.ViewModel as MyFamilyViewModel; }
@@ -92,6 +100,24 @@ namespace AncestorCloud.Droid
 			helpIcon = FindViewById<ImageView> (Resource.Id.question_icon);
 			percentText = FindViewById<TextView> (Resource.Id.percent_txt);
 			//yearSelector = FindViewById<Spinner> (Resource.Id.year_selector_inlay);
+
+			//Tabs and Layouts
+			parentsTxt = FindViewById<TextView> (Resource.Id.parents_txt);
+			gParentsTxt = FindViewById<TextView> (Resource.Id.g_parents_txt);
+			ggParentsTxt = FindViewById<TextView> (Resource.Id.g_g_parents_txt);
+
+			parentsBottomDiv = FindViewById<View> (Resource.Id.parent_bottom_div);
+			gParentsBottomDiv = FindViewById<View> (Resource.Id.g_parent_bottom_div);
+			ggParentsBottomDiv = FindViewById<View> (Resource.Id.g_g_parent_bottom_div);
+
+			parentsBtn = FindViewById<LinearLayout> (Resource.Id.parents_btn);
+			gParentsBtn = FindViewById<LinearLayout> (Resource.Id.g_parents_btn);
+			ggParentsBtn = FindViewById<LinearLayout> (Resource.Id.gg_parents_btn);
+
+			parentSiblingList = FindViewById<ListView> (Resource.Id.parent_sibling_list);
+			gParentList = FindViewById<ListView> (Resource.Id.grand_parent_list);
+			ggParentList = FindViewById<ListView> (Resource.Id.great_grand_parent_list);
+			//=============
 		}
 
 		private void ConfigureActionBar()
@@ -116,7 +142,28 @@ namespace AncestorCloud.Droid
 
 		private void ApplyActions()
 		{
-			
+			//parentsBottomDiv,gParentsBottomDiv,ggParentsBottomDiv;
+
+			parentsBtn.Click += (object sender, EventArgs e) => {
+				parentsTxt.SetTextColor(Resources.GetColor(Resource.Color.tab_text_div_color));
+				gParentsTxt.SetTextColor(Color.White);
+				ggParentsTxt.SetTextColor(Color.White);
+
+
+
+			};
+
+			gParentsBtn.Click += (object sender, EventArgs e) => {
+
+			};
+
+			ggParentsBtn.Click += (object sender, EventArgs e) => {
+
+			};
+
+			//parentSiblingList,gParentList,ggParentList;
+
+
 		}
 		#endregion
 
