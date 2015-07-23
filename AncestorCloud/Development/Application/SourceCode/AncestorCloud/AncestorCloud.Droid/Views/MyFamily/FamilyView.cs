@@ -53,30 +53,20 @@ namespace AncestorCloud.Droid
 			base.OnResume ();
 
 			LoginModel modal = ViewModel.GetUserData();
-			userNameMenu.Text = GetUserName(modal.Name);
+			userNameMenu.Text = Utilities.GetUserName(modal.Name);
 
-			if(Utilities.CurrentUserimage == null){
-				string avatarUrl = ""+modal.AvatarURL;
-				if(avatarUrl.Length > 0){
-					new AvatarImageTask (this,avatarUrl).Execute();
+			if (Utilities.CurrentUserimage == null) {
+				string avatarUrl = "" + modal.AvatarURL;
+				if (avatarUrl.Length > 0) {
+					new AvatarImageTask (this, avatarUrl).Execute ();
 				}
+			} else {
+				ApplyData ();
 			}
-
-			ApplyData ();
 
 			if(Utilities.LoggedInUsingFb){
 				Utilities.LoggedInUsingFb = false;
 			}
-		}
-
-		string GetUserName(string name)
-		{
-			if (name == null)
-				return "";
-
-			string[] nameArray = name.Split (' ');
-
-			return nameArray [0];
 		}
 
 

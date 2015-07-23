@@ -69,7 +69,7 @@ namespace AncestorCloud.Droid
 			}
 
 			LoginModel modal = ViewModel.GetUserData();
-			userNameMenu.Text = modal.UserEmail;
+			userNameMenu.Text = Utilities.GetUserName(modal.Name);
 
 			research_help_WebView.Settings.LoadWithOverviewMode = true;
 			research_help_WebView.Settings.UseWideViewPort = true;

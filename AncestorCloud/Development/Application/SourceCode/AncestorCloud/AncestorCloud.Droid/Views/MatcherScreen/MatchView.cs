@@ -79,12 +79,13 @@ namespace AncestorCloud.Droid
 		#endregion
 
 		public void ApplyData(){
-			//userNameMenu;
+
+			LoginModel modal = ViewModel.GetUserData();
+			userNameMenu.Text = Utilities.GetUserName(modal.Name);
+
 			if (Utilities.CurrentUserimage != null) {
 				userImageMenu.SetImageBitmap (Utilities.CurrentUserimage);	
 			}
-			LoginModel modal = ViewModel.GetUserData();
-			userNameMenu.Text = modal.UserEmail;
 		}
 
 		#region dynamic changing of width height of cross btn

@@ -55,6 +55,15 @@ namespace AncestorCloud.Droid
 		public static Bitmap CurrentUserimage{ get; set;}
 		#endregion
 
+		public static string GetUserName(string name)
+		{
+			if (name == null)
+				return "";
+
+			string[] nameArray = name.Split (' ');
+
+			return nameArray [0];
+		}
 
 		#region Round image Methods
 
