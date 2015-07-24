@@ -7,7 +7,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyFamilyView">
             <connections>
                 <outlet property="PercentageLabel" destination="gFK-1w-IJk" id="vT7-zJ-cWi"/>
+                <outlet property="firstTabImageView" destination="ZF1-VJ-1wv" id="KBX-ZF-o8Q"/>
                 <outlet property="myFamilyTable" destination="8bg-mt-ygp" id="Dzh-Ch-kn5"/>
+                <outlet property="secondTabImageView" destination="KCB-RR-KJd" id="2uh-Vz-quK"/>
+                <outlet property="segmentControlObj" destination="jAo-cE-Zv0" id="eVO-K3-rep"/>
+                <outlet property="thirdTabImageVIew" destination="RKk-75-4Nj" id="4si-Fc-77C"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
             </connections>
         </placeholder>
@@ -55,8 +59,11 @@
                                 <segment title="G.G. PARENTS"/>
                             </segments>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="SegmentControlTapped:" destination="-1" eventType="valueChanged" id="3MP-Fv-oso"/>
+                            </connections>
                         </segmentedControl>
-                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ZF1-VJ-1wv">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ZF1-VJ-1wv">
                             <rect key="frame" x="0.0" y="54" width="139" height="6"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES"/>
                             <color key="backgroundColor" red="0.16470588235294117" green="0.80784313725490198" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
@@ -66,7 +73,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES"/>
                             <color key="backgroundColor" red="0.16470588235294117" green="0.80784313725490198" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
-                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="RKk-75-4Nj">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="RKk-75-4Nj">
                             <rect key="frame" x="277" y="54" width="139" height="6"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES"/>
                             <color key="backgroundColor" red="0.16470588235294117" green="0.80784313725490198" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>

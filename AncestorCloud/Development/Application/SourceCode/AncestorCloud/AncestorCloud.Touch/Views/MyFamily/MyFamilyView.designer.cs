@@ -13,24 +13,59 @@ namespace AncestorCloud.Touch
 	partial class MyFamilyView
 	{
 		[Outlet]
+		UIKit.UIImageView firstTabImageView { get; set; }
+
+		[Outlet]
 		UIKit.UITableView myFamilyTable { get; set; }
 
 		[Outlet]
 		UIKit.UILabel PercentageLabel { get; set; }
 
+		[Outlet]
+		UIKit.UIImageView secondTabImageView { get; set; }
+
+		[Outlet]
+		UIKit.UISegmentedControl segmentControlObj { get; set; }
+
+		[Outlet]
+		UIKit.UIImageView thirdTabImageVIew { get; set; }
+
 		[Action ("CrossButtonTaped:")]
 		partial void CrossButtonTaped (Foundation.NSObject sender);
+
+		[Action ("SegmentControlTapped:")]
+		partial void SegmentControlTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (PercentageLabel != null) {
-				PercentageLabel.Dispose ();
-				PercentageLabel = null;
+			if (segmentControlObj != null) {
+				segmentControlObj.Dispose ();
+				segmentControlObj = null;
+			}
+
+			if (firstTabImageView != null) {
+				firstTabImageView.Dispose ();
+				firstTabImageView = null;
+			}
+
+			if (secondTabImageView != null) {
+				secondTabImageView.Dispose ();
+				secondTabImageView = null;
+			}
+
+			if (thirdTabImageVIew != null) {
+				thirdTabImageVIew.Dispose ();
+				thirdTabImageVIew = null;
 			}
 
 			if (myFamilyTable != null) {
 				myFamilyTable.Dispose ();
 				myFamilyTable = null;
+			}
+
+			if (PercentageLabel != null) {
+				PercentageLabel.Dispose ();
+				PercentageLabel = null;
 			}
 		}
 	}

@@ -53,6 +53,8 @@ namespace AncestorCloud.Touch
 				if(editFamily != null)
 					editFamily.OnKeyboardChanged(sender,e);
 			};
+
+			SegmentControlTapped (null);
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
@@ -313,6 +315,49 @@ namespace AncestorCloud.Touch
 			PercentageLabel.Text = ViewModel._PercentageComplete+ Utility.LocalisedBundle ().LocalizedString("MatchingText","");;
 		}
 
+
+		#region NEW TAB METHODS
+
+		partial void SegmentControlTapped (NSObject sender)
+		{
+			SetTabFooterImage((int)segmentControlObj.SelectedSegment);
+
+			switch(segmentControlObj.SelectedSegment)
+			{
+			case 0:
+				
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			}
+		}
+
+
+		void SetTabFooterImage(int index)
+		{
+			switch(segmentControlObj.SelectedSegment)
+			{
+			case 0:
+				firstTabImageView.Hidden = false;
+				secondTabImageView.Hidden = true;
+				thirdTabImageVIew.Hidden = true;
+				break;
+			case 1:
+				firstTabImageView.Hidden = true;
+				secondTabImageView.Hidden = false;
+				thirdTabImageVIew.Hidden = true;
+				break;
+			case 2:
+				firstTabImageView.Hidden = true;
+				secondTabImageView.Hidden = true;
+				thirdTabImageVIew.Hidden = false;
+				break;
+			}
+		}
+
+		#endregion
 
 
 	}
