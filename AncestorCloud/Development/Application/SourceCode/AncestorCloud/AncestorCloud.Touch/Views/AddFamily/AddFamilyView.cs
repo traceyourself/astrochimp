@@ -157,18 +157,18 @@ namespace AncestorCloud.Touch
 			{
 
 			case 0:
-				ViewModel.ReferenceType=AppConstant.Grand_Father_Father_Reference;;
+				ViewModel.ReferenceType=AppConstant.Grand_Father_Father_Reference;
 				break;
 
 			case 1:
-				ViewModel.ReferenceType=AppConstant.Grand_Mother_Father_Reference;;
+				ViewModel.ReferenceType=AppConstant.Grand_Mother_Father_Reference;
 				break;
 
 			case 2 :
-				ViewModel.ReferenceType=AppConstant.Grand_Father_Mother_Reference;;
+				ViewModel.ReferenceType=AppConstant.Grand_Father_Mother_Reference;
 				break;
 			case 3 :
-				ViewModel.ReferenceType=AppConstant.Grand_Mother_Mother_Reference;;
+				ViewModel.ReferenceType=AppConstant.Grand_Mother_Mother_Reference;
 				break;
 			}
 		}

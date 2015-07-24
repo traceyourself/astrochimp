@@ -97,15 +97,39 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 		}
 			
-		private List<TableItem> tableDataList;
+		private List<TableItem> parentTableDataList;
 
-		public List<TableItem> TableDataList
+		public List<TableItem> ParentsTableDataList
 		{
-			get { return tableDataList; }
+			get { return parentTableDataList; }
 			set
 			{
-				tableDataList = value;
-				RaisePropertyChanged(() => TableDataList);
+				parentTableDataList = value;
+				RaisePropertyChanged(() => ParentsTableDataList);
+			}
+		}
+
+		private List<TableItem> gparentTableDataList;
+
+		public List<TableItem> GParentsTableDataList
+		{
+			get { return gparentTableDataList; }
+			set
+			{
+				gparentTableDataList = value;
+				RaisePropertyChanged(() => GParentsTableDataList);
+			}
+		}
+
+		private List<TableItem> ggparentTableDataList;
+
+		public List<TableItem> GGParentsTableDataList
+		{
+			get { return ggparentTableDataList; }
+			set
+			{
+				ggparentTableDataList = value;
+				RaisePropertyChanged(() => GGParentsTableDataList);
 			}
 		}
 

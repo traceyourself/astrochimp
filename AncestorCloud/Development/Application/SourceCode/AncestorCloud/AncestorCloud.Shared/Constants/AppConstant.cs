@@ -32,6 +32,13 @@ namespace AncestorCloud.Shared
 		Secondary
 	}
 
+	public enum FamilyType
+	{
+		Parent,
+		GParent,
+		GGParent
+	}
+
 	static public class AppConstant
 	{
 
