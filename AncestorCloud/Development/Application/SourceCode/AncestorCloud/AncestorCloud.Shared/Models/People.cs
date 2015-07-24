@@ -7,6 +7,7 @@ namespace AncestorCloud.Shared
 	{
 		public string Relation { get; set; }
 		public string RelationType { get; set; }
+		public string RelationReference { get; set; }
 		public bool IsSelected { get; set; }
 		public string IndiOgfn { get; set; }
 	

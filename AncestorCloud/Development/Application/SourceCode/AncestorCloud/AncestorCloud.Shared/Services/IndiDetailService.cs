@@ -121,7 +121,6 @@ namespace AncestorCloud.Shared
 
 						returnPeopleData.IndiOgfn = ogfn; 
 
-
 						Mvx.Trace(returnPeopleData.Name+" : "+returnPeopleData.Relation+" : "+returnPeopleData.FamOGFN);
 
 

@@ -48,9 +48,11 @@ namespace AncestorCloud.Touch
 
 			GenderSegmentControlChanged (null);
 
-			_RefenceSegmentControl (null);
-
-			AnotherReferenceSegmentControl (null);
+			if(RefernceSegmentControl.Hidden != true)
+				_RefenceSegmentControl (null);
+			
+			if(AnotherRefernceSegmentControl.Hidden != true)
+				AnotherReferenceSegmentControl (null);
 
 			PickerButtonTapped.TouchUpInside += PickerButtonTappedEvent;
 
@@ -151,22 +153,22 @@ namespace AncestorCloud.Touch
 
 		partial void AnotherReferenceSegmentControl (NSObject sender)
 		{
-			switch(RefernceSegmentControl.SelectedSegment)
+			switch(AnotherRefernceSegmentControl.SelectedSegment)
 			{
 
 			case 0:
-				ViewModel.ReferenceType=AppConstant.Father_Reference;;
+				ViewModel.ReferenceType=AppConstant.Grand_Father_Father_Reference;;
 				break;
 
 			case 1:
-				ViewModel.ReferenceType=AppConstant.Father_Reference;;
+				ViewModel.ReferenceType=AppConstant.Grand_Mother_Father_Reference;;
 				break;
 
 			case 2 :
-				ViewModel.ReferenceType=AppConstant.Mother_Reference;;
+				ViewModel.ReferenceType=AppConstant.Grand_Father_Mother_Reference;;
 				break;
 			case 3 :
-				ViewModel.ReferenceType=AppConstant.Mother_Reference;;
+				ViewModel.ReferenceType=AppConstant.Grand_Mother_Mother_Reference;;
 				break;
 			}
 		}
