@@ -16,6 +16,12 @@ namespace AncestorCloud.Touch
 		UIKit.UIImageView firstTabImageView { get; set; }
 
 		[Outlet]
+		UIKit.UITableView grandParentTableViewObj { get; set; }
+
+		[Outlet]
+		UIKit.UITableView greatGrandParentTableVIewObj { get; set; }
+
+		[Outlet]
 		UIKit.UITableView myFamilyTable { get; set; }
 
 		[Outlet]
@@ -56,6 +62,16 @@ namespace AncestorCloud.Touch
 			if (thirdTabImageVIew != null) {
 				thirdTabImageVIew.Dispose ();
 				thirdTabImageVIew = null;
+			}
+
+			if (grandParentTableViewObj != null) {
+				grandParentTableViewObj.Dispose ();
+				grandParentTableViewObj = null;
+			}
+
+			if (greatGrandParentTableVIewObj != null) {
+				greatGrandParentTableVIewObj.Dispose ();
+				greatGrandParentTableVIewObj = null;
 			}
 
 			if (myFamilyTable != null) {

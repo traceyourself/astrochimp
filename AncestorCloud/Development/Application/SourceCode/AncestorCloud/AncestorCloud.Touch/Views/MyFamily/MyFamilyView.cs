@@ -127,9 +127,15 @@ namespace AncestorCloud.Touch
 			List<TableItem> data = CreateTableItems(ViewModel.FamilyList);
 			ViewModel.TableDataList = data;
 			var source = new MyFamilyTableSource (myFamilyTable);
+			var gsource = new MyFamilyTableSource (grandParentTableViewObj);
+			var ggsource = new MyFamilyTableSource (greatGrandParentTableVIewObj);
 			myFamilyTable.Source = source;
+			grandParentTableViewObj.Source = gsource;
+			greatGrandParentTableVIewObj.Source = ggsource;
 			var set = this.CreateBindingSet<MyFamilyView , MyFamilyViewModel> ();
 			set.Bind (source).To (vm => vm.TableDataList).TwoWay();
+			set.Bind (gsource).To (vm => vm.TableDataList).TwoWay();
+			set.Bind (ggsource).To (vm => vm.TableDataList).TwoWay();
 			//set.Bind (PercentageLabel).To (vm => vm._PercentageComplete);
 			set.Apply ();
 		}
@@ -322,6 +328,8 @@ namespace AncestorCloud.Touch
 		{
 			SetTabFooterImage((int)segmentControlObj.SelectedSegment);
 
+			EnableTabeleViews((int)segmentControlObj.SelectedSegment);
+
 			switch(segmentControlObj.SelectedSegment)
 			{
 			case 0:
@@ -353,6 +361,28 @@ namespace AncestorCloud.Touch
 				firstTabImageView.Hidden = true;
 				secondTabImageView.Hidden = true;
 				thirdTabImageVIew.Hidden = false;
+				break;
+			}
+		}
+
+		void EnableTabeleViews(int index)
+		{
+			switch(segmentControlObj.SelectedSegment)
+			{
+			case 0:
+				myFamilyTable.Hidden = false;
+				grandParentTableViewObj.Hidden = true;
+				greatGrandParentTableVIewObj.Hidden = true;
+				break;
+			case 1:
+				myFamilyTable.Hidden = true;
+				grandParentTableViewObj.Hidden = false;
+				greatGrandParentTableVIewObj.Hidden = true;
+				break;
+			case 2:
+				myFamilyTable.Hidden = true;
+				grandParentTableViewObj.Hidden = true;
+				greatGrandParentTableVIewObj.Hidden = false;
 				break;
 			}
 		}
