@@ -125,7 +125,7 @@ namespace AncestorCloud.Touch
 		private void CreateMyFamilyTable()
 		{
 			List<TableItem> data = CreateTableItems(ViewModel.FamilyList);
-			ViewModel.TableDataList = data;
+			ViewModel.ParentsTableDataList = data;
 			var source = new MyFamilyTableSource (myFamilyTable);
 			var gsource = new MyFamilyTableSource (grandParentTableViewObj);
 			var ggsource = new MyFamilyTableSource (greatGrandParentTableVIewObj);
@@ -133,9 +133,9 @@ namespace AncestorCloud.Touch
 			grandParentTableViewObj.Source = gsource;
 			greatGrandParentTableVIewObj.Source = ggsource;
 			var set = this.CreateBindingSet<MyFamilyView , MyFamilyViewModel> ();
-			set.Bind (source).To (vm => vm.TableDataList).TwoWay();
-			set.Bind (gsource).To (vm => vm.TableDataList).TwoWay();
-			set.Bind (ggsource).To (vm => vm.TableDataList).TwoWay();
+			set.Bind (source).To (vm => vm.ParentsTableDataList).TwoWay();
+			set.Bind (gsource).To (vm => vm.ParentsTableDataList).TwoWay();
+			set.Bind (ggsource).To (vm => vm.ParentsTableDataList).TwoWay();
 			//set.Bind (PercentageLabel).To (vm => vm._PercentageComplete);
 			set.Apply ();
 		}
@@ -236,14 +236,14 @@ namespace AncestorCloud.Touch
 				{
 					parentList.Add (item);
 				}
-				if (relation.Equals (StringConstants.GRANDFATHER_COMPARISON) || relation.Equals  (StringConstants.GRANDMOTHER_COMPARISON) || relation.Equals ("Grandparent")|| relation.Equals (AppConstant.GrandParent_comparison))
-				{
-					grandParentList.Add (item);
-				}
-				if (relation.Equals (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Equals (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Equals ("Great Grandparent") || relation.Equals (AppConstant.GreatGrandParent_comparison))
-				{
-					greatGrandParentList.Add (item);
-				}
+//				if (relation.Equals (StringConstants.GRANDFATHER_COMPARISON) || relation.Equals  (StringConstants.GRANDMOTHER_COMPARISON) || relation.Equals ("Grandparent")|| relation.Equals (AppConstant.GrandParent_comparison))
+//				{
+//					grandParentList.Add (item);
+//				}
+//				if (relation.Equals (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Equals (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Equals ("Great Grandparent") || relation.Equals (AppConstant.GreatGrandParent_comparison))
+//				{
+//					greatGrandParentList.Add (item);
+//				}
 
 
 			}
@@ -265,20 +265,20 @@ namespace AncestorCloud.Touch
 
 			resultList.Add (parentsData);
 
-			TableItem grandParentData= new TableItem ();
-			grandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionHeader","");
-			grandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionFooter","");
-			grandParentData.DataItems = grandParentList;
-
-
-			resultList.Add (grandParentData);
-
-			TableItem greatGrandParentData= new TableItem ();
-			greatGrandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
-			greatGrandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
-			greatGrandParentData.DataItems = greatGrandParentList;
-
-			resultList.Add (greatGrandParentData);
+//			TableItem grandParentData= new TableItem ();
+//			grandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionHeader","");
+//			grandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionFooter","");
+//			grandParentData.DataItems = grandParentList;
+//
+//
+//			resultList.Add (grandParentData);
+//
+//			TableItem greatGrandParentData= new TableItem ();
+//			greatGrandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
+//			greatGrandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
+//			greatGrandParentData.DataItems = greatGrandParentList;
+//
+//			resultList.Add (greatGrandParentData);
 
 			return resultList;
 		}

@@ -96,11 +96,12 @@ namespace AncestorCloud.Touch
 		public override UIView GetViewForHeader (UITableView tableView, nint section)
 		{
 			UILabel view = new UILabel {
-				BackgroundColor=UIColor.FromRGB(248,183,21),
-				Text=ListItems[(int)section].SectionHeader,
-				Font= UIFont.FromName("Helvetica", 16f),
-				TextColor=UIColor.White,
-				TextAlignment=UITextAlignment.Center
+				BackgroundColor=UIColor.FromRGB(239,239,239),
+				Text="   "+ListItems[(int)section].SectionHeader.ToUpper(),
+				Font= UIFont.FromName("Helvetica-Bold", 14f),
+				TextColor=UIColor.DarkGray,
+				TextAlignment=UITextAlignment.Left,
+
 			};
 
 			return view;
@@ -122,13 +123,15 @@ namespace AncestorCloud.Touch
 		{
 			UIButton btn = new UIButton
 			{
-				BackgroundColor=UIColor.White,
+				BackgroundColor=UIColor.FromRGB(248,183,21),
+				Frame= new CoreGraphics.CGRect(0,0,tableView.Frame.Size.Width+30,44),//UIColor.White,
 			};
 
-			btn.SetTitle( "   + Add "+ListItems[(int)section].SectionFooter,UIControlState.Normal);
-			btn.SetTitleColor(UIColor.FromRGB(40,141,152),UIControlState.Normal);
-			btn.HorizontalAlignment = UIControlContentHorizontalAlignment.Left;
-			btn.Font = UIFont.FromName ("Helvetica", 14f);
+
+			btn.SetTitle( "ADD "+ListItems[(int)section].SectionFooter.ToUpper(),UIControlState.Normal);
+			btn.SetTitleColor(UIColor.White,UIControlState.Normal);//UIColor.FromRGB(40,141,152)
+			btn.HorizontalAlignment = UIControlContentHorizontalAlignment.Center;
+			btn.Font = UIFont.FromName ("Helvetica-Bold", 14f);
 
 			btn.TouchUpInside += (object sender, EventArgs e) => {
 
@@ -137,7 +140,18 @@ namespace AncestorCloud.Touch
 				}
 
 			};
-			return btn;
+
+			UIImageView _imageView = new UIImageView(UIImage.FromBundle("add_icon.png"));
+			_imageView.Frame = new CoreGraphics.CGRect (tableView.Frame.Size.Width/2 - 60, 8,25,25);
+				
+
+			UIView footerView = new UIView(new CoreGraphics.CGRect(0,0,tableView.Frame.Size.Width,40));
+			footerView.BackgroundColor = UIColor.FromRGB (248, 183, 21);
+			footerView.AddSubview (btn);
+			footerView.AddSubview (_imageView);
+				
+
+			return footerView;
 
 		}
 
