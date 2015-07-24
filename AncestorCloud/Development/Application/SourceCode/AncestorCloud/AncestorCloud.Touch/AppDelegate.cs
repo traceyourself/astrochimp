@@ -33,14 +33,16 @@ namespace AncestorCloud.Touch
 			var startup = Mvx.Resolve<IMvxAppStart>();
 			startup.Start();
 		
-			var documents = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User) [0];
-			string mydocumentpath = documents.ToString();
-
-			System.Diagnostics.Debug.WriteLine("app dir: "+ mydocumentpath);
+//			var documents = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User) [0];
+//			string mydocumentpath = documents.ToString();
+//
+//			System.Diagnostics.Debug.WriteLine("app dir: "+ mydocumentpath);
 
 			RegisterGoogleAnalytics ();
 
 			_window.MakeKeyAndVisible();
+		
+			SetSegmentControlUI ();
 
 			return true;
 		}
@@ -76,5 +78,20 @@ namespace AncestorCloud.Touch
 		{
 			_loaderView.View.Hidden = true;
 		}
+
+		#region
+		void SetSegmentControlUI()
+		{
+			UISegmentedControl.Appearance.TintColor = UIColor.Clear;
+			UISegmentedControl.Appearance.SetTitleTextAttributes (new UITextAttributes ()
+				{ TextColor = UIColor.White ,Font = UIFont.BoldSystemFontOfSize(14)},UIControlState.Normal);
+
+			UISegmentedControl.Appearance.SetTitleTextAttributes (new UITextAttributes ()
+				{ TextColor = UIColor.FromRGB(42,206,215) ,Font = UIFont.BoldSystemFontOfSize(14)},UIControlState.Selected);
+
+			//[[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
+		}
+
+		#endregion
 	}
 }
