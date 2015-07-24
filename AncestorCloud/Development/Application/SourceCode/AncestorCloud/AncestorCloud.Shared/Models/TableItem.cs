@@ -7,6 +7,8 @@ namespace AncestorCloud.Shared
 	{
 			public String SectionHeader{ get; set;}
 			public String SectionFooter{ get; set;}
+			public String ShowSectionFooter{ get; set;}
+			public String ShowSectionHeader{ get; set;}
 			public List<People> DataItems{ get; set;}
 			public bool isData{ get; set;}
 

@@ -42,8 +42,6 @@ namespace AncestorCloud.Touch
 
 			_window.MakeKeyAndVisible();
 		
-			SetSegmentControlUI ();
-
 			return true;
 		}
 		#region RegisterGoogleAnalytics
@@ -80,17 +78,7 @@ namespace AncestorCloud.Touch
 		}
 
 		#region
-		void SetSegmentControlUI()
-		{
-			UISegmentedControl.Appearance.TintColor = UIColor.Clear;
-			UISegmentedControl.Appearance.SetTitleTextAttributes (new UITextAttributes ()
-				{ TextColor = UIColor.White ,Font = UIFont.BoldSystemFontOfSize(14)},UIControlState.Normal);
 
-			UISegmentedControl.Appearance.SetTitleTextAttributes (new UITextAttributes ()
-				{ TextColor = UIColor.FromRGB(42,206,215) ,Font = UIFont.BoldSystemFontOfSize(14)},UIControlState.Selected);
-
-			//[[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
-		}
 
 		#endregion
 	}

@@ -17,6 +17,8 @@ namespace AncestorCloud.Touch
 //		string[] keys;
 		private List<TableItem> ListItems;
 
+		private FamilyType _famType { get; set;}
+
 		public Action<object> FooterClickedDelegate
 		{ get; set; }
 
@@ -33,11 +35,11 @@ namespace AncestorCloud.Touch
 			}
 		}
 	
-		public MyFamilyTableSource (UITableView tableView): base(tableView)
+		public MyFamilyTableSource (UITableView tableView, FamilyType type): base(tableView)
 		{
 			tableView.RegisterNibForCellReuse(UINib.FromName("MyFamilyTableCell", NSBundle.MainBundle),
 				MyFamilyTableCell.Key);
-
+			_famType = type;
 		}
 
 		public override nint NumberOfSections(UITableView tableView)
@@ -124,10 +126,9 @@ namespace AncestorCloud.Touch
 			UIButton btn = new UIButton
 			{
 				BackgroundColor=UIColor.FromRGB(248,183,21),
-				Frame= new CoreGraphics.CGRect(0,0,tableView.Frame.Size.Width+30,44),//UIColor.White,
+				Frame= new CoreGraphics.CGRect(0,0,tableView.Frame.Size.Width+30,40),//UIColor.White,
 			};
-
-
+				
 			btn.SetTitle( "ADD "+ListItems[(int)section].SectionFooter.ToUpper(),UIControlState.Normal);
 			btn.SetTitleColor(UIColor.White,UIControlState.Normal);//UIColor.FromRGB(40,141,152)
 			btn.HorizontalAlignment = UIControlContentHorizontalAlignment.Center;
