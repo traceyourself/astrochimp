@@ -270,6 +270,8 @@ namespace AncestorCloud.Touch
 			TableItem parentsData= new TableItem ();
 			parentsData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("ParentSectionHeader","");
 			parentsData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("ParentSectionFooter","");
+			parentsData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ParentSectionHeader","");
+			parentsData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ParentSectionFooter","");
 			parentsData.DataItems = parentList;
 
 
@@ -279,6 +281,8 @@ namespace AncestorCloud.Touch
 			TableItem siblingData = new TableItem ();
 			siblingData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("SiblingSectionHeader","");
 			siblingData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("SiblingSectionFooter","");
+			siblingData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("SiblingSectionHeader","");
+			siblingData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("SiblingSectionFooter","");
 			siblingData.DataItems = siblingList;
 
 
@@ -314,7 +318,8 @@ namespace AncestorCloud.Touch
 
 //			List<People> siblingList = new List<People> ();
 //			List<People> parentList = new List<People> ();
-			List<People> grandParentList = new List<People> ();
+			List<People> grandFatherList = new List<People> ();
+			List<People> grandMotherList = new List<People> ();
 			//List<People> greatGrandParentList = new List<People> ();
 
 
@@ -322,18 +327,18 @@ namespace AncestorCloud.Touch
 				People item = mainList[i];
 				string relation = item.Relation;
 
-//				if (relation.Equals (StringConstants.BROTHER_COMPARISON) || relation.Equals (StringConstants.SISTER_COMPARISON) || relation.Equals ("Sibling"))
-//				{
-//					siblingList.Add (item);
-//				}
-//
-//				if (relation.Equals (StringConstants.FATHER_COMPARISON) || relation.Equals (StringConstants.MOTHER_COMPARISON) || relation.Equals ("Parent") )
-//				{
-//					parentList.Add (item);
-//				}
+
 				if (relation.Equals (StringConstants.GRANDFATHER_COMPARISON) || relation.Equals  (StringConstants.GRANDMOTHER_COMPARISON) || relation.Equals ("Grandparent")|| relation.Equals (AppConstant.GrandParent_comparison))
 				{
-					grandParentList.Add (item);
+					if (item.RelationReference.Equals (AppConstant.Father_Reference)) 
+					{
+						grandFatherList.Add (item);
+	
+					}else if(item.RelationReference.Equals (AppConstant.Mother_Reference))
+					{
+						grandMotherList.Add (item);
+					}
+
 				}
 				//				if (relation.Equals (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Equals (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Equals ("Great Grandparent") || relation.Equals (AppConstant.GreatGrandParent_comparison))
 				//				{
@@ -343,13 +348,27 @@ namespace AncestorCloud.Touch
 
 			}
 				
-			TableItem grandParentData= new TableItem ();
-			grandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionHeader","");
-			grandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionFooter","");
-			grandParentData.DataItems = grandParentList;
-			
-			
-			resultList.Add (grandParentData);
+
+
+			TableItem grandMotherData= new TableItem ();
+			grandMotherData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionHeader","");
+			grandMotherData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionFooter","");
+			grandMotherData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ShowGrandMotherSectionHeader","");
+			grandMotherData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ShowGrandMOtherSectionFooter","");
+			grandMotherData.DataItems = grandMotherList;
+
+
+			resultList.Add (grandMotherData);
+
+			TableItem grandFatherData= new TableItem ();
+			grandFatherData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionHeader","");
+			grandFatherData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionFooter","");
+			grandFatherData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ShowGrandFatherSectionHeader","");
+			grandFatherData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ShowGrandFatherSectionFooter","");
+			grandFatherData.DataItems = grandFatherList;
+
+
+			resultList.Add (grandFatherData);
 			//
 			//			TableItem greatGrandParentData= new TableItem ();
 			//			greatGrandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
@@ -369,7 +388,10 @@ namespace AncestorCloud.Touch
 				Mvx.Trace (p.Name+" :: "+p.Relation);
 			}
 				
-			List<People> greatGrandParentList = new List<People> ();
+			List<People> greatGrandFatherFatherList = new List<People> ();
+			List<People> greatGrandFatherMotherList = new List<People> ();
+			List<People> greatGrandMotherFatherList = new List<People> ();
+			List<People> greatGrandMotherMotherList = new List<People> ();
 
 
 			for(int i=0;i<mainList.Count;i++){
@@ -379,18 +401,62 @@ namespace AncestorCloud.Touch
 
 				if (relation.Equals (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Equals (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Equals ("Great Grandparent") || relation.Equals (AppConstant.GreatGrandParent_comparison))
 				{
-					greatGrandParentList.Add (item);
+					if (item.RelationReference.Equals (AppConstant.Grand_Father_Father_Reference)) 
+					{
+						greatGrandFatherFatherList.Add (item);
+
+					}else if(item.RelationReference.Equals (AppConstant.Grand_Father_Mother_Reference))
+					{
+						greatGrandFatherMotherList.Add (item);
+					}
+					else if (item.RelationReference.Equals (AppConstant.Grand_Mother_Father_Reference)) 
+					{
+						greatGrandMotherFatherList.Add (item);
+
+					}else if(item.RelationReference.Equals (AppConstant.Grand_Mother_Mother_Reference))
+					{
+						greatGrandMotherMotherList.Add (item);
+					}
 				}
 
 
 			}
 
-				TableItem greatGrandParentData= new TableItem ();
-				greatGrandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
-				greatGrandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
-				greatGrandParentData.DataItems = greatGrandParentList;
+			TableItem greatGrandFatherFatherData= new TableItem ();
+			greatGrandFatherFatherData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
+			greatGrandFatherFatherData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
+			greatGrandFatherFatherData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandFatherFatherSectionHeader","");
+			greatGrandFatherFatherData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandFatherFatherSectionFooter","");
+			greatGrandFatherFatherData.DataItems = greatGrandFatherFatherList;
 			
-				resultList.Add (greatGrandParentData);
+			resultList.Add (greatGrandFatherFatherData);
+
+			TableItem greatGarndFatherMotherData= new TableItem ();
+			greatGarndFatherMotherData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
+			greatGarndFatherMotherData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
+			greatGarndFatherMotherData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandFatherMotherSectionHeader","");
+			greatGarndFatherMotherData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandFatherMotherSectionFooter","");
+			greatGarndFatherMotherData.DataItems = greatGrandFatherMotherList;
+
+			resultList.Add (greatGarndFatherMotherData);
+
+			TableItem greatGrandMotherFatherData= new TableItem ();
+			greatGrandMotherFatherData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
+			greatGrandMotherFatherData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
+			greatGrandMotherFatherData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandMotherFatherSectionHeader","");
+			greatGrandMotherFatherData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandMotherFatherSectionFooter","");
+			greatGrandMotherFatherData.DataItems = greatGrandMotherFatherList;
+
+			resultList.Add (greatGrandMotherFatherData);
+
+			TableItem greatGrandMotherMotherData= new TableItem ();
+			greatGrandMotherMotherData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
+			greatGrandMotherMotherData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
+			greatGrandMotherMotherData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandMotherMotherSectionHeader","");
+			greatGrandMotherMotherData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandMotherMotherSectionFooter","");
+			greatGrandMotherMotherData.DataItems = greatGrandMotherMotherList;
+
+			resultList.Add (greatGrandMotherMotherData);
 
 			return resultList;
 		}

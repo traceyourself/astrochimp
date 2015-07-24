@@ -99,7 +99,7 @@ namespace AncestorCloud.Touch
 		{
 			UILabel view = new UILabel {
 				BackgroundColor=UIColor.FromRGB(239,239,239),
-				Text="   "+ListItems[(int)section].SectionHeader.ToUpper(),
+				Text="   "+ListItems[(int)section].ShowSectionHeader.ToUpper(),
 				Font= UIFont.FromName("Helvetica-Bold", 14f),
 				TextColor=UIColor.DarkGray,
 				TextAlignment=UITextAlignment.Left,
@@ -123,13 +123,35 @@ namespace AncestorCloud.Touch
 
 		public override UIView GetViewForFooter (UITableView tableView, nint section)
 		{
+			UIView _footerView = AddFooterView (tableView, section);
+			return _footerView;
+		}
+
+		#region
+
+		UIView AddFooterView(UITableView tableView, nint section)
+		{
+			UIButton btn = AddButton (tableView,section);
+
+			UIImageView _imageView = AddImageView (tableView);
+
+			UIView footerView = new UIView(new CoreGraphics.CGRect(0,0,tableView.Frame.Size.Width,40));
+			footerView.BackgroundColor = UIColor.FromRGB (248, 183, 21);
+			footerView.AddSubview (btn);
+			footerView.AddSubview (_imageView);
+
+			return footerView;
+		}
+
+		UIButton AddButton(UITableView tableView, nint section)
+		{
 			UIButton btn = new UIButton
 			{
 				BackgroundColor=UIColor.FromRGB(248,183,21),
 				Frame= new CoreGraphics.CGRect(0,0,tableView.Frame.Size.Width+30,40),//UIColor.White,
 			};
-				
-			btn.SetTitle( "ADD "+ListItems[(int)section].SectionFooter.ToUpper(),UIControlState.Normal);
+
+			btn.SetTitle( "ADD "+ListItems[(int)section].ShowSectionFooter.ToUpper(),UIControlState.Normal);
 			btn.SetTitleColor(UIColor.White,UIControlState.Normal);//UIColor.FromRGB(40,141,152)
 			btn.HorizontalAlignment = UIControlContentHorizontalAlignment.Center;
 			btn.Font = UIFont.FromName ("Helvetica-Bold", 14f);
@@ -142,19 +164,31 @@ namespace AncestorCloud.Touch
 
 			};
 
-			UIImageView _imageView = new UIImageView(UIImage.FromBundle("add_icon.png"));
-			_imageView.Frame = new CoreGraphics.CGRect (tableView.Frame.Size.Width/2 - 60, 8,25,25);
-				
-
-			UIView footerView = new UIView(new CoreGraphics.CGRect(0,0,tableView.Frame.Size.Width,40));
-			footerView.BackgroundColor = UIColor.FromRGB (248, 183, 21);
-			footerView.AddSubview (btn);
-			footerView.AddSubview (_imageView);
-				
-
-			return footerView;
-
+			return btn;
 		}
+
+		UIImageView AddImageView(UITableView tableView)
+		{
+			UIImageView _imageView = new UIImageView(UIImage.FromBundle("add_icon.png"));
+			switch (_famType) 
+			{
+			case FamilyType.Parent:
+				_imageView.Frame = new CoreGraphics.CGRect (tableView.Frame.Size.Width/2 - 60, 8,25,25);
+				break;
+			case FamilyType.GParent:
+				_imageView.Frame = new CoreGraphics.CGRect (tableView.Frame.Size.Width/2 - 100, 8,25,25);
+				break;
+			case FamilyType.GGParent:
+				_imageView.Frame = new CoreGraphics.CGRect (tableView.Frame.Size.Width/2 - 150, 8,25,25);
+				break;
+
+			}
+
+
+			return _imageView;
+		}
+
+		#endregion
 
 	}
 
@@ -167,6 +201,8 @@ namespace AncestorCloud.Touch
 		{
 			//throw new System.NotImplementedException ();
 		}
+
+
 
 	}
 }
