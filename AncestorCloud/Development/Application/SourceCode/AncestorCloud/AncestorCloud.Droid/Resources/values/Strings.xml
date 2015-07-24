@@ -70,10 +70,11 @@
 	<string name="GreatGrandFather_comparison">great grandfather</string>
 	<string name="GreatGrandMother_comparison">great grandmother</string>
 
-	<string name="Sibling_header">Siblings</string>
-	<string name="Sibling_Footer">Add Sibling</string>
-	<string name="Parent_header">Parents</string>
-	<string name="Parent_Footer">Add Parent</string>
+	<string name="Sibling_header">SIBLINGS</string>
+	<string name="Sibling_Footer">ADD SIBLING</string>
+	<string name="Parent_header">PARENTS</string>
+	<string name="Parent_Footer">ADD PARENT</string>
+
 	<string name="Grandparent_header">Grandparents</string>
 	<string name="Grandparent_Footer">Add Grandparent</string>
 	<string name="Greatgrandparent_header">Great Grandparents</string>

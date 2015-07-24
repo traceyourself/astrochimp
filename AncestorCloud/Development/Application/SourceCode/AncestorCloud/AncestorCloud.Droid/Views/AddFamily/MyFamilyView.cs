@@ -40,6 +40,10 @@ namespace AncestorCloud.Droid
 		IDatabaseService _databaseService;
 		IAlert Alert;
 
+		List<ListDataStructure> siblingParentList;
+		List<ListDataStructure> grandParentList;
+		List<ListDataStructure> greatGrandParentList;
+
 		#region tab var region
 		TextView parentsTxt,gParentsTxt,ggParentsTxt;
 		View parentsBottomDiv,gParentsBottomDiv,ggParentsBottomDiv;
@@ -229,10 +233,15 @@ namespace AncestorCloud.Droid
 			List<ListDataStructure> siblingList = new List<ListDataStructure> ();
 			List<ListDataStructure> parentList = new List<ListDataStructure> ();
 
-			List<ListDataStructure> grandParentList = new List<ListDataStructure> ();
-			List<ListDataStructure> greatGrandParentList = new List<ListDataStructure> ();
+			List<ListDataStructure> grandParentFatherList = new List<ListDataStructure> ();
+			List<ListDataStructure> grandParentMotherList = new List<ListDataStructure> ();
+
+			siblingParentList = new List<ListDataStructure> ();
+			grandParentList = new List<ListDataStructure> ();
+			greatGrandParentList = new List<ListDataStructure> ();
 
 			ListDataStructure listStruct;
+
 
 			if(mainList != null){
 				for(int i=0;i<mainList.Count;i++){
@@ -264,6 +273,8 @@ namespace AncestorCloud.Droid
 					}
 				}
 			}
+
+			/*
 			//Siblings==
 			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.Sibling_header),"",null);
 			resultList.Add (listStruct);
@@ -311,8 +322,34 @@ namespace AncestorCloud.Droid
 			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.GreatGrandparent_Footer),null);
 			resultList.Add (listStruct);
 			//=========
+			*/
 
-			return resultList;
+			//Parents and Siblings=======
+			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.Parent_header),"",null);
+			siblingParentList.Add (listStruct);
+			if(parentList.Count > 0){
+				for(int i=0;i<parentList.Count;i++){
+					siblingParentList.Add (parentList[i]);
+				}
+			}
+			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.Parent_Footer),null);
+			siblingParentList.Add (listStruct);
+
+			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.Sibling_header),"",null);
+			siblingParentList.Add (listStruct);
+
+			if(siblingList.Count > 0){
+				for(int i=0;i<siblingList.Count;i++){
+					siblingParentList.Add (siblingList[i]);
+				}
+			}
+			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.Sibling_Footer),null);
+			siblingParentList.Add (listStruct);
+			//==========================
+
+
+
+			return siblingParentList;
 		}
 		#endregion
 
