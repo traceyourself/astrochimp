@@ -21,10 +21,14 @@
   	<color name="transparent_color">#00FFFFFF</color>
 
   	<color name="tab_back_color">#007077</color>
-  	<color name="tab_text_div_color">#1DD8DE</color>
+  	<color name="tab_text_div_color">#29d6df</color>
 
   	<color name="add_fam_header_back_color">#F2F2F2</color>
-  	<color name="Add_fam_footer_back_color">#F7BA15</color>
+  	<color name="add_fam_data_back_color">#FFFFFF</color>
+  	<color name="Add_fam_footer_back_color">#F8B715</color>
+
+  	<color name="add_fam_header_text_color">#939393</color>
+  	<color name="add_fam_data_text_color">#888888</color>
 
 </resources>
 

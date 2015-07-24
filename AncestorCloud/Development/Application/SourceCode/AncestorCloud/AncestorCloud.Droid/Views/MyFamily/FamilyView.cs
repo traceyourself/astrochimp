@@ -45,7 +45,6 @@ namespace AncestorCloud.Droid
 			configureActionBar ();
 
 			ApplyActions ();
-		
 		}
 
 		protected override void OnResume ()

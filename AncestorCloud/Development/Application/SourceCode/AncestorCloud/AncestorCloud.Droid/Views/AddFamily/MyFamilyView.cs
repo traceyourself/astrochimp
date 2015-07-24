@@ -224,14 +224,11 @@ namespace AncestorCloud.Droid
 		#region list filteration
 		public List<ListDataStructure> FilterDataList(List<People> mainList)
 		{
-			foreach(People p in mainList){
-				Mvx.Trace (p.FirstName +":"+ p.Relation );
-			}
-
 			List<ListDataStructure> resultList = new List<ListDataStructure> ();
 
 			List<ListDataStructure> siblingList = new List<ListDataStructure> ();
 			List<ListDataStructure> parentList = new List<ListDataStructure> ();
+
 			List<ListDataStructure> grandParentList = new List<ListDataStructure> ();
 			List<ListDataStructure> greatGrandParentList = new List<ListDataStructure> ();
 
@@ -465,8 +462,6 @@ namespace AncestorCloud.Droid
 					Mvx.Trace(ex.StackTrace);
 				}
 			};
-
-
 
 			editDialog.Show ();
 

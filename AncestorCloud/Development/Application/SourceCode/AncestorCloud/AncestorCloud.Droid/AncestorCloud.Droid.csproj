@@ -310,6 +310,7 @@
     <AndroidResource Include="Resources\drawable\splash.png" />
     <AndroidResource Include="Resources\layout\login.axml" />
     <AndroidResource Include="Resources\drawable\ref_back.axml" />
+    <AndroidResource Include="Resources\drawable\add_icon_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

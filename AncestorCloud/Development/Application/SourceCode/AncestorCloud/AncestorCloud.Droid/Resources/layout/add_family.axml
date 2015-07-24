@@ -86,6 +86,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/add_fam_header_back_color"
             android:layout_above="@+id/matching_confidence_lay">
             <ListView
                 android:id="@+id/great_grand_parent_list"
