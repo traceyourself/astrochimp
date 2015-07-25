@@ -53,7 +53,7 @@ namespace AncestorCloud.Touch
 //			var messenger = Mvx.Resolve<IMvxMessenger>();
 //			navigationBarHiddenToken = messenger.SubscribeOnMainThread<NavigationBarHiddenMessage>(message => NavigationController.NavigationBarHidden = message.NavigationBarHidden);
 
-
+			AdjustFrames ();
 		}
 
 	   partial void loginClicked (NSObject sender)
@@ -115,21 +115,6 @@ namespace AncestorCloud.Touch
 			messenge.Publish(new FlyOutCloseMessage(this));
 
 
-			if (View.Frame.Width <= 320) {
-				CGRect lblFrame = collectionViewObj.Frame;
-				lblFrame.X -= 26;
-				collectionViewObj.Frame = lblFrame; 
-			}
-
-			if (View.Frame.Width > 375) {
-				CGRect lblFrame = collectionViewObj.Frame;
-				lblFrame.X += 20;
-				collectionViewObj.Frame = lblFrame; 
-			}
-
-			if(App.IsAutoLogin)
-				AdjustViews ();
-
 //			AppDelegate _delagate = (AppDelegate) UIApplication.SharedApplication.Delegate;
 //			_delagate.UIImageProfilePic = null;
 		}
@@ -138,7 +123,7 @@ namespace AncestorCloud.Touch
 		{
 			float xOffset = 20;
 
-			if(View.Frame.Width <=320){
+			if(UIScreen.MainScreen.ApplicationFrame.Width <=320){
 				xOffset = 0;
 			}
 
@@ -167,7 +152,23 @@ namespace AncestorCloud.Touch
 
 		}
 
+		void AdjustFrames()
+		{
+			if (UIScreen.MainScreen.ApplicationFrame.Width <= 320) {
+				CGRect lblFrame = collectionViewObj.Frame;
+				lblFrame.X -= 26;
+				collectionViewObj.Frame = lblFrame; 
+			}
 
+			if (UIScreen.MainScreen.ApplicationFrame.Width > 375) {
+				CGRect lblFrame = collectionViewObj.Frame;
+				lblFrame.X += 20;
+				collectionViewObj.Frame = lblFrame; 
+			}
+
+			if(App.IsAutoLogin)
+				AdjustViews ();
+		}
 	}
 }
 
