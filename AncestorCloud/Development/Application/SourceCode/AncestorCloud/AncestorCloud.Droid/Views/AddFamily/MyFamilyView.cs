@@ -262,6 +262,10 @@ namespace AncestorCloud.Droid
 
 					else if(relation.Equals (StringConstants.GrandFather_comparison) || relation.Equals (StringConstants.GrandMother_comparison) || relation.Equals (StringConstants.GrandParent_comparison))
 					{
+						/*if(item.RelationReference.Equals(StringConstants.gra))
+						{
+
+						}*/
 						listStruct = new ListDataStructure(false,false,true,"","",item);
 						grandParentList.Add (listStruct);
 					}
@@ -343,6 +347,7 @@ namespace AncestorCloud.Droid
 					siblingParentList.Add (siblingList[i]);
 				}
 			}
+
 			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.Sibling_Footer),null);
 			siblingParentList.Add (listStruct);
 			//==========================

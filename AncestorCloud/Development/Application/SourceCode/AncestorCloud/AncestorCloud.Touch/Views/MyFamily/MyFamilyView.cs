@@ -236,10 +236,7 @@ namespace AncestorCloud.Touch
 				{
 					greatGrandParentList.Add (item);
 				}
-
-
 			}
-
 
 			TableItem siblingData = new TableItem ();
 			siblingData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("SiblingSectionHeader","");
