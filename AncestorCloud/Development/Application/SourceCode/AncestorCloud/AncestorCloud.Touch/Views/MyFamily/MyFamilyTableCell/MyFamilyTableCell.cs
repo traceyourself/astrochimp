@@ -28,13 +28,7 @@ namespace AncestorCloud.Touch
 
 		public MyFamilyTableCell (IntPtr handle) : base (handle)
 		{
-			this.DelayBind (() => {
-
-				var set = this.CreateBindingSet<MyFamilyTableCell, People> ();
-				set.Bind (BirthLabel).To (vm => vm.DateOfBirth);
-				set.Bind(RelationLabel).To(vm => vm.Relation).WithConversion(new RelationshipTextConverter(),null);
-				set.Apply ();
-			});
+			
 		}
 		public MyFamilyTableCell (string[] items) 
 		{
@@ -67,6 +61,14 @@ namespace AncestorCloud.Touch
 				NameLabel.Text = familyMember.FirstName +" "+ familyMember.MiddleName +" "+ familyMember.LastName;
 			else
 				NameLabel.Text = familyMember.Name;
+
+			this.DelayBind (() => {
+
+				var set = this.CreateBindingSet<MyFamilyTableCell, People> ();
+				set.Bind (BirthLabel).To (vm => vm.DateOfBirth);
+				set.Bind(RelationLabel).To(vm => vm.Relation).WithConversion(new RelationshipTextConverter(familyMember.Gender),null);
+				set.Apply ();
+			});
 		}
 	}
 
