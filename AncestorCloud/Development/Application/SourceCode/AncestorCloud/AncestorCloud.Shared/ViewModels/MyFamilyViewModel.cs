@@ -172,7 +172,7 @@ namespace AncestorCloud.Shared.ViewModels
 			ShowViewModel <LoginViewModel> ();
 		}
 
-		public void ShowAddParents(String relation)
+		public void ShowAddParents(String relation, string relationShipType)
 		{
 			ShowViewModel<AddFamilyViewModel> (new AddFamilyViewModel.DetailParameter { AddPersonType = relation });
 		}
@@ -239,16 +239,17 @@ namespace AncestorCloud.Shared.ViewModels
 
 
 		#region check validity for family Adiition
-		public void CheckIfCanAddPerson(string relation)
+		public void CheckIfCanAddPerson(string relation, string relationshipRef)
 		{
 			string typeToAdd = relation;
+			string _relationTypeRef = GetRelationshipType (relationshipRef);
 			LoginModel model = _databaseService.GetLoginDetails ();
 			//Sibling_comparison
 			if(typeToAdd.Contains("Sibling") || typeToAdd.Equals("Parent")){
 				if (Mvx.CanResolve<IAndroidService> ()) {
 					ShowAddFamilyViewModel ();
 				} else {
-					ShowAddParents (relation);
+					ShowAddParents (relation,_relationTypeRef);
 				}
 
 			}else{
@@ -263,7 +264,7 @@ namespace AncestorCloud.Shared.ViewModels
 						}
 						else 
 						{
-							ShowAddParents (relation);
+							ShowAddParents (relation,_relationTypeRef);
 						}
 					}
 					else 
@@ -279,7 +280,7 @@ namespace AncestorCloud.Shared.ViewModels
 							ShowAddFamilyViewModel ();
 						}else 
 						{
-							ShowAddParents (relation);
+							ShowAddParents (relation,_relationTypeRef);
 						}
 					} else {
 						Alert.ShowAlert ("Please add grand parents first to add great grand parents","");
@@ -291,6 +292,44 @@ namespace AncestorCloud.Shared.ViewModels
 			ViewModel.ShowAddFamilyViewModel();
 			******/
 		}
+		#endregion
+
+		#region Reference Type Relationship
+
+		string GetRelationshipType(string relationshipRef)
+		{
+			string _ref = String.Empty;
+
+			if (relationshipRef.Equals (AppConstant.FATHERS_PARENT))
+			{
+				_ref = AppConstant.Father_Reference;
+			}
+			else if (relationshipRef.Equals (AppConstant.MOTHERS_PARENT))
+			{
+				_ref = AppConstant.Mother_Reference;
+			}
+			else if (relationshipRef.Equals (AppConstant.FATHERS_FATHERS_PARENT))
+			{
+				_ref = AppConstant.Grand_Father_Father_Reference;
+			}
+			else if (relationshipRef.Equals (AppConstant.FATHERS_MOTHERS_PARENT))
+			{
+				_ref = AppConstant.Grand_Father_Mother_Reference;
+
+			}
+			else if (relationshipRef.Equals (AppConstant.MOTHERS_FATHERS_PARENT))
+			{
+				_ref = AppConstant.Grand_Mother_Father_Reference;
+			}
+			else if (relationshipRef.Equals (AppConstant.MOTHERS_MOTHERS_PARENT))
+			{
+				_ref = AppConstant.Grand_Mother_Mother_Reference;
+			}
+
+			return _ref;
+				
+		}
+
 		#endregion
 
 

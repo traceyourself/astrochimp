@@ -213,11 +213,15 @@ namespace AncestorCloud.Touch
 
 		}
 
+		/// <summary>
+		/// Shows the add parents.
+		/// </summary>
+		/// <param name="obj">Object.</param>
 		public void ShowAddParents(object obj)
 		{
 			TableItem item = obj as TableItem;
 			//ViewModel.ShowAddParents (item.SectionFooter);
-			ViewModel.CheckIfCanAddPerson(item.SectionFooter);
+			ViewModel.CheckIfCanAddPerson(item.SectionFooter,item.ShowSectionFooter);
 		}
 			
 		partial void CrossButtonTaped (NSObject sender)
