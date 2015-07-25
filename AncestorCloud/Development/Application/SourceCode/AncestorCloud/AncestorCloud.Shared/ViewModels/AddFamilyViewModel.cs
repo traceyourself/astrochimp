@@ -1,4 +1,4 @@
-﻿using System;
+﻿	using System;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.CrossCore;
 using System.Collections.Generic;
@@ -215,7 +215,7 @@ namespace AncestorCloud.Shared.ViewModels
 							if(modal.LoggedinUserINDIOFGN == null){
 
 								isValid = false;
-								//Alert.ShowAlert ("Please add parents first to add Grand Parents","");
+								Alert.ShowAlert ("Please add parents first to add Grand Parents","");
 								//modal.LoggedinUserFAMOFGN = listP [0].FamOGFN;
 							}
 

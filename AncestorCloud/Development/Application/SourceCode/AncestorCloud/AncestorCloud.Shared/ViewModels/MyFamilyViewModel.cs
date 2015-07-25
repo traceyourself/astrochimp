@@ -174,7 +174,7 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public void ShowAddParents(String relation, string relationShipType)
 		{
-			ShowViewModel<AddFamilyViewModel> (new AddFamilyViewModel.DetailParameter { AddPersonType = relation });
+			ShowViewModel<AddFamilyViewModel> (new AddFamilyViewModel.DetailParameter { AddPersonType = relation, AddPersonRelationShipRefType = relationShipType });
 		}
 
 		public void ShowEditFamily()
