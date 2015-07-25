@@ -32,6 +32,13 @@ namespace AncestorCloud.Shared
 		Secondary
 	}
 
+	public enum FamilyType
+	{
+		Parent,
+		GParent,
+		GGParent
+	}
+
 	static public class AppConstant
 	{
 
@@ -292,6 +299,19 @@ namespace AncestorCloud.Shared
 
 		public const string PERCENTAGE_COMPLETE="PercentComplete";
 
+		#endregion
+
+
+		#region Refernce Constants
+
+		public const string MOTHERS_PARENT="Mother's parents";
+		public const string FATHERS_PARENT="Father's parents";
+
+		public const string FATHERS_FATHERS_PARENT="Father's Father's Parents";
+		public const string FATHERS_MOTHERS_PARENT="Father's Mother's Parents";
+		public const string MOTHERS_FATHERS_PARENT="Mother's Father's Parents";
+		public const string MOTHERS_MOTHERS_PARENT="Mother's Mother's Parents";
+	
 		#endregion
 
 	}

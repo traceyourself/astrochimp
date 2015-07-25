@@ -48,11 +48,11 @@ namespace AncestorCloud.Touch
 
 			GenderSegmentControlChanged (null);
 
-			if(RefernceSegmentControl.Hidden != true)
-				_RefenceSegmentControl (null);
+//			if(RefernceSegmentControl.Hidden != true)
+//				_RefenceSegmentControl (null);
 			
-			if(AnotherRefernceSegmentControl.Hidden != true)
-				AnotherReferenceSegmentControl (null);
+//			if(AnotherRefernceSegmentControl.Hidden != true)
+//				AnotherReferenceSegmentControl (null);
 
 			PickerButtonTapped.TouchUpInside += PickerButtonTappedEvent;
 
@@ -75,21 +75,23 @@ namespace AncestorCloud.Touch
 		public void SetNavigationTitle()
 		{
 			this.Title = Utility.LocalisedBundle ().LocalizedString ("AddFamilyText", "");
+			AddButton.Frame = new CGRect (AddButton.Frame.X,AddButton.Frame.Y-40f,AddButton.Frame.Width,AddButton.Frame.Height);
+
 
 			if ((ViewModel.AddType == Utility.LocalisedBundle ().LocalizedString ("GreatGrandparentSectionFooter", ""))) {
-				RefernceLabel.Hidden = false;
-				RefernceSegmentControl.Hidden = true;
-				AnotherRefernceSegmentControl.Hidden = false;
+//				RefernceLabel.Hidden = false;
+//				RefernceSegmentControl.Hidden = true;
+//				AnotherRefernceSegmentControl.Hidden = false;
 
 			} else if ((ViewModel.AddType == Utility.LocalisedBundle ().LocalizedString ("GrandparentSectionFooter", ""))){
-				RefernceLabel.Hidden = false;
-				RefernceSegmentControl.Hidden = false;
-				AnotherRefernceSegmentControl.Hidden = true;
+//				RefernceLabel.Hidden = false;
+//				RefernceSegmentControl.Hidden = false;
+//				AnotherRefernceSegmentControl.Hidden = true;
 			}else{
-				RefernceLabel.Hidden = true ;
-				RefernceSegmentControl.Hidden = true;
-				AnotherRefernceSegmentControl.Hidden = true;
-				AddButton.Frame = new CGRect (AddButton.Frame.X,AddButton.Frame.Y-40f,AddButton.Frame.Width,AddButton.Frame.Height);
+//				RefernceLabel.Hidden = true ;
+//				RefernceSegmentControl.Hidden = true;
+//				AnotherRefernceSegmentControl.Hidden = true;
+//				AddButton.Frame = new CGRect (AddButton.Frame.X,AddButton.Frame.Y-40f,AddButton.Frame.Width,AddButton.Frame.Height);
 
 				}
 
@@ -138,39 +140,39 @@ namespace AncestorCloud.Touch
 
 		partial void _RefenceSegmentControl (NSObject sender)
 		{
-			switch(RefernceSegmentControl.SelectedSegment)
-			{
-
-			case 0:
-				ViewModel.ReferenceType=AppConstant.Father_Reference;;
-				break;
-
-			case 1:
-				ViewModel.ReferenceType=AppConstant.Mother_Reference;;
-				break;
-			}
+//			switch(RefernceSegmentControl.SelectedSegment)
+//			{
+//
+//			case 0:
+//				ViewModel.ReferenceType=AppConstant.Father_Reference;;
+//				break;
+//
+//			case 1:
+//				ViewModel.ReferenceType=AppConstant.Mother_Reference;;
+//				break;
+//			}
 		}
 
 		partial void AnotherReferenceSegmentControl (NSObject sender)
 		{
-			switch(AnotherRefernceSegmentControl.SelectedSegment)
-			{
-
-			case 0:
-				ViewModel.ReferenceType=AppConstant.Grand_Father_Father_Reference;;
-				break;
-
-			case 1:
-				ViewModel.ReferenceType=AppConstant.Grand_Mother_Father_Reference;;
-				break;
-
-			case 2 :
-				ViewModel.ReferenceType=AppConstant.Grand_Father_Mother_Reference;;
-				break;
-			case 3 :
-				ViewModel.ReferenceType=AppConstant.Grand_Mother_Mother_Reference;;
-				break;
-			}
+//			switch(AnotherRefernceSegmentControl.SelectedSegment)
+//			{
+//
+//			case 0:
+//				ViewModel.ReferenceType=AppConstant.Grand_Father_Father_Reference;
+//				break;
+//
+//			case 1:
+//				ViewModel.ReferenceType=AppConstant.Grand_Mother_Father_Reference;
+//				break;
+//
+//			case 2 :
+//				ViewModel.ReferenceType=AppConstant.Grand_Father_Mother_Reference;
+//				break;
+//			case 3 :
+//				ViewModel.ReferenceType=AppConstant.Grand_Mother_Mother_Reference;
+//				break;
+//			}
 		}
 
 

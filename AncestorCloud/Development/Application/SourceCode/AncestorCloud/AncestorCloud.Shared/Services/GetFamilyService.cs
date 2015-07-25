@@ -351,7 +351,7 @@ namespace AncestorCloud.Shared
 
 					if(datamodal.Code.Equals("0"))
 					{
-						List<People> mparents = await FetchGrandParents(datamodal,model,AppConstant.GrandParent_comparison,AppConstant.Father_Reference);
+						List<People> mparents = await FetchGrandParents(datamodal,model,AppConstant.GrandParent_comparison,AppConstant.Father_Reference,null);
 						parents.AddRange (mparents);
 					}
 				}
@@ -361,7 +361,7 @@ namespace AncestorCloud.Shared
 
 					if(datamodal.Code.Equals("0"))
 					{
-						List<People> mparents = await FetchGrandParents(datamodal,model,AppConstant.GrandParent_comparison,AppConstant.Mother_Reference);
+						List<People> mparents = await FetchGrandParents(datamodal,model,AppConstant.GrandParent_comparison,AppConstant.Mother_Reference,null);
 						parents.AddRange (mparents);
 					}
 				}
@@ -371,7 +371,7 @@ namespace AncestorCloud.Shared
 
 					if(datamodal.Code.Equals("0"))
 					{
-						List<People> mparents = await FetchGrandParents(datamodal,model,AppConstant.GrandParent_comparison,AppConstant.Parent_comparison);
+						List<People> mparents = await FetchGrandParents(datamodal,model,AppConstant.GrandParent_comparison,AppConstant.Parent_comparison,null);
 						parents.AddRange (mparents);
 					}
 				}
@@ -385,7 +385,7 @@ namespace AncestorCloud.Shared
 
 		#region Fetch GrandParents
 
-		public async  Task<List<People>> FetchGrandParents(ResponseDataModel datamodal, LoginModel loginModel, String relation, string relationShipRef)
+		public async  Task<List<People>> FetchGrandParents(ResponseDataModel datamodal, LoginModel loginModel, String relation, string relationShipRef,string genderRef)
 		{
 			List<People> grandParent = new List<People>();
 
@@ -397,7 +397,7 @@ namespace AncestorCloud.Shared
 
 					if(count == 0)
 					{
-						People p = await FetchGrandFather(datamodal,loginModel,relation,relationShipRef,false);
+						People p = await FetchGrandFather(datamodal,loginModel,relation,relationShipRef,false,genderRef);
 						if(p != null)
 							grandParent.Add(p);
 					}
@@ -406,14 +406,14 @@ namespace AncestorCloud.Shared
 						People p = _databaseService.GetFamilyMember(datamodal.FATHER_OFGN,loginModel.UserEmail);
 						if (!relation.Equals(AppConstant.GreatGrandParent_comparison) && (p.FamOGFN == null || p.FamOGFN.Equals ("0"))) {
 							
-							People _p = await FetchGrandFather(datamodal,loginModel,relation,relationShipRef,true);
+							People _p = await FetchGrandFather(datamodal,loginModel,relation,relationShipRef,true,genderRef);
 							if(_p != null)
 								grandParent.Add(_p);
 						}else
 						{
 							p.Relation = relation;
 							p.Gender = AppConstant.MALE;
-							p.RelationReference = GerRelationShipRef(relationShipRef,p.Gender,relation);
+							p.RelationReference = GerRelationShipRef(relationShipRef,p.Gender,relation,genderRef);
 							grandParent.Add(p);
 						}
 					}		
@@ -428,7 +428,7 @@ namespace AncestorCloud.Shared
 
 					if(count == 0)
 					{
-						People p = await FetchGrandMother(datamodal,loginModel,relation,relationShipRef,false);
+						People p = await FetchGrandMother(datamodal,loginModel,relation,relationShipRef,false,genderRef);
 						if(p != null)
 							grandParent.Add(p);
 					}else
@@ -436,13 +436,13 @@ namespace AncestorCloud.Shared
 						People p = _databaseService.GetFamilyMember(datamodal.MOTHER_OFGN,loginModel.UserEmail);
 						if (!relation.Equals(AppConstant.GreatGrandParent_comparison) && (p.FamOGFN == null || p.FamOGFN.Equals ("0"))) {
 
-							People _p = await FetchGrandMother (datamodal,loginModel,relation,relationShipRef,true);
+							People _p = await FetchGrandMother (datamodal,loginModel,relation,relationShipRef,true,genderRef);
 							if (_p != null)
 								grandParent.Add (_p);
 						} else {
 							p.Relation = AppConstant.GrandParent_comparison;
 							p.Gender = AppConstant.FEMALE;
-							p.RelationReference = GerRelationShipRef (relationShipRef, p.Gender, relation);
+							p.RelationReference = GerRelationShipRef (relationShipRef, p.Gender, relation,genderRef);
 							grandParent.Add (p);
 						}
 					}		
@@ -459,7 +459,7 @@ namespace AncestorCloud.Shared
 		#region Fetch Grand Parents
 
 
-		async Task<People> FetchGrandFather( ResponseDataModel datamodal, LoginModel loginModel, String relation, string relationShipRef,bool isExist)
+		async Task<People> FetchGrandFather( ResponseDataModel datamodal, LoginModel loginModel, String relation, string relationShipRef,bool isExist,string genderRef)
 		{
 			ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.FATHER_OFGN,loginModel.Value);
 
@@ -468,7 +468,7 @@ namespace AncestorCloud.Shared
 				p.LoginUserLinkID = loginModel.UserEmail;
 				p.Relation = relation;
 				p.Gender = AppConstant.MALE;
-				p.RelationReference = GerRelationShipRef(relationShipRef,p.Gender,relation);
+				p.RelationReference = GerRelationShipRef(relationShipRef,p.Gender,relation,genderRef);
 
 				if (isExist) {
 					_databaseService.UpdateRelative (p);
@@ -481,7 +481,7 @@ namespace AncestorCloud.Shared
 			return null;
 		}
 
-		async Task<People> FetchGrandMother(ResponseDataModel datamodal, LoginModel loginModel, String relation, string relationShipRef,bool isExist)
+		async Task<People> FetchGrandMother(ResponseDataModel datamodal, LoginModel loginModel, String relation, string relationShipRef,bool isExist, string genderRef)
 		{
 			ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.MOTHER_OFGN,loginModel.Value);
 
@@ -490,7 +490,7 @@ namespace AncestorCloud.Shared
 				p.LoginUserLinkID = loginModel.UserEmail;
 				p.Relation = relation;
 				p.Gender = AppConstant.FEMALE;
-				p.RelationReference = GerRelationShipRef(relationShipRef,p.Gender,relation);
+				p.RelationReference = GerRelationShipRef(relationShipRef,p.Gender,relation,genderRef);
 				if (isExist) {
 					_databaseService.UpdateRelative (p);
 				} else {
@@ -518,7 +518,7 @@ namespace AncestorCloud.Shared
 
 					if(datamodal.Code.Equals("0"))
 					{
-						List<People> mlist = await FetchGrandParents (datamodal, model, AppConstant.GreatGrandParent_comparison,p.RelationReference  );
+						List<People> mlist = await FetchGrandParents (datamodal, model, AppConstant.GreatGrandParent_comparison,p.RelationReference,p.Gender);
 						list.AddRange (mlist);
 					}
 				} 
@@ -528,7 +528,7 @@ namespace AncestorCloud.Shared
 
 		#endregion
 
-		string GerRelationShipRef(string reference, string gender, string relation)
+		string GerRelationShipRef(string reference, string gender, string relation,string parentGenderRef)
 		{
 			if (reference.Equals (AppConstant.Parent_comparison)) {
 				if (gender.Equals (AppConstant.MALE))
@@ -541,18 +541,18 @@ namespace AncestorCloud.Shared
 
 				if (reference.Equals (AppConstant.Father_Reference)) {
 					
-					if (gender.Equals (AppConstant.MALE))
+					if (parentGenderRef.Equals (AppConstant.MALE))
 						return AppConstant.Grand_Father_Father_Reference;
 					
-					else if (gender.Equals (AppConstant.FEMALE))
-						return AppConstant.Grand_Father_Mother_Reference;
+					else if (parentGenderRef.Equals (AppConstant.FEMALE))
+						return AppConstant.Grand_Mother_Father_Reference;
 				}
 				else if (reference.Equals (AppConstant.Mother_Reference)) {
 					
-					if (gender.Equals (AppConstant.MALE))
+					if (parentGenderRef.Equals (AppConstant.MALE))
 						return AppConstant.Grand_Father_Mother_Reference;
 					
-					else if (gender.Equals (AppConstant.FEMALE))
+					else if (parentGenderRef.Equals (AppConstant.FEMALE))
 						return AppConstant.Grand_Mother_Mother_Reference;
 				}
 			}

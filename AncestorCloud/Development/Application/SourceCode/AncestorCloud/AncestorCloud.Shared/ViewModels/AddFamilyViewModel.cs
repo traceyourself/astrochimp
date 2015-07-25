@@ -1,4 +1,4 @@
-﻿using System;
+﻿	using System;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.CrossCore;
 using System.Collections.Generic;
@@ -37,6 +37,7 @@ namespace AncestorCloud.Shared.ViewModels
 		public void Init(DetailParameter param)
 		{
 			this.AddType = param.AddPersonType ?? String.Empty;
+			this.ReferenceType = param.AddPersonRelationShipRefType ?? String.Empty;
 		}
 		#endregion
 
@@ -355,13 +356,13 @@ namespace AncestorCloud.Shared.ViewModels
 				Alert.ShowAlert(AlertConstant.GENDER_ALERT_MESSAGE,AlertConstant.GENDER_ALERT);
 			}
 
-			else if((AddType != null) && ( AddType.Contains("Grandparent") || AddType.Contains("Great Grandparent"))){
+			/*else if((AddType != null) && ( AddType.Contains("Grandparent") || AddType.Contains("Great Grandparent"))){
 				if (String.IsNullOrEmpty (this.ReferenceType)) 
 				{
 					isValid = false;
 					Alert.ShowAlert("Relationship is required, please select a value.","Relation Missing");
 				}
-			}
+			}*/
 
 			return isValid;
 			
@@ -374,6 +375,8 @@ namespace AncestorCloud.Shared.ViewModels
 		public class DetailParameter
 		{
 			public String AddPersonType{ get; set;}
+
+			public String AddPersonRelationShipRefType{ get; set;}
 		}
 
 		#endregion

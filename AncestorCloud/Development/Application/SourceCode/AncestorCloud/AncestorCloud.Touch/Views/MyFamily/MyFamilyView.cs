@@ -53,6 +53,9 @@ namespace AncestorCloud.Touch
 				if(editFamily != null)
 					editFamily.OnKeyboardChanged(sender,e);
 			};
+
+			SetSegmentControlUI ();
+			SegmentControlTapped (null);
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
@@ -119,15 +122,33 @@ namespace AncestorCloud.Touch
 		#endregion
 
 		#region Binding
-
+		/*
+		 * Changed the flow of data filtering - due to new UI flow
+		 * Just modified / Not re-written
+		 * 
+		*/
 		private void CreateMyFamilyTable()
 		{
-			List<TableItem> data = CreateTableItems(ViewModel.FamilyList);
-			ViewModel.TableDataList = data;
-			var source = new MyFamilyTableSource (myFamilyTable);
+			List<TableItem> data = CreateParentTableItems(ViewModel.FamilyList);
+			List<TableItem> gdata = CreateGParentTableItems(ViewModel.FamilyList);
+			List<TableItem> ggdata = CreateGGParentTableItems(ViewModel.FamilyList);
+
+			ViewModel.ParentsTableDataList = data;
+			ViewModel.GParentsTableDataList = gdata;
+			ViewModel.GGParentsTableDataList = ggdata;
+
+			var source = new MyFamilyTableSource (myFamilyTable,FamilyType.Parent);
+			var gsource = new MyFamilyTableSource (grandParentTableViewObj,FamilyType.GParent);
+			var ggsource = new MyFamilyTableSource (greatGrandParentTableVIewObj,FamilyType.GGParent);
+
 			myFamilyTable.Source = source;
+			grandParentTableViewObj.Source = gsource;
+			greatGrandParentTableVIewObj.Source = ggsource;
+
 			var set = this.CreateBindingSet<MyFamilyView , MyFamilyViewModel> ();
-			set.Bind (source).To (vm => vm.TableDataList).TwoWay();
+			set.Bind (source).To (vm => vm.ParentsTableDataList).TwoWay();
+			set.Bind (gsource).To (vm => vm.GParentsTableDataList).TwoWay();
+			set.Bind (ggsource).To (vm => vm.GGParentsTableDataList).TwoWay();
 			//set.Bind (PercentageLabel).To (vm => vm._PercentageComplete);
 			set.Apply ();
 		}
@@ -156,6 +177,8 @@ namespace AncestorCloud.Touch
 		{
 			
 			(myFamilyTable.Source as MyFamilyTableSource).FooterClickedDelegate += ShowAddParents;
+			(grandParentTableViewObj.Source as MyFamilyTableSource).FooterClickedDelegate += ShowAddParents;
+			(greatGrandParentTableVIewObj.Source as MyFamilyTableSource).FooterClickedDelegate += ShowAddParents;
 			navigationMenuToken = _messenger.SubscribeOnMainThread<MyTableCellTappedMessage>(message => this.ShowEditFamily(message.FamilyMember));
 			ReloadViewToken = _messenger.SubscribeOnMainThread<MyFamilyReloadMessage>(Message => this.ReloadView());
 			LoadViewToken = _messenger.SubscribeOnMainThread<MyFamilyLoadViewMessage>(Message => this.LoadView());
@@ -175,6 +198,13 @@ namespace AncestorCloud.Touch
 
 			if(myFamilyTable.Source != null)
 				(myFamilyTable.Source as MyFamilyTableSource).FooterClickedDelegate -= ShowAddParents;
+			
+			if(grandParentTableViewObj.Source != null)
+				(grandParentTableViewObj.Source as MyFamilyTableSource).FooterClickedDelegate -= ShowAddParents;
+			
+			if(greatGrandParentTableVIewObj.Source != null)
+				(greatGrandParentTableVIewObj.Source as MyFamilyTableSource).FooterClickedDelegate -= ShowAddParents;
+			
 //			_messenger.Unsubscribe<ToggleFlyoutMenuMessage> (navigationMenuToggleToken);
 //			_messenger.Unsubscribe<NavigationBarHiddenMessage> (navigationBarHiddenToken);
 			if(PercentageToken != null)
@@ -183,14 +213,15 @@ namespace AncestorCloud.Touch
 
 		}
 
+		/// <summary>
+		/// Shows the add parents.
+		/// </summary>
+		/// <param name="obj">Object.</param>
 		public void ShowAddParents(object obj)
 		{
 			TableItem item = obj as TableItem;
-
 			//ViewModel.ShowAddParents (item.SectionFooter);
-			ViewModel.CheckIfCanAddPerson(item.SectionFooter);
-
-
+			ViewModel.CheckIfCanAddPerson(item.SectionFooter,item.ShowSectionFooter);
 		}
 			
 		partial void CrossButtonTaped (NSObject sender)
@@ -201,7 +232,7 @@ namespace AncestorCloud.Touch
 
 		#region list Filteration
 
-		public List<TableItem> CreateTableItems(List<People> mainList)
+		public List<TableItem> CreateParentTableItems(List<People> mainList)
 		{
 			List<TableItem> resultList = new List<TableItem> ();
 
@@ -228,52 +259,230 @@ namespace AncestorCloud.Touch
 				{
 					parentList.Add (item);
 				}
-				if (relation.Equals (StringConstants.GRANDFATHER_COMPARISON) || relation.Equals  (StringConstants.GRANDMOTHER_COMPARISON) || relation.Equals ("Grandparent")|| relation.Equals (AppConstant.GrandParent_comparison))
-				{
-					grandParentList.Add (item);
-				}
-				if (relation.Equals (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Equals (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Equals ("Great Grandparent") || relation.Equals (AppConstant.GreatGrandParent_comparison))
-				{
-					greatGrandParentList.Add (item);
-				}
+//				if (relation.Equals (StringConstants.GRANDFATHER_COMPARISON) || relation.Equals  (StringConstants.GRANDMOTHER_COMPARISON) || relation.Equals ("Grandparent")|| relation.Equals (AppConstant.GrandParent_comparison))
+//				{
+//					grandParentList.Add (item);
+//				}
+//				if (relation.Equals (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Equals (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Equals ("Great Grandparent") || relation.Equals (AppConstant.GreatGrandParent_comparison))
+//				{
+//					greatGrandParentList.Add (item);
+//				}
+
+
 			}
-
-			TableItem siblingData = new TableItem ();
-			siblingData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("SiblingSectionHeader","");
-			siblingData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("SiblingSectionFooter","");
-			siblingData.DataItems = siblingList;
-
-
-			resultList.Add (siblingData);
 
 			TableItem parentsData= new TableItem ();
 			parentsData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("ParentSectionHeader","");
 			parentsData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("ParentSectionFooter","");
+			parentsData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ParentSectionHeader","");
+			parentsData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ParentSectionFooter","");
 			parentsData.DataItems = parentList;
 
 
 			resultList.Add (parentsData);
 
-			TableItem grandParentData= new TableItem ();
-			grandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionHeader","");
-			grandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionFooter","");
-			grandParentData.DataItems = grandParentList;
+
+			TableItem siblingData = new TableItem ();
+			siblingData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("SiblingSectionHeader","");
+			siblingData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("SiblingSectionFooter","");
+			siblingData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("SiblingSectionHeader","");
+			siblingData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("SiblingSectionFooter","");
+			siblingData.DataItems = siblingList;
 
 
-			resultList.Add (grandParentData);
+			resultList.Add (siblingData);
 
-			TableItem greatGrandParentData= new TableItem ();
-			greatGrandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
-			greatGrandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
-			greatGrandParentData.DataItems = greatGrandParentList;
 
-			resultList.Add (greatGrandParentData);
+
+//			TableItem grandParentData= new TableItem ();
+//			grandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionHeader","");
+//			grandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionFooter","");
+//			grandParentData.DataItems = grandParentList;
+//
+//
+//			resultList.Add (grandParentData);
+//
+//			TableItem greatGrandParentData= new TableItem ();
+//			greatGrandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
+//			greatGrandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
+//			greatGrandParentData.DataItems = greatGrandParentList;
+//
+//			resultList.Add (greatGrandParentData);
+
+			return resultList;
+		}
+
+		public List<TableItem> CreateGParentTableItems(List<People> mainList)
+		{
+			List<TableItem> resultList = new List<TableItem> ();
+
+			foreach(People p in mainList){
+				Mvx.Trace (p.Name+" :: "+p.Relation);
+			}
+
+//			List<People> siblingList = new List<People> ();
+//			List<People> parentList = new List<People> ();
+			List<People> grandFatherList = new List<People> ();
+			List<People> grandMotherList = new List<People> ();
+			//List<People> greatGrandParentList = new List<People> ();
+
+
+			for(int i=0;i<mainList.Count;i++){
+				People item = mainList[i];
+				string relation = item.Relation;
+
+
+				if (relation.Equals (StringConstants.GRANDFATHER_COMPARISON) || relation.Equals  (StringConstants.GRANDMOTHER_COMPARISON) || relation.Equals ("Grandparent")|| relation.Equals (AppConstant.GrandParent_comparison))
+				{
+					if (item.RelationReference.Equals (AppConstant.Father_Reference)) 
+					{
+						grandFatherList.Add (item);
+	
+					}else if(item.RelationReference.Equals (AppConstant.Mother_Reference))
+					{
+						grandMotherList.Add (item);
+					}
+
+				}
+				//				if (relation.Equals (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Equals (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Equals ("Great Grandparent") || relation.Equals (AppConstant.GreatGrandParent_comparison))
+				//				{
+				//					greatGrandParentList.Add (item);
+				//				}
+
+
+			}
+				
+
+
+			TableItem grandMotherData= new TableItem ();
+			grandMotherData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionHeader","");
+			grandMotherData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionFooter","");
+			grandMotherData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ShowGrandMotherSectionHeader","");
+			grandMotherData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ShowGrandMOtherSectionFooter","");
+			grandMotherData.DataItems = grandMotherList;
+
+
+			resultList.Add (grandMotherData);
+
+			TableItem grandFatherData= new TableItem ();
+			grandFatherData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionHeader","");
+			grandFatherData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GrandparentSectionFooter","");
+			grandFatherData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ShowGrandFatherSectionHeader","");
+			grandFatherData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ShowGrandFatherSectionFooter","");
+			grandFatherData.DataItems = grandFatherList;
+
+
+			resultList.Add (grandFatherData);
+			//
+			//			TableItem greatGrandParentData= new TableItem ();
+			//			greatGrandParentData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
+			//			greatGrandParentData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
+			//			greatGrandParentData.DataItems = greatGrandParentList;
+			//
+			//			resultList.Add (greatGrandParentData);
+
+			return resultList;
+		}
+
+		public List<TableItem> CreateGGParentTableItems(List<People> mainList)
+		{
+			List<TableItem> resultList = new List<TableItem> ();
+
+			foreach(People p in mainList){
+				Mvx.Trace (p.Name+" :: "+p.Relation);
+			}
+				
+			List<People> greatGrandFatherFatherList = new List<People> ();
+			List<People> greatGrandFatherMotherList = new List<People> ();
+			List<People> greatGrandMotherFatherList = new List<People> ();
+			List<People> greatGrandMotherMotherList = new List<People> ();
+
+
+			for(int i=0;i<mainList.Count;i++){
+				People item = mainList[i];
+				string relation = item.Relation;
+
+
+				if (relation.Equals (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Equals (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Equals ("Great Grandparent") || relation.Equals (AppConstant.GreatGrandParent_comparison))
+				{
+					if (item.RelationReference.Equals (AppConstant.Grand_Father_Father_Reference)) 
+					{
+						greatGrandFatherFatherList.Add (item);
+
+					}else if(item.RelationReference.Equals (AppConstant.Grand_Father_Mother_Reference))
+					{
+						greatGrandFatherMotherList.Add (item);
+					}
+					else if (item.RelationReference.Equals (AppConstant.Grand_Mother_Father_Reference)) 
+					{
+						greatGrandMotherFatherList.Add (item);
+
+					}else if(item.RelationReference.Equals (AppConstant.Grand_Mother_Mother_Reference))
+					{
+						greatGrandMotherMotherList.Add (item);
+					}
+				}
+
+
+			}
+
+			TableItem greatGrandFatherFatherData= new TableItem ();
+			greatGrandFatherFatherData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
+			greatGrandFatherFatherData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
+			greatGrandFatherFatherData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandFatherFatherSectionHeader","");
+			greatGrandFatherFatherData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandFatherFatherSectionFooter","");
+			greatGrandFatherFatherData.DataItems = greatGrandFatherFatherList;
+			
+			resultList.Add (greatGrandFatherFatherData);
+
+			TableItem greatGarndFatherMotherData= new TableItem ();
+			greatGarndFatherMotherData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
+			greatGarndFatherMotherData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
+			greatGarndFatherMotherData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandFatherMotherSectionHeader","");
+			greatGarndFatherMotherData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandFatherMotherSectionFooter","");
+			greatGarndFatherMotherData.DataItems = greatGrandFatherMotherList;
+
+			resultList.Add (greatGarndFatherMotherData);
+
+			TableItem greatGrandMotherFatherData= new TableItem ();
+			greatGrandMotherFatherData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
+			greatGrandMotherFatherData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
+			greatGrandMotherFatherData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandMotherFatherSectionHeader","");
+			greatGrandMotherFatherData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandMotherFatherSectionFooter","");
+			greatGrandMotherFatherData.DataItems = greatGrandMotherFatherList;
+
+			resultList.Add (greatGrandMotherFatherData);
+
+			TableItem greatGrandMotherMotherData= new TableItem ();
+			greatGrandMotherMotherData.SectionHeader = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionHeader","");
+			greatGrandMotherMotherData.SectionFooter = Utility.LocalisedBundle ().LocalizedString("GreatGrandparentSectionFooter","");
+			greatGrandMotherMotherData.ShowSectionHeader = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandMotherMotherSectionHeader","");
+			greatGrandMotherMotherData.ShowSectionFooter = Utility.LocalisedBundle ().LocalizedString("ShowGreatGrandMotherMotherSectionFooter","");
+			greatGrandMotherMotherData.DataItems = greatGrandMotherMotherList;
+
+			resultList.Add (greatGrandMotherMotherData);
 
 			return resultList;
 		}
 
 		#endregion
 
+
+		#region Segment Methods
+
+		void SetSegmentControlUI()
+		{
+			this.segmentControlObj.TintColor = UIColor.Clear;
+			this.segmentControlObj.SetTitleTextAttributes (new UITextAttributes ()
+				{ TextColor = UIColor.White ,Font = UIFont.BoldSystemFontOfSize(14)},UIControlState.Normal);
+
+			this.segmentControlObj.SetTitleTextAttributes (new UITextAttributes ()
+				{ TextColor = UIColor.FromRGB(42,206,215) ,Font = UIFont.BoldSystemFontOfSize(14)},UIControlState.Selected);
+
+			//[[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateNormal];
+		}
+
+		#endregion
 
 		#region EditFamilyView Methods
 
@@ -310,6 +519,73 @@ namespace AncestorCloud.Touch
 			PercentageLabel.Text = ViewModel._PercentageComplete+ Utility.LocalisedBundle ().LocalizedString("MatchingText","");;
 		}
 
+
+		#region NEW TAB METHODS
+
+		partial void SegmentControlTapped (NSObject sender)
+		{
+			SetTabFooterImage((int)segmentControlObj.SelectedSegment);
+
+			EnableTabeleViews((int)segmentControlObj.SelectedSegment);
+
+			switch(segmentControlObj.SelectedSegment)
+			{
+			case 0:
+				
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			}
+		}
+
+
+		void SetTabFooterImage(int index)
+		{
+			switch(segmentControlObj.SelectedSegment)
+			{
+			case 0:
+				firstTabImageView.Hidden = false;
+				secondTabImageView.Hidden = true;
+				thirdTabImageVIew.Hidden = true;
+				break;
+			case 1:
+				firstTabImageView.Hidden = true;
+				secondTabImageView.Hidden = false;
+				thirdTabImageVIew.Hidden = true;
+				break;
+			case 2:
+				firstTabImageView.Hidden = true;
+				secondTabImageView.Hidden = true;
+				thirdTabImageVIew.Hidden = false;
+				break;
+			}
+		}
+
+		void EnableTabeleViews(int index)
+		{
+			switch(segmentControlObj.SelectedSegment)
+			{
+			case 0:
+				myFamilyTable.Hidden = false;
+				grandParentTableViewObj.Hidden = true;
+				greatGrandParentTableVIewObj.Hidden = true;
+				break;
+			case 1:
+				myFamilyTable.Hidden = true;
+				grandParentTableViewObj.Hidden = false;
+				greatGrandParentTableVIewObj.Hidden = true;
+				break;
+			case 2:
+				myFamilyTable.Hidden = true;
+				grandParentTableViewObj.Hidden = true;
+				greatGrandParentTableVIewObj.Hidden = false;
+				break;
+			}
+		}
+
+		#endregion
 
 
 	}
