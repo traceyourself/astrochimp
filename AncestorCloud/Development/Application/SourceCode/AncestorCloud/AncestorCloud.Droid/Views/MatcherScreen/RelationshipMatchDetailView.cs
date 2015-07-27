@@ -220,9 +220,9 @@ namespace AncestorCloud.Droid
 				holder.year = convertView.FindViewById<TextView> (Resource.Id.year);
 				holder.percent_right = convertView.FindViewById<TextView> (Resource.Id.percent_right);
 
-				convertView.SetTag (Resource.Id.add_family_list,holder);
+				convertView.SetTag (Resource.Id.parent_sibling_list,holder);
 			} else {
-				holder = (MatchedViewHolder)convertView.GetTag (Resource.Id.add_family_list);
+				holder = (MatchedViewHolder)convertView.GetTag (Resource.Id.parent_sibling_list);
 			}
 
 			if(dataList[position].CommonResult != null){

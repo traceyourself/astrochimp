@@ -93,21 +93,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:dividerHeight="1dp"
+                android:visibility="gone"
                 android:divider="@color/add_family_div_color" />
             <ListView
                 android:id="@+id/grand_parent_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:dividerHeight="1dp"
+                android:visibility="gone"
                 android:divider="@color/add_family_div_color" />
             <ListView
                 android:id="@+id/parent_sibling_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:dividerHeight="1dp"
-                android:divider="@color/add_family_div_color" />
-            <ListView
-                android:id="@+id/add_family_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:dividerHeight="1dp"
