@@ -55,6 +55,9 @@
 
 
 	<!--- My Family Screen Strings -->
+	<string name="parent_tab_txt">PARENTS</string>
+	<string name="g_parent_tab_txt">G. PARENTS</string>
+	<string name="g_g_parent_tab_txt">G.G. PARENTS</string>
 
 	<string name="zero_matching_confidence">0% Matching Confidence</string>
 	<string name="percent_matching_confidence">% Matching Confidence</string>
@@ -67,10 +70,11 @@
 	<string name="GreatGrandFather_comparison">great grandfather</string>
 	<string name="GreatGrandMother_comparison">great grandmother</string>
 
-	<string name="Sibling_header">Siblings</string>
-	<string name="Sibling_Footer">Add Sibling</string>
-	<string name="Parent_header">Parents</string>
-	<string name="Parent_Footer">Add Parent</string>
+	<string name="Sibling_header">SIBLINGS</string>
+	<string name="Sibling_Footer">ADD SIBLING</string>
+	<string name="Parent_header">PARENTS</string>
+	<string name="Parent_Footer">ADD PARENT</string>
+
 	<string name="Grandparent_header">Grandparents</string>
 	<string name="Grandparent_Footer">Add Grandparent</string>
 	<string name="Greatgrandparent_header">Great Grandparents</string>
@@ -79,6 +83,19 @@
 	<string name="enter_f_name">Please enter First Name</string>
 	<string name="select_gender">Please select Gender</string>
 
+	<string name="ShowGrandFatherSectionHeader">Father\'s parents</string>
+	<string name="ShowGrandFatherSectionFooter">Add Father\'s parents</string>
+	<string name="ShowGrandMotherSectionHeader">Mother\'s parents</string>
+	<string name="ShowGrandMOtherSectionFooter">Add Mother\'s parents</string>
+
+	<string name="ShowGreatGrandFatherFatherSectionHeader">Father\'s Father\'s Parents</string>
+	<string name="ShowGreatGrandFatherFatherSectionFooter">Add Father\'s Father\'s Parents</string>
+	<string name="ShowGreatGrandFatherMotherSectionHeader">Father\'s Mother\'s Parents</string>
+	<string name="ShowGreatGrandFatherMotherSectionFooter">Add Father\'s Mother\'s Parents</string>
+	<string name="ShowGreatGrandMotherFatherSectionHeader">Mother\'s Father\'s Parents</string>
+	<string name="ShowGreatGrandMotherFatherSectionFooter">Add Mother\'s Father\'s Parents</string>
+	<string name="ShowGreatGrandMotherMotherSectionHeader">Mother\'s Mother\'s Parents</string>
+	<string name="ShowGreatGrandMotherMotherSectionFooter">Add Mother\'s Mother\'s Parents</string>
 	<!--- My Family Screen  Strings ENDS -->
 
 

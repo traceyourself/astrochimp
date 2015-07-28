@@ -40,6 +40,19 @@ namespace AncestorCloud.Droid
 		IDatabaseService _databaseService;
 		IAlert Alert;
 
+		List<ListDataStructure> siblingParentList;
+		List<ListDataStructure> grandParentList;
+		List<ListDataStructure> greatGrandParentList;
+
+		#region tab var region
+		TextView parentsTxt,gParentsTxt,ggParentsTxt;
+		View parentsBottomDiv,gParentsBottomDiv,ggParentsBottomDiv;
+		LinearLayout parentsBtn,gParentsBtn,ggParentsBtn;
+		ListView parentSiblingList,gParentList,ggParentList;
+		public int currentTab = 0;
+		#endregion
+
+
 		public new MyFamilyViewModel ViewModel
 		{
 			get { return base.ViewModel as MyFamilyViewModel; }
@@ -88,10 +101,28 @@ namespace AncestorCloud.Droid
 		private void InitViews()
 		{
 			actionBar = FindViewById<ActionBar> (Resource.Id.actionBar);
-			listView = FindViewById<ListView> (Resource.Id.add_family_list);
+			//listView = FindViewById<ListView> (Resource.Id.add_family_list);
 			helpIcon = FindViewById<ImageView> (Resource.Id.question_icon);
 			percentText = FindViewById<TextView> (Resource.Id.percent_txt);
 			//yearSelector = FindViewById<Spinner> (Resource.Id.year_selector_inlay);
+
+			//Tabs and Layouts
+			parentsTxt = FindViewById<TextView> (Resource.Id.parents_txt);
+			gParentsTxt = FindViewById<TextView> (Resource.Id.g_parents_txt);
+			ggParentsTxt = FindViewById<TextView> (Resource.Id.g_g_parents_txt);
+
+			parentsBottomDiv = FindViewById<View> (Resource.Id.parent_bottom_div);
+			gParentsBottomDiv = FindViewById<View> (Resource.Id.g_parent_bottom_div);
+			ggParentsBottomDiv = FindViewById<View> (Resource.Id.g_g_parent_bottom_div);
+
+			parentsBtn = FindViewById<LinearLayout> (Resource.Id.parents_btn);
+			gParentsBtn = FindViewById<LinearLayout> (Resource.Id.g_parents_btn);
+			ggParentsBtn = FindViewById<LinearLayout> (Resource.Id.gg_parents_btn);
+
+			parentSiblingList = FindViewById<ListView> (Resource.Id.parent_sibling_list);
+			gParentList = FindViewById<ListView> (Resource.Id.grand_parent_list);
+			ggParentList = FindViewById<ListView> (Resource.Id.great_grand_parent_list);
+			//=============
 		}
 
 		private void ConfigureActionBar()
@@ -116,7 +147,61 @@ namespace AncestorCloud.Droid
 
 		private void ApplyActions()
 		{
-			
+
+			parentsBtn.Click += (object sender, EventArgs e) => {
+				if(currentTab != 0){
+					HandleTabClicks(0);
+					currentTab = 0;
+				}
+			};
+
+			gParentsBtn.Click += (object sender, EventArgs e) => {
+				if(currentTab != 1){
+					HandleTabClicks(1);
+					currentTab = 1;
+				}
+			};
+
+			ggParentsBtn.Click += (object sender, EventArgs e) => {
+				if(currentTab != 2){
+					HandleTabClicks(2);
+					currentTab = 2;
+				}
+			};
+		}
+
+		public void HandleTabClicks(int which)
+		{
+
+			parentsTxt.SetTextColor(Color.White);
+			gParentsTxt.SetTextColor(Color.White);
+			ggParentsTxt.SetTextColor(Color.White);
+
+			parentsBottomDiv.Visibility = ViewStates.Gone;
+			gParentsBottomDiv.Visibility = ViewStates.Gone;
+			ggParentsBottomDiv.Visibility = ViewStates.Gone;
+
+			parentSiblingList.Visibility = ViewStates.Gone;
+			gParentList.Visibility = ViewStates.Gone;
+			ggParentList.Visibility = ViewStates.Gone;
+
+			if (which == 0) {
+				parentsTxt.SetTextColor (Resources.GetColor (Resource.Color.tab_text_div_color));
+				parentsBottomDiv.Visibility = ViewStates.Visible;
+				parentSiblingList.Visibility = ViewStates.Visible;
+			}
+			else if(which == 1)
+			{
+				gParentsTxt.SetTextColor (Resources.GetColor (Resource.Color.tab_text_div_color));
+				gParentsBottomDiv.Visibility = ViewStates.Visible;
+				gParentList.Visibility = ViewStates.Visible;
+			}
+			else if(which == 2)
+			{
+				ggParentsTxt.SetTextColor (Resources.GetColor (Resource.Color.tab_text_div_color));
+				ggParentsBottomDiv.Visibility = ViewStates.Visible;
+				ggParentList.Visibility = ViewStates.Visible;
+			}
 		}
 		#endregion
 
@@ -135,12 +220,26 @@ namespace AncestorCloud.Droid
 			if(reload){
 				ViewModel.GetFbFamilyData ();
 			}
-			dataList = FilterDataList (ViewModel.FamilyList);
 
-			MyFamilyListAdapter adapter = new MyFamilyListAdapter (this,dataList);
-			listView.Adapter = adapter;
-			listView.Invalidate ();	
+			siblingParentList = FilterSiblingParentList (ViewModel.FamilyList);
 
+			MyFamilyListAdapter siblingParentAdapter = new MyFamilyListAdapter (this,siblingParentList);
+			parentSiblingList.Adapter = siblingParentAdapter;
+			parentSiblingList.Invalidate ();	
+
+
+			grandParentList = FilterGrandParentList (ViewModel.FamilyList);
+
+			MyFamilyListAdapter grandParentAdapter = new MyFamilyListAdapter (this,grandParentList);
+			gParentList.Adapter = grandParentAdapter;
+			gParentList.Invalidate ();	
+
+
+			greatGrandParentList = FilterGreatGrandParentList (ViewModel.FamilyList);
+
+			MyFamilyListAdapter greatGrandParentAdapter = new MyFamilyListAdapter (this,greatGrandParentList);
+			ggParentList.Adapter = greatGrandParentAdapter;
+			ggParentList.Invalidate ();	
 		}
 		#endregion
 
@@ -150,21 +249,16 @@ namespace AncestorCloud.Droid
 			percentText.Text = ViewModel._PercentageComplete+Resources.GetString(Resource.String.percent_matching_confidence);
 		}
 
-		#region list filteration
-		public List<ListDataStructure> FilterDataList(List<People> mainList)
+		#region list filteration of sibling Parent list
+		public List<ListDataStructure> FilterSiblingParentList(List<People> mainList)
 		{
-			foreach(People p in mainList){
-				Mvx.Trace (p.FirstName +":"+ p.Relation );
-			}
-
-			List<ListDataStructure> resultList = new List<ListDataStructure> ();
-
 			List<ListDataStructure> siblingList = new List<ListDataStructure> ();
 			List<ListDataStructure> parentList = new List<ListDataStructure> ();
-			List<ListDataStructure> grandParentList = new List<ListDataStructure> ();
-			List<ListDataStructure> greatGrandParentList = new List<ListDataStructure> ();
+
+			List<ListDataStructure> siblingParentList = new List<ListDataStructure> ();
 
 			ListDataStructure listStruct;
+
 
 			if(mainList != null){
 				for(int i=0;i<mainList.Count;i++){
@@ -182,76 +276,215 @@ namespace AncestorCloud.Droid
 						listStruct = new ListDataStructure(false,false,true,"","",item);
 						parentList.Add (listStruct);
 					}
-
-					else if(relation.Equals (StringConstants.GrandFather_comparison) || relation.Equals (StringConstants.GrandMother_comparison) || relation.Equals (StringConstants.GrandParent_comparison))
-					{
-						listStruct = new ListDataStructure(false,false,true,"","",item);
-						grandParentList.Add (listStruct);
-					}
-
-					else if(relation.Equals (StringConstants.GreatGrandFather_comparison) || relation.Equals (StringConstants.GreatGrandMother_comparison) || relation.Equals (AppConstant.GreatGrandParent_comparison))
-					{
-						listStruct = new ListDataStructure(false,false,true,"","",item);
-						greatGrandParentList.Add (listStruct);
-					}
 				}
 			}
-			//Siblings==
-			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.Sibling_header),"",null);
-			resultList.Add (listStruct);
-			if(siblingList.Count > 0){
-				for(int i=0;i<siblingList.Count;i++){
-					resultList.Add (siblingList[i]);
-				}
-			}
-			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.Sibling_Footer),null);
-			resultList.Add (listStruct);
-			//========
 
-			//Parents==
+			//Parents and Siblings=======
 			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.Parent_header),"",null);
-			resultList.Add (listStruct);
+			siblingParentList.Add (listStruct);
 			if(parentList.Count > 0){
 				for(int i=0;i<parentList.Count;i++){
-					resultList.Add (parentList[i]);
+					siblingParentList.Add (parentList[i]);
 				}
 			}
 			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.Parent_Footer),null);
-			resultList.Add (listStruct);
-			//=========
+			siblingParentList.Add (listStruct);
 
-			//GrandParents==
-			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.Grandparent_header),"",null);
-			resultList.Add (listStruct);
-			if(grandParentList.Count > 0){
-				for(int i=0;i<grandParentList.Count;i++){
-					resultList.Add (grandParentList[i]);
+			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.Sibling_header),"",null);
+			siblingParentList.Add (listStruct);
+
+			if(siblingList.Count > 0){
+				for(int i=0;i<siblingList.Count;i++){
+					siblingParentList.Add (siblingList[i]);
 				}
 			}
-			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.Grandparent_Footer),null);
-			resultList.Add (listStruct);
-			//=========
 
-			//Great Grand Parents==
-			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.Greatgrandparent_header),"",null);
-			resultList.Add (listStruct);
-			if(greatGrandParentList.Count > 0){
-				for(int i=0;i<greatGrandParentList.Count;i++){
-					resultList.Add (greatGrandParentList[i]);
-				}
-			}
-			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.GreatGrandparent_Footer),null);
-			resultList.Add (listStruct);
-			//=========
+			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.Sibling_Footer),null);
+			siblingParentList.Add (listStruct);
+			//==========================
 
-			return resultList;
+			return siblingParentList;
 		}
 		#endregion
+
+		#region list filteration of grand Parent list
+		public List<ListDataStructure> FilterGrandParentList(List<People> mainList)
+		{
+			List<ListDataStructure> grandParentFatherList = new List<ListDataStructure> ();
+			List<ListDataStructure> grandParentMotherList = new List<ListDataStructure> ();
+
+			List<ListDataStructure> grandParentList = new List<ListDataStructure> ();
+
+			ListDataStructure listStruct;
+
+			if(mainList != null){
+				for(int i=0;i<mainList.Count;i++){
+					People item = mainList[i];
+					string relation = item.Relation;
+
+					if (relation.Equals (StringConstants.GRANDFATHER_COMPARISON) || relation.Equals  (StringConstants.GRANDMOTHER_COMPARISON) || relation.Equals ("Grandparent")|| relation.Equals (AppConstant.GrandParent_comparison))
+					{
+						if (item.RelationReference.Equals (AppConstant.Father_Reference)) 
+						{
+							listStruct = new ListDataStructure(false,false,true,"","",item);
+							grandParentFatherList.Add (listStruct);
+
+						}else if(item.RelationReference.Equals (AppConstant.Mother_Reference))
+						{
+							listStruct = new ListDataStructure(false,false,true,"","",item);
+							grandParentMotherList.Add (listStruct);
+						}
+					}
+				}
+			}
+
+			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.ShowGrandMotherSectionHeader),"",null);
+			grandParentList.Add (listStruct);
+			if(grandParentMotherList.Count > 0){
+				for(int i=0;i<grandParentMotherList.Count;i++){
+					grandParentList.Add (grandParentMotherList[i]);
+				}
+			}
+			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.ShowGrandMOtherSectionFooter),null);
+			grandParentList.Add (listStruct);
+
+			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.ShowGrandFatherSectionHeader),"",null);
+			grandParentList.Add (listStruct);
+			if(grandParentFatherList.Count > 0){
+				for(int i=0;i<grandParentFatherList.Count;i++){
+					grandParentList.Add (grandParentFatherList[i]);
+				}
+			}
+			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.ShowGrandFatherSectionFooter),null);
+			grandParentList.Add (listStruct);
+
+			return grandParentList;
+		}
+		#endregion
+
+
+		#region list filteration of great grand Parent list
+		public List<ListDataStructure> FilterGreatGrandParentList(List<People> mainList)
+		{
+
+			List<ListDataStructure> FFPList = new List<ListDataStructure> ();
+			List<ListDataStructure> FMPList = new List<ListDataStructure> ();
+			List<ListDataStructure> MFPList = new List<ListDataStructure> ();
+			List<ListDataStructure> MMPList = new List<ListDataStructure> ();
+
+			List<ListDataStructure> greatGrandParentList = new List<ListDataStructure> ();
+
+			ListDataStructure listStruct;
+
+			if(mainList != null){
+				for(int i=0;i<mainList.Count;i++){
+					People item = mainList[i];
+					string relation = item.Relation;
+
+					/*listStruct = new ListDataStructure(false,false,true,"","",item);
+					greatGrandParentList.Add (listStruct);*/
+
+					if (relation.Equals (StringConstants.GREATGRANDFATHER_COMPARISON) || relation.Equals (StringConstants.GREATGRANDMOTHER_COMPARISON) || relation.Equals ("Great Grandparent") || relation.Equals (AppConstant.GreatGrandParent_comparison))
+					{
+						if (item.RelationReference.Equals (AppConstant.Grand_Father_Father_Reference)) 
+						{
+							listStruct = new ListDataStructure(false,false,true,"","",item);
+							FFPList.Add (listStruct);
+						}else if(item.RelationReference.Equals (AppConstant.Grand_Father_Mother_Reference))
+						{
+							listStruct = new ListDataStructure(false,false,true,"","",item);
+							FMPList.Add (listStruct);
+						}
+						else if (item.RelationReference.Equals (AppConstant.Grand_Mother_Father_Reference)) 
+						{
+							listStruct = new ListDataStructure(false,false,true,"","",item);
+							MFPList.Add (listStruct);
+				
+						}else if(item.RelationReference.Equals (AppConstant.Grand_Mother_Mother_Reference))
+						{
+							listStruct = new ListDataStructure(false,false,true,"","",item);
+							MMPList.Add (listStruct);
+						}
+					}
+				}
+			}
+
+		
+			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.ShowGreatGrandFatherFatherSectionHeader),"",null);
+			greatGrandParentList.Add (listStruct);
+
+			if(FFPList.Count > 0){
+				for(int i=0;i<FFPList.Count;i++){
+					greatGrandParentList.Add (FFPList[i]);
+				}
+			}
+
+			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.ShowGreatGrandFatherFatherSectionFooter),null);
+			greatGrandParentList.Add (listStruct);
+
+			//==============
+
+			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.ShowGreatGrandFatherMotherSectionHeader),"",null);
+			greatGrandParentList.Add (listStruct);
+
+			if(FMPList.Count > 0){
+				for(int i=0;i<FMPList.Count;i++){
+					greatGrandParentList.Add (FMPList[i]);
+				}
+			}
+
+			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.ShowGreatGrandFatherMotherSectionFooter),null);
+			greatGrandParentList.Add (listStruct);
+
+			//===============
+
+			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.ShowGreatGrandMotherFatherSectionHeader),"",null);
+			greatGrandParentList.Add (listStruct);
+
+			if(MFPList.Count > 0){
+				for(int i=0;i<MFPList.Count;i++){
+					greatGrandParentList.Add (MFPList[i]);
+				}
+			}
+
+			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.ShowGreatGrandMotherFatherSectionFooter),null);
+			greatGrandParentList.Add (listStruct);
+
+			//=================
+
+			listStruct = new ListDataStructure(true,false,false,Resources.GetString(Resource.String.ShowGreatGrandMotherMotherSectionHeader),"",null);
+			greatGrandParentList.Add (listStruct);
+
+			if(MMPList.Count > 0){
+				for(int i=0;i<MMPList.Count;i++){
+					greatGrandParentList.Add (MMPList[i]);
+				}
+			}
+
+			listStruct = new ListDataStructure(false,true,false,"",Resources.GetString(Resource.String.ShowGreatGrandMotherMotherSectionFooter),null);
+			greatGrandParentList.Add (listStruct);
+
+			//=================
+
+			return greatGrandParentList;
+		}
+		#endregion
+
+
 
 		#region Edit Dialog
 		public void ShowEditDialog(int position)
 		{
-			People peopleData = dataList[position].PersonData;
+			People peopleData = null;
+
+			if(currentTab == 0){
+				peopleData = siblingParentList[position].PersonData;
+			}else if(currentTab == 1){
+				peopleData = grandParentList[position].PersonData;
+			}else if(currentTab == 2){
+				peopleData = greatGrandParentList[position].PersonData;
+			}
+
 			String gender = "";
 			editDialog = new Dialog (this,Resource.Style.TransparentDialog);
 
@@ -394,8 +627,6 @@ namespace AncestorCloud.Droid
 					Mvx.Trace(ex.StackTrace);
 				}
 			};
-
-
 
 			editDialog.Show ();
 
@@ -549,9 +780,10 @@ namespace AncestorCloud.Droid
 				holder.footerTxt = convertView.FindViewById<TextView> (Resource.Id.footer_txt);
 
 				//Java.Lang.Object holderObj = (Java.Lang.Object)holder;
-				convertView.SetTag (Resource.Id.add_family_list,holder);
+				convertView.SetTag (Resource.Id.parent_sibling_list,holder);
+
 			} else {
-				holder = (ViewHolder)convertView.GetTag (Resource.Id.add_family_list);
+				holder = (ViewHolder)convertView.GetTag (Resource.Id.parent_sibling_list);
 			}
 
 			ListDataStructure structure = dataList[position];
@@ -565,10 +797,12 @@ namespace AncestorCloud.Droid
 			}
 			else if(structure.isData)
 			{
+				String name = "";
+
 				if (structure.PersonData.FirstName != null && structure.PersonData.FirstName.Length > 0) {
-					holder.nameTxt.Text = structure.PersonData.FirstName+" "+structure.PersonData.MiddleName+" "+structure.PersonData.LastName;
+					name = structure.PersonData.FirstName+" "+structure.PersonData.MiddleName+" "+structure.PersonData.LastName;
 				} else {
-					holder.nameTxt.Text = structure.PersonData.Name;
+					name = structure.PersonData.Name;
 				}
 
 				holder.yearTxt.Text = structure.PersonData.DateOfBirth;
@@ -576,6 +810,26 @@ namespace AncestorCloud.Droid
 				holder.listFooter.Visibility = ViewStates.Gone;
 				holder.listData.Visibility = ViewStates.Visible;
 				holder.editBtn.Tag = ""+position;
+
+				String relation = structure.PersonData.Relation;
+				if (relation.Equals (StringConstants.Brother_comparison) || relation.Equals (StringConstants.Sister_comparison) || relation.Equals (StringConstants.Sibling_comparison)) {
+					holder.nameTxt.Text = name;
+				} else {
+
+					String gen = "" + structure.PersonData.Gender;
+
+					if (!String.IsNullOrEmpty (gen)) {
+						String attach = "";
+						if (gen.Equals ("Male")) {
+							attach = "(Father)";
+						} else {
+							attach = "(Mother)";
+						}
+						holder.nameTxt.Text = name + " " + attach;
+					} else {
+						holder.nameTxt.Text = name;
+					}
+				}
 
 				holder.editBtn.Click += (object sender, EventArgs e) => {
 					//System.Diagnostics.Debug.WriteLine("edit clicked at : "+position);
@@ -608,7 +862,7 @@ namespace AncestorCloud.Droid
 
 				holder.listFooter.Click += (object sender, EventArgs e) => {
 					//System.Diagnostics.Debug.WriteLine("footer clicked at : "+position);
-					string []arr = structure.FooterTitle.Split(new char[]{' '},5);
+					/*string []arr = structure.FooterTitle.Split(new char[]{' '},5);
 
 					string type = arr[1];
 					try{
@@ -618,9 +872,59 @@ namespace AncestorCloud.Droid
 					}catch(Exception e1){
 						Mvx.Trace(e1.StackTrace);
 					}
-					Utilities.AddPersonType = type;
+					Utilities.AddPersonType = type;*/
 
-					myFamilyObj.ViewModel.CheckIfCanAddPerson(type);
+					//myFamilyObj.ViewModel.CheckIfCanAddPerson(type);
+
+					String footer = structure.FooterTitle;
+
+					if(myFamilyObj.currentTab == 0)
+					{
+
+						if(footer.Equals(myFamilyObj.Resources.GetString(Resource.String.Parent_Footer)))
+						{
+							Utilities.AddPersonType = "Parent";
+							myFamilyObj.ViewModel.CheckIfCanAddPerson("Parent","");
+						}
+						else if(footer.Equals(myFamilyObj.Resources.GetString(Resource.String.Sibling_Footer)))
+						{
+							Utilities.AddPersonType = "Sibling";
+							myFamilyObj.ViewModel.CheckIfCanAddPerson("Sibling","");
+						}
+					}
+					else if(myFamilyObj.currentTab == 1)
+					{
+						Utilities.AddPersonType = "Grandparent";
+
+						if(footer.Equals(myFamilyObj.Resources.GetString(Resource.String.ShowGrandMOtherSectionFooter)))
+						{
+							myFamilyObj.ViewModel.CheckIfCanAddPerson("Grandparent",AppConstant.MOTHERS_PARENT);
+						}
+						else if(footer.Equals(myFamilyObj.Resources.GetString(Resource.String.ShowGrandFatherSectionFooter)))
+						{
+							myFamilyObj.ViewModel.CheckIfCanAddPerson("Grandparent",AppConstant.FATHERS_PARENT);
+						}
+					}
+					else if(myFamilyObj.currentTab == 2)
+					{
+						Utilities.AddPersonType = "Great Grandparent";
+
+						if(footer.Equals(myFamilyObj.Resources.GetString(Resource.String.ShowGreatGrandFatherFatherSectionFooter)))
+						{
+							myFamilyObj.ViewModel.CheckIfCanAddPerson("Great Grandparent",AppConstant.FATHERS_FATHERS_PARENT);
+						}
+						else if(footer.Equals(myFamilyObj.Resources.GetString(Resource.String.ShowGreatGrandFatherMotherSectionFooter)))
+						{
+							myFamilyObj.ViewModel.CheckIfCanAddPerson("Great Grandparent",AppConstant.FATHERS_MOTHERS_PARENT);
+						}else if(footer.Equals(myFamilyObj.Resources.GetString(Resource.String.ShowGreatGrandMotherFatherSectionFooter)))
+						{
+							myFamilyObj.ViewModel.CheckIfCanAddPerson("Great Grandparent",AppConstant.MOTHERS_FATHERS_PARENT);
+						}
+						else if(footer.Equals(myFamilyObj.Resources.GetString(Resource.String.ShowGreatGrandMotherMotherSectionFooter)))
+						{
+							myFamilyObj.ViewModel.CheckIfCanAddPerson("Great Grandparent",AppConstant.MOTHERS_MOTHERS_PARENT);
+						}
+					}
 				};
 			}
 

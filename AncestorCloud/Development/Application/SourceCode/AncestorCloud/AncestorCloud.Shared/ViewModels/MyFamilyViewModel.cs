@@ -246,11 +246,12 @@ namespace AncestorCloud.Shared.ViewModels
 			LoginModel model = _databaseService.GetLoginDetails ();
 			//Sibling_comparison
 			if(typeToAdd.Contains("Sibling") || typeToAdd.Equals("Parent")){
-				if (Mvx.CanResolve<IAndroidService> ()) {
+				/*if (Mvx.CanResolve<IAndroidService> ()) {
+					ShowViewModel<AddFamilyViewModel> (new AddFamilyViewModel.DetailParameter { AddPersonType = relation, AddPersonRelationShipRefType = _relationTypeRef });
 					ShowAddFamilyViewModel ();
-				} else {
+				} else {*/
 					ShowAddParents (relation,_relationTypeRef);
-				}
+				//}
 
 			}else{
 				if(typeToAdd.Equals("Grandparent")){
@@ -258,14 +259,14 @@ namespace AncestorCloud.Shared.ViewModels
 					List<People> listP = _familyDataManager.GetParents();//_databaseService.RelativeMatching (AppConstant.Parent_comparison,model.UserEmail);
 					if (listP != null && listP.Count > 0) 
 					{
-						if (Mvx.CanResolve<IAndroidService> ()) 
+						/*if (Mvx.CanResolve<IAndroidService> ()) 
 						{
 							ShowAddFamilyViewModel ();
 						}
 						else 
-						{
+						{*/
 							ShowAddParents (relation,_relationTypeRef);
-						}
+						//}
 					}
 					else 
 					{
@@ -275,13 +276,13 @@ namespace AncestorCloud.Shared.ViewModels
 				}else if(typeToAdd.Equals("Great Grandparent")){
 					List<People> listP = _familyDataManager.GetGrandParents();//_databaseService.RelativeMatching (AppConstant.GrandParent_comparison,model.UserEmail);
 					if (listP != null && listP.Count > 0) {
-						if (Mvx.CanResolve<IAndroidService> ()) 
+						/*if (Mvx.CanResolve<IAndroidService> ()) 
 						{
 							ShowAddFamilyViewModel ();
 						}else 
-						{
+						{*/
 							ShowAddParents (relation,_relationTypeRef);
-						}
+						//}
 					} else {
 						Alert.ShowAlert ("Please add grand parents first to add great grand parents","");
 					}

@@ -48,7 +48,11 @@ namespace AncestorCloud.Droid
 			ApplyActions ();
 			ConfigureActionBar ();
 
-			if (Utilities.AddPersonType.Equals ("Sibling") || Utilities.AddPersonType.Equals ("Parent")) {
+
+			RefLay.Visibility = ViewStates.Gone;	
+			greatRefLay.Visibility = ViewStates.Gone;
+
+			/*if (Utilities.AddPersonType.Equals ("Sibling") || Utilities.AddPersonType.Equals ("Parent")) {
 				RefLay.Visibility = ViewStates.Gone;	
 				greatRefLay.Visibility = ViewStates.Gone;
 			} else if (Utilities.AddPersonType.Equals ("Grandparent")) {
@@ -56,7 +60,7 @@ namespace AncestorCloud.Droid
 				greatRefLay.Visibility = ViewStates.Gone;
 			} else {
 				RefLay.Visibility = ViewStates.Gone;	
-			}
+			}*/
 		}
 
 		protected void InitUI()
@@ -190,8 +194,8 @@ namespace AncestorCloud.Droid
 					ViewModel.Gender = "";
 				}
 
-				ViewModel.AddType = Utilities.AddPersonType;
-				ViewModel.ReferenceType = refType;
+				//ViewModel.AddType = Utilities.AddPersonType;
+				//ViewModel.ReferenceType = refType;
 				ViewModel.AddPerson();
 			};
 

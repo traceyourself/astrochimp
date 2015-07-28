@@ -8,36 +8,132 @@
         android:id="@+id/actionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="90"
+        android:background="@color/tab_back_color">
+        <LinearLayout
+            android:id="@+id/parents_btn"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="30"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/parents_txt"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="@string/parent_tab_txt"
+                android:textColor="@color/tab_text_div_color"
+                android:gravity="center" />
+            <View
+                android:id="@+id/parent_bottom_div"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:background="@color/tab_text_div_color" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/g_parents_btn"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="30"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/g_parents_txt"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="@string/g_parent_tab_txt"
+                android:textColor="@android:color/white"
+                android:gravity="center" />
+            <View
+                android:id="@+id/g_parent_bottom_div"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:visibility="gone"
+                android:background="@color/tab_text_div_color" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/gg_parents_btn"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="30"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/g_g_parents_txt"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="@string/g_g_parent_tab_txt"
+                android:textColor="@android:color/white"
+                android:gravity="center" />
+            <View
+                android:id="@+id/g_g_parent_bottom_div"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:visibility="gone"
+                android:background="@color/tab_text_div_color" />
+        </LinearLayout>
+    </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp">
-        <TextView
-            android:id="@+id/percent_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/zero_matching_confidence"
-            android:gravity="center"
-            android:textColor="@color/action_bar_back_color"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_centerInParent="true" />
-        <ImageView
-            android:id="@+id/question_icon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/help_icon"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="8dp" />
-        <Spinner
-            android:id="@+id/year_selector_inlay"
-            android:layout_width="0dp"
-            android:layout_height="0dp" />
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/add_fam_header_back_color"
+            android:layout_above="@+id/matching_confidence_lay">
+            <ListView
+                android:id="@+id/great_grand_parent_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dividerHeight="1dp"
+                android:visibility="gone"
+                android:divider="@color/add_family_div_color" />
+            <ListView
+                android:id="@+id/grand_parent_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dividerHeight="1dp"
+                android:visibility="gone"
+                android:divider="@color/add_family_div_color" />
+            <ListView
+                android:id="@+id/parent_sibling_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dividerHeight="1dp"
+                android:divider="@color/add_family_div_color" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/matching_confidence_lay"
+            android:layout_width="match_parent"
+            android:visibility="visible"
+            android:background="@android:color/white"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true">
+            <TextView
+                android:id="@+id/percent_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zero_matching_confidence"
+                android:gravity="center"
+                android:textColor="@color/action_bar_back_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_centerInParent="true" />
+            <ImageView
+                android:id="@+id/question_icon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/help_icon"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp" />
+        </RelativeLayout>
     </RelativeLayout>
-    <ListView
-        android:id="@+id/add_family_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:dividerHeight="1dp"
-        android:divider="@color/add_family_div_color" />
 </LinearLayout>

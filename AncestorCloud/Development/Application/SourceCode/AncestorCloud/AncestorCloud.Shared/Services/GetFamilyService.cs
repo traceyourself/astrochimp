@@ -140,10 +140,13 @@ namespace AncestorCloud.Shared
 				try{
 					if(datamodal.CHILD_OFGNS.Length > 0 ){
 					
-							string []OgfnArr = datamodal.CHILD_OFGNS.Split(new char[]{','},200);
+						string []OgfnArr = datamodal.CHILD_OFGNS.Split(new char[]{','},200);
 
-							for(int i=0;i<OgfnArr.Length;i++)
-							{
+						for(int i=0;i<OgfnArr.Length;i++)
+						{
+
+							if(!OgfnArr[i].Equals(loginModel.IndiOGFN)){
+
 								bool doesItExists = Convert.ToBoolean (_databaseService.IsMemberExists(OgfnArr[i],loginModel.UserEmail));
 
 								if(!doesItExists)
@@ -178,8 +181,10 @@ namespace AncestorCloud.Shared
 									FamilyMembers.Add(p);
 								}
 							}
-						
-
+							else{
+								System.Diagnostics.Debug.WriteLine("ommited OGFN : "+OgfnArr[i]);
+							}
+						}	
 						if(datamodal.FATHER_OFGN != null)
 						{
 							if(datamodal.FATHER_OFGN.Length > 0)

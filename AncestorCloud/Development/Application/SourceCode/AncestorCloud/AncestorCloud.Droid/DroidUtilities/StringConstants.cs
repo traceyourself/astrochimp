@@ -38,6 +38,11 @@ namespace AncestorCloud.Droid
 		public static readonly string GrandParent_comparison = "Grandparent";
 		public static readonly string GreatGrandParent_comparison = "GreatGrandparent";
 
+		public const string GRANDFATHER_COMPARISON = "grandfather";
+		public const string GRANDMOTHER_COMPARISON = "grandmother";
+		public const string GREATGRANDFATHER_COMPARISON = "great grandfather";
+		public const string GREATGRANDMOTHER_COMPARISON = "great grandmother";
+
 		public static readonly string GrandFather_comparison = "grandfather";
 		public static readonly string GrandMother_comparison = "grandmother";
 		public static readonly string GreatGrandFather_comparison = "great grandfather";

@@ -159,9 +159,9 @@ namespace AncestorCloud.Droid
 				holder.firstUserImage = convertView.FindViewById<ImageView> (Resource.Id.first_user_img);
 				holder.secUserImage = convertView.FindViewById<ImageView> (Resource.Id.sec_user_img);
 
-				convertView.SetTag (Resource.Id.add_family_list,holder);
+				convertView.SetTag (Resource.Id.parent_sibling_list,holder);
 			} else {
-				holder = (MatchedHistoryViewHolder)convertView.GetTag (Resource.Id.add_family_list);
+				holder = (MatchedHistoryViewHolder)convertView.GetTag (Resource.Id.parent_sibling_list);
 			}
 
 			RelationshipFindResult resultModel = dataList [position];
