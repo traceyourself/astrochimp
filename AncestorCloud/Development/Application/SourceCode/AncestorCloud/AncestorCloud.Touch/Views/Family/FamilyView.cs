@@ -59,10 +59,13 @@ namespace AncestorCloud.Touch
 				constant = 0.80f;
 
 
+			try{
+				this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Leading, 0, this.View, NSLayoutAttribute.Left, 1.0f, 0));
 
-			this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Leading, 0, this.View, NSLayoutAttribute.Left, 1.0f, 0));
-
-			this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Trailing , 0, this.View, NSLayoutAttribute.Right, constant, 0));
+				this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Trailing , 0, this.View, NSLayoutAttribute.Right, constant, 0));
+			}catch(Exception ex){
+				Mvx.Trace (ex.StackTrace);
+			}
 
 			// Perform any additional setup after loading the view, typically from a nib.
 		}

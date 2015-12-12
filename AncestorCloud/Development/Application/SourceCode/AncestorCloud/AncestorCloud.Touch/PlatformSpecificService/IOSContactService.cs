@@ -43,6 +43,7 @@ namespace AncestorCloud.Touch
 
 			if (error != null) {
 				System.Diagnostics.Debug.WriteLine ("Error" + error.Description);
+				_loader.hideLoader ();
 				return null;
 			}
 

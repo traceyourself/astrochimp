@@ -5,6 +5,7 @@ using Foundation;
 using UIKit;
 using GoogleAnalytics.iOS;
 using AncestorCloud.Shared;
+using TestFairyLib;
 
 namespace AncestorCloud.Touch
 { 
@@ -40,10 +41,21 @@ namespace AncestorCloud.Touch
 
 			RegisterGoogleAnalytics ();
 
+			RegisterTestFairy ();
+
 			_window.MakeKeyAndVisible();
 		
 			return true;
 		}
+
+		#region RegisterTestFairy
+
+		void RegisterTestFairy(){
+			TestFairy.Begin (AppConstant.TESTFAIRYTOKEN);
+		}
+
+		#endregion
+
 		#region RegisterGoogleAnalytics
 
 		void RegisterGoogleAnalytics()

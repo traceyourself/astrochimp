@@ -43,6 +43,7 @@ namespace AncestorCloud.Shared
 	{
 
 		public const string DEVELOPER_NOT_LOGIN_CODE = "27011";
+		public const string USER_ALREADY_EXISTS_CODE = "19406";
 
 
 		#region FB Constants
@@ -65,6 +66,12 @@ namespace AncestorCloud.Shared
 		#region Google Analytics Constants
 
 		public const string GATRACKINGID = "UA-62874372-1";
+
+		#endregion
+
+		#region
+
+		public const string TESTFAIRYTOKEN = "7377511a9bea9966e41f110a6b6b4f786b385395";
 
 		#endregion
 

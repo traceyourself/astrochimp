@@ -99,10 +99,12 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			LoginModel login = _databaseService.GetLoginDetails ();
 
-			foreach (People con in list) {
-				con.Relation = AppConstant.CONTACTKEY;
-				con.LoginUserLinkID = login.UserEmail;
-				_databaseService.InsertContact (con);
+			if (list != null) {
+				foreach (People con in list) {
+					con.Relation = AppConstant.CONTACTKEY;
+					con.LoginUserLinkID = login.UserEmail;
+					_databaseService.InsertContact (con);
+				}
 			}
 
 			if(ContactsList != null)

@@ -37,7 +37,7 @@ namespace AncestorCloud.Shared.ViewModels
 			ResponseModel<List<RelationshipFindResult>> matchList = await _historyService.HistoryReadService (login);
 			//List<People> list = _databaseService.RelativeMatching ("",login.UserEmail);
 
-			if (matchList.ResponseCode.Equals (AppConstant.DEVELOPER_NOT_LOGIN_CODE)) {
+			if (String.Equals(matchList.ResponseCode,AppConstant.DEVELOPER_NOT_LOGIN_CODE)) {
 				Alert.ShowLogoutAlert (AlertConstant.AUTO_LOGIN_RESPONSE_ERROR_MESSAGE, AlertConstant.SUCCESS_ERROR);
 			} else {
 				PastMatchesList = matchList.Content;
