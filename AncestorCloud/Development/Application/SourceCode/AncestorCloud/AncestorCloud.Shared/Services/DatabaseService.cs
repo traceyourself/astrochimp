@@ -270,11 +270,18 @@ namespace AncestorCloud.Shared
 
 		public void DropAllTables()
 		{
-//			DropTables ();
-//			CreateTables ();
-			//TODO : dropping Login table for now
-			DroploginTable();
-			CreateLoginTabel ();
+			var user = GetUser ();
+			user.UserID = null;
+			_connection.Update (user);
+//			_connection.Delete<User> (user.Id);
+			var lm = GetLoginDetails ();
+			lm.UserEmail = null;
+			_connection.Update(lm);
+//			_connection.Delete<LoginModel> (lm.Id);
+//			_connection.DropTable<User>();
+//			_connection.DropTable<LoginModel>();
+//			_connection.CreateTable<User>();
+//			_connection.CreateTable<LoginModel>();
 		}
 
 		private void DropTables()

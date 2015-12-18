@@ -140,8 +140,8 @@ namespace AncestorCloud.Shared
 			if (IsKeyExist (AppConstant.CODE, dataDic)) 
 				modal.Code = GetData (AppConstant.CODE, dataDic);
 
-			if (IsKeyExist (AppConstant.Message, dataDic))
-				modal.Message = GetData (AppConstant.Message, dataDic);
+			if (IsKeyExist (AppConstant.MESSAGE, dataDic))
+				modal.Message = GetData (AppConstant.MESSAGE, dataDic);
 
 			if (IsKeyExist (AppConstant.VALUE, dataDic))
 				modal.Value = GetData (AppConstant.VALUE, dataDic);
@@ -162,8 +162,8 @@ namespace AncestorCloud.Shared
 
 			 modal = modal ?? new LoginModel ();
 
-			if (IsKeyExist (AppConstant.Message, dataDic))
-				modal.Message = GetData (AppConstant.Message, dataDic);
+			if (IsKeyExist (AppConstant.MESSAGE, dataDic))
+				modal.Message = GetData (AppConstant.MESSAGE, dataDic);
 
 			if (IsKeyExist (AppConstant.CODE, dataDic)) {
 				if (!modal.Message.Equals (AppConstant.SUCCESS)) {
@@ -195,9 +195,9 @@ namespace AncestorCloud.Shared
 
 			model = model ?? new LoginModel ();
 
-			if (IsKeyExist (AppConstant.Message, dataDic)) 
+			if (IsKeyExist (AppConstant.MESSAGE, dataDic)) 
 			{
-				if (! GetData (AppConstant.Message, dataDic).Equals (AppConstant.SUCCESS)) 
+				if (! GetData (AppConstant.MESSAGE, dataDic).Equals (AppConstant.SUCCESS)) 
 				{
 					return model;
 				}
@@ -257,9 +257,9 @@ namespace AncestorCloud.Shared
 
 			LoginModel model = new LoginModel ();
 
-			if (IsKeyExist (AppConstant.Message, dataDic)) 
+			if (IsKeyExist (AppConstant.MESSAGE, dataDic)) 
 			{
-				if (! GetData (AppConstant.Message, dataDic).Equals (AppConstant.SUCCESS)) 
+				if (! GetData (AppConstant.MESSAGE, dataDic).Equals (AppConstant.SUCCESS)) 
 				{
 					return model;
 				}
@@ -312,9 +312,9 @@ namespace AncestorCloud.Shared
 
 			model = model ?? new LoginModel ();
 
-			if (IsKeyExist (AppConstant.Message, dataDic)) 
+			if (IsKeyExist (AppConstant.MESSAGE, dataDic)) 
 			{
-				if (! GetData (AppConstant.Message, dataDic).Equals (AppConstant.SUCCESS)) 
+				if (! GetData (AppConstant.MESSAGE, dataDic).Equals (AppConstant.SUCCESS)) 
 				{
 					return model;
 				}
@@ -381,9 +381,9 @@ namespace AncestorCloud.Shared
 
 			People peopleModel = new People ();
 
-			if (IsKeyExist (AppConstant.Message, dataDic)) 
+			if (IsKeyExist (AppConstant.MESSAGE, dataDic)) 
 			{
-				if (! GetData (AppConstant.Message, dataDic).Equals (AppConstant.SUCCESS)) 
+				if (! GetData (AppConstant.MESSAGE, dataDic).Equals (AppConstant.SUCCESS)) 
 				{
 					return peopleModel;
 				}
@@ -459,8 +459,8 @@ namespace AncestorCloud.Shared
 			if (IsKeyExist (AppConstant.CODE, dataDic))
 				modal.Code = GetData (AppConstant.CODE,dataDic);
 
-			if (IsKeyExist (AppConstant.Message, dataDic)) 
-				modal.Message = GetData (AppConstant.Message, dataDic);
+			if (IsKeyExist (AppConstant.MESSAGE, dataDic)) 
+				modal.Message = GetData (AppConstant.MESSAGE, dataDic);
 
 			if (IsKeyExist (AppConstant.VALUE, dataDic)) {
 				JObject injob = dataDic [AppConstant.VALUE] as JObject;
@@ -568,8 +568,8 @@ namespace AncestorCloud.Shared
 			if (IsKeyExist (AppConstant.CODE, dataDic)) 
 				modal.Code = GetData (AppConstant.CODE, dataDic);
 
-			if (IsKeyExist (AppConstant.Message, dataDic))
-				modal.Message = GetData (AppConstant.Message, dataDic);
+			if (IsKeyExist (AppConstant.MESSAGE, dataDic))
+				modal.Message = GetData (AppConstant.MESSAGE, dataDic);
 
 			if (IsKeyExist (AppConstant.VALUE, dataDic))
 				modal.value = GetData (AppConstant.VALUE, dataDic);
@@ -590,8 +590,8 @@ namespace AncestorCloud.Shared
 			if (IsKeyExist (AppConstant.CODE, dataDic)) 
 				modal.Code = GetData (AppConstant.CODE, dataDic);
 
-			if (IsKeyExist (AppConstant.Message, dataDic))
-				modal.Message = GetData (AppConstant.Message, dataDic);
+			if (IsKeyExist (AppConstant.MESSAGE, dataDic))
+				modal.Message = GetData (AppConstant.MESSAGE, dataDic);
 
 			if (IsKeyExist (AppConstant.VALUE, dataDic))
 				modal.value = GetData (AppConstant.VALUE, dataDic);
@@ -611,9 +611,9 @@ namespace AncestorCloud.Shared
 
 			List<RelationshipFindResult> resultModel = new List<RelationshipFindResult> ();
 
-			if (IsKeyExist (AppConstant.Message, dataDic)) 
+			if (IsKeyExist (AppConstant.MESSAGE, dataDic)) 
 			{
-				if (! GetData (AppConstant.Message, dataDic).Equals (AppConstant.SUCCESS)) 
+				if (! GetData (AppConstant.MESSAGE, dataDic).Equals (AppConstant.SUCCESS)) 
 				{
 					return resultModel;
 				}
@@ -701,9 +701,9 @@ namespace AncestorCloud.Shared
 
 //			LoginModel _loginModel = new LoginModel ();
 
-			if (IsKeyExist (AppConstant.Message, dataDic)) 
+			if (IsKeyExist (AppConstant.MESSAGE, dataDic)) 
 			{
-				if (! GetData (AppConstant.Message, dataDic).Equals (AppConstant.SUCCESS)) 
+				if (! GetData (AppConstant.MESSAGE, dataDic).Equals (AppConstant.SUCCESS)) 
 				{
 					return model;
 				}

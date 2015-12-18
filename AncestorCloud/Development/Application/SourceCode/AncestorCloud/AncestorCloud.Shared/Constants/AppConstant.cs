@@ -44,6 +44,8 @@ namespace AncestorCloud.Shared
 
 		public const string DEVELOPER_NOT_LOGIN_CODE = "27011";
 		public const string USER_ALREADY_EXISTS_CODE = "19406";
+		public const string USER_WAS_NOT_FOUND_CODE = "27002";
+
 
 
 		#region FB Constants
@@ -142,7 +144,7 @@ namespace AncestorCloud.Shared
 
 		#region Login Constants
 		public const string CODE = "Code";
-		public const string Message = "Message";
+		public const string MESSAGE = "Message";
 		public const string VALUE = "Value";
 		#endregion
 

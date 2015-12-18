@@ -27,7 +27,11 @@ namespace AncestorCloud.Shared.ViewModels
 					App.IsAutoLogin = false;
 				}
 
-				LinkFbUserData.Execute (null);
+				_databaseService = Mvx.Resolve<IDatabaseService> ();
+				User user = _databaseService.GetUser ();
+				if (user != null && user.UserID != null) {
+					LinkFbUserData.Execute (null);
+				}
 			}
 
 			App.IsHomePageShown = false;

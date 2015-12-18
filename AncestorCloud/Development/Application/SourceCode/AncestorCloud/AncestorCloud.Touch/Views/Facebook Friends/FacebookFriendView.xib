@@ -24,7 +24,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dGW-Xj-QcT">
-                    <rect key="frame" x="282" y="16" width="30" height="30"/>
+                    <rect key="frame" x="273" y="16" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <state key="normal" backgroundImage="add.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -69,6 +69,76 @@
     <resources>
         <image name="add.png" width="20" height="20"/>
         <image name="noImage.png" width="265" height="265"/>
+        <image name="cross.png" width="16" height="16"/>
+        <image name="action_menu.png" width="80" height="80"/>
+        <image name="edit_pen.png" width="32" height="32"/>
+        <image name="cross_white.png" width="14" height="16.5"/>
+        <image name="action_back_btn.png" width="23" height="42"/>
+        <image name="fb_icon.jpeg" width="120" height="120"/>
+        <image name="back.png" width="57" height="60"/>
+        <image name="check.png" width="56" height="56"/>
+        <image name="fbook_icon.png" width="52" height="52"/>
+        <image name="uncheck.png" width="56" height="56"/>
+        <image name="help_icon.png" width="44" height="45"/>
+        <image name="blue_smallbtn.png" width="161.5" height="42"/>
+        <image name="fbook_btn2x.png" width="484" height="123"/>
+        <image name="myfamily_icon.png" width="28" height="20"/>
+        <image name="disclosure_indicator.jpg" width="50" height="50"/>
+        <image name="close.png" width="72" height="77"/>
+        <image name="edit.png" width="30" height="32"/>
+        <image name="female.png" width="40" height="40"/>
+        <image name="plus.png" width="30" height="30"/>
+        <image name="clock_icon.png" width="31" height="31.5"/>
+        <image name="match_icon.png" width="26" height="26"/>
+        <image name="logout_icon.png" width="26" height="26"/>
+        <image name="search_icon.png" width="26" height="26"/>
+        <image name="pink-btnsmall.png" width="335" height="97"/>
+        <image name="HomeScreen.png" width="320" height="220.5"/>
+        <image name="myfamily_titlegrey.png" width="38.5" height="26.5"/>
+        <image name="blue_x.png" width="50" height="50"/>
+        <image name="dashed_pinkbrd.png" width="304" height="304"/>
+        <image name="location_grey.png" width="38" height="59"/>
+        <image name="small_close.png" width="25" height="26"/>
+        <image name="title_star.png" width="51" height="48"/>
+        <image name="contacts_grey.png" width="44" height="44"/>
+        <image name="fbook_grey.png" width="44" height="44"/>
+        <image name="star_grey.png" width="44" height="44"/>
+        <image name="ellipsis.gif" width="52" height="52"/>
+        <image name="chevron.png" width="7.5" height="11"/>
+        <image name="Bluebackground.png" width="142" height="139"/>
+        <image name="facebook_white.png" width="22" height="22"/>
+        <image name="contact_white.png" width="22" height="24"/>
+        <image name="celebrity_white.png" width="22" height="20.5"/>
+        <image name="nomatch.png" width="85" height="74.5"/>
+        <image name="plus_blue.png" width="21" height="21.5"/>
+        <image name="user_no_img.png" width="346" height="330"/>
+        <image name="profile.png" width="173" height="165"/>
+        <image name="blue_btnsmall.png" width="321" height="80"/>
+        <image name="blue_btn.png" width="229.5" height="56.5"/>
+        <image name="help-icon.png" width="39" height="39"/>
+        <image name="help-iconbig.png" width="75" height="75"/>
+        <image name="blue_cross.png" width="51" height="51"/>
+        <image name="check_pink.png" width="51" height="51"/>
+        <image name="uncheck_pink.png" width="51" height="51.5"/>
+        <image name="c.png" width="26" height="31"/>
+        <image name="Shape.png" width="17.5" height="20.5"/>
+        <image name="splash6.png" width="1" height="1"/>
+        <image name="Logo.png" width="90" height="58"/>
+        <image name="cross_grey.png" width="50" height="52"/>
+        <image name="plus_pink.png" width="41" height="41"/>
+        <image name="21.png" width="386" height="247"/>
+        <image name="big_img.png" width="300" height="301"/>
+        <image name="profile_img.png" width="300" height="301"/>
+        <image name="male.png" width="40" height="40"/>
+        <image name="CircleMatcherDot.png" width="304" height="304"/>
+        <image name="Default.png" width="320" height="480"/>
+        <image name="Default-568h.png" width="320" height="568"/>
+        <image name="splash.png" width="640" height="1136"/>
+        <image name="CollectionView1.png" width="560.5" height="586.5"/>
+        <image name="CollectionView2.png" width="456.5" height="503.5"/>
+        <image name="CollectionView3.png" width="529.5" height="579"/>
+        <image name="txt_fld.png" width="272.5" height="30"/>
+        <image name="add_icon.png" width="41" height="41"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

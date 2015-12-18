@@ -54,9 +54,9 @@ namespace AncestorCloud.Shared
 
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 
-				if(dict.ContainsKey(AppConstant.Message))
+				if(dict.ContainsKey(AppConstant.MESSAGE))
 				{
-					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
+					if(dict[AppConstant.MESSAGE].Equals((AppConstant.SUCCESS)))
 					{
 						responsemodal.Status = ResponseStatus.OK;
 						model.FamOGFN = dict[AppConstant.VALUE].ToString();

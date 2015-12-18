@@ -47,9 +47,9 @@ namespace AncestorCloud.Shared
 
 				ResponseModel<String> responsemodal = new ResponseModel<String>();
 
-				if(dict.ContainsKey(AppConstant.Message))
+				if(dict.ContainsKey(AppConstant.MESSAGE))
 				{
-					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
+					if(dict[AppConstant.MESSAGE].Equals((AppConstant.SUCCESS)))
 					{
 						responsemodal.Status = ResponseStatus.OK;
 						responsemodal.Content= dict[AppConstant.VALUE].ToString();

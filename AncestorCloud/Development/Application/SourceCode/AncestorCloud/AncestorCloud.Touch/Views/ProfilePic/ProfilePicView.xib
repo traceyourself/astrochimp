@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -18,98 +18,88 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aBw-y9-wcK">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wdD-nU-iQe">
+                    <rect key="frame" x="0.0" y="94" width="375" height="480"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wdD-nU-iQe">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYa-iP-XXa">
-                                    <rect key="frame" x="79" y="36" width="175" height="175"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="zYa-iP-XXa" secondAttribute="height" multiplier="1:1" id="OWE-fR-KBu"/>
-                                        <constraint firstAttribute="width" constant="175" id="uhF-N9-kAV"/>
-                                        <constraint firstAttribute="height" constant="175" id="xkc-7o-VeE"/>
-                                    </constraints>
-                                    <state key="normal" backgroundImage="big_img.png">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                </button>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Upload a profile image     to finish your profile" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9bW-GB-Tbs">
-                                    <rect key="frame" x="66" y="212" width="199" height="61"/>
-                                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="199" id="Vfa-yZ-v8L"/>
-                                        <constraint firstAttribute="height" constant="61" id="zuT-eD-Cx7"/>
-                                    </constraints>
-                                    <color key="textColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                </textView>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paS-0r-O1e">
-                                    <rect key="frame" x="66" y="313" width="200" height="50"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="139" id="QqR-HZ-8d1"/>
-                                        <constraint firstAttribute="height" constant="44" id="mc3-2n-6xw"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                    <state key="normal" title="Upload" backgroundImage="blue_btn.png">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="UploadButtonTapped:" destination="-1" eventType="touchUpInside" id="mTq-kY-UnW"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6e-pL-LCg">
-                                    <rect key="frame" x="126" y="371" width="80" height="50"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="80" id="9PA-tk-GVy"/>
-                                        <constraint firstAttribute="height" constant="30" id="qNX-Ti-59b"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                    <state key="normal" title="Skip">
-                                        <color key="titleColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="SkipButtonTapped:" destination="-1" eventType="touchUpInside" id="Fqp-al-bAW"/>
-                                    </connections>
-                                </button>
-                            </subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYa-iP-XXa">
+                            <rect key="frame" x="100" y="37" width="175" height="175"/>
+                            <animations/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="zYa-iP-XXa" secondAttribute="height" multiplier="1:1" id="OWE-fR-KBu"/>
+                                <constraint firstAttribute="width" constant="175" id="uhF-N9-kAV"/>
+                                <constraint firstAttribute="height" constant="175" id="xkc-7o-VeE"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="big_img.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Upload a profile image     to finish your profile" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9bW-GB-Tbs">
+                            <rect key="frame" x="88" y="220" width="199" height="61"/>
+                            <animations/>
                             <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="centerX" secondItem="9bW-GB-Tbs" secondAttribute="centerX" constant="-5.5" id="8mU-ls-CO3"/>
-                                <constraint firstAttribute="height" constant="480" id="K1o-EK-VqX"/>
-                                <constraint firstItem="paS-0r-O1e" firstAttribute="top" secondItem="9bW-GB-Tbs" secondAttribute="bottom" constant="40" id="LAa-6j-rvg"/>
-                                <constraint firstItem="9bW-GB-Tbs" firstAttribute="top" secondItem="zYa-iP-XXa" secondAttribute="bottom" constant="1" id="X5C-fH-8pD"/>
-                                <constraint firstAttribute="centerX" secondItem="paS-0r-O1e" secondAttribute="centerX" constant="-6.5" id="Xen-hG-Ar2"/>
-                                <constraint firstAttribute="centerX" secondItem="zYa-iP-XXa" secondAttribute="centerX" constant="-6.5" id="fTf-qP-ULD"/>
-                                <constraint firstItem="i6e-pL-LCg" firstAttribute="top" secondItem="paS-0r-O1e" secondAttribute="bottom" constant="14" id="ggb-Nl-93D"/>
-                                <constraint firstItem="zYa-iP-XXa" firstAttribute="top" secondItem="wdD-nU-iQe" secondAttribute="top" constant="36" id="ogz-xz-N63"/>
-                                <constraint firstAttribute="centerX" secondItem="i6e-pL-LCg" secondAttribute="centerX" constant="-6" id="qDO-OU-jan"/>
-                                <constraint firstAttribute="width" constant="320" id="yxb-dI-aPf"/>
+                                <constraint firstAttribute="width" constant="199" id="Vfa-yZ-v8L"/>
+                                <constraint firstAttribute="height" constant="61" id="zuT-eD-Cx7"/>
                             </constraints>
-                        </view>
+                            <color key="textColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paS-0r-O1e">
+                            <rect key="frame" x="88" y="313" width="200" height="50"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="139" id="QqR-HZ-8d1"/>
+                                <constraint firstAttribute="height" constant="44" id="mc3-2n-6xw"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <state key="normal" title="Upload" backgroundImage="blue_btn.png">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="UploadButtonTapped:" destination="-1" eventType="touchUpInside" id="mTq-kY-UnW"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6e-pL-LCg">
+                            <rect key="frame" x="148" y="371" width="80" height="50"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="9PA-tk-GVy"/>
+                                <constraint firstAttribute="height" constant="30" id="qNX-Ti-59b"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <state key="normal" title="Skip">
+                                <color key="titleColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="SkipButtonTapped:" destination="-1" eventType="touchUpInside" id="Fqp-al-bAW"/>
+                            </connections>
+                        </button>
                     </subviews>
+                    <animations/>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="wdD-nU-iQe" firstAttribute="top" secondItem="aBw-y9-wcK" secondAttribute="top" id="3VQ-Xj-Zbf"/>
-                        <constraint firstItem="wdD-nU-iQe" firstAttribute="leading" secondItem="aBw-y9-wcK" secondAttribute="leading" id="7Zl-Wi-VJT"/>
-                        <constraint firstAttribute="trailing" secondItem="wdD-nU-iQe" secondAttribute="trailing" id="Hhz-TK-ahj"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="480" id="Je1-tE-1BC"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="VlH-p1-NaX"/>
-                        <constraint firstAttribute="bottom" secondItem="wdD-nU-iQe" secondAttribute="bottom" id="p4e-k3-qa3"/>
+                        <constraint firstItem="zYa-iP-XXa" firstAttribute="top" secondItem="wdD-nU-iQe" secondAttribute="top" constant="37" id="18"/>
+                        <constraint firstItem="9bW-GB-Tbs" firstAttribute="centerX" secondItem="wdD-nU-iQe" secondAttribute="centerX" id="KQ3-3f-p0N"/>
+                        <constraint firstItem="9bW-GB-Tbs" firstAttribute="top" secondItem="zYa-iP-XXa" secondAttribute="bottom" constant="8" id="MgM-Kb-J0W"/>
+                        <constraint firstItem="i6e-pL-LCg" firstAttribute="top" secondItem="paS-0r-O1e" secondAttribute="bottom" constant="8" id="O7c-Q5-ymt"/>
+                        <constraint firstItem="paS-0r-O1e" firstAttribute="top" secondItem="9bW-GB-Tbs" secondAttribute="bottom" constant="32" id="bDZ-GC-tiQ"/>
+                        <constraint firstItem="i6e-pL-LCg" firstAttribute="centerX" secondItem="wdD-nU-iQe" secondAttribute="centerX" id="e1d-3w-B8v"/>
+                        <constraint firstItem="paS-0r-O1e" firstAttribute="centerX" secondItem="wdD-nU-iQe" secondAttribute="centerX" id="mo1-qI-eoh"/>
+                        <constraint firstItem="zYa-iP-XXa" firstAttribute="centerX" secondItem="wdD-nU-iQe" secondAttribute="centerX" id="sdF-Qy-UYY"/>
                     </constraints>
-                </scrollView>
+                </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="aBw-y9-wcK" secondAttribute="bottom" id="Be6-hg-DcU"/>
-                <constraint firstItem="aBw-y9-wcK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SD9-mB-TCv"/>
-                <constraint firstAttribute="centerX" secondItem="aBw-y9-wcK" secondAttribute="centerX" id="ZCN-81-sLL"/>
-                <constraint firstItem="aBw-y9-wcK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bpR-rC-zZ9"/>
-                <constraint firstAttribute="trailing" secondItem="aBw-y9-wcK" secondAttribute="trailing" id="h6V-mU-V2A"/>
+                <constraint firstItem="wdD-nU-iQe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4Ge-ui-V19"/>
+                <constraint firstItem="wdD-nU-iQe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HWh-7P-2Dm"/>
+                <constraint firstAttribute="trailing" secondItem="wdD-nU-iQe" secondAttribute="trailing" id="b84-1K-lRi"/>
+                <constraint firstAttribute="bottom" secondItem="wdD-nU-iQe" secondAttribute="bottom" id="hYB-Da-a7C"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="130" y="230"/>
@@ -117,11 +107,6 @@
     </objects>
     <resources>
         <image name="big_img.png" width="300" height="301"/>
-        <image name="blue_btn.png" width="229" height="56"/>
+        <image name="blue_btn.png" width="229.5" height="56.5"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

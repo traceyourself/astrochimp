@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomePage">
@@ -16,37 +16,27 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe to learn more" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="adC-9g-nZb">
-                    <rect key="frame" x="40" y="289" width="240" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe to learn more" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adC-9g-nZb">
+                    <rect key="frame" x="107" y="315" width="161" height="22"/>
+                    <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" red="0.55589094065656564" green="0.55589094065656564" blue="0.55589094065656564" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" id="WUR-hb-eGs">
-                    <rect key="frame" x="122" y="307" width="76" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="WUR-hb-eGs">
+                    <rect key="frame" x="160" y="346" width="55" height="37"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="tintColor" red="0.2156862745" green="0.54901960780000003" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="pageIndicatorTintColor" red="0.38022806186868685" green="0.38022806186868685" blue="0.38022806186868685" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="currentPageIndicatorTintColor" red="0.2156862745" green="0.54901960780000003" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                 </pageControl>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="none" id="oYa-Ym-bJQ">
-                    <rect key="frame" x="0.0" y="26" width="375" height="260"/>
-                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="BvJ-rd-LgV">
-                        <size key="itemSize" width="375" height="260"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="czk-Uw-OGJ">
-                    <rect key="frame" x="40" y="412" width="240" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czk-Uw-OGJ">
+                    <rect key="frame" x="155" y="489" width="66" height="41"/>
+                    <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="tintColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="Log In">
@@ -56,9 +46,9 @@
                         <action selector="loginClicked:" destination="-1" eventType="touchUpInside" id="4pC-6E-snC"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="DrE-aQ-ibp">
-                    <rect key="frame" x="50" y="358" width="220" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrE-aQ-ibp">
+                    <rect key="frame" x="73" y="413" width="229" height="56"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <state key="normal" title="Sign Up" backgroundImage="blue_btn.png">
@@ -68,18 +58,41 @@
                         <action selector="signUpClicked:" destination="-1" eventType="touchUpInside" id="EAV-tA-EEk"/>
                     </connections>
                 </button>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oYa-Ym-bJQ">
+                    <rect key="frame" x="28" y="25" width="320" height="260"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="ohE-2i-2vI"/>
+                        <constraint firstAttribute="height" constant="260" id="qLj-Pw-PUB"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="BvJ-rd-LgV">
+                        <size key="itemSize" width="320" height="260"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
+            <animations/>
             <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <constraints>
+                <constraint firstItem="WUR-hb-eGs" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="6NR-lL-SDI"/>
+                <constraint firstItem="oYa-Ym-bJQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9aU-nA-BHM"/>
+                <constraint firstItem="oYa-Ym-bJQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="O6p-Nf-zkc"/>
+                <constraint firstItem="adC-9g-nZb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="RCa-5b-YnL"/>
+                <constraint firstItem="czk-Uw-OGJ" firstAttribute="top" secondItem="DrE-aQ-ibp" secondAttribute="bottom" constant="20" id="Rjm-jn-XMN"/>
+                <constraint firstItem="DrE-aQ-ibp" firstAttribute="top" secondItem="WUR-hb-eGs" secondAttribute="bottom" constant="30" id="Rn1-8l-cgQ"/>
+                <constraint firstItem="WUR-hb-eGs" firstAttribute="top" secondItem="adC-9g-nZb" secondAttribute="bottom" constant="9" id="bxP-gG-QgJ"/>
+                <constraint firstItem="czk-Uw-OGJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lsL-Sd-fTX"/>
+                <constraint firstItem="DrE-aQ-ibp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="nCj-Bf-gVR"/>
+                <constraint firstItem="adC-9g-nZb" firstAttribute="top" secondItem="oYa-Ym-bJQ" secondAttribute="bottom" constant="30" id="zIz-8A-5gI"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="287.5" y="270.5"/>
         </view>
     </objects>
     <resources>
         <image name="blue_btn.png" width="229" height="56"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

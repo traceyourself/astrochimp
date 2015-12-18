@@ -107,7 +107,20 @@ namespace AncestorCloud.Shared
 
 				Dictionary <string,object> signUpDict = JsonConvert.DeserializeObject<Dictionary<string,object>> (signupRes);
 
+
 				modal = DataParser.GetSignUpDetails(modal,signUpDict);
+
+				if(signUpDict.ContainsKey(AppConstant.CODE))
+				{
+
+					ResponseModel<LoginModel> signupModel = new ResponseModel<LoginModel>();
+					if(String.Equals(signUpDict[AppConstant.CODE].ToString(),AppConstant.USER_ALREADY_EXISTS_CODE))
+					{
+						signupModel.Status = ResponseStatus.Fail;
+						signupModel.ResponseError = signUpDict[AppConstant.MESSAGE] as string;
+						return signupModel;
+					}
+				}
 
 				//===============================
 				HttpClient client = new HttpClient(new NativeMessageHandler());
@@ -141,9 +154,9 @@ namespace AncestorCloud.Shared
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 
 
-				if(dict.ContainsKey(AppConstant.Message))
+				if(dict.ContainsKey(AppConstant.MESSAGE))
 				{
-					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
+					if(dict[AppConstant.MESSAGE].Equals((AppConstant.SUCCESS)))
 					{
 						modal.Value = dict[AppConstant.VALUE].ToString();
 
@@ -189,6 +202,7 @@ namespace AncestorCloud.Shared
 				//return CommonConstants.FALSE;
 				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
 				responsemodal.Status = ResponseStatus.Fail;
+				responsemodal.ResponseError = ex.Message;
 				return responsemodal;
 			}
 			finally{
@@ -223,8 +237,8 @@ namespace AncestorCloud.Shared
 
 			ResponseDataModel _responsemodal = null;
 
-			if (_dict.ContainsKey (AppConstant.Message)) {
-				if (_dict [AppConstant.Message].Equals ((AppConstant.SUCCESS))) {
+			if (_dict.ContainsKey (AppConstant.MESSAGE)) {
+				if (_dict [AppConstant.MESSAGE].Equals ((AppConstant.SUCCESS))) {
 					_responsemodal = DataParser.GetAddMemberDetails (_dict);
 				}
 			}

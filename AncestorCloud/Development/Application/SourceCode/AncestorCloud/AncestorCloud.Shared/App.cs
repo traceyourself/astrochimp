@@ -25,12 +25,9 @@ namespace AncestorCloud.Shared
 			_databaseService = Mvx.Resolve<IDatabaseService> ();
 
 			User user = _databaseService.GetUser ();
+			LoginModel loginModel = _databaseService.GetLoginDetails ();
 
-			if (user.UserID == null)
-			{
-				RegisterAppStart<ViewModels.HomePageViewModel> ();
-			}
-			else 
+			if ((user!=null && user.UserID != null) || (loginModel!=null && loginModel.UserEmail!=null))
 			{
 				IsAutoLogin = true;
 
@@ -42,6 +39,11 @@ namespace AncestorCloud.Shared
 				{
 					RegisterAppStart<ViewModels.FlyOutViewModel> ();  // IOS
 				}
+			}
+			else 
+			{
+				RegisterAppStart<ViewModels.HomePageViewModel> ();
+
 			}
 		}
 

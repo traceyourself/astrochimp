@@ -166,13 +166,14 @@ namespace AncestorCloud.Touch
 
 			//preFrame = frame;
 
-			if (frame.Size.Height  - args.Frame.Size.Height > point.Y + 50)
+			if (frame.Size.Height  - args.Frame.Size.Height > point.Y + 50 && args.visible)
 				return;
 			
 			if (args.visible)
 				frame.Y -= point.Y + 50 - (frame.Size.Height - args.Frame.Size.Height);
 			else
-				frame = preFrame;//.Y += point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height);
+				frame.Y = 20 + 44;
+//				frame = preFrame;//.Y += point.Y + 50 - (frame.Size.Height  - args.Frame.Size.Height);
 
 			container.Frame = frame;
 		}

@@ -312,7 +312,7 @@ namespace AncestorCloud.Shared.ViewModels
 //						Alert.ShowAlert (AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
 //					}
 				} else {
-					Alert.ShowAlert (AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
+					Alert.ShowAlert (response.ResponseError ?? AlertConstant.SIGNUP_ERROR_MESSAGE, AlertConstant.SIGNUP_ERROR);
 
 				}
 			}

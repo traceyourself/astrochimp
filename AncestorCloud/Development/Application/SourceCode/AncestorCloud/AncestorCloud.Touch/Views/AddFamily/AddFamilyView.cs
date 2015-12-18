@@ -223,16 +223,16 @@ namespace AncestorCloud.Touch
 			toolbar.Translucent = true;
 			toolbar.SizeToFit ();
 
-			picker.Frame = new RectangleF (0f,(float)toolbar.Frame.Height + 1f,(float) this.View.Frame.Size.Width,(float) picker.Frame.Height);
+			picker.Frame = new RectangleF (0f,(float)toolbar.Frame.Height + 1f,(float)UIScreen.MainScreen.ApplicationFrame.Size.Width,(float) picker.Frame.Height);
 
 
-			PickerContainer = new  UIView(new RectangleF( 0,(float)UIScreen.MainScreen.ApplicationFrame.Size.Height - 44,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
+			PickerContainer = new  UIView(new RectangleF( 0,(float)UIScreen.MainScreen.ApplicationFrame.Size.Height-44f ,(float)UIScreen.MainScreen.ApplicationFrame.Size.Width,(float) picker.Frame.Size.Height + 20f));
 
 
 			UIBarButtonItem doneButton = new UIBarButtonItem("Done",UIBarButtonItemStyle.Done, (s, e) =>
 				{
 
-					ShowHidePicker(new RectangleF( 0,(float)UIScreen.MainScreen.ApplicationFrame.Size.Height - 44,(float) this.View.Frame.Size.Width,(float) picker.Frame.Size.Height + 20f));
+					ShowHidePicker(new RectangleF( 0,(float)UIScreen.MainScreen.ApplicationFrame.Size.Height -44f,(float)UIScreen.MainScreen.ApplicationFrame.Size.Width,(float) picker.Frame.Size.Height + 20f));
 
 
 				});
@@ -303,13 +303,13 @@ namespace AncestorCloud.Touch
 
 			var frame = container.Frame;
 
-			if (frame.Size.Height  - args.Frame.Size.Height > point.Y + 50)
+			if (frame.Size.Height  - args.Frame.Size.Height > point.Y + 50 && args.visible)
 				return;
 
 			if (args.visible)
 				frame.Y -= point.Y + 50 - (frame.Size.Height - args.Frame.Size.Height);
 			else
-				frame = preFrame;
+				frame.Y = 44+20;
 
 			container.Frame = frame;
 		}

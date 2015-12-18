@@ -53,7 +53,7 @@ namespace AncestorCloud.Touch
 //			var messenger = Mvx.Resolve<IMvxMessenger>();
 //			navigationBarHiddenToken = messenger.SubscribeOnMainThread<NavigationBarHiddenMessage>(message => NavigationController.NavigationBarHidden = message.NavigationBarHidden);
 
-			AdjustFrames ();
+
 		}
 
 	   partial void loginClicked (NSObject sender)
@@ -100,9 +100,6 @@ namespace AncestorCloud.Touch
 			for (int i = 0; i < 4; i++) {
 				collectionViewList.Add (new PictureLibrary (Images()[i]));
 			}
-
-
-
 			return collectionViewList;
 		}
 
@@ -113,62 +110,17 @@ namespace AncestorCloud.Touch
 
 			var messenge = Mvx.Resolve<IMvxMessenger>();
 			messenge.Publish(new FlyOutCloseMessage(this));
+			messenge.Publish(new LogoutMessage(this));
+			this.View.Frame = UIScreen.MainScreen.ApplicationFrame;
+			this.View.InvalidateIntrinsicContentSize ();
+			this.View.UpdateConstraints ();
 
 
 //			AppDelegate _delagate = (AppDelegate) UIApplication.SharedApplication.Delegate;
 //			_delagate.UIImageProfilePic = null;
+		
 		}
 
-		void AdjustViews()
-		{
-			float xOffset = 20;
-
-			if(UIScreen.MainScreen.ApplicationFrame.Width <=320){
-				xOffset = 0;
-			}
-
-			collectionViewObj.Center = new CGPoint(View.Frame.Width/2,collectionViewObj.Center.Y); 
-			//collectionViewObj.BackgroundColor = UIColor.Green;
-
-			CGRect lblFrame = swipeToLearnLabel.Frame;
-			lblFrame.Y = collectionViewObj.Frame.Y + collectionViewObj.Frame.Height;
-			lblFrame.X -= xOffset;
-			swipeToLearnLabel.Frame = lblFrame; 
-
-			CGRect pageRect = pageObj.Frame;
-			pageRect.Y = swipeToLearnLabel.Frame.Y + swipeToLearnLabel.Frame.Height + 3;
-			pageRect.X -= xOffset+ xOffset/2;
-			pageObj.Frame = pageRect; 
-
-			CGRect signUpRect = signUpButton.Frame;
-			signUpRect.Y = pageObj.Frame.Y + pageObj.Frame.Height + 40;
-			signUpRect.X -= xOffset;
-			signUpButton.Frame = signUpRect;
-
-			CGRect loginRect = loginButton.Frame;
-			loginRect.Y = signUpButton.Frame.Y + signUpButton.Frame.Height + 5;
-			loginRect.X -= xOffset;
-			loginButton.Frame = loginRect;
-
-		}
-
-		void AdjustFrames()
-		{
-			if (UIScreen.MainScreen.ApplicationFrame.Width <= 320) {
-				CGRect lblFrame = collectionViewObj.Frame;
-				lblFrame.X -= 26;
-				collectionViewObj.Frame = lblFrame; 
-			}
-
-			if (UIScreen.MainScreen.ApplicationFrame.Width > 375) {
-				CGRect lblFrame = collectionViewObj.Frame;
-				lblFrame.X += 20;
-				collectionViewObj.Frame = lblFrame; 
-			}
-
-			if(App.IsAutoLogin)
-				AdjustViews ();
-		}
 	}
 }
 

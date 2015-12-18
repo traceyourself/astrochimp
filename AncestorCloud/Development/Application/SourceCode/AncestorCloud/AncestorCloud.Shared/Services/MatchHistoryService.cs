@@ -50,9 +50,9 @@ namespace AncestorCloud.Shared
 
 				ResponseModel<List<RelationshipFindResult>> responsemodal = new ResponseModel<List<RelationshipFindResult>>();
 
-				if(dict.ContainsKey(AppConstant.Message))
+				if(dict.ContainsKey(AppConstant.MESSAGE))
 				{
-					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
+					if(dict[AppConstant.MESSAGE].Equals((AppConstant.SUCCESS)))
 					{
 						List<RelationshipFindResult> dataList = DataParser.ReadDataHistory(dict);
 						if(dataList.Count > 0){

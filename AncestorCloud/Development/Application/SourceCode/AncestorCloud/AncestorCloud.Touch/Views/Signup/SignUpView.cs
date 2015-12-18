@@ -257,13 +257,13 @@ namespace AncestorCloud.Touch
 
 			var frame = _container.Frame;
 
-			if (frame.Size.Height  - args.Frame.Size.Height > point.Y + 100)
+			if (frame.Size.Height  - args.Frame.Size.Height > point.Y + 100 && args.visible)
 				return;
 
 			if (args.visible)
 				frame.Y -= point.Y + 100 - (frame.Size.Height - args.Frame.Size.Height);
 			else
-				frame = preFrame;
+				frame.Y = 20+44;
 
 			_container.Frame = frame;
 		}

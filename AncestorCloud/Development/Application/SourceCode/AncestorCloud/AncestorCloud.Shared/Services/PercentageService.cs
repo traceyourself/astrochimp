@@ -44,9 +44,9 @@ namespace AncestorCloud.Shared
 				Dictionary <string,object> dict = JsonConvert.DeserializeObject<Dictionary<string,object>> (res);
 
 
-				if(dict.ContainsKey(AppConstant.Message))
+				if(dict.ContainsKey(AppConstant.MESSAGE))
 				{
-					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
+					if(dict[AppConstant.MESSAGE].Equals((AppConstant.SUCCESS)))
 					{
 				       model = DataParser.ReadPercentage(model,dict);
 

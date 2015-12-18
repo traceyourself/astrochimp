@@ -43,6 +43,9 @@ namespace AncestorCloud.Shared
 		{
 			String sessionID = await DeveloperLogin ();
 
+
+			var user = _databaseService.GetUser ();
+
 			if (sessionID.Equals (String.Empty))
 				return ResponseStatus.Fail;
 		

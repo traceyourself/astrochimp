@@ -49,29 +49,7 @@ namespace AncestorCloud.Touch
 
 			AddEvent ();
 
-			float constant = 0.88f;
 
-			if (ViewModel.IsFromSignup) {
-
-				constant = 1.0f;
-			} else {
-
-
-				float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
-
-				if (width <= 320f)
-					constant = 1.0f;
-
-				if (width >= 375f)
-					constant = 0.80f;
-			}
-
-
-
-
-			//this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Leading, 0, this.View, NSLayoutAttribute.Left, 1.0f, 0));
-
-			//this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Trailing , 0, this.View, NSLayoutAttribute.Right, constant, 0));
 			// Perform any additional setup after loading the view, typically from a nib.
 
 			if (!ViewModel.IsFromSignup) {
@@ -101,23 +79,7 @@ namespace AncestorCloud.Touch
 			this.NavigationItem.HidesBackButton = true;
 			this.NavigationController.NavigationBarHidden = false;
 			this.NavigationController.NavigationBar.BarTintColor= Themes.NavBarTintColor();
-			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
 
-			if (width >= 375) {
-				this.NavigationItem.TitleView = new MyProfilePicture (Title, new RectangleF (0, 0, 200, 20));
-			} else {
-				this.NavigationItem.TitleView = new ProfilePictureNavView (Title, new RectangleF (30, 0, 200, 20));
-			}
-
-			if (ViewModel.IsFromSignup) {
-				if (width >= 375) {
-					this.NavigationItem.TitleView = new ProfilePictureNavView (Title, new RectangleF (40, 0, 200, 20));
-				} else {
-					this.NavigationItem.TitleView = new ProfilePictureNavView (Title, new RectangleF (60, 0, 200, 20));
-				}
-				return;
-			}
-			
 			UIImage image = UIImage.FromFile (StringConstants.FLYOUTICON);
 
 			image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
@@ -338,6 +300,7 @@ namespace AncestorCloud.Touch
 
 			this.View.BackgroundColor = Themes.MatchTableView();
 			SetProfilePic ();
+			this.View.BackgroundColor = UIColor.Red;
 		}
 
 

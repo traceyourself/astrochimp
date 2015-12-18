@@ -58,9 +58,9 @@ namespace AncestorCloud.Shared
 
 				ResponseModel<LoginModel> userReadResponse = new ResponseModel<LoginModel>();
 
-				if(dict.ContainsKey(AppConstant.Message))
+				if(dict.ContainsKey(AppConstant.MESSAGE))
 				{
-					if(dict[AppConstant.Message].Equals((AppConstant.SUCCESS)))
+					if(dict[AppConstant.MESSAGE].Equals((AppConstant.SUCCESS)))
 					{
 						userReadResponse = await _userReadService.MakeUserReadService(modal);
 						userReadResponse.Status = ResponseStatus.OK;
