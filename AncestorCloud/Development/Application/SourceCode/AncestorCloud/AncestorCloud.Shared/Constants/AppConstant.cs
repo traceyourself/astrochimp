@@ -122,6 +122,7 @@ namespace AncestorCloud.Shared
 		public const string BASEURL = "https://ws.onegreatfamily.com/v11.02";//ws.onegreatfamily.com/v11.02//wsdev.onegreatfamily.com/v11.02
 		public const string USEREADSERVICE = "User.svc/Read";
 		public const string USERSIGNINSERVICE = "User.svc/Create";
+		public const string USERUPDATESERVICE = "User.svc/Update";
 		public const string USERLOGINSERVICE = "User.svc/Signin";
 		public const string DEVELOPERLOGINSERVICE = "Developer.svc/Login";
 

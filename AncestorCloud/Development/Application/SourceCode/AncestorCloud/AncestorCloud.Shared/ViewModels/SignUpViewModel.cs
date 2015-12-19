@@ -430,10 +430,10 @@ namespace AncestorCloud.Shared.ViewModels
 
 		public async void DoFacebookSignInUserLink()
 		{
-			ResponseStatus status = await _facebookLinkManager.LinkFaceBookSignUpUser ();
+			ResponseModel<LoginModel> response = await _facebookLinkManager.LinkFaceBookSignUpUser ();
 
-			if (status == ResponseStatus.Fail) {
-				Alert.ShowAlert (AlertConstant.SIGNUP_RESPONSE_ERROR_MESSAGE, AlertConstant.SIGNUP_RESPONSE_ERROR);
+			if (response.Status == ResponseStatus.Fail) {
+				Alert.ShowAlert (response.ResponseError ?? AlertConstant.SIGNUP_RESPONSE_ERROR_MESSAGE, AlertConstant.SIGNUP_RESPONSE_ERROR);
 			} else {
 				SignUp ();
 			}

@@ -39,49 +39,41 @@ namespace AncestorCloud.Shared
 
 		#region Exposed Methods
 
-		public async Task<ResponseStatus> LinkFaceBookSignUpUser()
+		public async Task<ResponseModel<LoginModel>> LinkFaceBookSignUpUser()
 		{
 			String sessionID = await DeveloperLogin ();
+			ResponseModel<LoginModel> returnValue = new ResponseModel<LoginModel> ();
+			returnValue.Status = ResponseStatus.Fail;
 
-
-			var user = _databaseService.GetUser ();
-
-			if (sessionID.Equals (String.Empty))
-				return ResponseStatus.Fail;
+			if (sessionID.Equals (String.Empty)) {
+				returnValue.Status= ResponseStatus.Fail;
+				return returnValue;
+			}
 		
-			LoginModel loginData = await FbSignInLink (sessionID);
+			returnValue = await FbSignInLink (sessionID);
 
-			if (loginData == null)
-				return ResponseStatus.Fail;
+			if (returnValue.Status==ResponseStatus.Fail) {
+				return returnValue;
+			}
 
-			loginData = await FbLoginLink (sessionID);
+			var loginData = await FbLoginLink (sessionID);
 
-			if (loginData == null)
-				return ResponseStatus.Fail;
+			if (loginData == null) {
+				returnValue.Status= ResponseStatus.Fail;
+				return returnValue;
+			}
 
 			loginData = await UserReadService (loginData);
 
-			if (loginData == null)
-				return ResponseStatus.Fail;
-
-//			loginData = await CreateGroup (loginData);
-//
-//			if (loginData == null)
-//				return ResponseStatus.Fail;
-//
-//			loginData = await CreateFamily (loginData);
-//
-//			if (loginData == null)
-//				return ResponseStatus.Fail;
-
-//			loginData = await CreateAnchor (loginData);
-//			
-//			if (loginData == null)
-//				return ResponseStatus.Fail;
+			if (loginData == null) {
+				returnValue.Status= ResponseStatus.Fail;
+				return returnValue;
+			}
 
 			SaveLoginDetailInDB (loginData);
 
-			return ResponseStatus.OK;
+			returnValue.Content = loginData;
+			return returnValue;
 		}
 
 		public async Task<ResponseStatus> LinkFaceBookLoginUser()
@@ -226,16 +218,13 @@ namespace AncestorCloud.Shared
 
 		#region FbSigninLink method
 
-		private async  Task<LoginModel> FbSignInLink(String sessionID)
+		private async  Task<ResponseModel<LoginModel>> FbSignInLink(String sessionID)
 		{
 			User fbUser = _databaseService.GetUser ();
 
 			ResponseModel<LoginModel> data = await _fbSignInService.LinkFacebookSignUpUser (fbUser,sessionID);
 
-			if (data.Status ==ResponseStatus.Fail)
-				return null;
-
-			return data.Content;
+			return data;
 		}
 
 		#endregion

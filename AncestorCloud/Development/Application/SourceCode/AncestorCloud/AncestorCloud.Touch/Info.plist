@@ -29,13 +29,13 @@
 	<key>CFBundleIdentifier</key>
 	<string>net.northcircle.cousinapp</string>
 	<key>CFBundleShortVersionString</key>
-	<string>15.12181</string>
+	<string>15.12191</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
 	<key>CFBundleVersion</key>
-	<string>181</string>
+	<string>191</string>
 </dict>
 </plist>

@@ -93,6 +93,7 @@ namespace AncestorCloud.Shared
 
 			try   
 			{
+				// Link Facebook User
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
@@ -136,7 +137,11 @@ namespace AncestorCloud.Shared
 					}
 					else
 					{
-						responsemodal.Status = ResponseStatus.Fail;
+						if(!String.Equals(dict[AppConstant.CODE].ToString(),AppConstant.USER_ALREADY_EXISTS_CODE))
+						{
+							responsemodal.Status = ResponseStatus.Fail;
+							responsemodal.ResponseError = dict[AppConstant.MESSAGE] as string;
+						}
 					}
 				}
 

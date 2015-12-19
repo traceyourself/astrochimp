@@ -113,113 +113,60 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			this.IsFaceBookLogin = boolValue;
 
-			if (boolValue) {
-				this.MenuItems = new List<MenuViewModel>
-				{  
-					new MenuViewModel
-					{
-						Section = Section.MyFamily,
-						Title = AppConstant.MYFAMILY_TITLE,
-						Image = AppConstant.MYFAMILY_ICON,
-						ViewModelType = typeof(FbFamilyViewModel),
-					},
-					new MenuViewModel
-					{
-						Section = Section.Matcher,
-						Title = AppConstant.COUSIN_TITLE,
-						Image = AppConstant.COUSIN_ICON,
-						ViewModelType = typeof(MatchViewModel)
-					},   
-					new MenuViewModel
-					{
-						Section = Section.MyFamily,
-						Title = AppConstant.RESEARCH_HELP_TITLE,
-						Image = AppConstant.RESEARCH_HELP_ICON,
-						ViewModelType = typeof(ResearchHelpViewModel)
-					},
-					new MenuViewModel
-					{
-						Section = Section.Matcher,
-						Title = AppConstant.LOGOUT_TITLE,
-						Image = AppConstant.LOGOUT_ICON,
-						ViewModelType = typeof(HomePageViewModel),
 
-					},
-					new MenuViewModel 
-					{
-						Section = Section.Unknown,
-						//Title = "Profile",
-						//Image = "noImage.png",
-						ViewModelType = typeof(TestViewModel),	
-					},
-					new MenuViewModel 
-					{
-						
-						Section = Section.Unknown,
-						Title = GetUserName( GetUserData().Name),
-						//Image = "profile_img.png",
-						ViewModelType = typeof(ProfilePicViewModel),	
-					}
+			this.MenuItems = new List<MenuViewModel>
+			{  
+				new MenuViewModel
+				{
+					Section = Section.MyFamily,
+					Title = AppConstant.MYFAMILY_TITLE,
+					Image = AppConstant.MYFAMILY_ICON,
+					ViewModelType = typeof(FbFamilyViewModel),
+				},
+				new MenuViewModel
+				{
+					Section = Section.Matcher,
+					Title = AppConstant.COUSIN_TITLE,
+					Image = AppConstant.COUSIN_ICON,
+					ViewModelType = typeof(MatchViewModel)
+				},   
+				new MenuViewModel
+				{
+					Section = Section.MyFamily,
+					Title = AppConstant.RESEARCH_HELP_TITLE,
+					Image = AppConstant.RESEARCH_HELP_ICON,
+					ViewModelType = typeof(ResearchHelpViewModel)
+				},
+				new MenuViewModel
+				{
+					Section = Section.Matcher,
+					Title = AppConstant.LOGOUT_TITLE,
+					Image = AppConstant.LOGOUT_ICON,
+					ViewModelType = typeof(HomePageViewModel),
 
-				};
-			} 
-			else 
-			{
-				this.MenuItems = new List<MenuViewModel>
-				{  
+				},
+				new MenuViewModel 
+				{
+					Section = Section.Unknown,
+					//Title = "Profile",
+					//Image = "noImage.png",
+					ViewModelType = typeof(TestViewModel),	
+				},
+				new MenuViewModel 
+				{
+					
+					Section = Section.Unknown,
+					Title = GetUserName( GetUserData().Name),
+					//Image = "profile_img.png",
+					ViewModelType = typeof(ProfilePicViewModel),	
+				}
 
-					new MenuViewModel
-					{
-						Section = Section.MyFamily,
-						Title = AppConstant.MYFAMILY_TITLE,
-						Image = AppConstant.MYFAMILY_ICON,
-						ViewModelType = typeof(FamilyViewModel),
-					},
-					new MenuViewModel
-					{
-						Section = Section.Matcher,
-						Title = AppConstant.COUSIN_TITLE,
-						Image = AppConstant.COUSIN_ICON,
-						ViewModelType = typeof(MatchViewModel)
-					},   
-					new MenuViewModel
-					{
-						Section = Section.MyFamily,
-						Title = AppConstant.RESEARCH_HELP_TITLE,
-						Image = AppConstant.RESEARCH_HELP_ICON,
-						ViewModelType = typeof(ResearchHelpViewModel)
-					},
-					new MenuViewModel
-					{
-
-						Section = Section.Matcher,
-						Title = AppConstant.LOGOUT_TITLE,
-						Image = AppConstant.LOGOUT_ICON,
-						ViewModelType = typeof(HomePageViewModel),
-
-					},
-					new MenuViewModel 
-					{
-						Section = Section.Unknown,
-						//Title = "Profile",
-						//Image = "noImage.png",
-						ViewModelType = typeof(TestViewModel),	
-					},
-					new MenuViewModel 
-					{
-						Section = Section.Unknown,
-						Title = GetUserName( GetUserData().Name),
-						//Image = "profile_img.png",
-						ViewModelType = typeof(ProfilePicViewModel),	
-					}
-
-				};
-			}
+			};
+			
 		}
 
 		private void ReloadMenuList(bool boolValue)
 		{
-			this.SetItemList (boolValue);
 			DoUpdate ();
 		}
 		#endregion
@@ -241,8 +188,8 @@ namespace AncestorCloud.Shared.ViewModels
 
 		private void DoUpdate()
 		{
-			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
-			_flyoutMessenger.Publish (new ReloadFlyOutViewMessage (this));
+			//var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
+			//_flyoutMessenger.Publish (new ReloadFlyOutViewMessage (this));
 		}
 
 		private void CloseFlyoutMenu()

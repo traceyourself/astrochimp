@@ -20,14 +20,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe to learn more" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adC-9g-nZb">
-                    <rect key="frame" x="107" y="315" width="161" height="22"/>
+                    <rect key="frame" x="107" y="320" width="161" height="22"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" red="0.55589094065656564" green="0.55589094065656564" blue="0.55589094065656564" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="WUR-hb-eGs">
-                    <rect key="frame" x="160" y="346" width="55" height="37"/>
+                    <rect key="frame" x="160" y="351" width="55" height="37"/>
                     <animations/>
                     <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="tintColor" red="0.2156862745" green="0.54901960780000003" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -35,7 +35,7 @@
                     <color key="currentPageIndicatorTintColor" red="0.2156862745" green="0.54901960780000003" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                 </pageControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czk-Uw-OGJ">
-                    <rect key="frame" x="155" y="489" width="66" height="41"/>
+                    <rect key="frame" x="155" y="494" width="66" height="41"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="tintColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -47,7 +47,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrE-aQ-ibp">
-                    <rect key="frame" x="73" y="413" width="229" height="56"/>
+                    <rect key="frame" x="73" y="418" width="229" height="56"/>
                     <animations/>
                     <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -59,7 +59,7 @@
                     </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oYa-Ym-bJQ">
-                    <rect key="frame" x="28" y="25" width="320" height="260"/>
+                    <rect key="frame" x="28" y="40" width="320" height="260"/>
                     <animations/>
                     <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -79,14 +79,14 @@
             <constraints>
                 <constraint firstItem="WUR-hb-eGs" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="6NR-lL-SDI"/>
                 <constraint firstItem="oYa-Ym-bJQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9aU-nA-BHM"/>
-                <constraint firstItem="oYa-Ym-bJQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="O6p-Nf-zkc"/>
+                <constraint firstItem="oYa-Ym-bJQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="O6p-Nf-zkc"/>
                 <constraint firstItem="adC-9g-nZb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="RCa-5b-YnL"/>
                 <constraint firstItem="czk-Uw-OGJ" firstAttribute="top" secondItem="DrE-aQ-ibp" secondAttribute="bottom" constant="20" id="Rjm-jn-XMN"/>
                 <constraint firstItem="DrE-aQ-ibp" firstAttribute="top" secondItem="WUR-hb-eGs" secondAttribute="bottom" constant="30" id="Rn1-8l-cgQ"/>
                 <constraint firstItem="WUR-hb-eGs" firstAttribute="top" secondItem="adC-9g-nZb" secondAttribute="bottom" constant="9" id="bxP-gG-QgJ"/>
                 <constraint firstItem="czk-Uw-OGJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lsL-Sd-fTX"/>
                 <constraint firstItem="DrE-aQ-ibp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="nCj-Bf-gVR"/>
-                <constraint firstItem="adC-9g-nZb" firstAttribute="top" secondItem="oYa-Ym-bJQ" secondAttribute="bottom" constant="30" id="zIz-8A-5gI"/>
+                <constraint firstItem="adC-9g-nZb" firstAttribute="top" secondItem="oYa-Ym-bJQ" secondAttribute="bottom" constant="20" id="zIz-8A-5gI"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="287.5" y="270.5"/>
