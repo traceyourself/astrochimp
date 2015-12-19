@@ -296,6 +296,8 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewWillAppear (animated);
 
+			this.NavigationController.NavigationBarHidden = ViewModel.IsFromSignup;
+
 			App.controllerTypeRef = ControllerType.Primary;
 
 			this.View.BackgroundColor = Themes.MatchTableView();

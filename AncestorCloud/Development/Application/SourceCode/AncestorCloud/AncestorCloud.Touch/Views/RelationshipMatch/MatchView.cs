@@ -46,27 +46,6 @@ namespace AncestorCloud.Touch
 		{
 			base.ViewDidLoad ();
 
-
-
-
-//			scrollViewObj.Frame = this.View.Frame;
-//			scrollViewObj.ContentSize = new SizeF(320, 550);
-
-			float constant = 0.88f;
-
-			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
-
-			if (width <= 320f)
-				constant = 1.0f;
-
-			if (width > 375f)
-				constant = 0.80f;
-
-			this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Leading, 0, this.View, NSLayoutAttribute.Leading, 1.0f, 0));
-
-			this.View.AddConstraint (NSLayoutConstraint.Create (this.ContentView, NSLayoutAttribute.Trailing , 0, this.View, NSLayoutAttribute.Trailing, constant, 0));
-
-
 			setNavigationBar ();
 
 
@@ -89,17 +68,7 @@ namespace AncestorCloud.Touch
 			this.NavigationItem.SetHidesBackButton (true, false);
 
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
-
-			MyMatchTitleView view;
-
-			if (width <= 320f) 
-			{
-				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,120,20));
-			}else if (width >= 321f && width <=375) {
-				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 170, 20));
-			} else {
-				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 200, 20));
-			}
+			this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF ((width-120)/2, 0, 120, 20));
 
 
 			this.NavigationController.NavigationBarHidden = false;

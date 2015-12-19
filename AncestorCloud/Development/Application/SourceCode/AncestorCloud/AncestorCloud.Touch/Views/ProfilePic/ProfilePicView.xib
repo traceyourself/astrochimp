@@ -107,6 +107,6 @@
     </objects>
     <resources>
         <image name="big_img.png" width="300" height="301"/>
-        <image name="blue_btn.png" width="229.5" height="56.5"/>
+        <image name="blue_btn.png" width="229" height="56"/>
     </resources>
 </document>

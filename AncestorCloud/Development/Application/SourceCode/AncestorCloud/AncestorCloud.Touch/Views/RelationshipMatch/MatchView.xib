@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -31,6 +31,7 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select two people to match" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gW5-4w-qED">
                                     <rect key="frame" x="82" y="23" width="250" height="21"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="2Pr-cz-cuM"/>
                                         <constraint firstAttribute="width" constant="260" id="4hq-a3-goD"/>
@@ -41,6 +42,7 @@
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus_pink.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hkv-b2-03Q">
                                     <rect key="frame" x="165" y="241" width="44" height="44"/>
+                                    <animations/>
                                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="0.56000000000000005" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="44" id="EPf-16-pzD"/>
@@ -49,6 +51,7 @@
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xj-sZ-16d">
                                     <rect key="frame" x="97" y="293" width="180" height="180"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="180" id="QMF-y3-JHh"/>
                                         <constraint firstAttribute="width" constant="180" id="fBb-xf-MzX"/>
@@ -62,6 +65,7 @@
                                 </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kDi-1X-9na">
                                     <rect key="frame" x="97" y="293" width="180" height="180"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="180" id="6ja-TP-4HN"/>
                                         <constraint firstAttribute="height" constant="180" id="jVX-dz-KSs"/>
@@ -69,6 +73,7 @@
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfT-4b-wuc">
                                     <rect key="frame" x="97" y="481" width="180" height="50"/>
+                                    <animations/>
                                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="0.67000000000000004" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="180" id="5qf-oj-CJE"/>
@@ -85,6 +90,7 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INg-5T-FXK">
                                     <rect key="frame" x="97" y="53" width="180" height="180"/>
+                                    <animations/>
                                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="0.56000000000000005" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="180" id="KaL-Kp-b8y"/>
@@ -99,6 +105,7 @@
                                 </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lmP-wb-5kU">
                                     <rect key="frame" x="97" y="53" width="180" height="180"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="180" id="7Rh-R5-hFG"/>
                                         <constraint firstAttribute="width" constant="180" id="dVh-zy-5Ob"/>
@@ -106,6 +113,7 @@
                                 </imageView>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTi-gN-QWf">
                                     <rect key="frame" x="245" y="68" width="25" height="25"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="iTi-gN-QWf" secondAttribute="height" multiplier="1:1" id="KC0-NU-YI2"/>
                                     </constraints>
@@ -118,6 +126,7 @@
                                 </button>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kKw-0V-oR0">
                                     <rect key="frame" x="245" y="310" width="25" height="25"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="kKw-0V-oR0" secondAttribute="height" multiplier="1:1" id="Hvf-iD-Jel"/>
                                     </constraints>
@@ -129,6 +138,7 @@
                                     </connections>
                                 </button>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="iTi-gN-QWf" firstAttribute="trailing" secondItem="lmP-wb-5kU" secondAttribute="trailing" constant="-7" id="06K-ey-hDN"/>
@@ -156,6 +166,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="1tI-qn-ne9" secondAttribute="trailing" id="CVZ-0F-4V0"/>
@@ -167,6 +178,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
+            <animations/>
             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="FHJ-YM-EZc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8O1-fQ-ae7"/>
@@ -184,9 +196,4 @@
         <image name="blue_cross.png" width="51" height="51"/>
         <image name="plus_pink.png" width="41" height="41"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

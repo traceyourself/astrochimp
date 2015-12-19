@@ -65,15 +65,8 @@ namespace AncestorCloud.Touch
 
 			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 
+			this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title, new RectangleF ((width-130)/2, 0, 130, 20));
 
-			if (width <= 320f) {
-				this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title,new RectangleF(0,0,130,20));
-			} else if (width >= 321f && width <=375) {
-				this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title, new RectangleF (0, 0, 150, 20));
-			} else {
-				this.NavigationItem.TitleView = new MyPastMatchTitleView (this.Title, new RectangleF (0, 0, 180, 20));
-			}
-	
 
 		}
 

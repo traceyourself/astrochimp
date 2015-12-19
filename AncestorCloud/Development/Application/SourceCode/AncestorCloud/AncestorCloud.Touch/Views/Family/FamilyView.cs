@@ -78,19 +78,9 @@ namespace AncestorCloud.Touch
 			//this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,150,20));
 
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
+			this.NavigationItem.TitleView = new MyTitleView (this.Title, new RectangleF ((width-100)/2, 0, 100, 20));
+
 		
-
-			if (width <= 320f) {
-				this.NavigationItem.TitleView = new MyTitleView (this.Title, new RectangleF (0, 0, 100, 20));
-
-			} else if (width >= 321f && width <=375) {
-				this.NavigationItem.TitleView = new MyTitleView (this.Title, new RectangleF (0, 0, 150, 20));
-			} else {
-				this.NavigationItem.TitleView = new MyTitleView (this.Title, new RectangleF (0, 0, 180, 20));
-			}
-
-
-
 			//view.Center = new CoreGraphics.CGPoint (this.View.Center.X, view.Center.Y);
 	
 

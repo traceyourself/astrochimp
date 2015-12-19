@@ -235,7 +235,15 @@ namespace AncestorCloud.Touch
 		{
 			ImageUploadedToken = _messenger.SubscribeOnMainThread<ProfilePicUploadedMessage>(Message => this.SetProfilePic ());
 			changeFlyoutToken = _messenger.SubscribeOnMainThread<ReloadFlyOutViewMessage>(message => this.ReloadMenu());
-			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<ToggleFlyoutMenuMessage>(message => _navigation.ToggleMenu());
+			navigationMenuToggleToken = _messenger.SubscribeOnMainThread<ToggleFlyoutMenuMessage>(message => {
+				_navigation.ToggleMenu();
+				var frame = UIScreen.MainScreen.ApplicationFrame;
+				if (frame.Y > 0) {
+					frame.Height = frame.Height + frame.Y;
+					frame.Y = 0;
+				}
+				_navigation.View.Frame=frame;
+			});
 			navigationBarHiddenToken = _messenger.SubscribeOnMainThread<NavigationBarHiddenMessage>(message => this.HideNavBar( message.NavigationBarHidden));
 		}
 

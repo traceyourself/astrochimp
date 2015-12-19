@@ -23,7 +23,7 @@ namespace AncestorCloud.Shared.ViewModels
 			_databaseService = service;
 			GetFbFamilyData ();
 			_fbManager = new FbFamilyDataManager ();
-			showMyFamilyViewToken = messenger.SubscribeOnMainThread<ShowMyFamilyViewMessage>(message => this.ShowMyFamilyViewModel());
+			//showMyFamilyViewToken = messenger.SubscribeOnMainThread<ShowMyFamilyViewMessage>(message => this.ShowMyFamilyViewModel());
 
 		}
 
@@ -85,7 +85,7 @@ namespace AncestorCloud.Shared.ViewModels
 			}
 			 AddSelectedFamily ();
 
-			//ShowMyFamilyViewModel ();
+			ShowMyFamilyViewModel ();
 		}
 
 		#region Properties

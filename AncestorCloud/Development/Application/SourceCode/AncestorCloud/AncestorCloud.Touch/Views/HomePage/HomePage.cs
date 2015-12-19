@@ -107,7 +107,7 @@ namespace AncestorCloud.Touch
 		public override void ViewWillAppear (bool animated)
 		{
 			this.NavigationController.NavigationBarHidden = true;
-			this.NavigationController.View.Frame=UIScreen.MainScreen.ApplicationFrame;
+
 			var messenge = Mvx.Resolve<IMvxMessenger>();
 			messenge.Publish(new FlyOutCloseMessage(this));
 			messenge.Publish(new LogoutMessage(this));

@@ -99,16 +99,8 @@ namespace AncestorCloud.Touch
 //
 //			secondPersonName = ViewModel.SecondPersonNAME;
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
+			this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF ((width-130)/2, 0, 130, 20));
 
-
-			if (width <= 320f) 
-			{
-				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title,new RectangleF(0,0,130,20));
-			}else if (width >= 321f && width <=375) {
-				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 150, 20));
-			} else {
-				this.NavigationItem.TitleView = new MyMatchTitleView (this.Title, new RectangleF (0, 0, 180, 20));
-			}
 
 			this.NavigationController.NavigationBarHidden = false;
 
