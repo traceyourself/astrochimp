@@ -12,10 +12,15 @@ namespace AncestorCloud.Shared
 	{
 		private readonly ILoader _loader;
 
+		private readonly IDeveloperLoginService _developerLoginService;
+
+		private readonly ILoginService _loginService;
 
 		public ProfileService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
+			_loginService = Mvx.Resolve<ILoginService>();
 
 		}
 
@@ -27,13 +32,17 @@ namespace AncestorCloud.Shared
 
 			try   
 			{
+				ResponseModel<String> data = await _developerLoginService.DevelopeLogin ();
+
+				String sessionID = data.Content;
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 				client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type","text/raw");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.SESSIONID] = login.Value;
+				param[AppConstant.SESSIONID] = sessionID;
 				param[AppConstant.INDIOGFN] = login.IndiOGFN;
 				param[AppConstant.FILENAMEKEY] = AppConstant.FILENAME;
 				param[AppConstant.FILETYPEKEY] = AppConstant.FILETYPE;

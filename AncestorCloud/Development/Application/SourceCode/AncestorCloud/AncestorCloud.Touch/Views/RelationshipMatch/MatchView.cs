@@ -148,6 +148,8 @@ namespace AncestorCloud.Touch
 
 			App.controllerTypeRef = ControllerType.Primary;
 
+
+
 			GetData ();
 		}
 

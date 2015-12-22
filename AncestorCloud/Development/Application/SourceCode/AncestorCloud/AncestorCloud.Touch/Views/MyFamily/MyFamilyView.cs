@@ -164,12 +164,8 @@ namespace AncestorCloud.Touch
 			//this.NavigationItem.SetHidesBackButton (true, false);
 			this.NavigationController.NavigationBar.TintColor=Themes.TitleTextColor();
 			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
-			if (width <= 320f) {
-				this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,100,20));
 
-			} else {
-				this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,130,20));
-			}
+			this.NavigationItem.TitleView = new MyTitleView (this.Title, new RectangleF ((width-100)/2, 0, 100, 20));
 
 		}
 

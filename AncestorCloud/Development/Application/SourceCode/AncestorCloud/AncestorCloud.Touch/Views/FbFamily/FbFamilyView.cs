@@ -134,7 +134,9 @@ namespace AncestorCloud.Touch
 			set.Apply ();
 			this.NavigationController.NavigationBar.BarTintColor = Themes.NavBarTintColor();
 			this.NavigationItem.SetHidesBackButton (true, false);
-			this.NavigationItem.TitleView = new MyTitleView (this.Title,new RectangleF(0,0,150,20));
+
+			float width = (float)UIScreen.MainScreen.ApplicationFrame.Size.Width;
+			this.NavigationItem.TitleView = new MyTitleView (this.Title, new RectangleF ((width-100)/2, 0, 100, 20));
 
 			UIImage image = UIImage.FromFile (StringConstants.FLYOUTICON);
 
