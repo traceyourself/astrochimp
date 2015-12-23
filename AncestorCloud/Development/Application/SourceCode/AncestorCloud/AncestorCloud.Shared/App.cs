@@ -15,7 +15,7 @@ namespace AncestorCloud.Shared
 
 		public static bool IsHomePageShown = false;
 
-        public override void Initialize()
+        public async override void Initialize()
         {
             CreatableTypes()
                 .EndingWith("Service")

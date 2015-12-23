@@ -7,7 +7,7 @@ namespace AncestorCloud.Shared
 	{
 		Task<ResponseModel<LoginModel>> GetIndiDetails(LoginModel login);
 
-		Task<ResponseModel<People>> GetIndiFamilyDetails(string ogfn,string sessionid);
+		Task<ResponseModel<People>> GetIndiFamilyDetails(string ogfn);
 	}
 }
 

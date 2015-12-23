@@ -12,10 +12,12 @@ namespace AncestorCloud.Shared
 	public class GroupCreateService : IGroupCreateService
 	{
 		private readonly ILoader _loader;
+		private readonly IDeveloperLoginService _developerLoginService;
 
 		public GroupCreateService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 		}
 		public async Task<ResponseModel<LoginModel>> CreateGroup(LoginModel model)
 		{
@@ -23,6 +25,7 @@ namespace AncestorCloud.Shared
 
 			try   
 			{
+				var loginResult=await _developerLoginService.DevelopeLogin();
 
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
@@ -30,7 +33,7 @@ namespace AncestorCloud.Shared
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.SESSIONID] = model.Value;
+				param[AppConstant.SESSIONID] = loginResult.Content;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.GROUP_CREATE_SERVICE,param);
 

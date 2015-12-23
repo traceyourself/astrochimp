@@ -10,11 +10,13 @@ namespace AncestorCloud.Shared
 	public class ContactLinkService : IContactLinkService
 	{
 		private readonly ILoader _loader;
+		private readonly IDeveloperLoginService _developerLoginService;
 
 
 		public ContactLinkService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService> ();
 
 		}
 
@@ -26,13 +28,15 @@ namespace AncestorCloud.Shared
 
 			try   
 			{
+				var loginResult=await _developerLoginService.DevelopeLogin();
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
 				param[AppConstant.EMAIL] = contact.Email;
-				param[AppConstant.SESSIONID] = contact.SessionId;
+				param[AppConstant.SESSIONID] = loginResult.Content;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.USEREADSERVICE,param);
 

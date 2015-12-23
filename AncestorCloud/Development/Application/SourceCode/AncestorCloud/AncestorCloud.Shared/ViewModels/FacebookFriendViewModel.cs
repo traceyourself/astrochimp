@@ -119,7 +119,6 @@ namespace AncestorCloud.Shared.ViewModels
 		private async void CheckFriend(People friend)
 		{
 			LoginModel data = _databaseService.GetLoginDetails ();
-			friend.SessionId = data.Value;
 
 			FbFriend = friend;
 			

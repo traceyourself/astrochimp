@@ -173,7 +173,6 @@ namespace AncestorCloud.Shared.ViewModels
 					modal.DateOfBirth = this.BirthDate;
 					modal.BirthLocation = this.BirthLocation;
 					modal.Gender = this.Gender;
-					modal.SessionId = lModal.Value;
 					modal.LoginUserLinkID = lModal.UserEmail;
 					modal.RelationReference = ReferenceType;
 					//modal.LoggedinUserINDIOFGN = lModal.IndiOGFN;

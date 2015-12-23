@@ -27,8 +27,7 @@ namespace AncestorCloud.Shared
 			{
 				if (member.IsSelected)
 				{
-					member.SessionId = loginData.Value;
-
+					
 					member.LoggedinUserINDIOFGN = loginData.IndiOGFN;
 
 					member.LoggedinUserFAMOFGN = loginData.FamOGFN;

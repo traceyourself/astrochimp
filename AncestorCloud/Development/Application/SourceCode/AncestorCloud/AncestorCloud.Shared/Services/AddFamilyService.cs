@@ -38,7 +38,6 @@ namespace AncestorCloud.Shared
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.ADD_PERSON_SESSION_ID] = model.SessionId;
 				param[AppConstant.ADD_PERSON_INDIOGFN] = model.IndiOgfn;
 				param[AppConstant.ADD_PERSON_NAME] = GetName(model);
 				param[AppConstant.ADD_PERSON_GENDER] = model.Gender;
@@ -103,7 +102,6 @@ namespace AncestorCloud.Shared
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.ADD_PERSON_SESSION_ID] = model.SessionId;
 				param[AppConstant.ADD_PERSON_NAME] = GetName(model);
 				param[AppConstant.ADD_PERSON_GENDER] = model.Gender;
 				param[AppConstant.ADD_PERSON_BIRTHDATE] = model.DateOfBirth;
@@ -177,7 +175,6 @@ namespace AncestorCloud.Shared
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.ADD_PERSON_SESSION_ID] = model.SessionId;
 				param[AppConstant.ADD_PERSON_INDIOGFN] = model.LoggedinUserINDIOFGN;
 				param[AppConstant.ADD_RELATION_INDIOGFN] = model.IndiOgfn;
 				param[AppConstant.ADD_RELATION_TYPE] = relationType;

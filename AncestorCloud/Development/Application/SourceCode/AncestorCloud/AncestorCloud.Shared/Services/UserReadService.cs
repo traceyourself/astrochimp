@@ -11,10 +11,12 @@ namespace AncestorCloud.Shared
 	public class UserReadService : IUserReadService
 	{
 		private ILoader _loader;
+		private readonly IDeveloperLoginService _developerLoginService;
 
 		public UserReadService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 		}
 
 		public async Task<ResponseModel<LoginModel>> MakeUserReadService(LoginModel model)
@@ -23,6 +25,8 @@ namespace AncestorCloud.Shared
 			//https://wsdev.onegreatfamily.com/v11.02/User.svc/Read?SessionId=s4zxi523e3hlgnhbgjh3hlm4
 			try   
 			{
+				var loginResult=await _developerLoginService.DevelopeLogin();
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
@@ -30,7 +34,7 @@ namespace AncestorCloud.Shared
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.SESSIONID]=model.Value;
+				param[AppConstant.SESSIONID]=loginResult.Content;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.USEREADSERVICE,param);
 
@@ -93,12 +97,14 @@ namespace AncestorCloud.Shared
 			_loader.showLoader ();
 			try   
 			{
+				var loginResult=await _developerLoginService.DevelopeLogin();
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.SESSIONID]=model.Value;
+				param[AppConstant.SESSIONID]=loginResult.Content;
 				param[AppConstant.INDIOGFN]=model.IndiOGFN;
 				param[AppConstant.MEDIATYPEKEY]=AppConstant.AVATAR;
 				param[AppConstant.STACKTRACE]=AppConstant.TRUE;
@@ -131,7 +137,7 @@ namespace AncestorCloud.Shared
 
 							Dictionary <string,string> avatarParam = new Dictionary<string, string>();
 
-							avatarParam[AppConstant.SESSIONID]=model.Value;
+							avatarParam[AppConstant.SESSIONID]=loginResult.Content;
 							avatarParam[AppConstant.AVATAR_OGFN]=avatarModel.AvatarOGFN;
 							avatarParam[AppConstant.IMAGE_TYPE]=AppConstant.PNG;
 							avatarParam[AppConstant.IMAGE_SIZE]="200"+"%2c"+"200";

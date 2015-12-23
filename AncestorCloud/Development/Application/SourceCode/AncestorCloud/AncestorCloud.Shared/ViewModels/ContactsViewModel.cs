@@ -207,7 +207,6 @@ namespace AncestorCloud.Shared.ViewModels
 		public async void CheckContact(People people)
 		{
 			LoginModel data = _databaseService.GetLoginDetails ();
-			people.SessionId = data.Value;
 
 			Contact = people;
 

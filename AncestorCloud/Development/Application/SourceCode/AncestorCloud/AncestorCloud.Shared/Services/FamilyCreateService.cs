@@ -12,10 +12,12 @@ namespace AncestorCloud.Shared
 	public class FamilyCreateService :IFamilyCreateService
 	{
 		private readonly ILoader _loader;
+		private readonly IDeveloperLoginService _developerLoginService;
 
 		public FamilyCreateService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 		}
 
 		public async Task<ResponseModel<LoginModel>> CreateFamily(LoginModel model)
@@ -24,13 +26,15 @@ namespace AncestorCloud.Shared
 
 			try   
 			{
+				var loginResult=await _developerLoginService.DevelopeLogin();
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 				client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type","application/xml");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.SESSIONID] = model.Value;
+				param[AppConstant.SESSIONID] = loginResult.Content;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.FAMILY_CREATE_SERVICE,param);
 

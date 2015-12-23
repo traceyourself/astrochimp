@@ -10,11 +10,12 @@ namespace AncestorCloud.Shared
 	public class AvatarService : IAvatarService
 	{
 		private readonly ILoader _loader;
-
+		private readonly IDeveloperLoginService _developerLoginService;
 
 		public AvatarService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 		}
 
 		#region IAvatarService implementation
@@ -22,12 +23,14 @@ namespace AncestorCloud.Shared
 		{
 			try   
 			{
+				var loginResult=await _developerLoginService.DevelopeLogin();
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.SESSIONID]=model.Value;
+				param[AppConstant.SESSIONID]=loginResult.Content;
 				param[AppConstant.AVATAR_OGFN]=model.AvatarOGFN;
 				param[AppConstant.IMAGE_TYPE]=AppConstant.PNG;
 				param[AppConstant.IMAGE_SIZE]="200"+"%2c"+"200";

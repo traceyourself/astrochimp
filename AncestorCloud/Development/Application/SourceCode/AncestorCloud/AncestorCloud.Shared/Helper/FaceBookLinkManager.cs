@@ -50,13 +50,13 @@ namespace AncestorCloud.Shared
 				return returnValue;
 			}
 		
-			returnValue = await FbSignInLink (sessionID);
+			returnValue = await FbSignInLink ();
 
 			if (returnValue.Status==ResponseStatus.Fail) {
 				return returnValue;
 			}
 
-			var loginData = await FbLoginLink (sessionID);
+			var loginData = await FbLoginLink ();
 
 			if (loginData == null) {
 				returnValue.Status= ResponseStatus.Fail;
@@ -83,7 +83,7 @@ namespace AncestorCloud.Shared
 			if (sessionID.Equals (String.Empty))
 				return ResponseStatus.Fail;
 			
-			LoginModel loginData = await FbLoginLink (sessionID);
+			LoginModel loginData = await FbLoginLink ();
 
 			if (loginData == null)
 				return ResponseStatus.Fail;
@@ -120,15 +120,15 @@ namespace AncestorCloud.Shared
 
 		#region FBLoginService Method
 
-		private async  Task<LoginModel> FbLoginLink(String sessionID)
+		private async  Task<LoginModel> FbLoginLink()
 		{
 			User fbUser = _databaseService.GetUser ();
 
-			ResponseModel<LoginModel> data = await _fbSignInService.LinkFacebookLoginUser (fbUser,sessionID);
+			ResponseModel<LoginModel> data = await _fbSignInService.LinkFacebookLoginUser (fbUser);
 
 			if (data.Status ==ResponseStatus.Fail)
 				return null;
-			
+
 			return data.Content;
 		}
 
@@ -218,11 +218,11 @@ namespace AncestorCloud.Shared
 
 		#region FbSigninLink method
 
-		private async  Task<ResponseModel<LoginModel>> FbSignInLink(String sessionID)
+		private async  Task<ResponseModel<LoginModel>> FbSignInLink()
 		{
 			User fbUser = _databaseService.GetUser ();
 
-			ResponseModel<LoginModel> data = await _fbSignInService.LinkFacebookSignUpUser (fbUser,sessionID);
+			ResponseModel<LoginModel> data = await _fbSignInService.LinkFacebookSignUpUser (fbUser);
 
 			return data;
 		}

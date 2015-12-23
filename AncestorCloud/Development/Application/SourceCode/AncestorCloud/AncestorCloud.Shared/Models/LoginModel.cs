@@ -11,7 +11,6 @@ namespace AncestorCloud.Shared
 		public string Message { get; set; }
 		public string UserEmail { get; set; }
 		public string Code { get; set; }
-		public string Value { get; set; }
 		public string IndiOGFN { get; set; }
 		public string OGFN { get; set; }
 		public string AvatarOGFN { get; set; }

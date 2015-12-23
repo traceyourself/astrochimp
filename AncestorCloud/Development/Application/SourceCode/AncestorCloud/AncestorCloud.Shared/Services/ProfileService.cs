@@ -32,17 +32,14 @@ namespace AncestorCloud.Shared
 
 			try   
 			{
-				ResponseModel<String> data = await _developerLoginService.DevelopeLogin ();
-
-				String sessionID = data.Content;
-
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 				client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type","text/raw");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
+				var loginResult=await _developerLoginService.DevelopeLogin();
 
-				param[AppConstant.SESSIONID] = sessionID;
+				param[AppConstant.SESSIONID] = loginResult.Content;
 				param[AppConstant.INDIOGFN] = login.IndiOGFN;
 				param[AppConstant.FILENAMEKEY] = AppConstant.FILENAME;
 				param[AppConstant.FILETYPEKEY] = AppConstant.FILETYPE;

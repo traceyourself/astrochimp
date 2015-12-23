@@ -5,7 +5,7 @@ namespace AncestorCloud.Shared
 {
 	public interface IMatchService
 	{
-		Task<ResponseModel<RelationshipFindResult>> Match (string sessionID,string firstOGFN, string secOGFN);
+		Task<ResponseModel<RelationshipFindResult>> Match (string firstOGFN, string secOGFN);
 	}
 }
 

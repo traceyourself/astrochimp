@@ -11,11 +11,13 @@ namespace AncestorCloud.Shared
 	public class FBFriendLinkService : IFBFriendLinkService
 	{
 		private readonly ILoader _loader;
+		private readonly IDeveloperLoginService _developerLoginService;
 
 
 		public FBFriendLinkService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 
 		}
 
@@ -28,11 +30,13 @@ namespace AncestorCloud.Shared
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
+				var loginResult=await _developerLoginService.DevelopeLogin();
+
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
 				param[AppConstant.LINKIDKEY] = friend.UserID;
 				param[AppConstant.LINKTYPEKEY] = AppConstant.KIN2_LINKTYPE;
-				param[AppConstant.SESSIONID] = friend.SessionId;
+				param[AppConstant.SESSIONID] = loginResult.Content;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.INDIVIDUAL_READ_SERVICE,param);
 

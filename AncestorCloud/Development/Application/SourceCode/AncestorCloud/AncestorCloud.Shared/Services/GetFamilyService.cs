@@ -17,29 +17,33 @@ namespace AncestorCloud.Shared
 		private ILoader _loader;
 		private IDatabaseService _databaseService;
 		private IIndiDetailService _indiDetailService;
+		private readonly IDeveloperLoginService _developerLoginService;
 
 		public GetFamilyService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
 			_databaseService = Mvx.Resolve<IDatabaseService> ();
 			_indiDetailService = Mvx.Resolve<IIndiDetailService> ();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 		}
 
 
 		#region call service for get Family
-		public async Task<ResponseDataModel> MakeServiceCall(string sessionID, string FamOGFN)
+		public async Task<ResponseDataModel> MakeServiceCall(string FamOGFN)
 		{
 			_loader.showLoader ();
 
 			ResponseDataModel datamodal = new ResponseDataModel();
 
 			try{
+				var loginResult=await _developerLoginService.DevelopeLogin();
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.SESSIONID] = sessionID ;
+				param[AppConstant.SESSIONID] = loginResult.Content ;
 				param[AppConstant.FAMILY_OGFN] = FamOGFN;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.FAMILY_READ_SERVICE,param);
@@ -80,7 +84,7 @@ namespace AncestorCloud.Shared
 			//Hit service using HTTP Client
 			try   
 			{
-				ResponseDataModel datamodal = await MakeServiceCall(model.Value,model.FamOGFN);
+				ResponseDataModel datamodal = await MakeServiceCall(model.FamOGFN);
 
 				LoginModel loginModel = _databaseService.GetLoginDetails();
 
@@ -151,7 +155,7 @@ namespace AncestorCloud.Shared
 
 								if(!doesItExists)
 								{
-									ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(OgfnArr[i],loginModel.Value);
+									ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(OgfnArr[i]);
 
 									if(responseM.Status == ResponseStatus.OK){
 										People p = responseM.Content;
@@ -293,7 +297,7 @@ namespace AncestorCloud.Shared
 		#region fetch mother
 		public async Task<People> FetchMother(ResponseDataModel datamodal,LoginModel loginModel,bool isExist)
 		{
-			ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.MOTHER_OFGN,loginModel.Value);
+			ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.MOTHER_OFGN);
 
 			if (responseM.Status == ResponseStatus.OK) {
 				People p = responseM.Content;
@@ -317,7 +321,7 @@ namespace AncestorCloud.Shared
 		#region fetch father
 		public async Task<People> FetchFather(ResponseDataModel datamodal,LoginModel loginModel,bool isExist)
 		{
-			ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.FATHER_OFGN,loginModel.Value);
+			ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.FATHER_OFGN);
 
 			if (responseM.Status == ResponseStatus.OK) {
 			
@@ -352,7 +356,7 @@ namespace AncestorCloud.Shared
 			{
 				if(p.Relation.Equals(AppConstant.Father_comparison))
 				{
-					ResponseDataModel datamodal = await MakeServiceCall(model.Value, p.FamOGFN);
+					ResponseDataModel datamodal = await MakeServiceCall(p.FamOGFN);
 
 					if(datamodal.Code.Equals("0"))
 					{
@@ -362,7 +366,7 @@ namespace AncestorCloud.Shared
 				}
 				else if(p.Relation.Equals(AppConstant.Mother_comparison))
 				{
-					ResponseDataModel datamodal = await MakeServiceCall(model.Value, p.FamOGFN);
+					ResponseDataModel datamodal = await MakeServiceCall(p.FamOGFN);
 
 					if(datamodal.Code.Equals("0"))
 					{
@@ -372,7 +376,7 @@ namespace AncestorCloud.Shared
 				}
 				else if(p.Relation.Equals(AppConstant.Parent_comparison))
 				{
-					ResponseDataModel datamodal = await MakeServiceCall(model.Value, p.FamOGFN);
+					ResponseDataModel datamodal = await MakeServiceCall(p.FamOGFN);
 
 					if(datamodal.Code.Equals("0"))
 					{
@@ -466,7 +470,7 @@ namespace AncestorCloud.Shared
 
 		async Task<People> FetchGrandFather( ResponseDataModel datamodal, LoginModel loginModel, String relation, string relationShipRef,bool isExist,string genderRef)
 		{
-			ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.FATHER_OFGN,loginModel.Value);
+			ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.FATHER_OFGN);
 
 			if(responseM.Status == ResponseStatus.OK){
 				People p = responseM.Content;
@@ -488,7 +492,7 @@ namespace AncestorCloud.Shared
 
 		async Task<People> FetchGrandMother(ResponseDataModel datamodal, LoginModel loginModel, String relation, string relationShipRef,bool isExist, string genderRef)
 		{
-			ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.MOTHER_OFGN,loginModel.Value);
+			ResponseModel<People> responseM = await _indiDetailService.GetIndiFamilyDetails(datamodal.MOTHER_OFGN);
 
 			if(responseM.Status == ResponseStatus.OK){
 				People p = responseM.Content;
@@ -519,7 +523,7 @@ namespace AncestorCloud.Shared
 			{
 				if(p.Relation.Equals(AppConstant.GrandParent_comparison))
 				{
-					ResponseDataModel datamodal = await MakeServiceCall(model.Value, p.FamOGFN);
+					ResponseDataModel datamodal = await MakeServiceCall(p.FamOGFN);
 
 					if(datamodal.Code.Equals("0"))
 					{

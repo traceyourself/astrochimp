@@ -11,22 +11,25 @@ namespace AncestorCloud.Shared
 	public class MatchService : IMatchService
 	{
 		private readonly ILoader _loader;
+		private readonly IDeveloperLoginService _developerLoginService;
 
 		public MatchService ()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 		}
 
-		public async Task<ResponseModel<RelationshipFindResult>> Match (string sessionID,string firstOGFN, string secOGFN)
+		public async Task<ResponseModel<RelationshipFindResult>> Match (string firstOGFN, string secOGFN)
 		{
 			_loader.showLoader ();
 			try
 			{
+				var loginResult=await _developerLoginService.DevelopeLogin();
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
-				param[AppConstant.SESSIONID]=sessionID;
+				param[AppConstant.SESSIONID]=loginResult.Content;
 				param[AppConstant.INDIOGFN1KEY]=firstOGFN;
 				param[AppConstant.INDIOGFN2KEY]=secOGFN;
 				param[AppConstant.TYPEKEY]=AppConstant.MATCHTYPE;

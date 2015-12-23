@@ -13,12 +13,14 @@ namespace AncestorCloud.Shared
 		private ILoader _loader;
 		private IDatabaseService _databaseService;
 		private IIndiDetailService _indiDetailService;
+		private readonly IDeveloperLoginService _developerLoginService;
 
 		public MatchHistoryService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
 			_databaseService = Mvx.Resolve<IDatabaseService> ();
 			_indiDetailService = Mvx.Resolve<IIndiDetailService> ();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 		}
 
 		public async Task<ResponseModel<List<RelationshipFindResult>>> HistoryReadService(LoginModel model)
@@ -27,12 +29,14 @@ namespace AncestorCloud.Shared
 
 			try   
 			{
+				var loginResult=await _developerLoginService.DevelopeLogin();
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.SESSIONID] = model.Value;
+				param[AppConstant.SESSIONID] = loginResult.Content;
 
 				//https://ws.onegreatfamily.com/v11.02/Individual.svc/RelationshipFindHistoryGet?sessionId=bvbushd0mlei3hcvuvcahba1
 
@@ -108,7 +112,7 @@ namespace AncestorCloud.Shared
 
 							LoginModel result = res.Content;
 							people.Name = result.Name;
-							people.ProfilePicURL = GetAvatarUrl (result);
+							people.ProfilePicURL = await GetAvatarUrl (result);
 
 							relationModel.FirstPerson = people;
 						}
@@ -127,7 +131,7 @@ namespace AncestorCloud.Shared
 
 						LoginModel result = res.Content;
 						people.Name = result.Name;
-						people.ProfilePicURL = GetAvatarUrl (result);
+						people.ProfilePicURL = await GetAvatarUrl (result);
 
 						relationModel.FirstPerson = people;
 					}
@@ -149,7 +153,7 @@ namespace AncestorCloud.Shared
 
 							LoginModel result = res.Content;
 							people.Name = result.Name;
-							people.ProfilePicURL = GetAvatarUrl (result);
+							people.ProfilePicURL = await GetAvatarUrl (result);
 
 							relationModel.SecondPerson = people;
 						}
@@ -168,7 +172,7 @@ namespace AncestorCloud.Shared
 
 						LoginModel result = res.Content;
 						people.Name = result.Name;
-						people.ProfilePicURL = GetAvatarUrl (result);
+						people.ProfilePicURL = await GetAvatarUrl (result);
 
 						relationModel.SecondPerson = people;
 					}
@@ -187,10 +191,12 @@ namespace AncestorCloud.Shared
 		#endregion
 
 		#region getAvatar Url
-		public String GetAvatarUrl(LoginModel model){
+		public async Task<String> GetAvatarUrl(LoginModel model){
+
+			var loginResult= await _developerLoginService.DevelopeLogin();
 			Dictionary <string,string> avatarParam = new Dictionary<string, string>();
 
-			avatarParam[AppConstant.SESSIONID]=model.Value;
+			avatarParam[AppConstant.SESSIONID]=loginResult.Content;
 			avatarParam[AppConstant.AVATAR_OGFN]=model.AvatarOGFN;
 			avatarParam[AppConstant.IMAGE_TYPE]=AppConstant.PNG;
 			avatarParam[AppConstant.IMAGE_SIZE]="200"+"%2c"+"200";

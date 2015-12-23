@@ -11,20 +11,20 @@ namespace AncestorCloud.Shared
 	public class FbSigninService : IFbSigninService
 	{
 		private readonly ILoader _loader;
-
+		private readonly IDeveloperLoginService _developerLoginService;
 
 		public FbSigninService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
-
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 		}
 
-		public async Task<ResponseModel<LoginModel>> LinkFacebookLoginUser (User user, String sessionID)
+		public async Task<ResponseModel<LoginModel>> LinkFacebookUser (User user)
 		{
-			_loader.showLoader ();
-
 			try   
 			{
+				var loginResult=await _developerLoginService.DevelopeLogin();
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
@@ -32,7 +32,7 @@ namespace AncestorCloud.Shared
 
 				param[AppConstant.LINKIDKEY] = user.UserID;
 				param[AppConstant.LINKTYPEKEY] = AppConstant.KIN2_LINKTYPE;
-				param[AppConstant.SESSIONID] = sessionID;
+				param[AppConstant.SESSIONID] = loginResult.Content;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.USERLOGINSERVICE,param);
 
@@ -61,11 +61,39 @@ namespace AncestorCloud.Shared
 				}
 
 				LoginModel login = new LoginModel();
-				login.Value = sessionID;
 				login.UserEmail = user.Email;
 				responsemodal.Content= login;
 
 				return responsemodal;
+			}
+			catch(Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine (ex.StackTrace);
+				ResponseModel<LoginModel> responsemodal = new ResponseModel<LoginModel>();
+				responsemodal.Status = ResponseStatus.Fail;
+				responsemodal.ResponseCode = "0";
+
+				return responsemodal;
+			}
+		}
+
+		public async Task<ResponseModel<LoginModel>> LinkFacebookLoginUser (User user)
+		{
+			_loader.showLoader ();
+
+			try   
+			{
+				var result = await LinkFacebookUser(user);
+				if(result.Status!=ResponseStatus.OK){
+			
+					if(String.Equals(result.ResponseCode,AppConstant.USER_WAS_NOT_FOUND_CODE))
+					{
+						var signupResult = await LinkFacebookSignUpUser(user);
+						var linkResult = await LinkFacebookUser(user);
+						return linkResult;
+					}
+				}
+				return result;
 			}
 			catch(Exception ex)
 			{
@@ -87,12 +115,14 @@ namespace AncestorCloud.Shared
 		#region SignIn Service
 
 
-		public async Task<ResponseModel<LoginModel>> LinkFacebookSignUpUser (User user, String sessionID)
+		public async Task<ResponseModel<LoginModel>> LinkFacebookSignUpUser (User user)
 		{
 			_loader.showLoader ();
 
 			try   
 			{
+				var loginResult=await _developerLoginService.DevelopeLogin();
+
 				// Link Facebook User
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
@@ -106,7 +136,7 @@ namespace AncestorCloud.Shared
 				param[AppConstant.PRODUCTIDKEY] = AppConstant.PRODUCTID;
 				param[AppConstant.LINKIDKEY] = user.UserID;
 				param[AppConstant.LINKTYPEKEY] = AppConstant.KIN2_LINKTYPE;
-				param[AppConstant.SESSIONID] = sessionID;
+				param[AppConstant.SESSIONID] = loginResult.Content;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.USERSIGNINSERVICE,param);
 
@@ -124,7 +154,6 @@ namespace AncestorCloud.Shared
 
 				LoginModel modal = new LoginModel();
 
-				modal.Value = sessionID;
 				modal.UserEmail = user.Email;
 
 				modal = DataParser.GetSignUpDetails(modal,dict);

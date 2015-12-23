@@ -11,16 +11,24 @@ namespace AncestorCloud.Shared
 	public class DeveloperLoginService : IDeveloperLoginService
 	{
 		private readonly ILoader _loader;
-
+		private static String sessionID;
 
 		public DeveloperLoginService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+			System.Diagnostics.Debug.WriteLine ("DeveloperLoginService");
 
 		}
 
 		public async Task<ResponseModel<String>> DevelopeLogin ()
 		{
+			if (sessionID != null) {
+				ResponseModel<String> responsemodal = new ResponseModel<String>();
+				responsemodal.Status = ResponseStatus.OK;
+				responsemodal.Content= sessionID;
+				return responsemodal;
+			}
+
 			_loader.showLoader ();
 
 			try   
@@ -53,6 +61,7 @@ namespace AncestorCloud.Shared
 					{
 						responsemodal.Status = ResponseStatus.OK;
 						responsemodal.Content= dict[AppConstant.VALUE].ToString();
+						sessionID=responsemodal.Content;
 					}else
 					{
 						responsemodal.Status = ResponseStatus.Fail;

@@ -187,8 +187,6 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			LoginModel lModal = _databaseService.GetLoginDetails ();
 
-			FamilyMember.SessionId = lModal.Value;
-
 			//TODO : Remove this line when data is live
 			//FamilyMember.IndiOgfn = lModal.IndiOGFN;
 

@@ -12,10 +12,12 @@ namespace AncestorCloud.Shared
 	public class PercentageService :IPercentageService
 	{
 		private readonly ILoader _loader;
+		private readonly IDeveloperLoginService _developerLoginService;
 
 		public PercentageService ()
 		{
-				_loader = Mvx.Resolve<ILoader> ();
+			_loader = Mvx.Resolve<ILoader> ();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 		}
 
 		public async Task<ResponseModel<LoginModel>> GetPercentComplete (LoginModel model)
@@ -23,12 +25,14 @@ namespace AncestorCloud.Shared
 			_loader.showLoader ();
 			try
 			{
+				var loginResult=await _developerLoginService.DevelopeLogin();
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
 
-				param[AppConstant.SESSIONID]=model.Value;
+				param[AppConstant.SESSIONID]=loginResult.Content;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.PERCENTAGE_COMPLETE_SERVICE,param);
 

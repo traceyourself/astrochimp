@@ -54,7 +54,7 @@ namespace AncestorCloud.Shared
 
 				modal.UserEmail = email;
 
-				Mvx.Trace("Parced Values : "+modal.Code+" : "+modal.Message+" : "+modal.Value);
+				Mvx.Trace("Parced Values : "+modal.Code+" : "+modal.Message);
 
 				ResponseModel<LoginModel> userReadResponse = new ResponseModel<LoginModel>();
 

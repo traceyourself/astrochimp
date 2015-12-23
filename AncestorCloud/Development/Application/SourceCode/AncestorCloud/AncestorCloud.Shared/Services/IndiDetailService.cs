@@ -10,11 +10,12 @@ namespace AncestorCloud.Shared
 	public class IndiDetailService : IIndiDetailService
 	{
 		private readonly ILoader _loader;
-
+		private readonly IDeveloperLoginService _developerLoginService;
 
 		public IndiDetailService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 
 		}
 
@@ -25,11 +26,13 @@ namespace AncestorCloud.Shared
 			_loader.showLoader ();
 			try   
 			{
+				var loginResult=await _developerLoginService.DevelopeLogin();
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
-				param[AppConstant.SESSIONID] = login.Value;
+				param[AppConstant.SESSIONID] = loginResult.Content;
 				param[AppConstant.INDIOGFN] = login.IndiOGFN;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.INDIVIDUAL_READ_SERVICE,param);
@@ -83,16 +86,18 @@ namespace AncestorCloud.Shared
 
 
 		#region family implementation
-		public async System.Threading.Tasks.Task<ResponseModel<People>> GetIndiFamilyDetails (string ogfn,string sessionid)
+		public async System.Threading.Tasks.Task<ResponseModel<People>> GetIndiFamilyDetails (string ogfn)
 		{
 			_loader.showLoader ();
 			try   
 			{
+				var loginResult=await _developerLoginService.DevelopeLogin();
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
 				Dictionary <string,string> param = new Dictionary<string, string>();
-				param[AppConstant.SESSIONID] = sessionid;
+				param[AppConstant.SESSIONID] = loginResult.Content;
 				param[AppConstant.INDIOGFN] = ogfn;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.INDIVIDUAL_READ_SERVICE,param);

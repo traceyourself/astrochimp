@@ -119,7 +119,8 @@ namespace AncestorCloud.Shared
 
 		#region Webservice URL Constants
 
-		public const string BASEURL = "https://ws.onegreatfamily.com/v11.02";//ws.onegreatfamily.com/v11.02//wsdev.onegreatfamily.com/v11.02
+		public const string BASEURL = "https://wsdev.onegreatfamily.com/v11.02"; // sandbox
+		//public const string BASEURL = "https://ws.onegreatfamily.com/v11.02"; // prod
 		public const string USEREADSERVICE = "User.svc/Read";
 		public const string USERSIGNINSERVICE = "User.svc/Create";
 		public const string USERUPDATESERVICE = "User.svc/Update";

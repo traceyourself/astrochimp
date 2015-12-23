@@ -24,14 +24,31 @@ namespace AncestorCloud.Shared.ViewModels
 		private MvxSubscriptionToken logoutToken;
 		private  bool IsFaceBookLogin{ get; set;}
 		private readonly IDatabaseService _databaseService;
-	
+		private readonly IDeveloperLoginService _developerLoginService;
+		private readonly ILoginService _loginService;
+		private readonly IFbSigninService _fbSigninService;
+
 		#endregion
 
 		#region Init
-		public void Init(DetailParameters parameter)
+		public async void Init(DetailParameters parameter)
 		{
 			this.IsFaceBookLogin = parameter.IsFBLogin;
 			this.SetItemList (IsFaceBookLogin);
+			if (App.IsAutoLogin) {
+				User user = _databaseService.GetUser ();
+				if (parameter.IsFBLogin) {
+					var model = await _loginService.Login (user.Email, "", AppConstant.DEVELOPERID, AppConstant.DEVELOPERPASSWORD);
+					if (model.Status != ResponseStatus.OK) {
+						Logout ();
+					}
+				} else {
+					var model = await _fbSigninService.LinkFacebookLoginUser (user);
+					if (model.Status != ResponseStatus.OK) {
+						Logout ();
+					}
+				}
+			}
 		}
 
 		public FlyOutViewModel (IDatabaseService  service)
@@ -42,6 +59,10 @@ namespace AncestorCloud.Shared.ViewModels
 
 			_databaseService = service;
 
+			_loginService = Mvx.Resolve<ILoginService> ();
+
+			_fbSigninService = Mvx.Resolve<IFbSigninService> ();
+
 			var _flyoutMessenger = Mvx.Resolve<IMvxMessenger>();
 			changeFlyoutToken = _flyoutMessenger.SubscribeOnMainThread<ChangeFlyoutFlowMessage>(message => this.ReloadMenuList(message.ChangeFlyoutFlow));
 
@@ -51,7 +72,6 @@ namespace AncestorCloud.Shared.ViewModels
 			var _logoutMessenger = Mvx.Resolve<IMvxMessenger>();
 			logoutToken = _logoutMessenger.SubscribeOnMainThread<LogoutMessage>(message => this.DoLogout());
 			_databaseService = service;
-
 		}
 
 		#endregion
