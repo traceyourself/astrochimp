@@ -6,6 +6,7 @@ using UIKit;
 using GoogleAnalytics.iOS;
 using AncestorCloud.Shared;
 using TestFairyLib;
+using Facebook.CoreKit;
 
 namespace AncestorCloud.Touch
 { 
@@ -45,7 +46,14 @@ namespace AncestorCloud.Touch
 
 			_window.MakeKeyAndVisible();
 		
-			return true;
+			// This method verifies if you have been logged into the app before, and keep you logged in after you reopen or kill your app.
+			return ApplicationDelegate.SharedInstance.FinishedLaunching (application, launchOptions);
+		}
+
+		public override bool OpenUrl (UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
+		{
+			// We need to handle URLs by passing them to their own OpenUrl in order to make the SSO authentication works.
+			return ApplicationDelegate.SharedInstance.OpenUrl (application, url, sourceApplication, annotation);
 		}
 
 		#region RegisterTestFairy

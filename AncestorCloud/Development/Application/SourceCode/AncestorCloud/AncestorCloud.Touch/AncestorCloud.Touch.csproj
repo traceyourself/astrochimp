@@ -199,6 +199,9 @@
     <Reference Include="TestFairy.iOS">
       <HintPath>..\Components\TestFairy.Xamarin-iOS-1.5.6\lib\ios-unified\TestFairy.iOS.dll</HintPath>
     </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Xamarin.Facebook.iOS.4.8.0.0\lib\Xamarin.iOS10\Facebook.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
@@ -462,6 +465,10 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="TestFairy.Xamarin-iOS">
       <Version>1.5.6</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="facebookios">
+      <Version>4.8.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

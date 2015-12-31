@@ -29,13 +29,33 @@
 	<key>CFBundleIdentifier</key>
 	<string>net.northcircle.cousinapp</string>
 	<key>CFBundleShortVersionString</key>
-	<string>15.12231</string>
+	<string>15.12311</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
 	<key>CFBundleVersion</key>
-	<string>231</string>
+	<string>311</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1427298800906536</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1427298800906536</string>
+	<key>FacebookDisplayName</key>
+	<string>Relationship Matcher</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 </dict>
 </plist>

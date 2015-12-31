@@ -8,6 +8,9 @@ using Xamarin.Social.Services;
 using AncestorCloud.Shared;
 using Xamarin.Auth;
 using CoreGraphics;
+using Facebook.LoginKit;
+using Facebook.CoreKit;
+using System.Collections.Generic;
 
 
 namespace AncestorCloud.Touch
@@ -15,6 +18,9 @@ namespace AncestorCloud.Touch
 	public partial class SignUpView : BaseViewController,IMvxModalTouchView
 	{
 		CGRect preFrame;
+		LoginButton loginView;
+		List<string> readPermissions = new List<string> { "public_profile","user_friends","user_relationships" };
+
 
 		public SignUpView () : base ("SignUpView", null)
 		{
@@ -56,6 +62,43 @@ namespace AncestorCloud.Touch
 			AppDelegate _delegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 
 			_delegate.UIImageProfilePic = null;
+
+			var buttonFrame = Facebookbutton.Frame;
+			loginView = new LoginButton (buttonFrame) {
+				LoginBehavior = LoginBehavior.Native,
+				ReadPermissions = readPermissions.ToArray ()
+			};
+			_container.AddSubview (loginView);
+			loginView.Hidden = true;
+
+			loginView.LoginBehavior = LoginBehavior.SystemAccount;
+
+			loginView.Completed += (sender, e) => {
+				Console.WriteLine("E: "+e.Error);
+				if (e.Error != null) {
+					// Handle if there was an error
+				}
+
+				if (e.Result.IsCancelled) {
+					// Handle if the user cancelled the login request
+				}
+
+				AccessToken.RefreshCurrentAccessToken((e0,e1,e2)=>{
+
+				});
+				var token = AccessToken.CurrentAccessToken;
+
+				// Handle your successful login
+				if(e.Result!=null && e.Result.Token!=null){
+					Dictionary<String,String> props = new Dictionary<string, string> ();
+					props ["state"] = "yrzxowmyldardwbx";
+					props ["access_token"] = token.TokenString;
+					props ["expires_in"] = "5105456";
+					account = new Account (token.UserID, props);
+					CompleteFacebookLogin ();
+				}
+			};
+
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
@@ -94,8 +137,6 @@ namespace AncestorCloud.Touch
 				NameTextFeild.BecomeFirstResponder ();
 				return false;
 			};
-
-
 
 			LastNameTextField.ShouldReturn = _ => {
 				LastNameTextField.BecomeFirstResponder ();
@@ -136,7 +177,18 @@ namespace AncestorCloud.Touch
 
 		partial void FacebookButtonTapped (NSObject sender)
 		{
-			DoFbLogin();
+			var token = Facebook.CoreKit.AccessToken.CurrentAccessToken;
+			if (token != null) {
+				Dictionary<String,String> props = new Dictionary<string, string> ();
+				props ["state"] = "yrzxowmyldardwbx";
+				props ["access_token"] = token.TokenString;
+				props ["expires_in"] = "5105456";
+				account = new Account (token.UserID, props);
+				CompleteFacebookLogin ();
+			} else {
+				ShowLoader();
+				loginView.SendActionForControlEvents (UIControlEvent.TouchUpInside);
+			}
 		}
 
 		#endregion
@@ -145,8 +197,8 @@ namespace AncestorCloud.Touch
 
 		Account account = null;
 
-		public void DoFbLogin()
-		{
+
+		private void CompleteFacebookLogin(){
 
 			var facebook = new FacebookService {
 				ClientId = AppConstant.FBAPIKEY,
@@ -154,6 +206,53 @@ namespace AncestorCloud.Touch
 				Scope = AppConstant.FBSCOPE 
 			};
 
+
+			var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
+			//https://graph.facebook.com/me?access_token=xxxxxxxxxxxxxxxxx
+
+			ShowLoader();
+
+			request.GetResponseAsync ().ContinueWith (response => {
+				// parse the JSON in response.GetResponseText ()
+				//System.Diagnostics.Debug.WriteLine (response.Result.GetResponseText());
+
+				ViewModel.FbResponseText = response.Result.GetResponseText();
+				ViewModel.SaveFbData();
+
+				var familyRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/family"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
+				var famResponse = familyRequest.GetResponseAsync();
+				//System.Diagnostics.Debug.WriteLine ("famresponse :"+famResponse.Result.GetResponseText());
+				ViewModel.FbFamilyResponseText = famResponse.Result.GetResponseText();
+				ViewModel.SaveFbFamilyData();
+				//
+				var friendRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/friends"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
+				var friendResponse = friendRequest.GetResponseAsync();
+				//System.Diagnostics.Debug.WriteLine ("friendresponse :"+friendResponse.Result.GetResponseText());
+				ViewModel.FbFriendResponseText = friendResponse.Result.GetResponseText();
+				ViewModel.SaveFbFriendsData();
+
+				InvokeOnMainThread (delegate {  
+					HideLoader();
+
+					if(account!=null)
+					{
+						DoSignUp();
+					}
+				});
+			});
+
+		}
+
+
+		public void DoFbSocialSDKLogin()
+		{
+			var facebook = new FacebookService {
+				ClientId = AppConstant.FBAPIKEY,
+				ClientSecret = AppConstant.FBAPISECRETKEY,
+				Scope = AppConstant.FBSCOPE 
+			};
+
+		
 			var shareController = facebook.GetAuthenticateUI ( accounts => {
 
 				account = accounts;
@@ -174,39 +273,7 @@ namespace AncestorCloud.Touch
 					return ;
 				}
 
-				var request = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
-				//https://graph.facebook.com/me?access_token=xxxxxxxxxxxxxxxxx
-
-				ShowLoader();
-
-				request.GetResponseAsync ().ContinueWith (response => {
-					// parse the JSON in response.GetResponseText ()
-					//System.Diagnostics.Debug.WriteLine (response.Result.GetResponseText());
-
-					ViewModel.FbResponseText = response.Result.GetResponseText();
-					ViewModel.SaveFbData();
-
-					var familyRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/family"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
-					var famResponse = familyRequest.GetResponseAsync();
-					//System.Diagnostics.Debug.WriteLine ("famresponse :"+famResponse.Result.GetResponseText());
-					ViewModel.FbFamilyResponseText = famResponse.Result.GetResponseText();
-					ViewModel.SaveFbFamilyData();
-
-					var friendRequest = facebook.CreateRequest ("GET", new Uri ("https://graph.facebook.com/me/friends"),account );//friends/accounts ///me/invitable_friends ///me/taggable_friends //permissions
-					var friendResponse = friendRequest.GetResponseAsync();
-					//System.Diagnostics.Debug.WriteLine ("friendresponse :"+friendResponse.Result.GetResponseText());
-					ViewModel.FbFriendResponseText = friendResponse.Result.GetResponseText();
-					ViewModel.SaveFbFriendsData();
-
-					InvokeOnMainThread (delegate {  
-						HideLoader();
-
-						if(account!=null)
-						{
-							DoSignUp();
-						}
-					});
-				});
+				CompleteFacebookLogin();
 
 				DismissViewController (true, null);
 			});
