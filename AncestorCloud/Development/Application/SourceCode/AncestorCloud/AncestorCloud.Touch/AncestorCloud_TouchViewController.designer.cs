@@ -11,11 +11,11 @@ using UIKit;
 
 namespace AncestorCloud.Touch
 {
-	[Register ("AncestorCloud_TouchViewController")]
-	partial class AncestorCloud_TouchViewController
-	{
-		void ReleaseDesignerOutlets ()
-		{
-		}
-	}
+    [Register ("AncestorCloud_TouchViewController")]
+    partial class AncestorCloud_TouchViewController
+    {
+        void ReleaseDesignerOutlets ()
+        {
+        }
+    }
 }

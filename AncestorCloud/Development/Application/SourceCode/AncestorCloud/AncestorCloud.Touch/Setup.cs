@@ -36,6 +36,7 @@ namespace AncestorCloud.Touch
 
 		protected override void InitializeFirstChance()
 		{
+			Mvx.RegisterSingleton<ILogoutService>(new LogoutService());
 			Mvx.RegisterSingleton<IAlert>(new IOSAlert());
 			Mvx.RegisterSingleton<ILoader>(new Loader());
 			Mvx.RegisterSingleton<IFileService>(new FileService());

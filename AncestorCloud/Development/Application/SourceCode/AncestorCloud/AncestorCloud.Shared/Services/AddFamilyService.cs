@@ -16,10 +16,12 @@ namespace AncestorCloud.Shared
 	{
 
 		private ILoader _loader;
+		private readonly IDeveloperLoginService _developerLoginService;
 
 		public AddFamilyService()
 		{
 			_loader = Mvx.Resolve<ILoader> ();
+			_developerLoginService = Mvx.Resolve<IDeveloperLoginService>();
 
 		}
 
@@ -33,6 +35,8 @@ namespace AncestorCloud.Shared
 			//Hit service using HTTP Client
 			try   
 			{
+				var loginResult = await _developerLoginService.DevelopeLogin();
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
@@ -43,6 +47,8 @@ namespace AncestorCloud.Shared
 				param[AppConstant.ADD_PERSON_GENDER] = model.Gender;
 				param[AppConstant.ADD_PERSON_BIRTHDATE] = model.DateOfBirth;
 				param[AppConstant.ADD_PERSON_BIRTHPLACE] = model.BirthLocation;
+
+				param[AppConstant.SESSIONID] = loginResult.Content;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.ADD_PEOPLE_SERVICE,param);
 
@@ -97,6 +103,8 @@ namespace AncestorCloud.Shared
 			//Hit service using HTTP Client
 			try   
 			{
+				var loginResult = await _developerLoginService.DevelopeLogin();
+
 				HttpClient client = new HttpClient(new NativeMessageHandler());
 				client.DefaultRequestHeaders.Add("Accept","application/json");
 
@@ -106,6 +114,8 @@ namespace AncestorCloud.Shared
 				param[AppConstant.ADD_PERSON_GENDER] = model.Gender;
 				param[AppConstant.ADD_PERSON_BIRTHDATE] = model.DateOfBirth;
 				param[AppConstant.ADD_PERSON_BIRTHPLACE] = model.BirthLocation;
+
+				param[AppConstant.SESSIONID] = loginResult.Content;
 
 				String url = WebServiceHelper.GetWebServiceURL(AppConstant.ADD_PEOPLE_SERVICE,param);
 

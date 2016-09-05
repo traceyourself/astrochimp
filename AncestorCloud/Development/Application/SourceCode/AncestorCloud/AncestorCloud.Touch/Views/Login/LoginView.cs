@@ -29,6 +29,7 @@ namespace AncestorCloud.Touch
 		CGRect preFrame;
 		LoginButton loginView;
 		List<string> readPermissions = new List<string> { "public_profile","user_friends","user_relationships" };
+		Boolean hideLogin = true;
 
 		public LoginView () : base ("LoginView", null)
 		{
@@ -76,38 +77,63 @@ namespace AncestorCloud.Touch
 			container.AddSubview (loginView);
 			loginView.Hidden = true;
 		
-			loginView.LoginBehavior = LoginBehavior.SystemAccount;
+			loginView.LoginBehavior = LoginBehavior.Web;
 
 			loginView.Completed += (sender, e) => {
-				
-				if (e.Error != null) {
+
+				if (e.Error != null)
+				{
 					// Handle if there was an error
+					HideLoader();
 				}
-
-				if (e.Result.IsCancelled) {
+				else if (e.Result.IsCancelled)
+				{
 					// Handle if the user cancelled the login request
+					HideLoader();
 				}
+				else {
 
-				AccessToken.RefreshCurrentAccessToken((e0,e1,e2)=>{
-					
-				});
-				var token = AccessToken.CurrentAccessToken;
+					AccessToken.RefreshCurrentAccessToken((e0, e1, e2) =>
+					{
 
-				// Handle your successful login
-				if(e.Result!=null && e.Result.Token!=null){
-					Dictionary<String,String> props = new Dictionary<string, string> ();
-					props ["state"] = "yrzxowmyldardwbx";
-					props ["access_token"] = token.TokenString;
-					props ["expires_in"] = "5105456";
-					account = new Account (token.UserID, props);
-					CompleteFacebookLogin ();
+					});
+					var token = AccessToken.CurrentAccessToken;
+
+					// Handle your successful login
+					if (e.Result != null && e.Result.Token != null)
+					{
+						Dictionary<String, String> props = new Dictionary<string, string>();
+						props["state"] = "yrzxowmyldardwbx";
+						props["access_token"] = token.TokenString;
+						props["expires_in"] = "5105456";
+						account = new Account(token.UserID, props);
+						CompleteFacebookLogin();
+					}
 				}
 			};
 
 
-//			EmailTextFeild.BecomeFirstResponder ();
-//			PasswordTextFeild.BecomeFirstResponder ();
+			//			EmailTextFeild.BecomeFirstResponder ();
+			//			PasswordTextFeild.BecomeFirstResponder ();
 			// Perform any additional setup after loading the view, typically from a nib.
+
+			if (hideLogin){
+				this.imageEmail.Hidden = true;
+				this.imagePassword.Hidden = true;
+				this.imageSeparatorLeft.Hidden = true;
+				this.imageSeparatorRight.Hidden = true;
+				this.labelOr.Hidden = true;
+				this.labelLoginWithEmail.Hidden = true;
+				this.EmailTextFeild.Hidden = true;
+				this.PasswordTextFeild.Hidden = true;
+				this.LoginButton.Hidden = true;
+				this.labelContinueWith.Frame = new CGRect(new CGPoint(this.labelContinueWith.Frame.Location.X,
+																	  this.labelContinueWith.Frame.Location.Y + 50),
+														  this.labelContinueWith.Frame.Size);
+				this.Facebookbutton.Frame = new CGRect(new CGPoint(this.Facebookbutton.Frame.Location.X,
+																  this.Facebookbutton.Frame.Location.Y + 50),
+													   this.Facebookbutton.Frame.Size);
+			}
 		}
 		#region NavigationBar Property
 
@@ -309,6 +335,8 @@ namespace AncestorCloud.Touch
 				CompleteFacebookLogin ();
 			} else {
 				ShowLoader();
+				LoginManager loginManager = new LoginManager();
+				loginManager.LogOut();
 				loginView.SendActionForControlEvents (UIControlEvent.TouchUpInside);
 			}
 		}

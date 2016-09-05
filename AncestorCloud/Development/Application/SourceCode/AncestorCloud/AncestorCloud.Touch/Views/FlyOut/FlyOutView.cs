@@ -71,6 +71,7 @@ namespace AncestorCloud.Touch
 
 			CreateFlyoutView ();
 			SetProfilePic ();
+			_navigation.View.Frame = UIScreen.MainScreen.Bounds;
 		}
 
 		#endregion
@@ -176,8 +177,8 @@ namespace AncestorCloud.Touch
 						UIImage image = _delegate.UIImageProfilePic ?? UIImage.FromBundle (StringConstants.PROFILEIMAGE);
 
 						profCell = new ProfileCellView(viewModel.Title,image);
-
-						flyoutMenuElements.Add (new CustomViewElement("",profCell.View));
+						var customCell = new CustomViewElement("", profCell.View);
+						flyoutMenuElements.Add (customCell);
 
 						continue;
 					}

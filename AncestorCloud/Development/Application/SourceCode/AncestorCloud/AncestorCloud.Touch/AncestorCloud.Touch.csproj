@@ -22,11 +22,11 @@
     <MtouchArch>i386</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Distribution: ANCESTOR CLOUD INC. (EHZ2Q662ZJ)</CodesignKey>
+    <CodesignKey>iPhone Distribution: NORTHCIRCLE LLC</CodesignKey>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n>
     </MtouchI18n>
-    <CodesignProvision>98eca884-fa05-4583-9af7-fcf32d894e12</CodesignProvision>
+    <CodesignProvision></CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -200,7 +200,7 @@
       <HintPath>..\Components\TestFairy.Xamarin-iOS-1.5.6\lib\ios-unified\TestFairy.iOS.dll</HintPath>
     </Reference>
     <Reference Include="Facebook">
-      <HintPath>..\packages\Xamarin.Facebook.iOS.4.8.0.0\lib\Xamarin.iOS10\Facebook.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Facebook.iOS.4.13.1\lib\Xamarin.iOS10\Facebook.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +213,10 @@
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\87.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\58.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\29.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -250,6 +254,7 @@
     <InterfaceDefinition Include="Views\T&amp;C\Terms_ConditionView.xib" />
     <InterfaceDefinition Include="Views\FlyOut\CustomView\CustomCellView.xib" />
     <InterfaceDefinition Include="Views\FlyOut\CustomView\ProfileCellView.xib" />
+    <InterfaceDefinition Include="StartupScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -418,6 +423,7 @@
     <Compile Include="Utility\MyProfilePicture.cs" />
     <Compile Include="Utility\Utility.cs" />
     <Compile Include="Helpers\Themes.cs" />
+    <Compile Include="PlatformSpecificService\LogoutService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -448,7 +454,6 @@
     <Folder Include="PlatformSpecificService\" />
     <Folder Include="Views\Celebrities\" />
     <Folder Include="Views\Celebrities\CelebritiesCell\" />
- feature/Working_Flow
   <Folder Include="Views\Help\" /><Folder Include="Views\Facebook Friends\" /><Folder Include="Views\Facebook Friends\FacebookFriendCell\" /><Folder Include="Views\Contacts\" /><Folder Include="Views\Contacts\ContactsCell\" /><Folder Include="Views\NoMatches\" /><Folder Include="Views\MatcherDetail\MatcherDetailCell\" /><Folder Include="Views\ProfilePic\" /><Folder Include="Views\T&amp;C\" /><Folder Include="Views\FlyOut\CustomView\" /><Folder Include="CustomBinding\" /></ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="flyoutnavigation">
@@ -541,9 +546,6 @@
     <BundleResource Include="Resources\profile_img.png" />
     <BundleResource Include="Resources\male.png" />
     <BundleResource Include="Resources\CircleMatcherDot%402x.png" />
-    <BundleResource Include="Resources\Default.png" />
-    <BundleResource Include="Resources\Default%402x.png" />
-    <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\splash.png" />
     <BundleResource Include="Resources\CollectionView1%402x.png" />
     <BundleResource Include="Resources\CollectionView2%402x.png" />
@@ -551,6 +553,8 @@
     <BundleResource Include="en.lproj\Localizable.strings" />
     <BundleResource Include="Resources\txt_fld%402x.png" />
     <BundleResource Include="Resources\add_icon%402x.png" />
+    <BundleResource Include="Resources\gears.png" />
+    <BundleResource Include="Resources\ancestorCloud.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Celebs.txt" />

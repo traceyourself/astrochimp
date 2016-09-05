@@ -12,6 +12,7 @@ namespace AncestorCloud.Touch
 		public MyPastMatchTitleView (string title,CGRect frame) : base (frame)
 		{
 			UIImageView img = new UIImageView(UIImage.FromFile("clock_icon.png"));
+			img.Frame = new CGRect(0, -5f, img.Frame.Size.Width, img.Frame.Size.Height);
 
 			this.AddSubview (img);
 

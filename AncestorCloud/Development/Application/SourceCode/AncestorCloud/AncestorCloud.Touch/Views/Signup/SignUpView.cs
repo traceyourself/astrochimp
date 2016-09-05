@@ -20,7 +20,7 @@ namespace AncestorCloud.Touch
 		CGRect preFrame;
 		LoginButton loginView;
 		List<string> readPermissions = new List<string> { "public_profile","user_friends","user_relationships" };
-
+		Boolean hideSignup = true;
 
 		public SignUpView () : base ("SignUpView", null)
 		{
@@ -100,6 +100,29 @@ namespace AncestorCloud.Touch
 			};
 
 			// Perform any additional setup after loading the view, typically from a nib.
+			if (hideSignup)
+			{
+				this.imageEmailField.Hidden = true;
+				this.imagePasswordField.Hidden = true;
+				this.imageSeparatorLeft.Hidden = true;
+				this.imageSeparatorRight.Hidden = true;
+				this.imageSignupLastName.Hidden = true;
+				this.imageSignupFirstName.Hidden = true;
+				this.SignUpButton.Hidden = true;
+				this.labelSignupWithEmail.Hidden = true;
+				this.orLabel.Hidden = true;
+				this.NameTextFeild.Hidden = true;
+				this.LastNameTextField.Hidden = true;
+				this.PasswordTextField.Hidden = true;
+				this.EmailTextField.Hidden = true;
+
+				this.continueWithLabel.Frame = new CGRect(new CGPoint(this.continueWithLabel.Frame.Location.X,
+				                                                      this.continueWithLabel.Frame.Location.Y+50), 
+				                                          this.continueWithLabel.Frame.Size);
+				this.Facebookbutton.Frame = new CGRect(new CGPoint(this.Facebookbutton.Frame.Location.X,
+				                                                  this.Facebookbutton.Frame.Location.Y+50), 
+				                                       this.Facebookbutton.Frame.Size);
+			}
 		}
 
 		public override void ViewWillAppear (bool animated)

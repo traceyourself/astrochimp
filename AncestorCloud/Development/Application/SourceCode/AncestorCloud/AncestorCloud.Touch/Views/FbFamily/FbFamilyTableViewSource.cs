@@ -64,6 +64,11 @@ namespace AncestorCloud.Touch
 
 		}
 
+		public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+		{
+			return 55f;
+		}
+
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			People member = peopleList [indexPath.Row];

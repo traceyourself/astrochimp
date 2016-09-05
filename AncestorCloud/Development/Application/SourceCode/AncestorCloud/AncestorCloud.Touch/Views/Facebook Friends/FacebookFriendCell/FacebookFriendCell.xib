@@ -15,10 +15,6 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mcv-np-1Yx">
                         <rect key="frame" x="60" y="21" width="38" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="I1y-32-EFx"/>
-                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="168" id="Tjc-QJ-6Rm"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -39,9 +35,11 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Mcv-np-1Yx" firstAttribute="top" secondItem="yJM-E6-Tmj" secondAttribute="topMargin" constant="12" id="PBW-tr-uLr"/>
                     <constraint firstItem="Mcv-np-1Yx" firstAttribute="leading" secondItem="hiN-Pi-ARH" secondAttribute="trailing" constant="8" id="WVl-Uu-uEG"/>
-                    <constraint firstItem="ymO-jj-egj" firstAttribute="trailing" secondItem="yJM-E6-Tmj" secondAttribute="trailingMargin" id="tCc-YO-vPP" constant="-5"/>
+                    <constraint id="2" firstItem="hiN-Pi-ARH" firstAttribute="top" secondItem="yJM-E6-Tmj" secondAttribute="top" constant="10"/>
+                    <constraint id="3" firstItem="Mcv-np-1Yx" firstAttribute="centerY" secondItem="yJM-E6-Tmj" secondAttribute="centerY" constant="1"/>
+                    <constraint id="4" firstItem="yJM-E6-Tmj" firstAttribute="trailing" secondItem="ymO-jj-egj" secondAttribute="trailing" constant="8"/>
+                    <constraint id="5" firstItem="ymO-jj-egj" firstAttribute="centerY" secondItem="yJM-E6-Tmj" secondAttribute="centerY"/>
                 </constraints>
                 <rect key="frame" x="0.0" y="0.0" width="367" height="59"/>
             </tableViewCellContentView>
@@ -117,7 +115,6 @@
         <image name="profile_img.png" width="300" height="301"/>
         <image name="male.png" width="40" height="40"/>
         <image name="CircleMatcherDot.png" width="304" height="304"/>
-        <image name="Default.png" width="320" height="480"/>
         <image name="Default-568h.png" width="320" height="568"/>
         <image name="splash.png" width="640" height="1136"/>
         <image name="CollectionView1.png" width="560.5" height="586.5"/>
@@ -125,6 +122,8 @@
         <image name="CollectionView3.png" width="529.5" height="579"/>
         <image name="txt_fld.png" width="272.5" height="30"/>
         <image name="add_icon.png" width="41" height="41"/>
+        <image name="gears.png" width="140" height="143"/>
+        <image name="ancestorCloud.png" width="505" height="81"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -13,7 +13,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="280" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="280" height="75"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFz-2V-CZ8">
@@ -101,13 +101,13 @@
         <image name="profile_img.png" width="300" height="301"/>
         <image name="male.png" width="40" height="40"/>
         <image name="CircleMatcherDot.png" width="304" height="304"/>
-        <image name="Default.png" width="320" height="480"/>
-        <image name="Default-568h.png" width="320" height="568"/>
         <image name="splash.png" width="640" height="1136"/>
         <image name="CollectionView1.png" width="560.5" height="586.5"/>
         <image name="CollectionView2.png" width="456.5" height="503.5"/>
         <image name="CollectionView3.png" width="529.5" height="579"/>
         <image name="txt_fld.png" width="272.5" height="30"/>
         <image name="add_icon.png" width="41" height="41"/>
+        <image name="gears.png" width="140" height="143"/>
+        <image name="ancestorCloud.png" width="505" height="81"/>
     </resources>
 </document>

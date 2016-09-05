@@ -222,7 +222,8 @@ namespace AncestorCloud.Shared.ViewModels
 		{
 			if (!Mvx.CanResolve<IAndroidService> ()) {
 				//IOS part
-
+				ILogoutService logoutService = Mvx.Resolve<ILogoutService>();
+				if (logoutService != null) logoutService.Logout();
 				ClearDatabase ();
 				this.Close (this);
 				App.IsAutoLogin = false;

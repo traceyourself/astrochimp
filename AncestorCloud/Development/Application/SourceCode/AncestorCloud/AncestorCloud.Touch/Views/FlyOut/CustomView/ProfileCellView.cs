@@ -69,7 +69,7 @@ namespace AncestorCloud.Touch
 		{
 			if (ProfilePic == null)
 				return;
-			ProfilePic.Layer.CornerRadius = 27.5f;
+			ProfilePic.Layer.CornerRadius = 26.5f;
 			ProfilePic.ClipsToBounds = true;
 
 			ProfilePic.Image = ProfileImage;
