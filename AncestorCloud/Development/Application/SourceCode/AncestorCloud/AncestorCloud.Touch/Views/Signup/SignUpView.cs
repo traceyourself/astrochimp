@@ -19,7 +19,7 @@ namespace AncestorCloud.Touch
 	{
 		CGRect preFrame;
 		LoginButton loginView;
-		List<string> readPermissions = new List<string> { "public_profile","user_friends","user_relationships" };
+		List<string> readPermissions = new List<string> { "public_profile","user_friends","user_relationships","email" };
 		Boolean hideSignup = true;
 
 		public SignUpView () : base ("SignUpView", null)
@@ -65,13 +65,11 @@ namespace AncestorCloud.Touch
 
 			var buttonFrame = Facebookbutton.Frame;
 			loginView = new LoginButton (buttonFrame) {
-				LoginBehavior = LoginBehavior.Native,
+				LoginBehavior = LoginBehavior.Web,
 				ReadPermissions = readPermissions.ToArray ()
 			};
 			_container.AddSubview (loginView);
 			loginView.Hidden = true;
-
-			loginView.LoginBehavior = LoginBehavior.SystemAccount;
 
 			loginView.Completed += (sender, e) => {
 				Console.WriteLine("E: "+e.Error);

@@ -50,13 +50,19 @@ namespace AncestorCloud.Shared
 				return returnValue;
 			}
 		
-			returnValue = await FbSignInLink ();
+			// check if they already are a user
+			LoginModel loginData = await FbLoginLink();
 
-			if (returnValue.Status==ResponseStatus.Fail) {
-				return returnValue;
+			if (loginData == null)
+			{
+				returnValue = await FbSignInLink();
+				if (returnValue.Status == ResponseStatus.Fail)
+				{
+					return returnValue;
+				}
+				loginData = await FbLoginLink();
 			}
 
-			var loginData = await FbLoginLink ();
 
 			if (loginData == null) {
 				returnValue.Status= ResponseStatus.Fail;
@@ -73,6 +79,7 @@ namespace AncestorCloud.Shared
 			SaveLoginDetailInDB (loginData);
 
 			returnValue.Content = loginData;
+			returnValue.Status = ResponseStatus.OK;
 			return returnValue;
 		}
 
